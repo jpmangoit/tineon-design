@@ -33,5 +33,5 @@ jobs:
             port: ${{ secrets.FTP_PORT }}
             password: ${{ secrets.FTP_PASSWORD }}
             local_path: './out/*'
-            remote_path: '/var/www/html/school'
+            remote_path: '/var/www/html/tineon-design'
             sftp_only: true
