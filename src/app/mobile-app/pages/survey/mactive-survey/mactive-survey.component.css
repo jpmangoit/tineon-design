@@ -1,0 +1,122 @@
+.survey-listing {
+    margin-top: 25px;
+}
+.survey-items {
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+.survey-dates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+span.survey-dates-inner {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #647895;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.survey-title h5 {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #414141;
+}
+span.survey-author-img {
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
+.survey-author-img img {
+  max-width: none;
+}
+.survey-author {
+    display: flex;
+    align-items: center;
+}
+.survey-author span {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #9eacc1;
+}
+.timeline-label span:first-child {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: #98a5c6;
+    text-transform: uppercase;
+}
+.timeline-label span:last-child {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: right;
+    color: #647895;
+}
+.timeline-label {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.timeline {
+    margin-bottom: 10px;
+}
+button.mat-menu-item {
+    height: 34px;
+    line-height: 0;
+}
+.mat-progress-bar {
+    height: 13px;
+    border-radius: 25px;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background-color: #e8e5ff;
+}
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #6e63ee;
+}
+@media only screen and (max-width: 576px) {
+    .searchRefine {
+        display: flex !important;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .searchRefine input,
+    .searchRefine select {
+        width: 50px !important;
+        margin: 10px;
+    }
+    .searchRefine input {
+        padding-left: 17px !important;
+    }
+    .pagintHeadRight.text-center {
+        margin-top: 8px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .paginationHead.full_width {
+        padding: 0px;
+    }
+}

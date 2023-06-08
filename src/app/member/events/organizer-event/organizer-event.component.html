@@ -1,0 +1,211 @@
+<div class="row">
+    <div class="col-md-12 club_calendar_widget">
+        <div class="card ">
+            <div class="card-body organizer_appointement orgnizer_main">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-header task_head"> </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="calendar-widget">
+                            <div *ngIf="userRole == 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <div *ngIf="userRole != 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <div class="modalContainer">
+                                <button type="button" style="display: none;" id="showPopup" class="disabled"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">{{language.profile.change_password}}</button>
+                                <div class="modal fade change_pass_section event_model" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    (click)="closeModal()" aria-label="Close">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                        viewBox="0 0 32 32" fill="none">
+                                                        <path
+                                                            d="M32 3.72111L28.2789 0L16 12.2789L3.72111 0L0 3.72111L12.2789 16L0 28.2789L3.72111 32L16 19.7211L28.2789 32L32 28.2789L19.7211 16L32 3.72111Z"
+                                                            fill="#98A5C6" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="event-widget" [ngClass]="newClickedEvent.classNames[0]"
+                                                    *ngIf="calendarEventClicked == true">
+                                                    <div class="event-modal-img">
+                                                        <img onContextMenu="return false;"
+                                                            [src]="thumbnail != null && thumbnail != '' ? thumbnail : '../../../../assets/img/no_image.png'"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="event-modal-description">
+                                                        <div class="class_title">{{newClickedEvent.title}}</div>
+                                                        <div class="class_duration">
+                                                            <span class="event-day"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="21" viewBox="0 0 20 21" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                                                        fill="#95A0C6"></path>
+                                                                </svg>&nbsp;&nbsp;{{newClickedEvent.start |
+                                                                date:'M/d/yy, H:mm'}}
+                                                            </span>
+                                                            <span class="event-day"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="21" viewBox="0 0 20 21" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                                                        fill="#95A0C6"></path>
+                                                                </svg>&nbsp;&nbsp;{{newClickedEvent.end |
+                                                                date:'M/d/yy,H:mm' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="class_description">
+                                                            <p
+                                                                innerHtml="{{newClickedEvent.extendedProps.description}}">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-read-more profile_sub_btn">
+                                                        <button type="button" class="Cancel_btn"
+                                                            (click)="viewDetails()">{{language.community_groups.read_more}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Events grid list view start -->
+        <!-- tasks widget start -->
+        <div class="event_grid_widget">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="card-header ">
+                        <h5 class="card-title">{{language.organizer.event_title}}</h5>
+                    </div>
+                    <div class="tasks_navigation">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" (click)="onTodayEvents()"
+                                    [ngStyle]="isTodayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                    role="tab">{{language.organizer.event_today}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" (click)="onUpcomingEvents()"
+                                    [ngStyle]="isUpcomingEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                    role="tab">{{language.organizer.event_upcoming}}</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="filter-events">
+                            <mat-form-field appearance="fill">
+                                <mat-label>{{language.courses.filter}}</mat-label>
+                                <select matNativeControl id="filter_events" (click)="eventFilter()">
+                                    <option value="1">{{language.create_event.club_event}}</option>
+                                    <option value="2">{{language.create_event.group_event}}</option>
+                                    <option value="3">{{language.create_event.functionaries_event}}</option>
+                                    <option value="4">{{language.create_event.courses}}</option>
+                                    <option value="5">{{this.language.create_event.seminar}}</option>
+                                    <option selected value="0">{{this.language.create_event.showall}}</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tabs-1" role="tabpanel"
+                            [ngClass]="isTodayEvents == true ? 'active' : ''" *ngIf="isTodayEvents == true">
+                            <div class="eve_grid_main">
+                                <div class="organizer-event-grid" *ngFor="let today of currentEventList">
+                                    <div class="news-widget">
+                                        <div class="news-image">
+                                            <img onContextMenu="return false;"
+                                                [src]="today.picture_video != '' ? today.picture_video : '../../../assets/img/no_image.png'"
+                                                alt="" loading="lazy">
+                                            <div class="image_over_date">
+                                                <span class="over_date">{{todays_date | date: 'dd'}}</span>
+                                                <span class="over_month">{{todays_date | date: 'MMM'}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="news-content">
+                                            <span
+                                                class="event-cat {{eventTypeList[today.type].class}}">{{eventTypeList[today.type].name}}</span>
+                                            <!-- <a routerLink="/event-detail/{{today.id}}"> -->
+                                            <a (click)="eventDetails(today.id,todays_date)">
+
+                                                <h5>{{today.name}}</h5>
+                                            </a>
+                                            <p class="event-day"><img onContextMenu="return false;"
+                                                    src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
+                                                    alt="" loading="lazy">&nbsp;&nbsp;{{today.date_from
+                                                |date: 'EEEE' : locale }}</p>
+                                            <p class="event-time">{{today.date_from | date: 'HH:mm': 'UTC' }} -
+                                                {{today.date_to | date: 'HH:mm': 'UTC' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                                    *ngIf="currentEventList.length == 0">
+                                    <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt=""
+                                        loading="lazy"><br>
+                                    <span>{{language.club_events.no_events}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel"
+                            [ngClass]="isUpcomingEvents == true ? 'active' : ''" *ngIf="isUpcomingEvents == true">
+                            <div class="eve_grid_main">
+                                <div class="organizer-event-grid" *ngFor="let upcoming of upcomingEventList">
+                                    <div class="news-widget">
+                                        <div class="news-image">
+                                            <img onContextMenu="return false;"
+                                                [src]="upcoming.picture_video != '' ? upcoming.picture_video : 'assets/img/damir-bosnjak.jpg'"
+                                                alt="" loading="lazy">
+                                            <div class="image_over_date">
+                                                <span class="over_date">{{upcoming.date_from | date : 'dd'}}</span>
+                                                <span class="over_month">{{upcoming.date_from | date: 'MMM'}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="news-content">
+                                            <span
+                                                class="event-cat {{eventTypeList[upcoming.type].class}}">{{eventTypeList[upcoming.type].name}}</span>
+                                            <!-- <a routerLink="/event-detail/{{upcoming.id}}"> -->
+                                            <a (click)="eventDetails(upcoming.id,upcoming.date_from)">
+                                                <h5>{{upcoming.name}}</h5>
+                                            </a>
+                                            <p class="event-day"><img onContextMenu="return false;"
+                                                    src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
+                                                    alt="" loading="lazy">&nbsp;&nbsp;{{upcoming.date_from
+                                                | date: 'EEEE' }}</p>
+                                            <p class="event-time">{{upcoming.date_from | date: 'HH:mm': 'UTC' }} -
+                                                {{upcoming.date_to | date: 'HH:mm': 'UTC' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                                    *ngIf="upcomingEventList.length == 0">
+                                    <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt=""
+                                        loading="lazy"><br>
+                                    <span>{{language.club_events.no_events}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <p>{{language.courses.third_panel}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tasks widget End -->
+            <!-- Events grid list view start -->
+        </div>
+    </div>

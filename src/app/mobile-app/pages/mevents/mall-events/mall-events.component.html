@@ -1,0 +1,75 @@
+<div class="dashboard-calendar-event">
+    <div class="club_calendar_widget" *ngIf="showCalendar == true">
+        <div class="calendar-toggle-btn">
+            <mat-button-toggle-group #toggleBtn="matButtonToggleGroup">
+                <mat-button-toggle value="showCalendar" (change)="showEvents($event)">{{language.organizer.calendar}}</mat-button-toggle>
+                <mat-button-toggle value="showEventList" (change)="showEvents($event)">{{language.organizer.event_list}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div class="card ">
+            <div class="card-body organizer_appointement">
+                <div class="row">
+                    <div class="event-calendar-section">
+                        <div class="calendar-widget">
+                            <div *ngIf="userRole == 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <div *ngIf="userRole != 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <app-club-appointments *ngIf=" eventData || courseData"  [eventData]="eventData" [courseData]="courseData"></app-club-appointments>
+
+                            <div class="modalContainer">
+                                <button type="button" style="display: none;" id="showPopup" class="disabled"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">{{language.profile.change_password}}</button>
+                                <div class="modal fade change_pass_section event_model" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    (click)="closeModal()" aria-label="Close"><svg _ngcontent-aem-c247="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path _ngcontent-aem-c247="" d="M32 3.72111L28.2789 0L16 12.2789L3.72111 0L0 3.72111L12.2789 16L0 28.2789L3.72111 32L16 19.7211L28.2789 32L32 28.2789L19.7211 16L32 3.72111Z" fill="#98A5C6"></path></svg></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="event-widget" [ngClass]="newClickedEvent.classNames[0]"
+                                                    *ngIf="calendarEventClicked == true">
+                                                    <img onContextMenu="return false;" [src]="thumbnail != null && thumbnail != '' ? thumbnail : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                    <div class="class_title">
+                                                        {{newClickedEvent.extendedProps.event_name}}</div>
+                                                    <div class="class_duration">
+                                                        <span class="event-day">{{newClickedEvent.start | date: "dd.MM.yy / HH:mm"}} </span>
+                                                        <span class="event-day">{{newClickedEvent.end | date: "dd.MM.yy / HH:mm" }}</span>
+                                                        <!-- <span class="event-day">{{newClickedEvent.start | date:'MM/dd/yy, HH:mm'}} </span>
+                                                        <span class="event-day">{{newClickedEvent.end | date:'MM/dd/yy,HH:mm' }}</span> -->
+                                                    </div>
+                                                    <div class="class_description">
+                                                        <p innerHtml="{{newClickedEvent.extendedProps.description}}">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-read-more profile_sub_btn">
+                                                    <button type="button" class="Cancel_btn"
+                                                        (click)="viewDetails()">{{language.community_groups.read_more}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="club_widget" *ngIf="showEventList == true">
+        <div class="calendar-toggle-btn">
+            <mat-button-toggle-group #toggleBtn="matButtonToggleGroup">
+                <mat-button-toggle value="showCalendar" (change)="showEvents($event)">{{language.organizer.calendar}}</mat-button-toggle>
+                <mat-button-toggle value="showEventList"(change)="showEvents($event)">{{language.organizer.event_list}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <app-club-events></app-club-events>
+    </div>
+</div>

@@ -1,0 +1,227 @@
+.task-list-header {
+    color: #fff;
+    padding: 25px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.task-list-header h5 {
+    margin: 0px;
+    font-weight: 700;
+    font-family: 'Gellix', sans-serif;
+    font-size: 16px;
+}
+
+.todo-task .task-list-header {
+    background: #E93608;
+}
+
+.progress-task .task-list-header {
+    background: #FFBE00;
+}
+
+.completed-task .task-list-header {
+    background: rgb(30, 177, 118);
+}
+
+.task-list {
+    max-width: 32.5%;
+    flex: 0 0 32.5%;
+}
+
+.all-tasks-list {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.task-list-row {
+    padding: 12px 0;
+    background: none;
+    height: 770px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.task-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.task-category span {
+    font-size: 9px;
+    font-weight: 600;
+    background: #E0FAEF;
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 25px;
+    color: #1EB176;
+}
+
+.task-list-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.task-list-content h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #414141;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    max-height: calc(1 * 1.4rem);
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: calc(1 * 1.4rem);
+    font-family: 'Gellix', sans-serif;
+    cursor: pointer;
+}
+
+.task-list-content p {
+    font-family: 'Gellix', sans-serif;
+    font-weight: 500;
+    color: #9EACC1;
+    font-size: 14px;
+}
+
+.mat-progress-bar {
+    height: 13px;
+    border-radius: 25px;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background-color: #EDEDED;
+}
+
+::ng-deep .todo-task .mat-progress-bar-fill::after {
+    background-color: #FF7791;
+}
+::ng-deep .progress-task .mat-progress-bar-fill::after {
+    background-color: #76B0EF;
+}
+::ng-deep .completed-task .mat-progress-bar-fill::after {
+    background-color: #51D39E;
+}
+.progress-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.progress-content span {
+    font-size: 10px;
+    font-weight: 600;
+    color: #95A0C6;
+    font-family: 'Gellix', sans-serif;
+}
+.joined-user span:first-child {
+    position: relative;
+    z-index: 555;
+}
+.joined-user span img {
+    width: 23px;
+    height: 23px;
+    position: relative;
+    border-radius: 50%;
+}
+.joined-user span:nth-child(2) {
+    position: relative;
+    left: -4px;
+    z-index: 444;
+}
+.joined-user span:nth-child(3) {
+    position: relative;
+    left: -8px;
+    z-index: 333;
+}
+.joined-user span:nth-child(4) {
+    position: relative;
+    left: -16px;
+    z-index: 222;
+}
+.joined-user span:nth-child(5) {
+    position: relative;
+    left: -22px;
+    z-index: 111;
+}
+span.total-joiny {
+    margin-left: -10px;
+}
+.task-list-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+.message-count span, span.total-joiny{
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    color: #8C8C8C;
+}
+.message-count {
+    display: flex;
+    align-items: center;
+}
+.task-list-image {
+    border-radius: 10px;
+    padding: 0px;
+    background: #fff !important;
+    /* height: 260px; */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    aspect-ratio: 4/3;
+}
+.task-list-image img {
+    border-radius: 15px;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.2)
+}
+.individual-category span.total-joiny{
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    color: #68759F;
+    position: inherit;
+    margin-left: 10px;
+}
+.task-list-footer.individual-category .joined-user img {
+    width: 30px !important;
+    height: 30px !important;
+}
+@media only screen and (max-width:1024px){
+    .all-tasks-list {
+        flex-flow: row wrap;
+    }
+    .task-list {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .task_widget .card {
+        padding: 0;
+    }
+    .page-action {
+        flex-wrap: wrap;
+    }
+}

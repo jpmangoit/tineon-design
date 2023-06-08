@@ -1,0 +1,799 @@
+.panel_heading h3 {
+    font-size: 20px;
+    color: #424d5c;
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-top: 15px;
+
+    margin-bottom: 20px;
+}
+.title-btn-group button {
+    padding: 12px 20px;
+    border: none;
+    box-shadow: none;
+    font-weight: bold;
+}
+.main-card {
+    display: inline-block;
+    width: 100%;
+    /* background-color: #fff;
+    padding: 25px; */
+}
+.news-image {
+    overflow: hidden;
+    /* height: 240px; */
+    margin: auto;
+    text-align: center;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    aspect-ratio: 4/3;
+}
+.news-image img {
+    height: auto;
+    width: 100%;
+    border-radius: 0px;
+    max-height: none;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: scale(1.4);
+}
+.main-card .card-body.club_all_news {
+    padding: 0px;
+}
+.news-widget {
+    background: #fff;
+}
+.category-action a:first-child {
+    margin-right: 15px;
+}
+.category-content {
+    padding-top: 5px;
+}
+.faq_edit .modal-header {
+    justify-content: space-between;
+}
+.faq_edit .modal-header h3 {
+    font-size: 20px;
+    color: #424d5c;
+    font-weight: normal;
+    margin-bottom: 0 !important;
+    margin-top: 0px;
+
+    margin-bottom: 20px;
+}
+.faq_edit .modal-header button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+.faq_edit .modal-dialog {
+    max-width: 750px;
+}
+.title-btn-group.right-btn-group button {
+    margin-right: 0px !important;
+}
+.all_btn_group.btn_collapse .title-btn-group button:first-child {
+    margin-right: 20px;
+}
+.author-info {
+    align-items: center;
+    margin-top: 10px;
+}
+.all_btn_group {
+    justify-content: space-between;
+}
+.main-card h5.news-content-heading {
+    margin-bottom: 0;
+}
+p.course-time {
+    margin-bottom: 0;
+    padding: 7px 10px;
+    border-bottom: 1px solid #eff2fd;
+}
+.main-card .news-image {
+    position: relative;
+}
+.main-card .news-widget .card-footer {
+    border: 1px solid #eff2fd;
+    padding: 0;
+}
+.title-btn-group.right-btn-group img {
+    margin-right: 5px;
+    margin-top: -2px;
+}
+.ins-courses h5 {
+    margin-top: 0px;
+    font-size: 20px;
+    color: #192838;
+
+}
+.view-course-modal .modal-dialog {
+    max-width: 950px;
+}
+.widget-app-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+span.participant_status span.approved {
+    background: #4fb96d;
+}
+span.participant_status span {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+
+.ins-image.img-fluid {
+    border-radius: 15px;
+    /* border: 1px solid #c0ccda; */
+    padding: 15px 10px 15px 10px;
+    background: #fff !important;
+    /* max-height: 400px; */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: auto;
+    justify-content: center;
+    aspect-ratio: 4/3;
+}
+
+ .save_btn,  .Cancel_btn,  .page-action-right button,  button.reset_btn {
+    background: rgb(88,191,56) !important;
+    border-color:rgb(88,191,56) !important;
+    height: 46px !important;
+line-height: 44px;
+padding: 0 20px !important;
+}
+
+.save_btn span, .Cancel_btn span,  .page-action-right button span,  .page-action-right button svg,  button.reset_btn span {
+    color: #fff !important;
+    fill:#fff !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+}
+
+.ins-image.img-fluid img {
+    /* width: 100%;
+    height: 350px;
+    object-fit: cover;
+    background: #f7f7f9; */
+
+    height: 100%;
+    background: #f7f7f9;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+}
+.inst-bottom {
+    margin-top: 20px;
+}
+.schedule h5 {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    color: #1d202f;
+    margin-bottom: 15px;
+
+}
+.schedule_list ul {
+    padding: 0;
+    margin-bottom: 10px;
+}
+.schedule_list ul li {
+    display: inline-block;
+    padding: 5px 10px;
+    background: green;
+    color: #1d202f;
+    font-weight: 500;
+    width: 130px;
+    text-align: center;
+}
+.schedule_list ul:nth-child(odd) li:first-child {
+    background-color: #eaaa86 !important;
+    color: #fff;
+}
+.schedule_list ul li:nth-child(even) {
+    background-color: #ffefed;
+}
+.schedule_list ul li:nth-child(odd) {
+    background-color: #e5e9f2;
+}
+.schedule_list ul:nth-child(even) li:first-child {
+    background-color: #8c9cc3;
+    color: #fff;
+}
+.course-details-content h3 {
+    font-size: 24px;
+    color: #000;
+
+}
+.event_schedule {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.event_schedule {
+    position: absolute;
+    bottom: 0;
+}
+.event_date {
+    display: flex;
+}
+.event_date_ven {
+    background: #e12217;
+    text-align: center;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    line-height: 21px;
+}
+.event_date_ven span,
+.event_day span,
+.event_pricing span {
+    font-size: 14px;
+}
+.event_date_ven {
+    background: #e12217;
+    text-align: center;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    line-height: 21px;
+}
+.event_day {
+    background: #fff;
+    text-align: center;
+    padding: 0px 10px;
+}
+.event_day {
+    font-size: 30px;
+    line-height: 21px;
+}
+.event_pricing {
+    font-size: 30px;
+    line-height: 21px;
+    text-align: center;
+    background: #fff;
+    padding: 0 10px;
+    margin-right: 30px;
+}
+.course-action img {
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+}
+.course-action {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+.course-action a {
+    background: #fff;
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-weight: 600;
+    color: #68759f;
+    font-family: "Gellix", sans-serif;
+}
+.dropdown.action_group button:after {
+    border: transparent;
+}
+ul.bunch_drop.show {
+    position: relative;
+    width: 150px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    top: 37px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 4px -1px #ccc;
+}
+ul.bunch_drop.show li {
+    list-style: none;
+}
+ul.bunch_drop.show {
+    display: block;
+}
+ul.bunch_drop {
+    display: none;
+}
+button.dropdown-toggle {
+    position: absolute;
+    right: 0;
+}
+.dropdown.action_group button {
+    border: none;
+    font-size: 24px;
+    border-radius: 5px !important;
+    background: #e5e9f2;
+    height: 32px;
+    /* color: #fff; */
+    box-shadow: 0px 1px 4px -1px #ccc;
+}
+.schedule_list.room_time li {
+    width: 105px !important;
+}
+.card-footer.course_footer {
+    max-height: 84px;
+    overflow-y: auto;
+    min-height: 84px;
+    background: #fff;
+    padding-top: 0;
+    overflow-x: hidden;
+    margin-top: 10px;
+    padding: 10px;
+}
+p.course-time i {
+    margin-right: 10px;
+}
+.main-card .news-widget {
+    cursor: pointer;
+}
+p.course-time span {
+    margin-right: 10px;
+}
+/* 03-03-22 */
+
+.row.filter-box {
+    margin: 0px;
+    background: #fff;
+    justify-content: flex-end;
+}
+.row.filter-box .col-md-3 {
+    padding: 0 10px;
+}
+
+@media only screen and (max-width: 990px) and (max-width: 768px) {
+    /* .main-card .news-image {
+        height: 175px;
+    } */
+}
+@media only screen and (max-width: 600px) {
+    .category-list {
+        display: inline-block;
+    }
+}
+.search_area input {
+    height: 45px;
+    border-radius: 25px;
+}
+.button-filter button:last-child {
+    margin-right: 0px;
+}
+.search_area input::placeholder {
+    font-size: 14px;
+    color: #8f9dc9;
+}
+
+/* new desing css start */
+
+.tab-button button {
+    height: 41px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-family: "Gellix", sans-serif;
+    border: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 35px;
+}
+.tab-button {
+    background: #fff;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 10px;
+}
+.page-action-right button {
+    box-shadow: none;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 25px 0 15px;
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff !important;
+}
+.page-action-right button {
+    margin-right: 15px;
+    background: #FFBE00;
+}
+.page-action-right button:nth-child(2) {
+    background: #1eb176;
+}
+.page-action-right button:last-child {
+    margin-right: 0px;
+}
+.page-action-right button svg {
+    margin-right: 5px;
+}
+.page-action-right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+.page-action-left {
+    width: 50%;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+}
+.page-heading h1 {
+    font-size: 24px;
+    font-family: "Gellix", sans-serif !important;
+    font-weight: 700;
+    color: #68759f;
+    text-transform: uppercase;
+    margin: 0;
+    padding-left: 20px;
+}
+.page-heading {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    margin-bottom: 30px;
+}
+.page-action {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.page-action {
+    margin-top: 25px;
+}
+.tab-button button span {
+    position: relative;
+    top: -2px;
+}
+.search_area .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    float: right;
+}
+.input-group-text button {
+    height: 40px;
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #68759f;
+    color: #68759f;
+    padding: 0 20px;
+    background-color: #fff;
+    font-size: 15px;
+    font-family: "Gellix", sans-serif;
+    text-transform: uppercase;
+}
+.input-group-text button.save_btn {
+    height: 40px;
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #68759f;
+    color: #fff;
+    background-color: #68759f;
+}
+.input-group-text button:last-child {
+    margin-right: 0 !important;
+}
+.search_area .card {
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: none;
+}
+.card.search-card {
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: none;
+}
+.button-filter button {
+    height: 43px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #68759f;
+    color: #68759f;
+    padding: 0 20px;
+    background-color: #fff;
+}
+.button-filter button.save_btn {
+    height: 43px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #68759f;
+    color: #fff;
+    background-color: #68759f;
+    display: flex;
+align-items: center;
+}
+.room-main-grid {
+    display: flex;
+    flex-flow: row wrap;
+}
+.room-grid-list {
+    width: 25%;
+
+    padding: 12px;
+}
+.card.room-card {
+    padding: 35px 25px;
+    border-radius: 20px;
+}
+
+.news-content p a {
+    font-weight: 700;
+    color: #68759f;
+    font-family: "Gellix", sans-serif;
+    font-size: 14px;
+}
+h5.news-content-heading {
+    font-size: 18px;
+    font-weight: 700;
+}
+.news-badge {
+    font-size: 9px;
+    font-weight: 600;
+    background: #FFBE00;
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 25px;
+    color: #fff;
+    margin-top: 10px;
+}
+.card-footer.course_footer p:nth-child(even) {
+    background-color: #e9ebf1;
+}
+@media only screen and (max-width: 1200px) {
+    .room-grid-list {
+        width: 33.3%;
+    }
+}
+@media only screen and (max-width: 950px) {
+    div#view-rooms .modal-dialog {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .room-grid-list {
+        width: 100%;
+        background: #fff;
+        border-radius: 15px !important;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+    .page-heading {
+        width: 64% !important;
+    }
+    .page-action-right {
+        width: 57%;
+        margin-bottom: 0;
+    }
+    .page-action {
+        margin-bottom: 0px;
+        justify-content: flex-end;
+        margin-top: 0px;
+    }
+    .page-action-right button {
+        margin-right: 0px !important;
+    }
+    .card.room-card {
+        padding: 0;
+        background: transparent;
+    }
+    .card.search-card {
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    .row.filter-box .col-md-3 {
+        padding: 0;
+    }
+    .search_area input {
+        height: 40px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    .modal-body .ins-image.img-fluid img {
+        width: 100%;
+        /* height: 180px; */
+    }
+    .page-heading {
+        margin-bottom: 0;
+    }
+    .last-button {
+        width: 100%;
+    }
+    .button-filter button {
+        width: 50%;
+        font-size: 15px;
+        font-family: "Gellix", sans-serif;
+        text-transform: uppercase;
+    }
+    .button-filter {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}
+
+/* published buttons css */
+.page-action-right button {
+    box-shadow: none;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 25px 0 15px;
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff !important;
+}
+.page-action-right button {
+    margin-right: 15px;
+    background: #1eb176;
+}
+.page-action-right button:nth-child(2) {
+    background: #fb5f5f;
+}
+.page-action-right button:last-child {
+    margin-right: 0px;
+}
+.page-action-right button svg {
+    margin-right: 5px;
+}
+.page-action-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+span.author-status,
+span.deny-reason {
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    color: #FFBE00;
+}
+span.deny-reason {
+    color: #fb5f5f;
+}
+.author-des {
+    line-height: 17px;
+    margin-top: 10px;
+
+  }
+  /* published buttons end */
+  ::ng-deep .room-booked {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: red !important;
+    padding: 0px 5px;
+    border-color: red !important;
+  }
+
+  ::ng-deep .room-availability {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: green !important;
+    padding: 0px 5px;
+    border-color: green !important;
+  }
+  ::ng-deep .fc .fc-scroller-liquid-absolute{
+    overflow: hidden scroll !important;
+  }
+  ::ng-deep thead tr th.fc-col-header-cell.fc-day div{
+    padding: 4px 0px;
+  }
+  ::ng-deep th.fc-col-header-cell.fc-day div{
+    background: rgb(97 97 97);
+    color: #ffffff;
+  }
+  ::ng-deep button.fc-prev-button.fc-button.fc-button-primary{
+    border-radius: 25px !important;
+  }
+  ::ng-deep button.fc-next-button.fc-button.fc-button-primary{
+    border-radius: 25px !important;
+  }
+  .schedule {
+    display: flex;
+    flex-wrap: wrap;
+}
+.schedule_list.room_time {
+    margin: 0 0px;
+}
+/* calender-css */
+
+ ::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr:nth-child(2n) {
+  display: none !important;
+}
+
+::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr td {
+  height: 30px !important;
+}
+
+
+::ng-deep .calendar-box .fc .fc-scroller-harness, ::ng-deep  .fc-scroller.fc-scroller-liquid-absolute {
+    overflow: auto;
+}
+
+/* ::ng-deep .fc-scrollgrid.fc-scrollgrid-liquid tbody tr:first-child .fc-scroller-harness .fc-scroller {
+  overflow: hidden !important;
+} */
+
+
+::ng-deep .fc .fc-view-harness-active > .fc-view {
+ border-top-left-radius: 0px;
+}
+
+::ng-deep .fc-timegrid-event .fc-event-time {
+  white-space: normal !important;
+  color: #fff;
+  font-size: 14px !important;
+
+  line-height: 26px;
+  margin-top: 15px;
+}
+
+::ng-deep .fc-toolbar-title {
+    margin-left: 70px !important;
+  }
+
+
+
+@media (max-width: 767px) {
+    .news-image {
+        padding: 5px;
+    }
+
+    ::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr td {
+       height: 30px !important;
+    }
+
+   ::ng-deep h2.fc-toolbar-title {
+        position: static;
+        width: 100%;
+        text-align: center;
+        top: 60px;
+        margin-left: 0px !important;
+    }
+
+    ::ng-deep .fc .fc-col-header-cell-cushion {
+        display: inline-block;
+        padding: 2px 4px;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    ::ng-deep #view-rooms .modal-body .row .row .col-md-4 {
+        width: 50% !important;
+    }
+
+    .page-action-right button {
+        height: 38px !important;
+        border-radius: 10px;
+        padding: 0 10px 0 10px !important;
+    
+    }
+
+    .page-action-right button span {
+      font-size: 11px !important;
+    }
+}
+/* published buttons end */

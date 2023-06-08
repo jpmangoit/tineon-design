@@ -1,0 +1,40 @@
+<div class="card birth_main">
+    <div class="card-header ">
+        <h5 class="card-title">{{language.club.anniversaries_birthday}}</h5>
+    </div>
+    <div class="card-body ">
+        <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
+            <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.club.no_anniversaries_birthday}}" loading="lazy"><br><span>{{language.club.no_anniversaries_birthday}}</span>
+        </div>
+        <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
+            <div class="widget-app-content">
+                <div class="app-left-content">
+                    <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;" alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy"></div>
+                    <div class="user-content">
+                        <Span class="user-name">{{data.firstname}} {{data.lastname}}</Span>
+                        <span class="user-status">
+                            <img src="assets/img/birth_ic.svg" onContextMenu="return false;" loading="lazy">&nbsp;{{data.bd_notification | date:'d MMMM, y'}}</span>
+                    </div>
+                </div>
+                <div class="app-right-content" *ngIf="ageDiff">
+                    <span class="user-age">{{data.age}} {{language.club.years_old}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="widget-appointment widget" *ngFor='let data of jubileesData'>
+            <div class="widget-app-content">
+                <div class="app-left-content">
+                    <div class="user-img">
+                        <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;" alt="{{data?.user?.firstname}} {{data?.user?.lastname}}"  loading="lazy"></div>
+                    <div class="user-content">
+                        <Span class="user-name">{{data.user.firstname}} {{data.user.lastname}}</Span>
+                        <span class="user-status"><i class="nc-icon nc-air-baloon"></i>&nbsp;{{data.user.created_at | date: 'd. MMMM y'}}</span>
+                    </div>
+                </div>
+                <div class="app-right-content">
+                    <span class="user-age">{{data.vjet}} {{language.club.years_old}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+.app-page-content{
+    background-color: #EFF2FD;
+    padding: 15px;
+}
+
+.survey-tabs button {
+    margin-right: 0;
+    height: auto;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    background: linear-gradient(180deg, #F4F4F4 0%, #F8F8F8 100%);
+    box-shadow: 0px 2px 4px 1px #e2e6ec, inset 0px 1px 1px #ffffff;
+    border-radius: 30px;
+    color: #90A2C3;
+    font-family: 'Gellix', sans-serif;
+    padding: 6px 14px;
+}
+
+.survey-tabs button.active {
+    background: linear-gradient(180deg, #5595FA 0%, #5398FF 100%);
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.survey-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.survey-tabs button {
+    margin-right: 15px;
+}
+.page-action-right button {
+    box-shadow: none;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 25px 0 15px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff !important;
+}
+
+.page-action-right button {
+    margin-right: 0px;
+    background: rgb(88,191,56);
+}
+
+.page-action-right button svg {
+    margin-right: 5px;
+}
+
+.page-action-right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+    justify-content: flex-end;
+}
+
+@media (max-width:767px) {
+
+    .event-time,
+    .event-title span {
+        font-size: 14px;
+    }
+
+    .course-price span:first-child {
+        margin-right: 5px;
+        padding-right: 5px;
+    }
+
+    .app_widget_sc {
+        overflow-x: hidden;
+        max-height: inherit;
+        overflow-y: auto;
+        min-height: inherit;
+    }
+
+    .course-details-content h3 {
+        font-size: 20px;
+    }
+
+    .modal-dialog .course-price {
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    .page-heading {
+        width: 54% !important;
+    }
+
+    .page-action-right {
+        width: 46%;
+    }
+
+    .page-action-right button {
+        margin-right: 0px !important;
+    }
+
+    .main-card .card {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .category-listing {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
+
+    .page-heading {
+        display: flex;
+    }
+
+    .page-action {
+        flex-flow: row nowrap !important;
+        display: flex;
+        margin-bottom: 15px;
+        justify-content: right;
+    }
+}

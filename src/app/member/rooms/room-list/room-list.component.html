@@ -1,0 +1,103 @@
+<div class="content add_content_main">
+    <div class="page-action">
+        <div class="page-heading">
+            <h1>{{language.room.rooms}}</h1>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-inner">
+            <div class="mat-elevation-z8" *ngIf="isData == true">
+                <!-- search heading of list start -->
+                <div class="list-search-panel mt-10">
+                    <div class="search-list">
+                        <mat-form-field>
+                            <mat-label>{{language.header.search}}</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="{{language.header.search}}" autocomplete="off" #input (keyup)="getUserAllRooms($event)">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- search heading of list end -->
+
+                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
+                    class="table table-bordered" data-plugin="floatThead">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.create_news.title_label}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            {{row.name }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.create_event.description}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            <p [innerHTML]="(row.description.length > 0 )? (row.description| slice:0:100)+'...':(row.description)"> </p>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="no_of_persons">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.room.number_of_person}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            {{row.no_of_persons }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="image">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.banner.image}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            <img src="{{row.image}}" width="60px" height="60px" />
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="created_at">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.create_event.date}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            {{row.created_at | date: 'd. MMMM y'}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="author">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{language.dashboard.dashboardNewsAuthor}}
+                        </th>
+                        <td class="odd" mat-cell *matCellDef="let row">
+                            {{userData.firstName }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="View">
+                        <th class="text-left" mat-header-cell *matHeaderCellDef>
+                            {{language.header.view}}
+                        </th>
+                        <td class="odd table_action view" mat-cell *matCellDef="let row">
+                            <button class="btn btn-outline-secondary" routerLink="/room-detail/{{row.id}}">{{language.header.view}}</button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="7">{{language.room.no_rooms}}
+                        </td>
+                    </tr>
+                </table>
+
+                <mat-paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" showFirstLastButtons
+                    aria-label="Select page">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

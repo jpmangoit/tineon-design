@@ -1,0 +1,49 @@
+.app-content-area {
+    padding: 0;
+    background-color: #fff;
+}
+/* top tabs css start */
+/* .tab-button button {
+    height: 41px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-family: "Gellix", sans-serif;
+    border: none !important;
+    font-weight: 600;
+    font-size: 12px;
+    color: #68759f;
+    width: 50%;
+    background: #ebf0ff;
+} */
+/* .tab-button {
+    background: #ebf0ff;
+    display: flex;
+    padding: 3px;
+    border-radius: 10px;
+    align-items: center;
+} */
+.page-action-left {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.tab-button button span {
+    position: relative;
+    top: -2px;
+}
+/* .tab-button button.active {
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+} */
+.app-action-toggle {
+    padding: 0px 15px;
+}
+.page-action-left {
+    display: block !important;
+}
+
+::ng-deep .community-group-row .com-g-widget .news-image {
+    background: none !important;
+    border: 1px solid #cfcfcf;
+}
+/* top tabs css end */

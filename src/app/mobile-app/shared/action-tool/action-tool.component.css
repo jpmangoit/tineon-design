@@ -1,0 +1,37 @@
+
+.create-navigation ul li {
+    list-style: none;
+    text-align: center;
+    border: 1px solid #B1BCE0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.create-navigation ul {
+    padding: 0;
+    margin: 0;
+    column-count: 4;
+    column-gap: 10px;
+    margin-bottom: 20px;
+}
+.create-navigation ul li a {
+    color: #B1BCE0;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 10px;
+    font-family: 'Gellix', sans-serif;
+    line-height: 13px;
+    background: #eef2ff;
+    padding: 12px 5px;
+    height: 62px;
+    display: inline-block;
+}
+.create-title {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #555555;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}

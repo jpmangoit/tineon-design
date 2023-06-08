@@ -1,0 +1,33 @@
+<div class="app-page-content">
+    <div class="app-action-toggle">
+        <!-- mobile toggle button header -->
+        <div class="page-action">
+            <div class="page-action-left">
+                <div class="tab-button">
+                    <button type="button"  *ngIf="participateAccess.news == 'Yes'"  (click)="onNews()" (click)="onClick('1')"
+                        [ngClass]="{'active': activeClass === 'newsActive'}" >
+                        <Span>{{language.club_wall.club_news}}</Span>
+                    </button>
+                    <button type="button" *ngIf="participateAccess.appointments == 'Yes'"   (click)="onDates()" (click)="onClick('2')"
+                        [ngClass]="{'active': activeClass === 'dateActive'}">
+                         <Span>{{language.club_wall.club_dates}}</Span>
+                    </button>
+                    <button type="button" *ngIf="participateAccess.event == 'Yes'" (click)="onEvents()" (click)="onClick('3')"
+                        [ngClass]="{'active': activeClass === 'eventActive'}">
+                        <span>{{language.club_wall.club_events}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- mobile toggle button header -->
+    </div>
+    <div class="app-content-area" *ngIf="displayNews == true">
+        <app-mclub-news></app-mclub-news>
+    </div>
+    <div class="app-content-area"  *ngIf="displayDates == true">
+        <app-mclub-dates></app-mclub-dates>
+    </div>
+    <div class="app-content-area"  *ngIf="displayEvents == true">
+        <app-mclub-events></app-mclub-events>
+    </div>
+</div>

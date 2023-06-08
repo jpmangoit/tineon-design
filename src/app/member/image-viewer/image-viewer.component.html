@@ -1,0 +1,11 @@
+<div *ngIf="open" class="viewer-container">
+    <div class="viewer-content">
+        <a class="close-viewer" (click)="close.emit()">
+            <i class="nc-icon nc-simple-remove"></i>
+        </a>
+        <img class="main-img" *ngIf="isImage==true" [src]="imageURL" />
+        <div class="main-div" *ngIf="isImage==false">
+            <ngx-doc-viewer [url]="imageURL" viewer="google" style="width:100%;height:90vh;"></ngx-doc-viewer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+@media only screen and (max-width: 1480px) and (min-width: 1261px) {
+    .row.eve_grid_main .col-lg-3.col-md-6.col-sm-6 {
+        flex: 0 0 33.3%;
+        max-width: 33.3%;
+    }
+}
+
+@media only screen and (max-width: 1260px) and (min-width: 1024px) {
+    .row.eve_grid_main .col-lg-3.col-md-6.col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.row.eve_grid_main .news-image img {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    object-fit: cover;
+    height: 100%;
+}
+
+.row.eve_grid_main .news-image {
+    height: 210px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .event_grid_widget .tasks_navigation {
+        display: inline-block !important;
+        width: 100%;
+    }
+}
+
+.event_grid_widget .tasks_navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-events select {
+    width: 100%;
+    height: 45px;
+    background: #FAFBFC;
+    border: 1px solid #EDF0F3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.filter-events select:focus {
+    outline: none;
+}
+
+.event_grid_widget .tasks_navigation {
+    padding: 0;
+}
+
+.card {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.event_box_right span {
+    display: inline-block;
+    width: 100%;
+}
+
+span.event_location i {
+    position: relative;
+    top: 2px;
+}
+
+span.event_location {
+    
+    text-transform: capitalize;
+    color: #d6860e;
+}
+
+p.event-day {
+    font-size: 12px;
+    color: #E12217;
+}
+
+.club_calendar_widget .card {
+    background: #fff;
+    box-shadow: none;
+    padding: 30px 20px;
+    border-radius: 20px;
+}
+
+.fc-view-harness.fc-view-harness-active {
+    background: #fff !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    background-color: transparent;
+}
+
+.calendar-toggle-btn {
+    position: absolute;
+    z-index: 22;
+    right: 0;
+    top: 28px;
+}
+
+.club_widget .calendar-toggle-btn {
+    right: 40px;
+}
+
+::ng-deep .calendar-toggle-btn button span {
+    line-height: 36px !important;
+    height: 39px;
+    padding: 0 20px !important;
+    font-weight: 700;
+}
+
+::ng-deep .mat-button-toggle.mat-button-toggle-checked {
+    color: #fff !important;
+    background: #18304a;
+}
+
+::ng-deep .club_calendar_widget .calendar-toggle-btn mat-button-toggle-group.mat-button-toggle-group .mat-button-toggle-appearance-standard:first-child {
+    color: #7E90BE !important;
+    background: #fff;
+    font-size: 13px;
+    font-family: 'Gellix', sans-serif;
+}
+
+::ng-deep .calendar-toggle-btn .mat-button-toggle-appearance-standard {
+    color: #7E90BE;
+    background: #DCE0EC;
+    font-size: 13px;
+    font-family: 'Gellix', sans-serif;
+}
+
+
+/* new design css start */
+
+::ng-deep .mat-button-toggle-group-appearance-standard {
+    border: solid 2px #DCE0EC;
+    border-radius: 10px !important;
+}
+.dashboard-calendar-event{
+    padding: 0 15px;
+}
+.event-calendar-section {
+    display: inline-block;
+    width: 100%;
+}
+.club_calendar_widget{
+    position: relative;
+}
+.modal-read-more.profile_sub_btn button {
+    color: #508EEC;
+    font-weight: 600;
+    font-size: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 3px 12px;
+    background: linear-gradient(180deg, #F3F3F3 0%, #FFFFFF 100%);
+    box-shadow: 0px 1px 4px rgb(0 0 0 / 13%), inset 0px 1px 1px #ffffff;
+}

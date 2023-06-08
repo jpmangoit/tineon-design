@@ -1,0 +1,16 @@
+<div class="setting-tools-option">
+    <div class="language-option">
+        <label>{{language.language.selectLanguage}}</label>
+        <ul>
+            <li (click)="onLanguageSelect('en')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/en_ic.png" alt="{{language.language.english}}" loading="lazy">&nbsp;{{language.language.english}}</button></li>
+            <li (click)="onLanguageSelect('de')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/ge_ic.png" alt="{{language.language.deutsch}}" loading="lazy">&nbsp;{{language.language.deutsch}}</button></li>
+            <li (click)="onLanguageSelect('fr')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/fr_ic.png" alt="{{language.language.french}}" loading="lazy">&nbsp;{{language.language.french}}</button></li>
+            <li (click)="onLanguageSelect('it')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/it_ic.png" alt="{{language.language.italian}}" loading="lazy">&nbsp;{{language.language.italian}}</button></li>
+            <li (click)="onLanguageSelect('sp')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/sp_ic.png" alt="{{language.language.spanish}}" loading="lazy">&nbsp;{{language.language.spanish}}</button></li>
+            <li (click)="onLanguageSelect('tr')"><button (click)="openLink($event)"><img onContextMenu="return false;" src="../../../assets/img/tu_ic.png" alt="{{language.language.turkish}}" loading="lazy">&nbsp;{{language.language.turkish}}</button></li>
+        </ul>
+    </div>
+    <!-- <div class="profile_btns sign_out_btn">
+        <button type="button" (click)="logout()">{{language.header.signout}}</button>
+    </div> -->
+</div>

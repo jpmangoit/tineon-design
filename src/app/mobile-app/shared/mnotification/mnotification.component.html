@@ -1,0 +1,1425 @@
+<div class="slideup-action" [class.toggled]="classToggled">
+    <button type="button" (click)="toggleField()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            viewBox="0 0 20 20" fill="none">
+            <path
+                d="M19.9848 7.5181C20.0006 7.89818 19.9137 8.25323 19.7414 8.59265C19.0396 9.98002 17.3782 10.4211 16.022 9.54363C14.1109 8.30641 12.214 7.04887 10.3234 5.78037C10.0168 5.5739 9.81445 5.56139 9.49989 5.77255C7.64412 7.02071 5.77571 8.25167 3.89939 9.47011C2.73123 10.2287 1.23903 9.92684 0.456572 8.8038C-0.325886 7.68233 -0.0871983 6.14481 1.05408 5.37683C3.52792 3.71104 6.01914 2.07185 8.51826 0.443606C9.40346 -0.131988 10.363 -0.15545 11.2482 0.420144C13.8327 2.09688 16.3966 3.80333 18.9574 5.51603C19.656 5.9837 19.9785 6.68286 19.9848 7.5181ZM17.4193 19.9966C16.8993 20.031 16.3871 19.7995 15.9034 19.4789C14.054 18.2558 12.195 17.0451 10.3582 15.8032C10.0073 15.5655 9.77652 15.5921 9.43982 15.8173C7.63305 17.0326 5.81048 18.2276 3.98791 19.421C2.75494 20.2281 1.23745 19.9544 0.448668 18.7954C-0.365404 17.6004 -0.044517 16.1082 1.21532 15.273C3.5706 13.712 5.93694 12.1666 8.28431 10.5931C9.37501 9.86271 10.423 9.84863 11.5169 10.5838C13.292 11.7772 15.0846 12.944 16.8692 14.1234C17.59 14.5988 18.3267 15.054 19.019 15.567C19.8852 16.2068 20.2045 17.3126 19.8694 18.2902C19.5154 19.3162 18.5843 19.9872 17.4193 19.9966Z"
+                fill="white" />
+        </svg>
+    </button>
+</div>
+<mat-nav-list>
+    <div class="create-navigation">
+        <div class="notification-header">
+            <div class="create-title">{{language.header.notification}}</div>
+            <button type="button" (click)="openLink($event)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="12" fill="#EBEBEB"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2247 10.8364C15.5825 10.4785 15.9404 10.1174 16.2999 9.76116C16.4078 9.65331 16.5009 9.53075 16.5712 9.39512C16.9078 8.74149 16.6497 7.93755 15.9961 7.60098C15.4896 7.33956 14.8735 7.42947 14.4634 7.82656C13.7051 8.57173 12.9567 9.32343 12.2099 10.08C12.1053 10.1879 12.0547 10.1797 11.955 10.0768C11.2328 9.34477 10.5024 8.62093 9.77857 7.89382C9.63969 7.7484 9.47139 7.6324 9.28674 7.55234C8.607 7.27459 7.82918 7.60144 7.55135 8.28122C7.35034 8.77308 7.46142 9.33518 7.83069 9.71425C8.5725 10.4659 9.31922 11.2126 10.0708 11.9511C10.1852 12.0622 10.177 12.1162 10.0676 12.2224C9.32729 12.9528 8.59356 13.6931 7.85657 14.4301C7.32875 14.9448 7.32053 15.7896 7.83685 16.3158C7.96757 16.4498 8.12607 16.556 8.3009 16.6229C8.7813 16.8353 9.34178 16.7226 9.70619 16.3451C10.4693 15.6048 11.2145 14.8498 11.9613 14.0932C12.0642 13.987 12.1165 13.9936 12.2178 14.0949C12.9498 14.8367 13.69 15.5703 14.4253 16.3089C14.6998 16.603 15.0952 16.7533 15.4956 16.7124C16.2276 16.6535 16.7734 16.0097 16.7114 15.2777C16.6853 14.9705 16.5545 14.6829 16.3421 14.4607C15.6052 13.7041 14.8552 12.9607 14.102 12.2205C13.9876 12.1094 13.9958 12.0555 14.1053 11.9493C14.4828 11.5849 14.8521 11.209 15.2247 10.8364Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+        <div class="notification-drop-info" *ngIf="showNotifications && showNotifications.length > 0" [class.toggled]="classToggled">
+            <!-- Course Notification message End -->
+            <ng-container *ngFor="let notification of showNotifications" (onchange)="in(showNotifications)">
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'groupNotifications'">
+                        <div class="notification_user" *ngIf="notification && notification.firstName">
+                            <span
+                                class="">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}
+                                </Span>{{language.header.want_to_join_a_group_called}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="joinGroup(notification.id, notification.userId)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="denyGroup(notification.id, notification.userId)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Group Notification message End -->
+
+                    <!-- Update Group Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'updateGroupNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                            </span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.want_to_publish_update_an_Group_called}}<a
+                                    routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="acceptUpdatedGroup(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapproveGroup(notification.id)">{{language.header.deny}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Update Group Notification message End -->
+
+                    <!-- updated Group Notification For Existing Users  message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'updatedGroupNotificationForExistingUsers'">
+                        <div class="notification_user" *ngIf="notification && notification.firstName">
+                            <span  class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.group_hasbeen_updated}}
+                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewUpdatedGroup(notification.id)">{{language.header.view}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- updated Group Notification For Existing Users  message End -->
+
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'unapprovedUserGroups'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span
+                                    class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p>
+                                    <Span> {{notification.firstName}} {{notification.lastName}}</Span>
+                                    {{language.header.invited_you_to}}<a
+                                        routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.group | lowercase}}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptGroup(notification.id)">{{language.header.accept}}</button>
+                                    <button class="deny_btn" type="button"
+                                        (click)="rejectGroup(notification.id)">{{language.header.deny}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+
+                    <!-- Group approval message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'groupForApprovals'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span
+                                    class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p><Span>{{notification.firstName}}  {{notification.lastName}}</Span>
+                                    {{language.header.want_to_publish_an_Group_calles}}
+                                    <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.group | lowercase}}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="approvedGroup(notification.id)">{{language.header.accept}}</button>
+                                    <button class="deny_btn" type="button"
+                                        (click)="unapproveGroup(notification.id)">{{language.header.deny}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- Group approval message end -->
+
+                    <!-- Deny Group Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'denyGroupNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.deny_group_called}}
+                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button" (click)="viewGroup(notification.id)">{{language.header.view}} </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Group Notification message End -->
+
+                    <!-- AcceptGroupUserNotifications Group Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'AcceptGroupUserNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.added_group_called}}
+                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewAcceptedGroup(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- AcceptGroupUserNotifications Group Notification message End -->
+
+                    <!-- getPublishedGroupNotificationtoCreator Group Notification message start -->
+                    <div class="notification-panle"   *ngIf="notification.notificationType == 'getPublishedGroupNotificationtoCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.group_hasbeen_published}}
+                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="readPublishedGroup(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- getPublishedGroupNotificationtoCreator Group Notification message End -->
+
+                    <!-- <div class="notification_heading">News</div> -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'newsNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}
+                                </Span>{{language.header.want_to_publish_an_Article_called}}<a
+                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button" (click)="acceptNews(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button" (click)="denyNews(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- News Notification message End -->
+
+                    <!-- Update News Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'updateNewsNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.want_to_publish_update_an_Article_called}} <a
+                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="acceptUpdatedNews(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="denyNews(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+
+                    <!-- Deny News Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'denyNewsNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                            </span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.deny_Article_called}} <a
+                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"  (click)="viewNews(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </div>
+                    </div>
+                    <!-- Deny News Notification message End -->
+
+                    <!-- Approve Publish News Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedPublishNewsNotificationToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.news_hasbeen_published}}
+                                <a routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApprovePublishNewsByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish News Notification  End -->
+
+                    <!-- Approve Publish Update News Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedUpdateNewsNotificationToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.news_hasbeen_updated}}
+                                <a routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApproveUpdateNewsByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Update  News Notification  End -->
+
+                    <!-- eventsNotifications start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType ==  'eventsNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.want_to_publish_an_Event_calles}} <a
+                                    routerLink="/event-detail/{{notification.id}}">{{notification.title}}
+                                </a>{{language.header.event | lowercase}}
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedEvents(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedEvent(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- eventsNotifications end -->
+
+                    <!-- eventUpdateNotifications start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType ==  'eventUpdateNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.want_to_publish_update_an_Event_called}} <a
+                                    routerLink="/event-detail/{{notification.id}}">{{notification.title}}
+                                </a>{{language.header.event | lowercase}}
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedUpdateEvents(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedEvent(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- eventUpdateNotifications end -->
+
+                    <!-- Deny Publish Event Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'denyEventNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.deny_event_called}}
+                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishEventByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Event Notification  End -->
+
+                    <!-- Approve Publish Event Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedEventNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.event_hasbeen_published}}
+                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApprovePublishEventByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Event Notification  End -->
+
+                    <!-- Approve Publish Update Event Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'approvedUpdateEventNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.event_hasbeen_updated}}
+                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApproveUpdateEventByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Update Event Notification  End -->
+
+                    <!-- invited eventsNotifications start -->
+                    <div class="notification-panle"  *ngIf="notification && notification.notificationType == 'invitedEventsNotifications'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name" *ngIf="alluserDetails && notification">
+
+                                    {{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails">
+                                    <span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.invited_you_to}}
+                                    <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{ language.header.event | lowercase }}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptInvitedEvent(notification.id)">{{language.header.accept}}</button>
+                                    <button class="deny_btn" type="button"
+                                        (click)="denyInvitedEvent(notification.id)">{{language.header.deny}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- invited eventsNotifications end -->
+
+                    <!-- invited updatedEventsNotifications start -->
+                    <div class="notification-panle"  *ngIf="notification && notification.notificationType == 'updatedEventNotificationForExistingUsers'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name" *ngIf="alluserDetails && notification">
+                                    {{notification.firstName.charAt(0)}} {{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails">
+                                    <span>{{notification.firstName}}{{notification.lastName}}</span>
+                                    {{language.header.event_hasbeen_updated}} <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="viewUpdateEvent(notification.id)">{{language.header.view}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- invited updatedEventsNotifications end -->
+
+                    <!-- Course Notification message Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'coursesNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">{{notification.firstName.charAt(0)}} {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_an_Course_calles}}
+                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedCourses(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedCourse(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Course Notification message End -->
+
+                    <!--update Course Notification message Start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'updateCourseNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_update_an_Course_calles}}
+                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}
+                                </a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedUpdateCourses(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedCourse(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!--update Course Notification message End -->
+
+                     <!-- user want to join  courseNotifications start -->
+                     <div class="notification-panle" *ngIf="notification.notificationType == 'userWantsToJoinCourseNotificationToCreator'">
+                        <ng-container *ngIf="notification.id > 0">
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="notification.firstName">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="notification.firstName">
+                                    <span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.courses.wants_join_course}}
+                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{ language.courses.course | lowercase }}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button" (click)="acceptJoinUser(notification.id,notification.userIId)">{{language.header.accept}}</button>
+                                    <button class="deny_btn" type="button" (click)="denyJoinUser(notification.id,notification.userIId)">{{language.header.deny}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- user want to join  courseNotifications end -->
+
+                    <!-- Creator Joined the user  courseNotifications start -->
+                      <div class="notification-panle" *ngIf="notification.notificationType == 'userJoinedByCreatorNotification'">
+                        <ng-container *ngIf="notification.id > 0">
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="notification.firstName">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="notification.firstName">
+                                    <span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.courses.creator_joined}}
+                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{ language.courses.course | lowercase }}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="viewJoinedCourse(notification.id)">{{language.header.view}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- Creator Joined the user  courseNotifications end -->
+
+                    <!-- invited courseNotifications start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'invitedCoursesNotifications'">
+                        <ng-container *ngIf="notification.id > 0">
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="notification.firstName">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="notification.firstName">
+                                    <span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.invited_you_to}}
+                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{ language.header.course | lowercase }}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptInvitedCourse(notification.id)">{{language.header.accept}}</button>
+                                    <button class="deny_btn" type="button"
+                                        (click)="denyInvitedCourse(notification.id)">{{language.header.deny}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- invited courseNotifications end -->
+
+                    <!-- invited updatedCoursesNotifications start -->
+                    <div class="notification-panle" *ngIf="notification && notification.notificationType == 'updatedCourseNotificationForExistingUsers'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name" *ngIf="alluserDetails && notification">
+                                    {{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails">
+                                   <span>{{notification.firstName}}{{notification.lastName}}</span>
+                                    {{language.header.course_hasbeen_updated}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                 </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="viewUpdateCourse(notification.id)">{{language.header.view}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                     <!-- invited updatedCoursesNotifications end -->
+
+                     <!-- invited updatedCoursesNotifications start -->
+                     <div class="notification-panle" *ngIf="notification && notification.notificationType == 'internalCourseInstructorNotifications'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name" *ngIf="alluserDetails && notification">
+
+                                    {{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails">
+                                   <span>{{notification.firstName}}{{notification.lastName}}</span>
+                                    {{language.header.course_hasbeen_published}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.internal_instructor_assigned}}
+                                 </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="viewInternalCourse(notification.id)">{{language.header.view}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                     <!-- invited updatedCoursesNotifications end -->
+
+                     <!-- invited updatedCoursesNotifications start -->
+                     <div class="notification-panle" *ngIf="notification && notification.notificationType == 'internalUpdateCourseInstructorNotifications'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name" *ngIf="alluserDetails && notification">
+
+                                    {{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails">
+                                   <span>{{notification.firstName}}{{notification.lastName}}</span>
+                                    {{language.header.course_hasbeen_updated}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.update_internal_instructor_assigned}}
+                                 </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="viewInternalUpdateCourse(notification.id)">{{language.header.view}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                     <!-- invited updatedCoursesNotifications end -->
+
+                    <!-- Approve Publish Course Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'approvedCourseNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.course_hasbeen_published}}
+                                <a
+                                    routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApprovePublishCourseByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Course Notification  End -->
+
+                    <!-- Approve Publish Course Notification  start -->
+                        <div class="notification-panle" *ngIf="notification.notificationType == 'approvedUpdateCourseNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}}  {{notification.lastName}}</span>
+                                {{language.header.course_hasbeen_updated}}
+                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApproveUpdateCourseByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                        </div>
+                     <!-- Approve Publish Course Notification  End -->
+
+                     <!-- Deny Publish Course Notification  start -->
+                     <div class="notification-panle" *ngIf="notification.notificationType == 'denyCourseNotificationsToCreator'">
+                        <div class="notification_user">
+                        <span class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                    </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}}  {{notification.lastName}}</span>
+                                {{language.header.deny_course_called}}
+                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishCourseByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Course Notification  End -->
+
+                    <!-- taskNotifications start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'taskNotifications' && notification.firstName">
+                        <div class="notification_user">
+                            <span class="notification_name"
+                                *ngIf="alluserDetails">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                            </span>
+                        </div>
+                        <div class="notification_message">
+                            <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_a_Task_called}} {{language.header.task | lowercase}} <a
+                                    routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="adminApprovedTasks(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="adminUnapprovedTasks(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- taskNotifications end -->
+
+                    <!-- updateTasksNotifications start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'updateTasksNotifications' && notification.firstName">
+                        <div class="notification_user">
+                            <span class="notification_name"
+                                *ngIf="alluserDetails">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                            </span>
+                        </div>
+                        <div class="notification_message">
+                            <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_update_an_Task_called}} {{language.header.task | lowercase}} <a
+                                    routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="adminApprovedUpdateTasks(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="adminUnapprovedTasks(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- updateTasksNotifications end -->
+
+                    <!-- unapproved taskNotifications start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'unapprovedTasks' ">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="alluserDetails">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.header.invited_you_to}}<a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.task
+                                    | lowercase}}</p>
+
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptInvitedTask(notification.id)">{{language.organizer_task.viewTask}} </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- unapproved taskNotifications end -->
+
+                    <!-- unapprovedSubTask Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'unapprovedSubTask' ">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="alluserDetails">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.header.invited_you_to}}  {{language.header.task | lowercase}} <a
+                                        routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptInvitedSubTask(notification.id,notification.task_id)">{{language.organizer_task.viewTask}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- unapprovedSubTask Notification  end -->
+
+                    <!-- Deny Publish Task Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'getDenyPublishTaskByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.deny_task_called}}
+                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishTaskByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Task Notification message End -->
+
+                    <!-- Accept Publish Task Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'getAcceptPublishTaskByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.task_hasbeen_published}}
+                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewAcceptPublishTaskByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Accept Publish Task Notification message End -->
+
+                    <!-- Accept Update Task Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'acceptUpdatedTaskByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.task_hasbeen_updated}}
+                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewAcceptUpdatedTaskByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Accept Update Task Notification message End -->
+
+                    <!-- updated Task Notification For Existing Users  message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'updatedTaskNotificationForExistingUsers'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.task_hasbeen_updated}}
+                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewUpdatedTask(notification.id)">{{language.header.view}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- updated Task Notification For Existing Users  message End -->
+
+                    <!-- updated Task Notification For Existing Users  message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'completedTaskNotificationToOrganizer'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p>
+                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <span> {{language.header.task_completed }} </span>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewCompletedTask(notification.id)">{{language.header.view}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- updated Task Notification For Existing Users  message End -->
+
+                    <!-- messageNotifications start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == ' messageNotifications'">
+                        <ng-container>
+                            <div class="notification_user">
+                                <span
+                                    class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="alluserDetails && notification">
+                                    <span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.header.want_to_send_message_called}} {{message.subject}}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button"
+                                        (click)="acceptMessage(notification.id, notification.esdb_id)">{{language.header.accept}}
+                                    </button>
+                                    <button class="deny_btn" type="button"
+                                        (click)="denyMessage(notification.id, notification.esdb_id)">{{language.header.deny}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- messageNotifications end -->
+
+                    <!-- Survey Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'surveyNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.want_to_publish_an_Survey_calles}}
+                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedSurvey(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedSurvey(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Survey Notification  end -->
+
+                    <!-- Accept Update Survey Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'updateSurveyNotification'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_update_an_Survey_called}}
+                                <a
+                                    routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button" (click)="approvedUpdatedSurvey(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button" (click)="unapprovedSurvey(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Accept Update Survey Notification message End -->
+
+                    <!-- invited courseNotifications start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'invitedSurveyNotifications'">
+                        <ng-container *ngIf="notification.id > 0">
+                            <div class="notification_user">
+                                <span class="notification_name"
+                                    *ngIf="notification.firstName">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}
+                                </span>
+                            </div>
+                            <div class="notification_message">
+                                <p *ngIf="notification.firstName"><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                    {{language.header.invited_you_to}}
+                                    <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a> {{language.Survey.survey | lowercase}}
+                                </p>
+                                <div class="notification-btn-group">
+                                    <button class="accept_btn" type="button" (click)="acceptInvitedSurvey(notification.id)">{{language.Survey.view_survey}}</button>
+                                </div>
+                            </div>
+                            <div class="notification_divider"></div>
+                        </ng-container>
+                    </div>
+                    <!-- invited courseNotifications end -->
+
+                    <!-- Accept Publish Survey Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'getAcceptPublishSurveyByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.survey_hasbeen_published}}
+                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewAcceptPublishSurveyByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Accept Publish Survey Notification message End -->
+
+                    <!-- Accept Publish Survey Notification message start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'publishUpdateSurveyByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span  class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.survey_hasbeen_updated}}
+                                <a  routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewPublishUpdateSurveyByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Accept Publish Survey Notification message End -->
+
+                    <!-- Deny Publish Survey Notification message start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'getDenyPublishSurveyByAdminNotificationstoCreator'">
+                        <div class="notification_user">
+                            <span class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.deny_survey_called}}
+                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishSurveyByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Survey Notification message End -->
+
+                    <!-- Room Notification  Start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'roomNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_an_Room_calles}}
+                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedRooms(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedRooms(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Room Notification  End -->
+
+                    <!-- Room Update Notification  Start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'roomUpdateNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_update_an_Room_called}}
+                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedUpdateRooms(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedRooms(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Room Update Notification  End -->
+
+                    <!-- Approve Publish Room Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedRoomNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
+                                {{language.header.room_hasbeen_published}}
+                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApprovePublishRoomByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Room Notification  End -->
+
+                    <!-- Approve Publish Update Room Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'approvedUpdateRoomNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.room_hasbeen_updated}}
+                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApproveUpdateRoomByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Update Room Notification  End -->
+
+                    <!-- Deny Publish Room Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'denyRoomNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.deny_room_called}}
+                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishRoomByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Room Notification  End -->
+
+                    <!-- Instructor Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'instructorNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_an_Instructor_calles}}
+                                <a
+                                    routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedInstructors(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedInstuctors(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Instructor Notification  End -->
+
+                    <!-- Instructor Notification  Start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'updateInstructorNotifications'">
+                        <div class="notification_user">
+                            <span class="notification_name">
+                                {{notification.firstName.charAt(0)}}
+                                {{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.want_to_publish_update_an_Instructor_called}}
+                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedUpdateInstructors(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedInstuctors(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Instructor Notification  End -->
+
+                    <!-- Deny Publish Instructor Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'denyInstructNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.deny_instructor_called}}
+                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewDenyPublishInstructorByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Deny Publish Instructor Notification  End -->
+
+                    <!-- Approve Publish Instructor Notification  start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedInstructNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.instructor_hasbeen_published}}
+                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApprovePublishInstructorByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Publish Instructor Notification  End -->
+
+                    <!-- Approve Update Publish Instructor Notification  start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'approvedUpdateInstructNotificationsToCreator'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.header.instructor_hasbeen_updated}}
+                                <a
+                                    routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewApproveUpdateInstructorByAdmin(notification.id)">{{language.header.view}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Approve Update Publish Instructor Notification  End -->
+
+                    <!-- Faqs Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'faqsNotifications'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.want_to_publish_an_Faqs}} <a
+                                    routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedFaqs(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="denyFaqs(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Faqs Notification  end -->
+
+                    <!-- Update Faqs Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'updateFaqsNotificationToadmin'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.want_to_publish_an_update_Faqs}}
+                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedFaqs(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="denyFaqs(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Update Faqs Notification end -->
+
+                    <!-- approved Faqs Notification  Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'approvedFaqNotification'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.faqs_hasbeen_published}}
+                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="readApprovedFaqs(notification.id)">{{language.header.view}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- approved Faqs Notification end -->
+
+                    <!-- update Faqs Notification to author Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'updateFaqsNotificationToAuthor'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.faqs_hasbeen_updated}}
+                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="readUpdatedFaqs(notification.id)">{{language.header.accept}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- update Faqs Notification to author end -->
+
+                    <!-- deny Faqs Notification to author Start -->
+                    <div class="notification-panle" *ngIf="notification.notificationType == 'faqsDenyNotificationToAuthor'">
+                        <div class="notification_user">
+                            <span
+                                class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.faqs_hasbeen_deny}}
+                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="viewFaqs(notification.id)">{{language.header.view}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- deny Faqs Notification to author end -->
+
+                    <!-- Category Notification  Start -->
+                    <div class="notification-panle"  *ngIf="notification.notificationType == 'faqsCategoryNotifications'">
+                        <div class="notification_user">
+                            <span  class="notification_name">{{notification.firstName.charAt(0)}}{{notification.lastName.charAt(0)}}</span>
+                        </div>
+                        <div class="notification_message">
+                            <p><span>{{notification.firstName}} {{notification.lastName}}</span>
+                                {{language.create_faq.want_to_publish_an_Faqs_category}} <a
+                                    routerLink="/faq-category">{{notification.title}}</a>
+                            </p>
+                            <div class="notification-btn-group">
+                                <button class="accept_btn" type="button"
+                                    (click)="approvedFaqsCategory(notification.id)">{{language.header.accept}}</button>
+                                <button class="deny_btn" type="button"
+                                    (click)="unapprovedFaqsCategory(notification.id)">{{language.header.deny}}</button>
+                            </div>
+                        </div>
+                        <div class="notification_divider"></div>
+                    </div>
+                    <!-- Category Notification  end -->
+            </ng-container>
+        </div>
+        <div class="notification-drop-info" *ngIf="showNotifications && showNotifications.length == 0 && !loader">
+            <ng-container>
+                {{language.header.no_notification}}
+            </ng-container>
+        </div>
+    </div>
+</mat-nav-list>
+
+<div class="load-container" *ngIf="loader">
+    <div class="linespinner"></div>
+</div>

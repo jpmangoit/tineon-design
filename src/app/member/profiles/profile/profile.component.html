@@ -1,0 +1,299 @@
+<div class="content profile_section">
+    <div class="profile_main">
+        <div class="profile-section-content">
+            <div class="profile-sidebar">
+                <div class="top-card">
+                    <a>
+                        <div class="card card-stats profile-card">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <div class="widget-top widget-col education profile-widget">
+                                            <owl-carousel-o [options]="customOptions">
+                                                <ng-template carouselSlide>
+                                                    <div class="profile-card-content">
+                                                        <div class="profile-image">
+                                                            <Span>
+                                                                <img onContextMenu="return false;" [src]="userDetails && thumbnail != null && thumbnail != '' ? thumbnail : '../../../assets/img/defaultProfile.jpeg'" alt="" loading="lazy">
+                                                            </Span>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template carouselSlide>
+                                                    <div class="profile-card-content">
+                                                        <div class="profile-image">
+                                                            <Span>
+                                                                <img onContextMenu="return false;" [src]="userDetails && thumbnail != null && thumbnail != '' ? thumbnail : '../../../assets/img/defaultProfile.jpeg'" alt="" loading="lazy">
+                                                            </Span>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template carouselSlide>
+                                                    <div class="profile-card-content">
+                                                        <div class="profile-image">
+                                                            <Span>
+                                                                <img onContextMenu="return false;" [src]="userDetails && thumbnail != null && thumbnail != '' ? thumbnail : '../../../assets/img/defaultProfile.jpeg'" alt="" loading="lazy">
+                                                            </Span>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </owl-carousel-o>
+                                            <div class="profile-card-description">
+                                                <h3>{{userData.firstName}} {{userData.lastName}}</h3>
+                                                <ul>
+                                                    <li>{{userData.Club.name}}</li>
+                                                    <li>{{userData.roles[0]}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="profile_navigation">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link active" data-toggle="tab" role="tab" routerLink="/profile" (click)="onGeneralInfo()"
+                                [ngStyle]="displayGeneral == true ? {'border-color':setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                                        'color':setTheme.button_bgcolor}
+                                        : {'border-color':'#808183','color':'#808183'}">
+                                <Span class="profile-menu-ic"><svg xmlns="http://www.w3.org/2000/svg" width="21"
+                                        height="25" viewBox="0 0 21 25" fill="none">
+                                        <path
+                                            d="M10.3541 13.7352C11.5518 13.7666 13.0329 13.6397 14.503 13.7877C16.5313 13.9912 18.2323 14.85 19.4003 16.569C20.5236 18.2223 20.3287 20.1958 18.9752 21.6737C17.4722 23.3145 15.5825 24.2453 13.4313 24.6594C10.7346 25.1792 8.04716 25.1322 5.40282 24.3228C3.71664 23.8069 2.25669 22.9184 1.08169 21.59C-0.44636 19.8631 -0.35164 17.5154 1.34158 15.7964C2.72873 14.3873 4.45013 13.7556 6.40873 13.7376C7.63148 13.7259 8.85345 13.7352 10.3541 13.7352ZM10.0684 16.241C8.7783 16.241 7.48666 16.2152 6.19737 16.2481C4.93391 16.2802 3.83015 16.7319 2.99175 17.7049C2.30836 18.4987 2.34202 19.2619 3.04577 20.0306C3.88416 20.9457 4.91747 21.5548 6.09247 21.9196C8.39316 22.6327 10.7299 22.6538 13.0728 22.1818C14.5844 21.8773 15.9418 21.2409 17.0198 20.0995C17.8221 19.2509 17.83 18.465 17.0495 17.5969C16.9775 17.517 16.9031 17.4395 16.8225 17.3683C15.9825 16.6285 14.9931 16.259 13.8807 16.2442C12.6102 16.2269 11.3389 16.2402 10.0684 16.241ZM10.0746 1.63736e-05C13.5394 0.0078445 16.345 2.81658 16.3285 6.26017C16.3121 9.71472 13.4979 12.5023 10.0402 12.4906C6.59974 12.4788 3.80118 9.6748 3.80118 6.23982C3.80118 2.79231 6.61696 -0.00781175 10.0746 1.63736e-05ZM10.0699 9.98636C12.1389 9.98322 13.8165 8.3127 13.8204 6.25156C13.8243 4.1818 12.1272 2.48466 10.059 2.48936C7.99706 2.49406 6.31088 4.17632 6.30853 6.23199C6.30696 8.31036 7.98845 9.98949 10.0699 9.98636Z"
+                                            fill="#68759F" />
+                                    </svg>
+                                </Span>
+                                <span>{{language.profile.profile_nav.general_info}}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link data_ic" data-toggle="tab" role="tab" routerLink="/profile-bank"
+                                (click)="onPaymentData()">
+                                <Span class="profile-menu-ic"><svg xmlns="http://www.w3.org/2000/svg" width="26"
+                                        height="20" viewBox="0 0 26 20" fill="none">
+                                        <path
+                                            d="M12.5288 0.00202977C15.0026 0.00202977 17.4765 -0.00344855 19.9503 0.00359501C22.3076 0.00985595 24.2618 1.49683 24.8652 3.72807C24.9833 4.16399 25.0264 4.60851 25.0264 5.0593C25.0248 8.34786 25.0319 11.6372 25.0233 14.9258C25.0162 17.4818 23.3273 19.4837 20.8112 19.9298C20.5052 19.9838 20.1883 19.9963 19.8768 19.9963C14.9682 20.0002 10.0588 20.001 5.15027 19.9987C2.50267 19.9979 0.474128 18.2832 0.0476021 15.6849C0.00690596 15.436 0.00377549 15.1793 0.00377549 14.9265C0.000645019 11.6474 -0.00248545 8.36821 0.00299287 5.08904C0.00847119 2.53067 1.68092 0.533427 4.20173 0.0748132C4.51713 0.0176821 4.84348 0.00672548 5.16513 0.00594286C7.61942 -0.000318077 10.0745 0.00202977 12.5288 0.00202977ZM12.5296 8.75717C9.29266 8.75717 6.05654 8.76108 2.81963 8.75012C2.54102 8.74934 2.48937 8.83308 2.49093 9.09056C2.50189 11.0135 2.49406 12.9356 2.49798 14.8585C2.50111 16.4354 3.56938 17.4967 5.15183 17.4967C10.0604 17.4974 14.969 17.4974 19.8783 17.4959C20.0443 17.4959 20.2125 17.4951 20.3753 17.4685C21.6917 17.2478 22.5283 16.2515 22.5322 14.8882C22.5385 12.9559 22.5291 11.0236 22.5392 9.09134C22.5408 8.83465 22.4899 8.74934 22.2105 8.75091C18.983 8.76186 15.7563 8.75717 12.5296 8.75717ZM12.4998 6.25358C14.9729 6.25358 17.4452 6.25358 19.9183 6.25358C20.7103 6.25358 21.5015 6.24731 22.2935 6.25827C22.4852 6.26062 22.5471 6.21131 22.5377 6.01722C22.5212 5.68618 22.5408 5.35357 22.5314 5.02252C22.4985 3.83998 21.7777 2.89693 20.6868 2.59875C20.4403 2.53145 20.1898 2.50562 19.9339 2.50562C14.9885 2.50719 10.0424 2.50562 5.09705 2.50719C3.84016 2.50797 2.84702 3.26711 2.56841 4.4426C2.45024 4.94191 2.52145 5.45374 2.49172 5.95853C2.47763 6.20584 2.55354 6.26062 2.79459 6.25984C6.02914 6.25044 9.26448 6.25358 12.4998 6.25358ZM15.0566 12.5067C14.3194 12.5153 13.7747 13.0381 13.763 13.7346C13.7512 14.4366 14.3085 14.9876 15.0566 14.9923C16.2775 14.9993 17.4976 14.9985 18.7185 14.9931C19.4753 14.9891 20.0239 14.4585 20.0239 13.7503C20.0239 13.0412 19.4753 12.5145 18.7185 12.5075C18.1128 12.502 17.5078 12.5059 16.902 12.5067C16.2869 12.5051 15.6718 12.4996 15.0566 12.5067Z"
+                                            fill="#68759F" />
+                                    </svg></Span>
+                                <span>{{language.profile.profile_nav.payment_data}}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link c_data" data-toggle="tab" role="tab" routerLink="/profile-club"
+                                (click)="onMasterData()">
+                                <Span class="profile-menu-ic"><svg xmlns="http://www.w3.org/2000/svg" width="26"
+                                        height="25" viewBox="0 0 26 25" fill="none">
+                                        <path
+                                            d="M12.5112 24.9973C10.4475 24.9973 8.38384 25.0043 6.32015 24.9957C3.21679 24.9832 0.72878 22.9422 0.107951 19.9132C0.0273141 19.5194 0.00304462 19.1209 0.00304462 18.7201C0.00304462 14.581 -0.00556713 10.4419 0.00617617 6.30275C0.014005 3.208 2.0683 0.730949 5.11059 0.114034C5.46602 0.042009 5.82615 0.0138251 6.18941 0.0138251C8.70326 0.0138251 11.2163 0.0138251 13.7302 0.0114764C14.2735 0.0106935 14.6759 0.250257 14.9045 0.73408C15.1174 1.18502 15.0587 1.63127 14.7511 2.02741C14.4802 2.37736 14.1083 2.50497 13.6691 2.5034C11.9577 2.49714 10.2463 2.50105 8.53415 2.50105C7.81077 2.50105 7.0866 2.49949 6.36321 2.50105C4.1359 2.50732 2.49967 4.14198 2.4981 6.37008C2.49497 10.2947 2.4981 14.2185 2.49654 18.1431C2.49654 18.67 2.48636 19.1977 2.62571 19.7128C3.06961 21.3537 4.52186 22.4952 6.25126 22.5014C10.4272 22.5163 14.6039 22.5187 18.7798 22.5007C20.9139 22.4913 22.5314 20.8261 22.5384 18.6755C22.5463 16.225 22.5384 13.7746 22.5416 11.325C22.5423 10.6094 22.9549 10.1201 23.6266 10.0168C24.2944 9.91342 24.9536 10.4192 25.0233 11.0893C25.0327 11.1762 25.0343 11.2647 25.0343 11.3524C25.035 13.8028 25.0444 16.2532 25.0319 18.7029C25.017 21.6778 23.0982 24.1197 20.2422 24.8266C19.7169 24.9566 19.183 24.9973 18.6436 24.9965C16.5994 24.9957 14.5553 24.9973 12.5112 24.9973ZM25.0163 3.12501C25.0155 3.07648 25.0053 3.02794 24.9959 2.98018C24.7336 1.58664 23.9484 0.615082 22.5924 0.18606C21.238 -0.242962 20.0175 0.076456 19.0107 1.07698C15.6647 4.40268 12.3304 7.74091 8.98979 11.0721C8.79016 11.2709 8.65863 11.5027 8.5913 11.7736C8.24997 13.1428 7.90628 14.5121 7.56729 15.8821C7.3152 16.9022 8.11531 17.6953 9.14089 17.444C10.4561 17.1207 11.7698 16.7895 13.0866 16.4709C13.4789 16.3761 13.7975 16.1883 14.084 15.9009C17.3424 12.6386 20.607 9.38341 23.8701 6.1266C23.9531 6.04361 24.0353 5.95984 24.1136 5.87294C24.7211 5.20044 25.0272 4.41051 25.0163 3.50471C25.017 3.37867 25.0194 3.25184 25.0163 3.12501ZM10.5243 14.3696C10.662 13.8122 10.7983 13.2548 10.9454 12.6997C10.9658 12.623 11.0433 12.5572 11.1044 12.4969C13.0725 10.5303 15.0431 8.56607 17.0089 6.59711C17.1349 6.47107 17.2062 6.43506 17.3471 6.58459C17.708 6.9682 18.0846 7.33772 18.4658 7.70255C18.5872 7.8192 18.5794 7.8834 18.4635 7.99848C16.4703 9.98153 14.481 11.9685 12.4901 13.9539C12.4494 13.9946 12.4071 14.0502 12.3562 14.0635C11.7816 14.2138 11.2046 14.3579 10.6292 14.5035C10.4969 14.5332 10.5039 14.4534 10.5243 14.3696ZM22.4249 3.05769C22.6042 3.41781 22.6034 3.80221 22.3294 4.09814C21.7266 4.74794 21.0877 5.36407 20.4661 5.99664C20.3894 6.07493 20.3424 6.05144 20.2767 5.98568C19.8719 5.57701 19.4656 5.16991 19.0546 4.76751C18.9708 4.68531 18.9755 4.63598 19.0561 4.55691C19.6668 3.95487 20.2712 3.34579 20.8842 2.7461C21.058 2.57621 21.2882 2.51828 21.5269 2.50262C21.9254 2.52689 22.2433 2.69443 22.4249 3.05769Z"
+                                            fill="#68759F" />
+                                    </svg></Span>
+                                <span>{{language.profile.profile_nav.club_data}}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link c_data" data-toggle="tab" role="tab" routerLink="/profile-my-club"
+                                (click)="onClubData()">
+                                <Span class="profile-menu-ic"><svg xmlns="http://www.w3.org/2000/svg" width="21"
+                                        height="25" viewBox="0 0 21 25" fill="none">
+                                        <path
+                                            d="M8.26218 0C9.41975 0 10.578 0 11.7355 0C11.7519 0.015008 11.7662 0.0404562 11.7838 0.0430663C13.2011 0.25122 14.1727 1.03816 14.7489 2.32819C14.8109 2.46653 14.8794 2.50176 15.0177 2.49915C15.4171 2.49132 15.8164 2.49524 16.2157 2.49654C18.386 2.50241 20.0421 4.14481 20.0441 6.30726C20.0486 11.2703 20.0486 16.2327 20.0441 21.1958C20.0421 23.3485 18.3873 24.9961 16.2347 24.998C12.0938 25.0013 7.95223 24.9987 3.81134 25C3.5412 25 3.27366 24.9791 3.0107 24.9224C1.21431 24.5321 0.00584209 23.0385 0.00192697 21.1965C-0.00198815 19.3661 0.00127445 17.5352 0.00127445 15.7049C0.00127445 12.5643 -0.00198815 9.42369 0.00257949 6.28377C0.00518957 4.45019 1.24367 2.94156 3.03027 2.57484C3.6841 2.44108 4.34641 2.51024 5.00545 2.50111C5.16401 2.49915 5.24166 2.46326 5.30952 2.30666C5.795 1.18759 6.63283 0.461984 7.80802 0.122674C7.9581 0.0783024 8.1258 0.0972255 8.26218 0ZM2.50565 13.7414C2.50565 16.191 2.50499 18.6399 2.50565 21.0894C2.50565 22.001 3.012 22.5022 3.93075 22.5022C7.99073 22.5022 12.0514 22.5022 16.1113 22.5022C17.0431 22.5022 17.5391 22.0036 17.5397 21.0679C17.5404 19.2774 17.5397 17.4875 17.5397 15.697C17.5397 12.6132 17.5397 9.52875 17.5397 6.44494C17.5397 5.48117 17.0497 4.99635 16.0774 4.99635C15.7348 4.99635 15.3923 5.00679 15.0503 4.99178C14.8768 4.9846 14.8037 5.04594 14.7319 5.20254C14.1159 6.55783 13.0693 7.34477 11.5757 7.47592C10.6902 7.55357 9.79951 7.50398 8.91078 7.49941C7.19857 7.49028 5.98227 6.70269 5.28342 5.1386C5.22861 5.01592 5.16401 4.99178 5.04656 4.99374C4.67984 4.99961 4.31313 4.99569 3.94576 4.99569C2.99569 4.99635 2.50499 5.48835 2.50499 6.44168C2.50565 8.87558 2.50565 11.3082 2.50565 13.7414ZM10.0096 4.99635C10.4011 4.99635 10.792 4.99961 11.1835 4.99439C11.3212 4.99243 11.4628 4.98786 11.5946 4.95393C12.2086 4.79472 12.5871 4.22637 12.5166 3.5856C12.4501 2.98071 11.9182 2.50633 11.2716 2.4985C10.4566 2.48871 9.6416 2.49197 8.82661 2.49654C8.07425 2.50046 7.52222 3.03748 7.52352 3.7533C7.52418 4.46128 8.06251 4.9833 8.81225 4.99439C9.21094 5.00157 9.61028 4.99635 10.0096 4.99635ZM13.6461 13.7525C13.8177 13.7525 13.9874 13.7421 14.1525 13.6899C14.7561 13.4993 15.1091 12.9205 15.0125 12.2817C14.9218 11.684 14.3926 11.2514 13.7225 11.2481C12.5094 11.2423 11.2964 11.2455 10.0834 11.2468C9.81844 11.2468 9.56722 11.3036 9.3421 11.4511C8.88403 11.7519 8.67 12.3131 8.81551 12.8351C8.96625 13.3767 9.44715 13.7401 10.056 13.7499C10.6667 13.7597 11.2775 13.7519 11.8876 13.7519C12.4735 13.7525 13.0602 13.7525 13.6461 13.7525ZM10.0507 16.2543C9.32187 16.2601 8.76396 16.8083 8.76919 17.5058C8.77375 18.2053 9.33296 18.7463 10.0638 18.7482C11.2853 18.7515 12.5062 18.7515 13.7277 18.7482C14.48 18.7463 15.0308 18.2105 15.0275 17.4928C15.0242 16.7841 14.4813 16.2588 13.7394 16.2536C13.1372 16.2497 12.5342 16.253 11.9319 16.253C11.3049 16.253 10.6778 16.2491 10.0507 16.2543ZM6.27786 11.2468C5.58358 11.2416 5.0185 11.8041 5.01915 12.5003C5.01981 13.1874 5.56401 13.7375 6.25568 13.7512C6.94604 13.7649 7.52483 13.2011 7.52875 12.5108C7.53331 11.8145 6.97606 11.2521 6.27786 11.2468ZM5.0185 17.5039C5.02111 18.1923 5.57053 18.743 6.25894 18.7482C6.95844 18.7534 7.52613 18.1981 7.52875 17.5065C7.53135 16.8076 6.97671 16.2543 6.27395 16.253C5.56858 16.2523 5.01589 16.803 5.0185 17.5039Z"
+                                            fill="#68759F" />
+                                    </svg></Span>
+                                <span *ngIf="headline_word_option == 0">{{language.profile.profile_nav.my_club_data_stand}}</span>
+                                <span *ngIf="headline_word_option == 1">{{language.profile.profile_nav.my_club_data_untern}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                </div>
+            </div>
+            <div class="profile_content">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- profile header start -->
+                        <div class="profile_main_head">
+                            <!-- profile header end -->
+                            <!-- profile details data start -->
+                            <div class="profile_details">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.street}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.street}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.more_info}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.street2}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.city}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.city}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.zip_code}}</span>
+                                            <span class="info_detail"
+                                                *ngIf="userDetails">{{userDetails.postCode}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- profile details data End -->
+                            <!-- profile contact details data start -->
+                            <div class="profile_details">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.userEmail}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.phone}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.phone}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.dob}}</span>
+                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.birthDate | date: 'dd/MM/YYYY'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.banner.view_Advertisment}}</span>
+                                            <span class="info_detail" *ngIf="allowAdvertisment == 1">{{language.button.no}}</span>
+                                            <span class="info_detail" *ngIf="allowAdvertisment == 0">{{ language.button.yes}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- profile contact details data End -->
+                            <div class="profile_header">
+                                <div class="print_btn_group">
+                                    <div class="title-btn-group rp_sec">
+                                        <a (click)="inEdit()"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 20 20" fill="none">
+                                                <path
+                                                    d="M19.9934 3.89539C19.9866 4.52753 19.718 5.03849 19.2764 5.47741C18.2814 6.46702 17.2931 7.46201 16.3015 8.45498C12.9705 11.7893 9.63819 15.1224 6.3119 18.4614C6.06013 18.7146 5.78008 18.8795 5.43338 18.9636C4.09708 19.2874 2.76481 19.6274 1.42918 19.9553C0.496126 20.1835 -0.183806 19.5103 0.044409 18.5806C0.381682 17.2066 0.7304 15.8353 1.07104 14.4619C1.13971 14.1846 1.27839 13.9564 1.48035 13.7551C5.83393 9.41227 10.1848 5.06609 14.5398 0.72327C15.5085 -0.242772 16.795 -0.239406 17.7604 0.72327C18.2841 1.245 18.8031 1.77144 19.3249 2.29519C19.7658 2.73816 20.0035 3.26528 19.9934 3.89539ZM2.5541 17.4267C3.31886 17.2362 4.04726 17.0551 4.77633 16.874C4.85577 16.8545 4.90088 16.7905 4.95339 16.738C8.1282 13.57 11.301 10.4012 14.4792 7.23716C14.6118 7.10521 14.5882 7.04058 14.4691 6.92547C13.9992 6.46904 13.5333 6.00857 13.0789 5.53665C12.9463 5.39865 12.8796 5.40605 12.7477 5.53867C9.58568 8.70675 6.41827 11.8701 3.25288 15.0348C3.19499 15.0927 3.13171 15.1432 3.10882 15.2341C2.92975 15.9524 2.74596 16.6707 2.5541 17.4267ZM17.8405 3.86442C17.8115 3.82942 17.794 3.80249 17.7711 3.7796C17.2555 3.26393 16.7371 2.75028 16.2241 2.23191C16.1413 2.14844 16.0975 2.19893 16.0417 2.2548C15.5455 2.75432 15.0507 3.25518 14.5499 3.75065C14.4637 3.83615 14.465 3.88597 14.5505 3.97079C15.0453 4.46021 15.5361 4.95299 16.0228 5.45048C16.1137 5.54339 16.1662 5.55146 16.2611 5.45452C16.7485 4.95837 17.244 4.46963 17.7361 3.97752C17.7711 3.94386 17.8021 3.90684 17.8405 3.86442Z"
+                                                    fill="#CBD2EB" />
+                                            </svg></a>
+                                        <a (click)="print()"><svg xmlns="http://www.w3.org/2000/svg" width="21"
+                                                height="20" viewBox="0 0 21 20" fill="none">
+                                                <path
+                                                    d="M9.99503 19.995C8.07753 19.995 6.16003 19.9918 4.24316 20C4.04771 20.0006 3.99948 19.9549 4.00198 19.7601C4.01389 18.9088 4.00136 18.0574 4.01201 17.2061C4.01451 17.0245 3.96064 16.9881 3.78963 16.9913C3.21832 17.0025 2.64702 16.9988 2.07572 16.995C0.85606 16.9862 0.0078755 16.1493 0.00474336 14.9353C-0.000894501 12.6313 -0.00277379 10.3273 0.00536979 8.0233C0.0116341 6.31315 1.32651 5.01206 3.04355 4.99703C3.29412 4.99515 3.54532 4.98387 3.79464 5.00079C3.97192 5.01269 4.01263 4.96007 4.01138 4.78467C4.00386 3.27748 4.01201 1.76967 4.00136 0.262479C4.00073 0.0488671 4.05648 5.63676e-06 4.26759 5.63676e-06C8.10259 0.00689635 11.937 0.00689635 15.772 5.63676e-06C15.9843 -0.000620792 16.0382 0.0507464 16.0363 0.263732C16.0263 1.77092 16.0344 3.27811 16.0263 4.78592C16.0257 4.96257 16.0689 5.00454 16.2437 5.00204C16.7273 4.99577 17.2127 4.96946 17.6932 5.0747C18.9974 5.36036 20.011 6.52677 20.0241 7.86043C20.048 10.2578 20.0436 12.6557 20.0267 15.0531C20.0191 16.1374 19.1684 16.9631 18.0791 16.9906C17.4689 17.0063 16.8582 17.0019 16.248 16.9913C16.0758 16.9881 16.0244 17.027 16.0269 17.2074C16.0376 18.0662 16.0257 18.9257 16.0363 19.7845C16.0382 19.9618 15.9925 20.0006 15.8183 20C13.877 19.9925 11.9363 19.995 9.99503 19.995ZM9.99879 12.0043C11.9319 12.0043 13.8651 12.008 15.7983 11.9992C15.9987 11.9986 16.0382 12.0525 16.0363 12.2423C16.025 13.1011 16.0344 13.9606 16.0288 14.8194C16.0282 14.9547 16.0501 15.0105 16.2048 15.008C16.7605 14.998 17.3161 14.9998 17.8717 15.0067C18.0083 15.0086 18.0421 14.9623 18.0421 14.832C18.039 12.5668 18.0434 10.3016 18.0371 8.03709C18.0352 7.41504 17.6024 7.0016 16.9785 7.00097C12.3372 6.99972 7.69666 6.99972 3.05545 7.00097C2.44468 7.00097 2.00556 7.41316 2.00368 8.01892C1.99616 10.2916 2.0018 12.5643 1.99741 14.8376C1.99741 14.9754 2.04502 15.0074 2.17344 15.0061C2.71342 14.9998 3.2534 14.9955 3.79338 15.008C3.96941 15.0117 4.01451 14.9666 4.01263 14.79C4.00261 13.9312 4.01451 13.0717 4.00324 12.2129C4.00073 12.0312 4.05398 11.9992 4.22374 11.9999C6.14813 12.0061 8.07314 12.0043 9.99879 12.0043ZM10.0044 18.0036C11.2717 18.0036 12.539 17.9998 13.8068 18.0079C13.9829 18.0092 14.0286 17.9654 14.028 17.7887C14.0198 16.5941 14.0192 15.3995 14.0286 14.2049C14.0299 14.0189 13.9672 13.9919 13.8012 13.9925C11.2823 13.9976 8.76284 13.9982 6.24397 13.9919C6.0598 13.9913 6.00969 14.0376 6.01157 14.2231C6.02034 15.4095 6.02159 16.5966 6.01094 17.7831C6.00906 17.9804 6.07734 18.0086 6.25024 18.0073C7.50121 18.0004 8.75282 18.0036 10.0044 18.0036ZM10.0176 4.99703C11.2855 4.99703 12.5534 4.9939 13.8213 5.00079C13.9866 5.00204 14.0286 4.96007 14.0267 4.79532C14.018 3.92834 14.0198 3.06136 14.0255 2.19439C14.0267 2.04968 14.0004 1.99268 13.8357 1.99268C11.2917 1.99831 8.74843 1.99831 6.20451 1.99268C6.04477 1.99205 6.01031 2.04154 6.01157 2.19125C6.01846 3.05071 6.01971 3.90955 6.01094 4.76901C6.00906 4.94691 6.0479 5.00266 6.23771 5.00141C7.49746 4.99264 8.75783 4.99703 10.0176 4.99703ZM15.8772 10.0028C15.9987 10.0041 16.0351 9.97275 16.0338 9.84872C16.0269 9.28744 16.0269 8.72553 16.0338 8.16425C16.0357 8.03207 15.9981 7.99324 15.8647 7.99386C14.6456 7.99887 13.426 7.9995 12.2069 7.99324C12.0604 7.99261 12.0228 8.03583 12.0247 8.17803C12.0322 8.7318 12.0328 9.28556 12.0247 9.83932C12.0228 9.97776 12.0704 10.0041 12.1969 10.0028C12.8064 9.99718 13.416 10.0003 14.0261 10.0003C14.6425 10.0003 15.2595 9.99718 15.8772 10.0028Z"
+                                                    fill="#CBD2EB" />
+                                            </svg></a>
+                                        <button type="button" class="disabled" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+                                            <span>
+                                                {{language.profile.change_password}}
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade change_pass_section" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog modal-dialog-centered">
+            <form [formGroup]="changePasswordForm" (ngSubmit)='changePassword()'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{language.profile.change_password}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+                            aria-label="Close"><i class="nc-icon nc-simple-remove"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
+                        <div id="change_password_main">
+                            <div class="change_pass_inner">
+                                <div class="pass_fields event_field">
+                                    <label>{{language.profile.old_password}}</label>
+                                    <input type="password" name="" formControlName="oldPassword"
+                                        placeholder="{{language.profile.enter_old_password}}"
+                                        [ngClass]="{ 'is-invalid': submitted && changePasswordForm.controls.oldPassword?.errors }">
+                                    <div *ngIf="(changePasswordForm.controls.oldPassword?.touched || submitted)&& (changePasswordForm.controls.oldPassword?.errors?.required || changePasswordForm.controls.oldPassword?.errors?.minlength || changePasswordForm.controls.oldPassword?.errors?.pattern)"
+                                        class="text-danger">
+                                        <div *ngIf="changePasswordForm.controls.oldPassword.errors.required">
+                                            {{language.error_message.common_required}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.oldPassword.errors?.minlength">
+                                            {{language.error_message.min_length}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.oldPassword.errors?.pattern">
+                                            {{language.error_message.common_valid}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pass_fields event_field">
+                                    <label>{{language.profile.new_password}}</label>
+                                    <input type="password" name="" formControlName="newPassword"
+                                        placeholder="{{language.profile.enter_new_password}}"
+                                        [ngClass]="{ 'is-invalid': submitted && changePasswordForm.controls.newPassword.errors }">
+                                    <div *ngIf="(changePasswordForm.controls.newPassword.touched || submitted)&& (changePasswordForm.controls.newPassword?.errors?.required || changePasswordForm.controls.newPassword?.errors?.minlength || changePasswordForm.controls.newPassword?.errors?.pattern)"
+                                        class="text-danger">
+                                        <div *ngIf="changePasswordForm.controls.newPassword.errors.required">
+                                            {{language.error_message.common_required}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.newPassword.errors?.minlength">
+                                            {{language.error_message.min_length}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.newPassword.errors?.pattern">
+                                            {{language.error_message.common_valid}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pass_fields event_field">
+                                    <label>{{language.profile.confirm_password}}</label>
+                                    <input type="password" name="" formControlName="confirmPassword"
+                                        placeholder="{{language.profile.enter_confirm_password}}"
+                                        [ngClass]="{ 'is-invalid': submitted && changePasswordForm.controls.confirmPassword?.errors }">
+                                    <div *ngIf="(changePasswordForm.controls.confirmPassword?.touched || submitted)&&((changePasswordForm.controls.confirmPassword?.errors?.required || changePasswordForm.controls.confirmPassword?.errors?.minlength || changePasswordForm.controls.confirmPassword?.errors?.pattern) || c_password)"
+                                        class="text-danger">
+                                        <div *ngIf="changePasswordForm.controls.confirmPassword.errors?.required">
+                                            {{language.error_message.common_required}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.confirmPassword.errors?.minlength">
+                                            {{language.error_message.min_length}}
+                                        </div>
+                                        <div *ngIf="changePasswordForm.controls.confirmPassword.errors?.pattern">
+                                            {{language.error_message.common_valid}}
+                                        </div>
+                                        <div *ngIf="c_password">
+                                            {{language.error_message.confirm_password}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer profile_sub_btn event_sub_btn">
+                        <button type="submit" class="save_btn"
+                            [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                                'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                                'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                <path  [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}"
+                                    d="M20 5.58888C20 8.86343 20 12.1385 20 15.413C19.9208 15.5063 19.9312 15.6272 19.9015 15.7355C19.5321 17.086 18.3687 17.9592 16.9214 17.9597C12.3073 17.9613 7.69271 17.9603 3.07865 17.9603C3.00727 17.9603 2.93537 17.9592 2.86399 17.9561C1.56928 17.9019 0.461615 17.0214 0.108891 15.7731C0.0750254 15.6527 0.0854456 15.5178 0 15.413C0 11.1246 0 6.83618 0 2.54775C0.0729414 2.51023 0.0494959 2.43312 0.0625212 2.37633C0.384505 0.958666 1.5573 0.00573894 3.01925 0.00313389C6.3386 -0.00259722 9.65744 0.00157086 12.9768 0.000528842C13.3847 0.000528842 13.7823 0.060966 14.1543 0.229252C15.2375 0.720043 15.8653 1.55157 15.9788 2.74052C15.9992 2.95101 16.058 3.01249 16.2644 2.99477C16.5035 2.97445 16.7458 2.98748 16.9865 2.9906C18.3843 3.0078 19.5436 3.8982 19.9036 5.22574C19.937 5.34661 19.925 5.47947 20 5.58888ZM14.1564 15.9637C13.8938 15.0577 14.0058 14.1439 14.0021 13.2394C13.9902 9.86845 13.9881 6.497 14.0047 3.12607C14.0084 2.4102 13.503 1.98558 12.8705 1.98922C9.62305 2.00694 6.37507 2.00694 3.12762 1.98974C2.45291 1.9861 1.98869 2.45657 1.99078 3.12763C2.0038 7.03156 2.0038 10.9355 1.99078 14.8389C1.98869 15.4933 2.44093 15.9752 3.13283 15.9716C6.73197 15.9544 10.3311 15.9637 13.9302 15.9637C14.0011 15.9637 14.072 15.9637 14.1564 15.9637ZM16.0028 10.0753C16.0028 11.6607 16.0028 13.2462 16.0033 14.8316C16.0033 14.9676 15.9997 15.1041 16.0382 15.2375C16.1794 15.7246 16.6374 16.0231 17.1459 15.957C17.6367 15.8929 18.0014 15.4646 18.0019 14.9311C18.004 11.9619 18.0045 8.99264 18.0019 6.02288C18.0014 5.41643 17.5789 5.0017 16.9682 4.99232C16.7077 4.98816 16.4467 5.00274 16.1873 4.98763C16.0257 4.97826 15.9997 5.03765 15.9997 5.18301C16.0044 6.81325 16.0028 8.44453 16.0028 10.0753ZM7.99854 3.99042C8.96866 3.99042 9.93878 3.9899 10.9089 3.99042C11.5919 3.99094 11.9968 4.39629 11.9973 5.08194C11.9983 6.34903 11.9983 7.61613 11.9973 8.88322C11.9968 9.57721 11.5919 9.98047 10.8922 9.98099C8.96501 9.98203 7.03832 9.98203 5.11111 9.98099C4.40514 9.98047 3.99875 9.57304 3.99771 8.86707C3.99667 7.613 3.99667 6.35893 3.99771 5.10486C3.99823 4.39525 4.40253 3.99094 5.10798 3.99042C6.07133 3.99042 7.03467 3.99042 7.99854 3.99042ZM8.00323 7.97979C8.61437 7.97979 9.22604 7.97719 9.83718 7.98188C9.95389 7.98292 10.006 7.96781 10.0039 7.8287C9.99453 7.26445 9.99713 6.69967 10.0023 6.1349C10.0034 6.02184 9.98359 5.97964 9.85594 5.98016C8.62063 5.98537 7.38479 5.98537 6.14948 5.98068C6.02391 5.98016 5.99943 6.02184 6.00047 6.13646C6.00568 6.69446 6.00724 7.25298 5.99943 7.81099C5.99734 7.94593 6.03017 7.98552 6.16928 7.98344C6.78094 7.97562 7.39209 7.97979 8.00323 7.97979ZM10.9464 13.9719C11.1392 13.9724 11.3215 13.937 11.4893 13.8427C11.878 13.6239 12.078 13.1685 11.9728 12.747C11.8571 12.2839 11.4815 11.9801 10.9964 11.9796C8.99888 11.9765 7.00185 11.978 5.0043 11.9791C4.92667 11.9791 4.84747 11.9848 4.77245 12.0025C4.28531 12.1197 3.95342 12.5767 4.00448 13.0544C4.06023 13.5822 4.46662 13.9657 4.99336 13.9688C5.99526 13.9745 6.99716 13.9704 7.99906 13.9704C8.98169 13.9709 9.96431 13.9698 10.9464 13.9719Z"
+                                    fill="white" ng-reflect-ng-style="[object Object]"
+                                    style="fill: rgb(255, 255, 255);"></path>
+                            </svg> <span [ngStyle]="{'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.profile.submit}}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

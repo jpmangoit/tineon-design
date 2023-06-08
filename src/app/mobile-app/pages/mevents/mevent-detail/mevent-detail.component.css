@@ -1,0 +1,621 @@
+/*create group css start*/
+h5.modal-title {
+    font-size: 20px;
+    
+}
+div#profileSpinner {
+    left: 0;
+    position: absolute;
+    top: 0;
+    background: #ffffffcf;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transform: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-dialog {
+    position: relative;
+}
+.parti_name {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    background: #4fb96d;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.col-md-6.all_participants .card {
+    box-shadow: none;
+}
+.col-md-6.all_participants .card-body {
+    max-height: 523px;
+    overflow: auto;
+    min-height: 90px;
+}
+
+
+
+
+
+
+
+.event_field select {
+    width: 100%;
+    height: 60px;
+    background: #FAFBFC;
+    border: 1px solid #EDF0F3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 15px;
+}
+.group_edit_btn i {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    color: #192838;
+}
+.create_group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative;
+}
+.group_edit_btn {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}
+.group_edit_btn a:first-child {
+    background: #4fb96d;
+    color: #fff;
+}
+.group_edit_btn a:first-child i {
+    color: #fff;
+}
+.group_edit_btn a:nth-child(2) {
+    background: #E12217;
+    color: #fff;
+}
+.group_edit_btn a:nth-child(2) i {
+    color: #fff;
+}
+.create_group_img {
+    height: 400px;
+    overflow: hidden;
+}
+.create_group .user-pic-inner {
+    margin-top: 0;
+}
+.create_group .user-upload-btn i {
+    position: relative;
+    top: -2px;
+}
+.group_edit_btn a {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+button.save_btn.create_btn {
+    width: auto;
+    background: #4fb96d;
+    border: 1px solid #4fb96d;
+    padding: 15px 30px;
+}
+span.participant_status span {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+span.participant_status span.approved{
+  background:#4fb96d;
+}
+span.participant_status span.pending {
+    background: #fbc61a;
+}
+span.participant_status span.denied {
+    background: #E12217;
+}
+span.participant_status span.cancelled {
+    background: #E12217;
+}
+.group_edit_btn img {
+    width: 30px;
+    height: 30px;
+    margin: 8px 0px;
+}
+a.edit_btn {
+    background: #e4b51a !important;
+}
+/*group details css start*/
+.group_detail_img {
+    overflow: hidden;
+    border-radius: 20px;
+    margin-top: 20px;
+    object-fit: contain;
+    height: 400px;
+    position: relative;
+}
+.group_detail_img.news_image_container img {
+    width: 100%;
+    height: 100%;
+}
+.group_title {
+    font-size: 24px;
+    
+    color: #1D202F;
+    margin: 20px 0px;
+}
+.group_detail_content {
+    font-size: 14px;
+    color: #424D5C;
+}
+
+.join_btn button {
+    font-size: 18px;
+    padding: 2px 30px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background: #E12217;
+}
+.group_img_sec {
+    position: relative;
+}
+.group_edit_btn img {
+    width: 26px;
+    height: 26px;
+    margin: 4px 0px;
+}
+a.edit_btn {
+    background: #e4b51a !important;
+}
+.group_title {
+    
+}
+.membar_count {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0 0 0 / 40%);
+    padding: 5px 10px;
+    color: #fff;
+}
+
+::ng-deep .overimage-bar{
+  width: 100%;
+  height: 100%;
+  background: #e93608;
+  display: inline-block;
+  position: static;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 1260px) and (min-width: 1025px){
+.widget-app-content {
+    display: inline-block;
+    justify-content: space-between;
+    margin-bottom: 19px;
+    align-items: center;
+}
+.app-right-content {
+    float: right;
+}
+}
+@media only screen and (max-width: 1024px){
+.col-md-12.add_event_content.event_detail_main .col-md-6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+::ng-deep .widget-app-content {
+    padding: 12px 0px !important;
+}
+}
+@media only screen and (max-width: 767px){
+.col-md-6.all_participants .card-body {
+    padding: 0;
+}
+.widget-app-content {
+    display: flex;
+    width: 100%;
+}
+}
+@media only screen and (max-width: 600px){
+.group_edit_btn a {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    border-radius: 3px;
+    margin-right: 15px;
+}
+.group_edit_btn img {
+    width: 20px;
+    height: 20px;
+    margin: 5px 0px;
+}
+.membar_count{
+    font-size: 12px;
+}
+}
+@media only screen and (max-width: 500px){
+.all_participants .user-content {
+    padding-top: 6px;
+    color: #192838;
+    width: 148px;
+}
+.widget-app-content {
+    display: inline-block;
+    width: 100%;
+}
+.app-right-content {
+    float: right;
+}
+.parti_name {
+    float: left;
+}
+}
+
+.event_schedule {
+    position: absolute;
+    bottom: 0;
+}
+.event_date_ven {
+    background: #E12217;
+    text-align: center;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    line-height: 21px;
+}
+.event_date_ven span, .event_day span, .event_pricing span {
+    font-size: 14px;
+}
+.event_date {
+    display: flex;
+}
+.event_day {
+    background: #fff;
+    text-align: center;
+    padding: 0px 10px;
+}
+.event_day {
+    font-size: 30px;
+    line-height: 21px;
+}
+.event_schedule {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.event_pricing {
+    font-size: 30px;
+    line-height: 21px;
+    text-align: center;
+    background: #fff;
+    padding: 0 10px;
+}
+.card.organizer_card {
+    margin-bottom: 0;
+}
+/*action toggle css*/
+
+ul.bunch_drop {
+    display: none;
+}
+ul.bunch_drop.show {
+    display: block;
+}
+.dropdown.action_group button {
+    background: transparent;
+    border: none;
+}
+.dropdown.action_group button {
+    border: none;
+    font-size: 24px;
+    border-radius: 5px !important;
+    background: #E5E9F2;
+    height: 32px;
+    /* color: #fff; */
+    box-shadow: 0px 1px 4px -1px #ccc;
+}
+
+.dropdown.action_group{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+ul.bunch_drop.show {
+    position: relative;
+    width: 150px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    top: 37px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 4px -1px #ccc;
+}
+ul.bunch_drop.show li a {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f7f7f9;
+    color: #424D5C;
+    text-align: left;
+}
+.dropdown-item.active, .dropdown-item:active{
+    background:#f7f7f9 !important;
+    color: #424D5C;
+}
+.dropdown-item.active, .dropdown-item:hover{
+    background:#f7f7f9 !important;
+    color: #424D5C !important;
+}
+button.dropdown-toggle {
+    position: absolute;
+    right: 0;
+}
+ul.bunch_drop.show li {
+    list-style: none;
+}
+.dropdown.action_group button:after {
+    border: transparent;
+}
+.widget-app-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add_event_content.event_detail_main .card {
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: none;
+}
+.page-action{
+    margin-top: 0px;
+}
+.page-heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 25px;
+}
+.add_event_content.event_detail_main {
+    margin-top: 0;
+}
+@media only screen and (max-width: 1024px){
+    .add_event_content.event_detail_main .card {
+        padding: 0;
+    }
+    .group_detail_img{
+        object-fit: cover;
+        height: 300px;
+    }
+    .author-img img {
+        height: auto;
+    }
+    .course-price span:last-child {
+        font-size: 20px;
+    }
+    .card .card-body{
+        padding:0;
+    }
+}
+@media only screen and (max-width: 767px){
+	.group_detail_img{
+		height: 210px;
+        position: relative;
+	}
+
+}
+
+/* new design css start */
+.app-page-content {
+    padding: 15px;
+}
+
+.course-price {
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+}
+
+.course-price span:first-child {
+    color: #A1A1A1;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    border-right: 1px solid;
+    text-transform: uppercase;
+}
+
+.course-price span:last-child {
+    font-size: 24px;
+    font-weight: 600;
+    color: #FF9331;
+}
+.author-img {
+    width: 56px !important;
+    height: 56px !important;
+}
+.event-time, .event-title span {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+    color: #95A0C6;
+    display: flex;
+    align-items: center;
+}
+.event-title span{
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.event-top-description {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.course-price span:first-child {
+    margin-right: 5px;
+    padding-right: 5px;
+}
+
+.event-top-description svg {
+    width: 15px;
+}
+
+.event-image {
+    padding: 12px;
+    border: 1px solid #eaedf5;
+    border-radius: 15px;
+}
+
+.event-image img, .parti-image img {
+    width: 100%;
+    height: auto;
+}
+
+.event-title h5 {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #353535;
+    margin-top: 0;
+}
+.event-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: justify;
+}
+.event-content p {
+    font-size: 13px;
+    font-weight: 500;
+    color: #414141;
+    font-family: 'Gellix', sans-serif;
+    line-height: 20px;
+}
+.paticipant-title {
+    font-family: 'Gellix', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #555555;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.parti-image {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+.participant-left {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.parti-info span {
+    display: inline-block;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    color:#9EA5BD;
+}
+.parti-info span:first-child {
+    color:#9EA5BD;
+    font-weight: 700 !important;
+}
+.participant-right span.badge {
+    width: 10px;
+    height: 10px;
+    background: #5fc97d;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.participant-right span{
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    color:#414141;
+}
+.participant-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px 0px;
+}
+.user-pic-inner {
+    width: 80px;
+    height: 80px;
+}
+.profile_popup h4.user_name {
+    margin-bottom: 5px;
+    color: #98A5C6;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+}
+.profile_header {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.profile_popup .profile_field{
+    margin-bottom: 10px;
+}
+.widget-appointment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaedf5;
+}
+
+
+@media (max-width:767px){
+    .app-left-content {
+        flex-wrap: wrap;
+    }
+    .card .card-header {
+        padding: 15px 0;
+        border: 0;
+    }
+    .col-md-6.all_participants .card-body {
+        max-height: inherit;
+        min-height: inherit;
+        height: auto;
+    }
+    .page-heading {
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-top: 25px;
+    }
+    .event-title {
+        display: inline-block;
+    }
+    .event-time, .event-title span {
+        font-size: 14px;
+    }
+}

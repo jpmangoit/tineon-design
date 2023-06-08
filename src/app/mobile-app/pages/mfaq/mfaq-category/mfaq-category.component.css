@@ -1,0 +1,125 @@
+.category-head ul, .category-item ul {
+    padding: 0;
+    margin: 0;
+}
+.category-head ul li, .category-item ul li {
+    list-style: none;
+    display: inline-block;
+    width: 20%;
+    padding: 15px 10px;
+    text-align: center;
+}
+.category-head ul li:first-child, .category-item ul li:first-child {
+    width: 60%;
+    text-align: left;
+}
+.category-head ul {
+    background: #ebf0ff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-family: 'Gellix', sans-serif;
+    font-weight: 600;
+    color: #68759F;
+    font-size: 14px;
+}
+.category-item ul li{
+    font-family: 'Gellix', sans-serif;
+    font-weight: 600;
+    color: #68759F;
+    font-size: 14px;
+}
+.category-item ul {
+    border: 1px solid #ebf0ff;
+    border-top: none;
+}
+.page-action-right button {
+    box-shadow: none;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 25px 0 15px;
+    font-weight: 600;
+    font-family: 'Gellix', sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff !important;
+}
+
+.page-action-right button {
+    margin-right: 0px;
+    background: rgb(88,191,56);;
+}
+
+.page-action-right button svg {
+    margin-right: 5px;
+}
+
+.page-action-right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+    justify-content: flex-end;
+}
+
+@media (max-width:767px) {
+
+    .event-time,
+    .event-title span {
+        font-size: 14px;
+    }
+
+    .course-price span:first-child {
+        margin-right: 5px;
+        padding-right: 5px;
+    }
+
+    .app_widget_sc {
+        overflow-x: hidden;
+        max-height: inherit;
+        overflow-y: auto;
+        min-height: inherit;
+    }
+
+    .course-details-content h3 {
+        font-size: 20px;
+    }
+
+    .modal-dialog .course-price {
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    .page-heading {
+        width: 54% !important;
+    }
+
+    .page-action-right {
+        width: 46%;
+    }
+
+    .page-action-right button {
+        margin-right: 0px !important;
+    }
+
+    .main-card .card {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .category-listing {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
+
+    .page-heading {
+        display: flex;
+    }
+
+    .page-action {
+        flex-flow: row nowrap !important;
+        display: flex;
+        margin-bottom: 15px;
+    }
+}

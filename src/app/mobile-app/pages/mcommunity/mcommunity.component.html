@@ -1,0 +1,44 @@
+<div class="app-page-content">
+    <div class="app-action-toggle">
+        <!-- mobile toggle button header -->
+        <div class="page-action">
+            <div class="page-action-left">
+                <div class="tab-button">
+                    <button type="button" *ngIf="participateAccess.chat == 'Yes'" (click)="chatList()" (click)="onClick(1)" [ngClass]="{'active': activeClass==='chatActive'}"
+                        [ngStyle]="displayChats == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                            : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                        <Span>{{language.community_messages.all_active_chat}}</Span>
+                    </button>
+                    <button type="button" *ngIf="participateAccess.message == 'Yes'" (click)="Messages()"
+                        (click)="onClick(2)" [ngClass]="{'active': activeClass==='messageActive'}"
+                        [ngStyle]="displayMessages == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                            : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                        <Span>{{language.header.messages}}</Span>
+                    </button>
+                    <button type="button" *ngIf="participateAccess.group == 'Yes'" (click)="communityGroups()"
+                        (click)="onClick(3)" [ngClass]="{'active': activeClass==='groupActive'}"
+                        [ngStyle]="displayGroups == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                            : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                        <Span>{{language.community.groups}}</Span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- mobile toggle button header -->
+    </div>
+    <div class="app-content-area" *ngIf="displayChats == true">
+        <app-mchat-list></app-mchat-list>
+    </div>
+    <div class="app-content-area" *ngIf="displayMessages == true">
+        <app-mcommunity-messages></app-mcommunity-messages>
+    </div>
+    <div class="app-content-area" *ngIf="displayGroups == true">
+        <app-mcommunity-groups></app-mcommunity-groups>
+    </div>
+</div>

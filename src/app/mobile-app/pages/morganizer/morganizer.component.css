@@ -1,0 +1,51 @@
+
+.app-content-area{
+    padding: 15px;
+    background-color: #EFF2FD;
+}
+/* top tabs css start */
+/* .tab-button button {
+    height: 41px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-family: 'Gellix', sans-serif;
+    border: none !important;
+    font-weight: 600;
+    font-size: 12px;
+    color: #68759F;
+    width: 33.3%;
+    background: #EBF0FF;
+}
+.tab-button {
+    background: #EBF0FF;
+    display: flex;
+    padding: 3px;
+    border-radius: 10px;
+    align-items: center;
+
+} */
+.page-action-left {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.tab-button button span {
+    position: relative;
+    top: -2px;
+}
+/* .tab-button button.active{
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+} */
+.app-action-toggle {
+    padding: 0px 15px;
+}
+.page-action-left {
+    display: block !important;
+}
+
+::ng-deep .app-content-area .page-action .page-action-right {
+    width: 100% !important;
+}
+
+/* top tabs css end */

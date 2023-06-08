@@ -1,0 +1,55 @@
+<div class="content profile_section">
+    <div class="profile_main">
+        <div class="row">
+            <div class="profile_content"  >
+                <div class="empty-data-image" *ngIf="displayError == true">
+                    <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.profile.member_not_found}}" loading="lazy"><br><span>{{language.profile.member_not_found}}</span></div>
+                <div class="card" >
+                    <div class="card-body" >
+                        <!-- profile header start -->
+                        <div class="profile_main_head" *ngIf="displayError == false" >
+                            <div class="profile_header">
+                                <div class="user-pic-inner">
+                                    <img onContextMenu="return false;" [src]="profile_data && thumbnail != null && thumbnail != '' ? thumbnail : 'assets/img/defaultProfile.jpeg'" alt="" loading="lazy">
+                                </div>
+                                <div class="user_pro_info">
+                                    <h3 class="user_name" *ngIf="profile_data">{{profile_data.firstName}} {{profile_data.lastName}}
+                                    </h3>
+                                    <span class="user-designation" *ngIf="profile_data">{{profile_data.userRole}}</span>
+                                </div>
+                            </div>
+                            <!-- profile header end -->
+                            <!-- profile details data start -->
+                            <div class="profile_details">
+                                <div class="profile_title">{{language.profile.personal_data}}</div>
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.city}}</span>
+                                            <span class="info_detail" *ngIf="profile_data">{{profile_data.city}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="birthdateStatus == true">
+                                        <div class="profile_field info_field">
+                                            <span class="info_label">{{language.profile.dob}}</span>
+                                            <span class="info_detail" *ngIf="profile_data">{{profile_data.birthDate| date: 'd. MMMM y'}}</span>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- profile details data End -->
+                            <div class="profile_details">
+                                <div class="profile_title">{{language.profile.club_data}}</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="profile_field info_field">
+                                           <span class="info_label">{{language.profile.membership_date}}</span>
+                                           <span class="info_detail" *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM y'}}</span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

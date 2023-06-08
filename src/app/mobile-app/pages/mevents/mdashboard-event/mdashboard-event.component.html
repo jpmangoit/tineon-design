@@ -1,0 +1,72 @@
+
+<div class="dashboard-calendar-event">
+    <div class="club_calendar_widget" *ngIf="showCalendar == true">
+      <div class="calendar-toggle-btn">
+        <mat-button-toggle-group #toggleBtn="matButtonToggleGroup">
+            <mat-button-toggle value="showCalendar"  (change)="showEvents($event)">{{language.organizer.calendar}} </mat-button-toggle>
+            <mat-button-toggle value="showEventList" (change)="showEvents($event)">{{language.organizer.event_list}}</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+        <div class="card ">
+            <div class="card-body organizer_appointement">
+                <div class="row">
+                    <div class="event-calendar-section">
+                        <div class="calendar-widget">
+                            <div  *ngIf="userRole == 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <div  *ngIf="userRole != 'guest'">
+                                <full-calendar [options]="calendarOptionsTimeGrid" height="parent"></full-calendar>
+                            </div>
+                            <div class="modalContainer">
+                                <button type="button" style="display: none;" id="showPopup" class="disabled"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">{{language.profile.change_password}}</button>
+                                <div class="modal fade change_pass_section event_model" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()" aria-label="Close"><i class="nc-icon nc-simple-remove"></i>  </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="event-widget" [ngClass]="newClickedEvent.classNames[0]" *ngIf="calendarEventClicked == true">
+                                                    <img onContextMenu="return false;" [src]="thumbnail != null && thumbnail != '' ? thumbnail : '../../../../assets/img/no_image.png'" alt="" loading="lazy" style="width: 100px;">
+                                                    <div class="class_title">
+                                                        {{newClickedEvent.extendedProps.event_name}}</div>
+                                                    <div class="class_duration">
+                                                        <span class="event-day">{{newClickedEvent.start |
+                                                            date:'short':'UTC'}} </span>
+                                                        <span class="event-day">{{newClickedEvent.end |
+                                                            date:'short':'UTC' }}</span>
+                                                    </div>
+                                                    <div class="class_description">
+                                                        <p innerHtml="{{newClickedEvent.extendedProps.description}}"> </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-read-more profile_sub_btn">
+                                                <button type="button" class="Cancel_btn" (click)="viewDetails()">{{language.community_groups.read_more}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="club_widget" *ngIf="showEventList == true">
+      <div class="calendar-toggle-btn">
+        <mat-button-toggle-group #toggleBtn="matButtonToggleGroup">
+            <mat-button-toggle value="showCalendar"  (change)="showEvents($event)">{{language.organizer.calendar}} </mat-button-toggle>
+            <mat-button-toggle value="showEventList" (change)="showEvents($event)">{{language.organizer.event_list}}</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+      <app-club-events></app-club-events>
+    </div>
+</div>
+

@@ -1,0 +1,6 @@
+@media(max-width:767px) {
+    ::ng-deep .mobile-green  .tab-button button.active {
+    background: rgb(32,174,128);
+    background: linear-gradient(90deg, rgb(32, 174, 128) 0%, rgba(32, 174, 128, 0.8) 100%) !important;
+}
+}

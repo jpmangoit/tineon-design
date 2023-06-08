@@ -1,0 +1,31 @@
+<div class="app-page-content">
+    <div class="tabs-content-section">
+        <div class="horizontal-tabs">
+            <nav class="scroll-navigation">
+                <ul class="tabs__items">
+                    <li><a (click)="peronalMsg()" (click)="onClick('1')"
+                            [ngClass]="{'active': activeClass==='personal'}">{{language.community_messages.personal_messages}}</a>
+                    </li>
+                    <li><a (click)="clubMsg()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='club'}">{{language.community_messages.club_messages}}</a>
+                    </li>
+                    <li><a (click)="groupMsg()" (click)="onClick('3')"
+                            [ngClass]="{'active': activeClass==='group'}">{{language.community_messages.group_messages}}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="tabs-content-listing">
+        <div class="tabs-content-inner">
+            <div class="all-widget" *ngIf="displayPersonalMsg == true" >
+                <app-mpersonal-message></app-mpersonal-message>
+            </div>
+            <div class="news-content-list" *ngIf="displayClubMsg == true">
+                <app-mclub-message></app-mclub-message>
+            </div>
+            <div class="group-content-section" *ngIf="displayGroupMsg == true">
+                <app-mgroup-message></app-mgroup-message>
+            </div>
+        </div>
+    </div>
+</div>

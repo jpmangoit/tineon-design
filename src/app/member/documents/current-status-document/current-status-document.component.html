@@ -1,0 +1,79 @@
+<div class="card-body ">
+    <!-- <div class="alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
+    <div class="document-inner list_document">
+        <div class="document-main">
+            <div class="document-item" *ngFor="let doc of currentData; let i = index">
+                <div class="doc_box toggle-main">
+                    <a (click)="download(doc.doc_name)">
+                         <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/new-design/club-logo.png'" alt="" loading="lazy">  </a>
+                    <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a>
+                    <nav class="navbar navbar-absolute fixed-top">
+                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown add_dropdown document_dd">
+                                    <a class="nav-link dropdown-toggle toggle_btn" aria-haspopup="true"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right add-action">
+                                        <ul>
+                                            <li *ngIf="optionVisibility">
+                                                <a href="javascript:;" (click)="moveDoc(doc.id, 'personal')">
+                                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                                    {{language.move_document.move_this_file_to}}
+                                                    {{language.club_document.my_documents}}
+                                                </a>
+                                            </li>
+                                            <li *ngIf="optionVisibility">
+                                                <a href="javascript:;" (click)="moveDoc(doc.id, 'club')">
+                                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                                    {{language.move_document.move_this_file_to}}
+                                                    {{language.club_document.club_documents}}
+                                                </a>
+                                            </li>
+                                            <li *ngIf="optionVisibility">
+                                                <a href="javascript:;" (click)="moveDoc(doc.id, 'archive')">
+                                                    <i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                                                    {{language.move_document.move_this_file_to}}
+                                                    {{language.club_document.archived_documents}}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" (click)="download(doc.doc_name)">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                    {{language.move_document.download_this_file}}
+                                                </a>
+                                            </li>
+                                            <li
+                                                *ngIf="(userData.id == doc.created_by || userData.isAdmin) && optionVisibility">
+                                                <a href="javascript:;" (click)="deleteDoc(doc.id, i)">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    {{language.move_document.remove_this_file}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="currentData">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="currentData.length == 0">
+                <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_document.no_documents}}" loading="lazy"><br>
+                <span>{{language.club_document.no_documents}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="dowloading">
+    <div class="overlay download-overlay">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <div class="loading" data-loading-text="Downloading..."></div>
+            </div>
+        </div>
+    </div>
+</div>

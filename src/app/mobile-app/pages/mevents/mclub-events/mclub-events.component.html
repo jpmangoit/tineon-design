@@ -1,0 +1,81 @@
+<div class="app-event-area">
+    <div class="event-listing">
+        <div class="active_list">
+            <div class="event_list_title">{{language.club_events.today}}</div>
+            <div class="event-content-area">
+                <!-- event list item -->
+                <div class="empty-data-image" *ngIf="currentEvent && currentEvent.length == 0">
+                    <img onContextMenu="return false;" src="assets/img/no-event-img.png"  alt="{{language.club_events.no_events}}" loading="lazy"><br>
+                    <span>{{language.club_events.no_events}}</span>
+                </div>
+                <div class="event_box active" *ngFor='let today of currentEvent'>
+                    <div class="event-box-inner">
+                        <div class="event_box_left">
+                            <span class="event_month">{{todays_date | date: 'EEEE'}}</span>
+                            <span class="event_date">{{today.date_from | date: 'HH:mm': 'UTC'}}</span>
+                        </div>
+                        <div class="event_box_right">
+                            <h6><a (click)="eventDetails(today.id,todays_date)">{{today.name}}</a></h6>
+                            <div class="event-summery">
+                                <span class="event-cat">{{eventTypeList[today.type].name}}</span>
+                                <span class="event_location">{{ eventTypeVisibility[today.visibility].name}}</span>
+                            </div>
+                        </div>
+                        <div class="event-action text-center" *ngIf="role != 'guest'">
+                            <button mat-button [matMenuTriggerFor]="menu">
+                                <img onContextMenu="return false;"  src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="" loading="lazy"></button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="eventDetails(today.id,todays_date)">{{language.header.event_details}}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="event-with-image">
+                        <div class="event-time-line"></div>
+                        <div class="img-content">
+                            <div class="event-image-des">
+                                <img onContextMenu="return false;" [src]="today.picture_video ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                            </div>
+                            <p
+                            [innerHTML]="(today.description.length > 0 )? (today.description | slice:0:300)+'...':(today.description)">
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- event list end -->
+                <!-- statick content -->
+            </div>
+        </div>
+        <div class="active_list upcoming-list">
+            <div class="event_list_title">{{language.club_events.upcoming}}</div>
+            <div class="event-content-area">
+                <!-- event list item -->
+                <div class="empty-data-image" *ngIf="upcomingEvent && upcomingEvent.length == 0">
+                    <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_events.no_events}}" loading="lazy"><br>
+                    <span>{{language.club_events.no_events}}</span>
+                </div>
+                <div class="event_box" *ngFor='let upcoming of upcomingEvent'>
+                    <div class="event-box-inner">
+                        <div class="event_box_left">
+                            <span class="event_date"> {{upcoming.date_from | date: 'dd'}}<br>{{upcoming.date_from | date: 'MMM'}}</span>
+                        </div>
+                        <div class="event_box_right">
+                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>
+                            <div class="event-summery">
+                                <span class="event-cat">{{eventTypeList[upcoming.type].name}}</span>
+                                <span class="event_location">{{ eventTypeVisibility[upcoming.visibility].name}}</span>
+                            </div>
+                        </div>
+                        <div class="event-action text-center" *ngIf="role != 'guest'">
+                            <button mat-button [matMenuTriggerFor]="menu">
+                            <img onContextMenu="return false;" src="../../../../assets/img/new-design/dashboard/event-action.svg"  alt="" loading="lazy"></button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="eventDetails(upcoming.id,upcoming.date_from)">{{language.header.event_details}}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+                <!-- event list end -->
+            </div>
+        </div>
+    </div>
+</div>

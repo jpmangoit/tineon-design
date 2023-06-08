@@ -1,0 +1,289 @@
+@media only screen and (max-width: 1480px) and (min-width: 1261px) {
+    .row.eve_grid_main .col-lg-3.col-md-6.col-sm-6 {
+        flex: 0 0 33.3%;
+        max-width: 33.3%;
+    }
+}
+@media only screen and (max-width: 1260px) and (min-width: 1024px) {
+    .row.eve_grid_main .col-lg-3.col-md-6.col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.message_upload.create_upload_event span.message_upload_overlay {
+    background: #e9ebf1;
+    padding: 8px 15px;
+    border-radius: 25px;
+}
+.up_text {
+    display: flex;
+    align-items: center;
+}
+.upload_label span {
+    width: 69px;
+}
+.message_upload {
+    top: 2px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.up_text div {
+    font-size: 14px;
+}
+
+.message_upload.create_upload_event input {
+  position: absolute;
+  width: 100%;
+}
+
+.guest-radio-option {
+
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  display: flex;
+  float: left;
+}
+
+
+
+.message_upload.create_upload_event span.message_upload_overlay img {
+    padding: 0px 5px 0 0px;
+    width: 22px;
+}
+.message_upload.create_upload_event span.message_upload_overlay {
+    background: #e9eeff;
+    padding: 8px 15px;
+    border-radius: 10px;
+    position: static;
+}
+.message_upload.create_upload_event .upload_label span {
+    width: inherit;
+    display: inline;
+}
+.message_upload.create_upload_event .upload_label {
+    color: #68759f !important;
+}
+.group_up_btn{
+  float: right;
+  width: 100%;
+}
+/* new design css start */
+.page-action {
+    margin-top: 0px;
+}
+.page-heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.Payment_data_main .card {
+    padding: 35px 25px;
+    border-radius: 20px;
+}
+
+.event_field.ng-star-inserted .card {
+    padding: 0px;
+
+}
+.create-news-main .card-body {
+    padding: 0;
+}
+.weekdays-item {
+    margin-top: 30px;
+}
+.event_field .card {
+  display: inline-block;
+}
+@media (max-width: 1024px) {
+    .Payment_data_main .card,
+    .Payment_data_main .card-body {
+        padding: 0;
+    }
+}
+
+.loader_image {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #747e85;
+    width: 45px;
+    height: 45px;
+    animation: spin_img 2s linear infinite;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    left: 44%;
+    position: absolute;
+    top: 39%;
+}
+
+
+
+/* published buttons end */
+  ::ng-deep .room-booked {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: red !important;
+    padding: 0px 5px;
+    border-color: red !important;
+  }
+
+  ::ng-deep .room-availability {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: green !important;
+    padding: 0px 5px;
+    border-color: green !important;
+  }
+  ::ng-deep .fc .fc-scroller-liquid-absolute{
+    overflow: hidden scroll !important;
+  }
+  ::ng-deep thead tr th.fc-col-header-cell.fc-day div{
+    padding: 4px 0px;
+  }
+  ::ng-deep th.fc-col-header-cell.fc-day div{
+    background: rgb(97 97 97);
+    color: #ffffff;
+  }
+  ::ng-deep button.fc-prev-button.fc-button.fc-button-primary{
+    border-radius: 25px !important;
+  }
+  ::ng-deep button.fc-next-button.fc-button.fc-button-primary{
+    border-radius: 25px !important;
+  }
+  .schedule {
+    display: flex;
+    flex-wrap: wrap;
+}
+.schedule_list.room_time {
+    margin: 0 5px;
+}
+/* calender-css */
+
+ ::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr:nth-child(2n) {
+  display: none !important;
+}
+
+::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr td {
+  height: 30px !important;
+}
+
+
+::ng-deep .calendar-box .fc .fc-scroller-harness, ::ng-deep  .fc-scroller.fc-scroller-liquid-absolute {
+    overflow: auto;
+}
+
+/* ::ng-deep .fc-scrollgrid.fc-scrollgrid-liquid tbody tr:first-child .fc-scroller-harness .fc-scroller {
+  overflow: hidden !important;
+} */
+
+.course_des  ul li {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+font-size: 16px !important;
+line-height: 32px;
+color: #68759f !important;
+}
+
+.course_des ul li strong {
+  width: 170px !important;
+}
+
+.course_des ul {
+  background: #e9eeff;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+
+::ng-deep .fc .fc-view-harness-active > .fc-view {
+ border-top-left-radius: 0px;
+}
+
+::ng-deep .fc-timegrid-event .fc-event-time {
+  white-space: normal !important;
+  color: #fff;
+  font-size: 14px !important;
+
+  line-height: 26px;
+  margin-top: 15px;
+}
+
+::ng-deep .fc-toolbar-title {
+    margin-left: 70px !important;
+  }
+
+@media(max-width:767px) {
+   ::ng-deep .calendar-box .fc-scroller-harness.fc-scroller-harness-liquid .fc-timegrid-slots tbody tr td {
+       height: 30px !important;
+    }
+
+ ::ng-deep h2.fc-toolbar-title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 60px;
+  }
+
+ ::ng-deep .fc .fc-col-header-cell-cushion {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: normal;
+}
+}
+
+/* Safari */
+@-webkit-keyframes spin_img {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin_img {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.delete_task_btn {
+    margin-left: 0% !important;
+    color: #fff;
+    border-color: rgb(251, 95, 95);
+  background-color: rgb(251, 95, 95);
+color: rgb(255, 255, 255);
+width: auto;
+float: right;
+border: none;
+padding: 10px 20px 10px 20px;
+text-align: center;
+border-radius: 10px;
+}
+::ng-deep .room-booked {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: red !important;
+    padding: 0px 5px;
+    border-color: red !important;
+}
+
+::ng-deep .room-availability {
+    color: #fff !important;
+    font-family: "Gellix", sans-serif;
+    background: green !important;
+    padding: 0px 5px;
+    border-color: green !important;
+}

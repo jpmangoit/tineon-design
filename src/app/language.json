@@ -1,0 +1,23 @@
+{
+    "profile_nav": {
+        "digital_card":"Digital membership card"
+    },
+    "qr_page": {
+        "member_ship_card":"Mitgliederausweis",
+        "member_pay":"BEZAHLEN",
+        "member_active":"AKTIVES MITGLIED",
+        "member_number":"Mitgliedsnummer:",
+        "member_since":"Im Verein Seit:",
+        "member_card":"Mitgliedsausweis"
+    },
+    "menu":{
+         "club_tools": "Verein Tools",
+         "setup": "Aufstellen",
+         "more": "More"
+    },
+    "dashboard":{
+        "Coming_soon": "Coming Soon"
+    }
+}
+
+

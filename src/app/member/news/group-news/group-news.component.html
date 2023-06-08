@@ -1,0 +1,228 @@
+<div class="card club-widget-appointment">
+    <!-- <div class="alert alert-danger" id="responseMessage" *ngIf="responseMessage">{{responseMessage}}</div> -->
+    <div class="card-header">
+        <h5 class="card-title">{{ language.group_news.title }}</h5>
+    </div>
+    <div class="card-body" *ngIf="role != 'guest' && role != 'member_light' && role != 'member_light_admin'">
+        <div class="empty-data-image" *ngIf="groupNewsData?.length == 0">
+            <img onContextMenu="return false;" src="assets/img/no-news-img.png" alt="{{ language.group_news.no_news }}"
+                loading="lazy" /><br /><span>{{ language.group_news.no_news }}</span>
+        </div>
+        <div class="club-widget-main" *ngIf="groupNewsData?.length > 0">
+            <div class="club-widget-inner">
+                <!-- item start -->
+                <div class="club-widget-item" *ngFor="let data of groupNewsData">
+                    <div class="club-widget-item-inner event-groups">
+                        <div class="club-time-line">
+                            <span class="club-badge"></span>
+                        </div>
+                        <div class="club-widget-description">
+                            <div class="club-box-outer">
+                                <div class="club-category" *ngIf="data.group"
+                                    routerLink="/group-detail/{{data.group.id}}">
+                                    {{ data.group.name }}
+                                </div>
+                                <span class="club-schedule">{{data.news.publication_date_from| date : "dd. MMMM yyyy"
+                                    }}</span>
+                            </div>
+
+                            <div class="club-widget-des-inner">
+                                <div class="club-left-area" data-bs-toggle="modal" data-bs-target="#exModal1"
+                                    (click)="getNewsDetails(data.news.id)">
+                                    <div class="club-w-image">
+                                        <img onContextMenu="return false;"
+                                            [src]="data.news.imageUrls != null? data.news.imageUrls : 'assets/img/no_image.png'"
+                                            alt="{{ data?.group?.name }}" loading="lazy" />
+                                    </div>
+                                </div>
+                                <div class="club-right-area">
+                                    <h5 [innerHTML]="data.news.title" data-bs-toggle="modal" data-bs-target="#exModal1"
+                                        (click)="getNewsDetails(data.news.id)"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+            </div>
+        </div>
+    </div>
+    <div class="card-body" *ngIf=" role == 'guest' || role == 'member_light' || role == 'member_light_admin' ">
+        <div class="event-content-area">
+            <div class="not-available-user">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" id="IconChangeColor" height="50"
+                    width="50">
+                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M592 288H576V212.7c0-41.84-30.03-80.04-71.66-84.27C456.5 123.6 416 161.1 416 208V288h-16C373.6 288 352 309.6 352 336v128c0 26.4 21.6 48 48 48h192c26.4 0 48-21.6 48-48v-128C640 309.6 618.4 288 592 288zM496 432c-17.62 0-32-14.38-32-32s14.38-32 32-32s32 14.38 32 32S513.6 432 496 432zM528 288h-64V208c0-17.62 14.38-32 32-32s32 14.38 32 32V288zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM320 336c0-8.672 1.738-16.87 4.303-24.7C308.6 306.6 291.9 304 274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512h301.7C326.3 498.6 320 482.1 320 464V336z"
+                        id="mainIconPathAttribute" fill="blue"></path>
+                </svg>
+                <h1>{{ language.genral_message.feature_locked }}</h1>
+                <span>{{ language.genral_message.not_available_msg }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade change_pass_section news_detail_popup all_news" id="exModal1" tabindex="-1"
+        aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>{{ language.club_news.groupNewsDetails }}</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path
+                                d="M32 3.72111L28.2789 0L16 12.2789L3.72111 0L0 3.72111L12.2789 16L0 28.2789L3.72111 32L16 19.7211L28.2789 32L32 28.2789L19.7211 16L32 3.72111Z"
+                                fill="#98A5C6"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body" *ngIf="newsData">
+                    <div class="n-detail-main">
+                        <div class="news_details_main">
+                            <div class="row">
+                                <div class="col-md-12 news_detail_inner">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <!-- news details data start -->
+                                            <div class="news_details" *ngIf="newsData">
+                                                <div class="">
+                                                    <div class="news_content col-md-12">
+                                                        <div class="news_image">
+                                                            <app-image-viewer *ngIf="
+                                                                    imageUrls
+                                                                " [imageURL]="
+                                                                    imageUrls
+                                                                " [open]="
+                                                                    viewImage
+                                                                " (close)="
+                                                                    viewImage = false
+                                                                ">
+                                                            </app-image-viewer>
+                                                            <div class="news_image_container" (click)="
+                                                                    viewImage = true
+                                                                " *ngIf="
+                                                                    groupNewsImg
+                                                                ">
+                                                                <img onContextMenu="return false;" [src]="
+                                                                        groupNewsImg
+                                                                    " alt="{{
+                                                                        language
+                                                                            .group_news
+                                                                            .title
+                                                                    }}" loading="lazy" />
+                                                                <div class="dropdown action_group cm" *ngIf="
+                                                                        newsData.author ==
+                                                                            userData.userId ||
+                                                                        userData.isAdmin
+                                                                    ">
+                                                                    <button class="dropdown-toggle" type="button"
+                                                                        (click)="
+                                                                            onShow()
+                                                                        ">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu bunch_drop"
+                                                                        aria-labelledby="dropdownMenuLink">
+                                                                        <li>
+                                                                            <a class="dropdown-item" (click)="
+                                                                                    updateNews(
+                                                                                        newsData.id
+                                                                                    )
+                                                                                ">{{
+                                                                                language
+                                                                                .club_news
+                                                                                .Edit
+                                                                                }}</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item" (click)="
+                                                                                    deleteNews(
+                                                                                        newsData.id
+                                                                                    )
+                                                                                ">{{
+                                                                                language
+                                                                                .club_news
+                                                                                .Delete
+                                                                                }}</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Remove the tag-->
+                                                        <div class="news_heading">
+                                                            <h2>
+                                                                {{
+                                                                newsData.title
+                                                                }}
+                                                            </h2>
+                                                        </div>
+                                                        <div class="news_content_text" [innerHTML]="
+                                                                newsData.text
+                                                            ">
+                                                            ...
+                                                            <a href="#">{{
+                                                                language
+                                                                .dashboard
+                                                                .dashboardNewsContent
+                                                                }}</a>
+                                                        </div>
+                                                        <div class="author-info">
+                                                            <div class="author-img">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="thumbnail != null ? thumbnail : 'assets/img/defaultProfile.jpeg'"
+                                                                    alt="{{newsData?.user?.firstname}} {{newsData.user.lastname}}"
+                                                                    loading="lazy" style="width: 100px;">
+                                                            </div>
+                                                            <div class="author-des">
+                                                                <span class="author-id">
+                                                                    {{
+                                                                    language
+                                                                    .dashboard
+                                                                    .dashboardNewsAuthor
+                                                                    }}
+                                                                    {{
+                                                                    newsData
+                                                                    .user
+                                                                    .firstname
+                                                                    }}
+                                                                    {{
+                                                                    newsData
+                                                                    .user
+                                                                    .lastname
+                                                                    }}
+                                                                </span>
+                                                                <span class="author-date">{{
+                                                                    newsData.created_at
+                                                                    | date
+                                                                    : "d. MMMM y"
+                                                                    }}</span>
+                                                                <span class="author-status" *ngIf="
+                                                                        newsData.approved_status ==
+                                                                        0
+                                                                    ">{{
+                                                                    language
+                                                                    .theme
+                                                                    .status
+                                                                    }}:-{{
+                                                                    language
+                                                                    .community_groups
+                                                                    .wait_admin_approve
+                                                                    }}-</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- news details data End -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
