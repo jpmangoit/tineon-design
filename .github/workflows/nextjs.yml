@@ -32,6 +32,6 @@ jobs:
             ssh_private_key: ${{ secrets.SSH_PUBLIC_KEY }}
             port: ${{ secrets.FTP_PORT }}
             password: ${{ secrets.FTP_PASSWORD }}
-            local_path: './out/*'
+            local_path: './dist/tineon/*'
             remote_path: '/var/www/html/tineon-design'
             sftp_only: true
