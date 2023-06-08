@@ -15,7 +15,7 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-         npm install
+         npm install --force
          npm run build
          
       - name: Setup Node
