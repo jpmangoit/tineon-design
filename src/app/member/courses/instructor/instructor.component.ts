@@ -176,6 +176,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
             singleSelection: true,
             allowSearchFilter: false,
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         //this code for the set angular calendar initial weekly beacuse bydefault the calendar visible on monthly

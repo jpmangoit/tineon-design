@@ -360,7 +360,7 @@ export class RoomDetailsComponent implements OnInit {
     }
 
 	goBack() {
-        window.history.back();
+        this.router.navigate(['/room']);
 	}
 
     ngOnDestroy(): void {

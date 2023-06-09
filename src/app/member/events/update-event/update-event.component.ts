@@ -325,6 +325,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.visibilityDropdownSettings = {
@@ -332,6 +333,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.groupDropdownSettings = {
@@ -341,7 +343,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             allowSearchFilter: true,
             selectAllText: 'Select All',
             enableCheckAll: false,
-            unSelectAllText: 'UnSelect All'
+            unSelectAllText: 'UnSelect All',
+            closeDropDownOnSelection: true
         };
 
         this.recurrenceDropdownSettings = {
@@ -398,6 +401,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.eventForm = new UntypedFormGroup({
@@ -566,6 +570,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                     idField: 'id',
                                     textField: 'name',
                                     enableCheckAll: false,
+                                    closeDropDownOnSelection: true
                                 };
                             }
 

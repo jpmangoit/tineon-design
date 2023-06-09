@@ -611,7 +611,7 @@ export class CourseDetailComponent implements OnInit {
     }
 
     goBack() {
-        window.history.back();
+        this.router.navigate(['/course']);
     }
 
     /**

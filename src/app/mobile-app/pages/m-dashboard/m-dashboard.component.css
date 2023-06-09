@@ -609,10 +609,10 @@ span.news-date {
     width: 70%;
 }
 
-.news-items div.news-des-area {
+/* .news-items div.news-des-area {
   width: calc(100% - 75px);
   
-}
+} */
 
 
 .news-items div {

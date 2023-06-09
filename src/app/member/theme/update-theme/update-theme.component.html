@@ -42,9 +42,9 @@
                                         </div>
                                         <div class="row" style="margin-top: 1px;">
                                             <div class="text-center col-md-6">
-                                                <image-cropper 
+                                                <image-cropper
                                                     [imageChangedEvent]="imageChangedEvent"
-                                                    [maintainAspectRatio]="true"  
+                                                    [maintainAspectRatio]="true"
                                                     [aspectRatio]="4/3"
                                                     autoCrop="false"
                                                     hideResizeSquares="true"
@@ -53,7 +53,7 @@
                                                     [roundCropper]="false"
                                                     format="webp"
                                                     (imageCropped)="imageCropped($event)"
-                                                    (imageLoaded)="imageLoaded()" 
+                                                    (imageLoaded)="imageLoaded()"
                                                     (cropperReady)="cropperReady()"
                                                     (loadImageFailed)="loadImageFailed()">
                                                 </image-cropper>
@@ -78,12 +78,12 @@
                                                     </div>
                                                     <input class="picker-value" [value]="show_logo_text_color"
                                                         formControlName="logo_text_color"
-                                                        [(colorPicker)]="show_logo_text_color" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_logo_text_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onsideBarLogoTextEventLog($event)" />
                                                 </div>
                                                 <input type="button" class="btn btn-primary"
                                                     value={{language.theme.choose_color}}
-                                                    [(colorPicker)]="show_logo_text_color" [cpPosition]="'right'"
+                                                    [(colorPicker)]="show_logo_text_color" [cpPosition]="'bottom'"
                                                     (colorPickerClose)="onsideBarLogoTextEventLog($event)" />
                                             </div>
                                             <span class="text-danger"
@@ -288,13 +288,13 @@
                                                         <input class="picker-value" [value]="show_create_button_bgcolor"
                                                             formControlName="create_button_bgcolor"
                                                             [(colorPicker)]="show_create_button_bgcolor"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCreateBtnEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_create_button_bgcolor"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCreateBtnEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -349,13 +349,13 @@
                                                             [value]="show_create_button_ic_color"
                                                             formControlName="create_button_ic_color"
                                                             [(colorPicker)]="show_create_button_ic_color"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCreateBtnIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_create_button_ic_color"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCreateBtnIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -384,13 +384,13 @@
                                                         <input class="picker-value" [value]="show_cancel_button_bgcolor"
                                                             formControlName="cancel_button_bgcolor"
                                                             [(colorPicker)]="show_cancel_button_bgcolor"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCancelBtnEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_cancel_button_bgcolor"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCancelBtnEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -445,13 +445,13 @@
                                                             [value]="show_cancel_button_ic_color"
                                                             formControlName="cancel_button_ic_color"
                                                             [(colorPicker)]="show_cancel_button_ic_color"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCancelBtnIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_cancel_button_ic_color"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCancelBtnIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"

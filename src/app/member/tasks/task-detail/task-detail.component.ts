@@ -600,7 +600,7 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
 	}
 
     goBack() {
-		this._location.back();
+        this.router.navigate(['/organizer/organizer-task']);
 	}
 
 	ngOnDestroy(): void {

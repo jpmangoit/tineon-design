@@ -291,6 +291,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.eventTypeDropdownSettings = {
@@ -306,6 +307,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.recurrenceDropdownSettings = {
@@ -339,6 +341,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             selectAllText: 'Select All',
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
+            closeDropDownOnSelection: true
         };
 
         this.instuctorTypeDropdownSettings = {
@@ -346,7 +349,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
-            closeDropDownOnSelection: false,
+            closeDropDownOnSelection: true,
         };
 
         this.internalDropdownSettings = {
@@ -357,6 +360,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             allowSearchFilter: false,
+            closeDropDownOnSelection: true
         };
 
         this.courseForm = new UntypedFormGroup({
@@ -574,6 +578,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                                 idField: 'id',
                                 textField: 'name',
                                 enableCheckAll: false,
+                                closeDropDownOnSelection: true
                             };
                         }
 
@@ -589,6 +594,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                                 enableCheckAll: false,
                                 unSelectAllText: 'UnSelect All',
                                 allowSearchFilter: false,
+                                closeDropDownOnSelection: true
                             };
                         }
                     }

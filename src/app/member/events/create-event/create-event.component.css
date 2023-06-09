@@ -66,10 +66,6 @@
     position: relative;
 }
 
-::ng-deep .fc .fc-col-header-cell-cushion {
-   font-size: 13px !important;
-}
-
 ::ng-deep body span.message_upload_overlay {
 
   left: 0 !important;
@@ -192,6 +188,7 @@ color: #68759f;
   background: #e9eeff;
   padding: 15px;
   border-radius: 15px;
+  margin-top: 15px;
 }
 
 
@@ -227,8 +224,8 @@ color: #68759f;
  ::ng-deep .fc .fc-col-header-cell-cushion {
   display: inline-block;
   padding: 2px 4px;
-  font-size: 12px;
   font-weight: normal;
+  font-size: 16px !important;
 }
 }
 

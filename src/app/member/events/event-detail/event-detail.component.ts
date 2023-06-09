@@ -550,7 +550,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this._location.back();
+        this.router.navigate(['/organizer']);
     }
 
     /**

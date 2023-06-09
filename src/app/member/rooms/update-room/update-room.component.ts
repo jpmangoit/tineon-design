@@ -159,6 +159,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
             selectAllText: false,
             enableCheckAll: false,
             unSelectAllText: false,
+            closeDropDownOnSelection: true
         };
 
         this.route.params.subscribe((params) => {

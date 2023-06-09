@@ -340,6 +340,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.weekDayDropdownSettings = {
@@ -362,6 +363,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.groupDropdownSettings = {
@@ -371,7 +373,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             allowSearchFilter: true,
             selectAllText: 'Select All',
             enableCheckAll: false,
-            unSelectAllText: 'UnSelect All'
+            unSelectAllText: 'UnSelect All',
+            closeDropDownOnSelection: true
         };
 
         this.recurrenceDropdownSettings = {
@@ -567,7 +570,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 selectAllText: 'Select All',
                                 enableCheckAll: false,
                                 unSelectAllText: 'UnSelect All',
-                                allowSearchFilter: false
+                                allowSearchFilter: false,
+                                closeDropDownOnSelection: true
                             };
 
                             this.participantDropdownSettings = {
@@ -600,6 +604,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 idField: 'id',
                                 textField: 'name',
                                 enableCheckAll: false,
+                                closeDropDownOnSelection: true
                             };
                         }
 
@@ -614,7 +619,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 selectAllText: 'Select All',
                                 enableCheckAll: false,
                                 unSelectAllText: 'UnSelect All',
-                                allowSearchFilter: false
+                                allowSearchFilter: false,
+                                closeDropDownOnSelection: true
                             }
                         }
                         this.getCourseInfo(this.courseId);

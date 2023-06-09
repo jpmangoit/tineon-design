@@ -105,7 +105,8 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
             selectAllText: 'Select All',
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
-            searchPlaceholderText: this.language.header.search
+            searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.messageForm = new UntypedFormGroup({
@@ -181,7 +182,8 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                             enableCheckAll: false,
                             unSelectAllText: 'UnSelect All',
                             allowSearchFilter: true,
-                            searchPlaceholderText: this.language.header.search
+                            searchPlaceholderText: this.language.header.search,
+                            closeDropDownOnSelection: true
                         };
                     }
                 );

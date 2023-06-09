@@ -724,7 +724,7 @@ export class GroupDetailComponent implements OnInit {
 
     goBack() {
         localStorage.setItem('backItem', 'groups');
-        window.history.back();
+        this.router.navigate(['/community/groups']);
     }
 
        /**

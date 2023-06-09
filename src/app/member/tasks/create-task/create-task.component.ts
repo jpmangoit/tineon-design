@@ -194,6 +194,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
         this.createTaskForm = this.formBuilder.group({
             add_image: ["null"],

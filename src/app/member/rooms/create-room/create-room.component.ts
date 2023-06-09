@@ -155,6 +155,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             selectAllText: false,
             enableCheckAll: false,
             unSelectAllText: false,
+            closeDropDownOnSelection: true
         };
     }
 

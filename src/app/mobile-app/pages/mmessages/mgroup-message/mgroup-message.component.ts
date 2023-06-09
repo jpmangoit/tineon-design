@@ -667,6 +667,7 @@ export class MgroupMessageComponent implements OnInit {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
         this.selectedMessage = [];
         this.authService.setLoader(true);
@@ -939,6 +940,7 @@ export class MgroupMessageComponent implements OnInit {
                         unSelectAllText: 'UnSelect All',
                         allowSearchFilter: true,
                         searchPlaceholderText: this.language.header.search,
+                        closeDropDownOnSelection: true
                     };
                 });
         }

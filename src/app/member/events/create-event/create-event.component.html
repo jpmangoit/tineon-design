@@ -359,12 +359,12 @@
                                                     <li>
                                                         <strong>{{language.Survey.active_form}} </strong>
                                                         <span>:-</span>
-                                                        <span>{{selectedRoom.active_from.split('T')[0] | date: 'd. MMMM y'}}</span>
+                                                        <span>{{selectedRoom?.active_from?.split('T')[0] | date: 'd. MMMM y'}}</span>
                                                     </li>
                                                     <li>
                                                         <strong>{{language.Survey.active_until}} </strong>
                                                         <span>:-</span>
-                                                        <span>{{selectedRoom.active_to | date: 'd. MMMM y'}}</span>
+                                                        <span>{{selectedRoom?.active_to | date: 'd. MMMM y'}}</span>
                                                     </li>
                                                     <li>
                                                         <strong>{{language.courses.number_of_person}} </strong>

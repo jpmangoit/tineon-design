@@ -269,9 +269,16 @@ div#get-in-touch-instructor {
 }
 
 .inst_head_widget {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #192838;
+    /* margin-top: 5px; */
+    font-size: 15px;
+    /* color: #192838; */
+
+    /* display: inline-block; */
+    /* width: 100%; */
+    /* font-size: 14px; */
+    color: #1D202F;
+    margin-bottom: 15px;
+    font-weight: 900;
 
 }
 
@@ -306,6 +313,10 @@ div#get-in-touch-instructor {
     .category-list {
         display: inline-block;
         width: 100%;
+    }
+
+    .instructor-bottom{
+        flex-wrap: wrap;
     }
 
     .category-content {
@@ -905,7 +916,7 @@ span.info_detail {
     height: 38px !important;
     border-radius: 10px;
     padding: 0 10px 0 10px !important;
-    
+
     }
 
     .page-action-right button span {
@@ -915,7 +926,7 @@ span.info_detail {
     ::ng-deep .fc .fc-col-header-cell-cushion {
     display: inline-block;
     padding: 2px 4px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
     }
 

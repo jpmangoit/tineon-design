@@ -208,6 +208,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
             textField: 'name',
             allowSearchFilter: false,
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.FAQForm = this.formBuilder.group({
@@ -550,7 +551,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
     }
 
     goBack() {
-        this._location.back();
+        this.router.navigate(['/vereins-faq']);
     }
 
     deleteFaqs(faqsId:number) {

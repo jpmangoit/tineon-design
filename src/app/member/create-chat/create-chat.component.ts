@@ -114,7 +114,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
             selectAllText: 'Select All',
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
-            searchPlaceholderText: this.language.header.search
+            searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
     }
 
@@ -149,7 +150,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                                 enableCheckAll: false,
                                 unSelectAllText: 'UnSelect All',
                                 allowSearchFilter: true,
-                                searchPlaceholderText: this.language.header.search
+                                searchPlaceholderText: this.language.header.search,
+                                closeDropDownOnSelection: true
                             };
                         });
                     }
@@ -168,7 +170,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                         enableCheckAll: false,
                         unSelectAllText: 'UnSelect All',
                         allowSearchFilter: true,
-                        searchPlaceholderText: this.language.header.search
+                        searchPlaceholderText: this.language.header.search,
+                        closeDropDownOnSelection: true
                     };
                 }
             );

@@ -187,7 +187,7 @@
                                     <h5>{{language.Survey.active_form}} </h5>
                                     <div class="schedule_list_untill">
                                         <ul>
-                                            <li>{{instructorById.active_from | date: 'd. MMMM y'}}</li>
+                                            <li>{{instructorById?.active_from | date: 'd. MMMM y'}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                                 <h5>{{language.Survey.active_until}} </h5>
                                 <div class="schedule_list_untill">
                                     <ul>
-                                        <li>{{instructorById.active_to | date: 'd. MMMM y'}}</li>
+                                        <li>{{instructorById?.active_to | date: 'd. MMMM y'}}</li>
                                     </ul>
                                 </div>
                             </div>

@@ -1241,6 +1241,8 @@ span.carousel-badge {
 @media (max-width: 767px) {
     .club-widget-appointment {
         padding: 0;
+        border-radius: 0;
+        margin-top: 15px;
     }
     .club-widget-main {
         height: 745px;

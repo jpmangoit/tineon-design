@@ -618,6 +618,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
         this.selectedMessage = [];
         this.authService.setLoader(true);
@@ -889,6 +890,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                     unSelectAllText: 'UnSelect All',
                     allowSearchFilter: true,
                     searchPlaceholderText: this.language.header.search,
+                    closeDropDownOnSelection: true
                 };
             });
         }

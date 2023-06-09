@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form [formGroup]="createThemeForm" (ngSubmit)='createTheme()'>
                             <!-- profile header start -->
-                         
+
                             <!-- profile header end -->
                             <!-- profile details data start -->
                             <div class="profile_details">
@@ -80,12 +80,12 @@
                                                     </div>
                                                     <input class="picker-value" [value]="show_logo_text_color"
                                                         formControlName="logo_text_color"
-                                                        [(colorPicker)]="show_logo_text_color" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_logo_text_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onsideBarLogoTextEventLog($event)" />
                                                 </div>
                                                 <input type="button" class="btn btn-primary"
                                                     value={{language.theme.choose_color}}
-                                                    [(colorPicker)]="show_logo_text_color" [cpPosition]="'right'"
+                                                    [(colorPicker)]="show_logo_text_color" [cpPosition]="'bottom'"
                                                     (colorPickerClose)="onsideBarLogoTextEventLog($event)" />
                                             </div>
                                             <span class="text-danger"
@@ -106,12 +106,12 @@
                                                         <div class="color-box" [style.background]="show_sidebarr_color"></div>
                                                         <input class="picker-value"
                                                         [value]="show_sidebarr_color" formControlName="sidebar_color"
-                                                            [(colorPicker)]="show_sidebarr_color" [cpPosition]="'right'"
+                                                            [(colorPicker)]="show_sidebarr_color" [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onsideBarLogoTextEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
-                                                        [(colorPicker)]="show_sidebarr_color" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_sidebarr_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onsideBarEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -159,12 +159,12 @@
                                                         </div>
                                                         <input class="picker-value" [value]="show_icon_color"
                                                             formControlName="icon_color"
-                                                            [(colorPicker)]="show_icon_color" [cpPosition]="'right'"
+                                                            [(colorPicker)]="show_icon_color" [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onsideBarIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
-                                                        [(colorPicker)]="show_icon_color" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_icon_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onsideBarIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -191,12 +191,12 @@
                                                         </div>
                                                         <input class="picker-value" [value]="show_button_bgcolor"
                                                             formControlName="button_bgcolor"
-                                                            [(colorPicker)]="show_button_bgcolor" [cpPosition]="'right'"
+                                                            [(colorPicker)]="show_button_bgcolor" [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onbtnEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
-                                                        [(colorPicker)]="show_button_bgcolor" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_button_bgcolor" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onbtnEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -249,12 +249,12 @@
                                                         <input class="picker-value" [value]="show_button_ic_color"
                                                             formControlName="button_ic_color"
                                                             [(colorPicker)]="show_button_ic_color"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onbtnIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
-                                                        [(colorPicker)]="show_button_ic_color" [cpPosition]="'right'"
+                                                        [(colorPicker)]="show_button_ic_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onbtnIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -283,13 +283,13 @@
                                                         <input class="picker-value" [value]="show_create_button_bgcolor"
                                                             formControlName="create_button_bgcolor"
                                                             [(colorPicker)]="show_create_button_bgcolor"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCreateBtnEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_create_button_bgcolor"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCreateBtnEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -346,13 +346,13 @@
                                                             [value]="show_create_button_ic_color"
                                                             formControlName="create_button_ic_color"
                                                             [(colorPicker)]="show_create_button_ic_color"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCreateBtnIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_create_button_ic_color"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCreateBtnIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -382,13 +382,13 @@
                                                         <input class="picker-value" [value]="show_cancel_button_bgcolor"
                                                             formControlName="cancel_button_bgcolor"
                                                             [(colorPicker)]="show_cancel_button_bgcolor"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCancelBtnEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_cancel_button_bgcolor"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCancelBtnEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"
@@ -445,13 +445,13 @@
                                                             [value]="show_cancel_button_ic_color"
                                                             formControlName="cancel_button_ic_color"
                                                             [(colorPicker)]="show_cancel_button_ic_color"
-                                                            [cpPosition]="'right'"
+                                                            [cpPosition]="'bottom'"
                                                             (colorPickerClose)="onCancelBtnIconEventLog($event)" />
                                                     </div>
                                                     <input type="button" class="btn btn-primary"
                                                         value={{language.theme.choose_color}}
                                                         [(colorPicker)]="show_cancel_button_ic_color"
-                                                        [cpPosition]="'right'"
+                                                        [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onCancelBtnIconEventLog($event)" />
                                                 </div>
                                                 <span class="text-danger"

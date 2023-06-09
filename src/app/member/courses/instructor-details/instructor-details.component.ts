@@ -397,7 +397,7 @@ export class InstructorDetailsComponent implements OnInit {
     }
 
     goBack() {
-        window.history.back();
+        this.router.navigate(['/instructor']);
     }
 
     /**

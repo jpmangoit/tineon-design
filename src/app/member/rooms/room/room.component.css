@@ -777,7 +777,7 @@ span.deny-reason {
     ::ng-deep .fc .fc-col-header-cell-cushion {
         display: inline-block;
         padding: 2px 4px;
-        font-size: 12px;
+        font-size: 16px;
         font-weight: normal;
     }
 
@@ -789,7 +789,7 @@ span.deny-reason {
         height: 38px !important;
         border-radius: 10px;
         padding: 0 10px 0 10px !important;
-    
+
     }
 
     .page-action-right button span {

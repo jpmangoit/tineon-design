@@ -143,7 +143,8 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
             selectAllText: 'Select All',
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
-            searchPlaceholderText: this.language.header.search
+            searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.groupDropdownSettings = {

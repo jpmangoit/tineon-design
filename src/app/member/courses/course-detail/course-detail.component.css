@@ -1101,6 +1101,10 @@ height: 31px;
 .page-action-right button.delete-btn {
     background: #fb5f5f !important;
 }
+
+::ng-deep .card .ins-courses .card-body {
+  padding-left: 0 !important; 
+}
 @media only screen and (max-width: 1024px) {
     .course-list-main .card {
         max-width: 100%;
@@ -1160,6 +1164,15 @@ height: 31px;
 .course-detail-image .overbar-section{
   width: 100%;
   float: right;
+}
+
+::ng-deep body .course-price .check-style {
+    
+    margin-left: 0px !important;
+}
+
+.task-heading{
+    padding-left: 0px !important;
 }
 }
 

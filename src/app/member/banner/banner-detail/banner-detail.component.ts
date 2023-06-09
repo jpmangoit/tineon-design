@@ -167,7 +167,7 @@ export class BannerDetailComponent implements OnInit {
     }
 
     goBack() {
-        this._location.back();
+        this.router.navigate(['/banner-list']);
     }
 
     ngOnDestroy(): void {

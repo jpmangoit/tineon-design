@@ -234,7 +234,7 @@ color: #68759f !important;
   width: 100%;
   text-align: center;
   margin: 0 !important;
-  
+
   }
 
 
@@ -242,7 +242,7 @@ color: #68759f !important;
  ::ng-deep .fc .fc-col-header-cell-cushion {
   display: inline-block;
   padding: 2px 4px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: normal;
 }
 }

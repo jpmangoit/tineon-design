@@ -111,6 +111,7 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 			singleSelection: true,
 			allowSearchFilter: false,
 			enableCheckAll: false,
+            closeDropDownOnSelection: true
 		}
 	}
 

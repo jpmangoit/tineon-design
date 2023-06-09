@@ -213,6 +213,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
             enableCheckAll: false,
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search,
+            closeDropDownOnSelection: true
         };
 
         this.updateTaskForm = this.formBuilder.group({

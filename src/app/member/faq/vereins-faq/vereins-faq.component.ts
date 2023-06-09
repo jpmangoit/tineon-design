@@ -196,6 +196,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
             textField: 'name',
             allowSearchFilter: false,
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
 
         this.FAQForm = this.formBuilder.group({

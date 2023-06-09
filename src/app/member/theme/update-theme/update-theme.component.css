@@ -209,7 +209,7 @@ a.edit_btn {
   line-height: 40px;
   border-radius: 50%;
   background: transparent;
-  
+
 }
 ::ng-deep .mat-icon {
     height: 51px !important;
@@ -311,6 +311,10 @@ a.edit_btn {
 .page-heading {
     margin-bottom: 25px;
 }
+
+::ng-deep body .theme-option.col-md-6 {
+    max-width: 30%;
+  }
 
 @media only screen and (max-width:1366px) and (min-width:768px){
     .col-md-6.theme_palette {

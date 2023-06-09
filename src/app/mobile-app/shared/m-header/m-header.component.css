@@ -112,6 +112,11 @@ span.menu_accordion {
     color: #20AE80 !important;
 }
 
+
+::ng-deep .mobile-red .mobile-nav ul li.community_open  > a span {
+    color: #E93608 !important;
+}
+
 ::ng-deep .mobile-green .mobile-nav ul li.is-active   span svg path {
    stroke: #20AE80!important ;
 }

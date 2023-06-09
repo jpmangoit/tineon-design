@@ -1122,6 +1122,7 @@ span.deny-reason {
     margin-bottom: 15px;
     font-family: "Gellix", sans-serif;
     font-weight: 900;
+    margin-top: 5px;
 }
 
 .schedule_list ul li {
@@ -1129,8 +1130,9 @@ span.deny-reason {
     padding: 5px;
     color: #1d202f;
     font-weight: 500;
-    width: 140px;
+    width: auto;
     text-align: center;
+    white-space: nowrap;
 }
 
 .schedule_list ul {
@@ -1163,7 +1165,7 @@ span.info_detail {
 }
 
 .instructor-bottom {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .page-action-right button.delete-btn {
@@ -1193,7 +1195,7 @@ span.info_detail {
 
 .schedule_list ul {
     display: flex;
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
 }
 
 ::ng-deep .fc .fc-scroller-liquid-absolute{
@@ -1225,7 +1227,7 @@ border-radius: 25px !important;
         padding: 0 15px;
     }
     ::ng-deep body .instructor-bottom {
-       margin-left: 12px;  
+       margin-left: 2px;
     }
 
     ::ng-deep .instructor-bottom .schedule.qualification {
@@ -1247,7 +1249,7 @@ border-radius: 25px !important;
         padding: 10px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
         flex-wrap: wrap;
     }
 
@@ -1321,7 +1323,7 @@ border-radius: 25px !important;
        ::ng-deep .fc .fc-col-header-cell-cushion {
     display: inline-block;
     padding: 2px 4px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
   }
 

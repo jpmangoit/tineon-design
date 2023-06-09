@@ -34,9 +34,9 @@
         "headline_wording_option":"Formulierungsoptionen",
         "mobile_theme": "Mobile Theme",
         "mobile_theme_option": "Mobile Theme optionen",
-         "club_tools": "Vereins Tools",
-         "setup": "Setup",
-         "more": "Mehr"
+        "club_tools": "VereinsTools",
+        "setup": "Setup",
+        "more": "Mehr"
     },
     "recoverPassword": {
         "loginHeading": "Willkommen bei verein.cloud",

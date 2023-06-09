@@ -68,6 +68,7 @@ export class UploadCalendarComponent implements OnInit, OnDestroy {
             idField: 'item_id',
             textField: 'item_text',
             enableCheckAll: false,
+            closeDropDownOnSelection: true
         };
     }
 

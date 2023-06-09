@@ -476,7 +476,7 @@ export class MDashboardComponent implements OnInit {
                                 } else {
                                     if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                         const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                        dates.forEach((dd:any,index:any)  => {
+                                        dates?.forEach((dd:any,index:any)  => {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
 
@@ -484,8 +484,8 @@ export class MDashboardComponent implements OnInit {
                                             var recurring_time:any
                                             var recurring_etime:any
                                             if(recurring_dates){
-                                                recurring_time = this.commonFunctionService.formatTime(recurring_dates[index].start_time);
-                                                recurring_etime = this.commonFunctionService.formatTime(recurring_dates[index].end_time);
+                                                recurring_time = this.commonFunctionService.formatTime(recurring_dates[index]?.start_time);
+                                                recurring_etime = this.commonFunctionService.formatTime(recurring_dates[index]?.end_time);
                                             }else{
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
