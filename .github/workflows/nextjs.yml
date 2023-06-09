@@ -33,5 +33,5 @@ jobs:
             port: ${{ secrets.FTP_PORT }}
             password: ${{ secrets.FTP_PASSWORD }}
             local_path: './dist/tineon/*'
-            remote_path: '/var/www/html/tineon-design'
+            remote_path: '/var/www/html/vcloud'
             sftp_only: true
