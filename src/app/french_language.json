@@ -35,7 +35,8 @@
         "mobile_theme_option": "Mobile thème:Thèmes, Options",
         "club_tools": "Vereinstools",
         "setup": "Aufstellen",
-        "more": "More"
+        "more": "More",
+        "more_new": "More"
     },
     "recoverPassword":{
         "loginHeading":"Bienvenue sur verein.cloud",

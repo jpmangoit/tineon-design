@@ -505,10 +505,11 @@ top: 0;
     border-radius: 10px;
     float: left;
     margin-right: 10px;
-    border: 1px solid #68759f;
-    color: #68759f;
+    /* border: 1px solid #68759f; */
+    border: 1px solid rgb(88,191,56);
+    color: #fff;
     padding: 0 20px;
-    background-color: #fff;
+    background-color: rgb(88,191,56);;
     font-size: 15px;
     font-family: 'Gellix', sans-serif;
     text-transform: none;
@@ -519,11 +520,14 @@ top: 0;
     border-radius: 10px;
     float: left;
     margin-right: 5px;
-    border: 1px solid #68759f;
+    border: 1px solid rgb(88,191,56);
+    /* border: 1px solid #68759f; */
+
     color: #fff;
-    background-color: #68759f;
+    background-color: rgb(88,191,56);
+    /* background-color: #68759f; */
     display: flex;
-align-items: center;
+    align-items: center;
 }
 
 .input-group-text button:last-child {
@@ -784,7 +788,9 @@ span.info_detail {
   }
   .page-action-right button {
     margin-right: 15px;
-    background: #1EB176;
+    background: rgb(88,191,56);
+    /* background: #1EB176; */
+
   }
   .page-action-right button:nth-child(2) {
     background: #FB5F5F;

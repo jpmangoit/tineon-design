@@ -123,37 +123,21 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 		if (category_text != '') {
 			var category:string;
 			category_text =  category_text.trim();
-            console.log(category_text);
-
 
 			if (category_text == this.language.club_document.my_documents.trim()) {
-                console.log(this.language.club_document.my_documents);
-                console.log(this.language.club_document.my_documents.trim());
 				category = 'personal';
 			} else if (category_text == this.language.club_document.club_documents.trim()) {
-                console.log(this.language.club_document.club_documents);
-                console.log(this.language.club_document.club_documents.trim());
 				category = 'club';
 			} else if (category_text == this.language.club_document.archived_documents.trim()) {
-                console.log(this.language.club_document.archived_documents);
-                console.log(this.language.club_document.archived_documents.trim());
 				category = 'archive';
 			} else if (category_text == this.language.club_document.current_status.trim()) {
-                console.log(this.language.club_document.current_status);
-                console.log(this.language.club_document.current_status.trim());
 				category = 'current-statuses';
 			}
-            console.log(category);
-
 			this.documentForm.patchValue({
 				add_image: file,
 				category: category
 			});
 			this.documentForm.get('category').updateValueAndValidity();
-
-            console.log(this.documentForm);
-            console.log(this.documentForm.value);
-
 			const reader: FileReader = new FileReader();
 			reader.readAsDataURL(file);
 			var url:any;
@@ -172,9 +156,9 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 			}
 			if (fileError != 0) {
 				if (this.userDetails.isAdmin || this.userDetails.isFunctionary || this.userDetails.isSecretary){
-					// this.insertDoc();
+					this.insertDoc();
 				}else if ( (this.userDetails.guestUser || this.userDetails.isMember || this.userDetails.isEditor) && (category == 'personal')){
-					// this.insertDoc();
+					this.insertDoc();
                 }else{
                     this.notificationService.showError(this.language.error_message.permission_error,null);
 				}
@@ -201,9 +185,6 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 				}
 			}
 		}
-        formData.forEach((value:any,key:any) => {
-            console.log(key + '--------------------' + value);
-        })
 		this.authService.memberSendRequest('post', 'documents/insert', formData)
         .subscribe(
             (respData:any) => {

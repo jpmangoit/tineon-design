@@ -35,7 +35,8 @@
         "mobile_theme_option": "Mobil Tema Seçenekleri",
         "club_tools": "Dernek Araçları",
         "setup": "Kurulum",
-        "more": "Daha fazla"
+        "more": "Daha fazla",
+        "more_new": "Daha fazla"
     },
     "recoverPassword": {
         "loginHeading": "Hoşgeldiniz verein.cloud",
