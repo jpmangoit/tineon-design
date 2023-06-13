@@ -57,7 +57,8 @@ export class ClubDocumentComponent implements OnInit {
                 category_text = element[index].text;
             }
         }
-
+        console.log(category_text);
+        
         if (category_text != '') {
             let category:string;
             if (category_text == this.language.club_document.current_status) {
@@ -80,9 +81,11 @@ export class ClubDocumentComponent implements OnInit {
             this.authService.memberSendRequest('get', 'documents/fetch/club', null)
             .subscribe(
                 (respData: any) => {
+                    console.log(respData);
                     this.authService.setLoader(false);
                     let cData:DocumentsType[] = respData;
                     this.clubData = cData.sort((a,b) => b.id - a.id);
+                    console.log(this.clubData);
                     if (this.clubData.length) {
                         this.getType();
                     }
@@ -90,6 +93,45 @@ export class ClubDocumentComponent implements OnInit {
             );
         }
     }
+
+    /**
+     * Function to check the type of the document
+     * @author  MangoIt Solutions
+     * @retuns it return the extention of the documents
+     */
+        getType() {
+            for (const key in this.clubData) {
+                if (Object.prototype.hasOwnProperty.call(this.clubData, key)) {
+                    const element:DocumentsType = this.clubData[key];
+                    var ext:string[] = element.doc_name.split(".");
+                    this.extArr[key] = ext[(ext.length) - 1];
+                    var fileName:string[] = element.doc_name.split("/");
+                    this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
+                    var docExtt:string = this.extArr[key];
+                    var count:string = key;
+                    for (const key in this.extensions) {
+                        if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
+                            const element:string = this.extensions[key];
+                            if (key == 'png' || key == 'jpg' || key == 'jpeg') {
+                                this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';
+                            }else {
+                                if(docExtt == 'pptx'){
+                                        this.docExt[count] = 'assets/img/doc-icons/p.svg';
+                                }else if(docExtt == 'ppt'){
+                                    this.docExt[count] = '../../../../assets/img/doc-icons/p.svg';
+                                }else  if(docExtt == 'zip'){
+                                        this.docExt[count] = 'assets/img/doc-icons/folder.svg';
+                                }
+                                if (key == docExtt){
+                                    this.docExt[count] = element;   //.svg images
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
 
      /**
      * Function to check the Accessbility who can upload or move the documents
@@ -118,43 +160,6 @@ export class ClubDocumentComponent implements OnInit {
         }
     }
 
-    /**
-     * Function to check the type of the document
-     * @author  MangoIt Solutions
-     * @retuns it return the extention of the documents
-     */
-    getType() {
-        for (const key in this.clubData) {
-            if (Object.prototype.hasOwnProperty.call(this.clubData, key)) {
-                const element:DocumentsType = this.clubData[key];
-                var ext:string[] = element.doc_name.split(".");
-                this.extArr[key] = ext[(ext.length) - 1];
-                var fileName:string[] = element.doc_name.split("/");
-                this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
-                var docExtt:string = this.extArr[key];
-                var count:string = key;
-                for (const key in this.extensions) {
-                    if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
-                        const element:string = this.extensions[key];
-                        if (key == 'png' || key == 'jpg' || key == 'jpeg') {
-                            this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';
-                        }else {
-                            if(docExtt == 'pptx'){
-                                    this.docExt[count] = 'assets/img/doc-icons/p.svg';
-                            }else if(docExtt == 'ppt'){
-                                this.docExt[count] = '../../../../assets/img/doc-icons/p.svg';
-                            }else  if(docExtt == 'zip'){
-                                    this.docExt[count] = 'assets/img/doc-icons/folder.svg';
-                            }
-                            if (key == docExtt){
-                                this.docExt[count] = element;   //.svg images
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
      /**
     * Function is used to move document 
