@@ -47,8 +47,7 @@ export class MenuComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        this.activatedHeadline = this.commonFunctionService.changeHeadline.
-        subscribe((resp:any) => {
+        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
             this.headline_word_option = resp;
         });
 

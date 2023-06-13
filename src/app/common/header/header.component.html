@@ -39,9 +39,11 @@
         </div>
         <div class="logo">
             <a routerLink="/dashboard" class="simple-text logo-mini">
-                <div class="logo-image-small">
-                    <img src="../../../assets/img/Verein-Cloud-FIN_2.png" onContextMenu="return false;" alt="logo" loading="lazy">
-                    <!-- <img src="../../../assets/img/brand_img.png" onContextMenu="return false;" alt="logo" loading="lazy"> -->
+                <div class="logo-image-small" *ngIf="headline_word_option == 0">
+                    <img  src="../../../assets/img/Verein-Cloud-FIN_2.png" onContextMenu="return false;" alt="logo" loading="lazy">
+                </div>
+                <div class="logo-image-small" *ngIf="headline_word_option == 1">
+                    <img src="../../../assets/img/verein_cloud_weiss (1) Kopie.png" onContextMenu="return false;" alt="logo" loading="lazy">
                 </div>
             </a>
         </div>

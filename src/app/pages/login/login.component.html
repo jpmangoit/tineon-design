@@ -5,8 +5,11 @@
                 <div class="row no-margin w-100">
                     <div class="col-lg-6 col-md-6 box-de">
                         <div class="login-content">
-                            <div class="login-logo">
+                            <div class="login-logo" *ngIf="logo_selection == 0">
                                 <img onContextMenu="return false;" src="assets/img/logo.png" alt="logo" loading="lazy" />
+                            </div>
+                            <div class="login-logo" *ngIf="logo_selection == 1">
+                                <img onContextMenu="return false;" src="../../../assets/img/logo_old.png" alt="logo" loading="lazy" />
                             </div>
                             <div class="login-heading">
                                 <h2>{{ language.login.loginHeading }}</h2>
@@ -24,8 +27,7 @@
                                     type="button"
                                     id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
+                                    aria-expanded="false">
                                     <img
                                         onContextMenu="return false;"
                                         *ngIf="displayFlag == 'de'"

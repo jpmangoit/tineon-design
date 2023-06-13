@@ -1,3 +1,4 @@
+import { CommonFunctionService } from './../../service/common-function.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appSetting } from '../../app-settings';
@@ -67,11 +68,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private refreshPage:Subscription
     private denyRefreshPage:Subscription
     private removeUpdate:Subscription
+    private activatedHeadline:Subscription
+    headline_word_option: number = 0;
 
 
     constructor(private _router: Router, private route: ActivatedRoute, private themes: ThemeService, private authService: AuthServiceService, private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService, private sanitizer: DomSanitizer,private tostrNotificationService: NotificationService, private notificationService: NotificationsService, private updateConfirmDialogService: UpdateConfirmDialogService,
-        private denyReasonService: DenyReasonConfirmDialogService, private formbuilder: UntypedFormBuilder, private imageCompress: NgxImageCompressService,) { }
+        private denyReasonService: DenyReasonConfirmDialogService, private formbuilder: UntypedFormBuilder,
+         private imageCompress: NgxImageCompressService,private commonFunctionService: CommonFunctionService) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -100,6 +104,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 this.ngOnInit();
             }, 1000);
         })
+        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
+            this.headline_word_option = resp;
+        });
 
         this.showNotifications = [];
         this.showNotificationsss = this.notificationService.getNotifications();
@@ -118,6 +125,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }, 3000);
         this.displayFlag = localStorage.getItem('language');
         this.language = this.lang.getLanguaageFile();
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userId = this.userDetails.userId;
         this.getUserImage();
@@ -1471,6 +1479,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.refreshPage.unsubscribe();
         this.denyRefreshPage.unsubscribe();
         this.removeUpdate.unsubscribe();
+        this.activatedHeadline.unsubscribe();
     }
 }
 

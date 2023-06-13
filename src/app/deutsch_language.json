@@ -431,8 +431,7 @@
 
         "current_status": "Aktuelle Satzung",
         "current_status_stand": "Aktuelle Satzung",
-        "current_status_untern": "Unternehmensphllosophie",
-
+        "current_status_untern": "Unternehmensphilosophie",
         "archived_documents": "Archiv"
     },
     "create_event": {
