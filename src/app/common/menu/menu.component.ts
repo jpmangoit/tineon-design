@@ -117,5 +117,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
     isValue: number = 0;
 
-    toggle(num: number) { this.isValue = num; }
+    toggle(num: number) {
+         this.isValue = num;
+    }
 }
