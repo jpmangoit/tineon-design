@@ -226,6 +226,10 @@ a {
     text-decoration: none !important;
 }
 
+.sidebar .nav li > ul {
+  margin-left: 15px;
+}
+
 /* MS supports */
 @supports (-ms-overflow-style: none) {
     .ps {
