@@ -176,8 +176,6 @@ export class MorganizerDocumentsComponent implements OnInit {
         if (fileError != 0) {
             if (this.userDetails.isAdmin || this.userDetails.isFunctionary || this.userDetails.isSecretary) {
                 this.insertDoc();
-                this.authService.setLoader(true);
-                this.authService.setLoader(false);
             } else if ((this.userDetails.guestUser || this.userDetails.isMember || this.userDetails.isEditor) && (category == 'personal')) {
                 this.insertDoc();
             } else {
@@ -209,29 +207,39 @@ export class MorganizerDocumentsComponent implements OnInit {
         this.authService.memberSendRequest('post', 'documents/insert', formData)
             .subscribe(
                 (respData: any) => {
-                    this.authService.setLoader(false);
+                   
                     if (respData.isError == false) {
                         this.notificationService.showSuccess(respData.result.message, null);
-                        console.log(this.displayMydocument);
-                        console.log(this.displayClubdocument);
-                        console.log(this.displayCurrentstatus);
-                        console.log(this.displayArchivedocument);
                         if (this.displayMydocument) {
-                            this.myDocument();
-                            $('#1').trigger('click');
-                        } else if (this.displayClubdocument) {
                             this.clubDocument();
-                            $('#2').trigger('click');
+                            setTimeout(() => {
+                                this.myDocument();
+                                this.onClick('1');
+                            },200);                            
+                        } else if (this.displayClubdocument) {
+                            this.myDocument();
+                            setTimeout(() => {
+                                this.clubDocument();
+                                this.onClick('2');
+                            },200); 
+
                         } else if (this.displayArchivedocument) {
-                            $('#4').trigger('click');
-                            this.archiveDocument();
+                            this.clubDocument();
+                            setTimeout(() => {
+                                this.archiveDocument();
+                                this.onClick('4');
+                            },200);   
                         } else if (this.displayCurrentstatus) {
-                            $('#3').trigger('click');
-                            this.currentDocument();
+                                this.archiveDocument();
+                            setTimeout(() => {
+                                this.currentDocument();
+                                this.onClick('3');
+                            },200);   
                         }
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
+                    this.authService.setLoader(false);
                 }
             );
     }
