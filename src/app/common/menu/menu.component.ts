@@ -88,15 +88,20 @@ export class MenuComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }
-
-    dropDown3() {
-        $('.toggleSubmenu3').next('ul').toggleClass('show');
+    dropDown1() {
+        $('.toggleSubmenu1').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
     }
     dropDown2() {
         $('.toggleSubmenu2').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
     }
-    dropDown1() {
-        $('.toggleSubmenu1').next('ul').toggleClass('show');
+    dropDown3() {
+        $('.toggleSubmenu3').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
+    }
+    dropDown4() {
+        $('.toggleSubmenu4').next('ul').toggleClass('show');
         this.open_dropdown = !this.open_dropdown;
     }
     dropDown5() {
@@ -105,21 +110,10 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
     dropDown6() {
         $('.toggleSubmenu6').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
     }
-    dropDown8() {
-        $('.toggleSubmenu8').next('ul').toggleClass('show');
-    }
-    dropDown9() {
-        $('.toggleSubmenu9').next('ul').toggleClass('show');
-    }
-    dropDown11() {
-        $('.toggleSubmenu11').next('ul').toggleClass('show');
-    }
-    dropDown113() {
-        $('.toggleSubmenu13').next('ul').toggleClass('show');
-    }
-    isValue: number = 0;
 
+    isValue: number = 0;
     toggle(num: number) {
          this.isValue = num;
     }
