@@ -112,27 +112,30 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 			'category': new UntypedFormControl('', Validators.required),
 			'club_id': new UntypedFormControl(this.userDetails.team_id)
 		});
+
 		const file :File= (event.target as HTMLInputElement).files[0];
 		let category_text:string = '';
-		for (let index = 0; index < $('.nav-tabs').children().length; index++) {
+		for (let index = 0; index < $('.nav-tabs ').children().length; index++) {
 			const element:any = $('.nav-tabs').children().children();
 			if (element[index].classList.length > 2) {
 				category_text = element[index].text;
 			}
 		}
+		console.log($('.nav-tabs .active').text(),'---',document.querySelector('.nav-tabs .active').textContent)
+
 		if (category_text != '') {
 			var category:string;
 			category_text =  category_text.trim();
-
 			if (category_text == this.language.club_document.my_documents.trim()) {
 				category = 'personal';
-			} else if (category_text == this.language.club_document.club_documents.trim()) {
+			} else if (category_text == this.language.club_document.club_documents.trim() || category_text == this.language.club_document.club_documents_untern.trim()) {
 				category = 'club';
-			} else if (category_text == this.language.club_document.archived_documents.trim()) {
+			} else if (category_text == this.language.club_document.archived_documents.trim() ) {
 				category = 'archive';
-			} else if (category_text == this.language.club_document.current_status.trim()) {
+			} else if (category_text == this.language.club_document.current_status.trim() || category_text == this.language.club_document.current_status_untern.trim()) {
 				category = 'current-statuses';
 			}
+
 			this.documentForm.patchValue({
 				add_image: file,
 				category: category
@@ -154,18 +157,18 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 					}
 				}
 			}
-			if (fileError != 0) {
-				if (this.userDetails.isAdmin || this.userDetails.isFunctionary || this.userDetails.isSecretary){
-					this.insertDoc();
-				}else if ( (this.userDetails.guestUser || this.userDetails.isMember || this.userDetails.isEditor) && (category == 'personal')){
-					this.insertDoc();
-                }else{
-                    this.notificationService.showError(this.language.error_message.permission_error,null);
-				}
-			}else {
-                this.notificationService.showError(this.language.error_message.common_valid,null);
+			// if (fileError != 0) {
+			// 	if (this.userDetails.isAdmin || this.userDetails.isFunctionary || this.userDetails.isSecretary){
+			// 		this.insertDoc();
+			// 	}else if ( (this.userDetails.guestUser || this.userDetails.isMember || this.userDetails.isEditor) && (category == 'personal')){
+			// 		this.insertDoc();
+            //     }else{
+            //         this.notificationService.showError(this.language.error_message.permission_error,null);
+			// 	}
+			// }else {
+            //     this.notificationService.showError(this.language.error_message.common_valid,null);
 
-			}
+			// }
 		}
 	}
 
