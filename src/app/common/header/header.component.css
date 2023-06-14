@@ -103,7 +103,7 @@ button.navbar-toggler.open {
 .navbar {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
-    min-height: 67px;
+    min-height: 82px;
     margin-bottom: 20px;
 }
 
@@ -3540,6 +3540,7 @@ ul.nav hr {
     .card .form-horizontal .col-md-3.col-form-label {
         text-align: left;
     }
+  
 }
 
 @media screen and (max-width: 767px) {
