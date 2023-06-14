@@ -55,6 +55,7 @@ export class MorganizerDocumentsComponent implements OnInit {
     archivedDocExt: string[] = [];
     archivedDocFileNameArr: string[] = [];
     private activatedSub: Subscription;
+    headline_word_option: number = 0
 
     myDocument() {
         this.displayMydocument = true;
@@ -98,6 +99,7 @@ export class MorganizerDocumentsComponent implements OnInit {
 
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
         this.language = this.lang.getLanguaageFile();
         this.userAccess = appSetting.role;
         this.extensions = appSetting.extensions;

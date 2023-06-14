@@ -19,10 +19,30 @@
     <div class="horizontal-tabs">
         <nav class="scroll-navigation">
             <ul class="tabs__items">
-                <li  *ngIf="participateAccess.organizer_myDocument == 'Yes'"><a id="1" (click)="myDocument()" (click)="onClick('1')" [ngClass]="{'active': activeClass==='myDocActive'}">{{language.club_document.my_documents}}</a></li>
-                <li  *ngIf="participateAccess.organizer_clubDocument == 'Yes'"><a  id="2" (click)="clubDocument()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='clubDocActive'}">{{language.club_document.club_documents}}</a></li>
-                <li *ngIf="participateAccess.organizer_currentStatus == 'Yes'"><a  id="3"  (click)="currentDocument()" (click)="onClick('3')" [ngClass]="{'active': activeClass==='currentDocActive'}">{{language.club_document.current_status}}</a></li>
-                <li *ngIf="participateAccess.organizer_archivedDocument == 'Yes'"><a  id="4" (click)="archiveDocument()" (click)="onClick('4')" [ngClass]="{'active': activeClass==='archiveDocActive'}">{{language.club_document.archived_documents}}</a></li>
+                <li  *ngIf="participateAccess.organizer_myDocument == 'Yes'">
+                    <a id="1" (click)="myDocument()" (click)="onClick('1')" [ngClass]="{'active': activeClass==='myDocActive'}">
+                        {{language.club_document.my_documents}}
+                    </a>
+                </li>
+                <li  *ngIf="participateAccess.organizer_clubDocument == 'Yes'">
+                    <a  id="2" (click)="clubDocument()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='clubDocActive'}">
+                        <!-- {{language.club_document.club_documents}} -->
+                        <span *ngIf="headline_word_option == 0">{{language.club_document.club_documents_stand}}</span>
+                        <span *ngIf="headline_word_option == 1">{{language.club_document.club_documents_untern}}</span>
+                    </a>
+                </li>
+                <li *ngIf="participateAccess.organizer_currentStatus == 'Yes'">
+                    <a  id="3" (click)="currentDocument()" (click)="onClick('3')" [ngClass]="{'active': activeClass==='currentDocActive'}">
+                        <!-- {{language.club_document.current_status}} -->
+                        <span *ngIf="headline_word_option == 0">{{language.club_document.current_status_stand}}</span>
+                        <span *ngIf="headline_word_option == 1">{{language.club_document.current_status_untern}}</span>
+                    </a>
+                </li>
+                <li *ngIf="participateAccess.organizer_archivedDocument == 'Yes'">
+                    <a  id="4" (click)="archiveDocument()" (click)="onClick('4')" [ngClass]="{'active': activeClass==='archiveDocActive'}">
+                        {{language.club_document.archived_documents}}
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

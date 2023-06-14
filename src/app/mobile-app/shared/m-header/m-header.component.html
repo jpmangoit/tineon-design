@@ -243,7 +243,10 @@
                                                 <path d="M10.4258 5.44501C11.4206 5.44501 12.2435 5.74499 12.8945 6.34399C13.5508 6.94199 13.8789 7.69801 13.8789 8.60901C13.8789 9.00001 13.8216 9.36201 13.707 9.69501C13.5924 10.023 13.4414 10.304 13.2539 10.539C13.0716 10.768 12.8685 10.987 12.6445 11.195C12.4206 11.398 12.1966 11.594 11.9727 11.781C11.7487 11.969 11.543 12.159 11.3555 12.351C11.168 12.544 11.0143 12.768 10.8945 13.023C10.7799 13.273 10.7201 13.547 10.7148 13.844H9.54297C9.54297 13.442 9.60027 13.078 9.71477 12.75C9.82937 12.416 9.97527 12.138 10.1523 11.914C10.3346 11.685 10.5352 11.474 10.7539 11.281C10.9779 11.083 11.1992 10.898 11.418 10.726C11.6367 10.549 11.8346 10.37 12.0117 10.187C12.194 10.005 12.3424 9.789 12.457 9.539C12.5716 9.289 12.6289 9.013 12.6289 8.711C12.6289 8.08 12.4206 7.57301 12.0039 7.18701C11.5924 6.80201 11.0612 6.60901 10.4102 6.60901C9.69137 6.60901 9.10807 6.838 8.66017 7.297C8.21737 7.755 7.99607 8.338 7.99607 9.047H6.77727C6.76687 8.015 7.10807 7.15901 7.80077 6.47601C8.49867 5.78901 9.37367 5.44501 10.4258 5.44501ZM10.1836 16.961C9.91277 16.961 9.68617 16.875 9.50387 16.703C9.32677 16.526 9.23827 16.304 9.23827 16.039C9.23827 15.778 9.32677 15.56 9.50387 15.383C9.68617 15.2 9.91277 15.109 10.1836 15.109C10.4492 15.109 10.6706 15.2 10.8477 15.383C11.0247 15.56 11.1133 15.778 11.1133 16.039C11.1133 16.304 11.0247 16.526 10.8477 16.703C10.6706 16.875 10.4492 16.961 10.1836 16.961Z"
                                                     fill="black" />
                                             </svg>
-                                        </span><span>{{language.create_faq.vereins_faqs}}</span>
+                                        </span>
+                                        <span *ngIf="headline_word_option == 0">{{language.create_faq.vereins_faqs_stand}}</span>
+                                        <span *ngIf="headline_word_option == 1">{{language.create_faq.vereins_faqs_untern}}</span>
+                                        <!-- <span>{{language.create_faq.vereins_faqs}}</span> -->
                                     </a>
                                 </li>
                             </ul>
@@ -459,17 +462,17 @@
     </div>
     <div class="brand-logo cgdfs" routerLink="/dashboard">
 
-        <!-- <img class="brand-red" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img.png"
+        <img class="brand-red" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img.png"
             alt="brand-logo" loading="lazy">
         <img class="brand-green" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img_green.png"
-            alt="brand-logo" loading="lazy"> -->
+            alt="brand-logo" loading="lazy">
 
-            <div class="logo-image-small" *ngIf="headline_word_option == 0">
+            <!-- <div class="logo-image-small" *ngIf="headline_word_option == 0">
                 <img  src="../../../assets/img/Verein-Cloud-FIN_2.png" onContextMenu="return false;" alt="logo" loading="lazy">
             </div>
             <div class="logo-image-small" *ngIf="headline_word_option == 1">
                 <img src="../../../assets/img/verein_cloud_weiss (1) Kopie.png" onContextMenu="return false;" alt="logo" loading="lazy">
-            </div>
+            </div> -->
     </div>
     <div class="club-logo" routerLink="/profile-club">
         <img onContextMenu="return false;"
