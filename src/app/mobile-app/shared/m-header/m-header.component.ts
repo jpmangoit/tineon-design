@@ -10,6 +10,7 @@ import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from
 import { appSetting } from 'src/app/app-settings';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
@@ -36,6 +37,8 @@ export class MHeaderComponent implements OnInit {
     isMoreClass = false;
     thumbnail: SafeUrl = null;
     userRespData: string;
+    headline_word_option: number = 0;
+    private activatedHeadline:Subscription
 
     constructor(
         private _router: Router,
@@ -43,7 +46,7 @@ export class MHeaderComponent implements OnInit {
         private themes: ThemeService,
         private authService: AuthServiceService,
         private notificationService: NotificationService,
-        private sanitizer: DomSanitizer,
+        private sanitizer: DomSanitizer,private commonFunctionService: CommonFunctionService
         ) { }
 
     ngOnInit(): void {
@@ -55,7 +58,11 @@ export class MHeaderComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
+        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
+            this.headline_word_option = resp;
+        });
         this.language = this.lang.getLanguaageFile();
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole = this.userDetails.roles[0];
         this.userRoleInfo = this.userDetails.roles[0];
