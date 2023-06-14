@@ -226,9 +226,11 @@ a {
     text-decoration: none !important;
 }
 
-.sidebar .nav li > ul {
-  margin-left: 15px;
-}
+/* .sidebar.sidebar-hr .sidebar .nav li > ul > li > a {
+  margin-left: 15px !important;
+} */
+
+
 
 /* MS supports */
 @supports (-ms-overflow-style: none) {
@@ -12171,6 +12173,10 @@ ul.bunch_drop.show {
     }
 }
 
+::ng-deep body .sidebar .nav li ul li a p {
+    padding-left: 35px !important;
+}
+
 @media(max-width:767px) {
 
 .news-des-area {
@@ -12184,6 +12190,10 @@ ul.bunch_drop.show {
 
 body .course_des_main {
   margin-top: 15px;
+}
+
+  body .logo-image-small img {
+  max-height: 56px !important;
 }
 
 
@@ -12287,6 +12297,8 @@ body .news-listing  .news-items {
   color: #8E8E93 !important;
 
 }
+
+
 
 span.news-date {
     margin-top: -3px;

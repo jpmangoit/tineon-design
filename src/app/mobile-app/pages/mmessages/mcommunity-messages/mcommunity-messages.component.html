@@ -6,7 +6,12 @@
                     <li><a (click)="peronalMsg()" (click)="onClick('1')"
                             [ngClass]="{'active': activeClass==='personal'}">{{language.community_messages.personal_messages}}</a>
                     </li>
-                    <li><a (click)="clubMsg()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='club'}">{{language.community_messages.club_messages}}</a>
+                    <li>
+                        <a (click)="clubMsg()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='club'}">
+                            <!-- {{language.community_messages.club_messages}} -->
+                            <span *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</span>
+                            <span *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</span>
+                        </a>
                     </li>
                     <li><a (click)="groupMsg()" (click)="onClick('3')"
                             [ngClass]="{'active': activeClass==='group'}">{{language.community_messages.group_messages}}</a>
