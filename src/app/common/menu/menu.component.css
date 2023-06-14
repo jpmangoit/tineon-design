@@ -187,7 +187,7 @@ li.parent-label ul {
 }
 
 .sidebar-wrapper .nav li > ul > li.nav-item.active a {
-  background: #bfbfbf !important
+  background: rgba(85,85,251,0.2) !important
 }
 
 /* new design css start */
