@@ -252,11 +252,13 @@
                             <li class="nav-item" *ngIf="createAccess.email == 'Yes'">
                                 <a class="nav-link" routerLink="/show-email">
                                     <p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail" [ngStyle]="{'stroke':setTheme.icon_color}">
-                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" [ngStyle]="{'stroke':setTheme.icon_color}" />
-                                            <polyline points="22,6 12,13 2,6"/>
-                                        </svg><span
+                                       
+                                        <svg id="Layer_1" class="feather feather-mail"  style="enable-background:new 0 0 64 64;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<g><g id="Icon-Envelope" transform="translate(78.000000, 232.000000)">
+    <path [ngStyle]="{'stroke':setTheme.icon_color}"  class="st0" d="M-22.5-213.2l-1.9-1.9l-17.6,17.6c-2.2,2.2-5.9,2.2-8.1,0L-67.7-215l-1.9,1.9l13.1,13.1     l-13.1,13.1l1.9,1.9l13.1-13.1l2.6,2.6c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.5l2.6-2.6l13.1,13.1l1.9-1.9l-13.1-13.1     L-22.5-213.2" id="Fill-3"/><path class="st0" d="M-26.2-181.6h-39.5c-2.3,0-4.2-1.9-4.2-4.2v-28.2c0-2.3,1.9-4.2,4.2-4.2h39.5     c2.3,0,4.2,1.9,4.2,4.2v28.2C-22-183.5-23.9-181.6-26.2-181.6L-26.2-181.6z M-65.8-215.5c-0.8,0-1.4,0.6-1.4,1.4v28.2     c0,0.8,0.6,1.4,1.4,1.4h39.5c0.8,0,1.4-0.6,1.4-1.4v-28.2c0-0.8-0.6-1.4-1.4-1.4H-65.8L-65.8-215.5z" id="Fill-4"/></g>
+</g></svg>
+                                        <span
                                             [ngStyle]="{'color':setTheme.navigation_color}">{{language.email.email_template}}
                                         </span></p>
                                 </a>
@@ -346,16 +348,11 @@
                             </li>
                             <li class="nav-item" *ngIf="createAccess.email == 'Yes'">
                                 <a class="nav-link" routerLink="/show-email">
-                                    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"
-                                            [ngStyle]="{'stroke':setTheme.icon_color}">
-                                            <path
-                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                                                [ngStyle]="{'stroke':setTheme.icon_color}" />
-                                            <polyline points="22,6 12,13 2,6"
-                                                [ngStyle]="{'stroke':setTheme.icon_color}" />
-                                        </svg><span
+                                    <p><svg id="Layer_1" class="feather feather-mail"  style="enable-background:new 0 0 64 64;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<g><g id="Icon-Envelope" transform="translate(78.000000, 232.000000)">
+    <path [ngStyle]="{'stroke':setTheme.icon_color}"  class="st0" d="M-22.5-213.2l-1.9-1.9l-17.6,17.6c-2.2,2.2-5.9,2.2-8.1,0L-67.7-215l-1.9,1.9l13.1,13.1     l-13.1,13.1l1.9,1.9l13.1-13.1l2.6,2.6c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.5l2.6-2.6l13.1,13.1l1.9-1.9l-13.1-13.1     L-22.5-213.2" id="Fill-3"/><path class="st0" d="M-26.2-181.6h-39.5c-2.3,0-4.2-1.9-4.2-4.2v-28.2c0-2.3,1.9-4.2,4.2-4.2h39.5     c2.3,0,4.2,1.9,4.2,4.2v28.2C-22-183.5-23.9-181.6-26.2-181.6L-26.2-181.6z M-65.8-215.5c-0.8,0-1.4,0.6-1.4,1.4v28.2     c0,0.8,0.6,1.4,1.4,1.4h39.5c0.8,0,1.4-0.6,1.4-1.4v-28.2c0-0.8-0.6-1.4-1.4-1.4H-65.8L-65.8-215.5z" id="Fill-4"/></g>
+</g></svg><span
                                             [ngStyle]="{'color':setTheme.navigation_color}">{{language.email.email_template}}
                                         </span></p>
                                 </a>
