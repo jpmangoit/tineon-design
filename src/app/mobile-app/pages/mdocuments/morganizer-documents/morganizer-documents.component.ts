@@ -205,25 +205,28 @@ export class MorganizerDocumentsComponent implements OnInit {
                 }
             }
         }
+        this.authService.setLoader(true);
         this.authService.memberSendRequest('post', 'documents/insert', formData)
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
                     if (respData.isError == false) {
                         this.notificationService.showSuccess(respData.result.message, null);
+                        console.log(this.displayMydocument);
+                        console.log(this.displayClubdocument);
+                        console.log(this.displayCurrentstatus);
+                        console.log(this.displayArchivedocument);
                         if (this.displayMydocument) {
                             this.myDocument();
                             $('#1').trigger('click');
                         } else if (this.displayClubdocument) {
-                            $('#2').trigger('click');
                             this.clubDocument();
+                            $('#2').trigger('click');
                         } else if (this.displayArchivedocument) {
                             $('#4').trigger('click');
-
                             this.archiveDocument();
                         } else if (this.displayCurrentstatus) {
                             $('#3').trigger('click');
-
                             this.currentDocument();
                         }
                     } else if (respData['code'] == 400) {

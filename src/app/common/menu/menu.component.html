@@ -97,7 +97,7 @@
                         <!-- <a routerLink="/create-event" style="display: none"></a> -->
                     </li>
                     <li [ngClass]="{ 'active' : isValue == 5 }" (click)="toggle(5)" class="parent-label">
-                        <a routerLink="/organizer" class="org_ic toggleSubmenu1" id="hasSubItems" (click)="dropDown1()"
+                        <a  class="org_ic toggleSubmenu1" id="hasSubItems" (click)="dropDown1()"
                                  [ngStyle]="{'color':setTheme.navigation_color}">
                             <p>
                                 <svg width="30" height="30" viewBox="0 0 30 30" [ngStyle]="{'fill':setTheme.icon_color}" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +110,7 @@
                                 </span>
                             </p>
                         </a>
-                        <ul class="nav-second-level " id="collapseSubItems1" data-parent="#navAccordion" *ngIf="open_dropdown">
+                        <ul class="nav-second-level " id="collapseSubItems1" data-parent="#navAccordion" *ngIf="open_clubTool">
                             <li class="nav-item" [routerLinkActive]="['active']">
                                 <a class="nav-link" routerLink="/course" [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
@@ -208,7 +208,7 @@
                     </li>
 
                     <li [ngClass]="{ 'active' : isValue == 8 }" (click)="toggle(8)" class="parent-label">
-                        <a id="hasSubItems" routerLink="/coming_soon" (click)="dropDown2()" class="mar_ic toggleSubmenu2">
+                        <a id="hasSubItems"  (click)="dropDown2()" class="mar_ic toggleSubmenu2">
                             <p>
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"  [ngStyle]="{'fill':setTheme.icon_color}" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20.9134 12.3166C20.9134 12.2144 20.9134 12.1122 20.9134 12.01L24.3537 10.886L22.9231 6.52599L19.4828 7.65005C19.3806 7.47974 19.2444 7.30943 19.1081 7.13912L21.254 4.20975L17.5412 1.48476L15.3953 4.41412C15.1909 4.346 14.9866 4.27787 14.7822 4.20975V0.599136H10.2178V4.20975C10.0135 4.27787 9.80908 4.346 9.60471 4.41412L7.45878 1.48476L3.74598 4.17569L5.89191 7.10505C5.75566 7.27537 5.65347 7.44568 5.51722 7.61599L2.07692 6.49193L0.646301 10.886L4.0866 12.01C4.0866 12.1122 4.0866 12.2144 4.0866 12.3166C4.0866 12.4188 4.0866 12.521 4.0866 12.6232L0.646301 13.7472L2.07692 18.1072L5.51722 16.9831C5.61941 17.1535 5.75566 17.3238 5.89191 17.4941L3.74598 20.4234L7.45878 23.1144L9.60471 20.185C9.80908 20.2531 10.0135 20.3213 10.2178 20.3894V24H14.8163V20.4234C15.0206 20.3553 15.225 20.2872 15.4294 20.2191L17.5412 23.1484L21.254 20.4575L19.1081 17.5281C19.2444 17.3578 19.3466 17.1875 19.4828 17.0172L22.9231 18.1072L24.3537 13.7472L20.9134 12.6232C20.9134 12.521 20.9134 12.4188 20.9134 12.3166ZM23.0594 14.3944L22.2759 16.8128L19.04 15.7569L18.8356 16.0975C18.6312 16.4722 18.3587 16.8128 18.0862 17.1194L17.8137 17.426L19.8234 20.185L17.7456 21.6838L15.7359 18.9247L15.3953 19.1291C15.0206 19.2994 14.6119 19.4356 14.2031 19.5038L13.7944 19.606V23.0122H11.2397V19.606L10.831 19.5038C10.4222 19.4016 10.0135 19.2653 9.63877 19.1291L9.26409 18.9588L7.25441 21.7178L5.1766 20.2191L7.18628 17.46L6.91378 17.1535C6.64128 16.8469 6.40285 16.5063 6.16441 16.1316L5.96003 15.791L2.72411 16.8469L1.94067 14.3944L5.1766 13.3385L5.14254 12.9297C5.14254 12.7253 5.10847 12.521 5.10847 12.2825C5.10847 12.0441 5.10847 11.8397 5.14254 11.6354L5.1766 11.2266L1.94067 10.2388L2.72411 7.82036L5.96003 8.8763L6.16441 8.53567C6.36878 8.16099 6.64128 7.82036 6.91378 7.5138L7.18628 7.20724L5.1766 4.44819L7.25441 2.94944L9.26409 5.7085L9.63877 5.53818C10.0135 5.36787 10.4222 5.23162 10.865 5.1635L11.2738 5.06131V1.65507H13.8284V5.06131L14.2372 5.1635C14.6459 5.26568 15.0547 5.40193 15.4294 5.53818L15.8041 5.7085L17.8137 2.94944L19.8916 4.44819L17.8819 7.20724L18.1544 7.5138C18.4269 7.82036 18.6653 8.16099 18.9037 8.53567L19.1081 8.8763L22.344 7.82036L23.1275 10.2388L19.8916 11.2947L19.9256 11.7035C19.9256 11.9079 19.9597 12.1122 19.9597 12.3507C19.9597 12.5891 19.9597 12.7935 19.9256 12.9978L19.8234 13.3385L23.0594 14.3944Z"
@@ -221,7 +221,7 @@
                                 </span>
                             </p>
                         </a>
-                        <ul class="nav-second-level " id="collapseSubItems5" data-parent="#navAccordion"  *ngIf="open_dropdown">
+                        <ul class="nav-second-level " id="collapseSubItems5" data-parent="#navAccordion"  *ngIf="open_setUp">
                             <li class="nav-item" [routerLinkActive]="['active']">
                                 <a class="nav-link" routerLink="/banner-list">
                                     <p>
@@ -261,7 +261,7 @@
                     </li>
 
                     <li [ngClass]="{ 'active' : isValue == 14 }" (click)="toggle(14)" class="parent-label">
-                        <a id="hasSubItems" routerLink="/crm-news" routerLinkActive="router-link-active"
+                        <a id="hasSubItems"  routerLinkActive="router-link-active"
                             (click)="dropDown3()" class="mar_ic toggleSubmenu3">
                             <p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -282,7 +282,7 @@
                                 </span>
                             </p>
                         </a>
-                        <ul class="nav-second-level " id="collapseSubItems6" data-parent="#navAccordion" *ngIf="open_dropdown">
+                        <ul class="nav-second-level " id="collapseSubItems6" data-parent="#navAccordion" *ngIf="open_more">
                             <li class="nav-item" [routerLinkActive]="['active']">
                                 <a class="nav-link" routerLink="/crm-news">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -312,7 +312,7 @@
                         </ul>
                     </li>
                     <li [ngClass]="{ 'active' : isValue == 9 }" (click)="toggle(9)" class="parent-label">
-                        <a id="hasSubItems" routerLink="/coming_soon" (click)="dropDown4()" class="mar_ic toggleSubmenu4">
+                        <a id="hasSubItems" (click)="dropDown4()" class="mar_ic toggleSubmenu4">
                             <p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="17" viewBox="0 0 23 17" fill="none">
                                     <path [ngStyle]="{'fill':setTheme.icon_color}"  d="M0 8.98654C0.0814881 8.954 0.057521 8.87235 0.0719012 8.81555C0.398453 7.54588 1.41705 6.68207 2.74782 6.61995C3.55372 6.58208 4.365 6.5596 5.1703 6.64302C5.84916 6.71343 6.41658 7.027 6.88934 7.51156C6.97801 7.60268 6.96064 7.63817 6.86057 7.70444C5.26197 8.76704 4.28531 10.2331 3.9306 12.1016C3.87008 12.421 3.85031 12.7447 3.83293 13.0689C3.82874 13.1511 3.84192 13.2286 3.7113 13.2275C3.06779 13.2192 2.42247 13.2494 1.78135 13.2068C0.923931 13.1494 0.321159 12.6323 0.0647111 11.8164C0.05093 11.772 0.067707 11.7075 0 11.6874C0 10.7869 0 9.88702 0 8.98654ZM23 9.03091C22.9497 9.02026 22.9605 8.97885 22.9533 8.94453C22.6902 7.66066 21.7046 6.74893 20.384 6.63415C19.5649 6.56256 18.7387 6.57735 17.9178 6.63415C17.2269 6.68207 16.6475 6.98618 16.1568 7.46423C16.0472 7.57132 16.0022 7.63107 16.176 7.73165C16.5121 7.92631 16.8087 8.17716 17.0873 8.44518C18.3953 9.70006 19.085 11.2301 19.1605 13.0257C19.1677 13.1931 19.2138 13.2328 19.378 13.2298C19.9238 13.2192 20.4703 13.2298 21.0167 13.2251C21.9592 13.2162 22.6543 12.7015 22.9341 11.8164C22.9479 11.7726 22.9317 11.7075 22.9994 11.688C23 10.8017 23 9.91661 23 9.03091ZM14.3581 16.9998C14.3731 16.9998 14.388 16.9998 14.403 16.9992C15.7194 16.9826 16.8818 16.0887 17.1586 14.8208C17.3414 13.9854 17.3042 13.131 17.1532 12.2927C16.8009 10.3396 15.0477 8.74574 13.0513 8.54044C12.1855 8.4511 11.3161 8.49784 10.449 8.50494C8.35552 8.5215 6.49388 9.9521 5.92706 11.9394C5.72454 12.6482 5.7497 13.3689 5.7503 14.0907C5.7521 15.7508 7.01456 16.9963 8.69945 16.9992C9.62757 17.001 10.5557 16.9992 11.4838 16.9992C12.4419 16.9998 13.4 16.9998 14.3581 16.9998ZM11.4844 1.2612e-05C9.37532 0.00533743 7.67126 1.69271 7.67126 3.7759C7.67066 5.86501 9.3915 7.56303 11.5042 7.55889C13.6217 7.55475 15.3329 5.85791 15.3287 3.76762C15.3239 1.67615 13.6085 -0.00531221 11.4844 1.2612e-05ZM3.84312 1.2612e-05C2.25231 -0.00294562 0.954489 1.27087 0.955088 2.834C0.955687 4.38648 2.24871 5.66326 3.82275 5.66621C5.41596 5.66917 6.70419 4.40187 6.70359 2.83163C6.70299 1.2691 5.42375 0.00297085 3.84312 1.2612e-05ZM19.1557 5.66621C20.7429 5.67095 22.0449 4.39417 22.0449 2.83282C22.0449 1.27087 20.7453 -0.00353727 19.1557 1.2612e-05C17.5745 0.00356249 16.2964 1.2691 16.2964 2.83282C16.2958 4.39417 17.5751 5.66148 19.1557 5.66621Z"
@@ -322,7 +322,7 @@
                                     <i class="fa fa-angle-right" aria-hidden="true" [ngStyle]="{'color':setTheme.icon_color}"></i></span>
                             </p>
                         </a>
-                        <ul class="nav-second-level " id="collapseSubItems5" data-parent="#navAccordion" *ngIf="open_dropdown">
+                        <ul class="nav-second-level " id="collapseSubItems5" data-parent="#navAccordion" *ngIf="open_adminArea">
                             <li class="nav-item" [routerLinkActive]="['active']">
                                 <a class="nav-link" href="{{userDetails.Club.linkToVV}}" target="_blank">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
@@ -380,7 +380,7 @@
                                         [ngStyle]="{'color':setTheme.icon_color}"></i></span>
                             </p>
                         </a>
-                        <ul class="nav-second-level " id="collapseSubItems3" data-parent="#navAccordion" *ngIf="open_dropdown">
+                        <ul class="nav-second-level " id="collapseSubItems3" data-parent="#navAccordion" *ngIf="open_tineonAdmin">
                             <li class="nav-item" [routerLinkActive]="['active']">
                                 <a class="nav-link" routerLink="/themes">
                                     <p>
@@ -460,7 +460,7 @@
                     </li> -->
                     <li [ngClass]="{ 'active' : isValue == 13 }" (click)="toggle(13)" class="parent-label"
                          *ngIf=" createAccess.news == 'Yes' || createAccess.event == 'Yes' || createAccess.course == 'Yes' || createAccess.instructor == 'Yes' || createAccess.survey == 'Yes' || createAccess.room == 'Yes'">
-                        <a id="hasSubItems" (click)="dropDown6()" class="com_ic toggleSubmenu6" routerLink="/news-list"  [ngStyle]="{'color':setTheme.navigation_color}">
+                        <a id="hasSubItems" (click)="dropDown6()" class="com_ic toggleSubmenu6"  [ngStyle]="{'color':setTheme.navigation_color}">
                             <p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
                                     <path [ngStyle]="{'fill':setTheme.icon_color}" d="M22.9936 11.5149C23.0115 13.16 22.9605 14.8022 22.6727 16.4271C22.5093 17.348 22.2597 18.2437 21.8402 19.0853C20.9221 20.9278 19.3709 21.9445 17.4312 22.4454C15.6778 22.8986 13.8848 22.9807 12.0861 22.9966C10.4773 23.0103 8.86924 22.9916 7.27125 22.7718C6.03013 22.601 4.82067 22.3221 3.70762 21.719C1.98228 20.7837 1.04262 19.2705 0.559124 17.4251C0.199379 16.0531 0.0698705 14.6501 0.0317375 13.24C-0.0229438 11.2461 -0.0351751 9.25155 0.232475 7.2678C0.356947 6.34113 0.552649 5.43176 0.89009 4.55698C1.64556 2.59917 3.0572 1.34896 5.04155 0.719176C6.6676 0.203242 8.34833 0.0670521 10.0391 0.0238174C11.6292 -0.0172556 13.22 -0.0179762 14.8065 0.12614C16.1152 0.245035 17.406 0.453282 18.6291 0.958408C20.5012 1.73159 21.6862 3.12735 22.2949 5.03833C22.8072 6.64666 22.931 8.30903 22.9914 9.98006C23.0094 10.4902 22.9936 11.0026 22.9936 11.5149ZM11.4796 20.7109C12.9149 20.6886 14.3251 20.6684 15.7231 20.4508C16.6584 20.3052 17.5693 20.084 18.3895 19.5839C18.85 19.3036 19.0709 18.8915 19.068 18.351C19.0659 17.9107 18.85 17.5641 18.6004 17.2305C17.7139 16.0452 16.4642 15.491 15.0597 15.2252C13.4704 14.9239 11.8623 14.9167 10.2535 14.9816C9.08437 15.0284 7.92527 15.1517 6.8151 15.5501C5.72723 15.9407 4.8329 16.5856 4.21198 17.5764C3.73855 18.3323 3.94577 19.1847 4.71274 19.6351C5.25884 19.9558 5.85242 20.1539 6.46758 20.2923C8.12673 20.6662 9.81609 20.6807 11.4796 20.7109ZM6.91007 9.19102C6.90575 11.7354 8.96422 13.8042 11.504 13.8063C14.0431 13.8085 16.1052 11.7426 16.1044 9.19679C16.1037 6.66035 14.0568 4.60598 11.5242 4.60021C8.97429 4.59373 6.91511 6.64306 6.91007 9.19102Z"
@@ -469,7 +469,7 @@
                                     <i class="fa fa-angle-right" aria-hidden="true" [ngStyle]="{'color':setTheme.icon_color}"></i></span>
                             </p>
                         </a>
-                        <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="open_dropdown">
+                        <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="open_owner">
                             <li class="nav-item" [routerLinkActive]="['active']"  *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/news-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">

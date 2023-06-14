@@ -30,7 +30,12 @@ export class MenuComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     headline_word_option: number = 0;
     private activatedHeadline: Subscription;
-    open_dropdown:boolean = false;
+    open_clubTool:boolean = false;
+    open_setUp:boolean = false;
+    open_more:boolean = false;
+    open_adminArea:boolean = false;
+    open_tineonAdmin:boolean = false;
+    open_owner:boolean = false;
 
     constructor(
         private lang: LanguageService,
@@ -88,29 +93,60 @@ export class MenuComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }
+
     dropDown1() {
         $('.toggleSubmenu1').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_clubTool = !this.open_clubTool;
+        this.open_setUp = false;
+        this.open_more = false;
+        this.open_adminArea = false;
+        this.open_tineonAdmin = false;
+        this.open_owner = false;
     }
     dropDown2() {
         $('.toggleSubmenu2').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_setUp = !this.open_setUp;
+        this.open_clubTool = false;
+        this.open_more = false;
+        this.open_adminArea = false;
+        this.open_tineonAdmin = false;
+        this.open_owner = false;
     }
     dropDown3() {
         $('.toggleSubmenu3').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_more = !this.open_more;
+        this.open_clubTool = false;
+        this.open_setUp = false;
+        this.open_adminArea = false;
+        this.open_tineonAdmin = false;
+        this.open_owner = false;
     }
     dropDown4() {
         $('.toggleSubmenu4').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_adminArea = !this.open_adminArea;
+        this.open_clubTool = false;
+        this.open_setUp = false;
+        this.open_more = false;
+        this.open_tineonAdmin = false;
+        this.open_owner = false;
     }
     dropDown5() {
         $('.toggleSubmenu5').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_tineonAdmin = !this.open_tineonAdmin;
+        this.open_clubTool = false;
+        this.open_setUp = false;
+        this.open_more = false;
+        this.open_adminArea = false;
+        this.open_owner = false;
     }
     dropDown6() {
         $('.toggleSubmenu6').next('ul').toggleClass('show');
-        this.open_dropdown = !this.open_dropdown;
+        this.open_owner = !this.open_owner;
+        this.open_clubTool = false;
+        this.open_setUp = false;
+        this.open_more = false;
+        this.open_adminArea = false;
+        this.open_tineonAdmin = false;
     }
 
     isValue: number = 0;
