@@ -99,7 +99,7 @@ export class MorganizerDocumentsComponent implements OnInit {
 
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.language = this.lang.getLanguaageFile();
         this.userAccess = appSetting.role;
         this.extensions = appSetting.extensions;

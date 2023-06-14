@@ -57,11 +57,9 @@
         <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
             <mat-drawer #drawer class="example-sidenav" mode="over">
                 <div class="mobile-nav" *ngIf="setTheme && setTheme.sidebar_color && setTheme.sidebar_color" style="background-color: #F8F8F8;">
-
                     <button type="button"  (click)="drawer.toggle()" >
                         <img onContextMenu="return false;" src="../../../../assets/img/msg_close.svg" alt="logo" loading="lazy"/>
                     </button>
-
                     <div class="mob-he-top">
                         <div class="club-logomenu" routerLink="/dashboard">
                             <img onContextMenu="return false;"
@@ -224,7 +222,6 @@
                                         </span>
                                         <span>{{language.header.course}}</span>
                                     </a>
-
                                 </li>
                                 <li class="selected_menu" (click)="drawer.toggle()" (click)="onClickToggleClass('community')"  [routerLink]="['/vereins-faq']"  [routerLinkActive]="['is-active']"
                                     *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
@@ -461,18 +458,16 @@
         </mat-drawer-container>
     </div>
     <div class="brand-logo cgdfs" routerLink="/dashboard">
-
-        <img class="brand-red" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img.png"
+        <!-- <img class="brand-red" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img.png"
             alt="brand-logo" loading="lazy">
         <img class="brand-green" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img_green.png"
-            alt="brand-logo" loading="lazy">
-
-            <!-- <div class="logo-image-small" *ngIf="headline_word_option == 0">
+            alt="brand-logo" loading="lazy"> -->
+            <div class="logo-image-small" *ngIf="headline_word_option == 0">
                 <img  src="../../../assets/img/Verein-Cloud-FIN_2.png" onContextMenu="return false;" alt="logo" loading="lazy">
             </div>
             <div class="logo-image-small" *ngIf="headline_word_option == 1">
                 <img src="../../../assets/img/verein_cloud_weiss (1) Kopie.png" onContextMenu="return false;" alt="logo" loading="lazy">
-            </div> -->
+            </div>
     </div>
     <div class="club-logo" routerLink="/profile-club">
         <img onContextMenu="return false;"

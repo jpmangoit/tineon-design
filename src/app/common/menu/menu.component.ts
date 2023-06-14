@@ -30,6 +30,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     headline_word_option: number = 0;
     private activatedHeadline: Subscription;
+    open_dropdown:boolean = false;
 
     constructor(
         private lang: LanguageService,
@@ -96,9 +97,11 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
     dropDown1() {
         $('.toggleSubmenu1').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
     }
     dropDown5() {
         $('.toggleSubmenu5').next('ul').toggleClass('show');
+        this.open_dropdown = !this.open_dropdown;
     }
     dropDown6() {
         $('.toggleSubmenu6').next('ul').toggleClass('show');

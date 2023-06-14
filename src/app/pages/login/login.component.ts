@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     theme_data: ThemeType;
     tokenn: string;
     isMobile: boolean = false;
-    logo_selection:any = 0;
 
     constructor(
         public authService: AuthServiceService,
@@ -39,7 +38,6 @@ export class LoginComponent implements OnInit {
         if (window.innerWidth < 768) {
             this.isMobile = true;
         }
-        // this.brand_logo();
         this.language = this.lang.getLanguaageFile();
         this.loginForm = new UntypedFormGroup({
             username: new UntypedFormControl('', [Validators.required]),
@@ -68,26 +66,10 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    // brand_logo(){
-        // this.authService.setLoader(true);
-        // this.authService.sendRequest('get', 'dsfg', 12)
-        //     .subscribe(
-        //         (respData:any) => {
-        //             if (respData['isError'] == false) {
-        //                 this.logo_selection = '';
-        //             }
-        //             else if (respData['code'] == 400) {
-        //                 this.authService.setLoader(false);
-        //             }
-        //         }
-        //     );
-    // }
-
     loginProcess() {
         this.formError = '';
         this.loginsubmitted = true;
         this.validError = false;
-
         if (this.loginForm.valid) {
             this.loginForm.controls["isMobile"].setValue(this.isMobile);
             if (this.loginForm.controls['remember'].value) {
