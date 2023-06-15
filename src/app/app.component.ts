@@ -65,17 +65,15 @@ export class AppComponent implements OnInit {
     @HostListener("window:keypress")
     @HostListener("window:mousedown")
     checkUserActivity() {
-        clearTimeout(this.timeoutId);
+        // clearTimeout(this.timeoutId);
         // this.checkTimeOut();
     }
-
 
     logout() {
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(["/login"]);
     }
-
 
     ngAfterContentChecked() {
         this.cdref.detectChanges();
