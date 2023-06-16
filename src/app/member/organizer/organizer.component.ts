@@ -12,6 +12,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { Extentions } from 'src/app/models/extentions.model';
 import { NotificationService } from 'src/app/service/notification.service';
 declare var $: any;
+
 @Component({
 	selector: 'app-organizer',
 	templateUrl: './organizer.component.html',
@@ -107,13 +108,11 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 	}
 
 	uploadFile(event:Event) {
-		console.log('---UF  1 -----')
 		this.documentForm = new UntypedFormGroup({
 			'add_image': new UntypedFormControl('', Validators.required),
 			'category': new UntypedFormControl('', Validators.required),
 			'club_id': new UntypedFormControl(this.userDetails.team_id)
 		});
-		console.log('---UF  2 -----')
 		const file :File= (event.target as HTMLInputElement).files[0];
 		let category_text:string = '';
 		for (let index = 0; index < $('.nav-tabs ').children().length; index++) {
@@ -122,43 +121,25 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 				category_text = element[index].text;
 			}
 		}
-
-		console.log('---UF  3 -----','category----',category_text)
-
 		category_text = ( (category_text == '') ? document.querySelector('.nav-tabs .active').textContent : category_text);
-
-		console.log('---UF  4 -----','category----',category_text)
-
 		if (category_text != '') {
 			var category:string;
 			category_text =  category_text.trim();
-			console.log('---UF  5 -----','category----',category_text,'----my_documents---',this.language.club_document.my_documents.trim())
-			console.log('---UF  5 -----','category----',category_text,'----club_documents_untern---',this.language.club_document.club_documents_untern.trim())
-			console.log('---UF  5 -----','category----',category_text,'----club_documents---',this.language.club_document.club_documents.trim())
-			console.log('---UF  5 -----','category----',category_text,'----archived_documents---',this.language.club_document.archived_documents.trim())
-			console.log('---UF  5 -----','category----',category_text,'----current_status---',this.language.club_document.current_status.trim())
-			console.log('---UF  5 -----','category----',category_text,'----current_status_untern---',this.language.club_document.current_status_untern.trim())
-			
+
 			if (category_text == this.language.club_document.my_documents.trim()) {
-				category = 'personal';		
-				console.log('---UF  6 -----',category)		
+				category = 'personal';
 			} else if (category_text == this.language.club_document.club_documents.trim() || category_text == this.language.club_document.club_documents_untern.trim()) {
 				category = 'club';
-				console.log('---UF  7 -----',category)
 			} else if (category_text == this.language.club_document.archived_documents.trim() ) {
 				category = 'archive';
-				console.log('---UF  8 -----',category)
 			} else if (category_text == this.language.club_document.current_status.trim() || category_text == this.language.club_document.current_status_untern.trim()) {
 				category = 'current-statuses';
-				console.log('---UF  9 -----',category)
 			}
-			console.log('---UF  10 ---category--',category)
+
 			this.documentForm.patchValue({
 				add_image: file,
 				category: category
 			});
-			console.log('---UF  11 ---documentForm--',this.documentForm)
-
 			this.documentForm.get('category').updateValueAndValidity();
 			const reader: FileReader = new FileReader();
 			reader.readAsDataURL(file);
@@ -206,7 +187,6 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 				}
 			}
 		}
-		console.log('---UF  12---documentForm--',formData)
 		this.authService.memberSendRequest('post', 'documents/insert', formData)
         .subscribe(
             (respData:any) => {

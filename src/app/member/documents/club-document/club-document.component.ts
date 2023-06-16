@@ -57,8 +57,6 @@ export class ClubDocumentComponent implements OnInit {
                 category_text = element[index].text;
             }
         }
-        console.log(category_text);
-        
         if (category_text != '') {
             let category:string;
             if (category_text == this.language.club_document.current_status) {
@@ -81,11 +79,9 @@ export class ClubDocumentComponent implements OnInit {
             this.authService.memberSendRequest('get', 'documents/fetch/club', null)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
                     this.authService.setLoader(false);
                     let cData:DocumentsType[] = respData;
                     this.clubData = cData.sort((a,b) => b.id - a.id);
-                    console.log(this.clubData);
                     if (this.clubData.length) {
                         this.getType();
                     }
@@ -131,7 +127,7 @@ export class ClubDocumentComponent implements OnInit {
                 }
             }
         }
-    
+
 
      /**
      * Function to check the Accessbility who can upload or move the documents
@@ -162,7 +158,7 @@ export class ClubDocumentComponent implements OnInit {
 
 
      /**
-    * Function is used to move document 
+    * Function is used to move document
     * @author  MangoIt Solutions
     * @param   {id, category}
     * @return  {string} success message
@@ -194,7 +190,7 @@ export class ClubDocumentComponent implements OnInit {
     }
 
     /**
-    * Function is used to delete document 
+    * Function is used to delete document
     * @author  MangoIt Solutions
     * @param   {id, index}
     * @return  {string} success message

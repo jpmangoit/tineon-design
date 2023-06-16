@@ -280,9 +280,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     removeSubtask(index: number) {
-        console.log(index);
         this.subtaskList.removeAt(index);
-        console.log( this.subtaskList);
     }
 
     /**

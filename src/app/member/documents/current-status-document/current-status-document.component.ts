@@ -67,6 +67,9 @@ export class CurrentStatusDocumentComponent implements OnInit {
             } else if (category_text == this.language.club_document.archived_documents) {
                 category = 'archivedDocument';
                 this.checkUpload(category);
+            }else  if (category_text == this.language.club_document.my_documents) {
+                category = 'myDocument';
+                this.checkUpload(category);
             }
         }
 
@@ -155,7 +158,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
     }
 
     /**
-    * Function is used to move document 
+    * Function is used to move document
     * @author  MangoIt Solutions
     * @param   {id, category}
     * @return  {string} success message
@@ -186,7 +189,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
     }
 
     /**
-    * Function is used to delete document 
+    * Function is used to delete document
     * @author  MangoIt Solutions
     * @param   {id, index}
     * @return  {string} success message
