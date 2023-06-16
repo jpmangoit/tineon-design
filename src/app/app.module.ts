@@ -243,6 +243,7 @@ import { TaskListComponent } from './member/tasks/task-list/task-list.component'
 import { GroupListComponent } from './member/groups/group-list/group-list.component';
 import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
+import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function getCulture() {
@@ -457,6 +458,7 @@ FullCalendarModule.registerPlugins([
         GroupListComponent,
         FaqsListComponent,
         AppStoreComponent,
+        MEmailComponent,
 	],
 	imports: [
 		BrowserModule,

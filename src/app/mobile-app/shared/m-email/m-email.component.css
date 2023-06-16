@@ -1,0 +1,126 @@
+
+@media (min-width: 1024px) {
+    .login-form .icon {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .login-content {
+        padding-top: 70px;
+    }
+    .dropdown.lang-drop button::after {
+        border-top-color: #000 !important;
+    }
+    #dropdownMenuButton1 {
+        border: 1px solid #000;
+        color: #000;
+    }
+    .login-bottom {
+        display: inline-block;
+        color: #5e5e5e;
+        font-size: 11px;
+        font-family: 'Gellix', sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        width: 100%;
+    }
+    .login-bottom b {
+        color: #000;
+    }
+    .login-con p {
+        display: none;
+    }
+    .mobile-hidden {
+        display: none;
+    }
+    .col-lg-6.col-md-6.log-det {
+        margin-bottom: 0;
+        height: 100vh;
+        transform: translate(0px, -50%);
+        top: 50%;
+        overflow: hidden;
+    }
+    input.ng-invalid {
+        border: 1px solid #e93608 !important;
+    }
+    form.ng-invalid span.error {
+        margin-top: 10px;
+        padding: 0px 17px;
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        color: #e93608;
+        font-size: 14px;
+    }
+    .dropdown.lang-drop {
+        display: none;
+    }
+    .log-det .text-box-cont .btn.btn-success {
+        border-radius: 26px;
+        background: #ffbe00;
+        font-size: 16px;
+        font-weight: normal;
+        font-family: 'Gellix', sans-serif;
+        box-shadow: none;
+    }
+
+    .log-det .text-box-cont .btn.btn-success:active,
+    .log-det .text-box-cont .btn.btn-success:focus {
+        background: #ffbe00 !important;
+    }
+
+    .forgot-password {
+        border: 1px solid #d0d0cb;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 25px;
+        color: #5e5e5e;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: 'Gellix', sans-serif;
+    }
+
+    .ng-invalid + .icon img {
+        transform: translate(0, -23px);
+    }
+    .login-logo {
+        margin-bottom: 0;
+        margin-top: 20px;
+    }
+    .log-det h2 {
+        font-size: 18px;
+    }
+    .login-form h2 {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: #000;
+        font-family: 'Gellix', sans-serif;
+        font-weight: normal;
+    }
+    .login-logo img {
+        width: 96px;
+    }
+    .login-heading h2 {
+        margin-top: 10px;
+        color: #000;
+    }
+    .log-det .text-box-cont .btn {
+        margin-bottom: 0;
+    }
+    .dropdown.lang-drop button,
+    .dropdown.lang-drop button:focus {
+        background: transparent;
+        border-radius: 5px;
+        padding: 5px;
+        color: #fff;
+        border: 1px solid #fff;
+    }
+    .dropdown.lang-drop button::after {
+        border-top-color: #fff;
+    }
+}

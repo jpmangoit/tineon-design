@@ -135,6 +135,7 @@ import { TaskListComponent } from './member/tasks/task-list/task-list.component'
 import { GroupListComponent } from './member/groups/group-list/group-list.component';
 import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
+import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 
 var userDetails = JSON.parse(localStorage.getItem('user-data'));
 
@@ -276,11 +277,8 @@ const mobile_routes: Routes = [
         path: 'login',
         component: LoginComponent
     },
-    {
-        path: 'recover-password',
-        component: RecoverPasswordComponent,
-        data: { title: 'Recover Password' }
-    },
+    { path: 'recover-password',component: RecoverPasswordComponent,data: { title: 'Recover Password' }},
+    { path: 'email', component: MEmailComponent, data: { title: 'Email' } },
 
     // mobile routing start
     {
@@ -397,9 +395,9 @@ const mobile_routes: Routes = [
             { path: 'coming_soon', component: ComingSoonComponent },
             { path: 'banner-list', component: MbannerlistComponent, canActivate: [MemberLightGuard], data: { title: 'Display Banners', allow_permission: ['create'] } },
             { path: 'app-store', component: AppStoreComponent, data: { title: 'App Store' } },
+
         ]
     },
-
     {
         path: '**',
         component: PageNotFoundComponent

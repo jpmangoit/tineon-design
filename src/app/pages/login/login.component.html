@@ -219,7 +219,10 @@
                                     </label> -->
                                     <a class="forgot-password" routerLink="/recover-password">{{language.login.recoverPassword }}</a>
                                 </p>
-                                <span class="login-bottom">Dein Verein ist noch nicht dabei?<b>Jetzt Infos holen.</b></span>
+                                    <span  class="login-bottom">
+                                        <a routerLink="/email">Dein Verein ist noch nicht dabei?<b>Jetzt Infos holen.</b></a>
+                                    </span>
+                                <a class="forgot-password" routerLink="/email">{{language.instructor.email }}</a>
                             </div>
                         </form>
                     </div>
