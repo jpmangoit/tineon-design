@@ -10,7 +10,15 @@
         "signIn": "Anmelden",
         "userNameError": "Es wird ein Username benötigt.",
         "passwordError": "Es wird ein Passwort benötigt.",
-        "o_clock":"Uhr"
+        "o_clock":"Uhr",
+
+        "name": "Name",
+        "club_name": "Veriensname",
+        "email": "E-mail",
+        "association_purpose": "Vereinszweck",
+        "number_of_members": "Mitgliedszahl",
+        "club_Website": "Vereinswebsite",
+        "send": "Abschicken"
 
     },
     "menu": {

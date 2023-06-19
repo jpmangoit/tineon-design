@@ -123,4 +123,17 @@
     .dropdown.lang-drop button::after {
         border-top-color: #fff;
     }
+
+    .sendbtn button.sendbtn {
+        border: 1px solid #d0d0cb;
+        line-height: 48px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 25px;
+        color: #5e5e5e;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 2px 20px;
+        float: right;
+    }
 }

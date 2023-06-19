@@ -10,7 +10,15 @@
         "signIn":"Connexion",
         "userNameError":"Le nom d'utilisateur est requis.",
         "passwordError":"Le mot de passe est requis.",
-        "o_clock":"O'clock"
+        "o_clock":"O'clock",
+
+        "name": "Name",
+        "club_name": "Veriensname",
+        "email": "E-mail",
+        "association_purpose": "Vereinszweck",
+        "number_of_members": "Mitgliedszahl",
+        "club_Website": "Vereinswebsite",
+        "send": "Abschicken"
     },
     "menu": {
         "dashboard":"Tableau de bord",

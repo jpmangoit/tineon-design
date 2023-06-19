@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-m-email',
@@ -17,7 +18,7 @@ export class MEmailComponent implements OnInit {
     validError: boolean = false;
 
   constructor(
-    public authService: AuthServiceService,private lang: LanguageService,
+    public authService: AuthServiceService,private lang: LanguageService, private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -26,15 +27,53 @@ export class MEmailComponent implements OnInit {
     }
     this.language = this.lang.getLanguaageFile();
     this.emailForm = new UntypedFormGroup({
-        email: new UntypedFormControl('', [Validators.required]),
-        isMobile: new UntypedFormControl('')
+        name: new UntypedFormControl('', [Validators.required, this.noWhitespace]),
+        club_name: new UntypedFormControl('', [Validators.required, this.noWhitespace]),
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
+        association_purpose: new UntypedFormControl(''),
+        number_of_members: new UntypedFormControl(''),
+        club_Website: new UntypedFormControl(''),
+        // isMobile: new UntypedFormControl('')
     });
   }
+
+  noWhitespace(control: UntypedFormControl) {
+    if (control?.value.length != 0) {
+        let isWhitespace: boolean = (control.value || '').trim().length === 0;
+        let isValid: boolean = !isWhitespace;
+        return isValid ? null : { 'whitespace': true }
+    } else {
+        let isValid: boolean = true;
+        return isValid ? null : { 'whitespace': true }
+    }
+}
 
   emailProcess() {
     this.formError = '';
     this.emailsubmitted = true;
     this.validError = false;
+    console.log(this.emailForm);
+    if (this.emailForm.valid) {
+        console.log(this.emailForm.value);
+        // this.authService.setLoader(true);
+        // this.authService.memberSendRequest('post', 'createBanner', this.emailForm.value)
+        //     .subscribe(
+        //         (respData: any) => {
+        //             this.authService.setLoader(false);
+        //             this.emailsubmitted = false;
+        //             if (respData['isError'] == false) {
+        //                 this.notificationService.showSuccess(respData['result']['message'], null);
+        //                 // var self = this;
+        //                 // setTimeout(function () {
+        //                 //     self.router.navigate(['/banner-detail/' + respData['result']['banner']['id']]);
+        //                 // }, 1000);
+        //             } else if (respData['code'] == 400) {
+        //                 this.notificationService.showError(respData['message'], null);
+        //             }
+        //         }
+        //     );
+    }
+
   }
 
 }
