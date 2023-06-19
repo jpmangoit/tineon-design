@@ -4,15 +4,15 @@
         <div class="page-action">
             <div class="page-action-left">
                 <div class="tab-button">
-                    <button type="button"  *ngIf="participateAccess.news == 'Yes'"  (click)="onNews()" (click)="onClick('1')"
+                    <button type="button"  *ngIf="participateAccess.news == 'Yes'"  (click)="onNews()" (click)="onClick('1')" routerLink="./club-news"
                         [ngClass]="{'active': activeClass === 'newsActive'}" >
                         <Span>{{language.club_wall.club_news}}</Span>
                     </button>
-                    <button type="button" *ngIf="participateAccess.appointments == 'Yes'"   (click)="onDates()" (click)="onClick('2')"
+                    <button type="button" *ngIf="participateAccess.appointments == 'Yes'"   (click)="onDates()" (click)="onClick('2')" routerLink="club-dates"
                         [ngClass]="{'active': activeClass === 'dateActive'}">
                          <Span>{{language.club_wall.club_dates}}</Span>
                     </button>
-                    <button type="button" *ngIf="participateAccess.event == 'Yes'" (click)="onEvents()" (click)="onClick('3')"
+                    <button type="button" *ngIf="participateAccess.event == 'Yes'" (click)="onEvents()" (click)="onClick('3')" routerLink="club-events"
                         [ngClass]="{'active': activeClass === 'eventActive'}">
                         <span>{{language.club_wall.club_events}}</span>
                     </button>

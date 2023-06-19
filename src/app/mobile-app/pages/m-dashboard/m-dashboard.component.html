@@ -19,7 +19,7 @@
                                 <li>{{userDetails.Club.name}}</li>
                                 <li>{{userDetails.roles[0]}}</li>
                             </ul>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,6 @@
 
     <!-- profile card end -->
     <!-- tab area start -->
-
     <div class="dashboard-slider" *ngIf="userDetails.isMember_light">
         <owl-carousel-o [options]="sliderOptions">
             <ng-template carouselSlide *ngFor="let image of images;let i= index">
@@ -217,7 +216,7 @@
                                                 <img [src]="data?.user?.imagePro" onContextMenu="return false;" alt="{{data?.user?.firstname}}" loading="lazy">
                                             </div>
                                         </div>
-                                        <div> 
+                                        <div>
                                             <h3 data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                                 {{data?.user?.firstname}}  {{data?.user?.lastname}}
                                             </h3>
@@ -328,7 +327,7 @@
                                         </div>
                                     </div>
                                     <div class="show-all-button">
-                                    <button routerLink="/community">{{language.dashboard.dashboardNewsShowAll}}</button>
+                                    <button routerLink="/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
                                     </div>
                                 </ng-container>
                                 <!-- group item end -->
@@ -372,7 +371,7 @@
                                         </div>
                                     </div>
                                     <div class="show-all-button">
-                                        <button routerLink="/community">{{language.dashboard.dashboardNewsShowAll}}</button>
+                                        <button routerLink="/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
                                     </div>
                                 </ng-container>
                                 <!-- group item end -->

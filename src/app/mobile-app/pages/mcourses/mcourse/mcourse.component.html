@@ -3,22 +3,25 @@
     <div class="page-action">
         <div class="page-action-left">
             <div class="tab-button">
-                <button type="button" (click)="onCoursediv()" (click)="onClick('1')" [ngClass]="{'active': activeClass==='courseActive'}"
-                     [ngStyle]="displayCoursediv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                        'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                        'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                        : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                <button type="button" (click)="onCoursediv()" (click)="onClick('1')"
+                        [ngClass]="{'active': activeClass==='courseActive'}"
+                        [ngStyle]="displayCoursediv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                            : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
                     <Span>{{language.courses.courses}}</Span>
                 </button>
-                <button type="button" *ngIf="createAccess.instructor == 'Yes'" (click)="onInstructordiv()" (click)="onClick('2')"  [ngClass]="{'active': activeClass==='instructorActive'}"
-                    [ngStyle]="displayInstructordiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                <button type="button" *ngIf="createAccess.instructor == 'Yes'" (click)="onInstructordiv()" (click)="onClick('2')"
+                        [ngClass]="{'active': activeClass==='instructorActive'}"
+                        [ngStyle]="displayInstructordiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                         'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                         'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                         : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
                     <Span>{{language.courses.instructor}}</Span>
                 </button>
-                <button type="button"   *ngIf="createAccess.room == 'Yes'" (click)="onRoomdiv()" (click)="onClick('3')" [ngClass]="{'active': activeClass==='roomActive'}"
-                    [ngStyle]="displayRoomdiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                <button type="button"   *ngIf="createAccess.room == 'Yes'" (click)="onRoomdiv()" (click)="onClick('3')"
+                        [ngClass]="{'active': activeClass==='roomActive'}"
+                        [ngStyle]="displayRoomdiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                         'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                         'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                         : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
@@ -383,8 +386,8 @@
     <app-room></app-room>
 </div>
     <!-- filter slider start -->
-    <div class="modal fade change_pass_section faq_edit all_news instructor-details-modal view-course-modal"
-    id="view-course" tabindex="-1" aria-labelledby="exampleModalLabel">
+<div class="modal fade change_pass_section faq_edit all_news instructor-details-modal view-course-modal" id="view-course" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

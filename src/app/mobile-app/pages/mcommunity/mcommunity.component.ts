@@ -15,7 +15,7 @@ import { appSetting } from 'src/app/app-settings';
     styleUrls: ['./mcommunity.component.css']
 })
 
-export class McommunityComponent implements OnInit {
+export class McommunityComponent implements OnInit,OnDestroy {
     displayChats: boolean = true;
     displayMessages: boolean = false;
     displayGroups: boolean = false;
@@ -62,8 +62,13 @@ export class McommunityComponent implements OnInit {
     constructor(private lang: LanguageService, private authService: AuthServiceService,
         private router: Router, private themes: ThemeService) {
         var getParamFromUrl: string = this.router.url.split("/")['2'];
-        if (getParamFromUrl == 'community-groups') {
+        console.log(this.router.url);
+        console.log(getParamFromUrl);
+
+        if (getParamFromUrl != undefined && getParamFromUrl == 'community-groups') {
             this.displayGroups = true;
+            this.onClick(3)
+            this.communityGroups();
         } else {
             this.displayChats = true;
         }
@@ -90,12 +95,17 @@ export class McommunityComponent implements OnInit {
                 this.communityGroups();
             }
         }
-
     }
 
     // active class functions
     onClick(check) {
+        console.log(check);
         this.activeClass = check == 1 ? "chatActive" : check == 2 ? "messageActive" : check == 3 ? "groupActive" : "chatActive";
+        console.log( this.activeClass);
+    }
+
+    ngOnDestroy(){
+        this.activatedSub.unsubscribe();
     }
 
 }

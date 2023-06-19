@@ -136,6 +136,7 @@ import { GroupListComponent } from './member/groups/group-list/group-list.compon
 import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
+import { MclubEventsComponent } from './mobile-app/pages/mevents/mclub-events/mclub-events.component';
 
 var userDetails = JSON.parse(localStorage.getItem('user-data'));
 
@@ -289,13 +290,14 @@ const mobile_routes: Routes = [
                 path: 'clubwall', component: MclubwallComponent, children: [
                     { path: 'club-news', component: MclubNewsComponent },
                     { path: 'club-dates', component: MclubDatesComponent },
+                    { path: 'club-events',component:MclubEventsComponent}
                 ]
             },
             {
                 path: 'community', component: McommunityComponent, children: [
                     { path: 'community-groups', component: McommunityGroupsComponent },
                     { path: 'community-messages', component: McommunityMessagesComponent },
-                    { path: 'community-groups', component: CommunityGroupsComponent },
+                    // { path: 'community-groups', component: CommunityGroupsComponent },
                     { path: 'groups', component: CommunityGroupsComponent },
                     { path: 'groups-joined', component: CommunityGroupsComponent },
                 ]
