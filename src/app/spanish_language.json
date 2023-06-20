@@ -18,7 +18,8 @@
         "association_purpose": "Vereinszweck",
         "number_of_members": "Mitgliedszahl",
         "club_Website": "Vereinswebsite",
-        "send": "Abschicken"
+        "send": "Abschicken",
+        "infos": "Infos"
     },
     "menu": {
         "dashboard": "Tablero",

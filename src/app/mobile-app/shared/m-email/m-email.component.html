@@ -3,7 +3,7 @@
         <div class="row no-margin">
             <div class="col-sm-12 no-padding login-box">
                 <div class="row no-margin w-100">
-                    <div class="col-lg-6 col-md-6 box-de">
+                    <!-- <div class="col-lg-6 col-md-6 box-de">
                         <div class="login-content">
                             <div class="login-logo">
                                 <img onContextMenu="return false;" src="assets/img/logo.png" alt="logo" loading="lazy" />
@@ -15,9 +15,8 @@
                                 <p>{{ language.login.loginDesc }}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-6 col-md-6 log-det">
-
                         <div class="login-content">
                             <div class="login-logo">
                                 <img onContextMenu="return false;" src="assets/img/brand_img_m.png" alt="logo" loading="lazy" />
@@ -26,11 +25,11 @@
                                 <h2>{{ language.login.loginHeading }}</h2>
                             </div> -->
                             <div class="login-con">
-                                <p>{{ language.login.loginDesc }}</p>
+                                <!-- <p>{{ language.login.loginDesc }}</p> -->
                             </div>
                         </div>
                         <form class="login-form" [formGroup]="emailForm" (ngSubmit)="emailProcess()">
-                            <h2>{{ language.login.signInHeading }}</h2>
+                            <h2>{{ language.login.infos }}</h2>
                             <div class="text-box-cont">
                                 <label class="error alert alert-danger" *ngIf="validError">{{ formError }}</label>
                                 <div class="input-group">

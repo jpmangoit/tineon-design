@@ -6,7 +6,8 @@
         "association_purpose": "Vereinszweck",
         "number_of_members": "Mitgliedszahl",
         "club_Website": "Vereinswebsite",
-        "send": "Abschicken"
+        "send": "Abschicken",
+        "infos": "Infos"
     },
     "profile_nav": {
         "digital_card":"Digital membership card"

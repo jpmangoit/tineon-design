@@ -38,7 +38,8 @@
         height: 100vh;
         transform: translate(0px, -50%);
         top: 50%;
-        overflow: hidden;
+        overflow: scroll;
+        margin-bottom: 5%;
     }
     input.ng-invalid {
         border: 1px solid #e93608 !important;
