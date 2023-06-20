@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -18,7 +19,8 @@ export class MEmailComponent implements OnInit {
     validError: boolean = false;
 
   constructor(
-    public authService: AuthServiceService,private lang: LanguageService, private notificationService: NotificationService
+    public authService: AuthServiceService,private lang: LanguageService, public router: Router,
+     private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -55,23 +57,23 @@ export class MEmailComponent implements OnInit {
     console.log(this.emailForm);
     if (this.emailForm.valid) {
         console.log(this.emailForm.value);
-        // this.authService.setLoader(true);
-        // this.authService.memberSendRequest('post', 'createBanner', this.emailForm.value)
-        //     .subscribe(
-        //         (respData: any) => {
-        //             this.authService.setLoader(false);
-        //             this.emailsubmitted = false;
-        //             if (respData['isError'] == false) {
-        //                 this.notificationService.showSuccess(respData['result']['message'], null);
-        //                 // var self = this;
-        //                 // setTimeout(function () {
-        //                 //     self.router.navigate(['/banner-detail/' + respData['result']['banner']['id']]);
-        //                 // }, 1000);
-        //             } else if (respData['code'] == 400) {
-        //                 this.notificationService.showError(respData['message'], null);
-        //             }
-        //         }
-        //     );
+        this.authService.setLoader(true);
+        this.authService.memberSendRequest('post', 'tineonInfoCreate', this.emailForm.value)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.emailsubmitted = false;
+                    if (respData['isError'] == false) {
+                        this.notificationService.showSuccess(respData['result']['message']['messageList']['tineon'], null);
+                        var self = this;
+                        setTimeout(function () {
+                            self.router.navigate(['/login']);
+                        }, 1000);
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
+                }
+            );
     }
 
   }
