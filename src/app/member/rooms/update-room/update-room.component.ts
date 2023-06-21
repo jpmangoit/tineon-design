@@ -35,7 +35,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     roomData: Room;
     imageUrl: string;
     hasPicture: boolean = false;
-    weekdayArray: string[] = [];
+    weekdayArray:  { name: any; id: number; }[];
     weekdayDropdownSettings: object;
     selectDay: string[] = [];
     errorTime: { isError: boolean; errorMessage: string } = { isError: false,errorMessage: '' };
@@ -144,17 +144,38 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
             active_to :['', Validators.required],
         });
 
+        // this.weekdayArray = [
+        //     this.language.new_create_event.monday,
+        //     this.language.new_create_event.tuesday,
+        //     this.language.new_create_event.wednesday,
+        //     this.language.new_create_event.thrusday,
+        //     this.language.new_create_event.friday,
+        //     this.language.new_create_event.saturday,
+        //     this.language.new_create_event.sunday,
+        // ];
+        // this.weekdayDropdownSettings = {
+        //     singleSelection: true,
+        //     allowSearchFilter: false,
+        //     selectAllText: false,
+        //     enableCheckAll: false,
+        //     unSelectAllText: false,
+        //     closeDropDownOnSelection: true
+        // };
+
         this.weekdayArray = [
-            this.language.new_create_event.monday,
-            this.language.new_create_event.tuesday,
-            this.language.new_create_event.wednesday,
-            this.language.new_create_event.thrusday,
-            this.language.new_create_event.friday,
-            this.language.new_create_event.saturday,
-            this.language.new_create_event.sunday,
+            { name: this.language.new_create_event.sunday, id: 0 },
+            { name:  this.language.new_create_event.monday, id: 1 },
+            { name: this.language.new_create_event.tuesday, id: 2 },
+            { name: this.language.new_create_event.wednesday, id: 3 },
+            { name: this.language.new_create_event.thrusday, id: 4 },
+            { name: this.language.new_create_event.friday, id: 5 },
+            { name: this.language.new_create_event.saturday, id: 6 }
         ];
+
         this.weekdayDropdownSettings = {
             singleSelection: true,
+            idField: 'id',
+            textField: 'name',
             allowSearchFilter: false,
             selectAllText: false,
             enableCheckAll: false,
@@ -191,8 +212,12 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.weekdays.removeAt(index);
     }
 
-    onWeekdayItemSelect(item: string) {
-        this.selectDay.push(item);
+    onWeekdayItemSelect(item: any) {
+        this.selectDay.push(item.id);
+    }
+
+    onWeekdayItemDeSelect(item: string){
+        this.selectDay = [];
     }
 
     checkNumber() {
@@ -239,6 +264,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 }
                 this.weekdays.reset();
                 //-------------------set weekdays-------------
+                console.log(this.roomData.room_availablity.length);
+
                 for (let i = 0; i < this.roomData.room_availablity.length; i++) {
                     this.weekdays.removeAt(i);
                     if (this.weekdays.value[i] && this.weekdays.value[i].day == null && this.weekdays.value[i].time_from == null && this.weekdays.value[i].time_to == null) {
@@ -246,14 +273,14 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     }
                 }
                 this.weekdays.removeAt(0);
-                if(this.roomData.room_availablity && this.roomData.room_availablity.length > 0){
+                if(this.roomData?.room_availablity?.length > 0){
                     this.roomData.room_availablity.forEach((key, value) => {
                         if( key.time_from.includes(':00') && key.time_to.includes(':00')){
                             key.time_from = key.time_from.slice(0, 5)
                             key.time_to = key.time_to.slice(0, 5)
                         }
                         const newAvailableTimes: UntypedFormGroup = this.formBuilder.group({
-                            day: [[key.weekday], Validators.required],
+                            day: [key.weekday, Validators.required],
                             time_from: [key.time_from, Validators.required],
                             time_to: [key.time_to, Validators.required],
                         });
@@ -281,7 +308,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
 
         if (this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
             var formData: FormData = new FormData();
-            this.authService.setLoader(true);
+
             let self = this;
             for (const key in this.roomForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
@@ -313,7 +340,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            if (this.roomForm.valid && (this.errorTime['isError'] == false))
+            if (this.roomForm.valid && (this.errorTime['isError'] == false)){
+                this.authService.setLoader(true);
                 this.authService.memberSendRequest('put', 'updateRooms/' + this.roomId, formData).subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;
@@ -327,6 +355,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                         this.notificationService.showError(respData['message'], null);
                     }
                 });
+            }
+
         }
     }
 

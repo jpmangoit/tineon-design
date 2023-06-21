@@ -84,6 +84,7 @@
                                         </div>
                                         <!-- <div class="news-dropdown" *ngIf='receiveData'> -->
                                           <div class="news-dropdown" *ngIf="participant && participant.length > 0">
+                                            <!-- <div class="news-dropdown" *ngIf="participant && participant.length > 0"> -->
                                             <label>{{language.create_group.participants}}</label>
                                             <ng-multiselect-dropdown *ngIf="participant"
                                                 formControlName="participants"

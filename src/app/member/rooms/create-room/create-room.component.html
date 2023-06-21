@@ -115,7 +115,8 @@
                                                                     [placeholder]="language.room.weekdays"
                                                                     [settings]="weekdayDropdownSettings"
                                                                     [data]="weekdayArray"
-                                                                    (onSelect)="onWeekdayItemSelect($event)">
+                                                                    (onSelect)="onWeekdayItemSelect($event)"
+                                                                    (onDeSelect)="onWeekdayItemDeSelect($event)">
                                                                 </ng-multiselect-dropdown>
                                                                 <span class="text-danger" *ngIf="formSubmit || roomForm.controls.weekdays.controls[i].controls.day.touched">
                                                                     <span *ngIf="roomForm.controls.weekdays.controls[i].controls.day.errors?.required">{{language.error_message.common_required}}</span>

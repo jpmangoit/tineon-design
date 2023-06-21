@@ -37,9 +37,9 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     responseMessage: string;
     teamId: number;
     indax: number;
-    weekdayArray: string[] = [];
+    weekdayArray: { name: any; id: number; }[];
     weekdayDropdownSettings: object;
-    selectDay: string[] = [];
+    selectDay:any[]=[];
     croppedImage: string = '';
     imageChangedEvent: Event;
     editorConfig: AngularEditorConfig = {
@@ -140,17 +140,19 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         });
 
         this.weekdayArray = [
-            this.language.new_create_event.monday,
-            this.language.new_create_event.tuesday,
-            this.language.new_create_event.wednesday,
-            this.language.new_create_event.thrusday,
-            this.language.new_create_event.friday,
-            this.language.new_create_event.saturday,
-            this.language.new_create_event.sunday,
+            { name: this.language.new_create_event.sunday, id: 0 },
+            { name:  this.language.new_create_event.monday, id: 1 },
+            { name: this.language.new_create_event.tuesday, id: 2 },
+            { name: this.language.new_create_event.wednesday, id: 3 },
+            { name: this.language.new_create_event.thrusday, id: 4 },
+            { name: this.language.new_create_event.friday, id: 5 },
+            { name: this.language.new_create_event.saturday, id: 6 }
         ];
 
         this.weekdayDropdownSettings = {
             singleSelection: true,
+            idField: 'id',
+            textField: 'name',
             allowSearchFilter: false,
             selectAllText: false,
             enableCheckAll: false,
@@ -181,8 +183,14 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         this.weekdays.removeAt(index);
     }
 
-    onWeekdayItemSelect(item: string) {
-        this.selectDay.push(item);
+    onWeekdayItemSelect(item: any) {
+        console.log(item);
+        this.selectDay.push(item.id);
+        console.log(this.selectDay);
+    }
+
+    onWeekdayItemDeSelect(item: string){
+        this.selectDay = [];
     }
 
     checkNumber() {
@@ -199,12 +207,18 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
 
     createRoomForm() {
         this.formSubmit = true;
+        console.log(this.roomForm.controls.weekdays.value);
+
         for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-                if(this.roomForm?.controls?.weekdays?.value[i].day[0]?.length > 0){
-                    this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
-                //this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0];
-            }
+                console.log(this.roomForm?.controls?.weekdays?.value[i]);
+                console.log(this.roomForm?.controls?.weekdays?.value[i].day);
+                // if(this.roomForm?.controls?.weekdays?.value[i].day[0]?.length > 0){
+                    // this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
+                this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
+            // }
         }
+        console.log(this.roomForm.value.weekdays);
+
         this.roomForm.value['team_id'] = this.teamId;
         if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
             var formData: FormData = new FormData();
@@ -239,6 +253,10 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     }
                 }
             }
+            formData.forEach((value:any,key:any) =>{
+                console.log(key + '--------------------------' + value);
+
+            })
             if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'createRoom', formData)
@@ -297,10 +315,6 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             }
         }
     }
-
-
-
-
 
     /**
     * Function is used to validate file type is image and upload images

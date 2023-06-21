@@ -115,7 +115,6 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.getUsers();
-
         this.participantDropdownSettings = {
             singleSelection: false,
             idField: 'id',
@@ -126,7 +125,6 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
             unSelectAllText: 'UnSelect All',
             searchPlaceholderText: this.language.header.search
         };
-
         this.createGroupForm = this.formBuilder.group({
             name: ['', [Validators.required, this.noWhitespace]],
             description: ['', Validators.required],
@@ -164,6 +162,7 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.receiveData = respData;
+                    // respData = [];
                     if(respData?.length > 0){
                         Object(respData).forEach((val, key) => {
                             if(val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
@@ -232,7 +231,6 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                     this.participantList.push({'user_id': value,  'approved_status': status })
                 });
             }
-
             if (this.participantList && this.participantList.length > 0) {
                 this.participantList.push({ 'user_id': parseInt(this.userDetails.userId),'approved_status': 1 })
             }

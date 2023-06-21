@@ -158,8 +158,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
-                                            {{language.header.group_hasbeen_updated}}
-                                            <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                            {{language.header.group_hasbeen_updated}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -180,8 +179,8 @@
                                         <div class="notification_message">
                                             <p>
                                                 <Span> {{notification.firstName}} {{notification.lastName}}</Span>
-                                                {{language.header.invited_you_to}}<a
-                                                    routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.group | lowercase}}
+                                                {{language.header.invited_you_to}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                                    {{language.header.group | lowercase}}
                                             </p>
                                             <div class="notification-btn-group">
                                                 <button class="accept_btn" type="button"
@@ -204,8 +203,7 @@
                                         </div>
                                         <div class="notification_message">
                                             <p><Span>{{notification.firstName}}  {{notification.lastName}}</Span>
-                                                {{language.header.want_to_publish_an_Group_calles}}
-                                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                                {{language.header.want_to_publish_an_Group_calles}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
                                                 {{language.header.group | lowercase}}
                                             </p>
                                             <div class="notification-btn-group">
@@ -228,8 +226,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
-                                            {{language.header.deny_group_called}}
-                                            <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                            {{language.header.deny_group_called}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button" (click)="viewGroup(notification.id)">{{language.header.view}} </button>
@@ -247,8 +244,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
-                                            {{language.header.added_group_called}}
-                                            <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                            {{language.header.added_group_called}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -268,8 +264,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
-                                            {{language.header.group_hasbeen_published}}
-                                            <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                            {{language.header.group_hasbeen_published}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -554,8 +549,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p><span>{{notification.firstName}} {{notification.lastName}}</span>
-                                            {{language.header.want_to_publish_an_Course_calles}}
-                                            <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                            {{language.header.want_to_publish_an_Course_calles}}<a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -814,7 +808,7 @@
                                     </div>
                                     <div class="notification_message">
                                         <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
-                                            {{language.header.want_to_publish_a_Task_called}} {{language.header.task | lowercase}} <a
+                                            {{language.header.want_to_publish_a_Task_called}}  {{language.header.task | lowercase}} <a
                                                 routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
                                         </p>
                                         <div class="notification-btn-group">
