@@ -137,4 +137,9 @@
         padding: 2px 20px;
         float: right;
     }
+
+    .overlay {
+        left: 0;
+        width: 100%;
+    }
 }
