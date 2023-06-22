@@ -4467,6 +4467,7 @@ a#lg_dr div {
     font-size: 13px !important;
     font-family: 'Gellix', sans-serif;
     line-height: 14px;
+    padding: 0;
 }
 .notification_message p span {
     font-weight: 600;

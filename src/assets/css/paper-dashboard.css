@@ -12093,6 +12093,11 @@ ul.bunch_drop.show {
     font-family: 'Gellix', sans-serif !important;
 }
 
+.modal.fade.change_pass_section.faq_edit.all_news.show .modal-dialog {
+  max-width: 750px !important;
+ 
+}
+
 @media (max-width: 767px) {
     .download-overlay .loading {
         font-size: 20px !important;
