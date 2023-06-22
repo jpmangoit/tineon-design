@@ -139,14 +139,14 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             active_to :['', Validators.required],
         });
 
-        this.weekdayArray = [
-            { name: this.language.new_create_event.sunday, id: 0 },
-            { name:  this.language.new_create_event.monday, id: 1 },
-            { name: this.language.new_create_event.tuesday, id: 2 },
-            { name: this.language.new_create_event.wednesday, id: 3 },
-            { name: this.language.new_create_event.thrusday, id: 4 },
-            { name: this.language.new_create_event.friday, id: 5 },
-            { name: this.language.new_create_event.saturday, id: 6 }
+        this.weekdayArray = [            
+            { id: 0, name: this.language.new_create_event.monday},
+            { id: 1, name: this.language.new_create_event.tuesday},
+            { id: 2, name: this.language.new_create_event.wednesday},
+            { id: 3, name: this.language.new_create_event.thrusday},
+            { id: 4, name: this.language.new_create_event.friday},
+            { id: 5, name: this.language.new_create_event.saturday},
+            { id: 6, name: this.language.new_create_event.sunday},
         ];
 
         this.weekdayDropdownSettings = {
@@ -184,9 +184,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     }
 
     onWeekdayItemSelect(item: any) {
-        console.log(item);
         this.selectDay.push(item.id);
-        console.log(this.selectDay);
     }
 
     onWeekdayItemDeSelect(item: string){
@@ -207,18 +205,9 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
 
     createRoomForm() {
         this.formSubmit = true;
-        console.log(this.roomForm.controls.weekdays.value);
-
         for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-                console.log(this.roomForm?.controls?.weekdays?.value[i]);
-                console.log(this.roomForm?.controls?.weekdays?.value[i].day);
-                // if(this.roomForm?.controls?.weekdays?.value[i].day[0]?.length > 0){
-                    // this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
-                this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
-            // }
+            this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
         }
-        console.log(this.roomForm.value.weekdays);
-
         this.roomForm.value['team_id'] = this.teamId;
         if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
             var formData: FormData = new FormData();
@@ -253,10 +242,6 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            formData.forEach((value:any,key:any) =>{
-                console.log(key + '--------------------------' + value);
-
-            })
             if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'createRoom', formData)

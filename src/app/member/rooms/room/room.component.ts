@@ -63,6 +63,8 @@ export class RoomComponent implements OnInit, OnDestroy {
     calendarOptions: CalendarOptions;
     selectLanguage: string;
     allRoomCalndr: any[];
+    allWeekDayArray: any[];
+    allWeekDayArrayName: any[];
 
     constructor(
         private authService: AuthServiceService,
@@ -76,6 +78,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+              
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -99,6 +102,26 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.calendarOptions = {
             initialView: 'timeGridWeek',
         };
+
+        this.allWeekDayArray = [            
+            this.language.new_create_event.monday,
+            this.language.new_create_event.tuesday,
+            this.language.new_create_event.wednesday,
+            this.language.new_create_event.thrusday,
+            this.language.new_create_event.friday,
+            this.language.new_create_event.saturday,
+            this.language.new_create_event.sunday,        
+        ];
+
+        this.allWeekDayArrayName = [
+            { id: 0, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
+            { id: 1, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
+            { id: 2, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
+            { id: 3, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
+            { id: 4, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
+            { id: 5, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]},
+            { id: 6, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
+        ]
     }
 
     /**
@@ -409,5 +432,31 @@ export class RoomComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.activatedSub.unsubscribe();
+    }
+
+    getDayName(id:any){
+        if (!isNaN(id)) {
+            return this.allWeekDayArray[id];
+        }else{
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            if (obj?.name) {
+                return this.allWeekDayArray[obj.id];
+            }else{
+                return id;
+            }            
+        }
+    }
+
+    getDayId(id:any){
+        if (!isNaN(id)) {
+            return id;
+        }else{
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            if (obj?.name) {
+                return obj.id;
+            }else{
+                return id;
+            }
+        }
     }
 }

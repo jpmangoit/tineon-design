@@ -38,7 +38,7 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 	file: File;
 	fileToReturn: File;
     coursesTypeList:{ id: number, name: number }[] = [];
-	weekdayArray: string[] = [];
+	weekdayArray: { name: any; id: number; }[];
     errorFromTime:{ isError: boolean, errorMessage: string }  = { isError: false, errorMessage: '' };
 	errorTime:{ isError: boolean, errorMessage: string }  = { isError: false, errorMessage: '' };
 	errorQualification:{ isError: boolean, errorMessage: string }  = { isError: false, errorMessage: '' };
@@ -94,25 +94,36 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
             active_from :['', Validators.required],
             active_to :['', Validators.required],
 		});
-		this.weekdayArray = [
-			this.language.new_create_event.monday,
-			this.language.new_create_event.tuesday,
-			this.language.new_create_event.wednesday,
-			this.language.new_create_event.thrusday,
-			this.language.new_create_event.friday,
-			this.language.new_create_event.saturday,
-			this.language.new_create_event.sunday]
+
+		this.weekdayArray = [            
+            { id: 0, name: this.language.new_create_event.monday},
+            { id: 1, name: this.language.new_create_event.tuesday},
+            { id: 2, name: this.language.new_create_event.wednesday},
+            { id: 3, name: this.language.new_create_event.thrusday},
+            { id: 4, name: this.language.new_create_event.friday},
+            { id: 5, name: this.language.new_create_event.saturday},
+            { id: 6, name: this.language.new_create_event.sunday},
+        ];
+
+        this.weekdayDropdownSettings = {
+            singleSelection: true,
+            idField: 'id',
+            textField: 'name',
+            allowSearchFilter: false,
+            enableCheckAll: false,
+            closeDropDownOnSelection: true
+        };
 
 		this.coursesTypeList = [
 			{ "id": 1, "name": 1 }, { "id": 2, "name": 2 }, { "id": 3, "name": 3 }
 		]
 
-		this.weekdayDropdownSettings = {
-			singleSelection: true,
-			allowSearchFilter: false,
-			enableCheckAll: false,
-            closeDropDownOnSelection: true
-		}
+		// this.weekdayDropdownSettings = {
+		// 	singleSelection: true,
+		// 	allowSearchFilter: false,
+		// 	enableCheckAll: false,
+        //     closeDropDownOnSelection: true
+		// }
 	}
 
 	get qualifications() {
@@ -170,8 +181,8 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
      * Function is used to select week day
 	 * @author  MangoIt Solutions
      */
-	onWeekdayItemSelect(item: string) {
-		this.selectDay.push(item);
+	onWeekdayItemSelect(item: any) {
+		this.selectDay.push(item.id);
 	}
 
 	/**
@@ -179,6 +190,7 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 	 * @author  MangoIt Solutions
      */
 	onWeekdayItemDeSelect(item: string) {
+		this.selectDay = [];
 	}
 
 	/**
@@ -190,7 +202,8 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 	createInstructor() {
 		this.formSubmit = true;
 		for (let i = 0; i < this.instructorForm?.controls?.weekdays?.value?.length; i++) {
-			this.instructorForm.value.weekdays[i].day = (this.instructorForm.controls?.weekdays?.value[i]?.day[0]?.length == 1) ? this.instructorForm.controls?.weekdays?.value[i]?.day : this.instructorForm.controls?.weekdays?.value[i]?.day[0];
+			this.instructorForm.value.weekdays[i].day = this.instructorForm.controls.weekdays.value[i].day[0].id;
+			//this.instructorForm.value.weekdays[i].day = (this.instructorForm.controls?.weekdays?.value[i]?.day[0]?.length == 1) ? this.instructorForm.controls?.weekdays?.value[i]?.day : this.instructorForm.controls?.weekdays?.value[i]?.day[0];
 		}
 		this.instructorForm.value['team_id'] = this.teamId;
 		var formData: FormData = new FormData();

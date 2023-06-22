@@ -65,22 +65,7 @@
                                                         <h5 class="inst_head_widget">{{language.instructor.available_time}}</h5>
                                                         <div class="schedule_list" *ngFor="let val of instructorDetails.availablity">
                                                             <ul>
-                                                                <li>
-                                                                    <span
-                                                                    *ngIf="val.weekday == 'Monday' || val.weekday == 'Montag'|| val.weekday == 'понедельник'|| val.weekday == 'Pazartesi'|| val.weekday == 'lunes'|| val.weekday == 'lundi' || val.weekday == 'lunedì'">{{language.new_create_event.monday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Tuesday' || val.weekday == 'Dienstag'|| val.weekday == 'вторник'|| val.weekday == 'Salı' || val.weekday == 'martes'|| val.weekday == 'mardi'|| val.weekday == 'martedì'">{{language.new_create_event.tuesday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Wednesday' || val.weekday == 'Mittwoch'|| val.weekday == 'среда'|| val.weekday == 'Çarşamba'|| val.weekday == 'miércoles'|| val.weekday == 'mercredi'|| val.weekday == 'mercoledì'">{{language.new_create_event.wednesday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Thursday' || val.weekday == 'Donnerstag'|| val.weekday == 'четверг'|| val.weekday == 'Perşembe'|| val.weekday == 'jueves'|| val.weekday == 'jeudi'|| val.weekday == 'giovedì'">{{language.new_create_event.thrusday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Friday' || val.weekday == 'Freitag'|| val.weekday == 'Пятница'|| val.weekday == 'Cuma'|| val.weekday == 'viernes'|| val.weekday == 'vendredi'|| val.weekday == 'venerdì'">{{language.new_create_event.friday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Saturday' || val.weekday == 'Samstag'|| val.weekday == 'Суббота'|| val.weekday == 'Cumartesi'|| val.weekday == 'sábado'|| val.weekday == 'samedi'|| val.weekday == 'sabato'">{{language.new_create_event.saturday}}</span>
-                                                                <span
-                                                                    *ngIf="val.weekday == 'Sunday' || val.weekday == 'Sonntag'|| val.weekday == 'Воскресенье'|| val.weekday == 'Pazar'|| val.weekday == 'domingo'|| val.weekday == 'dimanche'|| val.weekday == 'domenica'">{{language.new_create_event.sunday}}</span>
-                                                                </li>
+                                                                <li><span>{{getDayName(val.weekday)}}</span></li>
                                                                 <li>{{val.time_from.split(":").slice(0,2).join(":")}}</li>
                                                                 <li>{{val.time_to.split(":").slice(0,2).join(":")}}</li>
                                                             </ul>
@@ -236,20 +221,7 @@
                                                         <div class="schedule_list" *ngFor="let item of updateInstructorData.weekdays">
                                                             <ul>
                                                                 <!-- <li>{{item.day}}</li> -->
-                                                                <li><span
-                                                                    *ngIf="item.day== 'Monday' || item.day== 'Montag'|| item.day== 'понедельник'|| item.day== 'Pazartesi' || item.day== 'lunedì' || item.day== 'lunes'">{{language.new_create_event.monday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Tuesday' || item.day== 'Dienstag'|| item.day== 'вторник'|| item.day== 'Salı' || item.day== 'martedì' || item.day== 'martes'">{{language.new_create_event.tuesday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Wednesday' || item.day== 'Mittwoch'|| item.day== 'среда'|| item.day== 'Çarşamba' || item.day== 'mercoledì' || item.day== 'miércoles'">{{language.new_create_event.wednesday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Thursday' || item.day== 'Donnerstag'|| item.day== 'четверг'|| item.day== 'Perşembe' || item.day== 'giovedì' || item.day== 'jueves'">{{language.new_create_event.thrusday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Friday' || item.day== 'Freitag'|| item.day== 'Пятница'|| item.day== 'Cuma' || item.day== 'venerdì' || item.day== 'viernes'">{{language.new_create_event.friday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Saturday' || item.day== 'Samstag'|| item.day== 'Суббота'|| item.day== 'Cumartesi' || item.day== 'sabato' || item.day== 'sábado'">{{language.new_create_event.saturday}}</span>
-                                                                <span
-                                                                    *ngIf="item.day== 'Sunday' || item.day== 'Sonntag'|| item.day== 'Воскресенье'|| item.day== 'Pazar' || item.day== 'domenica' || item.day== 'domingo'">{{language.new_create_event.sunday}}</span></li>
+                                                                <li><span>{{getDayName(val.weekday)}}</span></li>
                                                                 <li>{{item.time_from.split(":").slice(0,2).join(":")}}</li>
                                                                 <li>{{item.time_to.split(":").slice(0,2).join(":")}}</li>
                                                             </ul>
@@ -425,22 +397,7 @@
                                             <h5 class="inst_head_widget">{{language.instructor.available_time}}</h5>
                                             <div class="schedule_list" *ngFor="let val of instructorDetails.availablity">
                                                 <ul>
-                                                    <li>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Monday' || val.weekday == 'Montag'|| val.weekday == 'понедельник'|| val.weekday == 'Pazartesi'|| val.weekday == 'lunes'|| val.weekday == 'lundi' || val.weekday == 'lunedì'">{{language.new_create_event.monday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Tuesday' || val.weekday == 'Dienstag'|| val.weekday == 'вторник'|| val.weekday == 'Salı' || val.weekday == 'martes'|| val.weekday == 'mardi'|| val.weekday == 'martedì'">{{language.new_create_event.tuesday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Wednesday' || val.weekday == 'Mittwoch'|| val.weekday == 'среда'|| val.weekday == 'Çarşamba'|| val.weekday == 'miércoles'|| val.weekday == 'mercredi'|| val.weekday == 'mercoledì'">{{language.new_create_event.wednesday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Thursday' || val.weekday == 'Donnerstag'|| val.weekday == 'четверг'|| val.weekday == 'Perşembe'|| val.weekday == 'jueves'|| val.weekday == 'jeudi'|| val.weekday == 'giovedì'">{{language.new_create_event.thrusday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Friday' || val.weekday == 'Freitag'|| val.weekday == 'Пятница'|| val.weekday == 'Cuma'|| val.weekday == 'viernes'|| val.weekday == 'vendredi'|| val.weekday == 'venerdì'">{{language.new_create_event.friday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Saturday' || val.weekday == 'Samstag'|| val.weekday == 'Суббота'|| val.weekday == 'Cumartesi'|| val.weekday == 'sábado'|| val.weekday == 'samedi'|| val.weekday == 'sabato'">{{language.new_create_event.saturday}}</span>
-                                                    <span
-                                                        *ngIf="val.weekday == 'Sunday' || val.weekday == 'Sonntag'|| val.weekday == 'Воскресенье'|| val.weekday == 'Pazar'|| val.weekday == 'domingo'|| val.weekday == 'dimanche'|| val.weekday == 'domenica'">{{language.new_create_event.sunday}}</span>
-                                                    </li>
+                                                    <li><span>{{getDayName(val.weekday)}}</span></li>
                                                     <li>{{val.time_from.split(":").slice(0,2).join(":")}}</li>
                                                     <li>{{val.time_to.split(":").slice(0,2).join(":")}}</li>
                                                 </ul>

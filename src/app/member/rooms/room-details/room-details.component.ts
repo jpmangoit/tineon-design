@@ -51,7 +51,7 @@ export class RoomDetailsComponent implements OnInit {
     calendarOptions: CalendarOptions;
     selectLanguage: string;
     allRoomCalndr: any[];
-
+    allWeekDayArray: any[];
     constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService,private denyReasonService: DenyReasonConfirmDialogService, private router: Router,
@@ -93,6 +93,16 @@ export class RoomDetailsComponent implements OnInit {
             const room_id: number = params['roomId'];
             this.getRoomDetail(room_id);
         });
+
+        this.allWeekDayArray = [            
+            this.language.new_create_event.monday,
+            this.language.new_create_event.tuesday,
+            this.language.new_create_event.wednesday,
+            this.language.new_create_event.thrusday,
+            this.language.new_create_event.friday,
+            this.language.new_create_event.saturday,
+            this.language.new_create_event.sunday
+        ];
     }
 
     /**
@@ -362,6 +372,10 @@ export class RoomDetailsComponent implements OnInit {
 	goBack() {
         this.router.navigate(['/room']);
 	}
+
+    getDayName(id:any){
+        return this.allWeekDayArray[id];
+    }
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();

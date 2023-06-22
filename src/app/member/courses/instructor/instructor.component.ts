@@ -45,7 +45,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     file: File;
     fileToReturn: File;
     imageName: string;
-    weekdayArray: string[] = [];
+    weekdayArray:  { name: any; id: number; }[];
     selectDay: string[] = [];
     imageChangedEvent: Event = null;
     croppedImage: string = '';
@@ -88,7 +88,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
     selectLanguage: string;
     minDate: any;
     allExternlCalndr:any[];
-
+    allWeekDayArray: any[];
+    allWeekDayArrayName: any[];
     constructor(
         private formbuilder: UntypedFormBuilder,
         private lang: LanguageService,
@@ -162,18 +163,39 @@ export class InstructorComponent implements OnInit, OnDestroy {
             search: new UntypedFormControl(''),
         });
 
-        this.weekdayArray = [
+        this.allWeekDayArray = [            
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
             this.language.new_create_event.saturday,
-            this.language.new_create_event.sunday,
+            this.language.new_create_event.sunday,        
         ];
+
+        this.weekdayArray = [            
+            { id: 0, name: this.language.new_create_event.monday},
+            { id: 1, name: this.language.new_create_event.tuesday},
+            { id: 2, name: this.language.new_create_event.wednesday},
+            { id: 3, name: this.language.new_create_event.thrusday},
+            { id: 4, name: this.language.new_create_event.friday},
+            { id: 5, name: this.language.new_create_event.saturday},
+            { id: 6, name: this.language.new_create_event.sunday},
+        ];
+        this.allWeekDayArrayName = [
+            { id: 0, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
+            { id: 1, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
+            { id: 2, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
+            { id: 3, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
+            { id: 4, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
+            { id: 5, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]},
+            { id: 6, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
+        ]
 
         this.weekdayDropdownSettings = {
             singleSelection: true,
+            idField: 'id',
+            textField: 'name',
             allowSearchFilter: false,
             enableCheckAll: false,
             closeDropDownOnSelection: true
@@ -237,7 +259,13 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.weekdays.removeAt(index);
     }
 
-    onWeekdayItemSelect(item: any) {}
+    onWeekdayItemSelect(item: any) {
+        this.selectDay.push(item.id);
+    }
+
+    onWeekdayItemDeSelect(item: string){
+        this.selectDay = [];
+    }
 
     /**
     * Function is used to select course tab
@@ -569,14 +597,17 @@ export class InstructorComponent implements OnInit, OnDestroy {
             }
         }
         this.weekdays.removeAt(0);
+
         if(this.instructorById && this.instructorById.availablity.length > 0){
             this.instructorById.availablity.forEach((key, value) => {
                 if( key.time_from.includes(':00') && key.time_to.includes(':00')){
                     key.time_from = key.time_from.slice(0, 5)
                     key.time_to = key.time_to.slice(0, 5)
                 }
+                let instructor_info = [];
+                instructor_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)]});                
                 const newAvailableTimes: UntypedFormGroup = this.formbuilder.group({
-                    day: [[key.weekday], Validators.required],
+                    day: [instructor_info, Validators.required],
                     time_from: [key.time_from, Validators.required],
                     time_to: [key.time_to, Validators.required],
                 });
@@ -594,9 +625,14 @@ export class InstructorComponent implements OnInit, OnDestroy {
     editInstructor() {
         this.formSubmit = true;
         this.authService.setLoader(true);
+        // for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
+        //     this.editInstructorForm.value.weekdays[i].day = (this.editInstructorForm.controls.weekdays.value[i].day[0].length == 1) ? this.editInstructorForm.controls.weekdays.value[i].day : this.editInstructorForm.controls.weekdays.value[i].day[0];
+        // }
+
         for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
-            this.editInstructorForm.value.weekdays[i].day = (this.editInstructorForm.controls.weekdays.value[i].day[0].length == 1) ? this.editInstructorForm.controls.weekdays.value[i].day : this.editInstructorForm.controls.weekdays.value[i].day[0];
+            this.editInstructorForm.value.weekdays[i].day = this.editInstructorForm.controls.weekdays.value[i].day[0].id;
         }
+
         this.editInstructorForm.value['team_id'] = this.teamId;
         if (this.fileToReturn) {
             this.editInstructorForm.value['add_img'] = this.fileToReturn;
@@ -642,6 +678,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 }
             }
         }
+
         if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateInstructor/' + this.editId, formData)
@@ -914,6 +951,32 @@ export class InstructorComponent implements OnInit, OnDestroy {
 
     loadImageFailed() {
         /* show message */
+    }
+
+    getDayName(id:any){
+        if (!isNaN(id)) {
+            return this.allWeekDayArray[id];
+        }else{
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            if (obj?.name) {
+                return this.allWeekDayArray[obj.id];
+            }else{
+                return id;
+            }            
+        }
+    }
+
+    getDayId(id:any){
+        if (!isNaN(id)) {
+            return id;
+        }else{
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            if (obj?.name) {
+                return obj.id;
+            }else{
+                return id;
+            }
+        }
     }
 
     ngOnDestroy(): void {
