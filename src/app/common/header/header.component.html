@@ -94,8 +94,10 @@
                                         </div>
                                         <div class="notification_message">
                                             <a href="{{notification.redirectLink}}" target="_blank">
-                                                <p><Span>{{notification.bannerName}} </Span></p>
-                                                <p [innerHTML]="(notification.description.length > 0 )? (notification.description | slice:0:100)+'...':(notification.description)"></p>
+                                                <p>
+                                                    <Span>{{notification.bannerName}} </Span>
+                                                <Span [innerHTML]="(notification.description.length > 0 )? (notification.description | slice:0:100)+'...':(notification.description)"></Span>
+                                                </p>
                                             </a>
                                             <div class="notification-btn-group">
                                                 <a href="{{notification.redirectLink}}" target="_blank">

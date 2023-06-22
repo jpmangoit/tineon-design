@@ -4425,7 +4425,7 @@ li.nav-item.btn-rotate.dropdown.lang_dr {
 
 }
 li.nav-item.btn-rotate.dropdown.user_dropdown a img {
-    margin-right: 10px;
+    margin-right: 0px;
 }
 li.nav-item.btn-rotate.dropdown.lang_dr svg {
     margin-left: 5px;

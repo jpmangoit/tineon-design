@@ -968,9 +968,9 @@ span.club-badge {
     text-overflow: ellipsis;
     font-family: 'Gellix', sans-serif;;
 }
-.event-tickets .club-right-area h5 {
+/* .event-tickets .club-right-area h5 {
 
-}
+} */
 .club-category {
     font-size: 11px;
     font-weight: 600;
@@ -985,6 +985,9 @@ span.club-badge {
     min-width: 65px;
     cursor: pointer;
     margin-bottom: 5px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 /* .news-image {
     height: 190px !important;
