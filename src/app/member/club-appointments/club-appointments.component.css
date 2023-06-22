@@ -966,7 +966,8 @@ span.club-badge {
     max-height: calc(2 * 2rem);
     white-space: normal;
     text-overflow: ellipsis;
-    font-family: 'Gellix', sans-serif;;
+    font-family: 'Gellix', sans-serif;
+    min-height: 37px;
 }
 .event-tickets .club-right-area h5 {
 

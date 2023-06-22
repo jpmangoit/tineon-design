@@ -395,6 +395,7 @@ span.course-time i {
 
 .location-box {
   margin-left: 0px;
+  word-break: break-all;
 }
 span.participant_status {
     font-size: 12px;
@@ -554,6 +555,7 @@ bottom: 0;
  display: flex;
  justify-content: center;
  margin-right: 8px !important;
+ min-width: 25px;
 }
 
 .overimage-bar li span.img-icon svg {
