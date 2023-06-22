@@ -250,7 +250,8 @@
                                 </div>
                             </ng-container>
                             <div class="empty-data-image" *ngIf="newsData && newsData.length == 0">
-                                <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="" loading="lazy"><br><span>{{language.group_news.no_news}}</span>
+                                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="" loading="lazy"><br> -->
+                                <span>{{language.group_news.no_news}}</span>
                             </div>
                             <!-- news item end -->
                         </div>
@@ -295,7 +296,7 @@
                             </div>
                         </div>
                         <div class="empty-data-image" *ngIf="upcomingEvent && upcomingEvent.length == 0">
-                            <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_events.no_events}}" loading="lazy"><br>
+                            <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_events.no_events}}" loading="lazy"><br> -->
                             <span>{{language.club_events.no_events}}</span>
                         </div>
                     </div>
@@ -309,8 +310,8 @@
                             <div class="group-content-listing">
                                 <div class="container" *ngIf="groupJoinData && groupJoinData.length == 0">
                                     <div class="empty-data-image">
-                                        <img onContextMenu="return false;"
-                                            src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br><span>{{language.community_groups.no_groups}}</span>
+                                        <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
+                                        <span>{{language.community_groups.no_groups}}</span>
                                     </div>
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
@@ -350,7 +351,8 @@
                             <div class="group-content-listing">
                                 <div class="container" *ngIf="groupJoinData && groupJoinData.length == 0">
                                     <div class="empty-data-image">
-                                        <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br><span>{{language.community_groups.no_groups}}</span>
+                                        <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
+                                        <span>{{language.community_groups.no_groups}}</span>
                                     </div>
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
@@ -381,8 +383,9 @@
                     <ng-container *ngIf="userDetails.isMember_light || userDetails.isMember_light_admin">
                         <div class="event-content-area">
                             <div class="empty-data-image">
-                                <img oncontextmenu="return false;" src="assets/img/no-event-img.png" alt="{{language.genral_message.not_available_msg}}" loading="lazy">
-                                <br><span>{{language.genral_message.not_available_msg}}</span>
+                                <!-- <img oncontextmenu="return false;" src="assets/img/no-event-img.png" alt="{{language.genral_message.not_available_msg}}" loading="lazy">
+                                <br> -->
+                                <span>{{language.genral_message.not_available_msg}}</span>
                             </div>
                         </div>
                     </ng-container>
@@ -396,8 +399,9 @@
                     <ng-container *ngIf="userDetails.isMember_light || userDetails.isMember_light_admin">
                         <div class="event-content-area">
                             <div class="empty-data-image">
-                                <img oncontextmenu="return false;" src="assets/img/no-event-img.png" alt="" loading="lazy">
-                                <br><span>{{language.genral_message.not_available_msg}}</span>
+                                <!-- <img oncontextmenu="return false;" src="assets/img/no-event-img.png" alt="" loading="lazy">
+                                <br> -->
+                                <span>{{language.genral_message.not_available_msg}}</span>
                             </div>
                         </div>
                     </ng-container>

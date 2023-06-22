@@ -626,7 +626,7 @@
                         </div>
                     </div>
                     <div class="empty-data-image" *ngIf=" !groupDetails || groupDetails?.length == 0">
-                        <img onContextMenu="return false;"  src="assets/img/no_record_img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br>
+                        <!-- <img onContextMenu="return false;"  src="assets/img/no_record_img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
                         <span>{{language.community_groups.no_groups}}</span>
                     </div>
                 </div>
@@ -644,8 +644,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="nc-icon nc-simple-remove"></i></button>
             </div>
             <div class="empty-data-image" *ngIf="displayError == true">
-                <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.profile.member_not_found}}" loading="lazy">
-                <br>
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.profile.member_not_found}}" loading="lazy">
+                <br> -->
                 <span>{{language.profile.member_not_found}}</span>
             </div>
             <div class="modal-body">

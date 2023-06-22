@@ -126,8 +126,8 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
                         *ngIf="(instructorData && instructorData.length == 0) ">
-                        <img src="assets/img/no-event-img.png" onContextMenu="return false;"
-                            alt="{{language.instructor.no_instructor}}" loading="lazy"><br>
+                        <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;"
+                            alt="{{language.instructor.no_instructor}}" loading="lazy"><br> -->
                         <span>{{language.instructor.no_instructor}}</span>
                     </div>
                 </div>
@@ -510,8 +510,10 @@
                                                     <label>{{language.instructor.weekday}}</label>
                                                     <ng-multiselect-dropdown formControlName="day"
                                                         [placeholder]="language.instructor.weekdays"
-                                                        [settings]="weekdayDropdownSettings" [data]="weekdayArray"
-                                                        (onSelect)="onWeekdayItemSelect($event)">
+                                                        [settings]="weekdayDropdownSettings" 
+                                                        [data]="weekdayArray"
+                                                        (onSelect)="onWeekdayItemSelect($event)"
+                                                        (onDeSelect)="onWeekdayItemDeSelect($event)">
                                                     </ng-multiselect-dropdown>
                                                     <span class="text-danger"
                                                         *ngIf="formSubmit || editInstructorForm.controls.weekdays.controls[i].controls.day.touched">

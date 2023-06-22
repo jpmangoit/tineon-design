@@ -315,18 +315,9 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <div
-                                        class="empty-data-image"
-                                        *ngIf="
-                                            emailData && emailData.length == 0
-                                        "
-                                    >
-                                        <img
-                                            onContextMenu="return false;"
-                                            src="assets/img/no-event-img.png"
-                                        /><br /><span>{{
-                                            language.email.no_email
-                                        }}</span>
+                                    <div class="empty-data-image"*ngIf="emailData && emailData.length == 0">
+                                        <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"/><br /> -->
+                                        <span>{{language.email.no_email}}</span>
                                     </div>
                                 </div>
                             </div>

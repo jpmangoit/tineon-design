@@ -513,7 +513,7 @@
                             </div>
                         </div>
                         <div class="empty-data-image" *ngIf=" !instructorDetails || instructorDetails?.length == 0">
-                            <img onContextMenu="return false;"  src="assets/img/no_record_img.png" alt="{{language.instructor.no_instructor}}" loading="lazy"><br>
+                            <!-- <img onContextMenu="return false;"  src="assets/img/no_record_img.png" alt="{{language.instructor.no_instructor}}" loading="lazy"><br> -->
                             <span>{{language.instructor.no_instructor}}</span>
                         </div>
                         <div class="row inst-bottom">
@@ -541,7 +541,9 @@
                     </svg>
                 </button>
             </div>
-            <div class="empty-data-image" *ngIf="displayError == true"><img onContextMenu="return false;" src="assets/img/no-event-img.png"><br><span>{{language.profile.member_not_found}}</span></div>
+            <div class="empty-data-image" *ngIf="displayError == true">
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"><br> -->
+                <span>{{language.profile.member_not_found}}</span></div>
             <div class="modal-body">
                 <div class="">
                     <div class="card-body" >

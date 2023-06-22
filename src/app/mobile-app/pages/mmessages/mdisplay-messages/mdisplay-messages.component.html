@@ -56,7 +56,7 @@
                             <ng-container *ngIf="personalInbox">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy" src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy" src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
@@ -271,7 +271,7 @@
                             <ng-container *ngIf="personalStarred">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy" src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy" src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalStarredMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
@@ -466,8 +466,9 @@
                             <ng-container *ngIf="personalSent">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalSentMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalSentMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
                                     <div class="chat-content">
@@ -659,7 +660,7 @@
                             <ng-container *ngIf="personalDrafts">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"  src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"  src="../assets/img/no_record_img.png"><br> -->
                                         <span>{{language.community_messages.personalDraftMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
@@ -809,8 +810,9 @@
                             <ng-container *ngIf="personalAllMail">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalAllMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalAllMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
                                     <div class="chat-content">
@@ -1004,8 +1006,9 @@
                             <ng-container *ngIf="personalTrash">
                                 <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                                 <div *ngIf="selectedMessage && selectedMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalTrashMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalTrashMessages}}</span>
                                 </div>
                                 <div class="chat-screen" *ngIf="selectedMessage.length > 0">
                                     <div class="chat-content">

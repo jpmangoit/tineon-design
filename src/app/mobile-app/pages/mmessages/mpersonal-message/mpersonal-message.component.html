@@ -18,8 +18,8 @@
                         <ng-container>
                             <ng-container *ngIf="personalInbox">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
@@ -90,8 +90,8 @@
                             </ng-container>
                             <ng-container *ngIf="personalStarred">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalStarredMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
@@ -151,8 +151,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalSent">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalSentMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalSentMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <div class="chat_messager-widget">
@@ -204,8 +205,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalDrafts">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalDraftMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalDraftMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <div class="chat_messager-widget">
@@ -256,8 +258,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalAllMail">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalAllMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalAllMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <div class="chat_messager-widget">
@@ -315,8 +318,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalTrash">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalTrashMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalTrashMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <div class="chat_messager-widget">
@@ -394,8 +398,8 @@
                         <ng-container>
                             <ng-container *ngIf="personalInbox">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
@@ -619,8 +623,8 @@
                             </ng-container>
                             <ng-container *ngIf="personalStarred">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
                                     <span>{{language.community_messages.personalStarredMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
@@ -825,8 +829,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalSent">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalSentMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalSentMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <!-- chat sidebar widget end -->
@@ -1030,8 +1035,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalDrafts">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalDraftMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalDraftMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <!-- chat sidebar widget end -->
@@ -1188,8 +1194,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalAllMail">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalAllMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalAllMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <!-- chat sidebar widget end -->
@@ -1395,8 +1402,9 @@
                             </ng-container>
                             <ng-container *ngIf="personalTrash">
                                 <div *ngIf="personalMessage && personalMessage.length == 0" class="empty-data-image">
-                                    <img onContextMenu="return false;" alt="" loading="lazy"
-                                        src="../assets/img/no_record_img.png"><br><span>{{language.community_messages.personalTrashMessages}}</span>
+                                    <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                        src="../assets/img/no_record_img.png"><br> -->
+                                        <span>{{language.community_messages.personalTrashMessages}}</span>
                                 </div>
                                 <ng-container *ngIf="personalMessage && personalMessage.length > 0">
                                     <!-- chat sidebar widget end -->

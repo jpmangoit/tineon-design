@@ -220,10 +220,8 @@
                                     </div>
                                 </div>
                                 <div class="empty-data-image" *ngIf="banner && banner.length == 0">
-                                    <img onContextMenu="return false;"
-                                        src="assets/img/no-event-img.png" /><br /><span>{{
-                                        language.banner.no_banner_available
-                                        }}</span>
+                                    <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" /><br /> -->
+                                        <span>{{language.banner.no_banner_available }}</span>
                                 </div>
                             </div>
                         </div>
@@ -231,8 +229,8 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="bannerLists?.length == 0">
-                <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                    alt="{{ language.banner.no_banner_available }}" loading="lazy" /><br />
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
+                    alt="{{ language.banner.no_banner_available }}" loading="lazy" /><br /> -->
                 <span>{{ language.banner.no_banner_available }}</span>
             </div>
         </div>

@@ -237,7 +237,9 @@
                     </svg>
                 </button>
             </div>
-            <div class="empty-data-image" *ngIf="displayError == true"><img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.profile.member_not_found}}" loading="lazy"><br><span>{{language.profile.member_not_found}}</span></div>
+            <div class="empty-data-image" *ngIf="displayError == true">
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.profile.member_not_found}}" loading="lazy"><br> -->
+                <span>{{language.profile.member_not_found}}</span></div>
             <div class="modal-body">
                 <div class="">
                     <div class="card-body" >

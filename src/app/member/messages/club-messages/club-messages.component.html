@@ -41,7 +41,9 @@
                             </div>
                             <!-- <div class="error alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
                             <ng-container *ngIf="clubInbox">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">
@@ -174,7 +176,9 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="clubStarred">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubStarredMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubStarredMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">
@@ -307,7 +311,9 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="clubSent">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubSentMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubSentMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">
@@ -435,7 +441,9 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="clubDrafts">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubDraftMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubDraftMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">
@@ -577,7 +585,9 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="clubAllMail">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubAllMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubAllMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">
@@ -711,7 +721,9 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="clubTrash">
-                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image"><img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br><span>{{language.community_messages.clubTrashMessages}}</span></div>
+                                <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
+                                    <!-- <img onContextMenu="return false;"  src="../assets/img/no_record_img.png" alt="" loading="lazy"><br> -->
+                                    <span>{{language.community_messages.clubTrashMessages}}</span></div>
                                 <ng-container *ngIf="clubMessage && clubMessage.length > 0">
                                     <div class="message-main-content">
                                     <div class="chat_messager-widget">

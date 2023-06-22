@@ -4,7 +4,8 @@
     </div>
     <div class="card-body ">
         <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
-            <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.club.no_anniversaries_birthday}}" loading="lazy"><br><span>{{language.club.no_anniversaries_birthday}}</span>
+            <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.club.no_anniversaries_birthday}}" loading="lazy"><br> -->
+            <span>{{language.club.no_anniversaries_birthday}}</span>
         </div>
         <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
