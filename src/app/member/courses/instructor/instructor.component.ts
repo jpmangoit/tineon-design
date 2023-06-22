@@ -163,33 +163,34 @@ export class InstructorComponent implements OnInit, OnDestroy {
             search: new UntypedFormControl(''),
         });
 
-        this.allWeekDayArray = [            
+        this.allWeekDayArray = [
+            this.language.new_create_event.sunday, 
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
-            this.language.new_create_event.saturday,
-            this.language.new_create_event.sunday,        
+            this.language.new_create_event.saturday                   
         ];
 
         this.weekdayArray = [            
-            { id: 0, name: this.language.new_create_event.monday},
-            { id: 1, name: this.language.new_create_event.tuesday},
-            { id: 2, name: this.language.new_create_event.wednesday},
-            { id: 3, name: this.language.new_create_event.thrusday},
-            { id: 4, name: this.language.new_create_event.friday},
-            { id: 5, name: this.language.new_create_event.saturday},
-            { id: 6, name: this.language.new_create_event.sunday},
+            { id: 1, name: this.language.new_create_event.monday},
+            { id: 2, name: this.language.new_create_event.tuesday},
+            { id: 3, name: this.language.new_create_event.wednesday},
+            { id: 4, name: this.language.new_create_event.thrusday},
+            { id: 5, name: this.language.new_create_event.friday},
+            { id: 6, name: this.language.new_create_event.saturday},
+            { id: 0, name: this.language.new_create_event.sunday},
         ];
+        
         this.allWeekDayArrayName = [
-            { id: 0, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
-            { id: 1, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
-            { id: 2, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
-            { id: 3, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
-            { id: 4, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 5, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]},
-            { id: 6, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
+            { id: 0, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
+            { id: 1, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
+            { id: 2, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
+            { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
+            { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
+            { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
+            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}            
         ]
 
         this.weekdayDropdownSettings = {

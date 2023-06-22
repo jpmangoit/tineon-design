@@ -360,25 +360,25 @@ export class CommonFunctionService {
 
         if (roomsByIdData?.room_availablity?.length > 0) {
             roomsByIdData.room_availablity.forEach((keys: any, vals: any) => {
-                if(keys.weekday == 'Sunday' || keys.weekday == 'Sonntag'|| keys.weekday == 'Воскресенье'|| keys.weekday == 'Pazar'|| keys.weekday == 'domingo'|| keys.weekday == 'dimanche'|| keys.weekday == 'domenica'){
+                if(keys.weekday == '0' || keys.weekday == 'Sunday' || keys.weekday == 'Sonntag'|| keys.weekday == 'Воскресенье'|| keys.weekday == 'Pazar'|| keys.weekday == 'domingo'|| keys.weekday == 'dimanche'|| keys.weekday == 'domenica'){
                     selectedDay = 0;
 
-                }else if(keys.weekday == 'Monday' || keys.weekday == 'Montag'|| keys.weekday == 'понедельник'|| keys.weekday == 'Pazartesi'|| keys.weekday == 'lunes'|| keys.weekday == 'lundi' || keys.weekday == 'lunedì'){
+                }else if(keys.weekday == '1' || keys.weekday == 'Monday' || keys.weekday == 'Montag'|| keys.weekday == 'понедельник'|| keys.weekday == 'Pazartesi'|| keys.weekday == 'lunes'|| keys.weekday == 'lundi' || keys.weekday == 'lunedì'){
                     selectedDay = 1;
 
-                }else if(keys.weekday == 'Tuesday' || keys.weekday == 'Dienstag'|| keys.weekday == 'вторник'|| keys.weekday == 'Salı'|| keys.weekday == 'martes'|| keys.weekday == 'mardi'|| keys.weekday == 'martedì'){
+                }else if(keys.weekday == '2' || keys.weekday == 'Tuesday' || keys.weekday == 'Dienstag'|| keys.weekday == 'вторник'|| keys.weekday == 'Salı'|| keys.weekday == 'martes'|| keys.weekday == 'mardi'|| keys.weekday == 'martedì'){
                 selectedDay = 2;
 
-                }else if(keys.weekday == 'Wednesday' || keys.weekday == 'Mittwoch'|| keys.weekday == 'среда'|| keys.weekday == 'Çarşamba'|| keys.weekday == 'miércoles'|| keys.weekday == 'mercredi'|| keys.weekday == 'mercoledì'){
+                }else if(keys.weekday == '3' || keys.weekday == 'Wednesday' || keys.weekday == 'Mittwoch'|| keys.weekday == 'среда'|| keys.weekday == 'Çarşamba'|| keys.weekday == 'miércoles'|| keys.weekday == 'mercredi'|| keys.weekday == 'mercoledì'){
                 selectedDay = 3;
 
-                }else if(keys.weekday == 'Thursday' || keys.weekday == 'Donnerstag'|| keys.weekday == 'четверг'|| keys.weekday == 'Perşembe'|| keys.weekday == 'jueves'|| keys.weekday == 'jeudi'|| keys.weekday == 'giovedì'){
+                }else if(keys.weekday == '4' || keys.weekday == 'Thursday' || keys.weekday == 'Donnerstag'|| keys.weekday == 'четверг'|| keys.weekday == 'Perşembe'|| keys.weekday == 'jueves'|| keys.weekday == 'jeudi'|| keys.weekday == 'giovedì'){
                 selectedDay = 4;
 
-                }else if(keys.weekday == 'Friday' || keys.weekday == 'Freitag'|| keys.weekday == 'Пятница'|| keys.weekday == 'Cuma'|| keys.weekday == 'viernes'|| keys.weekday == 'vendredi'|| keys.weekday == 'venerdì'){
+                }else if(keys.weekday == '5' || keys.weekday == 'Friday' || keys.weekday == 'Freitag'|| keys.weekday == 'Пятница'|| keys.weekday == 'Cuma'|| keys.weekday == 'viernes'|| keys.weekday == 'vendredi'|| keys.weekday == 'venerdì'){
                 selectedDay = 5;
 
-                }else if(keys.weekday == 'Saturday' || keys.weekday == 'Samstag'|| keys.weekday == 'Суббота'|| keys.weekday == 'Cumartesi'|| keys.weekday == 'sábado'|| keys.weekday == 'samedi'|| keys.weekday == 'sabato'){
+                }else if(keys.weekday == '6' || keys.weekday == 'Saturday' || keys.weekday == 'Samstag'|| keys.weekday == 'Суббота'|| keys.weekday == 'Cumartesi'|| keys.weekday == 'sábado'|| keys.weekday == 'samedi'|| keys.weekday == 'sabato'){
                 selectedDay = 6;
                 }
 
@@ -460,25 +460,25 @@ export class CommonFunctionService {
         })
         if (instructorById?.availablity?.length > 0) {
             instructorById.availablity.forEach((keys: any, vals: any) => {
-                if(keys.weekday == 'Sunday' || keys.weekday == 'Sonntag'|| keys.weekday == 'Воскресенье'|| keys.weekday == 'Pazar'|| keys.weekday == 'domingo'|| keys.weekday == 'dimanche'|| keys.weekday == 'domenica'){
+                if(["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar","0"].includes(keys.weekday)){
                     selectedDay = 0;
 
-                }else if(keys.weekday == 'Monday' || keys.weekday == 'Montag'|| keys.weekday == 'понедельник'|| keys.weekday == 'Pazartesi'|| keys.weekday == 'lunes'|| keys.weekday == 'lundi' || keys.weekday == 'lunedì'){
+                }else if(["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi","1"].includes(keys.weekday)){
                     selectedDay = 1;
 
-                }else if(keys.weekday == 'Tuesday' || keys.weekday == 'Dienstag'|| keys.weekday == 'вторник'|| keys.weekday == 'Salı'|| keys.weekday == 'martes'|| keys.weekday == 'mardi'|| keys.weekday == 'martedì'){
+                }else if(["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı","2"].includes(keys.weekday)){
                 selectedDay = 2;
 
-                }else if(keys.weekday == 'Wednesday' || keys.weekday == 'Mittwoch'|| keys.weekday == 'среда'|| keys.weekday == 'Çarşamba'|| keys.weekday == 'miércoles'|| keys.weekday == 'mercredi'|| keys.weekday == 'mercoledì'){
+                }else if(["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba","3"].includes(keys.weekday)){
                 selectedDay = 3;
 
-                }else if(keys.weekday == 'Thursday' || keys.weekday == 'Donnerstag'|| keys.weekday == 'четверг'|| keys.weekday == 'Perşembe'|| keys.weekday == 'jueves'|| keys.weekday == 'jeudi'|| keys.weekday == 'giovedì'){
+                }else if(["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe","4"].includes(keys.weekday)){
                 selectedDay = 4;
 
-                }else if(keys.weekday == 'Friday' || keys.weekday == 'Freitag'|| keys.weekday == 'Пятница'|| keys.weekday == 'Cuma'|| keys.weekday == 'viernes'|| keys.weekday == 'vendredi'|| keys.weekday == 'venerdì'){
+                }else if(["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma","5"].includes(keys.weekday)){
                 selectedDay = 5;
 
-                }else if(keys.weekday == 'Saturday' || keys.weekday == 'Samstag'|| keys.weekday == 'Суббота'|| keys.weekday == 'Cumartesi'|| keys.weekday == 'sábado'|| keys.weekday == 'samedi'|| keys.weekday == 'sabato'){
+                }else if(["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi","6"].includes(keys.weekday)){
                 selectedDay = 6;
                 }
                 weekDates.forEach((elem:any,i:any) =>{

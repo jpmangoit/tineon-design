@@ -94,14 +94,14 @@ export class RoomDetailsComponent implements OnInit {
             this.getRoomDetail(room_id);
         });
 
-        this.allWeekDayArray = [            
+        this.allWeekDayArray = [
+            this.language.new_create_event.sunday, 
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
-            this.language.new_create_event.saturday,
-            this.language.new_create_event.sunday
+            this.language.new_create_event.saturday                   
         ];
     }
 

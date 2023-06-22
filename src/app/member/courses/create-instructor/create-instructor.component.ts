@@ -96,13 +96,13 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 		});
 
 		this.weekdayArray = [            
-            { id: 0, name: this.language.new_create_event.monday},
-            { id: 1, name: this.language.new_create_event.tuesday},
-            { id: 2, name: this.language.new_create_event.wednesday},
-            { id: 3, name: this.language.new_create_event.thrusday},
-            { id: 4, name: this.language.new_create_event.friday},
-            { id: 5, name: this.language.new_create_event.saturday},
-            { id: 6, name: this.language.new_create_event.sunday},
+            { id: 1, name: this.language.new_create_event.monday},
+            { id: 2, name: this.language.new_create_event.tuesday},
+            { id: 3, name: this.language.new_create_event.wednesday},
+            { id: 4, name: this.language.new_create_event.thrusday},
+            { id: 5, name: this.language.new_create_event.friday},
+            { id: 6, name: this.language.new_create_event.saturday},
+            { id: 0, name: this.language.new_create_event.sunday},
         ];
 
         this.weekdayDropdownSettings = {

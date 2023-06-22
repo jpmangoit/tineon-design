@@ -354,7 +354,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                     Object(this.approvedParticipants).forEach((val, key) => {
                                         val.users.image = null;
                                         val.id = val.users.id;
-                                        if (this.alluserInformation[val.users.id].member_id != null) {
+                                        if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id].member_id != null) {
                                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
                                                 .subscribe(
                                                     (resppData: any) => {

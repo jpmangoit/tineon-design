@@ -162,7 +162,7 @@ export class MeventDetailComponent implements OnInit {
 									this.approvedParticipants.push(element);
                                     if(this.approvedParticipants && this.approvedParticipants.length > 0){
                                         Object(this.approvedParticipants).forEach((val, key) => {
-                                            if (this.alluserInformation[val.users.id].member_id != null) {
+                                            if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id].member_id != null) {
                                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
                                                     .subscribe(
                                                         (resppData: any) => {
