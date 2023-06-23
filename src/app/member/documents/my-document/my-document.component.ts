@@ -37,6 +37,14 @@ export class MyDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
+    zipExtanis = ["zip"];
+    docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
+    imgExtanis = ["jpg","png","jpeg","gif", "webp"];
+
+    zipData = [];
+    docData = [];
+    imageData = [];
+    otherData = [];
 
     constructor(
         private lang: LanguageService,
@@ -83,6 +91,21 @@ export class MyDocumentComponent implements OnInit {
                         this.authService.setLoader(false);
                         let myDataa: DocumentsType[] = respData;
                         this.myData = myDataa.sort((a, b) => b.id - a.id);
+                        this.myData.forEach(item => {
+                            const fileName = item.doc_name;
+                            const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+                            if(this.imgExtanis.includes(extension) ){
+                                this.imageData.push(item);
+                            }else if(this.docExtanis.includes(extension) ){
+                                this.docData.push(item);
+                            }else if(this.zipExtanis.includes(extension) ){
+                                this.zipData.push(item);
+                            }else{
+                                this.otherData.push(item);
+                            }
+                        });
+
                         if (this.myData.length) {
                             this.getType();
                         }

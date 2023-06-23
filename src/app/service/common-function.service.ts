@@ -462,24 +462,18 @@ export class CommonFunctionService {
             instructorById.availablity.forEach((keys: any, vals: any) => {
                 if(["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar","0"].includes(keys.weekday)){
                     selectedDay = 0;
-
                 }else if(["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi","1"].includes(keys.weekday)){
                     selectedDay = 1;
-
                 }else if(["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı","2"].includes(keys.weekday)){
-                selectedDay = 2;
-
+                    selectedDay = 2;
                 }else if(["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba","3"].includes(keys.weekday)){
-                selectedDay = 3;
-
+                    selectedDay = 3;
                 }else if(["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe","4"].includes(keys.weekday)){
-                selectedDay = 4;
-
+                    selectedDay = 4;
                 }else if(["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma","5"].includes(keys.weekday)){
-                selectedDay = 5;
-
+                    selectedDay = 5;
                 }else if(["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi","6"].includes(keys.weekday)){
-                selectedDay = 6;
+                    selectedDay = 6;
                 }
                 weekDates.forEach((elem:any,i:any) =>{
                     if(new Date(elem).getDay() == selectedDay){

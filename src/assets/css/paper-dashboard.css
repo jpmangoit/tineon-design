@@ -5719,6 +5719,9 @@ button.red_more_btn {
     text-align: center;
     margin: 60px 0px 100px 0px;
     width: 100%;
+    display: flex;
+align-items: center;
+justify-content: center;
 }
 
 /* .row.dash-widget.dashboard_w_m .empty-data-image {
