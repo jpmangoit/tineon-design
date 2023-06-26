@@ -37,6 +37,8 @@ export class MyDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
+
+    selected_view:number = 0;
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
     imgExtanis = ["jpg","png","jpeg","gif", "webp"];
@@ -46,6 +48,7 @@ export class MyDocumentComponent implements OnInit {
     imageData = [];
     otherData = [];
     final_myData: DocumentsType[];
+    active_class: any = '';
 
     constructor(
         private lang: LanguageService,
@@ -106,7 +109,6 @@ export class MyDocumentComponent implements OnInit {
                             }
                         });
                         if (this.myData.length) {
-                            // this.getType();
                             this.fileFilter('all')
                         }
                     }
@@ -115,11 +117,11 @@ export class MyDocumentComponent implements OnInit {
     }
 
     fileFilter(fileType:any){
-        console.log(fileType);
-        console.log( this.myData);
         this.final_myData = [];
+        this.active_class = '';
 
         if(fileType == 'doc'){
+            this.active_class = 'doc';
             let mydoc = this.myData
                 this.final_myData = mydoc.filter(file => {
                 const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
@@ -127,27 +129,23 @@ export class MyDocumentComponent implements OnInit {
                         || extension === 'docs' || extension === 'txt' ||  extension === 'zip'
                  );
               });
-              console.log(this.final_myData);
         }else if(fileType == 'tab'){
+            this.active_class = 'tab';
             let my_tab = this.myData
                 this.final_myData = my_tab.filter(file => {
                 const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
                 return ( extension === 'xls' ||  extension === 'xlsx');
               });
-              console.log(this.final_myData);
-
         }else if(fileType == 'pic'){
+            this.active_class = 'pic';
             let my_pic = this.myData;
                 this.final_myData = my_pic.filter(file => {
                 const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
                 return ( extension === 'png' ||  extension === 'jpg' || extension === 'jpeg' || extension === 'svg');
               });
-              console.log(this.final_myData);
-
         }else{
-            console.log('all');
+            this.active_class = 'all';
             this.final_myData = this.myData
-            console.log( this.final_myData);
         }
         if (this.final_myData.length > 0) {
             this.getType();
@@ -202,11 +200,6 @@ export class MyDocumentComponent implements OnInit {
                 }
             }
         }
-        console.log(this.fileNameArr);
-        console.log(this.extArr);
-        console.log(this.docExt);
-        console.log(docExtt);
-        // this.fileFilter('pic')
     }
 
 
@@ -350,4 +343,9 @@ export class MyDocumentComponent implements OnInit {
                 })
         }
     }
+
+    selectView(view_id:number){
+        this.selected_view = view_id;
+    }
+
 }

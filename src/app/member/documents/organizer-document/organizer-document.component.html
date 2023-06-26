@@ -44,7 +44,7 @@
                     </li>
                 </ul>
 
-                <div>
+                <!-- <div>
                     <button class="btn btn-danger" (click)="selectView(0)">Grid View</button>
                     <button class="btn btn-danger" (click)="selectView(1)">List View</button>
                     <div class="filter-events">
@@ -56,10 +56,10 @@
                             </select>
                         </mat-form-field>
                     </div>
-                </div>
+                </div> -->
             </div>
 
-            <div class="tab-content" [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
+            <div class="tab-content" >
                 <div class="tab-pane" id="tabs-2" role="tabpanel" *ngIf="displayMyDocument == true"
                     [ngClass]="displayMyDocument == true ? 'active' : ''">
                     <app-my-document ></app-my-document>

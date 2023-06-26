@@ -436,7 +436,11 @@
         "club_documents_stand":"Documenti del club",
         "club_documents_untern":"Documenti aziendali",
         "current_status_stand":"Statuti attuali",
-        "current_status_untern":"Filosofia aziendale"
+        "current_status_untern":"Filosofia aziendale",
+
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures"
     },
     "create_event": {
         "title": "Nuovo evento",

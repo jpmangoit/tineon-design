@@ -1,15 +1,61 @@
 <div class="card-body ">
     <!-- <div class="alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
     <div class="document-inner list_document">
+                <div class="grid-list">
+                    <button class="btn btn-danger" [ngClass]=" selected_view == 0 ? 'active' : ''" (click)="selectView(0)">
+
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" rx="2" fill="#E4E4E4"/>
+                            <rect x="5" y="5" width="4" height="4" fill="white"/>
+                            <rect x="11" y="5" width="4" height="4" fill="white"/>
+                            <rect x="5" y="11" width="4" height="4" fill="white"/>
+                            <rect x="11" y="11" width="4" height="4" fill="white"/>
+                        </svg>
+
+                    </button>
+                    <button class="btn btn-danger" [ngClass]=" selected_view == 1 ? 'active' : ''" (click)="selectView(1)">
+                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" rx="2" fill="#FFBE00"/>
+                            <rect x="4" y="5" width="8" height="3" fill="white"/>
+                            <rect x="4" y="10" width="12" height="3" fill="white"/>
+                       </svg>
+
+                    </button>
+                    <div class="filter-events">
+                        <mat-form-field appearance="fill">
+                            <mat-label>{{language.courses.filter}}</mat-label>
+                            <select matNativeControl id="filter_events">
+                                <option selected value="1">Sort by Date</option>
+                                <option value="2">Sort by Data Type</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                </div>
         <div>
             <ul>
-                <li (click)="fileFilter('all')">All</li>
-                <li (click)="fileFilter('doc')">Documents</li>
-                <li (click)="fileFilter('tab')">Tables</li>
-                <li (click)="fileFilter('pic')">Pictures</li>
+                <li (click)="fileFilter('all')" [ngClass]="active_class == 'all'? 'activeClass' : ''"> <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 13.9062C0 14.1963 0.11677 14.4745 0.324623 14.6796C0.532476 14.8848 0.814385 15 1.10833 15H17.8917C18.1856 15 18.4675 14.8848 18.6754 14.6796C18.8832 14.4745 19 14.1963 19 13.9062V5.625H0V13.9062ZM19 2.34375C19 2.05367 18.8832 1.77547 18.6754 1.57035C18.4675 1.36523 18.1856 1.25 17.8917 1.25H7.79158L5.89158 0H1.10833C0.814385 0 0.532476 0.115234 0.324623 0.320352C0.11677 0.52547 0 0.803669 0 1.09375V4.375H19V2.34375Z" fill="#E83508"/>
+                    </svg>
+                   {{language.club_document.all}}
+                </li>
+                <li (click)="fileFilter('doc')" [ngClass]="active_class == 'doc'? 'activeClass' : ''"><svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 13.9062C0 14.1963 0.11677 14.4745 0.324623 14.6796C0.532476 14.8848 0.814385 15 1.10833 15H17.8917C18.1856 15 18.4675 14.8848 18.6754 14.6796C18.8832 14.4745 19 14.1963 19 13.9062V5.625H0V13.9062ZM19 2.34375C19 2.05367 18.8832 1.77547 18.6754 1.57035C18.4675 1.36523 18.1856 1.25 17.8917 1.25H7.79158L5.89158 0H1.10833C0.814385 0 0.532476 0.115234 0.324623 0.320352C0.11677 0.52547 0 0.803669 0 1.09375V4.375H19V2.34375Z" fill="#E83508"/>
+                    </svg>
+                    {{language.club_document.documents}}
+                </li>
+                <li (click)="fileFilter('tab')" [ngClass]="active_class == 'tab'? 'activeClass' : ''"><svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 13.9062C0 14.1963 0.11677 14.4745 0.324623 14.6796C0.532476 14.8848 0.814385 15 1.10833 15H17.8917C18.1856 15 18.4675 14.8848 18.6754 14.6796C18.8832 14.4745 19 14.1963 19 13.9062V5.625H0V13.9062ZM19 2.34375C19 2.05367 18.8832 1.77547 18.6754 1.57035C18.4675 1.36523 18.1856 1.25 17.8917 1.25H7.79158L5.89158 0H1.10833C0.814385 0 0.532476 0.115234 0.324623 0.320352C0.11677 0.52547 0 0.803669 0 1.09375V4.375H19V2.34375Z" fill="#E83508"/>
+                    </svg>
+                    {{language.club_document.tables}}
+                </li>
+                <li (click)="fileFilter('pic')" [ngClass]="active_class == 'pic'? 'activeClass' : ''"><svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 13.9062C0 14.1963 0.11677 14.4745 0.324623 14.6796C0.532476 14.8848 0.814385 15 1.10833 15H17.8917C18.1856 15 18.4675 14.8848 18.6754 14.6796C18.8832 14.4745 19 14.1963 19 13.9062V5.625H0V13.9062ZM19 2.34375C19 2.05367 18.8832 1.77547 18.6754 1.57035C18.4675 1.36523 18.1856 1.25 17.8917 1.25H7.79158L5.89158 0H1.10833C0.814385 0 0.532476 0.115234 0.324623 0.320352C0.11677 0.52547 0 0.803669 0 1.09375V4.375H19V2.34375Z" fill="#E83508"/>
+                    </svg>
+                    {{language.club_document.pictures}}
+                </li>
             </ul>
         </div>
-        <div class="document-main">
+        <div class="document-main" [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
             <!-- document box -->
             <div class="document-item" *ngFor="let doc of  final_myData; let i = index">
                 <div class="doc_box toggle-main">
@@ -17,11 +63,7 @@
                         <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/doc-icons/image_icon.png'"
                             alt="" loading="lazy"></a>
                     <a (click)="download(doc.doc_name)"> <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span> </a>
-                    <!-- <a (click)="download(doc.doc_name)">
-                        <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/doc-icons/image_icon.png'"
-                            alt="" loading="lazy"></a>
-                    <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a> -->
-
+                    <!--  <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a> -->
 
                     <nav class="navbar navbar-absolute fixed-top">
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -76,8 +118,8 @@
             </div>
             <!-- document box end-->
         </div>
-        <div *ngIf="myData">
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="myData.length == 0">
+        <div *ngIf="final_myData">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="final_myData.length == 0">
                 <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_document.no_documents}}" loading="lazy"><br> -->
                 <span>{{language.club_document.no_documents}}</span>
             </div>

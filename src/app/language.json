@@ -27,6 +27,12 @@
     },
     "dashboard":{
         "Coming_soon": "Coming Soon"
+    },
+    "club_document": {
+        "all": "All",
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures"
     }
 }
 
