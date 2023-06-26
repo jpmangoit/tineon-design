@@ -4,8 +4,8 @@
     gap: 10px;
 }
 .document-item{
-    max-width: 24.5%;
-    flex: 0 0 24.5%;
+    max-width: 24%;
+    flex: 0 0 24%;
     position: relative;
 }
 .card-body{
@@ -182,6 +182,17 @@ background: #f1f1f1;
 border-radius: 7px;
 cursor: pointer;
 }
+
+.document-inner.list_document > div > ul li.activeClass{
+  background: #ffbe00;
+  color: #fff;
+}
+
+.document-inner.list_document > div > ul li.activeClass svg path {
+   fill:#fff;
+}
+
+
 
 
 /* end grid list doc-css 26-06-2023 */
