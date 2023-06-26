@@ -36,6 +36,9 @@ export class CurrentStatusDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
+    selected_view:number = 0;
+    final_currentData: DocumentsType[];
+    active_class: any = '';
 
     constructor(
         private lang: LanguageService,
@@ -83,12 +86,88 @@ export class CurrentStatusDocumentComponent implements OnInit {
                         this.currentData = null;
                         this.currentData = curData.sort((a, b) => b.id - a.id);
                         if (this.currentData.length) {
-                            this.getType();
+                            this.fileFilter('all')
                         }
                     }
                 );
         }
     }
+
+    fileFilter(fileType:any){
+        this.final_currentData = [];
+        this.active_class = '';
+
+        if(fileType == 'doc'){
+            this.active_class = 'doc';
+            let current_doc = this.currentData
+                this.final_currentData = current_doc.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'ppt' || extension === 'pptx' || extension === 'pdf' || extension === 'docx'
+                        || extension === 'docs' || extension === 'txt' ||  extension === 'zip'
+                 );
+              });
+        }else if(fileType == 'tab'){
+            this.active_class = 'tab';
+            let current_tab = this.currentData
+                this.final_currentData = current_tab.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'xls' ||  extension === 'xlsx');
+              });
+        }else if(fileType == 'pic'){
+            this.active_class = 'pic';
+            let current_pic = this.currentData;
+                this.final_currentData = current_pic.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'png' ||  extension === 'jpg' || extension === 'jpeg' || extension === 'svg');
+              });
+        }else{
+            this.active_class = 'all';
+            this.final_currentData = this.currentData
+        }
+        if (this.final_currentData.length > 0) {
+            this.getType();
+        }
+    }
+
+        /**
+     * Function to check the type of the document
+     * @author  MangoIt Solutions
+     * @retuns it return the extention of the documents
+     */
+        getType() {
+            for (const key in this.final_currentData) {
+                if (Object.prototype.hasOwnProperty.call(this.final_currentData, key)) {
+                    const element: DocumentsType = this.final_currentData[key];
+                    var ext: string[] = element.doc_name.split(".");
+                    this.extArr[key] = ext[(ext.length) - 1];
+                    var fileName: string[] = element.doc_name.split("/");
+                    this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
+                    var docExtt: string = this.extArr[key];
+                    var count: string = key;
+                    for (const key in this.extensions) {
+                        if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
+                            const element: string = this.extensions[key];
+                            if (key == 'png' || key == 'jpg' || key == 'jpeg') {
+                                this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';
+                            } else {
+                                if (docExtt == 'pptx') {
+                                    this.docExt[count] = 'assets/img/doc-icons/p.svg';
+                                }
+                                if (docExtt == 'ppt') {
+                                    this.docExt[count] = '../../../../assets/img/doc-icons/p.svg';
+                                }
+                                if (docExtt == 'zip') {
+                                    this.docExt[count] = 'assets/img/doc-icons/folder.svg';
+                                }
+                                if (key == docExtt) {
+                                    this.docExt[count] = element;   //.svg images
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     /**
     * Function to check the Accessbility who can upload or move the documents
@@ -117,45 +196,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
         }
     }
 
-    /**
-     * Function to check the type of the document
-     * @author  MangoIt Solutions
-     * @retuns it return the extention of the documents
-     */
-    getType() {
-        for (const key in this.currentData) {
-            if (Object.prototype.hasOwnProperty.call(this.currentData, key)) {
-                const element: DocumentsType = this.currentData[key];
-                var ext: string[] = element.doc_name.split(".");
-                this.extArr[key] = ext[(ext.length) - 1];
-                var fileName: string[] = element.doc_name.split("/");
-                this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
-                var docExtt: string = this.extArr[key];
-                var count: string = key;
-                for (const key in this.extensions) {
-                    if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
-                        const element: string = this.extensions[key];
-                        if (key == 'png' || key == 'jpg' || key == 'jpeg') {
-                            this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';
-                        } else {
-                            if (docExtt == 'pptx') {
-                                this.docExt[count] = 'assets/img/doc-icons/p.svg';
-                            }
-                            if (docExtt == 'ppt') {
-                                this.docExt[count] = '../../../../assets/img/doc-icons/p.svg';
-                            }
-                            if (docExtt == 'zip') {
-                                this.docExt[count] = 'assets/img/doc-icons/folder.svg';
-                            }
-                            if (key == docExtt) {
-                                this.docExt[count] = element;   //.svg images
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+
 
     /**
     * Function is used to move document
@@ -253,9 +294,9 @@ export class CurrentStatusDocumentComponent implements OnInit {
         }
     }
 
-    fileFilter(fileType:any){
-        console.log(fileType);
-    }
 
+    selectView(view_id:number){
+        this.selected_view = view_id;
+    }
 
 }

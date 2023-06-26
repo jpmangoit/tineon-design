@@ -40,6 +40,14 @@ export class ClubDocumentComponent implements OnInit {
     final_clubData: DocumentsType[];
     active_class: any = '';
 
+    zipExtanis = ["zip"];
+    docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
+    imgExtanis = ["jpg","png","jpeg","gif", "webp"];
+    zipData = [];
+    docData = [];
+    imageData = [];
+    otherData = [];
+
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
@@ -85,6 +93,21 @@ export class ClubDocumentComponent implements OnInit {
                     this.authService.setLoader(false);
                     let cData:DocumentsType[] = respData;
                     this.clubData = cData.sort((a,b) => b.id - a.id);
+
+                    this.clubData.forEach(item => {
+                        const fileName = item.doc_name;
+                        const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                        if(this.imgExtanis.includes(extension) ){
+                            this.imageData.push(item);
+                        }else if(this.docExtanis.includes(extension) ){
+                            this.docData.push(item);
+                        }else if(this.zipExtanis.includes(extension) ){
+                            this.zipData.push(item);
+                        }else{
+                            this.otherData.push(item);
+                        }
+                    });
+
                     if (this.clubData.length) {
                         this.fileFilter('all')
                     }
@@ -97,7 +120,6 @@ export class ClubDocumentComponent implements OnInit {
     fileFilter(fileType:any){
         this.final_clubData = [];
         this.active_class = '';
-
         if(fileType == 'doc'){
             this.active_class = 'doc';
             let club_doc = this.clubData
@@ -135,10 +157,11 @@ export class ClubDocumentComponent implements OnInit {
      * @author  MangoIt Solutions
      * @retuns it return the extention of the documents
      */
-        getType() {
-            for (const key in this.clubData) {
-                if (Object.prototype.hasOwnProperty.call(this.clubData, key)) {
-                    const element:DocumentsType = this.clubData[key];
+    getType() {
+        for (const key in this.final_clubData) {
+            if (Object.prototype.hasOwnProperty.call(this.final_clubData, key)) {
+                const element:DocumentsType = this.final_clubData[key];
+                if (element.doc_name) {
                     var ext:string[] = element.doc_name.split(".");
                     this.extArr[key] = ext[(ext.length) - 1];
                     var fileName:string[] = element.doc_name.split("/");
@@ -148,14 +171,16 @@ export class ClubDocumentComponent implements OnInit {
                     for (const key in this.extensions) {
                         if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
                             const element:string = this.extensions[key];
-                            if (key == 'png' || key == 'jpg' || key == 'jpeg') {
+                            if (key == 'png' || key == 'jpg' || key == 'jpeg'|| key == 'svg') {
                                 this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';
                             }else {
                                 if(docExtt == 'pptx'){
                                         this.docExt[count] = 'assets/img/doc-icons/p.svg';
-                                }else if(docExtt == 'ppt'){
+                                }
+                                if(docExtt == 'ppt'){
                                     this.docExt[count] = '../../../../assets/img/doc-icons/p.svg';
-                                }else  if(docExtt == 'zip'){
+                                }
+                                if(docExtt == 'zip'){
                                         this.docExt[count] = 'assets/img/doc-icons/folder.svg';
                                 }
                                 if (key == docExtt){
@@ -167,7 +192,7 @@ export class ClubDocumentComponent implements OnInit {
                 }
             }
         }
-
+    }
 
      /**
      * Function to check the Accessbility who can upload or move the documents

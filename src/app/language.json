@@ -32,7 +32,9 @@
         "all": "All",
         "documents":"Documents",
         "tables":"Tables",
-        "pictures":"Pictures"
+        "pictures":"Pictures",
+        "asending":"Asending",
+        "descending":"Descending"
     }
 }
 

@@ -439,7 +439,9 @@
 
         "documents":"Documents",
         "tables":"Tables",
-        "pictures":"Pictures"
+        "pictures":"Pictures",
+        "asending":"Asending",
+        "descending":"Descending"
     },
     "create_event": {
         "title": "Yeni etkinlik",

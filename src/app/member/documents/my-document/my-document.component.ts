@@ -152,6 +152,11 @@ export class MyDocumentComponent implements OnInit {
         }
     }
 
+    order_view(order_id){
+        console.log(order_id);
+
+    }
+
 
     /**
      * Function to check the type of the document
