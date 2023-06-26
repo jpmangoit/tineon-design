@@ -27,7 +27,7 @@ export class MorganizerDocumentsComponent implements OnInit {
     documentForm: UntypedFormGroup;
     userDetails: any;
     language: any;
-    extensions: Extentions;
+    extensions: any;
     responseMessage: string = '';
     doc_type: string;
     userAccess: {

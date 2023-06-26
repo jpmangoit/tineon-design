@@ -22,7 +22,7 @@ const FileSaver = require('file-saver');
 export class CurrentStatusDocumentComponent implements OnInit {
     language :any;
     currentData:DocumentsType[];
-    extensions:Extentions;
+    extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
     eventForm: UntypedFormGroup;

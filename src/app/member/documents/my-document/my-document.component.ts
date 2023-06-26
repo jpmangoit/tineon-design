@@ -22,7 +22,7 @@ const FileSaver = require('file-saver');
 
 export class MyDocumentComponent implements OnInit {
     language :any;
-    extensions:Extentions;
+    extensions:any;
     myData:DocumentsType[];
     userData:LoginDetails;
     optionVisibility:boolean = false;
@@ -45,6 +45,7 @@ export class MyDocumentComponent implements OnInit {
     docData = [];
     imageData = [];
     otherData = [];
+    final_myData: DocumentsType[];
 
     constructor(
         private lang: LanguageService,
@@ -94,7 +95,6 @@ export class MyDocumentComponent implements OnInit {
                         this.myData.forEach(item => {
                             const fileName = item.doc_name;
                             const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-
                             if(this.imgExtanis.includes(extension) ){
                                 this.imageData.push(item);
                             }else if(this.docExtanis.includes(extension) ){
@@ -105,14 +105,55 @@ export class MyDocumentComponent implements OnInit {
                                 this.otherData.push(item);
                             }
                         });
-
                         if (this.myData.length) {
-                            this.getType();
+                            // this.getType();
+                            this.fileFilter('all')
                         }
                     }
                 );
         }
     }
+
+    fileFilter(fileType:any){
+        console.log(fileType);
+        console.log( this.myData);
+        this.final_myData = [];
+
+        if(fileType == 'doc'){
+            let mydoc = this.myData
+                this.final_myData = mydoc.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'ppt' || extension === 'pptx' || extension === 'pdf' || extension === 'docx'
+                        || extension === 'docs' || extension === 'txt' ||  extension === 'zip'
+                 );
+              });
+              console.log(this.final_myData);
+        }else if(fileType == 'tab'){
+            let my_tab = this.myData
+                this.final_myData = my_tab.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'xls' ||  extension === 'xlsx');
+              });
+              console.log(this.final_myData);
+
+        }else if(fileType == 'pic'){
+            let my_pic = this.myData;
+                this.final_myData = my_pic.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'png' ||  extension === 'jpg' || extension === 'jpeg' || extension === 'svg');
+              });
+              console.log(this.final_myData);
+
+        }else{
+            console.log('all');
+            this.final_myData = this.myData
+            console.log( this.final_myData);
+        }
+        if (this.final_myData.length > 0) {
+            this.getType();
+        }
+    }
+
 
     /**
      * Function to check the type of the document
@@ -120,20 +161,26 @@ export class MyDocumentComponent implements OnInit {
      * @retuns it return the extention of the documents
      */
     getType() {
-        for (const key in this.myData) {
-            if (Object.prototype.hasOwnProperty.call(this.myData, key)) {
-                const element: DocumentsType = this.myData[key];
+        for (const key in this.final_myData) {
+            if (Object.prototype.hasOwnProperty.call(this.final_myData, key)) {
+                const element: DocumentsType = this.final_myData[key];
                 if (element.doc_name) {
                     var ext: string[] = element.doc_name.split(".");
+                    console.log(ext);
                     this.extArr[key] = ext[(ext.length) - 1];
+                    console.log(this.extArr);
                     var fileName: string[] = element.doc_name.split("/");
+                    console.log(fileName);
                     this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
                     var docExtt: string = this.extArr[key];
+                    console.log(docExtt);
                     var count: string = key;
+                    console.log(this.extensions);
+
                     for (const key in this.extensions) {
                         if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
                             const element: string = this.extensions[key];
-                            if (key == 'png' || key == 'jpg' || key == 'jpeg') {
+                            if (key == 'png' || key == 'jpg' || key == 'jpeg' || key == 'svg') {
                                 this.docExt[count] = '../../../../assets/img/doc-icons/image_icon.png';   //uploaded Images
                             } else {
                                 if (docExtt == 'pptx') {
@@ -151,9 +198,15 @@ export class MyDocumentComponent implements OnInit {
                             }
                         }
                     }
+
                 }
             }
         }
+        console.log(this.fileNameArr);
+        console.log(this.extArr);
+        console.log(this.docExt);
+        console.log(docExtt);
+        // this.fileFilter('pic')
     }
 
 
@@ -297,9 +350,4 @@ export class MyDocumentComponent implements OnInit {
                 })
         }
     }
-
-    fileFilter(fileType:any){
-        console.log(fileType);
-    }
-
 }

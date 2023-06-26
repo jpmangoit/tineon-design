@@ -22,7 +22,7 @@ const FileSaver = require('file-saver');
 export class ClubDocumentComponent implements OnInit {
     language :any;
     clubData:DocumentsType[];
-    extensions:Extentions;
+    extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
     eventForm: UntypedFormGroup;

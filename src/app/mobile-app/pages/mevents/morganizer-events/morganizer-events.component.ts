@@ -47,7 +47,7 @@ export class MorganizerEventsComponent implements OnInit {
     calendarBtn: boolean = false;
     visibilityDropdownList: { item_id: number, item_text: string }[] = [];
     userAccess: UserAccess;
-    extensions: Extentions;
+    extensions: any;
 
     All() {
         this.displayAll = true;

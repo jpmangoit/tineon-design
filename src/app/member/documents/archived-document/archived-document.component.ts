@@ -23,7 +23,7 @@ const FileSaver = require('file-saver');
 export class ArchivedDocumentComponent implements OnInit {
     language :any;
     archivedData:DocumentsType[];
-    extensions:Extentions;
+    extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
     eventForm: UntypedFormGroup;

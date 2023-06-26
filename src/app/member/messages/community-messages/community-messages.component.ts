@@ -45,7 +45,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     docExt: string[] = [];
     extArr: string[] = [];
     fileNameArr: string[] = [];
-    extensions: Extentions;
+    extensions: any;
     viewImage: boolean[] = [];
     preImage: string;
     setTheme: ThemeType;
