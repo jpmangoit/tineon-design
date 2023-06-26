@@ -439,7 +439,11 @@
         "club_documents_untern": "Documents de l'entreprise",
 
         "current_status_stand": "Statuts actuels",
-        "current_status_untern": "Philosophie de l'entreprise"
+        "current_status_untern": "Philosophie de l'entreprise",
+
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures"
     },
     "create_event": {
         "title":"Nouvel événement",

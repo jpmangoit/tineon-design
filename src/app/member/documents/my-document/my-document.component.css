@@ -92,7 +92,7 @@
     padding-top: 0;
     top: 0;
     margin-bottom: 0;
-    
+
   }
 
     ::ng-deep  .mat-form-field-type-mat-native-select.mat-form-field-appearance-fill .mat-form-field-infix::after {
@@ -118,7 +118,7 @@
   }
 
   ::ng-deep .grid-list .filter-events .mat-form-field-wrapper {
-    padding-bottom: 0 !important; 
+    padding-bottom: 0 !important;
   }
 
    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
@@ -142,7 +142,7 @@
 
 .grid-list .btn.btn-danger.active svg rect:first-child {
    fill: #FFBE00;
-} 
+}
 
 .grid-list .btn.btn-danger svg rect:first-child {
   fill: #d7d7d7;
@@ -171,8 +171,8 @@
 
 
 .document-inner.list_document > div > ul li {
- 
-  list-style: none;
+
+list-style: none;
 font-size: 18px;
 display: flex;
 align-items: center;
@@ -180,6 +180,7 @@ gap: 15px;
 padding: 10px 15px;
 background: #f1f1f1;
 border-radius: 7px;
+cursor: pointer;
 }
 
 

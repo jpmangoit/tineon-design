@@ -48,7 +48,7 @@ export class MorganizerTaskComponent implements OnInit {
     createdInProgress: TaskType[] = [];
     createdCompleted: TaskType[] = [];
     userAccess: UserAccess;
-    extensions: Extentions;
+    extensions: any;
     createAccess: CreateAccess;
     setTheme: ThemeType
     private activatedSub: Subscription;

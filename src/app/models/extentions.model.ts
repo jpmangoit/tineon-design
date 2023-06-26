@@ -15,4 +15,5 @@ export interface Extentions {
   txt:  string
   xls:  string
   xlsx:  string
+  svg:string
 }

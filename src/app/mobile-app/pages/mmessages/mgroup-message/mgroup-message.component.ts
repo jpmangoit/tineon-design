@@ -39,7 +39,7 @@ export class MgroupMessageComponent implements OnInit {
     clubVisiable: boolean = false;
     groupTrash: boolean = false;
     responseMessage: string = null;
-    extensions: Extentions;
+    extensions: any;
     imageType: string[];
     setTheme: ThemeType;
     visiblityDropdownSettings: IDropdownSettings;

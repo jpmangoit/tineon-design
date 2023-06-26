@@ -31,7 +31,7 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 	displayDocs: boolean = false;
 	setTheme:ThemeType;
 	responseMessage:string = '';
-	extensions: Extentions;
+	extensions: any;
 	doc_type: string;
 	private activatedSub: Subscription;
     uploadResp: any;

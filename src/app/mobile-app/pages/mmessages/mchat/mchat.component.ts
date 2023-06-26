@@ -46,7 +46,7 @@ export class MchatComponent implements OnInit {
     docExt: string[] = [];
     extArr: string[] = [];
     fileNameArr: string[] = [];
-    extensions: Extentions;
+    extensions: any;
     viewImage: boolean[] = [];
     preImage: string;
     setTheme: ThemeType;

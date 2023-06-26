@@ -435,7 +435,11 @@
         "club_documents_stand":"Kulüp Belgeleri",
         "club_documents_untern":"Şirket Belgeleri",
         "current_status_stand":"Mevcut tüzük",
-        "current_status_untern":"şirket felsefesi"
+        "current_status_untern":"şirket felsefesi",
+
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures"
     },
     "create_event": {
         "title": "Yeni etkinlik",

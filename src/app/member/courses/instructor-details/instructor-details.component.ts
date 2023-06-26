@@ -95,13 +95,13 @@ export class InstructorDetailsComponent implements OnInit {
         }, 1000);
 
         this.allWeekDayArray = [
-            this.language.new_create_event.sunday, 
+            this.language.new_create_event.sunday,
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
-            this.language.new_create_event.saturday                   
+            this.language.new_create_event.saturday
         ];
 
         this.allWeekDayArrayName = [
@@ -111,7 +111,7 @@ export class InstructorDetailsComponent implements OnInit {
             { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
             { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
             { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}            
+            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}
         ]
     }
 
@@ -448,12 +448,12 @@ export class InstructorDetailsComponent implements OnInit {
         if (!isNaN(id)) {
             return this.allWeekDayArray[id];
         }else{
-            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return this.allWeekDayArray[obj.id];
             }else{
                 return id;
-            }            
+            }
         }
     }
 

@@ -44,7 +44,7 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 	alluserDetails: { firstname: string, lastname: string, email: string }[] = [];
 	userDropdownList: { 'id': string, 'name': string }[] = [];
 	userDropdownCCList: { 'id': string, 'name': string }[] = [];
-	extensions: Extentions;
+	extensions: any;
 	imageType: string[];
 	responseMessage: string = null;
 	userDetails: LoginDetails;

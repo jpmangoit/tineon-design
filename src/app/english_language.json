@@ -448,7 +448,11 @@
         "club_documents_untern": "Corporate documents",
 
         "current_status_stand": "Current Status",
-        "current_status_untern": "Corporate philosophy"
+        "current_status_untern": "Corporate philosophy",
+
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures"
     },
     "create_event": {
         "title": "New Event",

@@ -36,7 +36,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     displayArchivedDocument: boolean = false;
     setTheme: ThemeType;
     uploadDocVisibility:UploadDocVisibility;
-    extensions:Extentions;
+    extensions:any;
     guestRole:string;
     myData:DocumentsType[];
     clubData:DocumentsType[];
@@ -76,7 +76,6 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         let userRole:string = this.userDetails.roles[0];
         this.guestRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
-        this.extensions = appSetting.extensions;
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;

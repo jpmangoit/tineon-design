@@ -51,7 +51,7 @@ export class MpersonalMessageComponent implements OnInit {
     alluserDetails: { firstname: string, lastname: string, email: string }[] = [];
     alluserInfo: UserDetails;
     setTheme: ThemeType;
-    extensions: Extentions;
+    extensions: any;
     imageType: string[];
     ccUser: number[] = [];
     alluserInformation: { member_id: number }[] = [];

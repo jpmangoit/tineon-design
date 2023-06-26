@@ -221,7 +221,7 @@
                                                         <div class="schedule_list" *ngFor="let item of updateInstructorData.weekdays">
                                                             <ul>
                                                                 <!-- <li>{{item.day}}</li> -->
-                                                                <li><span>{{getDayName(val.weekday)}}</span></li>
+                                                                <li><span>{{getDayName(item.day)}}</span></li>
                                                                 <li>{{item.time_from.split(":").slice(0,2).join(":")}}</li>
                                                                 <li>{{item.time_to.split(":").slice(0,2).join(":")}}</li>
                                                             </ul>
