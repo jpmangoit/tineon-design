@@ -73,6 +73,118 @@
     -webkit-animation: loading 7s infinite;
             animation: loading 5s infinite;
   }
+
+  .grid-list {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+   ::ng-deep .filter-events .mat-form-field-infix {
+    display: flex;
+  }
+
+  ::ng-deep .filter-events  select.mat-input-element {
+    padding-top: 0;
+    top: 0;
+    margin-bottom: 0;
+    
+  }
+
+    ::ng-deep  .mat-form-field-type-mat-native-select.mat-form-field-appearance-fill .mat-form-field-infix::after {
+  margin-top: -6px !important;
+}
+
+  ::ng-deep .filter-events .mat-form-field-infix .mat-form-field-label-wrapper {
+  order: -1;
+  width: auto;
+  display: none;
+}
+
+
+
+/* start grid list doc-css 26-06-2023 */
+
+  ::ng-deep .filter-events .mat-form-field-infix {
+     border:none;
+  }
+
+    ::ng-deep .filter-events  .mat-form-field-label-wrapper {
+    position: static !important;
+  }
+
+  ::ng-deep .grid-list .filter-events .mat-form-field-wrapper {
+    padding-bottom: 0 !important; 
+  }
+
+   ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
+    display: none;
+  }
+
+  .grid-list .btn.btn-danger {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.grid-list .btn.btn-danger svg {
+  width: 30px;
+  height: 30px;
+}
+
+.grid-list .btn.btn-danger.active svg rect:first-child {
+   fill: #FFBE00;
+} 
+
+.grid-list .btn.btn-danger svg rect:first-child {
+  fill: #d7d7d7;
+}
+
+.document-inner.list_document > div > ul {
+  padding: 0px;
+  display: flex;
+  gap:25px;
+  margin-bottom: 35px;
+}
+
+.document-main.list_view > div {
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+
+.document-main.list_view > div .doc_box.toggle-main {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+
+
+.document-inner.list_document > div > ul li {
+ 
+  list-style: none;
+font-size: 18px;
+display: flex;
+align-items: center;
+gap: 15px;
+padding: 10px 15px;
+background: #f1f1f1;
+border-radius: 7px;
+}
+
+
+/* end grid list doc-css 26-06-2023 */
+
   @-webkit-keyframes loading {
     0% {
       width: 0;

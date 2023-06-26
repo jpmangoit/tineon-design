@@ -37,6 +37,8 @@ export class MyDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
+
+    selected_view:number = 0;
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
     imgExtanis = ["jpg","png","jpeg","gif", "webp"];
@@ -300,6 +302,11 @@ export class MyDocumentComponent implements OnInit {
 
     fileFilter(fileType:any){
         console.log(fileType);
+    }
+
+        selectView(view_id:number){
+        console.log(view_id);
+        this.selected_view = view_id;
     }
 
 }
