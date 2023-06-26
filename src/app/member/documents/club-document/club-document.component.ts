@@ -36,6 +36,9 @@ export class ClubDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
+    selected_view:number = 0;
+    final_clubData: DocumentsType[];
+    active_class: any = '';
 
     constructor(
         private lang: LanguageService,
@@ -83,10 +86,47 @@ export class ClubDocumentComponent implements OnInit {
                     let cData:DocumentsType[] = respData;
                     this.clubData = cData.sort((a,b) => b.id - a.id);
                     if (this.clubData.length) {
-                        this.getType();
+                        this.fileFilter('all')
                     }
                 }
             );
+        }
+    }
+
+
+    fileFilter(fileType:any){
+        this.final_clubData = [];
+        this.active_class = '';
+
+        if(fileType == 'doc'){
+            this.active_class = 'doc';
+            let club_doc = this.clubData
+                this.final_clubData = club_doc.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'ppt' || extension === 'pptx' || extension === 'pdf' || extension === 'docx'
+                        || extension === 'docs' || extension === 'txt' ||  extension === 'zip'
+                 );
+              });
+        }else if(fileType == 'tab'){
+            this.active_class = 'tab';
+            let club_tab = this.clubData
+                this.final_clubData = club_tab.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'xls' ||  extension === 'xlsx');
+              });
+        }else if(fileType == 'pic'){
+            this.active_class = 'pic';
+            let club_pic = this.clubData;
+                this.final_clubData = club_pic.filter(file => {
+                const extension = file.doc_name.substring(file.doc_name.lastIndexOf('.') + 1);
+                return ( extension === 'png' ||  extension === 'jpg' || extension === 'jpeg' || extension === 'svg');
+              });
+        }else{
+            this.active_class = 'all';
+            this.final_clubData = this.clubData
+        }
+        if (this.final_clubData.length > 0) {
+            this.getType();
         }
     }
 
@@ -253,8 +293,8 @@ export class ClubDocumentComponent implements OnInit {
         }
     }
 
-    fileFilter(fileType:any){
-        console.log(fileType);
+    selectView(view_id:number){
+        this.selected_view = view_id;
     }
 
 }

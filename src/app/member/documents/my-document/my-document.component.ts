@@ -164,17 +164,11 @@ export class MyDocumentComponent implements OnInit {
                 const element: DocumentsType = this.final_myData[key];
                 if (element.doc_name) {
                     var ext: string[] = element.doc_name.split(".");
-                    console.log(ext);
                     this.extArr[key] = ext[(ext.length) - 1];
-                    console.log(this.extArr);
                     var fileName: string[] = element.doc_name.split("/");
-                    console.log(fileName);
                     this.fileNameArr[key] = decodeURIComponent(fileName[(fileName.length) - 1]);
                     var docExtt: string = this.extArr[key];
-                    console.log(docExtt);
                     var count: string = key;
-                    console.log(this.extensions);
-
                     for (const key in this.extensions) {
                         if (Object.prototype.hasOwnProperty.call(this.extensions, key)) {
                             const element: string = this.extensions[key];
