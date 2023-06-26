@@ -4,8 +4,8 @@
     gap: 10px;
 }
 .document-item{
-    max-width: 24.5%;
-    flex: 0 0 24.5%;
+    max-width: 24%;
+    flex: 0 0 24%;
     position: relative;
 }
 .card-body{
