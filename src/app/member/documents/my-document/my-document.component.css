@@ -183,6 +183,17 @@ border-radius: 7px;
 cursor: pointer;
 }
 
+.document-inner.list_document > div > ul li.activeClass{
+  background: #ffbe00;
+  color: #fff;
+}
+
+.document-inner.list_document > div > ul li.activeClass svg path {
+   fill:#fff;
+}
+
+
+
 
 /* end grid list doc-css 26-06-2023 */
 
