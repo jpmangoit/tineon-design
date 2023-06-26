@@ -1,6 +1,14 @@
 <div class="card-body ">
     <!-- <div class="alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
     <div class="document-inner list_document">
+        <div>
+            <ul>
+                <li (click)="fileFilter('all')">All</li>
+                <li (click)="fileFilter('doc')">Documents</li>
+                <li (click)="fileFilter('tab')">Tables</li>
+                <li (click)="fileFilter('pic')">Pictures</li>
+            </ul>
+        </div>
         <div class="document-main">
             <div class="document-item" *ngFor="let doc of clubData; let i = index">
                 <div class="doc_box toggle-main">

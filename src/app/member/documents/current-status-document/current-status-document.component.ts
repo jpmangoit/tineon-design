@@ -253,4 +253,9 @@ export class CurrentStatusDocumentComponent implements OnInit {
         }
     }
 
+    fileFilter(fileType:any){
+        console.log(fileType);
+    }
+
+
 }

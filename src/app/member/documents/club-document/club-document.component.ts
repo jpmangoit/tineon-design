@@ -252,4 +252,9 @@ export class ClubDocumentComponent implements OnInit {
                 })
         }
     }
+
+    fileFilter(fileType:any){
+        console.log(fileType);
+    }
+
 }

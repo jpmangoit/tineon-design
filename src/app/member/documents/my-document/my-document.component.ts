@@ -298,4 +298,8 @@ export class MyDocumentComponent implements OnInit {
         }
     }
 
+    fileFilter(fileType:any){
+        console.log(fileType);
+    }
+
 }

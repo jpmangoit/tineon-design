@@ -156,7 +156,7 @@ export class ArchivedDocumentComponent implements OnInit {
     }
 
     /**
-    * Function is used to move document 
+    * Function is used to move document
     * @author  MangoIt Solutions
     * @param   {id, category}
     * @return  {string} success message
@@ -187,7 +187,7 @@ export class ArchivedDocumentComponent implements OnInit {
     }
 
     /**
-    * Function is used to delete document 
+    * Function is used to delete document
     * @author  MangoIt Solutions
     * @param   {id, index}
     * @return  {string} success message
@@ -250,4 +250,9 @@ export class ArchivedDocumentComponent implements OnInit {
                 })
         }
     }
+
+    fileFilter(fileType:any){
+        console.log(fileType);
+    }
+
 }

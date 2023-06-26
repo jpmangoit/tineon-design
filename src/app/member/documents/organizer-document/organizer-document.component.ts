@@ -22,7 +22,9 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     @Input() tabId;
 
     language :any;
-    userDetails: LoginDetails;;
+    userDetails: LoginDetails;
+    selected_view: number = 0;
+;
     userAccess: UserAccess;
     createAccess: CreateAccess;
     participateAccess: ParticipateAccess;
@@ -170,6 +172,11 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         }else{
             $('.doc_upload_btn').hide();
         }
+    }
+
+    selectView(view_id:number){
+        console.log(view_id);
+        this.selected_view = view_id;
     }
 
     ngOnDestroy(): void {
