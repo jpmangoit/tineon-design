@@ -444,7 +444,7 @@
         "documents":"Documents",
         "tables":"Tables",
         "pictures":"Pictures",
-        "asending":"Asending",
+        "asending":"Ascending",
         "descending":"Descending"
     },
     "create_event": {

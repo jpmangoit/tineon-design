@@ -21,9 +21,9 @@
             <div class="filter-events">
                 <mat-form-field appearance="fill">
                     <mat-label>{{language.courses.filter}}</mat-label>
-                    <select matNativeControl id="filter_events">
-                        <option selected value="1">Sort by Date</option>
-                        <option value="2">Sort by Data Type</option>
+                    <select matNativeControl id="filter_events" (click)="order_view()">
+                        <option value="1" >{{language.club_document.asending}}</option>
+                        <option selected value="2" >{{language.club_document.descending}}</option>
                     </select>
                 </mat-form-field>
             </div>

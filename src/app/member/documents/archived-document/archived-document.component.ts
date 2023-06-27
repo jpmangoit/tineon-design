@@ -82,10 +82,11 @@ export class ArchivedDocumentComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    let archData:DocumentsType[] = respData;
-                    this.archivedData = archData.sort((a,b) => b.id - a.id);
+                    // let archData:DocumentsType[] = respData;
+                    // this.archivedData = archData.sort((a,b) => b.id - a.id);
+                    this.archivedData = respData;
                     if (this.archivedData.length) {
-                        this.fileFilter('all')
+                        this.fileFilter('all');
                     }
                 }
             );
@@ -124,8 +125,23 @@ export class ArchivedDocumentComponent implements OnInit {
             this.final_archivedData = this.archivedData
         }
         if (this.final_archivedData.length > 0) {
-            this.getType();
+            this.order_view();
         }
+    }
+
+
+       /**
+     * Function to get the documents in the ascending & descending order
+     * @author  MangoIt Solutions
+     * @retuns it return the in the order wise documents
+     */
+       order_view(){
+        if($('#filter_events').val() == 1){
+            this.final_archivedData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+        }else if($('#filter_events').val() == 2){
+            this.final_archivedData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+        }
+        this.getType();
     }
 
       /**
@@ -166,7 +182,6 @@ export class ArchivedDocumentComponent implements OnInit {
         }
     }
 
-
     /**
      * Function to check the Accessbility who can upload or move the documents
      * @author  MangoIt Solutions
@@ -194,7 +209,6 @@ export class ArchivedDocumentComponent implements OnInit {
             }
         }
     }
-
 
     /**
     * Function is used to move document

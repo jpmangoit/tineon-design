@@ -174,7 +174,6 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     }
 
     selectView(view_id:number){
-        console.log(view_id);
         this.selected_view = view_id;
     }
 

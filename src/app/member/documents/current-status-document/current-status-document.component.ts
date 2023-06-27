@@ -82,11 +82,12 @@ export class CurrentStatusDocumentComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        let curData: DocumentsType[] = respData;
                         this.currentData = null;
-                        this.currentData = curData.sort((a, b) => b.id - a.id);
+                        // let curData: DocumentsType[] = respData;
+                        // this.currentData = curData.sort((a, b) => b.id - a.id);
+                        this.currentData = respData;
                         if (this.currentData.length) {
-                            this.fileFilter('all')
+                            this.fileFilter('all');
                         }
                     }
                 );
@@ -125,9 +126,23 @@ export class CurrentStatusDocumentComponent implements OnInit {
             this.final_currentData = this.currentData
         }
         if (this.final_currentData.length > 0) {
-            this.getType();
+            this.order_view();
         }
     }
+
+    /**
+     * Function to get the documents in the ascending & descending order
+     * @author  MangoIt Solutions
+     * @retuns it return the in the order wise documents
+     */
+        order_view(){
+            if($('#filter_events').val() == 1){
+                this.final_currentData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+            }else if($('#filter_events').val() == 2){
+                this.final_currentData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+            }
+            this.getType();
+        }
 
         /**
      * Function to check the type of the document

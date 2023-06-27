@@ -93,8 +93,9 @@ export class MyDocumentComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        let myDataa: DocumentsType[] = respData;
-                        this.myData = myDataa.sort((a, b) => b.id - a.id);
+                        // let myDataa: DocumentsType[] = respData;
+                        // this.myData = myDataa.sort((a,b) => b.id - a.id);
+                        this.myData = respData;
                         this.myData.forEach(item => {
                             const fileName = item.doc_name;
                             const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
@@ -116,6 +117,11 @@ export class MyDocumentComponent implements OnInit {
         }
     }
 
+    /**
+     * Function is used to filter the document
+     * @author  MangoIt Solutions
+     * @retuns returns the document filter wise
+     */
     fileFilter(fileType:any){
         this.final_myData = [];
         this.active_class = '';
@@ -148,15 +154,23 @@ export class MyDocumentComponent implements OnInit {
             this.final_myData = this.myData
         }
         if (this.final_myData.length > 0) {
-            this.getType();
+            this.order_view()
         }
     }
 
-    order_view(order_id){
-        console.log(order_id);
-
-    }
-
+    /**
+     * Function to get the documents in the ascending & descending order
+     * @author  MangoIt Solutions
+     * @retuns it return the in the order wise documents
+     */
+        order_view(){
+            if($('#filter_events').val() == 1){
+               this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+            }else if($('#filter_events').val() == 2){
+                this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+            }
+            this.getType();
+        }
 
     /**
      * Function to check the type of the document
@@ -200,6 +214,8 @@ export class MyDocumentComponent implements OnInit {
             }
         }
     }
+
+
 
 
     /**
