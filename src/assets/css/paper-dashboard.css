@@ -7596,10 +7596,10 @@ button.btn.btn-yes {
 }
 
 .doc_box img {
-    padding: 0px;
-    width: 75%;
-    height: 85%;
-    cursor: pointer;
+  padding: 0px;
+  width: 44px;
+  height: auto;
+  cursor: pointer;
 }
 
 span.docu_name {
@@ -9029,10 +9029,18 @@ body .sidebar-wrapper .nav li a p span {
 }
 
 .sidebar.sidebar-hr a.sidebar-expand:hover .sidebar-wrapper .nav li a p span {
-    display: block;
+    display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.sidebar.sidebar-hr a.sidebar-expand:hover .sidebar-wrapper .nav li a p span span {
+  width: 80% !important;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+display: block;
 }
 
 body .sidebar-wrapper .nav li a:before {
@@ -10678,9 +10686,9 @@ li.nav-item.dropdown.add_dropdown
 }
 
 .document-inner.list_document .doc_box.toggle-main a:first-child {
-    width: 90px;
-    height: 90px;
-    overflow: hidden;
+  width: 60px;
+  height: 58px;
+  overflow: hidden;
 }
 
 .document-inner.list_document .doc_box.toggle-main a:nth-child(2) {
@@ -10695,6 +10703,7 @@ li.nav-item.dropdown.add_dropdown
     width: 100%;
     align-items: center;
     flex-wrap: nowrap;
+    text-align: left;
 }
 
 .document-inner.list_document li.nav-item.dropdown.add_dropdown {

@@ -133,6 +133,20 @@
     display: none;
   }
 
+  ::ng-deep body  .mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 4px 4px 0 0 !important;
+    padding: 0.75em 0.75em 0 0.75em !important;
+}
+
+::ng-deep body .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: rgba(0,0,0,.04) !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0.25em 0 0.75em 0 !important;
+    width: 180px !important;
+}
+
   .grid-list .btn.btn-danger {
   background: none;
   border: none;
@@ -196,6 +210,8 @@ cursor: pointer;
    fill:#fff;
 }
 
+
+.grid-list svg rect { fill:#fff}
 
 
 
