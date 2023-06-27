@@ -1243,15 +1243,9 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                 }
             }
             this.courseForm.controls["visibility"].setValue(this.courseForm.value.visibility[0]?.item_id);
-            console.log(this.userSelected);
-            console.log(uniqueUsers);
-
             var uniqueUsers = this.authService.uniqueData(this.userSelected)
 
             this.courseForm.controls["course_users"].setValue(uniqueUsers);
-            console.log(uniqueUsers);
-            console.log(this.courseForm.controls["course_users"]);
-
             var date_from: string = this.courseForm.controls["date_from"].value;
             var start_time: string = this.courseForm.controls["start_time"].value;
             var date_to: string = this.courseForm.controls["date_to"].value;
@@ -1389,7 +1383,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             if (ifAuthor == 0) {
                                 self.userObj.push({ 'user_id': this.courseDetails.author, 'approved_status': 1 });
                             }
-                            console.log(this.userObj);
                             formData.append("course_users", JSON.stringify(this.userObj));
                         }
                         if (this.visibility == 3 && this.groupUserList != null) {

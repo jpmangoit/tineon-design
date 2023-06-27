@@ -55,10 +55,10 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     private activatedSub: Subscription;
     headline_word_option: number = 0
     selected_view:any = 0;
-    selected_order:any = 2;
+    selected_order:any = '2';
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
-    selected:any = 'option 3';
+    selected:any = '2';
 
     constructor(
         private lang: LanguageService,
@@ -68,31 +68,19 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     ) { }
 
     ngOnInit(): void {
-        console.log(this.selected_view);
-        console.log(localStorage.getItem('selectedView'));
-
         if (localStorage.getItem('selectedView') != null) {
             this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
-            console.log(this.selected_view);
         }
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
-            console.log(this.selected_view);
         });
-
-        console.log(localStorage.getItem('selectedDocOrder'));
-
         if (localStorage.getItem('selectedDocOrder') != null) {
-            this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
+            this.selected_order  = localStorage.getItem('selectedDocOrder');
         }
         this.selectedorder_subscrip = this.commonFunctionService.docViewOrder.subscribe((resp:any) => {
             this.selected_order  = resp;
-            this.ngOnInit();
+            // this.ngOnInit();
         });
-
-        console.log(this.selected_order );
-
         if (localStorage.getItem('club_theme') != null) {
             let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -207,7 +195,6 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     }
 
     selectDocView(view_id:any){
-        console.log(view_id);
         localStorage.setItem('selectedView', view_id);
         this.commonFunctionService.getSelectedDocView(view_id);
     }
@@ -219,6 +206,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
      */
         onSelectionChange(event:any){
             const selectedDocOrder = event.value;
+            this.selected_order = selectedDocOrder;
             localStorage.setItem('selectedDocOrder', selectedDocOrder);
             this.commonFunctionService.getSelectedDocOrder(selectedDocOrder);
         }

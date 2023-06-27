@@ -187,12 +187,10 @@ export class MyDocumentComponent implements OnInit {
         order_view(){
             if( this.selected_order == 1){
                 this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
-                console.log(this.final_myData);
-                }else if( this.selected_order == 2){
+            }else if( this.selected_order == 2){
                     this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
-                    console.log(this.final_myData);
-                }
-                this.getType();
+            }
+            this.getType();
         }
 
     /**
