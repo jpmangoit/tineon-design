@@ -1,5 +1,5 @@
 import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LanguageService } from '../../../service/language.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../service/auth-service.service';
@@ -11,6 +11,7 @@ import { LoginDetails } from 'src/app/models/login-details.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { DocumentsType, UploadDocVisibility } from 'src/app/models/documents-type.model';
 import { Extentions } from 'src/app/models/extentions.model';
+import { MatSelect } from '@angular/material/select';
 declare var $: any;
 
 @Component({
@@ -21,6 +22,8 @@ declare var $: any;
 
 export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     @Input() tabId;
+    @ViewChild(MatSelect) matSelect: MatSelect;
+
 
     language :any;
     userDetails: LoginDetails;
@@ -176,8 +179,41 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     selectDocView(view_id:any){
         console.log(view_id);
         localStorage.setItem('selectedView', view_id);
-        this.commonFunctionService.getSelectedDocView(view_id)
+        this.commonFunctionService.getSelectedDocView(view_id);
     }
+
+        /**
+     * Function to get the documents in the ascending & descending order
+     * @author  MangoIt Solutions
+     * @retuns it return the in the order wise documents
+     */
+        order_view(){
+            console.log(this.matSelect.value);
+            console.log($('#filter_events').val());
+            const selectedValue = this.matSelect.value;
+            console.log('Selected value:', selectedValue);
+            // console.log(view_id);
+            // localStorage.setItem('selectedView', view_id);
+            // this.commonFunctionService.getSelectedDocView(view_id);
+            if($('#filter_events').val() == 1){
+            //    this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+            }else if($('#filter_events').val() == 2){
+                // this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+            }
+            // this.getType();
+        }
+
+
+        onSelectionChange(event:any){
+            const selectedValue = event.value;
+            console.log('Selected value:', selectedValue);
+
+            if(selectedValue == 1){
+                //    this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+            }else if(selectedValue == 2){
+                // this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+            }
+        }
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
