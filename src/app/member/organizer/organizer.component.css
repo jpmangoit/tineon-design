@@ -33,7 +33,7 @@
     padding: 60px 40px;
 }
 
-::ng-deep body .mat-calendar-controls {
+body .mat-calendar-controls {
     margin-top: 2px !important;
 }
 
