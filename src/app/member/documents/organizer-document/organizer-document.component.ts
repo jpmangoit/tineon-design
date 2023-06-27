@@ -55,6 +55,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     private activatedSub: Subscription;
     headline_word_option: number = 0
     selected_view:any = 0;
+      private selectedView_subscrip:Subscription;
 
     constructor(
         private lang: LanguageService,
@@ -64,6 +65,22 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     ) { }
 
     ngOnInit(): void {
+        console.log(this.selected_view);
+        console.log(localStorage.getItem('selectedView'));
+
+        if (localStorage.getItem('selectedView') != null) {
+            this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
+            console.log(this.selected_view);
+        }else{
+            console.log(this.selected_view);
+        }
+
+        this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
+            console.log(resp);
+            this.selected_view  = resp;
+            console.log(this.selected_view);
+        });
+
         if (localStorage.getItem('club_theme') != null) {
             let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
