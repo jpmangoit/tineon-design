@@ -69,9 +69,9 @@
 
     </div>
     <div class="cal-container-right">
-        <div class="calender">
+        <div class="calender">            
             <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [(selected)]="selectedDate" (click)="onDateClick(selectedDate) "></mat-calendar>
+                <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="selectedDate" (click)="onDateClick(selectedDate)"></mat-calendar>
             </mat-card>
         </div>
         <h2>{{ selectedDate | date: 'EEEE, d. MMMM'}}</h2>

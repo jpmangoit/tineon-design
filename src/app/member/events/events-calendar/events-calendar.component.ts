@@ -63,7 +63,9 @@ export class EventsCalendarComponent implements OnInit {
     currentUrl:string;
     filterOpt:boolean = false;
     headline_word_option: number = 0;
-
+    minDate: Date;
+    maxDate: Date;
+    
     constructor(
         private authService: AuthServiceService,
         private datePipe: DatePipe,
@@ -75,6 +77,10 @@ export class EventsCalendarComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        const currentYear = new Date().getFullYear();
+        this.minDate = new Date(currentYear - 1, 0, 1);
+        this.maxDate = new Date(currentYear + 1, 11, 2);
+        
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
