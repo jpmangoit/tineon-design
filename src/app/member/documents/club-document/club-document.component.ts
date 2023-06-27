@@ -91,9 +91,9 @@ export class ClubDocumentComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    let cData:DocumentsType[] = respData;
-                    this.clubData = cData.sort((a,b) => b.id - a.id);
-
+                    // let cData:DocumentsType[] = respData;
+                    // this.clubData = cData.sort((a,b) => b.id - a.id);
+                    this.clubData = respData;
                     this.clubData.forEach(item => {
                         const fileName = item.doc_name;
                         const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
@@ -109,13 +109,12 @@ export class ClubDocumentComponent implements OnInit {
                     });
 
                     if (this.clubData.length) {
-                        this.fileFilter('all')
+                        this.fileFilter('all');
                     }
                 }
             );
         }
     }
-
 
     fileFilter(fileType:any){
         this.final_clubData = [];
@@ -148,9 +147,23 @@ export class ClubDocumentComponent implements OnInit {
             this.final_clubData = this.clubData
         }
         if (this.final_clubData.length > 0) {
-            this.getType();
+            this.order_view();
         }
     }
+
+    /**
+     * Function to get the documents in the ascending & descending order
+     * @author  MangoIt Solutions
+     * @retuns it return the in the order wise documents
+     */
+        order_view(){
+            if($('#filter_events').val() == 1){
+                this.final_clubData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+            }else if($('#filter_events').val() == 2){
+                this.final_clubData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+            }
+            this.getType();
+        }
 
     /**
      * Function to check the type of the document

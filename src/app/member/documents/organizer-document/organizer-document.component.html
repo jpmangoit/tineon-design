@@ -59,21 +59,17 @@
                 </div> -->
             </div>
 
-            <div class="tab-content" >
-                <div class="tab-pane" id="tabs-2" role="tabpanel" *ngIf="displayMyDocument == true"
-                    [ngClass]="displayMyDocument == true ? 'active' : ''">
+            <div class="tab-content"  [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
+                <div class="tab-pane" id="tabs-2" role="tabpanel" *ngIf="displayMyDocument == true" [ngClass]="displayMyDocument == true ? 'active' : ''">
                     <app-my-document ></app-my-document>
                 </div>
-                <div class="tab-pane" id="tabs-4" role="tabpanel" *ngIf="displayClubDocument == true"
-                    [ngClass]="displayClubDocument == true ? 'active' : ''">
+                <div class="tab-pane" id="tabs-4" role="tabpanel" *ngIf="displayClubDocument == true" [ngClass]="displayClubDocument == true ? 'active' : ''">
                     <app-club-document></app-club-document>
                 </div>
-                <div class="tab-pane" id="tabs-5" role="tabpanel" *ngIf="displayCurrentStatus == true"
-                    [ngClass]="displayCurrentStatus == true ? 'active' : ''">
+                <div class="tab-pane" id="tabs-5" role="tabpanel" *ngIf="displayCurrentStatus == true"[ngClass]="displayCurrentStatus == true ? 'active' : ''">
                     <app-current-status-document></app-current-status-document>
                 </div>
-                <div class="tab-pane" id="tabs-6" role="tabpanel" *ngIf="displayArchivedDocument == true"
-                    [ngClass]="displayArchivedDocument == true ? 'active' : ''">
+                <div class="tab-pane" id="tabs-6" role="tabpanel" *ngIf="displayArchivedDocument == true" [ngClass]="displayArchivedDocument == true ? 'active' : ''">
                     <app-archived-document></app-archived-document>
                 </div>
             </div>
