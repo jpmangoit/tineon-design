@@ -8,6 +8,8 @@ import { Extentions } from 'src/app/models/extentions.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { saveAs } from 'file-saver';
+import { Subscription } from 'rxjs';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 declare var $: any;
 declare var require: any
@@ -39,15 +41,21 @@ export class CurrentStatusDocumentComponent implements OnInit {
     selected_view:number = 0;
     final_currentData: DocumentsType[];
     active_class: any = '';
+    private selectedView_subscrip:Subscription;
 
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private commonFunctionService: CommonFunctionService
 
     ) { }
 
     ngOnInit(): void {
+        this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
+            console.log(resp);
+            this.selected_view  = resp;
+        });
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
@@ -312,6 +320,10 @@ export class CurrentStatusDocumentComponent implements OnInit {
 
     selectView(view_id:number){
         this.selected_view = view_id;
+    }
+
+    ngOnDestroy(): void {
+        this.selectedView_subscrip.unsubscribe();
     }
 
 }

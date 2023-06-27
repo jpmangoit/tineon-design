@@ -44,27 +44,18 @@
                     </li>
                 </ul>
 
-                <!-- <div>
-                    <button class="btn btn-danger" (click)="selectView(0)">Grid View</button>
-                    <button class="btn btn-danger" (click)="selectView(1)">List View</button>
-                    <div class="filter-events">
-                        <mat-form-field appearance="fill">
-                            <mat-label>{{language.courses.filter}}</mat-label>
-                            <select matNativeControl id="filter_events">
-                                <option selected value="1">Sort by Date</option>
-                                <option value="2">Sort by Data Type</option>
-                            </select>
-                        </mat-form-field>
-                    </div>
-                </div> -->
+                <div>
+                    <button class="btn btn-danger" (click)="selectDocView(0)">Grid View</button>
+                    <button class="btn btn-danger" (click)="selectDocView(1)">List View</button>
+                </div>
             </div>
 
-            <div class="tab-content"  [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
+            <div class="tab-content">
                 <div class="tab-pane" id="tabs-2" role="tabpanel" *ngIf="displayMyDocument == true" [ngClass]="displayMyDocument == true ? 'active' : ''">
                     <app-my-document ></app-my-document>
                 </div>
                 <div class="tab-pane" id="tabs-4" role="tabpanel" *ngIf="displayClubDocument == true" [ngClass]="displayClubDocument == true ? 'active' : ''">
-                    <app-club-document></app-club-document>
+                    <app-club-document ></app-club-document>
                 </div>
                 <div class="tab-pane" id="tabs-5" role="tabpanel" *ngIf="displayCurrentStatus == true"[ngClass]="displayCurrentStatus == true ? 'active' : ''">
                     <app-current-status-document></app-current-status-document>

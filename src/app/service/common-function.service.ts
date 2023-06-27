@@ -18,14 +18,37 @@ export class CommonFunctionService {
     selectLanguage: string;
     changeHeadline:any = new Subject()
     changeMobileTheme:any = new Subject()
+    docViewOption:any = new Subject();
 
     constructor(private authService: AuthServiceService, private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,) { }
 
 
+     /**
+     * Function is used to set the view(list/grid) of the documents
+     * @author MangoIt Solutions (M)
+     * @param {number}
+     */
+    getSelectedDocView(view_id:number){
+        console.log(view_id);
+        this.docViewOption.next(view_id);
+    }
+
+    /**
+     * Function is used to set the value of Headlines wording
+     * @author MangoIt Solutions (M)
+     * @param {number}
+     */
+    getChangeHeadline(changeHeadlineOption:string){
+        this.changeHeadline.next(changeHeadlineOption);
+    }
+
+    getChangeMobileTheme(changeMobileThemeOption:string){
+        this.changeMobileTheme.next(changeMobileThemeOption);
+    }
 
     // Function to convert time to required format
-    convertTime(time) {
+       convertTime(time) {
         const parts = time.split(":");
         // Remove seconds if present
         if (parts.length > 2) {
@@ -48,18 +71,6 @@ export class CommonFunctionService {
     }
 
 
-    /**
-     * Function is used to set the value of Headlines wording
-     * @author MangoIt Solutions (M)
-     * @param {number}
-     */
-    getChangeHeadline(changeHeadlineOption:string){
-        this.changeHeadline.next(changeHeadlineOption);
-    }
-
-    getChangeMobileTheme(changeMobileThemeOption:string){
-        this.changeMobileTheme.next(changeMobileThemeOption);
-    }
     /**
      * Function for the get particular users profile Information
      * @author MangoIt Solutions (M)
@@ -280,10 +291,10 @@ export class CommonFunctionService {
 
         let height = 500;
         let width  = height * imgWidth / imgHeight;
-        
+
         let aspectRatio = (imgHeight / imgWidth);
 
-        width = imgWidth; 
+        width = imgWidth;
         height = imgHeight;
 
         let ratio = (width == imgWidth && height == imgHeight)? 100 :aspectRatio*100;

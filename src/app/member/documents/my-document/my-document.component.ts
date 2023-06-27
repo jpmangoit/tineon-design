@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LanguageService } from '../../../service/language.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { LoginDetails } from 'src/app/models/login-details.model';
 import { DocumentsType, UploadDocVisibility } from 'src/app/models/documents-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { saveAs } from 'file-saver';
+import { Subscription } from 'rxjs';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 declare var $: any;
 declare var require: any
@@ -38,7 +40,7 @@ export class MyDocumentComponent implements OnInit {
     documentData: any;
     dowloading: boolean = false;
 
-    selected_view:number = 0;
+    selected_view:any;
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
     imgExtanis = ["jpg","png","jpeg","gif", "webp"];
@@ -49,17 +51,25 @@ export class MyDocumentComponent implements OnInit {
     otherData = [];
     final_myData: DocumentsType[];
     active_class: any = '';
+    private selectedView_subscrip:Subscription;
 
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
-        private _router: Router,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private commonFunctionService: CommonFunctionService
 
     ) { }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
+        this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
+            console.log(resp);
+            this.selected_view  = resp;
+            console.log(this.selected_view);
+        });
+
+
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.uploadDocVisibility = appSetting.uploadDocument;
@@ -361,6 +371,11 @@ export class MyDocumentComponent implements OnInit {
 
     selectView(view_id:number){
         this.selected_view = view_id;
+    }
+
+
+    ngOnDestroy(): void {
+        this.selectedView_subscrip.unsubscribe();
     }
 
 }

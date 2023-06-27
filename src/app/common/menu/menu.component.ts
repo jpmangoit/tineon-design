@@ -90,10 +90,6 @@ export class MenuComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy(): void {
-        this.activatedSub.unsubscribe();
-    }
-
     dropDown1() {
         $('.toggleSubmenu1').next('ul').toggleClass('show');
         this.open_clubTool = !this.open_clubTool;
@@ -152,5 +148,10 @@ export class MenuComponent implements OnInit, OnDestroy {
     isValue: number = 0;
     toggle(num: number) {
          this.isValue = num;
+    }
+
+    ngOnDestroy(): void {
+        this.activatedSub.unsubscribe();
+        this.activatedHeadline.unsubscribe();
     }
 }

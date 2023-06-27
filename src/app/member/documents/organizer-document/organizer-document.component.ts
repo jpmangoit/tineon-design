@@ -1,3 +1,4 @@
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LanguageService } from '../../../service/language.service';
 import { Router } from '@angular/router';
@@ -23,8 +24,6 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
 
     language :any;
     userDetails: LoginDetails;
-    selected_view: number = 0;
-;
     userAccess: UserAccess;
     createAccess: CreateAccess;
     participateAccess: ParticipateAccess;
@@ -56,7 +55,8 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
-        private _router: Router,private themes: ThemeService
+        private _router: Router,private themes: ThemeService,
+        private commonFunctionService: CommonFunctionService
     ) { }
 
     ngOnInit(): void {
@@ -173,8 +173,9 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         }
     }
 
-    selectView(view_id:number){
-        this.selected_view = view_id;
+    selectDocView(view_id:number){
+        console.log(view_id);
+        this.commonFunctionService.getSelectedDocView(view_id)
     }
 
     ngOnDestroy(): void {
