@@ -78,27 +78,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         console.log(localStorage.getItem('token'));
-        console.log(localStorage.getItem('club_theme'));
-
-        // setInterval(() => {
-        //     if (localStorage.getItem('token') != null) {
-        //      this.refreshTokens();
-        //     }
-        // }, 5000);
 
         if (localStorage.getItem('token') != null) {
-            interval(10000).pipe(take(1)).subscribe(() => {
+            interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
+             .subscribe(() => {
                 this.refreshTokens();
               });
         }
-
-        // if (localStorage.getItem('token') != null) {
-        //     setInterval(this.refreshTokens(),10000)
-        //     // interval(25 * 60 * 1000).pipe(take(1))   // it will run every 25 minute
-        //     //  .subscribe(() => {
-        //     //     this.refreshTokens();
-        //     //   });
-        // }
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -155,23 +141,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     refreshTokens(){
+        console.log(localStorage.getItem('token'));
+        console.log(localStorage.getItem('refresh_token'));
         const refreshToken = localStorage.getItem('refresh_token');
-        console.log(refreshToken);
-        let self = this;
         let data:any = {
-                refresh_token : refreshToken
+            refresh_token : refreshToken
         }
-
         this.authService.memberSendRequest('post', 'refresh-token', data)
         .subscribe(
             (respData: any) => {
                 console.log(respData);
                 if (respData['isError'] == false) {
                     this.authService.setLoader(false);
-                    // const newAccessToken = respData.access_token;
-                    // const newRefreshToken = respData.refresh_token;
-                    // localStorage.setItem('token', newAccessToken);
-                    // localStorage.setItem('refresh_token', newRefreshToken);
+                    // localStorage.setItem('token','');
+                    // localStorage.setItem('refresh_token','');
+                    if(respData['access_token']){
+                        sessionStorage.setItem('token', respData['result']['access_token']);
+                        localStorage.setItem('token', respData['result']['access_token']);
+                    }
+                    if(respData['refresh_token']){
+                        sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                        localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    }
+                    console.log(localStorage.getItem('token'));
+                    console.log(localStorage.getItem('refresh_token'));
                 } else if (respData['code'] == 400 || respData['code'] == 404) {
                     this.authService.setLoader(false);
                 };

@@ -62,13 +62,13 @@
                             <rect x="4" y="10" width="12" height="3" fill="white"/>
                        </svg>
                     </button>
-               
+
                 <div>
                     <mat-form-field appearance="fill">
                         <mat-label>{{language.courses.filter}}</mat-label>
-                        <mat-select matNativeControl (selectionChange)="onSelectionChange($event)">
+                        <mat-select matNativeControl [(value)]="selected_order" (selectionChange)="onSelectionChange($event)">
                             <mat-option  value="1" >{{language.club_document.asending}}</mat-option>
-                            <mat-option selected value="2" >{{language.club_document.descending}}</mat-option>
+                            <mat-option  value="2" >{{language.club_document.descending}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

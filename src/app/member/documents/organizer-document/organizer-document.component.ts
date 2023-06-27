@@ -55,7 +55,9 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     private activatedSub: Subscription;
     headline_word_option: number = 0
     selected_view:any = 0;
-      private selectedView_subscrip:Subscription;
+    selected_order:any = 2;
+    private selectedView_subscrip:Subscription;
+    private selectedorder_subscrip:Subscription;
 
     constructor(
         private lang: LanguageService,
@@ -71,15 +73,24 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         if (localStorage.getItem('selectedView') != null) {
             this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
             console.log(this.selected_view);
-        }else{
-            console.log(this.selected_view);
         }
-
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
             console.log(resp);
             this.selected_view  = resp;
             console.log(this.selected_view);
         });
+
+        console.log(localStorage.getItem('selectedDocOrder'));
+
+        if (localStorage.getItem('selectedDocOrder') != null) {
+            this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
+        }
+        this.selectedorder_subscrip = this.commonFunctionService.docViewOrder.subscribe((resp:any) => {
+            this.selected_order  = resp;
+            this.ngOnInit();
+        });
+
+        console.log(this.selected_order );
 
         if (localStorage.getItem('club_theme') != null) {
             let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
@@ -207,17 +218,19 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
      */
         onSelectionChange(event:any){
             const selectedDocOrder = event.value;
-            console.log(selectedDocOrder);
             localStorage.setItem('selectedDocOrder', selectedDocOrder);
             this.commonFunctionService.getSelectedDocOrder(selectedDocOrder);
         }
 
+        selectView(view_id:number){
+            // this.selected_view = view_id;
+        }
+
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
+        this.selectedView_subscrip.unsubscribe();
+        this.selectedorder_subscrip.unsubscribe();
     }
 
-    selectView(view_id:number){
-        // this.selected_view = view_id;
-    }
 
 }
