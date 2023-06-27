@@ -182,37 +182,16 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         this.commonFunctionService.getSelectedDocView(view_id);
     }
 
-        /**
+    /**
      * Function to get the documents in the ascending & descending order
      * @author  MangoIt Solutions
      * @retuns it return the in the order wise documents
      */
-        order_view(){
-            console.log(this.matSelect.value);
-            console.log($('#filter_events').val());
-            const selectedValue = this.matSelect.value;
-            console.log('Selected value:', selectedValue);
-            // console.log(view_id);
-            // localStorage.setItem('selectedView', view_id);
-            // this.commonFunctionService.getSelectedDocView(view_id);
-            if($('#filter_events').val() == 1){
-            //    this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
-            }else if($('#filter_events').val() == 2){
-                // this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
-            }
-            // this.getType();
-        }
-
-
         onSelectionChange(event:any){
-            const selectedValue = event.value;
-            console.log('Selected value:', selectedValue);
-
-            if(selectedValue == 1){
-                //    this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
-            }else if(selectedValue == 2){
-                // this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
-            }
+            const selectedDocOrder = event.value;
+            console.log(selectedDocOrder);
+            localStorage.setItem('selectedDocOrder', selectedDocOrder);
+            this.commonFunctionService.getSelectedDocOrder(selectedDocOrder);
         }
 
     ngOnDestroy(): void {

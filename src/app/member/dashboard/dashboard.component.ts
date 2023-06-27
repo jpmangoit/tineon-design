@@ -4,7 +4,7 @@ import { LanguageService } from '../../service/language.service';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
@@ -13,6 +13,7 @@ import { CrmSurvey } from 'src/app/models/crm-survey.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from 'src/app/service/notification.service';
+import { take } from 'rxjs/operators';
 declare var $: any;
 @Component({
     selector: 'app-dashboard',
@@ -76,6 +77,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService, private sanitizer: DomSanitizer, public formBuilder: UntypedFormBuilder) { }
 
     ngOnInit(): void {
+        console.log(localStorage.getItem('token'));
+        console.log(localStorage.getItem('club_theme'));
+
+        // setInterval(() => {
+        //     if (localStorage.getItem('token') != null) {
+        //      this.refreshTokens();
+        //     }
+        // }, 5000);
+
+        if (localStorage.getItem('token') != null) {
+            interval(10000).pipe(take(1)).subscribe(() => {
+                this.refreshTokens();
+              });
+        }
+
+        // if (localStorage.getItem('token') != null) {
+        //     setInterval(this.refreshTokens(),10000)
+        //     // interval(25 * 60 * 1000).pipe(take(1))   // it will run every 25 minute
+        //     //  .subscribe(() => {
+        //     //     this.refreshTokens();
+        //     //   });
+        // }
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -129,6 +152,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if(this.allowAdvertisment == 0){
             this.getDesktopDeshboardBanner();
         }
+    }
+
+    refreshTokens(){
+        const refreshToken = localStorage.getItem('refresh_token');
+        console.log(refreshToken);
+        let self = this;
+        let data:any = {
+                refresh_token : refreshToken
+        }
+
+        this.authService.memberSendRequest('post', 'refresh-token', data)
+        .subscribe(
+            (respData: any) => {
+                console.log(respData);
+                if (respData['isError'] == false) {
+                    this.authService.setLoader(false);
+                    // const newAccessToken = respData.access_token;
+                    // const newRefreshToken = respData.refresh_token;
+                    // localStorage.setItem('token', newAccessToken);
+                    // localStorage.setItem('refresh_token', newRefreshToken);
+                } else if (respData['code'] == 400 || respData['code'] == 404) {
+                    this.authService.setLoader(false);
+                };
+            },
+            (error: any) => {
+              // Handle error if token refresh fails
+            }
+        );
     }
 
     /**

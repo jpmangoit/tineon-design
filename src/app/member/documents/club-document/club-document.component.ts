@@ -39,9 +39,11 @@ export class ClubDocumentComponent implements OnInit {
     documentData: any;
     dowloading: boolean = false;
     selected_view:any = 0;
+    selected_order:any = 2;
     final_clubData: DocumentsType[];
     active_class: any = '';
     private selectedView_subscrip:Subscription;
+    private selectedorder_subscrip:Subscription;
 
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
@@ -66,6 +68,15 @@ export class ClubDocumentComponent implements OnInit {
         if (localStorage.getItem('selectedView') != null) {
             this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
         }
+
+        this.selectedorder_subscrip = this.commonFunctionService.docViewOrder.subscribe((resp:any) => {
+            this.selected_order  = resp;
+            this.ngOnInit();
+        });
+        if (localStorage.getItem('selectedDocOrder') != null) {
+            this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
+        }
+
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
@@ -167,9 +178,9 @@ export class ClubDocumentComponent implements OnInit {
      * @retuns it return the in the order wise documents
      */
         order_view(){
-            if($('#filter_events').val() == 1){
+            if( this.selected_order == 1){
                 this.final_clubData.sort((a, b) => a.created_at.localeCompare(b.created_at));
-            }else if($('#filter_events').val() == 2){
+            }else if( this.selected_order == 2){
                 this.final_clubData.sort((a, b) => b.created_at.localeCompare(a.created_at));
             }
             this.getType();
@@ -347,6 +358,7 @@ export class ClubDocumentComponent implements OnInit {
 
     ngOnDestroy(): void {
         this.selectedView_subscrip.unsubscribe();
+        this.selectedorder_subscrip.unsubscribe();
     }
 
 }

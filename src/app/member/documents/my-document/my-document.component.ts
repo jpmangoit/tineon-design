@@ -40,7 +40,7 @@ export class MyDocumentComponent implements OnInit {
     documentData: any;
     dowloading: boolean = false;
 
-    selected_view:any = 0;
+
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
     imgExtanis = ["jpg","png","jpeg","gif", "webp"];
@@ -51,7 +51,10 @@ export class MyDocumentComponent implements OnInit {
     otherData = [];
     final_myData: DocumentsType[];
     active_class: any = '';
+    selected_view:any = 0;
+    selected_order:any = 2;
     private selectedView_subscrip:Subscription;
+    private selectedorder_subscrip:Subscription;
 
     constructor(
         private lang: LanguageService,
@@ -63,22 +66,20 @@ export class MyDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
-        console.log(this.selected_view);
-        console.log(localStorage.getItem('selectedView'));
-
         if (localStorage.getItem('selectedView') != null) {
             this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
-            console.log(this.selected_view);
-        }else{
-            console.log(this.selected_view);
         }
-
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
-            console.log(this.selected_view);
         });
 
+        if (localStorage.getItem('selectedDocOrder') != null) {
+            this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
+        }
+        this.selectedorder_subscrip = this.commonFunctionService.docViewOrder.subscribe((resp:any) => {
+            this.selected_order  = resp;
+            this.ngOnInit();
+        });
 
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
@@ -184,12 +185,14 @@ export class MyDocumentComponent implements OnInit {
      * @retuns it return the in the order wise documents
      */
         order_view(){
-            if($('#filter_events').val() == 1){
-               this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
-            }else if($('#filter_events').val() == 2){
-                this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
-            }
-            this.getType();
+            if( this.selected_order == 1){
+                this.final_myData.sort((a, b) => a.created_at.localeCompare(b.created_at));
+                console.log(this.final_myData);
+                }else if( this.selected_order == 2){
+                    this.final_myData.sort((a, b) => b.created_at.localeCompare(a.created_at));
+                    console.log(this.final_myData);
+                }
+                this.getType();
         }
 
     /**
@@ -386,6 +389,7 @@ export class MyDocumentComponent implements OnInit {
 
     ngOnDestroy(): void {
         this.selectedView_subscrip.unsubscribe();
+        this.selectedorder_subscrip.unsubscribe();
     }
 
 }

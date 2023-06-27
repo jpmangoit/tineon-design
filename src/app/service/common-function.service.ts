@@ -19,6 +19,7 @@ export class CommonFunctionService {
     changeHeadline:any = new Subject()
     changeMobileTheme:any = new Subject()
     docViewOption:any = new Subject();
+    docViewOrder:any = new Subject();
 
     constructor(private authService: AuthServiceService, private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,) { }
@@ -32,6 +33,16 @@ export class CommonFunctionService {
     getSelectedDocView(view_id:number){
         console.log(view_id);
         this.docViewOption.next(view_id);
+    }
+
+    /**
+     * Function is used to set the view(ascending/descending) of the documents
+     * @author MangoIt Solutions (M)
+     * @param {number}
+     */
+    getSelectedDocOrder(selectedDocOrder:any){
+        console.log(selectedDocOrder);
+        this.docViewOrder.next(selectedDocOrder);
     }
 
     /**

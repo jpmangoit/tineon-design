@@ -7,7 +7,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { ClubTheme, LoginDetails } from 'src/app/models/login-details.model';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
+import { interval } from 'rxjs';
 declare var $: any;
 @Component({
     selector: 'app-login',
@@ -81,13 +82,18 @@ export class LoginComponent implements OnInit {
             this.authService.sendRequest('post', 'login-keycloak', this.loginForm.value)
                 .subscribe(
                     (respData: LoginDetails) => {
+                        console.log(respData);
+
                         this.loginsubmitted = false;
                         this.validError = false;
                         var club_id = respData.team_id;
                         if (respData['access_token']) {
                             this.tokenn = respData['access_token'];
                             sessionStorage.setItem('token', respData['access_token']);
+                            sessionStorage.setItem('refresh_token', respData['refresh_token']);
                             localStorage.setItem('token', respData['access_token']);
+                            localStorage.setItem('refresh_token', respData['refresh_token']);
+
                             localStorage.setItem('user-id', respData['userId']);
                             localStorage.setItem('allowAdvertis', respData['allowAdvertis']);
                             localStorage.setItem('headlineOption', respData['headlineOption']);
