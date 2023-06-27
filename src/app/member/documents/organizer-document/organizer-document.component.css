@@ -178,7 +178,7 @@
     height: 26px;
 }
 
-
+.grid-list svg rect { fill:#fff}
 .tasks_navigation .grid-list  {
   display: flex;
   flex-wrap: nowrap;
