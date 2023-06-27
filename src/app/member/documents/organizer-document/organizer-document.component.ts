@@ -54,6 +54,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     archivedDocFileNameArr: string[] = [];
     private activatedSub: Subscription;
     headline_word_option: number = 0
+    selected_view:any = 0;
 
     constructor(
         private lang: LanguageService,
@@ -218,4 +219,9 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }
+
+    selectView(view_id:number){
+        // this.selected_view = view_id;
+    }
+
 }

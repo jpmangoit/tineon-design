@@ -1,36 +1,7 @@
 <div class="card-body ">
     <!-- <div class="alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div> -->
     <div class="document-inner list_document">
-        <div class="grid-list">
-            <button class="btn btn-danger" [ngClass]=" selected_view == 0 ? 'active' : ''" (click)="selectView(0)">
-
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="20" height="20" rx="2" fill="#E4E4E4"/>
-                    <rect x="5" y="5" width="4" height="4" fill="white"/>
-                    <rect x="11" y="5" width="4" height="4" fill="white"/>
-                    <rect x="5" y="11" width="4" height="4" fill="white"/>
-                    <rect x="11" y="11" width="4" height="4" fill="white"/>
-                </svg>
-
-            </button>
-            <button class="btn btn-danger" [ngClass]=" selected_view == 1 ? 'active' : ''" (click)="selectView(1)">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="20" height="20" rx="2" fill="#FFBE00"/>
-                    <rect x="4" y="5" width="8" height="3" fill="white"/>
-                    <rect x="4" y="10" width="12" height="3" fill="white"/>
-                </svg>
-
-            </button>
-            <div class="filter-events">
-                <mat-form-field appearance="fill">
-                    <mat-label>{{language.courses.filter}}</mat-label>
-                    <mat-select matNativeControl id="filter_events" (click)="order_view()">
-                        <mat-option  value="1" >{{language.club_document.asending}}</mat-option>
-                        <mat-option selected value="2" >{{language.club_document.descending}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
+        
         <div>
             <ul>
                 <li (click)="fileFilter('all')" [ngClass]="active_class == 'all'? 'activeClass' : ''"> <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">

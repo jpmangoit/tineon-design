@@ -175,6 +175,14 @@ cursor: pointer;
         flex: 0 0 100%;
         position: relative;
     }
+
+    
+}
+
+@media(max-width:767px) {
+  ::ng-deep .document-inner.list_document > div > ul {
+        overflow: auto;
+    }
 }
 
 

@@ -206,6 +206,13 @@ cursor: pointer;
     -webkit-animation: loading 7s infinite;
             animation: loading 5s infinite;
   }
+
+  @media(max-width:767px) {
+  ::ng-deep .document-inner.list_document > div > ul {
+        overflow: auto;
+    }
+}
+
   @-webkit-keyframes loading {
     0% {
       width: 0;
