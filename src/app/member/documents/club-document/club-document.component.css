@@ -48,6 +48,8 @@
 }
 
 
+
+
 .loading {
     left: 50%;
     top: 50%;
@@ -203,7 +205,11 @@ cursor: pointer;
    fill:#fff;
 }
 
-
+@media(max-width:767px) {
+  ::ng-deep .document-inner.list_document > div > ul {
+        overflow: auto;
+    }
+}
 
 
 /* end grid list doc-css 26-06-2023 */

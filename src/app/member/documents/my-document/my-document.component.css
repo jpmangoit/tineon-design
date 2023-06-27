@@ -214,6 +214,12 @@ cursor: pointer;
 .grid-list svg rect { fill:#fff}
 
 
+@media(max-width:767px) {
+  ::ng-deep .document-inner.list_document > div > ul {
+        overflow: auto;
+    }
+}
+
 
 /* end grid list doc-css 26-06-2023 */
 
