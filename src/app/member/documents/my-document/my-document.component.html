@@ -21,16 +21,16 @@
                 </svg>
 
             </button>
-            <div class="filter-events">
+            <div>
                 <mat-form-field appearance="fill">
                     <mat-label>{{language.courses.filter}}</mat-label>
-                    <select matNativeControl id="filter_events" (click)="order_view()">
-                        <option  value="1" >{{language.club_document.asending}}</option>
-                        <option selected value="2" >{{language.club_document.descending}}</option>
-                    </select>
+                    <mat-select matNativeControl id="filter_events" (click)="order_view()">
+                        <mat-option  value="1" >{{language.club_document.asending}}</mat-option>
+                        <mat-option selected value="2" >{{language.club_document.descending}}</mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
-        </div>
+       </div>
         <div>
             <ul>
                 <li (click)="fileFilter('all')" [ngClass]="active_class == 'all'? 'activeClass' : ''"> <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">

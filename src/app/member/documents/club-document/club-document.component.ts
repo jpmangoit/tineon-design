@@ -38,7 +38,7 @@ export class ClubDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
-    selected_view:any;
+    selected_view:any = 0;
     final_clubData: DocumentsType[];
     active_class: any = '';
     private selectedView_subscrip:Subscription;
@@ -61,11 +61,11 @@ export class ClubDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
-            console.log( this.selected_view);
         });
-
+        if (localStorage.getItem('selectedView') != null) {
+            this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
+        }
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
@@ -342,11 +342,11 @@ export class ClubDocumentComponent implements OnInit {
     }
 
     selectView(view_id:number){
-        this.selected_view = view_id;
+        // this.selected_view = view_id;
     }
 
-    // ngOnDestroy(): void {
-    //     this.selectedView_subscrip.unsubscribe();
-    // }
+    ngOnDestroy(): void {
+        this.selectedView_subscrip.unsubscribe();
+    }
 
 }

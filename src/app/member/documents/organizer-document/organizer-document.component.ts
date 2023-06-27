@@ -173,8 +173,9 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         }
     }
 
-    selectDocView(view_id:number){
+    selectDocView(view_id:any){
         console.log(view_id);
+        localStorage.setItem('selectedView', view_id);
         this.commonFunctionService.getSelectedDocView(view_id)
     }
 

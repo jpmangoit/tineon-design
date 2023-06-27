@@ -40,7 +40,7 @@ export class MyDocumentComponent implements OnInit {
     documentData: any;
     dowloading: boolean = false;
 
-    selected_view:any;
+    selected_view:any = 0;
     zipExtanis = ["zip"];
     docExtanis = ["ppt","pptx","pdf","docx","docs","txt","xls","xlsx"];
     imgExtanis = ["jpg","png","jpeg","gif", "webp"];
@@ -63,6 +63,16 @@ export class MyDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
+        console.log(this.selected_view);
+        console.log(localStorage.getItem('selectedView'));
+
+        if (localStorage.getItem('selectedView') != null) {
+            this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
+            console.log(this.selected_view);
+        }else{
+            console.log(this.selected_view);
+        }
+
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
             console.log(resp);
             this.selected_view  = resp;
@@ -370,7 +380,7 @@ export class MyDocumentComponent implements OnInit {
     }
 
     selectView(view_id:number){
-        this.selected_view = view_id;
+        // this.selected_view = view_id;
     }
 
 

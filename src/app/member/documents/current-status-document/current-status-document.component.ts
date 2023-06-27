@@ -53,9 +53,11 @@ export class CurrentStatusDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
         });
+        if (localStorage.getItem('selectedView') != null) {
+            this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
+        }
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
