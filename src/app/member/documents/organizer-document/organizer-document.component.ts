@@ -58,6 +58,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
     selected_order:any = 2;
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
+    selected:any = 'option 3';
 
     constructor(
         private lang: LanguageService,
