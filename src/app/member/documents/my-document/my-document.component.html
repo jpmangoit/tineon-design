@@ -27,11 +27,12 @@
         </div>
         <div class="document-main" [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
             <!-- document box -->
-            <div class="document-item" *ngFor="let doc of myData; let i = index">
+            <div class="document-item" *ngFor="let doc of final_myData; let i = index">
                 <div class="doc_box toggle-main">
                     <a (click)="download(doc.doc_name)"> <img onContextMenu="return false;"
                             [src]="extArr[i]? docExt[i] :'../../../../assets/img/doc-icons/image_icon.png'" alt="" loading="lazy"></a>
-                    <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a>
+                            <a (click)="download(doc.doc_name)"> <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span> </a>
+                            <!-- <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a> -->
                     <nav class="navbar navbar-absolute fixed-top">
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="navbar-nav">
@@ -85,8 +86,8 @@
             </div>
             <!-- document box end-->
         </div>
-        <div *ngIf="myData">
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="myData.length == 0">
+        <div *ngIf="final_myData">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="final_myData.length == 0">
                 <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_document.no_documents}}" loading="lazy"><br> -->
                 <span>{{language.club_document.no_documents}}</span>
             </div>

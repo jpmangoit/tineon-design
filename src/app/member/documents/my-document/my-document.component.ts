@@ -237,8 +237,6 @@ export class MyDocumentComponent implements OnInit {
     }
 
 
-
-
     /**
     * Function to check the Accessbility who can upload or move the documents
     * @author  MangoIt Solutions
