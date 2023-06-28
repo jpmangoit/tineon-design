@@ -155,17 +155,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 console.log(respData);
                 if (respData['isError'] == false) {
                     this.authService.setLoader(false);
-                    // localStorage.setItem('token','');
-                    // localStorage.setItem('refresh_token','');
-                        sessionStorage.setItem('token', respData['result']['access_token']);
-                        localStorage.setItem('token', respData['result']['access_token']);
-
-                        sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                        localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    sessionStorage.setItem('token', respData['result']['access_token']);
+                    localStorage.setItem('token', respData['result']['access_token']);
+                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
 
                     console.log('New Access Token');
                     console.log(localStorage.getItem('token'));
-
                     console.log('New Refresh Token');
                     console.log(localStorage.getItem('refresh_token'));
 
