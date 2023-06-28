@@ -31,7 +31,6 @@ export class CommonFunctionService {
      * @param {number}
      */
     getSelectedDocView(view_id:number){
-        console.log(view_id);
         this.docViewOption.next(view_id);
     }
 
@@ -41,7 +40,6 @@ export class CommonFunctionService {
      * @param {number}
      */
     getSelectedDocOrder(selectedDocOrder:any){
-        console.log(selectedDocOrder);
         this.docViewOrder.next(selectedDocOrder);
     }
 

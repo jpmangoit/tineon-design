@@ -2789,8 +2789,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onTaskUserSelect(item: { id: number; user_name: string }) {
-        console.log(item);
-
         this.showUsers = true;
         this.participantSelectedToShow.push(item);
         this.participantSelectedItem.push(item.id);

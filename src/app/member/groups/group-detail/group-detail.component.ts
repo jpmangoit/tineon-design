@@ -349,8 +349,6 @@ export class GroupDetailComponent implements OnInit {
 
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
                             this.groupParticipnts = Object.assign(this.authService.uniqueObjData(this.groupParticipnts,'id'));
-                            console.log(this.groupParticipnts);
-
                             if (this.groupDetails['created_by'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                 this.updatedGroupData = JSON.parse(this.groupDetails['updated_record']);
                                 if (this.updatedGroupData != null) {

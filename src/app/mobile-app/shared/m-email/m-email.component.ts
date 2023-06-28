@@ -54,9 +54,7 @@ export class MEmailComponent implements OnInit {
     this.formError = '';
     this.emailsubmitted = true;
     this.validError = false;
-    console.log(this.emailForm);
     if (this.emailForm.valid) {
-        console.log(this.emailForm.value);
         this.authService.setLoader(true);
         this.authService.memberSendRequest('post', 'tineonInfoCreate', this.emailForm.value)
             .subscribe(
