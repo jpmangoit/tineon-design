@@ -207,7 +207,7 @@
                         </a>
                     </li>
 
-                    <li [ngClass]="{ 'active' : isValue == 8 }" (click)="toggle(8)" class="parent-label">
+                    <li *ngIf="createAccess.banner == 'Yes'" [ngClass]="{ 'active' : isValue == 8 }" (click)="toggle(8)" class="parent-label">
                         <a id="hasSubItems"  (click)="dropDown2()" class="mar_ic toggleSubmenu2">
                             <p>
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"  [ngStyle]="{'fill':setTheme.icon_color}" xmlns="http://www.w3.org/2000/svg">
@@ -311,7 +311,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li [ngClass]="{ 'active' : isValue == 9 }" (click)="toggle(9)" class="parent-label">
+                    <li *ngIf="createAccess.email == 'Yes'" [ngClass]="{ 'active' : isValue == 9 }" (click)="toggle(9)" class="parent-label">
                         <a id="hasSubItems" (click)="dropDown4()" class="mar_ic toggleSubmenu4">
                             <p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="17" viewBox="0 0 23 17" fill="none">

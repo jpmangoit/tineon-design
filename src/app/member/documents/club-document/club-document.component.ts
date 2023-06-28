@@ -23,7 +23,7 @@ const FileSaver = require('file-saver');
 
 export class ClubDocumentComponent implements OnInit {
     language :any;
-    clubData:DocumentsType[];
+    clubData:DocumentsType[]=[];
     extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
@@ -40,8 +40,8 @@ export class ClubDocumentComponent implements OnInit {
     dowloading: boolean = false;
     selected_view:any = 0;
     selected_order:any = 2;
-    final_clubData: DocumentsType[];
-    active_class: any = '';
+    final_clubData: DocumentsType[]=[];
+    active_class: any = 'all';
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
 
@@ -115,23 +115,22 @@ export class ClubDocumentComponent implements OnInit {
                     // let cData:DocumentsType[] = respData;
                     // this.clubData = cData.sort((a,b) => b.id - a.id);
                     this.clubData = respData;
-                    this.clubData.forEach(item => {
-                        const fileName = item.doc_name;
-                        const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-                        if(this.imgExtanis.includes(extension) ){
-                            this.imageData.push(item);
-                        }else if(this.docExtanis.includes(extension) ){
-                            this.docData.push(item);
-                        }else if(this.zipExtanis.includes(extension) ){
-                            this.zipData.push(item);
-                        }else{
-                            this.otherData.push(item);
-                        }
-                    });
-
-                    if (this.clubData.length) {
-                        this.fileFilter('all');
+                    if(this.clubData?.length > 0){
+                        this.clubData.forEach(item => {
+                            const fileName = item.doc_name;
+                            const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                            if(this.imgExtanis.includes(extension) ){
+                                this.imageData.push(item);
+                            }else if(this.docExtanis.includes(extension) ){
+                                this.docData.push(item);
+                            }else if(this.zipExtanis.includes(extension) ){
+                                this.zipData.push(item);
+                            }else{
+                                this.otherData.push(item);
+                            }
+                        });
                     }
+                    this.fileFilter('all')
                 }
             );
         }

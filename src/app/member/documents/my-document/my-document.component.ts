@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { LanguageService } from '../../../service/language.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { appSetting } from '../../../app-settings';
-import { Extentions } from 'src/app/models/extentions.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { DocumentsType, UploadDocVisibility } from 'src/app/models/documents-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -25,7 +23,7 @@ const FileSaver = require('file-saver');
 export class MyDocumentComponent implements OnInit {
     language :any;
     extensions:any;
-    myData:DocumentsType[];
+    myData:DocumentsType[]=[];
     userData:LoginDetails;
     optionVisibility:boolean = false;
     eventForm: UntypedFormGroup;
@@ -49,8 +47,8 @@ export class MyDocumentComponent implements OnInit {
     docData = [];
     imageData = [];
     otherData = [];
-    final_myData: DocumentsType[];
-    active_class: any = '';
+    final_myData: DocumentsType[]=[];
+    active_class: any = 'all';
     selected_view:any = 0;
     selected_order:any = 2;
     private selectedView_subscrip:Subscription;
@@ -117,22 +115,22 @@ export class MyDocumentComponent implements OnInit {
                         // let myDataa: DocumentsType[] = respData;
                         // this.myData = myDataa.sort((a,b) => b.id - a.id);
                         this.myData = respData;
-                        this.myData.forEach(item => {
-                            const fileName = item.doc_name;
-                            const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-                            if(this.imgExtanis.includes(extension) ){
-                                this.imageData.push(item);
-                            }else if(this.docExtanis.includes(extension) ){
-                                this.docData.push(item);
-                            }else if(this.zipExtanis.includes(extension) ){
-                                this.zipData.push(item);
-                            }else{
-                                this.otherData.push(item);
-                            }
-                        });
-                        if (this.myData.length) {
-                            this.fileFilter('all')
+                        if(this.myData?.length > 0){
+                            this.myData.forEach(item => {
+                                const fileName = item.doc_name;
+                                const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                                if(this.imgExtanis.includes(extension) ){
+                                    this.imageData.push(item);
+                                }else if(this.docExtanis.includes(extension) ){
+                                    this.docData.push(item);
+                                }else if(this.zipExtanis.includes(extension) ){
+                                    this.zipData.push(item);
+                                }else{
+                                    this.otherData.push(item);
+                                }
+                            });
                         }
+                        this.fileFilter('all')
                     }
                 );
         }

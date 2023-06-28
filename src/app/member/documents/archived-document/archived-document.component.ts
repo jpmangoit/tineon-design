@@ -24,7 +24,7 @@ const FileSaver = require('file-saver');
 
 export class ArchivedDocumentComponent implements OnInit {
     language :any;
-    archivedData:DocumentsType[];
+    archivedData:DocumentsType[]=[];
     extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
@@ -39,7 +39,7 @@ export class ArchivedDocumentComponent implements OnInit {
     result: any;
     documentData: any;
     dowloading: boolean = false;
-    final_archivedData:DocumentsType[];
+    final_archivedData:DocumentsType[]=[];
     selected_view:number = 0;
     selected_order:any = 2;
     active_class: any = '';
@@ -106,9 +106,7 @@ export class ArchivedDocumentComponent implements OnInit {
                     // let archData:DocumentsType[] = respData;
                     // this.archivedData = archData.sort((a,b) => b.id - a.id);
                     this.archivedData = respData;
-                    if (this.archivedData.length) {
-                        this.fileFilter('all');
-                    }
+                    this.fileFilter('all')
                 }
             );
         }

@@ -23,7 +23,7 @@ const FileSaver = require('file-saver');
 
 export class CurrentStatusDocumentComponent implements OnInit {
     language :any;
-    currentData:DocumentsType[];
+    currentData:DocumentsType[]=[];
     extensions:any;
     userData:LoginDetails;
     optionVisibility:boolean;
@@ -40,8 +40,8 @@ export class CurrentStatusDocumentComponent implements OnInit {
     dowloading: boolean = false;
     selected_view:number = 0;
     selected_order:any = 2;
-    final_currentData: DocumentsType[];
-    active_class: any = '';
+    final_currentData: DocumentsType[]=[];
+    active_class: any = 'all';
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
 
@@ -102,13 +102,11 @@ export class CurrentStatusDocumentComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        this.currentData = null;
+                        // this.currentData = null;
                         // let curData: DocumentsType[] = respData;
                         // this.currentData = curData.sort((a, b) => b.id - a.id);
                         this.currentData = respData;
-                        if (this.currentData.length) {
-                            this.fileFilter('all');
-                        }
+                        this.fileFilter('all')
                     }
                 );
         }
@@ -145,7 +143,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
             this.active_class = 'all';
             this.final_currentData = this.currentData
         }
-        if (this.final_currentData.length > 0) {
+        if (this.final_currentData?.length > 0) {
             this.order_view();
         }
     }
