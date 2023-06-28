@@ -140,11 +140,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     refreshTokens(){
-        console.log('Old Access Token');
-        console.log(localStorage.getItem('token'));
-        console.log('Old Refresh Token');
-        console.log(localStorage.getItem('refresh_token'));
-
         const refreshToken = localStorage.getItem('refresh_token');
         let data:any = {
             refresh_token : refreshToken
@@ -152,19 +147,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('post', 'refresh-token', data)
         .subscribe(
             (respData: any) => {
-                console.log(respData);
                 if (respData['isError'] == false) {
                     this.authService.setLoader(false);
                     sessionStorage.setItem('token', respData['result']['access_token']);
                     localStorage.setItem('token', respData['result']['access_token']);
                     sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
                     localStorage.setItem('refresh_token', respData['result']['refresh_token']);
-
-                    console.log('New Access Token');
-                    console.log(localStorage.getItem('token'));
-                    console.log('New Refresh Token');
-                    console.log(localStorage.getItem('refresh_token'));
-
                 } else if (respData['code'] == 400 || respData['code'] == 404) {
                     this.authService.setLoader(false);
                 };

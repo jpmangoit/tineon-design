@@ -42,6 +42,8 @@ export class CurrentStatusDocumentComponent implements OnInit {
     selected_order:any = 2;
     final_currentData: DocumentsType[]=[];
     active_class: any = 'all';
+    headline_word_option: number = 0
+
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
 
@@ -68,6 +70,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
             this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
         }
 
+        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));

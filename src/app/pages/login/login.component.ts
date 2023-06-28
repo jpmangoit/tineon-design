@@ -82,8 +82,6 @@ export class LoginComponent implements OnInit {
             this.authService.sendRequest('post', 'login-keycloak', this.loginForm.value)
                 .subscribe(
                     (respData: LoginDetails) => {
-                        console.log(respData);
-
                         this.loginsubmitted = false;
                         this.validError = false;
                         var club_id = respData.team_id;
@@ -93,7 +91,6 @@ export class LoginComponent implements OnInit {
                             sessionStorage.setItem('refresh_token', respData['refresh_token']);
                             localStorage.setItem('token', respData['access_token']);
                             localStorage.setItem('refresh_token', respData['refresh_token']);
-
                             localStorage.setItem('user-id', respData['userId']);
                             localStorage.setItem('allowAdvertis', respData['allowAdvertis']);
                             localStorage.setItem('headlineOption', respData['headlineOption']);
