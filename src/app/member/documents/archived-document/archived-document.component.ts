@@ -57,7 +57,6 @@ export class ArchivedDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
         });
         if (localStorage.getItem('selectedView') != null) {

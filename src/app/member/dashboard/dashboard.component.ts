@@ -77,7 +77,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService, private sanitizer: DomSanitizer, public formBuilder: UntypedFormBuilder) { }
 
     ngOnInit(): void {
-        console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token') != null) {
             interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
              .subscribe(() => {

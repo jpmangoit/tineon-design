@@ -139,7 +139,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             active_to :['', Validators.required],
         });
 
-        this.weekdayArray = [            
+        this.weekdayArray = [
             { id: 1, name: this.language.new_create_event.monday},
             { id: 2, name: this.language.new_create_event.tuesday},
             { id: 3, name: this.language.new_create_event.wednesday},
@@ -283,7 +283,6 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     }
 
     getTime() { }
-
     errorTime: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     compareTwoTimes(item: number) {
         this.indax = item;
