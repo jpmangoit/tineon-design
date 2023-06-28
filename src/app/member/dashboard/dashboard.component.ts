@@ -157,11 +157,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     // localStorage.setItem('token','');
                     // localStorage.setItem('refresh_token','');
-                    if(respData['access_token']){
+                    if(respData['result']['access_token']){
                         sessionStorage.setItem('token', respData['result']['access_token']);
                         localStorage.setItem('token', respData['result']['access_token']);
                     }
-                    if(respData['refresh_token']){
+                    if(respData['result']['refresh_token']){
                         sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
                         localStorage.setItem('refresh_token', respData['result']['refresh_token']);
                     }
