@@ -141,8 +141,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     refreshTokens(){
+        console.log('Old Access Token');
         console.log(localStorage.getItem('token'));
+        console.log('Old Refresh Token');
         console.log(localStorage.getItem('refresh_token'));
+
         const refreshToken = localStorage.getItem('refresh_token');
         let data:any = {
             refresh_token : refreshToken
@@ -163,8 +166,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
                         sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
                         localStorage.setItem('refresh_token', respData['result']['refresh_token']);
                     }
+
+                    console.log('New Access Token');
                     console.log(localStorage.getItem('token'));
+
+                    console.log('New Refresh Token');
                     console.log(localStorage.getItem('refresh_token'));
+
                 } else if (respData['code'] == 400 || respData['code'] == 404) {
                     this.authService.setLoader(false);
                 };
