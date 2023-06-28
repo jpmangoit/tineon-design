@@ -218,6 +218,12 @@ cursor: pointer;
   ::ng-deep .document-inner.list_document > div > ul {
         overflow: auto;
     }
+
+     .document-item{
+    max-width: 100%;
+    flex: 0 0 100%;
+    position: relative;
+}
 }
 
 
