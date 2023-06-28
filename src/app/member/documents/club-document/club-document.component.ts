@@ -77,7 +77,7 @@ export class ClubDocumentComponent implements OnInit {
         if (localStorage.getItem('selectedDocOrder') != null) {
             this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
         }
-        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
