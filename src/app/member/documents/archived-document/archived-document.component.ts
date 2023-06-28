@@ -42,7 +42,8 @@ export class ArchivedDocumentComponent implements OnInit {
     final_archivedData:DocumentsType[]=[];
     selected_view:number = 0;
     selected_order:any = 2;
-    active_class: any = '';
+    active_class: any = 'all';
+    headline_word_option: number = 0
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
 
@@ -56,7 +57,6 @@ export class ArchivedDocumentComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedView_subscrip = this.commonFunctionService.docViewOption.subscribe((resp:any) => {
-            console.log(resp);
             this.selected_view  = resp;
         });
         if (localStorage.getItem('selectedView') != null) {
@@ -69,7 +69,7 @@ export class ArchivedDocumentComponent implements OnInit {
         if (localStorage.getItem('selectedDocOrder') != null) {
             this.selected_order  = JSON.parse(localStorage.getItem('selectedDocOrder'));
         }
-
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.language = this.lang.getLanguaageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));

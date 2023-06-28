@@ -93,7 +93,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
         this.extensions = appSetting.extensions;
         this.uploadDocVisibility = appSetting.uploadDocument;
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         let userRole:string = this.userDetails.roles[0];
         this.guestRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;

@@ -87,6 +87,7 @@ export class RoomDetailsComponent implements OnInit {
         });
 
         this.language = this.lang.getLanguaageFile();
+        this.selectLanguage = localStorage.getItem('language');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 
         this.route.params.subscribe(params => {
@@ -95,13 +96,13 @@ export class RoomDetailsComponent implements OnInit {
         });
 
         this.allWeekDayArray = [
-            this.language.new_create_event.sunday, 
+            this.language.new_create_event.sunday,
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
-            this.language.new_create_event.saturday                   
+            this.language.new_create_event.saturday
         ];
     }
 

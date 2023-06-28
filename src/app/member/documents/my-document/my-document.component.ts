@@ -51,6 +51,7 @@ export class MyDocumentComponent implements OnInit {
     active_class: any = 'all';
     selected_view:any = 0;
     selected_order:any = 2;
+    headline_word_option: number = 0
     private selectedView_subscrip:Subscription;
     private selectedorder_subscrip:Subscription;
 
@@ -78,7 +79,7 @@ export class MyDocumentComponent implements OnInit {
             this.selected_order  = resp;
             this.ngOnInit();
         });
-
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.uploadDocVisibility = appSetting.uploadDocument;

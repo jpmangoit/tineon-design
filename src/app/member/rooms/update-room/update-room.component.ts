@@ -146,16 +146,16 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         });
 
         this.allWeekDayArray = [
-            this.language.new_create_event.sunday, 
+            this.language.new_create_event.sunday,
             this.language.new_create_event.monday,
             this.language.new_create_event.tuesday,
             this.language.new_create_event.wednesday,
             this.language.new_create_event.thrusday,
             this.language.new_create_event.friday,
-            this.language.new_create_event.saturday                   
+            this.language.new_create_event.saturday
         ];
 
-        this.weekdayArray = [            
+        this.weekdayArray = [
             { id: 1, name: this.language.new_create_event.monday},
             { id: 2, name: this.language.new_create_event.tuesday},
             { id: 3, name: this.language.new_create_event.wednesday},
@@ -172,7 +172,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
             { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
             { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
             { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}            
+            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}
         ]
         this.weekdayDropdownSettings = {
             singleSelection: true,
@@ -274,12 +274,12 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 }
                 this.weekdays.removeAt(0);
                 if(this.roomData?.room_availablity?.length > 0){
-                    
+
                     this.roomData.room_availablity.forEach((key, value) => {
                         if( key.time_from.includes(':00') && key.time_to.includes(':00')){
                             key.time_from = key.time_from.slice(0, 5)
                             key.time_to = key.time_to.slice(0, 5)
-                        }                       
+                        }
                         let room_info = [];
                         room_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)]});
                         const newAvailableTimes: UntypedFormGroup = this.formBuilder.group({
@@ -370,15 +370,13 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     compareTwoTimes(item: number) {
         this.indax = item;
         this.errorTime = { isError: false, errorMessage: '' };
-        for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-            if (
-                this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] > this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] ||
-                this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to']
-            ) {
-                this.errorTime = {
-                    isError: true,
-                    errorMessage: this.language.error_message.end_time_same,
-                };
+        for (let i = 0; i < this.roomForm?.controls?.weekdays?.value?.length; i++) {
+            if ((this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] != "" && this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] != "") &&
+                (this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] > this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] ||
+                this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to'])
+            )
+            {
+                this.errorTime = { isError: true,errorMessage: this.language.error_message.end_time_same, };
                 return this.indax;
             } else {
                 this.errorTime = { isError: false, errorMessage: '' };
@@ -507,12 +505,12 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         if (!isNaN(id)) {
             return this.allWeekDayArray[id];
         }else{
-            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return this.allWeekDayArray[obj.id];
             }else{
                 return id;
-            }            
+            }
         }
     }
 
@@ -520,7 +518,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         if (!isNaN(id)) {
             return id;
         }else{
-            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));          
+            let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return obj.id;
             }else{

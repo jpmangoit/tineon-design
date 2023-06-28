@@ -753,7 +753,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.eventSubmitted = false;
-                        this.userSelected = [];
+                        // this.userSelected = [];
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(this.language.response_message.event_success, null);
                             var self = this;
@@ -763,8 +763,16 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                             this.setVisibilityOnError(this.visibility);
+                            this.setEventTypeOnError(this.type);
                             this.eventForm.controls['date_to'].setValue(date_to);
                             this.eventForm.controls['recurrence'].setValue(this.recurrenceSelected);
+
+                            this.eventForm.controls['room'].setValue(date_to);
+                            if(this.selectedRoom){
+                                let room_data = [];
+                                room_data.push( { id: this.selectedRoom.id, name: this.selectedRoom.name });
+                                this.eventForm.controls["room"].setValue(room_data);
+                            }
                         }
                     }
                 );
@@ -788,6 +796,26 @@ export class CreateEventComponent implements OnInit, OnDestroy {
         }
         this.eventForm.controls["visibility"].setValue(visibility_data);
     }
+
+    /**
+    * Function is used to set visibility when error is coming
+    * @author  MangoIt Solutions
+    */
+        setEventTypeOnError(id:number) {
+            let type_data = [];
+            if(id == 1){
+                type_data.push( { item_id: 1, item_text: this.language.create_event.club_event });
+            }else if(id == 2){
+                type_data.push( { item_id: 2, item_text: this.language.create_event.group_event });
+            }else if(id == 3){
+                type_data.push( { item_id: 3, item_text: this.language.create_event.functionaries_event });
+            }else if(id == 4){
+                type_data.push( { item_id:4, item_text: this.language.create_event.courses });
+            }else if(id == 5){
+                type_data.push( { item_id:5, item_text: this.language.create_event.seminar });
+            }
+            this.eventForm.controls["type"].setValue(type_data);
+        }
 
         /**
     * Function is used check the availability of Room for the Event dates
@@ -1008,7 +1036,8 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                 });
             }
 
-            if (this.eventForm.controls.recurrence && this.eventForm.controls.recurrence.value != "" && this.eventForm.controls.recurrence.value != null && this.eventForm.controls.recurrence.value[0] != 0 && this.eventForm.controls.recurrence.value[0] != 5
+            if (this.eventForm.controls.recurrence && this.eventForm.controls.recurrence.value != "" && this.eventForm.controls.recurrence.value != null
+                && this.eventForm.controls.recurrence.value[0] != 0 && this.eventForm.controls.recurrence.value[0] != 5
                 && this.eventForm.controls.recurrence.value[0] != 1 && this.eventForm.controls.date_repeat.value != '') {
                 if (this.eventForm.controls.recurrence.value[0].item_id == 1) {
                     let rule = new RRule({

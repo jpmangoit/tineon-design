@@ -77,7 +77,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService, private sanitizer: DomSanitizer, public formBuilder: UntypedFormBuilder) { }
 
     ngOnInit(): void {
-        console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token') != null) {
             interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
              .subscribe(() => {
@@ -149,10 +148,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             (respData: any) => {
                 if (respData['isError'] == false) {
                     this.authService.setLoader(false);
-                        sessionStorage.setItem('token', respData['result']['access_token']);
-                        localStorage.setItem('token', respData['result']['access_token']);
-                        sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                        localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    sessionStorage.setItem('token', respData['result']['access_token']);
+                    localStorage.setItem('token', respData['result']['access_token']);
+                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
                 } else if (respData['code'] == 400 || respData['code'] == 404) {
                     this.authService.setLoader(false);
                 };
