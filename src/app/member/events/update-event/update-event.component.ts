@@ -274,6 +274,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         });
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
         this.getUserAndGroup();

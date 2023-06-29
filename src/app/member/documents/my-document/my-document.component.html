@@ -47,19 +47,19 @@
                                             <li *ngIf="optionVisibility">
                                                 <a href="javascript:;" (click)="moveDoc(doc.id, 'club')">
                                                     <i class="fa fa-clipboard" aria-hidden="true"></i>
-                                                    {{language.move_document.move_this_file_to}}
+                                                     <!-- {{language.move_document.move_this_file_to}} -->
                                                     <!-- {{language.club_document.club_documents}} -->
-                                                    <span *ngIf="headline_word_option == 0">{{language.club_document.club_documents_stand}}</span>
-                                                    <span *ngIf="headline_word_option == 1">{{language.club_document.club_documents_untern}}</span>
+                                                    <span *ngIf="headline_word_option == 0">{{language.move_document.move_this_file_to}} {{language.club_document.club_documents_stand}}</span>
+                                                    <span *ngIf="headline_word_option == 1">{{language.move_document.move_this_file_to}} {{language.club_document.club_documents_untern}}</span>
                                                 </a>
                                             </li>
                                             <li *ngIf="optionVisibility">
                                                 <a href="javascript:;" (click)="moveDoc(doc.id, 'current-statuses')">
                                                     <i class="fa fa-certificate" aria-hidden="true"></i>
-                                                    {{language.move_document.move_this_file_to}}
+                                                    <!-- {{language.move_document.move_this_file_to}} -->
                                                     <!-- {{language.club_document.current_status}} -->
-                                                    <span *ngIf="headline_word_option == 0">{{language.club_document.current_status_stand}}</span>
-                                                    <span *ngIf="headline_word_option == 1">{{language.club_document.current_status_untern}}</span>
+                                                    <span *ngIf="headline_word_option == 0">{{language.move_document.move_this_file_to}} {{language.club_document.current_status_stand}}</span>
+                                                    <span *ngIf="headline_word_option == 1">{{language.move_document.move_this_file_to}} {{language.club_document.current_status_untern}}</span>
                                                 </a>
                                             </li>
                                             <li *ngIf="optionVisibility">

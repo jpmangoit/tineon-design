@@ -203,6 +203,9 @@ export class CreateEventComponent implements OnInit, OnDestroy {
         this.teamId = this.userDetails.team_id;
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
         this.getUserAndGroup();
         let userId: any = localStorage.getItem('user-id');
 

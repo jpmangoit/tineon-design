@@ -84,6 +84,9 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole = this.userDetails.roles[0];

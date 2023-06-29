@@ -71,6 +71,9 @@ export class MallEventsComponent implements OnInit {
             this.setTheme = resp;
         });
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
         this.language = this.lang.getLanguaageFile();
         this.eventTypeList[1] = { name: this.language.create_event.club_event, class: "club-event-color" };
         this.eventTypeList[2] = { name: this.language.create_event.group_event, class: "group-event-color" };

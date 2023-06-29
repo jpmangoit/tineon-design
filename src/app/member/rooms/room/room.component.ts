@@ -88,6 +88,10 @@ export class RoomComponent implements OnInit, OnDestroy {
         });
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
+
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userData.roles[0];
         this.userAccess = appSetting.role;

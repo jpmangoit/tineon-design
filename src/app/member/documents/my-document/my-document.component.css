@@ -76,6 +76,7 @@
     max-width: 24%;
     flex: 0 0 24%;
     position: relative;
+    cursor: pointer;
 }
 
   .grid-list {
