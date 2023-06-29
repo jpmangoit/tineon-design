@@ -185,6 +185,23 @@
   align-items: center;
   gap: 10px;
 }
+
+ ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
+    display: none;
+  }
+
+::ng-deep .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+  transform: translate(0,0) !important;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #e83508 !important;
+}
+
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  background: rgb(238, 238, 238) !important;
+}
+
 @media only screen and (max-width:1260px){
     .page-action {
         flex-flow: row wrap !important;

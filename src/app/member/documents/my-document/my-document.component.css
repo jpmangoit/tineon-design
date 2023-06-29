@@ -129,9 +129,7 @@
     display: none !important;
   }
 
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
-    display: none;
-  }
+ 
 
   ::ng-deep body  .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 4px 4px 0 0 !important;
@@ -149,13 +147,6 @@
 }
 
 
-::ng-deep .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
-  transform: translate(0,0);
-}
-
-::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: #e83508 !important;
-}
 
   .grid-list .btn.btn-danger {
   background: none;

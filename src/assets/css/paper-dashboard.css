@@ -9863,6 +9863,11 @@ h3.count-dashboard {
     padding: 0px;
 }
 
+.document-item.ng-star-inserted .navbar.navbar-absolute.fixed-top {
+  position: static;
+  width: auto;
+}
+
 .toggle-main .navbar .navbar-collapse .add-action li {
     list-style: none;
     padding: 8px 5px;
@@ -10686,9 +10691,11 @@ li.nav-item.dropdown.add_dropdown
 }
 
 .document-inner.list_document .doc_box.toggle-main a:first-child {
-  width: 60px;
+  width: 100%;
   height: 58px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .document-inner.list_document .doc_box.toggle-main a:nth-child(2) {
@@ -10707,9 +10714,11 @@ li.nav-item.dropdown.add_dropdown
 }
 
 .document-inner.list_document li.nav-item.dropdown.add_dropdown {
-    position: absolute;
-    bottom: inherit;
-    top: 10px;
+  position: absolute;
+  bottom: inherit;
+  top: 10px;
+  z-index: 500;
+  cursor: pointer;
 }
 
 .document-inner.list_document
