@@ -11784,9 +11784,11 @@ button.btn-close svg {
         width: 100% !important;
     }
     span.info_detail {
-        font-size: 13px;
-        padding: 13px 20px;
-    }
+  font-size: 13px;
+  padding: 13px 13px;
+  border: none;
+  background: #fcfcfc;
+}
     .check_field {
         width: 50%;
     }
@@ -11841,12 +11843,54 @@ button.btn-close svg {
         padding: 0 !important;
     }
 
+    .two-img {
+  display: flex;
+  width: 100%;
+}
+.two-img .col-md-6 {
+  padding-right: 15px;
+}
+
+.profile_field svg path {
+  stroke: #cac4c4;
+}
+
+.profile_field .profile-img svg path {
+  fill: #cac4c4;
+  stroke: none !important;
+}
+
+.profile_field svg {
+  margin-right: 10px;
+}
+
     span.author-id {
 
     white-space: normal;
 }
 .modal-content .modal-header h5 {
   display: none;
+}
+
+.profile_field > span {
+  background: #fcfcfc;
+  width: 100%;
+  display: flex;
+  border-radius: 6px;
+  padding: 3px 13px;
+  align-items: center;
+}
+.profile_field > span input {
+  /*! width: auto; */
+  /*! display: inline-block; */
+  border: none;
+  padding: 9px;
+  background: none;
+}
+.two-img > div {
+  width: 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 
 :ng-deep .news-info-right {
@@ -12198,6 +12242,11 @@ ul.bunch_drop.show {
 
 .news-des-area {
     width: 70%;
+}
+
+body .profile_field {
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .news-items div {

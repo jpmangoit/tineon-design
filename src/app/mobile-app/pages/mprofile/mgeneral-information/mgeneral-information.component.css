@@ -71,6 +71,27 @@ button.btn.btn-secondary.change_btn {
     width: 120px;
     height: 120px;
 }
+
+.two-img {
+  display: flex;
+  width: 100%;
+}
+.two-img .col-md-6 {
+  padding-right: 15px;
+}
+
+.info_detail svg path {
+  stroke: #cac4c4;
+}
+
+.info_detail.profile-img svg path {
+  fill: #cac4c4;
+  stroke: none !important;
+}
+
+.info_detail svg {
+  margin-right: 10px;
+}
 @media only screen and (max-width: 767px){
 	.profile_details {
     text-align: left;
