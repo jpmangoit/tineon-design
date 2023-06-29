@@ -29,8 +29,10 @@
         <div class="document-main" [ngClass]=" selected_view == 1 ? 'list_view' : 'grid_view'">
              <div class="document-item" *ngFor="let doc of final_archivedData; let i = index">
                 <div class="doc_box toggle-main">
-                    <a (click)="download(doc.doc_name)"> <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/new-design/club-logo.png'" alt="" loading="lazy"></a>
-                    <a (click)="download(doc.doc_name)"> <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span> </a>
+                    <a (click)="download(doc.doc_name)">
+                        <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/new-design/club-logo.png'" alt="" loading="lazy">
+                        <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span>
+                    </a>
                     <!-- <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span></a> -->
                     <nav class="navbar navbar-absolute fixed-top">
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -52,7 +54,7 @@
                                             <li *ngIf="optionVisibility">
                                                 <a href="javascript:;" (click)="moveDoc(doc.id, 'current-statuses')">
                                                     <i class="fa fa-certificate" aria-hidden="true"></i>
-                                                    
+
                                                     <!-- {{language.club_document.current_status}} -->
                                                     <span *ngIf="headline_word_option == 0">{{language.move_document.move_this_file_to}} {{language.club_document.current_status_stand}}</span>
                                                     <span *ngIf="headline_word_option == 1">{{language.move_document.move_this_file_to}} {{language.club_document.current_status_untern}}</span>
@@ -61,7 +63,7 @@
                                             <li *ngIf="optionVisibility">
                                                 <a href="javascript:;" (click)="moveDoc(doc.id, 'club')">
                                                     <i class="fa fa-file-archive-o" aria-hidden="true"></i>
-                                                    
+
                                                     <!-- {{language.club_document.club_documents}} -->
                                                     <span *ngIf="headline_word_option == 0">{{language.move_document.move_this_file_to}} {{language.club_document.club_documents_stand}}</span>
                                                     <span *ngIf="headline_word_option == 1">{{language.move_document.move_this_file_to}} {{language.club_document.club_documents_untern}}</span>
