@@ -7,6 +7,7 @@
     max-width: 24.5%;
     flex: 0 0 24.5%;
     position: relative;
+    cursor: pointer;
 }
 .card-body{
     padding: 0;

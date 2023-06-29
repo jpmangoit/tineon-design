@@ -85,6 +85,9 @@ export class InstructorDetailsComponent implements OnInit {
         });
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
+        if(this.selectLanguage  == 'sp'){
+            this.selectLanguage = 'es'
+        }
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.getAllUserInfo();
         setTimeout(() => {

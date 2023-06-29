@@ -349,6 +349,8 @@ export class MyDocumentComponent implements OnInit {
         let data = {
             name: path
         }
+        console.log(data);
+
         this.dowloading = true;
         var endPoint = 'get-documentbyname';
         if (data && data.name) {
