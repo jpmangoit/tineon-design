@@ -188,7 +188,11 @@ li.parent-label ul {
 
 .sidebar-wrapper .nav li > ul > li.nav-item.active a {
   background: rgba(85,85,251,0.5) !important;
-  border-radius: 0px 0px 15px 15px;
+  
+}
+
+.sidebar-wrapper .nav li > ul > li.nav-item.active:last-child a  {
+   border-radius: 0px 0px 15px 15px;
 }
 
 /* new design css start */

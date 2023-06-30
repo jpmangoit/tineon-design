@@ -37,6 +37,7 @@ span.course_des li {
 
 ::ng-deep body .Payment_data_main .event_field .card {
   padding: 35px 0 !important;
+  width: 100%;
 }
 
 .col-md-12.calendar-box.ng-star-inserted {

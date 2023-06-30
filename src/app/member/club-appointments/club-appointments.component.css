@@ -941,7 +941,7 @@ span.club-badge {
     width: 65px;
 }
 .ticket-time span strong {
-    width: 62px;
+    width: 70px;
 }
 .ticket-time span {
     width: 100%;
@@ -967,7 +967,7 @@ span.club-badge {
     white-space: normal;
     text-overflow: ellipsis;
     font-family: 'Gellix', sans-serif;
-    min-height: 37px;
+    /* min-height: 37px; */
 }
 /* .event-tickets .club-right-area h5 {
 

@@ -5722,6 +5722,7 @@ button.red_more_btn {
     display: flex;
 align-items: center;
 justify-content: center;
+min-height: 70%;
 }
 
 /* .row.dash-widget.dashboard_w_m .empty-data-image {
@@ -12159,8 +12160,17 @@ ul.bunch_drop.show {
 }
 
 .modal.fade.change_pass_section.faq_edit.all_news.show .modal-dialog {
-  max-width: 750px !important;
+  max-width: 850px !important;
  
+}
+
+body .schedule.ng-star-inserted {
+  gap: 0 12px;
+}
+
+.content.n-detail-main .news_details .news_image .col-md-2 {
+  flex: 0 0 20%;
+  max-width: 20%;
 }
 
 @media (max-width: 767px) {
