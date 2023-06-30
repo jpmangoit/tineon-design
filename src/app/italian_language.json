@@ -12,14 +12,14 @@
         "passwordError": "La password è richiesta.",
         "o_clock":"O'clock",
 
-        "name": "Name",
-        "club_name": "Veriensname",
+        "name": "Nome",
+        "club_name": "Nome del club",
         "email": "E-mail",
-        "association_purpose": "Vereinszweck",
-        "number_of_members": "Mitgliedszahl",
-        "club_Website": "Vereinswebsite",
-        "send": "Abschicken",
-        "infos": "Infos"
+        "association_purpose": "Scopo dell'associazione",
+        "number_of_members": "Conteggio dei soci",
+        "club_Website": "Sito web dell'associazione",
+        "send": "Inviare",
+        "infos": "Informazioni"
     },
     "menu": {
         "dashboard": "cruscotto",
@@ -42,10 +42,10 @@
         "headline_wording_option":"Opzioni di formulazione",
         "mobile_theme": "Mobile Temi",
         "mobile_theme_option": "Mobile Temi Opzioni",
-        "club_tools": "Strumenti di associazione",
-        "setup": "Configurazione",
+        "club_tools": "Strumenti del club",
+        "setup": "Impostazione",
         "more": "Di più",
-        "more_new": "Di più"
+        "more_new": "Altro"
     },
     "recoverPassword": {
         "loginHeading": "Benvenuto su verein.cloud",
@@ -84,7 +84,7 @@
         "dfb_newss": "Notizie dfb",
         "crm_news": "Notizie partner di vendita",
         "dfb_news": "Notizie di Tineon",
-        "Coming_soon": "Prossimamente",
+        "Coming_soon": "Presto in arrivo",
         "club_wall_subtext_new": "nuove",
         "community_subtext_msg": "nuovi messaggi",
         "organizer_subtext_new": "nuove",
@@ -427,7 +427,7 @@
     },
     "club_document": {
         "title": "Documenti",
-        "all": "tutta",
+        "all": "Tutti",
         "no_documents": "Nessun documento",
         "my_documents": "I miei documenti",
         "club_documents": "Documenti del club",
@@ -438,11 +438,11 @@
         "current_status_stand":"Statuti attuali",
         "current_status_untern":"Filosofia aziendale",
 
-        "documents":"Documents",
-        "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "documents":"Documento",
+        "tables":"Tavoli",
+        "pictures":"Immagini",
+        "asending":"Ascendente",
+        "descending":"Discendente"
     },
     "create_event": {
         "title": "Nuovo evento",
@@ -1138,11 +1138,11 @@
         "image":"Immagine"
     },
     "qr_page": {
-        "member_ship_card":"Carta socio",
+        "member_ship_card":"Tessera associativa digitale",
         "member_pay":"PAGARE",
-        "member_active":"MEMBRO ATTIVO",
+        "member_active":"Membro attivo",
         "member_number":"Numero di soci:",
-        "member_since":"Nell'associazione Dal:",
-        "member_card":"Carta socio"
+        "member_since":"Nell'associazione dal:",
+        "member_card":"Tessera associativa digitale"
     }
 }

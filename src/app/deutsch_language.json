@@ -43,7 +43,7 @@
         "headline_wording_option":"Formulierungsoptionen",
         "mobile_theme": "Mobile Theme",
         "mobile_theme_option": "Mobile Theme optionen",
-        "club_tools": "VereinsTools",
+        "club_tools": "Vereins Tools",
         "setup": "Setup",
         "more": "Weiteres",
         "more_new": "Mehr"
@@ -85,7 +85,7 @@
         "dfb_newss": "Salespartner News",
         "crm_news": "Vertriebspartner News",
         "dfb_news": "Tineon News",
-        "Coming_soon": "Coming Soon",
+        "Coming_soon": "Bald verfügbar",
         "club_wall_subtext_new": "neue",
         "community_subtext_msg": "neue Nachrichten",
         "organizer_subtext_new": "neue",
@@ -444,11 +444,11 @@
         "current_status_untern": "Unternehmensphilosophie",
         "archived_documents": "Archiv",
 
-        "documents":"Documents",
-        "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "documents":"Dokumente",
+        "tables":"Tabellen",
+        "pictures":"Bilder",
+        "asending":"aufsteigend",
+        "descending":"absteigend"
     },
     "create_event": {
         "title": "Neues Event",

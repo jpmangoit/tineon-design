@@ -13,12 +13,12 @@
         "o_clock":"O'clock",
 
         "name": "Name",
-        "club_name": "Veriensname",
+        "club_name": "Club Name",
         "email": "E-mail",
-        "association_purpose": "Vereinszweck",
-        "number_of_members": "Mitgliedszahl",
-        "club_Website": "Vereinswebsite",
-        "send": "Abschicken",
+        "association_purpose": "Association purpose",
+        "number_of_members": "Membership count",
+        "club_Website": "Association website",
+        "send": "Send",
         "infos": "Infos"
     },
     "menu": {
@@ -42,7 +42,7 @@
         "headline_wording_option": "Wording Options",
         "mobile_theme": "Mobile Theme",
         "mobile_theme_option": "Mobile Theme Options",
-        "club_tools": "Vereins Tools",
+        "club_tools": "Club Tools",
         "setup": "Setup",
         "more": "More",
         "more_new": "More"
@@ -1156,11 +1156,11 @@
         "image":"Image"
     },
     "qr_page": {
-        "member_ship_card":"Membership card",
+        "member_ship_card":"Digital membership card",
         "member_pay":"PAY",
-        "member_active":"Active member",
-        "member_number":"Membernumber:",
-        "member_since":"Member since:",
-        "member_card":"Membership card"
+        "member_active":"Active Member",
+        "member_number":"Membership number:",
+        "member_since":"In the association since:",
+        "member_card":"Digital membership card"
     }
 }

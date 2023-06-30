@@ -12,14 +12,14 @@
         "passwordError": "Bir şifre gerekli.",
         "o_clock":"O'clock",
 
-        "name": "Name",
-        "club_name": "Veriensname",
+        "name": "İsim",
+        "club_name": "Kulüp Adı",
         "email": "E-mail",
-        "association_purpose": "Vereinszweck",
-        "number_of_members": "Mitgliedszahl",
-        "club_Website": "Vereinswebsite",
-        "send": "Abschicken",
-        "infos": "Infos"
+        "association_purpose": "Dernek amacı",
+        "number_of_members": "Üyelik sayısı",
+        "club_Website": "Dernek web sitesi",
+        "send": "Gönder",
+        "infos": "Bilgi"
     },
     "menu": {
         "dashboard": "Gösterge Paneli",
@@ -42,7 +42,7 @@
         "headline_wording_option":"İfade Seçenekleri",
         "mobile_theme": "Mobil Tema",
         "mobile_theme_option": "Mobil Tema Seçenekleri",
-        "club_tools": "Dernek Araçları",
+        "club_tools": "Kulüp Araçları",
         "setup": "Kurulum",
         "more": "Daha fazla",
         "more_new": "Daha fazla"
@@ -84,7 +84,7 @@
         "dfb_newss": "dfb Haberleri",
         "crm_news": "Salespartner Haberleri",
         "dfb_news": "Tineon Haberleri",
-        "Coming_soon": "Çok Yakında",
+        "Coming_soon": "Yakında geliyor",
         "club_wall_subtext_new": "yeni",
         "community_subtext_msg": "yeni Mesajlar",
         "organizer_subtext_new": "yeni",
@@ -426,7 +426,7 @@
     },
     "club_document": {
         "title": "Belgeler",
-        "all": "Herşey",
+        "all": "Tümü",
         "no_documents": "Belge Yok",
         "my_documents": "benim dökümanlarım",
         "club_documents": "Kulüp Belgeleri",
@@ -437,11 +437,11 @@
         "current_status_stand":"Mevcut tüzük",
         "current_status_untern":"şirket felsefesi",
 
-        "documents":"Documents",
-        "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "documents":"Belge",
+        "tables":"Masalar",
+        "pictures":"Resimler",
+        "asending":"Artan",
+        "descending":"Azalan"
     },
     "create_event": {
         "title": "Yeni etkinlik",
@@ -1136,11 +1136,11 @@
         "image":"Resmi"
     },
     "qr_page": {
-        "member_ship_card":"Üye kartı",
+        "member_ship_card":"Dijital üyelik kartı",
         "member_pay":"ÖDEME",
-        "member_active":"AKTİF ÜYE",
+        "member_active":"Aktif Üye",
         "member_number":"Üyelik numarası:",
-        "member_since":"Dernekte:",
-        "member_card":"Üyelik kartı"
+        "member_since":"O zamandan beri dernekte:",
+        "member_card":"Dijital üyelik kartı"
     }
 }

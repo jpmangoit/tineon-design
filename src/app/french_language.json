@@ -12,13 +12,13 @@
         "passwordError":"Le mot de passe est requis.",
         "o_clock":"O'clock",
 
-        "name": "Name",
-        "club_name": "Veriensname",
+        "name": "Nom",
+        "club_name": "Nom du club",
         "email": "E-mail",
-        "association_purpose": "Vereinszweck",
-        "number_of_members": "Mitgliedszahl",
-        "club_Website": "Vereinswebsite",
-        "send": "Abschicken",
+        "association_purpose": "Objet de l'association",
+        "number_of_members": "Nombre de membres",
+        "club_Website": "Site de l'association",
+        "send": "Envoyer",
         "infos": "Infos"
     },
     "menu": {
@@ -42,10 +42,10 @@
         "headline_wording_option":"Options de formulation",
         "mobile_theme": "Mobile thème:Thèmes,",
         "mobile_theme_option": "Mobile thème:Thèmes, Options",
-        "club_tools": "Vereinstools",
-        "setup": "Aufstellen",
-        "more": "More",
-        "more_new": "More"
+        "club_tools": "Outils du club",
+        "setup": "Mise en place",
+        "more": "Plus d'informations",
+        "more_new": "Plus d'informations"
     },
     "recoverPassword":{
         "loginHeading":"Bienvenue sur verein.cloud",
@@ -238,7 +238,7 @@
             "my_club_data":"Moi au club",
             "my_club_data_stand": "Moi au club",
             "my_club_data_untern": "Moi au club",
-            "digital_card":"Digital membership card"
+            "digital_card":"Carte de membre numérique"
         },
         "membership_date":"Date de début de l'adhésion",
         "current_role":"Mon rôle verein.cloud",
@@ -441,11 +441,11 @@
         "current_status_stand": "Statuts actuels",
         "current_status_untern": "Philosophie de l'entreprise",
 
-        "documents":"Documents",
+        "documents":"Document",
         "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "pictures":"Images",
+        "asending":"Ascendante",
+        "descending":"Descendant"
     },
     "create_event": {
         "title":"Nouvel événement",
@@ -1144,11 +1144,11 @@
         "image":"Image"
     },
     "qr_page": {
-        "member_ship_card":"Mitgliederausweis",
-        "member_pay":"BEZAHLEN",
-        "member_active":"AKTIVES MITGLIED",
-        "member_number":"Mitgliedsnummer:",
-        "member_since":"Im Verein Seit:",
-        "member_card":"Mitgliedsausweis"
+        "member_ship_card":"Carte de membre numérique",
+        "member_pay":"PAY",
+        "member_active":"Membre actif",
+        "member_number":"Numéro de membre:",
+        "member_since":"Dans l'association depuis:",
+        "member_card":"Carte de membre numérique"
     }
 }
