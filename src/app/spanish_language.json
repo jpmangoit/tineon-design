@@ -12,14 +12,14 @@
         "passwordError": "Se requiere contraseña.",
         "o_clock":"O'clock",
 
-        "name": "Name",
-        "club_name": "Veriensname",
+        "name": "Nombre",
+        "club_name": "Nombre del club",
         "email": "E-mail",
-        "association_purpose": "Vereinszweck",
-        "number_of_members": "Mitgliedszahl",
-        "club_Website": "Vereinswebsite",
-        "send": "Abschicken",
-        "infos": "Infos"
+        "association_purpose": "Objetivo de la asociación",
+        "number_of_members": "Número de miembros",
+        "club_Website": "Sitio web de la Asociación",
+        "send": "Enviar",
+        "infos": "Información"
     },
     "menu": {
         "dashboard": "Tablero",
@@ -42,7 +42,7 @@
         "headline_wording_option":"Opciones de redacción",
         "mobile_theme": "Móvil Temas",
         "mobile_theme_option": "Móvil Temas Opciones",
-        "club_tools": "Herramientas de asociación",
+        "club_tools": "Herramientas del Club",
         "setup": "Configurar",
         "more": "Más",
         "more_new": "Más"
@@ -439,11 +439,11 @@
         "current_status_stand": "Estatutos vigentes",
         "current_status_untern": "Filosofía de la empresa",
 
-        "documents":"Documents",
-        "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "documents":"Documento",
+        "tables":"Tablas",
+        "pictures":"Imágenes",
+        "asending":"Ascendente",
+        "descending":"Descendente"
     },
     "create_event": {
         "title": "Nuevo Evento",
@@ -1137,11 +1137,11 @@
         "image":"imagen"
     },
     "qr_page": {
-        "member_ship_card":"Tarjeta de miembro",
+        "member_ship_card":"Tarjeta de miembro digital",
         "member_pay":"PAGAR",
-        "member_active":"MIEMBRO ACTIVO",
+        "member_active":"Miembro activo",
         "member_number":"Número de socio:",
-        "member_since":"En la asociación Desde:",
-        "member_card":"Tarjeta de socio"
+        "member_since":"En la asociación desde:",
+        "member_card":"Tarjeta de miembro digital"
     }
 }
