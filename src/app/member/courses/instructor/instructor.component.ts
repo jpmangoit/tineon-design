@@ -423,7 +423,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Array Of Object}  Instructor details
     */
-    getInstructorById(id: number) {
+    getInstructorById(id: number, type:any) {
         this.croppedImage = '';
         this.imageShow = '';
         this.authService.setLoader(true);
@@ -455,7 +455,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
-                this.setInstructorValue();
+                if (type == "edit"){
+                    this.setInstructorValue();
+                }
             });
     }
 

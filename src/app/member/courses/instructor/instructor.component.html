@@ -65,10 +65,10 @@
                                 <div class="category-content">
                                     <a data-bs-toggle="modal" data-bs-target="#exModal">
                                         <div class="instructor-image">
-                                            <img src="{{item.add_img}}" (click)="getInstructorById(item.id)"
+                                            <img src="{{item.add_img}}" (click)="getInstructorById(item.id, 'view')"
                                                 onContextMenu="return false;" alt="{{item?.first_name}}" loading="lazy">
                                         </div>
-                                        <div class="category-des" (click)="getInstructorById(item.id)">
+                                        <div class="category-des" (click)="getInstructorById(item.id, 'view')">
                                             <h5>{{item.first_name}} {{item.last_name}}
                                                 <span *ngFor="let val of item.qualification">
                                                     ({{val.qualification}})
@@ -82,11 +82,11 @@
                                 <div class="category-action">
                                     <a data-bs-toggle="modal" data-bs-target="#edit_instructor">
                                         <img *ngIf="userDetails.isAdmin || item.author == userDetails.userId"
-                                            onContextMenu="return false;" (click)="getInstructorById(item.id)"
+                                            onContextMenu="return false;" (click)="getInstructorById(item.id, 'edit')"
                                             src="../../assets/img/menu/edit.svg" loading="lazy" />
                                     </a>
                                     <a data-bs-toggle="modal" data-bs-target="#exModal">
-                                        <img (click)="getInstructorById(item.id)" src="../../assets/img/menu/eye.svg"
+                                        <img (click)="getInstructorById(item.id, 'view')" src="../../assets/img/menu/eye.svg"
                                             onContextMenu="return false;" loading="lazy" /></a>
 
                                     <a (click)="deleteInstructor(item.id)"
@@ -510,7 +510,7 @@
                                                     <label>{{language.instructor.weekday}}</label>
                                                     <ng-multiselect-dropdown formControlName="day"
                                                         [placeholder]="language.instructor.weekdays"
-                                                        [settings]="weekdayDropdownSettings" 
+                                                        [settings]="weekdayDropdownSettings"
                                                         [data]="weekdayArray"
                                                         (onSelect)="onWeekdayItemSelect($event)"
                                                         (onDeSelect)="onWeekdayItemDeSelect($event)">
