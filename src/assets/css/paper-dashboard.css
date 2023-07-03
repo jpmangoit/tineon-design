@@ -4634,10 +4634,17 @@ button.navbar-toggler.open {
     padding-bottom: 15px;
 }
 
+.modal-body .instructor-bottom {
+  border-top: 1px solid #f9f9f9;
+  margin-top: 15px;
+  padding-top: 16px;
+}
+
 .card label {
-    font-size: 0.8571em;
-    margin-bottom: 5px;
-    color: #9a9a9a;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #68759f;
+  font-weight: bold;
 }
 
 .card .card-footer {
@@ -5723,6 +5730,10 @@ button.red_more_btn {
 align-items: center;
 justify-content: center;
 min-height: 70%;
+}
+
+.cal-container-right .empty-data-image.ng-star-inserted {
+  min-height: auto;
 }
 
 /* .row.dash-widget.dashboard_w_m .empty-data-image {
