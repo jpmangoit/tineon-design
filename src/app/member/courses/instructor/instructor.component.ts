@@ -638,7 +638,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
             this.editInstructorForm.value.weekdays[i].day = this.editInstructorForm.controls.weekdays.value[i].day[0].id;
         }
-
         this.editInstructorForm.value['team_id'] = this.teamId;
         if (this.fileToReturn) {
             this.editInstructorForm.value['add_img'] = this.fileToReturn;
@@ -684,22 +683,21 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 }
             }
         }
-
         if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateInstructor/' + this.editId, formData)
-                .subscribe((respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'], null);
-                        setTimeout(function () {
-                            $('#edit_instructor').modal('hide');
-                            self.router.navigate(['/instructor-detail/' + self.editId]);
-                        }, 2000);
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                    }
-                });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.notificationService.showSuccess(respData['result']['message'], null);
+                    setTimeout(function () {
+                        $('#edit_instructor').modal('hide');
+                        self.router.navigate(['/instructor-detail/' + self.editId]);
+                    }, 2000);
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
         }
     }
 
