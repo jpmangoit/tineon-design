@@ -12426,7 +12426,8 @@ font-size: 14px;
 color: #353535 !important;
 min-width: 33.3%;
 background: #EBF0FF;
-line-height: 35px;
+line-height: 42px;
+font-size: 12px !important;
 
 
 }
