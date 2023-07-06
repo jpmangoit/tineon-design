@@ -633,6 +633,9 @@ export class ClubAppointmentsComponent implements OnInit {
     getCalendarData() {
         this.upcomingEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
         this.currentEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
+        console.log(this.currentEvent);
+        console.log(this.upcomingEvent);
+
     }
 
     /**
