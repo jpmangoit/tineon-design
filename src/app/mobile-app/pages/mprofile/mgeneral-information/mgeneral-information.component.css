@@ -72,6 +72,10 @@ button.btn.btn-secondary.change_btn {
     height: 120px;
 }
 
+.profile_field .info_label {
+  display: none;
+}
+
 .two-img {
   display: flex;
   width: 100%;
