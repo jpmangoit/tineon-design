@@ -137,6 +137,7 @@ import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MclubEventsComponent } from './mobile-app/pages/mevents/mclub-events/mclub-events.component';
+import { MeventDetailComponent } from './mobile-app/pages/mevents/mevent-detail/mevent-detail.component';
 
 var userDetails = JSON.parse(localStorage.getItem('user-data'));
 
@@ -348,13 +349,13 @@ const mobile_routes: Routes = [
             { path: 'group-detail/:groupid', component: GroupDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Group Detail', allow_permission: ['participate'] } },
             { path: 'instructor-detail/:instructorId', component: InstructorDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'Instructor Detail', allow_permission: ['participate'] } },
             { path: 'task-detail/:taskid', component: TaskDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Task Detail', allow_permission: ['participate'] } },
-            // { path: 'event-detail/:eventid', component: MeventDetailComponent,canActivate:[MemberLightGuard], data: { title: 'Event Detail' ,allow_permission:['participate']} },
+            { path: 'event-detail/:eventid', component: MeventDetailComponent,canActivate:[MemberLightGuard], data: { title: 'Event Detail' ,allow_permission:['participate']} },
+            // { path: 'event-detail/:eventid', component: EventDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Event Detail', allow_permission: ['participate'] } },
             { path: 'group-detail/:groupid', component: GroupDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Group Detail', allow_permission: ['participate'] } },
             { path: 'room-detail/:roomId', component: RoomDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'Room Detail', allow_permission: ['participate'] } },
             { path: 'clubnews-detail/:newsid', component: ClubNewsDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'News', allow_permission: ['participate'] } },
             { path: 'vereins-faq-detail/:faqId', component: FaqDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'Vereins Faq', allow_permission: ['participate'] } },
             { path: 'course-detail/:courseId', component: CourseDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Course Detail', allow_permission: ['participate'] } },
-            { path: 'event-detail/:eventid', component: EventDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Event Detail', allow_permission: ['participate'] } },
             { path: 'survey-detail/:surveyId', component: SurveyDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Servey Detail', allow_permission: ['participate'] } },
             { path: 'banner-detail/:bannerId', component: BannerDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Banner Detail', allow_permission: ['participate'] } },
 

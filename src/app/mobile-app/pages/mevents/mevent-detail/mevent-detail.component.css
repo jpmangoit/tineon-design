@@ -41,6 +41,41 @@ div#profileSpinner {
     min-height: 90px;
 }
 
+.group-box-img {
+    width: 100%;
+    padding: 15px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.title-box h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tag {
+  background: #ffc41a;
+  width: auto;
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: 12px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.title-box {
+  display: flex;
+  align-items: start;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.images-box {
+    border-radius: 15px;
+    overflow: hidden;
+    display: inline-block;
+}
+
 
 
 
@@ -430,7 +465,9 @@ ul.bunch_drop.show li {
 .course-price {
     display: flex;
     align-items: center;
-    margin: 15px 0px;
+    
+    margin: 0;
+justify-content: flex-end;
 }
 
 .course-price span:first-child {
@@ -438,18 +475,58 @@ ul.bunch_drop.show li {
     font-size: 16px;
     font-weight: 600;
     font-family: 'Gellix', sans-serif;
-    border-right: 1px solid;
     text-transform: uppercase;
+}
+
+.card-body.top-box  .widget-app-content {
+  padding: 0 !important;
+}
+
+.title-box .title {
+  width: 80%;
+  display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 0 15px;
+}
+
+.title-box .title + div {
+    width: 20%;
+}
+
+.title-box .title span {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 11px;
+  align-items: center;
+  gap: 5px;
+  color: #999;
+}
+.title-box .title span svg {
+  width: 14px;
+  height: auto;
+  fill: #ccc;
+}
+.title-box .title span svg path {
+  fill: #999;
+}
+
+::ng-deep .mobile-green .chat  svg path {
+  fill: rgb(32, 174, 128)  !important;
 }
 
 .course-price span:last-child {
     font-size: 24px;
     font-weight: 600;
-    color: #FF9331;
+    color: #E9380B;
+}
+::ng-deep .mobile-green .course-price span:last-child {
+  color: rgb(32, 174, 128) !important;;
 }
 .author-img {
     width: 56px !important;
     height: 56px !important;
+    flex: 0 0 56px;
 }
 .event-time, .event-title span {
     font-family: 'Gellix', sans-serif;
@@ -469,6 +546,109 @@ ul.bunch_drop.show li {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.card-body.top-box .widget-appointment.widget.ng-star-inserted {
+  border: none;
+}
+
+.card-body.top-box .author-img {
+  width: 40px !important;
+  height: 40px !important;
+  flex: 0 0 40px;
+}
+
+.card-body.top-box .widget-app-content {
+  display: flex;
+ 
+  gap: 0px !important;
+ width: 100px;
+justify-content: flex-start;
+}
+
+.card-body.top-box .widget-app-content > div:first-child + div {
+  position: relative;
+  
+  display: block;
+}
+.card-body.top-box .widget-app-content > div:first-child {
+  display: block;
+}
+.card-body.top-box .widget-app-content > div:first-child + div + div {
+  position: relative;
+ 
+  display: block;
+}
+.card-body.top-box .widget-app-content > div {
+  display: none;
+  width: 22px;
+}
+
+.card-body.top-box.ng-star-inserted {
+  width: 100%;
+  display: inline-block;
+}
+
+.btn-yellow {
+  background: #ffc41a;
+  border: none;
+  padding: 6px 25px;
+  border-radius: 22px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 13px;
+}
+
+.card-body.top-box .widget-appointment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
+}
+
+.card-body.top-box.ng-star-inserted .widget-app-content span {
+  white-space: nowrap;
+  margin-left: 32px;
+  font-size: 12px;
+  color: #333;
+}
+
+.organ-div .author-img {
+  width: 40px !important;
+  height: 40px !important;
+  flex: 0 0 40px;
+}
+
+.event-content p {
+  color: #999 !important;
+}
+
+.chat svg {
+  width: 55px !important;
+  height: 25px;
+  font-size: 15px;
+  display: inline-block;
+  margin-right: -15px;
+}
+.chat svg path {
+  fill: #e9380b;
+}
+
+.organ-div div {
+    padding: 0px !important; 
+    border: none;
+}
+
+.organ-div {
+  padding: 15px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .course-price span:first-child {
