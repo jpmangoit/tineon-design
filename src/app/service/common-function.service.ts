@@ -6,6 +6,7 @@ import { AuthServiceService } from './auth-service.service';
 import { LanguageService } from './language.service';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { Subject } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 declare var $:any
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class CommonFunctionService {
     docViewOrder:any = new Subject();
 
     constructor(private authService: AuthServiceService, private lang: LanguageService,
-        private confirmDialogService: ConfirmDialogService,) { }
+        private confirmDialogService: ConfirmDialogService, private sanitizer: DomSanitizer) { }
 
 
      /**
@@ -538,5 +539,26 @@ export class CommonFunctionService {
         instructorCalendar = [...external_Booked, ...final_availability];
         return [{'cal':instructorCalendar},{'avail': external_avail}];
         // return instructorCalendar
+    }
+
+    convertImages(image: any) {
+        return new Promise((resolve,reject) =>{
+            this.imageUrlToBlob(image)
+            .then(imageBlob => {
+                const blob = new Blob([imageBlob], { type: 'image/png' });
+                let imgURL =  this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+                resolve(imgURL);
+            })
+            .catch(error => {
+                console.error('Error converting image URL to blob:', error);
+            });
+
+        });
+    }
+
+    imageUrlToBlob(imageUrl) {
+        return fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => blob);
     }
 }

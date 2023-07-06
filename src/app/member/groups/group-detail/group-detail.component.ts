@@ -14,6 +14,8 @@ import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dial
 import { NotificationService } from 'src/app/service/notification.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 declare var $: any;
 
 @Component({
@@ -95,6 +97,8 @@ export class GroupDetailComponent implements OnInit {
     allUser: any[]=[];
     allowAdvertisment: any;
     groupId:any;
+    imageURL: SafeUrl;
+
 	constructor(
 		private authService: AuthServiceService,
 		private router: Router,
@@ -105,8 +109,8 @@ export class GroupDetailComponent implements OnInit {
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
-
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 	) {
         this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -286,7 +290,7 @@ export class GroupDetailComponent implements OnInit {
         if (sessionStorage.getItem('token')) {
             this.organizerDetails = [];
             this.groupParticipnts = [];
-            this.groupDetails = [];
+            //this.groupDetails = [];
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + groupid, null)
                 .subscribe(
@@ -295,6 +299,13 @@ export class GroupDetailComponent implements OnInit {
                         this.groupDetails = respData[0];
                         this.groupAction = 0;
                         let count = 0;
+                        if (this.groupDetails && this.groupDetails['image']){
+                            this.commonFunctionService.convertImages(this.groupDetails['image'])
+                            .then((resp:any)=>{
+                                this.groupDetails['image'] = resp;
+                            })
+                        }                        
+
                         if (this.groupDetails && this.groupDetails['participants']) {
                             Object(this.groupDetails['participants']).forEach((val, key) => {
                                 if (this.alluserInformation?.[val.user_id]?.member_id != null) {
@@ -406,6 +417,12 @@ export class GroupDetailComponent implements OnInit {
                 );
         }
     }
+
+    imageUrlToBlob(imageUrl) {
+        return fetch(imageUrl)
+          .then(response => response.blob())
+          .then(blob => blob);
+      }
 
     /**
    * Function to get group news of particular group
