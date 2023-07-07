@@ -300,10 +300,12 @@ export class GroupDetailComponent implements OnInit {
                         this.groupAction = 0;
                         let count = 0;
                         if (this.groupDetails && this.groupDetails['image']){
-                            this.commonFunctionService.convertImages(this.groupDetails['image'])
-                            .then((resp:any)=>{
-                                this.groupDetails['image'] = resp;
-                            })
+                            // this.commonFunctionService.convertImages(this.groupDetails['image'])
+                            // .then((resp:any)=>{
+                            //     this.groupDetails['image'] = resp;
+                            // })
+
+                            this.groupDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupDetails['image'].substring(20)));
                         }                        
 
                         if (this.groupDetails && this.groupDetails['participants']) {

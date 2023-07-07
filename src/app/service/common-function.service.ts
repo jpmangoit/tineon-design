@@ -561,4 +561,28 @@ export class CommonFunctionService {
             .then(response => response.blob())
             .then(blob => blob);
     }
+
+    convertBase64ToBlobUrl(base64Url: string): string {
+        // Remove the prefix (e.g., data:image/jpeg;base64,) from the Base64 URL
+        const base64Data = base64Url.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+
+        // Convert the Base64 data to a Blob
+        const byteCharacters = atob(base64Data);
+        const byteArrays = [];
+        for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+            const slice = byteCharacters.slice(offset, offset + 512);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        const blob = new Blob(byteArrays, { type: 'image/jpeg' });
+
+        // Create a Blob URL from the Blob object
+        const blobUrl = URL.createObjectURL(blob);
+
+        return blobUrl;
+    }
 }
