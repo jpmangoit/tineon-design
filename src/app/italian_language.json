@@ -283,7 +283,8 @@
         "editProfile":"Modifica profilo",
         "upload_profile": "Immagine del profilo aggiornata con successo",
         "change_image": "Cambia immagine",
-        "change_profile_pic": "Cambia immagine del profilo"
+        "change_profile_pic": "Cambia immagine del profilo",
+        "approv_unlock" : "Approvazione / Sblocco"
     },
     "profile_bank": {
         "title": "Dati bancari",

@@ -287,7 +287,8 @@
         "editProfile": "Profil bearbeiten",
         "upload_profile": "Profilbild erfolgreich aktualisiert",
         "change_image": "Bild ändern",
-        "change_profile_pic": "Profilbild ändern"
+        "change_profile_pic": "Profilbild ändern",
+        "approv_unlock" : "Genehmigung / Freischalten"
     },
     "profile_bank": {
         "title": "Bank-Daten",

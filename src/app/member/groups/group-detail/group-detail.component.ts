@@ -255,7 +255,7 @@ export class GroupDetailComponent implements OnInit {
         }
         this.authService.memberSendRequest('post','bannerClick/',data)
         .subscribe((respData:any) =>{
-                console.log(respData);
+            //console.log(respData);
         })
     }
 
