@@ -84,28 +84,26 @@
                 <div class="event_box" *ngFor='let upcoming of upcomingEvent'>
                     <div class="event-box-inner">
                         <div class="event_box_left">
-                            <div class="images">sd</div>
-                           
+                            <div class="images">
+                                <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                            </div>                           
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a>
-                            </h6>
-                             
+                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>                             
                             <div class="event-summery">
                                 <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>
                                     <span> {{upcoming.date_from | date: 'dd. MMMM'}}</span></span>
-                                
-                                
-                                <!-- <span class="event-cat">{{eventTypeList[upcoming.type].name}}</span>
-                                <span class="event_location">{{ eventTypeVisibility[upcoming.visibility].name}}</span> -->
                             </div>
                             <div class="event-bottom">
                                 <span><svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="location"><path clip-rule="evenodd" d="M16.002,17.746c3.309,0,6-2.692,6-6s-2.691-6-6-6   c-3.309,0-6,2.691-6,6S12.693,17.746,16.002,17.746z M16.002,6.746c2.758,0,5,2.242,5,5s-2.242,5-5,5c-2.758,0-5-2.242-5-5   S13.244,6.746,16.002,6.746z" fill="#333333" fill-rule="evenodd"/><path clip-rule="evenodd" d="M16,0C9.382,0,4,5.316,4,12.001c0,7,6.001,14.161,10.376,19.194   C14.392,31.215,15.094,32,15.962,32c0.002,0,0.073,0,0.077,0c0.867,0,1.57-0.785,1.586-0.805   c4.377-5.033,10.377-12.193,10.377-19.194C28.002,5.316,22.619,0,16,0z M16.117,29.883c-0.021,0.02-0.082,0.064-0.135,0.098   c-0.01-0.027-0.084-0.086-0.129-0.133C12.188,25.631,6,18.514,6,12.001C6,6.487,10.487,2,16,2c5.516,0,10.002,4.487,10.002,10.002   C26.002,18.514,19.814,25.631,16.117,29.883z" fill="#333333" fill-rule="evenodd"/></g></svg>
-                                      Pfullendorf</span>
+                                      {{upcoming.place}}</span>
                                 <span>
                                     <svg id="Layer_1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <path class="st0" d="M4,7C2.9,7,2,6.1,2,5s0.9-2,2-2h16v2h2V1H4C1.8,1,0,2.8,0,5v13c0,2.8,2.2,5,5,5h19V7H4z M22,21H5  c-1.7,0-3-1.3-3-3V8.4C2.6,8.8,3.3,9,4,9h18V21z M16,17c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S14.9,17,16,17z"/></svg>frei</span>
+                                    <path class="st0" d="M4,7C2.9,7,2,6.1,2,5s0.9-2,2-2h16v2h2V1H4C1.8,1,0,2.8,0,5v13c0,2.8,2.2,5,5,5h19V7H4z M22,21H5  c-1.7,0-3-1.3-3-3V8.4C2.6,8.8,3.3,9,4,9h18V21z M16,17c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S14.9,17,16,17z"/></svg>
+                                    <ng-container *ngIf="upcoming.chargeable > 0">€{{upcoming.chargeable}}</ng-container>
+                                    <ng-container *ngIf="upcoming.chargeable <= 0">€{{language.organizer.free}}</ng-container>
+                                </span>
                             </div>
                         </div>
                         <div class="event-action text-center" *ngIf="role != 'guest'">
@@ -131,34 +129,35 @@
                     <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.club_events.no_events}}" loading="lazy"><br> -->
                     <span>{{language.club_events.no_events}}</span>
                 </div>
-                <div class="event_box active" *ngFor='let today of currentEvent'>
+                <div class="event_box" *ngFor='let today of currentEvent'>
                     <div class="event-box-inner">
                         <div class="event_box_left">
-                            <span class="event_date">{{today.date_from | date: 'HH:mm': 'UTC' }}</span>
+                            <div class="images">
+                                <img onContextMenu="return false;" [src]="today.picture_video != null ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                            </div>                           
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(today.id,todays_date)">{{today.name}}</a></h6>
+                            <h6><a (click)="eventDetails(today.id,today.date_from)">{{today.name}}</a></h6>                             
                             <div class="event-summery">
-                                <span class="event-cat">{{eventTypeList[today.type].name}}</span>
-                                <span class="event_location">{{ eventTypeVisibility[today.visibility].name}}</span>
+                                <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>
+                                    <span> {{today.date_from | date: 'dd. MMMM'}}</span></span>
+                            </div>
+                            <div class="event-bottom">
+                                <span><svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="location"><path clip-rule="evenodd" d="M16.002,17.746c3.309,0,6-2.692,6-6s-2.691-6-6-6   c-3.309,0-6,2.691-6,6S12.693,17.746,16.002,17.746z M16.002,6.746c2.758,0,5,2.242,5,5s-2.242,5-5,5c-2.758,0-5-2.242-5-5   S13.244,6.746,16.002,6.746z" fill="#333333" fill-rule="evenodd"/><path clip-rule="evenodd" d="M16,0C9.382,0,4,5.316,4,12.001c0,7,6.001,14.161,10.376,19.194   C14.392,31.215,15.094,32,15.962,32c0.002,0,0.073,0,0.077,0c0.867,0,1.57-0.785,1.586-0.805   c4.377-5.033,10.377-12.193,10.377-19.194C28.002,5.316,22.619,0,16,0z M16.117,29.883c-0.021,0.02-0.082,0.064-0.135,0.098   c-0.01-0.027-0.084-0.086-0.129-0.133C12.188,25.631,6,18.514,6,12.001C6,6.487,10.487,2,16,2c5.516,0,10.002,4.487,10.002,10.002   C26.002,18.514,19.814,25.631,16.117,29.883z" fill="#333333" fill-rule="evenodd"/></g></svg>
+                                    {{today.place}}</span>
+                                <span>
+                                    <svg id="Layer_1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path class="st0" d="M4,7C2.9,7,2,6.1,2,5s0.9-2,2-2h16v2h2V1H4C1.8,1,0,2.8,0,5v13c0,2.8,2.2,5,5,5h19V7H4z M22,21H5  c-1.7,0-3-1.3-3-3V8.4C2.6,8.8,3.3,9,4,9h18V21z M16,17c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S14.9,17,16,17z"/></svg>
+                                    <ng-container *ngIf="today.chargeable > 0">€{{today.chargeable}}</ng-container>
+                                    <ng-container *ngIf="today.chargeable <= 0">€{{language.organizer.free}}</ng-container></span>
                             </div>
                         </div>
                         <div class="event-action text-center" *ngIf="role != 'guest'">
                             <button mat-button [matMenuTriggerFor]="menu"><img onContextMenu="return false;"  src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="" loading="lazy"></button>
                             <mat-menu #menu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="eventDetails(today.id,todays_date)">{{language.header.event_details}}</button>
+                                <button mat-menu-item (click)="eventDetails(today.id,today.date_from)">{{language.header.event_details}}</button>
                             </mat-menu>
-                        </div>
-                    </div>
-                    <div class="event-with-image">
-                        <div class="event-time-line"></div>
-                        <div class="img-content">
-                            <div class="event-image-des">
-                                <img onContextMenu="return false;" [src]="today.picture_video != null ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
-                            </div>
-                            <p
-                                [innerHTML]="(today.description.length > 0 )? (today.description | slice:0:500)+'...':(today.description)">
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -181,19 +180,30 @@
                 <div class="event_box" *ngFor='let upcoming of upcomingEvent'>
                     <div class="event-box-inner">
                         <div class="event_box_left">
-                            <span class="event_date"> {{upcoming.date_from | date: 'dd. MMMM'}}</span>
+                            <div class="images">
+                                <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                            </div>                           
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a>
-                            </h6>
+                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>                             
                             <div class="event-summery">
-                                <span class="event-cat">{{eventTypeList[upcoming.type].name}}</span>
-                                <span class="event_location">{{ eventTypeVisibility[upcoming.visibility].name}}</span>
+                                <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>
+                                    <span> {{upcoming.date_from | date: 'dd. MMMM'}}</span></span>
+                            </div>
+                            <div class="event-bottom">
+                                <span><svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="location"><path clip-rule="evenodd" d="M16.002,17.746c3.309,0,6-2.692,6-6s-2.691-6-6-6   c-3.309,0-6,2.691-6,6S12.693,17.746,16.002,17.746z M16.002,6.746c2.758,0,5,2.242,5,5s-2.242,5-5,5c-2.758,0-5-2.242-5-5   S13.244,6.746,16.002,6.746z" fill="#333333" fill-rule="evenodd"/><path clip-rule="evenodd" d="M16,0C9.382,0,4,5.316,4,12.001c0,7,6.001,14.161,10.376,19.194   C14.392,31.215,15.094,32,15.962,32c0.002,0,0.073,0,0.077,0c0.867,0,1.57-0.785,1.586-0.805   c4.377-5.033,10.377-12.193,10.377-19.194C28.002,5.316,22.619,0,16,0z M16.117,29.883c-0.021,0.02-0.082,0.064-0.135,0.098   c-0.01-0.027-0.084-0.086-0.129-0.133C12.188,25.631,6,18.514,6,12.001C6,6.487,10.487,2,16,2c5.516,0,10.002,4.487,10.002,10.002   C26.002,18.514,19.814,25.631,16.117,29.883z" fill="#333333" fill-rule="evenodd"/></g></svg>
+                                    {{upcoming.place}}</span>
+                                <span>
+                                    <svg id="Layer_1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path class="st0" d="M4,7C2.9,7,2,6.1,2,5s0.9-2,2-2h16v2h2V1H4C1.8,1,0,2.8,0,5v13c0,2.8,2.2,5,5,5h19V7H4z M22,21H5  c-1.7,0-3-1.3-3-3V8.4C2.6,8.8,3.3,9,4,9h18V21z M16,17c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S14.9,17,16,17z"/></svg>
+                                    <ng-container *ngIf="upcoming.chargeable > 0">€{{upcoming.chargeable}}</ng-container>
+                                    <ng-container *ngIf="upcoming.chargeable <= 0">€{{language.organizer.free}}</ng-container>
+                                </span>
                             </div>
                         </div>
                         <div class="event-action text-center" *ngIf="role != 'guest'">
-                            <button mat-button [matMenuTriggerFor]="menu"><img onContextMenu="return false;"
-                                    src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="" loading="lazy"></button>
+                            <button mat-button [matMenuTriggerFor]="menu"><img onContextMenu="return false;"  src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="" loading="lazy"></button>
                             <mat-menu #menu="matMenu" xPosition="before">
                                 <button mat-menu-item (click)="eventDetails(upcoming.id,upcoming.date_from)">{{language.header.event_details}}</button>
                             </mat-menu>
