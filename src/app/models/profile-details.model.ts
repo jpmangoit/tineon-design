@@ -20,7 +20,7 @@ export interface ProfileDetails {
   memberPhoto: boolean
   membershipNumber: string
   membershipStartDate: Date
-  phone: number
+  phone: any
   pobox: string
   poboxCity:string
   poboxPostCode:number

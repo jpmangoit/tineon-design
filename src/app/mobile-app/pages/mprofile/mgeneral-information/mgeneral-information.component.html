@@ -191,7 +191,7 @@
                                             <div class="guest-option">
                                                 <label class="guest_label">                                                
                                                     <div class="switch_toggle">
-                                                        <input type="checkbox" id="switch" readonly />
+                                                        <input type="checkbox" id="switch" readonly [checked]="userDetails.shareBirthday == true"/>
                                                         <label for="switch">{{language.Survey.toggle}}</label>
                                                     </div>
                                                     &nbsp;<span>{{language.profile.share_birthday}}</span>

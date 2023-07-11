@@ -144,20 +144,10 @@ export class MgeneralInformationComponent implements OnInit {
             );
             this.authService.setLoader(true);
             this.authService
-                .memberSendRequest(
-                    'get',
-                    'member-info/' +
-                    userData.database_id +
-                    '/' +
-                    userData.team_id +
-                    '/' +
-                    userData.member_id,
-                    userData
-                )
+                .memberSendRequest('get','member-info/' + userData.database_id + '/' + userData.team_id + '/' + userData.member_id, userData)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.userDetails = respData;
-                    console.log(this.userDetails)
                     this.role = userData.roles[0];
                 });
         }
@@ -196,12 +186,7 @@ export class MgeneralInformationComponent implements OnInit {
             this.c_password == false
         ) {
             this.authService.setLoader(true);
-            this.authService
-                .memberSendRequest(
-                    'post',
-                    'change-password',
-                    this.changePasswordForm.value
-                )
+            this.authService.memberSendRequest('post','change-password',this.changePasswordForm.value)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
@@ -217,6 +202,7 @@ export class MgeneralInformationComponent implements OnInit {
                 });
         }
     }
+    
     onGeneralInfo() {
         this.displayGeneral = true;
         this.displayPayment = false;
@@ -245,7 +231,6 @@ export class MgeneralInformationComponent implements OnInit {
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
         this.activatedPro.unsubscribe();
-
     }
 
 }

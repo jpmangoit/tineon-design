@@ -178,14 +178,14 @@ export class MprofileEditComponent implements OnInit {
             this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
         }
         this.registrationForm = this.formBuilder.group({
-            street: [this.userData.street, [Validators.required, this.noWhitespace]],
+            street: [this.userData.street.trim(), [Validators.required, this.noWhitespace]],
             street2: [this.userData.street2,[Validators.required, this.noWhitespace]],
             city: [this.userData.city, [Validators.required, this.noWhitespace]],
             countryCode: [this.userData.countryCode],
             postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
             poboxCity: [this.userData.poboxCity],
             email: [this.userData.email],
-            phone: [this.userData.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+            phone: [this.userData.phone.trim(), [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             birthDate: [this.datePipeString],
             share: [this.userData.shareBirthday],
             allowAdvertis:['']

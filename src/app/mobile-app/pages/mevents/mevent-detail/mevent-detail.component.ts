@@ -70,6 +70,13 @@ export class MeventDetailComponent implements OnInit {
     eventId: any;
     eventDate: any;
     eventType = [];
+    chatUserArr: {
+        lastMsgTime: string;
+        lastMsgDate: string;
+        lastMsgTimming: string;
+        lastMessage: any; count: number, id: number, image: string, name: string, type: string
+    }[];
+
     constructor(
         private authService: AuthServiceService,
         private router: Router,
@@ -124,6 +131,7 @@ export class MeventDetailComponent implements OnInit {
         this.eventType[3] = this.language.create_event.functionaries_event ;
         this.eventType[4] = this.language.create_event.courses;
         this.eventType[5] = this.language.create_event.seminar;
+        this.chats();
         this.getAllUserInfo();
     }
 
@@ -651,6 +659,48 @@ export class MeventDetailComponent implements OnInit {
             })
 
         }
+    }
+
+    chats() {
+        this.authService.setLoader(true);
+        this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
+        .subscribe(
+            (resp: any) => {
+                setTimeout(() => {
+                    this.authService.setLoader(false);
+                }, 2000);
+                this.chatUserArr = resp;
+                let grp: any;
+                if(this.chatUserArr && this.chatUserArr.length > 0){
+                    this.chatUserArr.forEach(element => {
+                        if (element.type == 'individual') {
+                            element.lastMessage = JSON.parse(element.lastMessage)
+                            element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
+                            let cudate = new Date().toISOString().split('T')[0]
+                            let msgdate = element.lastMsgTime.split('T')[0]
+                            if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
+                                element.lastMsgTimming = element.lastMsgTime
+                            } else {
+                                element.lastMsgDate = msgdate
+                            }                            
+                        }
+                    });
+                }               
+                this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
+                this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
+            }
+
+        );
+    }
+
+    checkChatDetails(userId:any){
+        let chatUser = this.chatUserArr.filter(x => x.id == userId);
+        if(chatUser.length > 0){
+            this.router.navigate(['/community/'], { queryParams: { id: userId} });
+        }else{          
+            this.router.navigate(['create-chat']);
+        }
+        console.log(chatUser)
     }
 
     ngOnDestroy(): void {

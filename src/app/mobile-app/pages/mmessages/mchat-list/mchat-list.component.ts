@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router , ActivatedRoute} from '@angular/router';
 import { appSetting } from 'src/app/app-settings';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
@@ -69,11 +69,12 @@ export class MchatListComponent implements OnInit {
     groupUsers: ChatUsers[] = [];
     menuOpened: boolean = true;
     chatData:any;
-
+    chatId:any
     constructor(
         private lang: LanguageService,private notificationService: NotificationService,
         private authService: AuthServiceService, private themes: ThemeService,
-        private _router: Router
+        private _router: Router,
+        private route: ActivatedRoute, 
     ) {
     }
 
@@ -91,6 +92,13 @@ export class MchatListComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
+
+        this.route.params.subscribe(params => {
+            const chatid: number = params['id'];
+            this.chatId = chatid;
+            //this.getEventDetails(eventid);
+        });
+        
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];
