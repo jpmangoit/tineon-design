@@ -41,6 +41,7 @@
   position: absolute;
   left: 30px;
   top: 18px;
+  width: auto;
 }
 
 .switch_toggle input:checked + label {

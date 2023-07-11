@@ -191,6 +191,14 @@ span.event-cat {
 .event_box_left .images {
   text-align: center;
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.event_box_left .images img {
+max-width: 100%;
+height: 100%;
+transform: scale(1.5);
 }
 
 .event-summery .event_date {
@@ -240,13 +248,15 @@ align-items: center;
 }
 
 .event_box_left {
-  width: 32%;
+  width: 120px;
   height: 100px;
   margin-right: 15px;
   display: flex;
   align-items: center;
   border-radius: 10px 0px 0px 10px;
   background: #ccc;
+  padding: 0px;
+  overflow: hidden;
 }
 .event_box_right {
     line-height: 15px;
