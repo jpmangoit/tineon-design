@@ -33,7 +33,7 @@
                                                 </svg>&nbsp;<span [ngStyle]="{'color':'#ffffff'}">{{language.create_event.DenyEvent}}</span>
                                             </button>
                                         </div>
-                                        <div class="author-des">
+                                        <div class="col-md-12 author-des">
                                             <span class="author-status" *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                             <span class="author-status" *ngIf="eventDetails.update_approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1"> {{language.dashboard.denyBy}}:- {{eventDetails.denybyuser.firstname}}  {{eventDetails.denybyuser.lastname}}</span>
@@ -432,7 +432,7 @@
                                         </svg>&nbsp;<span [ngStyle]="{'color':'#ffffff'}">{{language.create_event.DenyEvent}}</span>
                                     </button>
                                 </div>
-                                <div class="author-des">
+                                <div class="col-md-12 author-des">
                                     <span class="author-status" *ngIf="eventDetails.approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                     <span class="author-status" *ngIf="eventDetails.approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                     <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1">
