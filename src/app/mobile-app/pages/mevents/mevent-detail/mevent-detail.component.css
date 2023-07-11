@@ -51,6 +51,7 @@ div#profileSpinner {
 .title-box h5 {
   font-size: 16px;
   font-weight: bold;
+  width: 100%;
 }
 
 .tag {
@@ -513,6 +514,16 @@ gap: 0 15px;
 
 ::ng-deep .mobile-green .chat  svg path {
   fill: rgb(32, 174, 128)  !important;
+}
+
+.card-header.detail-popup {
+  background: none;
+  padding: 0;
+}
+
+.participant_status {
+  width: 100%;
+  display: inline-block;
 }
 
 .course-price span:last-child {
