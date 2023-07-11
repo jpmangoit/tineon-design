@@ -76,6 +76,10 @@ button.btn.btn-secondary.change_btn {
   display: none;
 }
 
+body .profile_title {
+ 
+  margin: 20px 0;}
+
 .two-img {
   display: flex;
   width: 100%;
@@ -94,7 +98,7 @@ button.btn.btn-secondary.change_btn {
 }
 
 .info_detail svg {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 @media only screen and (max-width: 767px){
 	.profile_details {
