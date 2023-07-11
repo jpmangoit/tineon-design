@@ -33,6 +33,7 @@
                         <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/new-design/club-logo.png'" alt="" loading="lazy">
                         <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span>
                     </a>
+                    <span class="doc-date">{{ doc.created_at | date : "d. MMMM y"}}</span>
                     <!-- <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span></a> -->
                     <nav class="navbar navbar-absolute fixed-top">
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">

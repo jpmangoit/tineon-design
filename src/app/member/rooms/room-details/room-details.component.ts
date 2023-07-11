@@ -163,7 +163,6 @@ export class RoomDetailsComponent implements OnInit {
             }, 500);
             })
         .catch((erro: any) => {
-            console.log(erro);
             this.notificationService.showError(erro, null);
         });
     }

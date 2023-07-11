@@ -15,7 +15,19 @@
 .document-inner.list_document .doc_box.toggle-main a:nth-child(2) {
     width: 60%;
 }
+.document-inner.list_document .doc_box.toggle-main {
+  
+  flex-wrap: wrap !important;
+  text-align: left;
+}
 
+.document-item.ng-star-inserted .doc_box.toggle-main > span {
+  text-align: right;
+  margin-top: -10px;
+  color: #999;
+}
+
+.document-item.ng-star-inserted .doc_box.toggle-main nav { position: absolute;}
 
 @media only screen and (max-width:1024px){
     .document-inner.list_document .doc_box.toggle-main a:first-child {

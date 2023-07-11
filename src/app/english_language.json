@@ -292,7 +292,8 @@
         "editProfile": "Edit Profile",
         "upload_profile": "Profile Picture Succesfully Updated",
         "change_image": "Change Image",
-        "change_profile_pic": "Change Profile Picture"
+        "change_profile_pic": "Change Profile Picture",
+        "approv_unlock" : "Approval / Unlock"
     },
     "profile_bank": {
         "title": "Bank-Data",

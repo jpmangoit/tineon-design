@@ -1796,11 +1796,9 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
 
 
     handleEventClickExtnl(arg) {
-        console.log(arg);
-
-         if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-             this.viewDetailsExternal(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
-         }
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetailsExternal(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
+        }
     }
 
     handleDateClickExtnl(arg) {

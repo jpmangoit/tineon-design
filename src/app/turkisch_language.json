@@ -282,7 +282,8 @@
         "editProfile": "Profili Düzenle",
         "upload_profile": "Profil Resmi Başarıyla Güncellendi",
         "change_image": "Resmi Değiştir",
-        "change_profile_pic": "Profil Resmini Değiştir"
+        "change_profile_pic": "Profil Resmini Değiştir",
+        "approv_unlock" : "Onaylama / Kilidi Açma"
     },
     "profile_bank": {
         "title": "banka detayları",

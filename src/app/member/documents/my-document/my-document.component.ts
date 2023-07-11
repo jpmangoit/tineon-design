@@ -322,8 +322,6 @@ export class MyDocumentComponent implements OnInit {
     */
 
     deleteDoc(id: number, index: number) {
-        console.log(id);
-
         let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         if (sessionStorage.getItem('token') && (this.myData[index].created_by == userData['id'] || userData.isAdmin)) {
             this.authService.setLoader(true);

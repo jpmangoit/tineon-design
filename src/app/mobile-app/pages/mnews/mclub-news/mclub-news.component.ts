@@ -93,7 +93,6 @@ export class MclubNewsComponent implements OnInit {
             this.authService.memberSendRequest('get', 'mv/news/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
                     this.authService.setLoader(false);
                     this.dashboardData = respData;
                     if(this.dashboardData?.length > 0){
