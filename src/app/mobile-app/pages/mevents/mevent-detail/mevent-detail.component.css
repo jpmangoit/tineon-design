@@ -774,6 +774,89 @@ justify-content: flex-start;
 }
 
 
+/* published buttons css */
+.page-action-right button {
+    box-shadow: none;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 25px 0 15px;
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff !important;
+}
+.page-action-right button {
+    margin-right: 15px;
+    background: #1eb176 !important;
+}
+.page-action-right button:nth-child(2) {
+    background: #fb5f5f !important;
+}
+.page-action-right-delete button {
+    margin-right: 15px;
+    background: #fb5f5f !important;
+}
+.page-action-right button:last-child {
+    margin-right: 0px;
+}
+.page-action-right button svg {
+    margin-right: 5px;
+}
+.page-action-right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
+    /* margin-bottom: 30px; */
+}
+span.author-status,
+span.deny-reason {
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    color: #FFBE00;
+}
+span.deny-reason {
+    color: #fb5f5f;
+}
+.author-des {
+    line-height: 17px;
+}
+::ng-deep .mat-tab-header {
+    margin-bottom: 30px;
+}
+::ng-deep .mat-tab-label-content {
+    font-size: 17px;
+    font-weight: 600;
+    color: #c4cbe0;
+    font-family: 'Gellix', sans-serif;
+}
+::ng-deep .mat-tab-label-active .mat-tab-label-content {
+    color: #68759f;
+}
+::ng-deep .mat-ink-bar {
+    display: none;
+}
+::ng-deep .mat-tab-header {
+    border-bottom: 1px solid #eaedf5;
+}
+/* published buttons end */
+.page-action-right button.delete-btn {
+    background: #fb5f5f !important;
+}
+
+.task-heading {
+    font-size: 24px;
+    font-family: "Gellix", sans-serif;
+    font-weight: 700;
+    color: #68759f;
+    text-transform: uppercase;
+    margin: 0;
+    padding-left: 0px;
+}
+
 @media (max-width:767px){
     .app-left-content {
         flex-wrap: wrap;
