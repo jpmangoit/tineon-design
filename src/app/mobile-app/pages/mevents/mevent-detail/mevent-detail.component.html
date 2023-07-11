@@ -110,6 +110,58 @@
                                             </svg>
                                             <a href="{{docFile}}"><span>{{language.create_event.download_attachment}} </span></a>
                                         </div>
+
+                                        <div class="card_task" *ngIf="isTaskDetails">
+                                            <div class="page-heading">
+                                                <h1>{{language.organizer_task.taskDetail}}</h1>
+                                            </div>
+                                            <div class="event-content">
+                                                <div class="event-title">
+                                                    <div class="sub-title">
+                                                        <input *ngIf="eventDetails.eventTask.status == 0"
+                                                            class="check-style"
+                                                            id="styled-checkbox-{{eventDetails.eventTask.id}}"
+                                                            type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                            type="checkbox"
+                                                            (change)="mainTaskMarkComplete(eventDetails.eventTask.id)">
+
+                                                        <input *ngIf="eventDetails.eventTask.status == 1"
+                                                            class="check-style"
+                                                            id="styled-checkbox-{{eventDetails.eventTask.id}}"
+                                                            type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                            type="checkbox" checked="checked" disabled="disabled">
+
+                                                        <h5 *ngIf="eventDetails.eventTask.status != 2" class="" style="margin-left: 35px;">
+                                                            {{eventDetails.eventTask.title}}
+                                                        </h5>
+                                                        <h5 *ngIf="eventDetails.eventTask.status == 2" class="">{{eventDetails.eventTask.title}}</h5>
+                                                    </div>
+                                                    <span>
+                                                        <img onContextMenu="return false;" src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
+                                                            alt="" loading="lazy">&nbsp;
+                                                        {{language.organizer.due_date}} :- {{eventDetails.eventTask.date | date: 'd. MMMM y'}}
+                                                    </span>
+                                                </div>
+                                                <p [innerHTML]="eventDetails.eventTask.description"></p>
+                                            </div>
+                                            <div class="card-body top-box" *ngIf="collaborators && collaborators.length">
+                                                <div class="widget-appointment widget">
+                                                    <div class="widget-app-content">
+                                                        <div class="widget-appointment widget" *ngFor="let participant of collaborators">
+                                                            <div class="widget-app-content">
+                                                                <div class="app-left-content">
+                                                                    <div class="author-img" *ngIf="participant.image != null">
+                                                                        <img onContextMenu="return false;" [src]="participant.image" style="width: 100px;" alt="" loading="lazy">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span>{{collaborators.length}} {{language.community_groups.participants}}</span>
+                                                    </div>
+                                                    <button class="btn-yellow" data-bs-toggle="modal" data-bs-target="#view-task-participants"> {{language.community_groups.participants}}</button>
+                                                </div>
+                                            </div>                                            
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-6 all_participants">                                    
@@ -424,6 +476,52 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade change_pass_section  view-participants-modal" id="view-task-participants" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{language.organizer.all_participants}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path
+                            d="M32 3.72111L28.2789 0L16 12.2789L3.72111 0L0 3.72111L12.2789 16L0 28.2789L3.72111 32L16 19.7211L28.2789 32L32 28.2789L19.7211 16L32 3.72111Z"
+                            fill="#98A5C6"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 all-participant-card">
+                        <div class="card-header" *ngIf="(collaborators && collaborators.length)">
+                            <h5 class="card-title">{{language.organizer.collaborators}}</h5>
+                        </div>
+                        <div class="card-body" *ngIf="collaborators">
+                            <div class="widget-appointment widget" *ngFor="let participant of collaborators">
+                                <div class="widget-app-content" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="getMemId(participant.id)">
+                                    <div class="app-left-content">
+                                        <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
+                                            {{participant.user[0]?.firstname.charAt(0)}}
+                                            {{participant.user[0]?.lastname.charAt(0)}}
+                                        </div>
+                                        <div class="author-img" *ngIf="participant.image != null">
+                                            <img onContextMenu="return false;" [src]="participant.image" style="width: 100px;" alt="" loading="lazy">
+                                        </div>
+                                        <div class="user-content">
+                                            <span class="user-name"> {{participant.user[0]?.firstname}} {{participant.user[0]?.lastname}}</span>
+                                            <span class="participant_email">{{participant?.user[0]?.email}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- top section end -->
             </div>
         </div>
     </div>
