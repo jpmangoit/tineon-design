@@ -45,7 +45,7 @@ export class MeventDetailComponent implements OnInit {
     role:any;
     userId:any;
     private activatedSub: Subscription;
-
+    eventType = [];
 	constructor(
 		private authService: AuthServiceService,
 		private router: Router,
@@ -57,6 +57,7 @@ export class MeventDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+        
         if(localStorage.getItem('club_theme') != null){
         let theme:ThemeType =  JSON.parse(localStorage.getItem('club_theme'));
         this.setTheme = theme;
@@ -72,6 +73,12 @@ export class MeventDetailComponent implements OnInit {
             const eventid:number = params['eventid'];
             this.getEventDetails(eventid);
         });
+
+        this.eventType[1] = this.language.create_event.club_event ;
+        this.eventType[2] = this.language.create_event.group_event ;
+        this.eventType[3] = this.language.create_event.functionaries_event ;
+        this.eventType[4] = this.language.create_event.courses;
+        this.eventType[5] = this.language.create_event.seminar;
         this.getAllUserInfo();
 	}
 
