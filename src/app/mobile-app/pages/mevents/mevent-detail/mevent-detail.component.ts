@@ -607,7 +607,11 @@ export class MeventDetailComponent implements OnInit {
                                     this.collaborators.push(value);
                                 }
                             })
-                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
+                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));                            
+                            // this.collaborators.sort((a, b) => {
+                            //     return b.image - a.image;
+                            // });
+                            // console.log(this.collaborators)
                         }
                     }
                 );
