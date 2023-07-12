@@ -2,7 +2,7 @@ export interface Room {
     created_at: string;
     description: string;
     id: number;
-    image: string;
+    image: any;
     name: string;
     no_of_persons: number;
     price: number;

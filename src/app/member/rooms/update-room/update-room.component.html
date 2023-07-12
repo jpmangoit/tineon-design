@@ -176,7 +176,7 @@
                                                     <div class="loader_image" *ngIf="isImage"></div>
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="hasPicture==false && (croppedImage == null || croppedImage == '') && !isImage" src="assets/img/event_upload.png">
-                                                    <img onContextMenu="return false;" class="preview_img" id="preview_img" *ngIf="hasPicture==true && (croppedImage == null || croppedImage == '') && !isImage" src="{{imageUrl}}">
+                                                    <img onContextMenu="return false;" class="preview_img" id="preview_img" *ngIf="hasPicture==true && (croppedImage == null || croppedImage == '') && !isImage" [src]="imageUrl">
                                                 </span>
                                                 <div *ngIf="(roomForm.controls.image.touched || formSubmit) && (roomForm.controls.image.errors?.required )"
                                                     class="text-danger">

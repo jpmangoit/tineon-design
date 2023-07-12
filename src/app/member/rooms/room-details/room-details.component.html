@@ -269,7 +269,7 @@
                         <div class="news_details" *ngIf="roomDetails">
                             <div class="row">
                                 <div class="news_image col-md-6">
-                                    <app-image-viewer *ngIf="roomDetails.image" [imageURL]="roomDetails.image" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                    <!-- <app-image-viewer *ngIf="roomDetails.image" [imageURL]="roomDetails.image" [open]="viewImage" (close)="viewImage = false"></app-image-viewer> -->
                                     <div class="detail-big-img" (click)="viewImage=true">
                                         <img onContextMenu="return false;" [src]="roomDetails.image? roomDetails.image : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                     </div>
@@ -286,7 +286,6 @@
                                         </ul>
                                     </div>
                                     <br>
-
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="schedule">
@@ -326,7 +325,6 @@
                                             </span>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="news_content col-md-6" >
                                     <div class="news_heading">
@@ -404,7 +402,6 @@
                                             </button>
                                         </div>
                                 </div>
-
                                 <div class="col-md-8  calendar-box" *ngIf="calendarOptions != 'undefined'">
                                     <full-calendar *ngIf="calendarRooms?.length > 0" [options]="calendarOptions"></full-calendar>
                                 </div>

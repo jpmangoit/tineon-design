@@ -20,6 +20,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { formatDate } from '@fullcalendar/core';
 import { Dayjs } from 'dayjs';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -40,8 +41,8 @@ export class RoomComponent implements OnInit, OnDestroy {
     displayRoom: boolean = true;
     setTheme: ThemeType;
     roomImg: string;
-    allRooms: Room[] = [];
     roomsByIdData: Room;
+    allRooms: Room[] = [];
     searchData: Room[]=[];
     private activatedSub: Subscription;
     userAccess: UserAccess;
@@ -75,6 +76,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private datePipe: DatePipe,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -266,6 +268,7 @@ export class RoomComponent implements OnInit, OnDestroy {
             if (this.roomsByIdData.image == '' || this.roomsByIdData.image == null) {
                 this.roomImg = '../../assets/img/no_image.png';
             } else {
+                this.roomsByIdData['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['image'].substring(20)));
                 this.roomImg = this.roomsByIdData.image;
             }
             setTimeout(() => {

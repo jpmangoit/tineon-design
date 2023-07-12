@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -110,7 +111,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -251,7 +253,13 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 this.roomForm.controls['description'].setValue(this.roomData.description);
                 this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
                 this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
-                this.roomForm.controls['image'].setValue(this.roomData.image);
+
+                if (this.roomData.image){
+                    this.hasPicture = true;
+                    this.roomData.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData.image.substring(20)));
+                    this.roomForm.controls['image'].setValue(this.roomData.image);
+                    this.imageUrl = this.roomData.image;
+                }
 
                 if ( this.roomData['active_from']) {
                     this.roomForm.controls['active_from'].setValue(this.roomData['active_from'].split('T')[0]);
@@ -260,10 +268,10 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     this.roomForm.controls['active_to'].setValue(this.roomData['active_to'].split('T')[0])
                 }
 
-                if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.roomData.image.endsWith(char))) {
-                    this.hasPicture = true;
-                    this.imageUrl = this.roomData.image;
-                }
+                // if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.roomData.image.endsWith(char))) {
+                // this.hasPicture = true;
+                //     this.imageUrl = this.roomData.image;
+                // }
                 this.weekdays.reset();
                 //-------------------set weekdays-------------
                 for (let i = 0; i < this.roomData.room_availablity.length; i++) {

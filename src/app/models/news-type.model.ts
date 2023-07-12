@@ -11,7 +11,7 @@ export interface NewsType {
   groups:GroupsDetail[]
   headline: string
   id: number
-  imageUrls: string
+  imageUrls: any
   priority: number
   publication_date_from:string
   publication_date_to:string

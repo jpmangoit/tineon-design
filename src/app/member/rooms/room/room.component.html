@@ -97,9 +97,9 @@
 									</div>
 									<div class="card-footer course_footer">
 										<p class="course-time" *ngFor="let val of item.room_availablity">
-											<span> 
+											<span>
 												<i class="fa fa-calendar"></i>
-												<span>{{getDayName(val.weekday)}}</span>                                            
+												<span>{{getDayName(val.weekday)}}</span>
 											</span>
 											<span>
                                                 <i class="fa fa-clock-o"></i>
@@ -168,7 +168,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="ins-image img-fluid">
-							<img onContextMenu="return false;" src="{{roomImg}}" alt="" loading="lazy">
+							<img onContextMenu="return false;" [src]="roomImg" alt="" loading="lazy">
 							<div class="course-action dropdown action_group" *ngIf="roomsByIdData.author == userData.userId || userData.isAdmin">
 								<button class="dropdown-toggle" type="button" (click)="onShow()">
 									<i class="fa fa-pencil"></i>

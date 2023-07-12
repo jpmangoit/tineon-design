@@ -135,8 +135,9 @@ export class GroupDetailComponent implements OnInit {
             this.setTheme = theme;
 		}
 		this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
-		this.setTheme = resp;
+		    this.setTheme = resp;
 		});
+
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
 		this.language = this.lang.getLanguaageFile();
@@ -300,13 +301,8 @@ export class GroupDetailComponent implements OnInit {
                         this.groupAction = 0;
                         let count = 0;
                         if (this.groupDetails && this.groupDetails['image']){
-                            // this.commonFunctionService.convertImages(this.groupDetails['image'])
-                            // .then((resp:any)=>{
-                            //     this.groupDetails['image'] = resp;
-                            // })
-
                             this.groupDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupDetails['image'].substring(20)));
-                        }                        
+                        }
 
                         if (this.groupDetails && this.groupDetails['participants']) {
                             Object(this.groupDetails['participants']).forEach((val, key) => {
@@ -419,12 +415,6 @@ export class GroupDetailComponent implements OnInit {
                 );
         }
     }
-
-    imageUrlToBlob(imageUrl) {
-        return fetch(imageUrl)
-          .then(response => response.blob())
-          .then(blob => blob);
-      }
 
     /**
    * Function to get group news of particular group
@@ -579,7 +569,7 @@ export class GroupDetailComponent implements OnInit {
 		})
 	}
 
-      /**
+    /**
    * Function is used to delete the updated group
    * @author  MangoIt Solutions
    * @param   {GroupId}

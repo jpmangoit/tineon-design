@@ -341,8 +341,8 @@ export class CommonFunctionService {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     let roomsByIdData = respData['result'];
+                    console.log(roomsByIdData);
                     resolve(roomsByIdData);
-
                 } else if (respData['code'] == 400) {
                     reject(respData['message']);
                 }

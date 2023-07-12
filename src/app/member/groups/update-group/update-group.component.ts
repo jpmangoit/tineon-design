@@ -15,6 +15,7 @@ import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -32,7 +33,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
     croppedImage: string = '';
     file: File;
     fileToReturn: File
-    showImage: string;
+    showImage: any;
     groupData: CommunityGroup[];
     groupid: number;
     groupParticipant: { id: number, user_email: string, user_name: string }[] = [];
@@ -63,7 +64,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     editorConfig: AngularEditorConfig = {
@@ -260,7 +262,10 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                         this.participantSelectedItem= this.authService.uniqueData(this.participantSelectedItem);
                         this.groupParticipant = Object.assign(this.authService.uniqueObjData(this.groupParticipant,'id'));
                         this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow,'id'));
-                        this.showImage = this.groupData['image'];
+                        if (this.groupData && this.groupData['image']){
+                            this.groupData['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupData['image'].substring(20)));
+                            this.showImage = this.groupData['image'];
+                        }
                         this.showParticipants = true;
                         if (this.groupData) {
                             this.updateGroupForm.controls['name'].setValue(this.groupData['name']);
@@ -306,6 +311,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                 if (Object.prototype.hasOwnProperty.call(this.updateGroupForm.value, key)) {
                     const element: any = this.updateGroupForm.value[key];
                     if (key == 'add_image') {
+                        console.log(element);
+
                         formData.append('file', element);
                     }
                     if (key == 'participants') {

@@ -18,6 +18,7 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -56,6 +57,7 @@ export class InstructorDetailsComponent implements OnInit {
 
     constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,private notifi:NotificationsService,
+        private sanitizer: DomSanitizer,
         private denyReasonService: DenyReasonConfirmDialogService,private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService, private router: Router, private updateConfirmDialogService: UpdateConfirmDialogService, private route: ActivatedRoute) {
             this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
@@ -152,6 +154,11 @@ export class InstructorDetailsComponent implements OnInit {
                 this.instructorDetails = null;
                 this.updateInstructorData = null;
                 this.instructorDetails = respData['result'];
+                console.log(this.instructorDetails);
+                if (this.instructorDetails?.['add_img']){
+                    this.instructorDetails['add_img'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorDetails['add_img'].substring(20)));
+                }
+                console.log(this.instructorDetails['add_img'] );
                 if(this.instructorDetails?.user?.member_id){
                     this.memberid = this.instructorDetails?.user?.member_id;
                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)

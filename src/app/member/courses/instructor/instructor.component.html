@@ -154,7 +154,7 @@
                 <div class="modal-area">
                     <div class="modal-image-inner">
                         <div class="ins-image img-fluid">
-                            <img src="{{imageShow}}" onContextMenu="return false;" loading="lazy">
+                            <img [src]="imageShow" onContextMenu="return false;" loading="lazy">
                         </div>
                         <div class="author-info">
                             <div class="author-img">
@@ -407,8 +407,7 @@
                                                 *ngIf="imageShow == null || imageShow == '' &&  !isImage"
                                                 src="assets/img/event_upload.png" onContextMenu="return false;">
                                             <img class="preview_img" onContextMenu="return false;"
-                                                *ngIf="imageShow && (croppedImage == null || croppedImage == '') && !isImage"
-                                                src="{{imageShow}}">
+                                                *ngIf="imageShow && (croppedImage == null || croppedImage == '') && !isImage" [src]="imageShow">
                                         </span>
                                         <div *ngIf="(editInstructorForm.controls.add_img.touched || formSubmit) && (editInstructorForm.controls.add_img.errors?.required )"
                                             class="text-danger">

@@ -17,6 +17,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { DatePipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $:any;
 
@@ -52,11 +53,14 @@ export class RoomDetailsComponent implements OnInit {
     selectLanguage: string;
     allRoomCalndr: any[];
     allWeekDayArray: any[];
+
     constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService,private denyReasonService: DenyReasonConfirmDialogService, private router: Router,
         private datePipe: DatePipe,
-        private updateConfirmDialogService: UpdateConfirmDialogService,private route: ActivatedRoute)
+        private updateConfirmDialogService: UpdateConfirmDialogService,private route: ActivatedRoute,
+        private sanitizer: DomSanitizer)
+
     {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -121,6 +125,9 @@ export class RoomDetailsComponent implements OnInit {
             this.roomDetails = [];
             this.updateRoomData = null;
             this.roomDetails = resp;
+            if (this.roomDetails?.['image']){
+                this.roomDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomDetails['image'].substring(20)));
+            }
             this.memberid = this.roomDetails.user.member_id;
             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
                 .subscribe((respData: any) => {
@@ -132,6 +139,8 @@ export class RoomDetailsComponent implements OnInit {
             if (this.roomDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                 if (this.roomDetails.updated_record != null) {
                     this.updateRoomData = JSON.parse(this.roomDetails.updated_record);
+                    console.log(this.updateRoomData);
+
                     this.updateRoomData.weekdays = JSON.parse(this.updateRoomData['weekdays']);
                     this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
                     .subscribe(

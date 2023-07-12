@@ -15,6 +15,7 @@ import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dial
 import { NotificationService } from 'src/app/service/notification.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -84,7 +85,8 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private commonFunctionService: CommonFunctionService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private sanitizer: DomSanitizer
 
     ) {
         this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
@@ -263,6 +265,13 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
+        console.log(this.newsData);
+        console.log(this.newsData['imageUrls']);
+        if (this.newsData?.['imageUrls']){
+            this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
+            console.log(this.newsData['imageUrls']);
+        }
+
         this.memberid = this.newsData.user.member_id;
             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
                 .subscribe(
@@ -276,7 +285,6 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
         if (this.newsData['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
             this.updateNewsData = JSON.parse(news.updated_record);
         }
-
     }
 
     /**

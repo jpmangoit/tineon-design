@@ -20,6 +20,7 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -99,7 +100,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) {}
 
     ngOnInit(): void {
@@ -446,7 +448,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     if (this.instructorById.add_img == '' || this.instructorById.add_img == null) {
                         this.imageShow = '../../assets/img/no_image.png';
                     } else {
-                        this.imageShow = this.instructorById.add_img;
+                        if (this.instructorById.add_img){
+                            this.instructorById.add_img = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorById.add_img.substring(20)));
+                            this.imageShow = this.instructorById.add_img;
+                        }
                     }
                     this.editId = this.instructorById.id;
                     setTimeout(() => {
@@ -559,6 +564,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.editInstructorForm.controls['emaill'].setValue(  this.instructorById.emaill );
         this.editInstructorForm.controls['phone_no'].setValue( this.instructorById.phone_no  );
         this.editInstructorForm.controls['address'].setValue( this.instructorById.address   );
+        console.log(this.instructorById.add_img);
         this.editInstructorForm.controls['add_img'].setValue( this.instructorById.add_img );
         this.editInstructorForm.controls['active_from'].setValue(this.instructorById.active_from);
         this.editInstructorForm.controls['active_to'].setValue(this.instructorById.active_to);
