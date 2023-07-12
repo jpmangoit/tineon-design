@@ -290,7 +290,11 @@ a.edit_btn {
 .all_participants .user-content {
     padding-top: 6px;
     color: #192838;
-    width: 148px;
+    width: 230px;
+}
+
+.card-body {
+    padding: 0;
 }
 .widget-app-content {
     display: inline-block;
@@ -869,6 +873,9 @@ span.deny-reason {
 }
 
 @media (max-width:767px){
+    .widget-app-content {
+        justify-content: left;
+    }
     .app-left-content {
         flex-wrap: wrap;
     }
@@ -891,5 +898,27 @@ span.deny-reason {
     }
     .event-time, .event-title span {
         font-size: 14px;
+        display: flex;
+flex-wrap: nowrap;
+font-size: 11px;
+align-items: center;
+gap: 5px;
+color: #999;
     }
+
+    ::ng-deep body .parti_name {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.page-action-right button svg path {
+  fill: #fff !important;
+}
+
+.author-des {
+  line-height: 17px;
+  text-align: left;
+  margin-bottom: 15px;
+  padding-top: 11px;
+}
 }

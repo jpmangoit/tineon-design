@@ -158,13 +158,13 @@
                                                                 <input *ngIf="eventDetails.eventTask.status == 0"
                                                                     class="check-style"
                                                                     id="styled-checkbox-{{eventDetails.eventTask.id}}"
-                                                                    type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                                    type="checkbox" style="opacity: 1;"
                                                                     type="checkbox"
                                                                     (change)="mainTaskMarkComplete(eventDetails.eventTask.id)">        
                                                                 <input *ngIf="eventDetails.eventTask.status == 1"
                                                                     class="check-style"
                                                                     id="styled-checkbox-{{eventDetails.eventTask.id}}"
-                                                                    type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                                    type="checkbox" style="opacity: 1;"
                                                                     type="checkbox" checked="checked" disabled="disabled">
         
                                                                 <h5 *ngIf="eventDetails.eventTask.status != 2" class="" style="margin-left: 35px;">
@@ -368,7 +368,7 @@
                                                     <div class="event-content" *ngFor="let updatedTask of updateEventData.task">
                                                         <div class="event-title">
                                                             <div class="sub-title">
-                                                                <input class="check-style" type="checkbox" style="opacity: 1;margin-top: 5px;" disabled="disabled">        
+                                                                <input class="check-style" type="checkbox" style="opacity: 1;" disabled="disabled">        
                                                                 <h5 *ngIf="updatedTask.status != 2" class="" style="margin-left: 35px;">{{updatedTask.title}}</h5>
                                                                 <h5 *ngIf="updatedTask.status == 2" class=""> {{updatedTask.title}}</h5>
                                                             </div>
@@ -568,14 +568,14 @@
                                                         <input *ngIf="eventDetails.eventTask.status == 0"
                                                             class="check-style"
                                                             id="styled-checkbox-{{eventDetails.eventTask.id}}"
-                                                            type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                            type="checkbox" style="opacity: 1;"
                                                             type="checkbox"
                                                             (change)="mainTaskMarkComplete(eventDetails.eventTask.id)">
 
                                                         <input *ngIf="eventDetails.eventTask.status == 1"
                                                             class="check-style"
                                                             id="styled-checkbox-{{eventDetails.eventTask.id}}"
-                                                            type="checkbox" style="opacity: 1;margin-top: 5px;"
+                                                            type="checkbox" style="opacity: 1;"
                                                             type="checkbox" checked="checked" disabled="disabled">
 
                                                         <h5 *ngIf="eventDetails.eventTask.status != 2" class="" style="margin-left: 35px;">
@@ -667,12 +667,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="app-right-content" *ngIf="participant.approved_status == 1">
-                                           
-                                        </div>
-                                        <div class="app-right-content" *ngIf="participant.approved_status == 3">
-                                           
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="widget-appointment widget" *ngFor="let participant of memImg">
@@ -691,9 +686,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="app-right-content">
-                                           
-                                        </div>
+                                        
                                     </div>
                                 </div>                                
                             </div>
@@ -723,7 +716,7 @@
                 <div class="row">
                     <div class="col-md-6 all_participants">                                    
                         <div class="all-participant-card">
-                            <div class="card-header">
+                            <div class="card-header ">
                                 <h5 class="card-title">{{language.organizer.all_participants}}</h5>
                             </div>
                             <div class="card-body" *ngIf="updateEventData?.users">
@@ -857,8 +850,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6 all-participant-card">
-                        <div class="card-header" *ngIf="(collaborators && collaborators.length)">
-                            <h5 class="card-title">{{language.organizer.collaborators}}</h5>
+                        <div class="card-header detail-popup" *ngIf="(collaborators && collaborators.length)">
+                            <h2 class="card-title">{{language.organizer.collaborators}}</h2>
                         </div>
                         <div class="card-body" *ngIf="collaborators">
                             <div class="widget-appointment widget" *ngFor="let participant of collaborators">
