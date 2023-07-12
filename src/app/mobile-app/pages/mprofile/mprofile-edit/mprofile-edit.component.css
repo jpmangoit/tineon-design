@@ -397,6 +397,28 @@ span.profile-menu-ic {
     margin: 5px 0px;
 }
 
+.mobile-back-main {
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.switch_toggle input[type="checkbox"]:checked + label {
+  background: #20AE80;
+}
+.switch_toggle input[type="checkbox"]:checked + label:after {
+  left: auto;
+  right: 3px;
+}
+
+.mb-title.proile-icon svg { margin-right: 10px;}
+.mb-title.proile-icon svg path {
+  fill: #e9380b;
+}
+
+::ng-deep .mobile-green .mb-title.proile-icon svg path {
+  fill: #20AE80 !important ;
+}
+
 /* Safari */
 @-webkit-keyframes spin_img {
     0% {

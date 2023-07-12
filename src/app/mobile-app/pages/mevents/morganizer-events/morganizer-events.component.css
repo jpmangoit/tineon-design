@@ -183,6 +183,7 @@ span.event-cat {
 .event-listing .event_box_right h6 {
     margin-top: 3px;
     font-size: 13px;
+    min-height: 40px;
 }
 .event-listing span.event_month {
     padding-top: 0;
@@ -198,7 +199,7 @@ span.event-cat {
 .event_box_left .images img {
 max-width: 100%;
 height: 100%;
-transform: scale(1.5);
+transform: scale(1.8);
 }
 
 .event-summery .event_date {

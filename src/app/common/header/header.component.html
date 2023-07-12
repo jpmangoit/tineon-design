@@ -424,7 +424,7 @@
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                             {{language.header.want_to_publish_an_Event_calles}}
                                             <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
-                                            {{language.header.event | lowercase}}
+                                            <!-- {{language.header.event | lowercase}} -->
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -448,7 +448,7 @@
                                         <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                             {{language.header.want_to_publish_update_an_Event_called}}
                                             <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
-                                            {{language.header.event | lowercase}}
+                                            <!-- {{language.header.event | lowercase}} -->
                                         </p>
                                         <div class="notification-btn-group">
                                             <button class="accept_btn" type="button"
@@ -537,7 +537,7 @@
                                             <p *ngIf="alluserDetails">
                                                 <span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.invited_you_to}}
                                                 <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
-                                                {{ language.header.event | lowercase }}
+                                                <!-- {{ language.header.event | lowercase }} -->
                                             </p>
                                             <div class="notification-btn-group">
                                                 <button class="accept_btn" type="button"

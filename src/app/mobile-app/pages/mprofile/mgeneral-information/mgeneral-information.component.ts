@@ -148,6 +148,7 @@ export class MgeneralInformationComponent implements OnInit {
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.userDetails = respData;
+                    console.log(this.userDetails);
                     this.role = userData.roles[0];
                 });
         }
