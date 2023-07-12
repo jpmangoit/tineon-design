@@ -420,11 +420,11 @@ export class GroupDetailComponent implements OnInit {
         }
     }
 
-    imageUrlToBlob(imageUrl) {
-        return fetch(imageUrl)
-          .then(response => response.blob())
-          .then(blob => blob);
-      }
+    // imageUrlToBlob(imageUrl) {
+    //     return fetch(imageUrl)
+    //       .then(response => response.blob())
+    //       .then(blob => blob);
+    //   }
 
     /**
    * Function to get group news of particular group

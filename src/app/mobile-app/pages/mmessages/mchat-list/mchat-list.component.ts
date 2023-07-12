@@ -56,6 +56,7 @@ export class MchatListComponent implements OnInit {
     imageSrc: File;
     thumb: string;
     selectedChat: { count: number, id: number, image: string, members: ChatUsers[], name: string, type: string };
+    chatInfo:  { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string };
     chatUserArr: {
         lastMsgTime: string;
         lastMsgDate: string;
@@ -93,12 +94,11 @@ export class MchatListComponent implements OnInit {
             this.setTheme = resp;
         });
 
-        this.route.params.subscribe(params => {
-            const chatid: number = params['id'];
-            this.chatId = chatid;
-            //this.getEventDetails(eventid);
+        this.route.queryParams.subscribe(params => {
+            this.chatId = params.id;
+            console.log(this.chatId)
         });
-        
+       
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];
@@ -245,6 +245,16 @@ export class MchatListComponent implements OnInit {
                     }
                 }
                 this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
+                if(this.chatId){
+
+                    let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId);
+                    if(chatDetails.length > 0){
+                        setTimeout(() => {
+                            $("#chat-"+this.chatId).click();
+                        }, 3000);
+                    }
+
+                }
             }
 
         );
@@ -259,6 +269,7 @@ export class MchatListComponent implements OnInit {
     }
 
     clickChat(chat: { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string },event:any) {
+        console.log(chat)
         this.chatData = ''
         this.chatData = chat
     }
