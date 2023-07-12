@@ -81,6 +81,13 @@ button.btn.btn-secondary.change_btn {
     height: 120px;
 }
 
+.info_detail.profile-img label {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
 .mobile-back-main {
   justify-content: flex-start;
   gap: 15px;
@@ -166,6 +173,17 @@ body .profile_title {
     background: #fff;
     border-radius: 90px;
     transition: 0.3s;
+}
+
+.guest_label {
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.guest_label .switch_toggle {
+  margin-top: -12px;
 }
 
 @media only screen and (max-width: 767px){
