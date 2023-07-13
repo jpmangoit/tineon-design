@@ -494,7 +494,7 @@
                                                         src="../../../../assets/img/no_image.png">
                                                     <img onContextMenu="return false;" class="preview_img"
                                                         *ngIf="hasPicture == true && (croppedImage == null || croppedImage == '')  && !isImage"
-                                                        src="{{eventImage}}">
+                                                        [src]="eventImage">
                                                 </span>
                                                 <div *ngIf="(courseForm.controls.file.touched || eventSubmitted) && (courseForm.controls.file.errors?.required )"
                                                     class="text-danger">

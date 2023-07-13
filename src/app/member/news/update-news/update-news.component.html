@@ -150,11 +150,10 @@
                                                     </label>
                                                     <div class="loader_image" *ngIf="isImage"></div>
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
-                                                    <img onContextMenu="return false;" class="preview_img"
-                                                        *ngIf="(newsData.imageUrls == null) && (croppedImage == null || croppedImage == '') && !isImage"
+                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="(newsData.imageUrls == null) && (croppedImage == null || croppedImage == '') && !isImage"
                                                         src="assets/img/event_upload.png">
                                                     <img onContextMenu="return false;" id="preview_img"
-                                                        *ngIf="newsData.imageUrls && (croppedImage == null || croppedImage == '') && !isImage" src="{{newsData.imageUrls}}">
+                                                        *ngIf="newsData.imageUrls && (croppedImage == null || croppedImage == '') && !isImage" [src]="newsData.imageUrls">
                                                 </span>
                                                 <div *ngIf="(updateNewsForm.controls.add_image.touched || submitted) && (updateNewsForm.controls.add_image.errors?.required )"
                                                     class="text-danger">
@@ -215,7 +214,7 @@
                         </form>
                     </div>
                     <div class="empty-data-image" *ngIf="!newsData">
-                        <img onContextMenu="return false;" src="assets/img/no_news_img.png" alt="{{language.community_groups.no_news}}" loading="lazy"><br>
+                        <!-- <img onContextMenu="return false;" src="assets/img/no_news_img.png" alt="{{language.community_groups.no_news}}" loading="lazy"><br> -->
                         <span>{{language.community_groups.no_news}}</span>
                     </div>
                </div>

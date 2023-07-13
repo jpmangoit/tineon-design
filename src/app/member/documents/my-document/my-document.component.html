@@ -29,10 +29,11 @@
             <!-- document box -->
             <div class="document-item" *ngFor="let doc of final_myData; let i = index">
                 <div class="doc_box toggle-main">
-                    <a (click)="download(doc.doc_name)">
-                        <img onContextMenu="return false;" [src]="extArr[i]? docExt[i] :'../../../../assets/img/doc-icons/image_icon.png'" alt="" loading="lazy">
-                         <span class="docu_name">{{doc.doc_name.split('/')[2]}}</span> 
-                    </a>                    
+                    <a target="_blank" (click)="download(doc.doc_name)">
+                        <img (click)="download(doc.doc_name)" onContextMenu="return false;"  alt="" loading="lazy"
+                             [src]="extArr[i]? docExt[i] :'../../../../assets/img/doc-icons/image_icon.png'" >
+                        <span class="docu_name" (click)="download(doc.doc_name)">{{doc.doc_name.split('/')[2]}}</span>
+                    </a>
                     <span class="doc-date">{{ doc.created_at | date : "d. MMMM y"}}</span>
                     <!-- <a (click)="download(doc.doc_name)"> <span class="docu_name">{{fileNameArr[i]}}</span> </a> -->
                     <nav class="navbar navbar-absolute fixed-top">

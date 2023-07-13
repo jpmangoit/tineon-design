@@ -17,6 +17,7 @@ import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $: any;
 @Component({
@@ -112,7 +113,9 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -251,7 +254,11 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         }
         this.updateNewsForm.controls['title'].setValue(this.newsData.title);
         this.updateNewsForm.controls['content'].setValue(this.newsData.text);
-        this.updateNewsForm.controls['add_image'].setValue(this.newsData.imageUrls);
+
+        if (this.newsData?.['imageUrls']){
+            this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
+            this.updateNewsForm.controls['add_image'].setValue(this.newsData.imageUrls);
+        }
         this.updateNewsForm.controls['visible_dropdown'].setValue(type);
         if (this.newsData.show_guest_list == 'false') {
             this.updateNewsForm.controls['show_guest'].setValue('');

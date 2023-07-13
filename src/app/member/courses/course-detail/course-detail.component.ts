@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
-import { Courses } from 'src/app/models/courses.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
@@ -14,6 +13,8 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { ProfileDetails } from 'src/app/models/profile-details.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -64,6 +65,10 @@ export class CourseDetailComponent implements OnInit {
     thumbnail: string;
     courseDate: any;
 
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
+
     constructor(private authService: AuthServiceService,
         private router: Router,
         private route: ActivatedRoute,
@@ -73,7 +78,9 @@ export class CourseDetailComponent implements OnInit {
         private denyReasonService: DenyReasonConfirmDialogService,
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -156,6 +163,8 @@ export class CourseDetailComponent implements OnInit {
                         this.courseDetails = null;
                         this.updateCourseData = null;
                         this.courseDetails = respData['result'];
+                        console.log(this.courseDetails);
+
                         if (this.courseDetails?.length > 0) {
                             this.courseDetails.forEach(element => {
                                 if (this.allUsers?.length > 0) {
@@ -190,34 +199,57 @@ export class CourseDetailComponent implements OnInit {
                         if(this.courseDate){
                             this.courseDetails[0].recurring_dates.unshift( this.courseDetails[0].recurring_dates.splice( this.courseDetails[0].recurring_dates.findIndex(elt => elt.date_from === this.courseDate), 1)[0]);
                         }
-
                         this.courseDetails[0].date_from = this.courseDate ? this.courseDate + 'T' + this.courseDetails[0].date_from.split('T')[1] : this.courseDetails[0].date_from;
-                        if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
-                            if (this.courseDetails[0].picture_video != "[]") {
-                                let responseImg: string;
-                                responseImg = this.courseDetails[0].picture_video;
-                                let resp: string[] = [];
-                                resp = responseImg.split("\"");
-                                let imgArray: string[] = [];
-                                let fileArray: string[] = [];
-                                if (resp && resp.length > 0) {
-                                    resp.forEach((element: string) => {
-                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                            imgArray.push(element);
-                                            this.hasPicture = true;
-                                            this.eventImage = imgArray[0];
-                                        } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                            fileArray.push(element);
-                                            this.eventFile = fileArray[0];
-                                            this.eventFile = element;
-                                        }
-                                    });
-                                }
-                            } else {
-                                this.hasPicture = false;
-                                this.eventImage = '';
+                        if (this.courseDetails[0]?.picture_video != "[]") {
+                                this.hasPicture = true;
+                                if (this.courseDetails[0].picture_video){
+                                this.courseDetails[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0].picture_video.substring(20)));
+                                this.eventImage =  this.courseDetails[0].picture_video
+                                console.log(this.eventImage);
                             }
+                        } else {
+                            this.hasPicture = false;
+                            this.eventImage = '';
                         }
+
+                        if (this.courseDetails[0]?.document_url) {
+                            this.eventFile =  this.courseDetails[0].document_url;
+                            console.log(this.eventFile);
+                        }
+
+                        // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
+                        //     if (this.courseDetails[0].picture_video != "[]") {
+                        //         let responseImg: string;
+                        //         console.log(this.courseDetails[0].picture_video);
+                        //         responseImg = this.courseDetails[0].picture_video;
+                        //         let resp: string[] = [];
+                        //         resp = responseImg.split("\"");
+                        //         let imgArray: any[] = [];
+                        //         let fileArray: string[] = [];
+                        //         if (resp && resp.length > 0) {
+                        //             resp.forEach((element: string) => {
+                        //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                        //                     imgArray.push(element);
+                        //                     this.hasPicture = true;
+                        //                     console.log(imgArray);
+                        //                     if (imgArray[0]){
+                        //                         imgArray[0] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(imgArray[0].substring(20)));
+                        //                         this.eventImage = imgArray[0];
+                        //                     }
+
+                        //                 } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+                        //                     fileArray.push(element);
+                        //                     this.eventFile = fileArray[0];
+                        //                     this.eventFile = element;
+                        //                 }
+                        //             });
+                        //         }
+                        //     } else {
+                        //         this.hasPicture = false;
+                        //         this.eventImage = '';
+                        //     }
+                        // }
+
                         this.getOrganizerDetails(courseId);
                         this.getParticipantDetails(courseId);
                         if (this.courseDetails[0]?.['author'] == JSON.parse(this.userId) || this.userDetails.roles[0] == 'admin') {
@@ -355,6 +387,47 @@ export class CourseDetailComponent implements OnInit {
                 }
             )
     }
+
+    /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+               this.authService.downloadDocument('post', endPoint, data).toPromise()
+                  .then((blob: any) => {
+                       console.log(blob);
+                        saveAs(blob, filename);
+                       this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
 
     /**
    * Function to get Organizer of particular Course
