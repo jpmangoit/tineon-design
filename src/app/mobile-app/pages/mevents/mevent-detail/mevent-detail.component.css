@@ -62,26 +62,22 @@ div#profileSpinner {
   font-size: 12px;
   border-radius: 5px;
   font-weight: 600;
+  color: #fff;
 }
 
 .title-box {
   display: flex;
   align-items: start;
   margin-top: 10px;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  
 }
 
 .images-box {
     border-radius: 15px;
     overflow: hidden;
     display: inline-block;
+    margin-bottom: 10px
 }
-
-
-
-
-
-
 
 .event_field select {
     width: 100%;

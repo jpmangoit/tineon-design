@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { ThemeType } from 'src/app/models/theme-type.model';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProfileDetails } from 'src/app/models/profile-details.model';
 import { LoginDetails, UserDetails } from 'src/app/models/login-details.model';
 import { EventsType } from 'src/app/models/events-type.model';
@@ -87,7 +87,8 @@ export class MeventDetailComponent implements OnInit {
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -188,23 +189,39 @@ export class MeventDetailComponent implements OnInit {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                if (this.eventDetails.picture_video != null) {
-                                    var url: string[] = this.eventDetails.picture_video.split('\"');
-                                    let self = this;
-                                    self.fileArray = [];
-                                    if (url && url.length > 0) {
-                                        url.forEach(element => {
-                                            self.showImage = true;
-                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                                self.showImage = true;
-                                                self.fileArray.push(element);
-                                                self.imageurl = self.fileArray[0];
-                                            } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                                self.docFile = element;
-                                            }
-                                        });
+                                if (this.eventDetails?.picture_video != null) {
+                                    this.showImage = true;
+                                    if (this.eventDetails.picture_video){
+                                    this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
+                                    this.imageurl =  this.eventDetails.picture_video
                                     }
+                                } else {
+                                    this.showImage = false;
+                                    this.imageurl = '';
                                 }
+
+                                if (this.eventDetails?.document_url) {
+                                    this.docFile =  this.eventDetails.document_url;
+                                    console.log(this.docFile);
+                                }
+
+                                // if (this.eventDetails.picture_video != null) {
+                                //     var url: string[] = this.eventDetails.picture_video.split('\"');
+                                //     let self = this;
+                                //     self.fileArray = [];
+                                //     if (url && url.length > 0) {
+                                //         url.forEach(element => {
+                                //             self.showImage = true;
+                                //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                                //                 self.showImage = true;
+                                //                 self.fileArray.push(element);
+                                //                 self.imageurl = self.fileArray[0];
+                                //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+                                //                 self.docFile = element;
+                                //             }
+                                //         });
+                                //     }
+                                // }
                                 this.getOrganizerDetails(eventid);
                                 this.getParticipantDetails(eventid);
                                 if (this.eventDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
