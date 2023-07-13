@@ -747,7 +747,7 @@ span.deny-reason {
     font-weight: 600;
     color: #192838;
     margin-top: 15px;
-    margin-bottom: -15px;
+    /* margin-bottom: -15px; */
     font-family: "Gellix", sans-serif;
 }
 .news-content p {
