@@ -389,47 +389,6 @@ export class CourseDetailComponent implements OnInit {
     }
 
     /**
-    * Function is used to download document
-    * @author  MangoIt Solutions
-    * @param   {path}
-    */
-        download(path: any) {
-            let data = {
-                name: path
-            }
-            console.log(path);
-            console.log(this.dowloading);
-            this.dowloading = true;
-            console.log(this.dowloading);
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/')[2]
-               this.authService.downloadDocument('post', endPoint, data).toPromise()
-                  .then((blob: any) => {
-                       console.log(blob);
-                        saveAs(blob, filename);
-                       this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                console.log(this.result);
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
-        }
-
-    /**
    * Function to get Organizer of particular Course
    * @author  MangoIt Solutions
    * @param   {CourseId}
@@ -796,6 +755,48 @@ export class CourseDetailComponent implements OnInit {
                 console.log(err);
             })
     }
+
+        /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+               this.authService.downloadDocument('post', endPoint, data).toPromise()
+                  .then((blob: any) => {
+                       console.log(blob);
+                        saveAs(blob, filename);
+                       this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
+
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();

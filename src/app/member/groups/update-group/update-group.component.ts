@@ -23,6 +23,7 @@ declare var $: any;
     templateUrl: './update-group.component.html',
     styleUrls: ['./update-group.component.css']
 })
+
 export class UpdateGroupComponent implements OnInit, OnDestroy {
     language: any;
     receiveData: any;

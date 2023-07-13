@@ -5,7 +5,7 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { NewsType } from 'src/app/models/news-type.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
@@ -50,7 +50,9 @@ export class MclubNewsComponent implements OnInit {
         private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -153,7 +155,10 @@ export class MclubNewsComponent implements OnInit {
         if(this.newsData.imageUrls == '' || this.newsData.imageUrls == null){
             this.newImg = '../../assets/img/no_image.png';
         }else{
-            this.newImg = this.newsData.imageUrls;
+            if (this.newsData.imageUrls){
+                    this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
+                    this.newImg = this.newsData.imageUrls;
+                }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id='+this.userData.database_id+'&club_id='+this.userData.team_id+'&member_id=' + this.memberid, null)

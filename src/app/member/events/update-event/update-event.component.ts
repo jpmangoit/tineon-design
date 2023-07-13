@@ -22,6 +22,8 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -155,6 +157,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     date: Date;
     allRoomCalndr: any[];
     customReccDateError: { isError: boolean; errorMessage: string; } = { isError: false, errorMessage: '' };
+
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
+
     editorConfig: AngularEditorConfig = {
         editable: true,
         spellcheck: true,
@@ -261,7 +268,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
         private confirmDialogService: ConfirmDialogService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -705,34 +714,72 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             end_time = date_to[1].split(".");
         }
 
-        if (this.eventDetails.picture_video != null) {
+        console.log(this.eventDetails);
+        if (this.eventDetails?.picture_video != null) {
             this.hasPicture = true;
-            let responseImg: string;
-            responseImg = this.eventDetails.picture_video;
-            let resp: string[] = [];
-            resp = responseImg.split("\"");
-            let imgArray: string[] = [];
-            let self = this;
-            if (resp && resp.length > 0) {
-                resp.forEach(element => {
-                    if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
-                        (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
-                        (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
-                        (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
-                    ) {
-                        imgArray.push(element);
-                        this.eventImage = imgArray[0];
-                    }
-                    if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
-                        (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
-                        (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
-                        (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
-                        (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
-                        this.eventFile = element;
-                    }
-                });
+            if (this.eventDetails.picture_video){
+            this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
+            this.eventImage =  this.eventDetails.picture_video;
+            this.imageUrl = this.eventDetails.picture_video;
+            console.log(this.eventImage);
             }
+        } else {
+            this.hasPicture = false;
+            this.eventImage = '';
         }
+
+        if (this.eventDetails?.document_url) {
+            this.eventFile =  this.eventDetails.document_url;
+            this.fileUrl = this.eventDetails.document_url;
+            console.log(this.eventFile);
+        }
+
+        // if (this.eventDetails.picture_video != null) {
+        //     this.hasPicture = true;
+        //     let responseImg: string;
+        //     responseImg = this.eventDetails.picture_video;
+        //     let resp: string[] = [];
+        //     resp = responseImg.split("\"");
+        //     let imgArray: string[] = [];
+        //     let self = this;
+        //     if (resp && resp.length > 0) {
+        //         resp.forEach(element => {
+        //             if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
+        //                 (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
+        //                 (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
+        //                 (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
+        //             ) {
+        //                 imgArray.push(element);
+        //                 this.eventImage = imgArray[0];
+        //             }
+        //             if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
+        //                 (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
+        //                 (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
+        //                 (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
+        //                 (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
+        //                 this.eventFile = element;
+        //             }
+        //         });
+        //     }
+        // }
+
+
+        // if (this.eventDetails.picture_video) {
+        //     this.image = this.eventDetails.picture_video;
+        //     let resp: string[] = [];
+        //     resp = this.image.split("\"");
+        //     let self = this;
+        //     if (resp && resp.length > 0) {
+        //         resp.forEach(element => {
+
+        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+        //                 this.imageUrl = element;
+        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+        //                 this.fileUrl = element;
+        //             }
+        //         })
+        //     }
+        // }
         if (this.eventDetails.recurrence != null && this.eventDetails.recurrence != "") {
             const textArray: string[] = this.eventDetails.recurrence.split(";", 1);
             const until = this.eventDetails.recurrence.split(";", 2)[1];
@@ -858,23 +905,6 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         }
         if (this.eventDetails.chargeable) {
             this.eventPriceDisplay = true;
-        }
-
-        if (this.eventDetails.picture_video) {
-            this.image = this.eventDetails.picture_video;
-            let resp: string[] = [];
-            resp = this.image.split("\"");
-            let self = this;
-            if (resp && resp.length > 0) {
-                resp.forEach(element => {
-
-                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                        this.imageUrl = element;
-                    } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                        this.fileUrl = element;
-                    }
-                })
-            }
         }
 
         if (type.length && visibility.length) {
@@ -2320,6 +2350,47 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+        /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+                this.authService.downloadDocument('post', endPoint, data).toPromise()
+                    .then((blob: any) => {
+                        console.log(blob);
+                        saveAs(blob, filename);
+                        this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
 
     /**
     * Function is used to validate file type is image and upload images

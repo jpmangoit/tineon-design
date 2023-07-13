@@ -15,6 +15,7 @@ import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dial
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -68,6 +69,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     allUsers: any;
     eventId: any;
     eventDate: any;
+
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
 
     constructor(
         private authService: AuthServiceService,
@@ -184,8 +189,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                     console.log(this.imageurl);
                                     }
                                 } else {
-                                    console.log('innn');
-
                                     this.showImage = false;
                                     this.imageurl = '';
                                 }
@@ -662,6 +665,47 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
         }
     }
+
+    /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+                this.authService.downloadDocument('post', endPoint, data).toPromise()
+                    .then((blob: any) => {
+                        console.log(blob);
+                        saveAs(blob, filename);
+                        this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();
