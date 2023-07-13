@@ -7,7 +7,7 @@ import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { ThemeType } from 'src/app/models/theme-type.model';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProfileDetails } from 'src/app/models/profile-details.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update-confirm-dialog.service';
@@ -15,6 +15,7 @@ import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dial
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -69,6 +70,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     eventId: any;
     eventDate: any;
 
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
+
     constructor(
         private authService: AuthServiceService,
         private router: Router,
@@ -79,7 +84,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -174,23 +180,40 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                if (this.eventDetails.picture_video != null) {
-                                    var url: string[] = this.eventDetails.picture_video.split('\"');
-                                    let self = this;
-                                    self.fileArray = [];
-                                    if (url && url.length > 0) {
-                                        url.forEach(element => {
-                                            self.showImage = true;
-                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                                self.showImage = true;
-                                                self.fileArray.push(element);
-                                                self.imageurl = self.fileArray[0];
-                                            } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                                self.docFile = element;
-                                            }
-                                        });
+                                console.log(this.eventDetails);
+                                if (this.eventDetails?.picture_video != null) {
+                                    this.showImage = true;
+                                    if (this.eventDetails.picture_video){
+                                    this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
+                                    this.imageurl =  this.eventDetails.picture_video
+                                    console.log(this.imageurl);
                                     }
+                                } else {
+                                    this.showImage = false;
+                                    this.imageurl = '';
                                 }
+
+                                if (this.eventDetails?.document_url) {
+                                    this.docFile =  this.eventDetails.document_url;
+                                    console.log(this.docFile);
+                                }
+                                // if (this.eventDetails.picture_video != null) {
+                                //     var url: string[] = this.eventDetails.picture_video.split('\"');
+                                //     let self = this;
+                                //     self.fileArray = [];
+                                //     if (url && url.length > 0) {
+                                //         url.forEach(element => {
+                                //             self.showImage = true;
+                                //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                                //                 self.showImage = true;
+                                //                 self.fileArray.push(element);
+                                //                 self.imageurl = self.fileArray[0];
+                                //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+                                //                 self.docFile = element;
+                                //             }
+                                //         });
+                                //     }
+                                // }
                                 this.getOrganizerDetails(eventid);
                                 this.getParticipantDetails(eventid);
                                 if (this.eventDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
@@ -642,6 +665,47 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
         }
     }
+
+    /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+                this.authService.downloadDocument('post', endPoint, data).toPromise()
+                    .then((blob: any) => {
+                        console.log(blob);
+                        saveAs(blob, filename);
+                        this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();

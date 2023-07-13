@@ -18,8 +18,8 @@
                                                 <div class="ins_img_inner">
                                                     <div class="course-detail-image">
                                                         <div class="image-section">
-                                                            <img class="preview_img" onContextMenu="return false;" [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"
-                                                            alt="{{item.name}}" loading="lazy">
+                                                            <img class="preview_img" onContextMenu="return false;" alt="{{item.name}}" loading="lazy"
+                                                             [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" >
                                                         </div>
                                                         <div class="overbar-section">
                                                             <div class="course-action dropdown action_group" *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
@@ -47,7 +47,7 @@
                                                                             <span class="img-icon">
                                                                                 <img src="../../../assets/img/calender.svg" onContextMenu="return false;" alt="calender" loading="lazy" />
                                                                             </span>
-                                                                            <span>{{item.date_from | date: "d. MMMM y" }}</span>                                                                            
+                                                                            <span>{{item.date_from | date: "d. MMMM y" }}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -57,7 +57,7 @@
                                                                             </span>
                                                                             <span>
                                                                                 {{ item?.recurring_dates? ( (item?.recurring_dates[0].date_from | date: 'EEEE') ) : (item.date_from | date: 'EEEE') }}
-                                                                            </span>                                                                            
+                                                                            </span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -449,7 +449,7 @@
                                                                             </span>
                                                                             <span>
                                                                                 {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].date_from | date: 'EEEE') ) : (updateCourseData.date_from | date: 'EEEE') }}
-                                                                            </span>                                                                            
+                                                                            </span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -463,7 +463,7 @@
                                                                             <span>
                                                                                 {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].start_time + ' - ' + updateCourseData?.recurring_dates[0].end_time ) ) :
                                                                             ( (updateCourseData.start_time) + ' - ' + (updateCourseData.end_time) )}}   {{language.login.o_clock}}
-                                                                            </span>                                                                            
+                                                                            </span>
                                                                             <!-- {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +updateCourseData?.recurring_dates[0].start_time ) ) :
                                                                             (updateCourseData.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
                                                                         </div>
@@ -842,7 +842,7 @@
                                                                     <span>
                                                                         {{item.date_from | date: "d. MMMM y" }}
                                                                     </span>
-                                                                    <!-- {{item.date_from | date: "MMM dd - EEEE" }} -->                                                                    
+                                                                    <!-- {{item.date_from | date: "MMM dd - EEEE" }} -->
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -972,7 +972,7 @@
                                             </div>
                                         </ng-template>
                                     </div> -->
-                                    <div class="attach_btn" *ngIf="eventFile">
+                                    <div class="attach_btn" *ngIf="eventFile" (click)="download(eventFile)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                             viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -981,8 +981,8 @@
                                             <polyline points="7 10 12 15 17 10" />
                                             <line x1="12" y1="15" x2="12" y2="3" />
                                         </svg>
-                                        <a href="{{eventFile}}"><span> {{language.create_event.download_attachment}}
-                                            </span></a>
+                                        <span>{{language.create_event.download_attachment}}</span>
+                                        <!-- <a  href="{{eventFile}}"><span>{{language.create_event.download_attachment}}</span> </a> -->
                                     </div>
                                     <div class="author-des">
                                         <span class="author-status"
@@ -1212,6 +1212,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="dowloading">
+    <div class="overlay download-overlay">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <div class="loading" data-loading-text="Downloading..."></div>
             </div>
         </div>
     </div>

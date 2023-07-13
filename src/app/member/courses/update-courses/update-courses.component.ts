@@ -22,6 +22,9 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
+
 declare var $: any;
 
 @Component({
@@ -255,6 +258,10 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     allExternlCalndr: any[];
     customReccDateError: { isError: boolean; errorMessage: string; } = { isError: false, errorMessage: '' };
 
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
+
     constructor(
         private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder,
@@ -267,7 +274,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         private imageCompress: NgxImageCompressService,
         private confirmDialogService: ConfirmDialogService,
         private commonFunctionService: CommonFunctionService,
-        private datePipe: DatePipe
+        private datePipe: DatePipe,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -751,28 +759,46 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails.chargeable) {
             this.eventPriceDisplay = true;
         }
+        console.log(this.courseDetails);
+
         if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
             this.hasPicture = true;
-            let responseImg: string;
-            responseImg = this.courseDetails.picture_video;
             this.image = this.courseDetails.picture_video;
-            let resp: string[];
-            resp = responseImg.split("\"");
-            let imgArray: string[] = [];
-            let self = this;
-            if (resp && resp.length > 0) {
-                resp.forEach(element => {
-                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                        imgArray.push(element);
-                        this.eventImage = imgArray[0];
-                        this.imageUrl = element;
-                    } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                        this.eventFile = element;
-                        this.fileUrl = element;
-                    }
-                });
+            if (this.courseDetails.picture_video){
+                this.courseDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails.picture_video.substring(20)));
+                this.eventImage =  this.courseDetails.picture_video
+                this.imageUrl = this.courseDetails.picture_video;
             }
         }
+
+        if (this.courseDetails[0]?.document_url) {
+                this.eventFile =  this.courseDetails[0].document_url;
+                this.fileUrl = this.courseDetails.document_url
+                console.log(this.eventFile);
+        }
+
+        // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
+        //     this.hasPicture = true;
+        //     let responseImg: string;
+        //     responseImg = this.courseDetails.picture_video;
+        //     this.image = this.courseDetails.picture_video;
+        //     let resp: string[];
+        //     resp = responseImg.split("\"");
+        //     let imgArray: string[] = [];
+        //     let self = this;
+        //     if (resp && resp.length > 0) {
+        //         resp.forEach(element => {
+        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+        //                 imgArray.push(element);
+        //                 this.eventImage = imgArray[0];
+        //                 this.imageUrl = element;
+        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+        //                 this.eventFile = element;
+        //                 this.fileUrl = element;
+        //             }
+        //         });
+        //     }
+        // }
         if (this.courseDetails.allowed_persons == null) {
             this.courseDetails.allowed_persons = null
         }
@@ -1265,6 +1291,12 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             for (const key in this.courseForm.value) {
                 if (Object.prototype.hasOwnProperty.call(self.courseForm.value, key)) {
                     const element = self.courseForm.value[key];
+                    console.log('this.fileToReturn', this.fileToReturn);
+                    console.log('this.imageUrl', this.imageUrl);
+                    console.log('this.picVid1',this.picVid1);
+                    console.log('this.fileUrl',this.fileUrl);
+                    console.log('this.fileAndimage',this.fileAndimage);
+
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
                             formData.append('file', this.fileToReturn)
@@ -1288,6 +1320,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     if (key == 'file' && this.fileAndimage.length > 0) {
                         formData.append('imageUrl', JSON.stringify(this.fileAndimage))
                     }
+
                     if (key == 'instructor_internal' && this.instrucType == 1) {
                         let internalUser = this.authService.uniqueData(this.internalInstructor)
                         formData.append("instructor_internal", JSON.stringify(internalUser));
@@ -1444,6 +1477,9 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     }
                 }
             }
+            formData.forEach((value:any,key:any) => {
+                console.log(key,'------------------',value);
+            });
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateCourse/' + this.courseId, formData)
                 .subscribe(
@@ -2965,6 +3001,44 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         }
     }
 
+        /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            this.dowloading = true;
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+               this.authService.downloadDocument('post', endPoint, data).toPromise()
+                  .then((blob: any) => {
+                       console.log(blob);
+                        saveAs(blob, filename);
+                       this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
+
 
     /**
     * Function is used to validate file type is image and upload images
@@ -3094,8 +3168,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             }, 3000);
         }
     }
-
-
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();

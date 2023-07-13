@@ -232,9 +232,7 @@
                                             <!-- <div class=""> -->
                                             <div class="news_content col-md-12">
                                                 <div class="news_image">
-                                                    <app-image-viewer *ngIf="imageUrls" [imageURL]="imageUrls"
-                                                        [open]="viewImage" (close)="viewImage = false">
-                                                    </app-image-viewer>
+                                                    <app-image-viewer *ngIf="imageUrls" [imageURL]="imageUrls" [open]="viewImage" (close)="viewImage = false"> </app-image-viewer>
                                                     <div class="news_image_container" (click)="viewImage = true">
                                                         <img  class="image_news" onContextMenu="return false;" [src]="newImg">
                                                         <div class="dropdown action_group cm" *ngIf="(role !='guest')">

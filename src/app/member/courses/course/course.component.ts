@@ -17,6 +17,7 @@ import { appSetting } from 'src/app/app-settings';
 import { NotificationService } from 'src/app/service/notification.service';
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -94,7 +95,9 @@ export class CourseComponent implements OnInit, OnDestroy {
         private themes: ThemeService,
         private lang: LanguageService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -589,6 +592,8 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'getCoursesById/' + id, null)
             .subscribe(
                 (respData: any) => {
+                    console.log(respData);
+
                     if (respData['isError'] == false) {
                         this.courseByIdData = respData['result'];
                         if (this.courseByIdData?.length > 0) {
@@ -620,30 +625,47 @@ export class CourseComponent implements OnInit, OnDestroy {
                             element.start_time = this.commonFunctionService.convertTime(element.start_time);
                             element.end_time = this.commonFunctionService.convertTime(element.end_time);
                         })
-                        if (this.courseByIdData[0]?.picture_video && this.courseByIdData[0].picture_video != "[]") {
-                            let responseImg: string;
-                            responseImg = this.courseByIdData[0].picture_video;
-                            let resp: string[] = [];
-                            resp = responseImg.split("\"");
-                            let imgArray: string[] = [];
-                            let fileArray: string[] = [];
-                            if (resp && resp.length > 0) {
-                                resp.forEach((element: string) => {
-                                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                        imgArray.push(element);
-                                        this.hasPicture = true;
-                                        this.eventImage = imgArray[0];
-                                    } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                        fileArray.push(element);
-                                        this.eventFile = fileArray[0];
-                                        this.eventFile = element;
-                                    }
-                                });
+                        if (this.courseByIdData[0]?.picture_video != "[]") {
+                            this.hasPicture = true;
+                            if (this.courseByIdData[0].picture_video){
+                               this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
+                               this.eventImage =  this.courseByIdData[0].picture_video
+                               console.log(this.eventImage);
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
+
+                        if (this.courseByIdData[0]?.document_url) {
+                            this.eventFile =  this.courseByIdData[0].document_url;
+                            console.log(this.eventFile);
+                        }
+
+                        // if (this.courseByIdData[0]?.picture_video && this.courseByIdData[0].picture_video != "[]") {
+                        //     let responseImg: string;
+                        //     responseImg = this.courseByIdData[0].picture_video;
+                        //     let resp: string[] = [];
+                        //     resp = responseImg.split("\"");
+                        //     let imgArray: string[] = [];
+                        //     let fileArray: string[] = [];
+                        //     if (resp && resp.length > 0) {
+                        //         resp.forEach((element: string) => {
+                        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                        //                 imgArray.push(element);
+                        //                 this.hasPicture = true;
+                        //                 this.eventImage = imgArray[0];
+                        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+                        //                 fileArray.push(element);
+                        //                 this.eventFile = fileArray[0];
+                        //                 this.eventFile = element;
+                        //             }
+                        //         });
+                        //     }
+                        // } else {
+                        //     this.hasPicture = false;
+                        //     this.eventImage = '';
+                        // }
                         this.getOrganizerDetails(id);
                         this.getParticipantDetails(id);
                         if (this.courseByIdData[0]?.courseTask?.id) {
@@ -686,43 +708,43 @@ export class CourseComponent implements OnInit, OnDestroy {
             this.collaboratorDetails = []
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getTaskCollaborator/task/' + taskid, null)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.collaboratorDetails = respData;
-                        Object(this.collaboratorDetails) && Object(this.collaboratorDetails).forEach((val, key) => {
-                            if (val?.user?.length > 0) {
-                                val.user.forEach(element => {
-                                    if (element.member_id != null) {
-                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
-                                            .subscribe(
-                                                (resppData: any) => {
-                                                    this.thumb = resppData;
-                                                    val.image = this.thumb
-                                                },
-                                                (error:any) => {
-                                                    val.image = null;
-                                                });
-                                    } else {
-                                        val.image = null;
-                                    }
-                                });
-                            }
-                        });
-                        let org_id = 0;
-                        if (this.collaboratorDetails && this.collaboratorDetails.length > 0) {
-                            this.collaboratorDetails.forEach((value: any) => {
-                                if (value.user_id == this.courseByIdData[0]?.courseTask?.['organizer_id']) {
-                                    this.taskOrganizerDetails.push(value);
-                                    org_id = 1;
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.collaboratorDetails = respData;
+                    Object(this.collaboratorDetails) && Object(this.collaboratorDetails).forEach((val, key) => {
+                        if (val?.user?.length > 0) {
+                            val.user.forEach(element => {
+                                if (element.member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                val.image = this.thumb
+                                            },
+                                            (error:any) => {
+                                                val.image = null;
+                                            });
                                 } else {
-                                    this.collaborators.push(value);
+                                    val.image = null;
                                 }
-                            })
-                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'user_id'));
+                            });
                         }
+                    });
+                    let org_id = 0;
+                    if (this.collaboratorDetails && this.collaboratorDetails.length > 0) {
+                        this.collaboratorDetails.forEach((value: any) => {
+                            if (value.user_id == this.courseByIdData[0]?.courseTask?.['organizer_id']) {
+                                this.taskOrganizerDetails.push(value);
+                                org_id = 1;
+                            } else {
+                                this.collaborators.push(value);
+                            }
+                        })
+                        this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'user_id'));
                     }
-                );
+                }
+            );
         }
     }
 
@@ -750,14 +772,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         val.id = val.users.id;
                                         if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id] != null) {
                                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
-                                                .subscribe(
-                                                    (resppData: any) => {
-                                                        this.thumb = resppData;
-                                                        val.users.image = this.thumb;
-                                                    },
-                                                    (error:any) => {
-                                                        val.users.image = null;
-                                                    });
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    val.users.image = this.thumb;
+                                                },
+                                                (error:any) => {
+                                                    val.users.image = null;
+                                                }
+                                            );
                                         }
                                     })
                                 } else {

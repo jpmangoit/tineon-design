@@ -17,14 +17,17 @@ export class ImageViewerComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-        let ext:string[] = this.imageURL.split(".");
-        let docExt:string = ext[(ext.length) - 1];
-        if (docExt == 'png' || docExt == 'jpg' || docExt == 'jpeg') {
-            this.isImage = true;
-        }
-        else {
-            this.isImage = false;
-        }
+        console.log(this.open);
+        console.log(this.imageURL);
+        this.isImage = true;
+        // let ext:string[] = this.imageURL.split(".");
+        // let docExt:string = ext[(ext.length) - 1];
+        // if (docExt == 'png' || docExt == 'jpg' || docExt == 'jpeg') {
+        //     this.isImage = true;
+        // }
+        // else {
+        //     this.isImage = false;
+        // }
     }
 
     sanitizeImageUrl(imageUrl: string): SafeUrl {
