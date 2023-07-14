@@ -206,7 +206,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     createRoomForm() {
         this.formSubmit = true;
         for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-            this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
+            this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0]?.id;
         }
         this.roomForm.value['team_id'] = this.teamId;
         if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {

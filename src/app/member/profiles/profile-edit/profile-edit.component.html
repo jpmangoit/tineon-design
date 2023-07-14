@@ -212,6 +212,9 @@
                             <!-- profile header end -->
                             <!-- profile details data start -->
                             <div class="profile_details">
+                                <div class="alert alert-danger" role="alert" *ngIf="userData?.changeRequest?.member?.status == 'pending'">
+                                   Your current Request is wating for the Approval
+                                  </div>
                                 <div class="profile_title">{{language.profile.my_address}}</div>
                                 <div class="row">
                                     <div class="col-md-6">

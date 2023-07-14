@@ -160,11 +160,13 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'member-info/' + this.userDataProfile.database_id + '/' + this.userDataProfile.team_id + '/' + this.userDataProfile.member_id, this.userDataProfile )
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
-                if (Object.keys(respData).length) {
+                // if (Object.keys(respData).length) {
                     this.userData = respData;
+                    console.log(this.userData);
+
                     this.role = this.userDataProfile.roles[0];
                     this.setValue();
-                }
+                // }
             });
         }
     }
@@ -174,25 +176,62 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions(M)
     */
     setValue() {
-        if (this.userData.birthDate) {
-            this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
+        if(this.userData.changeRequest.member.status == 'pending'){
+            this.registrationForm = this.formBuilder.group({
+                street: [this.userData.changeRequest.member.dataChanges.street, [Validators.required, this.noWhitespace]],
+                street2: [this.userData.street2,[this.noWhitespace]],
+                city: [this.userData.changeRequest.member.dataChanges.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+                countryCode: [this.userData.countryCode],
+                postCode: [this.userData.changeRequest.member.dataChanges.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+                poboxCity: [this.userData.poboxCity],
+                email: [this.userData.email],
+                phone: [this.userData.changeRequest.member.dataChanges.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+                birthDate: [this.datePipe.transform(this.userData.changeRequest.member.dataChanges.birthDate,'yyyy-MM-dd')],
+                share: [this.userData.shareBirthday],
+                allowAdvertis:['']
+            });
+
+        }else{
+            if (this.userData.birthDate) {
+                this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
+            }
+            this.registrationForm = this.formBuilder.group({
+                street: [this.userData.street, [Validators.required, this.noWhitespace]],
+                street2: [this.userData.street2,[this.noWhitespace]],
+                city: [this.userData.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+                countryCode: [this.userData.countryCode],
+                postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+                poboxCity: [this.userData.poboxCity],
+                email: [this.userData.email],
+                phone: [this.userData.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+                birthDate: [this.datePipeString],
+                share: [this.userData.shareBirthday],
+                allowAdvertis:['']
+            });
+            if(this.allowAdvertisment == 1){
+                this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+            }
         }
-        this.registrationForm = this.formBuilder.group({
-            street: [this.userData.street, [Validators.required, this.noWhitespace]],
-            street2: [this.userData.street2,[this.noWhitespace]],
-            city: [this.userData.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
-            countryCode: [this.userData.countryCode],
-            postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
-            poboxCity: [this.userData.poboxCity],
-            email: [this.userData.email],
-            phone: [this.userData.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-            birthDate: [this.datePipeString],
-            share: [this.userData.shareBirthday],
-            allowAdvertis:['']
-        });
-         if(this.allowAdvertisment == 1){
-           this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
-         }
+
+        // if (this.userData.birthDate) {
+        //     this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
+        // }
+        // this.registrationForm = this.formBuilder.group({
+        //     street: [this.userData.street, [Validators.required, this.noWhitespace]],
+        //     street2: [this.userData.street2,[this.noWhitespace]],
+        //     city: [this.userData.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+        //     countryCode: [this.userData.countryCode],
+        //     postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+        //     poboxCity: [this.userData.poboxCity],
+        //     email: [this.userData.email],
+        //     phone: [this.userData.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+        //     birthDate: [this.datePipeString],
+        //     share: [this.userData.shareBirthday],
+        //     allowAdvertis:['']
+        // });
+        //  if(this.allowAdvertisment == 1){
+        //    this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+        //  }
     }
 
 
@@ -218,40 +257,44 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {string} success message
     */
-        registrationProcess() {
-            this.submitted = true;
-                if(this.registrationForm.value['allowAdvertis'] == true){
-                    this.registrationForm.value['allowAdvertis'] = 1;
-                }else{
-                    this.registrationForm.value['allowAdvertis'] = 0;
-                }
-            if (sessionStorage.getItem('token') && this.registrationForm.valid) {
-                this.authService.setLoader(true);
-                this.authService.memberSendRequest('post','modify-user-data/' + this.userDataProfile.database_id +'/' + this.userDataProfile.team_id +'/' +this.userDataProfile.member_id,this.registrationForm.value)
-                .subscribe((respData: any) => {
-                    this.authService.setLoader(false);
-                    this.successMessage(respData);
-                    this.submitted = false;
-                    if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'],null);
-                    }
-                });
+    registrationProcess() {
+        this.submitted = true;
+            if(this.registrationForm.value['allowAdvertis'] == true){
+                this.registrationForm.value['allowAdvertis'] = 1;
+            }else{
+                this.registrationForm.value['allowAdvertis'] = 0;
             }
-        }
+        if (sessionStorage.getItem('token') && this.registrationForm.valid) {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('post','modify-user-data/' + this.userDataProfile.database_id +'/' + this.userDataProfile.team_id +'/' +this.userDataProfile.member_id,this.registrationForm.value)
+            .subscribe((respData: any) => {
+                console.log(respData);
 
-        successMessage(msg: string) {
-            if (msg == 'OK') {
-                localStorage.removeItem('allowAdvertis');
-                localStorage.setItem('allowAdvertis', this.registrationForm.value['allowAdvertis']);
-                this.notificationService.showSuccess(this.language.profile_bank.success_msg,null);
-                this.registrationForm.reset();
-                let self = this;
-                setTimeout(function () {
-                    self._router.navigate(['/profile']);
-                }, 2000);
-                return true;
-            }
+                this.authService.setLoader(false);
+                this.successMessage(respData);
+                this.submitted = false;
+                if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'],null);
+                }
+            });
         }
+    }
+
+    successMessage(msg: string) {
+        console.log(msg);
+
+        if (msg == 'OK') {
+            localStorage.removeItem('allowAdvertis');
+            localStorage.setItem('allowAdvertis', this.registrationForm.value['allowAdvertis']);
+            this.notificationService.showSuccess(this.language.profile_bank.success_msg,null);
+            this.registrationForm.reset();
+            let self = this;
+            setTimeout(function () {
+                self._router.navigate(['/profile']);
+            }, 2000);
+            return true;
+        }
+    }
 
 
     /**

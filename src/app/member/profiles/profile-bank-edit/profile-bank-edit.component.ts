@@ -108,7 +108,15 @@ export class ProfileBankEditComponent implements OnInit {
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.user = respData;
-                    this.userData = respData['bankData'];
+
+                    if(this.user.changeRequest.bank.status == 'pending'){
+                        this.userData = this.user.changeRequest.bank.dataChanges;
+                        console.log(this.userData);
+                    }else{
+                        this.userData = respData['bankData'];
+                        console.log(this.userData);
+                    }
+                    console.log(this.user);
                     this.setBankDetails();
                 });
         }
@@ -121,13 +129,14 @@ export class ProfileBankEditComponent implements OnInit {
     * @return  {}
     */
     setBankDetails() {
-        let userDetail: LoginDetails = JSON.parse(
-            localStorage.getItem('user-data')
-        );
+        let userDetail: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
+        console.log(this.userData);
+
         this.updateBankForm = this.formBuilder.group({
             database_id: [userDetail.database_id],
             club_id: [userDetail.team_id],
             member_id: [userDetail.member_id],
+
             userName: [this.user.firstName + ' ' + this.user.lastName, Validators.required,],
             iban: [this.userData.iban, [Validators.required, Validators.pattern('^[A-Z0-9]{22}$')],],
             bic: [this.userData.bic, [Validators.required, Validators.pattern('^[A-Z0-9]{11}$')]],

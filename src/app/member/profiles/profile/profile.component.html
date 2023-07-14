@@ -115,6 +115,9 @@
                     <div class="card-body">
                         <!-- profile header start -->
                         <div class="profile_main_head">
+                            <div class="alert alert-danger" role="alert" *ngIf="checkStatus?.status == 'pending'">
+                                Your current Request is wating for the Approval
+                               </div>
                             <!-- profile header end -->
                             <!-- profile details data start -->
                             <div class="profile_details">
@@ -122,7 +125,10 @@
                                     <div class="col-md-6">
                                         <div class="profile_field info_field">
                                             <span class="info_label">{{language.profile.street}}</span>
-                                            <span class="info_detail" *ngIf="userDetails">{{userDetails.street}}</span>
+                                            <span class="info_detail"  *ngIf="userDetails">
+                                                {{ userDetails?.street}}
+                                            </span>
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">

@@ -95,7 +95,7 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
             active_to :['', Validators.required],
 		});
 
-		this.weekdayArray = [            
+		this.weekdayArray = [
             { id: 1, name: this.language.new_create_event.monday},
             { id: 2, name: this.language.new_create_event.tuesday},
             { id: 3, name: this.language.new_create_event.wednesday},
@@ -202,7 +202,7 @@ export class CreateInstructorComponent implements OnInit ,OnDestroy{
 	createInstructor() {
 		this.formSubmit = true;
 		for (let i = 0; i < this.instructorForm?.controls?.weekdays?.value?.length; i++) {
-			this.instructorForm.value.weekdays[i].day = this.instructorForm.controls.weekdays.value[i].day[0].id;
+			this.instructorForm.value.weekdays[i].day = this.instructorForm.controls.weekdays.value[i].day[0]?.id;
 			//this.instructorForm.value.weekdays[i].day = (this.instructorForm.controls?.weekdays?.value[i]?.day[0]?.length == 1) ? this.instructorForm.controls?.weekdays?.value[i]?.day : this.instructorForm.controls?.weekdays?.value[i]?.day[0];
 		}
 		this.instructorForm.value['team_id'] = this.teamId;

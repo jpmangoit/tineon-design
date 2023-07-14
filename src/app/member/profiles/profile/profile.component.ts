@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     changePasswordForm: UntypedFormGroup;
     setTheme: ThemeType;
     role: string = '';
-    userDetails: ProfileDetails;
+    userDetails: any;
     thumbnail: SafeUrl = null;
     private activatedSub: Subscription;
     private activatedPro: Subscription;
@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     userDataProfile: any;
     allowAdvertisment: any;
     headline_word_option: number = 0;
+    checkStatus: any;
 
     constructor(
         private authService: AuthServiceService,
@@ -148,6 +149,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
                 this.userDetails = respData;
+
+                if(respData.changeRequest.member.status === 'pending'){
+                    this.checkStatus = respData.changeRequest.member;
+                    this.userDetails = respData.changeRequest.member.dataChanges;
+                    this.allowAdvertisment = this.userDetails.allowAdvertis
+                  }else{
+                      this.userDetails = respData;
+                  }
                 this.role = userData.roles[0];
             });
         }

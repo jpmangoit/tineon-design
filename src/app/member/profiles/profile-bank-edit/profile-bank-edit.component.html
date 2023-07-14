@@ -104,6 +104,9 @@
             <div class="profile_content Payment_data_main">
                 <div class="card">
                     <div class="card-body">
+                        <div class="alert alert-success" role="alert" *ngIf="user?.changeRequest?.bank?.status == 'pending'">
+                            Your current Request is wating for the Approval
+                         </div>
                         <div class="profile_main_head">
                             <div class="profile_title">{{language.profile_bank.title}}</div>
                         </div>
@@ -119,11 +122,10 @@
                                     <div class="col-md-6">
                                         <div class="profile_field">
                                             <label>{{language.profile_bank.bank_holder_name}}</label>
-                                            <input type="text" *ngIf="user"
-                                                placeholder="{{language.profile_bank.bank_holder_name}}"
-                                                formControlName="userName"
+                                            <input type="text" *ngIf="user" placeholder="{{language.profile_bank.bank_holder_name}}" formControlName="userName"
                                                 [ngClass]="{ 'is-invalid': submitted && updateBankForm.controls.userName.errors }">
-                                            <div *ngIf="(updateBankForm.controls.userName.touched || submitted) && (updateBankForm.controls.userName.errors?.required || updateBankForm.controls.userName.errors?.pattern)" class="text-danger">
+                                            <div *ngIf="(updateBankForm.controls.userName.touched || submitted) &&
+                                                 (updateBankForm.controls.userName.errors?.required || updateBankForm.controls.userName.errors?.pattern)" class="text-danger">
                                                 <div *ngIf="updateBankForm.controls.userName.errors.required">
                                                     {{language.error_message.bank_holder_name}}
                                                 </div>
@@ -172,9 +174,7 @@
                                 <div class="col-md-6">
                                     <div class="profile_field">
                                         <label>{{language.profile_bank.bank_name}}</label>
-                                        <input type="text" *ngIf="userData" [readonly]="isNotGerman == true"
-                                            placeholder="{{language.profile_bank.bank_name}}"
-                                            formControlName="name"
+                                        <input type="text" *ngIf="userData" [readonly]="isNotGerman == true" placeholder="{{language.profile_bank.bank_name}}" formControlName="name"
                                             [ngClass]="{ 'is-invalid': submitted && updateBankForm.controls.name.errors }">
                                         <div *ngIf="(updateBankForm.controls.name.touched || submitted) && (updateBankForm.controls.name.errors?.required || updateBankForm.controls.name.errors?.pattern)" class="text-danger">
                                             <div *ngIf="updateBankForm.controls.name.errors.required">

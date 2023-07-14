@@ -26,7 +26,7 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
   displayPayment: boolean = true;
   displayMaster: boolean;
   displayClub: boolean;
-  userData: { bic: string; iban: string; name: string };
+  userData: any;
   user: ProfileDetails;
   setTheme: ThemeType;
   private activatedSub: Subscription;
@@ -108,7 +108,14 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
           this.loginsubmitted = false;
           this.authService.setLoader(false);
           this.user = respData;
-          this.userData = respData['bankData'];
+
+          if(respData.changeRequest.bank.status === 'pending'){
+            this.userData = respData.changeRequest.bank.dataChanges;
+            console.log(this.userData);
+
+          }else{
+              this.userData = respData['bankData'];
+          }
         });
     }
   }
