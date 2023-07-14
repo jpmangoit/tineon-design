@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder,  UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder,  UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators} from '@angular/forms';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { DatePipe } from '@angular/common';
@@ -118,12 +118,27 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             postCode: ['', Validators.required],
             poboxCity: [''],
             email: [''],
-            phone:  ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+
+            phone:  ['', [Validators.required, Validators.pattern("/^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$/")]],
+            // phone:  ['', [Validators.required, Validators.pattern("/^\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,14}$/;")]],
+            // phone:  ['', [Validators.required,this.phoneNumberValidator]],
+            // phone:  ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             share: [''],
             birthDate: [''],
             allowAdvertis:['']
         });
+        console.log(this.registrationForm);
+
     }
+
+
+    phoneNumberValidator(): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+          const phoneNumberRegex = /^\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+          const valid = phoneNumberRegex.test(control.value);
+          return valid ? null : { phoneNumber: true };
+        };
+      }
 
     /**
     * Function is used to get member photo
