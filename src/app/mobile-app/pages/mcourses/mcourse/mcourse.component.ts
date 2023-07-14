@@ -17,6 +17,8 @@ import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 declare var $: any
 
 @Component({
@@ -82,13 +84,18 @@ export class McourseComponent implements OnInit,OnDestroy {
     taskOrganizerDetails: any[] = [];
     collaborators: any[] = [];
     collaboratorDetails: TaskCollaboratorDetails[] = [];
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
+    responseMessage: any;
 
     constructor(
         private formbuilder: UntypedFormBuilder, private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder, private confirmDialogService: ConfirmDialogService,
         private datePipe: DatePipe, private router: Router,
         private themes: ThemeService,private notificationService: NotificationService,
-        private lang: LanguageService, private commonFunctionService: CommonFunctionService
+        private lang: LanguageService, private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
         ) { }
 
     ngOnInit(): void {
@@ -545,39 +552,56 @@ export class McourseComponent implements OnInit,OnDestroy {
                                     });
                                 }
                         });
-                        if (this.courseByIdData[0].picture_video != "[]") {
-                            let responseImg: string;
-                            responseImg = this.courseByIdData[0].picture_video;
-                            let resp: string[] = [];
-                            resp = responseImg.split("\"");
-                            let imgArray: string[] = [];
-                            let fileArray: string[] = [];
-                            if(resp && resp.length > 0){
-                                resp.forEach((element: string) => {
-                                    if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
-                                        (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
-                                        (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
-                                        (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
-                                    ) {
-                                        imgArray.push(element);
-                                        this.hasPicture = true;
-                                        this.eventImage = imgArray[0];
-                                    }
-                                    if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
-                                        (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
-                                        (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
-                                        (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
-                                        (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
-                                        fileArray.push(element);
-                                        this.eventFile = fileArray[0];
-                                        this.eventFile = element;
-                                    }
-                                });
+                        console.log(this.courseByIdData);
+
+                        if (this.courseByIdData[0]?.picture_video != null) {
+                            if (this.courseByIdData[0].picture_video){
+                                this.hasPicture = true;
+                                this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
+                                this.eventImage =  this.courseByIdData[0].picture_video
+                                console.log(this.eventImage);
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
+                        if (this.courseByIdData[0]?.document_url) {
+                            this.eventFile =  this.courseByIdData[0].document_url;
+                            console.log(this.eventFile);
+                        }
+                        // if (this.courseByIdData[0].picture_video != "[]") {
+                        //     let responseImg: string;
+                        //     responseImg = this.courseByIdData[0].picture_video;
+                        //     let resp: string[] = [];
+                        //     resp = responseImg.split("\"");
+                        //     let imgArray: string[] = [];
+                        //     let fileArray: string[] = [];
+                        //     if(resp && resp.length > 0){
+                        //         resp.forEach((element: string) => {
+                        //             if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
+                        //                 (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
+                        //                 (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
+                        //                 (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
+                        //             ) {
+                        //                 imgArray.push(element);
+                        //                 this.hasPicture = true;
+                        //                 this.eventImage = imgArray[0];
+                        //             }
+                        //             if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
+                        //                 (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
+                        //                 (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
+                        //                 (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
+                        //                 (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
+                        //                 fileArray.push(element);
+                        //                 this.eventFile = fileArray[0];
+                        //                 this.eventFile = element;
+                        //             }
+                        //         });
+                        //     }
+                        // } else {
+                        //     this.hasPicture = false;
+                        //     this.eventImage = '';
+                        // }
                         this.getOrganizerDetails(id);
                         this.getParticipantDetails(id);
                         if (this.courseByIdData[0]?.courseTask?.id) {
@@ -1515,6 +1539,48 @@ export class McourseComponent implements OnInit,OnDestroy {
     onClick(check){
          this.activeClass = check == 1 ? "courseActive" : check == 2? "instructorActive" : check == 3  ? "roomActive" : "courseActive";
       }
+
+          /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+          download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+                this.authService.downloadDocument('post', endPoint, data).toPromise()
+                    .then((blob: any) => {
+                        console.log(blob);
+                        saveAs(blob, filename);
+                        this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
+
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();

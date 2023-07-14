@@ -483,19 +483,16 @@
                                 </ul>
                             </div> -->
                         </div>
-                        <div class="attach_btn" *ngIf="eventFile">
+                        <div class="attach_btn" *ngIf="eventFile" (click)="download(eventFile)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                                 fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-download"
-                                [ngStyle]="{'stroke':setTheme.button_bgcolor}">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                    [ngStyle]="{'stroke':setTheme.button_bgcolor}" />
-                                <polyline points="7 10 12 15 17 10" [ngStyle]="{'stroke':setTheme.button_bgcolor}" />
-                                <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':setTheme.button_bgcolor}" />
+                                stroke-linejoin="round" class="feather feather-download">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
                             </svg>
-                            <a href="{{eventFile}}"><span [ngStyle]="{'color':setTheme.button_bgcolor}">
-                                    {{language.create_event.download_attachment}} </span>
-                            </a>
+                            <span> {{language.create_event.download_attachment}} </span>
+                            <!-- <a href="{{eventFile}}"> <span [ngStyle]="{'color':setTheme.button_bgcolor}"> {{language.create_event.download_attachment}} </span></a> -->
                         </div>
                         <!-- course detail end -->
                         <!-- course availability -->
