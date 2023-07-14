@@ -329,7 +329,10 @@ export class MDashboardComponent implements OnInit {
                         if (this.modalNews.imageUrls == '' || this.modalNews.imageUrls == null) {
                             this.newImg = '../../assets/img/no_image.png';
                         } else {
-                            this.newImg = this.modalNews.imageUrls;
+                            if (this.modalNews.imageUrls){
+                                this.modalNews.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.modalNews.imageUrls.substring(20)));
+                                this.newImg = this.modalNews.imageUrls;
+                            }
                         }
                         this.memberid = this.modalNews.user.member_id;
                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)

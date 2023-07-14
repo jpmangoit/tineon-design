@@ -38,7 +38,7 @@
                                             <img onContextMenu="return false;" [src]="data.user.image  != null ? data.user.image : 'assets/img/defaultProfile.jpeg'" alt="{{data?.user?.firstname}}" loading="lazy">
                                             <div class="author-des">
                                                 <Span>{{language.dashboard.dashboardNewsAuthor}}<br>
-                                                    <strong> {{data.user.firstname}}{{data.user.lastname}} </strong>
+                                                    <strong> {{data.user.firstname}} {{data.user.lastname}} </strong>
                                                 </Span>
                                                 <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                                 <span class="deny-reason" *ngIf="data.approved_status == 0 && data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>

@@ -12,6 +12,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -84,7 +85,8 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         private lang: LanguageService, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 
     ) { }
 
@@ -358,7 +360,10 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            this.newImg = this.newsData.imageUrls;
+            if (this.newsData.imageUrls){
+                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
+                this.newImg = this.newsData.imageUrls;
+            }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.setLoader(true);

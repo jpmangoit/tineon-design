@@ -465,6 +465,8 @@ export class MallEventsComponent implements OnInit {
     handleEventClick(res: any) {
         this.calendarEventClicked = true;
         this.newClickedEvent = res.event;
+        console.log(this.newClickedEvent.extendedProps.picture_video);
+
         this.thumbnail = this.newClickedEvent.extendedProps.picture_video;
         $('#exampleModalLabel').text(this.eventTypeList[this.newClickedEvent.extendedProps.type].name);
         $('#showPopup').trigger('click');

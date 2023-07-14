@@ -1,4 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
@@ -58,6 +59,7 @@ export class MallNewsComponent implements OnInit {
         private lang: LanguageService, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
         private notificationService: NotificationService,
+        private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) { }
 
@@ -235,7 +237,10 @@ export class MallNewsComponent implements OnInit {
         if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            this.newImg = this.newsData.imageUrls;
+            if (this.newsData.imageUrls){
+                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
+                this.newImg = this.newsData.imageUrls;
+            }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.setLoader(true);
