@@ -79,6 +79,14 @@ button.btn.btn-secondary.change_btn {
     width: 120px;
     height: 120px;
 }
+
+.profile_field label {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
 @media only screen and (max-width: 767px){
 	.profile_details {
     text-align: left;
@@ -213,7 +221,7 @@ span.profile-menu-ic {
 .profile_content .card {
     box-shadow: none;
     border-radius: 20px;
-    padding:35px 25px;
+    padding:10px 25px;
 }
 .profile_main_head .print_btn_group {
     margin: 0;
