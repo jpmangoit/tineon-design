@@ -35,6 +35,18 @@ button.btn-close {
 .profile_field.che_bx label {
     margin-bottom: 5px !important;
 }
+
+.profile_details .profile-edit .profile_field label {
+    position: absolute;
+    left: 30px;
+    top: 18px;
+    width: auto;
+}
+
+.profile_details .profile-edit .profile_field input {
+    padding-left: 45px;
+}
+
 h5.modal-title {
     font-size: 20px;
     
