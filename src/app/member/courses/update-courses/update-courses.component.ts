@@ -771,8 +771,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             }
         }
 
-        if (this.courseDetails[0]?.document_url) {
-                this.eventFile =  this.courseDetails[0].document_url;
+        if (this.courseDetails?.document_url) {
+                this.eventFile =  this.courseDetails.document_url;
                 this.fileUrl = this.courseDetails.document_url
                 console.log(this.eventFile);
         }

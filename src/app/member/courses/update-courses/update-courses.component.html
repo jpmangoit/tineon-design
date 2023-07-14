@@ -539,7 +539,7 @@
                                             </div>
                                         </div>
                                         <div class="group_up_btn">
-                                            <div class="attach_btn" *ngIf="eventFile">
+                                            <div class="attach_btn" *ngIf="eventFile" (click)="download(eventFile)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                     viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
                                                     stroke-linecap="round" stroke-linejoin="round"
@@ -548,8 +548,8 @@
                                                     <polyline points="7 10 12 15 17 10" />
                                                     <line x1="12" y1="15" x2="12" y2="3" />
                                                 </svg>
-                                                <a href="{{eventFile}}"><span>{{language.create_event.download_attachment}}</span>
-                                                </a>
+                                                <span>{{language.create_event.download_attachment}}</span>
+                                                <!-- <a href="{{eventFile}}"><span>{{language.create_event.download_attachment}}</span> </a> -->
                                             </div>
                                             <div class="message_upload create_upload_event">
                                                 <input type="file" (change)="uploadFile1($event)" id="add_docfile">

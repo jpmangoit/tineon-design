@@ -16,6 +16,7 @@ import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
+import { saveAs } from 'file-saver';
 
 declare var $: any;
 
@@ -76,6 +77,9 @@ export class MeventDetailComponent implements OnInit {
         lastMsgTimming: string;
         lastMessage: any; count: number, id: number, image: string, name: string, type: string
     }[];
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
 
     constructor(
         private authService: AuthServiceService,
@@ -632,7 +636,7 @@ export class MeventDetailComponent implements OnInit {
                                     this.collaborators.push(value);
                                 }
                             })
-                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));                            
+                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
                             // this.collaborators.sort((a, b) => {
                             //     return b.image - a.image;
                             // });
@@ -699,10 +703,10 @@ export class MeventDetailComponent implements OnInit {
                                 element.lastMsgTimming = element.lastMsgTime
                             } else {
                                 element.lastMsgDate = msgdate
-                            }                            
+                            }
                         }
                     });
-                }               
+                }
                 this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
                 this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
             }
@@ -714,11 +718,53 @@ export class MeventDetailComponent implements OnInit {
         let chatUser = this.chatUserArr.filter(x => x.id == userId);
         if(chatUser.length > 0){
             this.router.navigate(['/community/'], { queryParams: { id: userId} });
-        }else{          
+        }else{
             this.router.navigate(['create-chat']);
         }
         console.log(chatUser)
     }
+
+    /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+        download(path: any) {
+            let data = {
+                name: path
+            }
+            console.log(path);
+            console.log(this.dowloading);
+            this.dowloading = true;
+            console.log(this.dowloading);
+            var endPoint = 'get-documentbyname';
+            if (data && data.name) {
+                let filename = data.name.split('/')[2]
+                this.authService.downloadDocument('post', endPoint, data).toPromise()
+                    .then((blob: any) => {
+                        console.log(blob);
+                        saveAs(blob, filename);
+                        this.authService.setLoader(false);
+                        this.dowloading = false;
+                        setTimeout(() => {
+                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                                this.result = result;
+                                console.log(this.result);
+                                this.authService.setLoader(false);
+                                if (this.result.success == false) {
+                                    this.notificationService.showError(this.result['result']['message'], null);
+                                } else if (this.result.success == true) {
+                                    this.documentData = this.result['result']['message'];
+                                }
+                            })
+                        }, 7000);
+                    })
+                    .catch(err => {
+                        this.responseMessage = err;
+                    })
+            }
+        }
+
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();
