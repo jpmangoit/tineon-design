@@ -293,7 +293,8 @@
         "upload_profile": "Profile Picture Succesfully Updated",
         "change_image": "Change Image",
         "change_profile_pic": "Change Profile Picture",
-        "approv_unlock" : "Approval / Unlock"
+        "approv_unlock" : "Approval / Unlock",
+        "request_approval": " Your current Request is wating for the Approval"
     },
     "profile_bank": {
         "title": "Bank-Data",

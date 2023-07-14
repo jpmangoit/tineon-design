@@ -159,11 +159,11 @@ export class MprofileEditComponent implements OnInit {
             this.authService.memberSendRequest('get','member-info/' + userDetail.database_id + '/' + userDetail.team_id + '/' + userDetail.member_id, userDetail )
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
-                    if (Object.keys(respData).length) {
+                    // if (Object.keys(respData).length) {
                         this.userData = respData;
                         this.role = userDetail.roles[0];
                         this.setValue();
-                    }
+                    // }
                 });
         }
     }
@@ -174,26 +174,64 @@ export class MprofileEditComponent implements OnInit {
     * @author  MangoIt Solutions (R)
     */
     setValue() {
-        if (this.userData.birthDate) {
-            this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
-        }
-        this.registrationForm = this.formBuilder.group({
-            street: [this.userData.street.trim(), [Validators.required, this.noWhitespace]],
-            street2: [this.userData.street2,[Validators.required, this.noWhitespace]],
-            city: [this.userData.city, [Validators.required, this.noWhitespace]],
-            countryCode: [this.userData.countryCode],
-            postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
-            poboxCity: [this.userData.poboxCity],
-            email: [this.userData.email],
-            phone: [this.userData.phone.trim(), [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-            birthDate: [this.datePipeString],
-            share: [this.userData.shareBirthday],
-            allowAdvertis:['']
 
-        });
-        if(this.allowAdvertisment == 1){
-            this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
-          }
+        if(this.userData.changeRequest.member.status == 'pending'){
+            this.registrationForm = this.formBuilder.group({
+                street: [this.userData.changeRequest.member.dataChanges.street, [Validators.required, this.noWhitespace]],
+                street2: [this.userData.street2,[this.noWhitespace]],
+                city: [this.userData.changeRequest.member.dataChanges.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+                countryCode: [this.userData.countryCode],
+                postCode: [this.userData.changeRequest.member.dataChanges.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+                poboxCity: [this.userData.poboxCity],
+                email: [this.userData.email],
+                phone: [this.userData.changeRequest.member.dataChanges.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+                birthDate: [this.datePipe.transform(this.userData.changeRequest.member.dataChanges.birthDate,'yyyy-MM-dd')],
+                share: [this.userData.shareBirthday],
+                allowAdvertis:['']
+            });
+
+        }else{
+            if (this.userData.birthDate) {
+                this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
+            }
+            this.registrationForm = this.formBuilder.group({
+                street: [this.userData.street, [Validators.required, this.noWhitespace]],
+                street2: [this.userData.street2,[this.noWhitespace]],
+                city: [this.userData.city, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+                countryCode: [this.userData.countryCode],
+                postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+                poboxCity: [this.userData.poboxCity],
+                email: [this.userData.email],
+                phone: [this.userData.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+                birthDate: [this.datePipeString],
+                share: [this.userData.shareBirthday],
+                allowAdvertis:['']
+            });
+            if(this.allowAdvertisment == 1){
+                this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+            }
+        }
+
+        // if (this.userData.birthDate) {
+        //     this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
+        // }
+        // this.registrationForm = this.formBuilder.group({
+        //     street: [this.userData.street.trim(), [Validators.required, this.noWhitespace]],
+        //     street2: [this.userData.street2,[Validators.required, this.noWhitespace]],
+        //     city: [this.userData.city, [Validators.required, this.noWhitespace]],
+        //     countryCode: [this.userData.countryCode],
+        //     postCode: [this.userData.postCode,[Validators.required, Validators.pattern('^[1-9]{1}?[0-9]*$')]],
+        //     poboxCity: [this.userData.poboxCity],
+        //     email: [this.userData.email],
+        //     phone: [this.userData.phone.trim(), [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+        //     birthDate: [this.datePipeString],
+        //     share: [this.userData.shareBirthday],
+        //     allowAdvertis:['']
+
+        // });
+        // if(this.allowAdvertisment == 1){
+        //     this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+        // }
     }
 
     noWhitespace(control: FormControl) {

@@ -32,7 +32,7 @@ export class MgeneralInformationComponent implements OnInit {
     changePasswordForm: FormGroup;
     setTheme: ThemeType;
     role: string = '';
-    userDetails: ProfileDetails;
+    userDetails: any;
     thumbnail: SafeUrl = null;
     private activatedSub: Subscription;
     private activatedPro: Subscription;
@@ -62,6 +62,7 @@ export class MgeneralInformationComponent implements OnInit {
     }
     userData: any;
     allowAdvertisment: any;
+    checkStatus: any;
 
     constructor(
         private authService: AuthServiceService,
@@ -147,8 +148,13 @@ export class MgeneralInformationComponent implements OnInit {
                 .memberSendRequest('get','member-info/' + userData.database_id + '/' + userData.team_id + '/' + userData.member_id, userData)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
-                    this.userDetails = respData;
-                    console.log(this.userDetails);
+                    if(respData.changeRequest.member.status === 'pending'){
+                        this.checkStatus = respData.changeRequest.member;
+                        this.userDetails = respData.changeRequest.member.dataChanges;
+                        this.allowAdvertisment = this.userDetails.allowAdvertis
+                    }else{
+                          this.userDetails = respData;
+                    }
                     this.role = userData.roles[0];
                 });
         }
@@ -203,7 +209,7 @@ export class MgeneralInformationComponent implements OnInit {
                 });
         }
     }
-    
+
     onGeneralInfo() {
         this.displayGeneral = true;
         this.displayPayment = false;
