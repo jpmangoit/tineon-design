@@ -106,6 +106,9 @@
                         <form [formGroup]="registrationForm" (ngSubmit)='registrationProcess()'>
                             <!-- profile header start -->
                             <div class="profile_main_head">
+                                <div class="alert alert-danger" role="alert" *ngIf="userData?.changeRequest?.member?.status == 'pending'">
+                                    {{language.profile.request_approval}}
+                                  </div>
                                 <div class="profile_header">
                                     <div class="user_pro_info">
                                         <h3 class="user_name" *ngIf="userData">{{userData.firstName}} {{userData.lastName}}
@@ -212,9 +215,7 @@
                             <!-- profile header end -->
                             <!-- profile details data start -->
                             <div class="profile_details">
-                                <div class="alert alert-danger" role="alert" *ngIf="userData?.changeRequest?.member?.status == 'pending'">
-                                    {{language.profile.request_approval}}
-                                  </div>
+
                                 <div class="profile_title">{{language.profile.my_address}}</div>
                                 <div class="row">
                                     <div class="col-md-6">

@@ -149,6 +149,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
                 this.userDetails = respData;
+                console.log(this.userDetails);
+
                 if(respData.changeRequest.member.status === 'pending'){
                     this.checkStatus = respData.changeRequest.member;
                     this.userDetails = respData.changeRequest.member.dataChanges;
