@@ -73,7 +73,7 @@ export class CommonFunctionService {
 
     // Function to convert time to required format
     formatTime(time: string): string {
-        if (time.length === 5) { // check if time is in "hh:mm" format
+        if (time?.length === 5) { // check if time is in "hh:mm" format
             return time + ":00";
         } else {
             return time;
