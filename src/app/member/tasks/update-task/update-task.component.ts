@@ -15,9 +15,11 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
     selector: 'app-update-task',
@@ -71,14 +73,14 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     author_id: number = 0;
     showSubtasks: boolean = true;
     isImage: boolean = false;
-        editorConfig: AngularEditorConfig = {
+    editorConfig: AngularEditorConfig = {
         editable: true,
         spellcheck: true,
         minHeight: '5rem',
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -131,7 +133,9 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -262,7 +266,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         if (this.subtaskList?.value?.length > 0) {
             if (this.subtaskList?.controls?.length > 0) {
                 this.subtaskList.controls.forEach(element => {
-                    if (element.status == 'VALID' ) {
+                    if (element.status == 'VALID') {
                         this.showSubtasks = true;
                     } else {
                         this.showSubtasks = false;
@@ -305,7 +309,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onSubTaskUserDeSelect(item: { id: number; user_name: string }[]) {
-        if(this.subTaskSelectedUser && this.subTaskSelectedUser.length > 0){
+        if (this.subTaskSelectedUser && this.subTaskSelectedUser.length > 0) {
             this.subTaskSelectedUser.forEach((value, index) => {
                 if (value == item['id']) {
                     this.subTaskSelectedUser.splice(index, 1);
@@ -362,12 +366,12 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         this.addCollaborator(item.id);
     }
 
-       /**
-    * Function to remove selected users from the dropdown
-    * @author  MangoIt Solutions
-    * @param   {Id,Name}
-    * @return  {Array Of Object} all  approved Group Users list
-    */
+    /**
+ * Function to remove selected users from the dropdown
+ * @author  MangoIt Solutions
+ * @param   {Id,Name}
+ * @return  {Array Of Object} all  approved Group Users list
+ */
     onUserDeSelect(item: { id: number; user_name: string }) {
         if (this.updateTaskForm.get('collaborators').value.length > 0) {
             this.updateTaskForm.get('collaborators').value.forEach((value, index) => {
@@ -422,7 +426,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                     }
                                 }
                             }
-                            this.user_dropdown = Object.assign(this.authService.uniqueObjData(this.user_dropdown,'id'));
+                            this.user_dropdown = Object.assign(this.authService.uniqueObjData(this.user_dropdown, 'id'));
                         }
                         self.setUsers(this.taskid);
                         setTimeout(function () {
@@ -447,10 +451,10 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                         var element: any = respData[key];
                         if (element.user.length && element.user_id != this.organizer_id) {
                             this.setTaskUsers.push({
-                                id: element.user_id, user_email: element.user[0].email, user_name: element.user[0].firstname + ' ' + element.user[0].lastname ,
+                                id: element.user_id, user_email: element.user[0].email, user_name: element.user[0].firstname + ' ' + element.user[0].lastname,
                             });
                             this.participantSelectedToShow.push({
-                                id: element.user_id, user_name: element.user[0].firstname + ' ' + element.user[0].lastname , key_cloak: element.user[0].keycloak_id
+                                id: element.user_id, user_name: element.user[0].firstname + ' ' + element.user[0].lastname, key_cloak: element.user[0].keycloak_id
                             });
                             this.addCollaborator(element.user_id);
                             this.showUsers = true;
@@ -466,7 +470,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                         this.thumb = resppData;
                                         val.image = this.thumb;
                                     },
-                                    (error:any) => {
+                                    (error: any) => {
                                         val.image = null;
                                     });
                         } else {
@@ -474,8 +478,8 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                         }
                     });
                 }
-                this.setTaskUsers = Object.assign(this.authService.uniqueObjData(this.setTaskUsers,'id'));
-                this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow,'id'));
+                this.setTaskUsers = Object.assign(this.authService.uniqueObjData(this.setTaskUsers, 'id'));
+                this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow, 'id'));
             });
         }
     }
@@ -496,6 +500,10 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                         this.taskDetails = respData['result'][0];
                         if (this.taskDetails) {
                             var task_date: string[];
+
+                            if (this.taskDetails?.['image']) {
+                                this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20)))as string;
+                            }
                             if (this.taskDetails.date) {
                                 task_date = this.taskDetails.date.split('T');
                             }
@@ -589,7 +597,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             if (this.updateTaskForm.get('subtasks').value.length) {
                 var subtaskDetails = this.updateTaskForm.get('subtasks').value;
-                if(subtaskDetails && subtaskDetails.length > 0){
+                if (subtaskDetails && subtaskDetails.length > 0) {
                     subtaskDetails.forEach((value, index) => {
                         var assigned: any = [];
                         if (value.assigned_to && value.assigned_to.length) {
@@ -618,7 +626,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                     (<UntypedFormArray>this.updateTaskForm.get('collaborators')).clear();
                     this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + groupId, null)
                         .subscribe((respData: any) => {
-                            if(respData && respData[0].participants && respData[0].participants.length > 0){
+                            if (respData && respData[0].participants && respData[0].participants.length > 0) {
                                 respData[0].participants.forEach((value, index) => {
                                     this.addCollaborator(value.user_id);
                                     if (value.user_id == this.taskDetails.organizer_id) {
@@ -633,7 +641,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                         });
                 } else {
                     this.updateTaskForm.get('group_id').setValue(0);
-                    if(this.updateTaskForm.get('collaborators')){
+                    if (this.updateTaskForm.get('collaborators')) {
                         this.updateTaskForm.get('collaborators').value.forEach(element => {
                             if (element.user_id == this.taskDetails.organizer_id) {
                                 this.author_id = 1;
@@ -703,18 +711,18 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         }
         this.authService.setLoader(true);
         this.authService.memberSendRequest('put', 'updateTask/' + this.taskid, formData)
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                this.notificationService.showSuccess(respData['result']['message'],null);
-                setTimeout(() => {
-                    var redirectUrl: string = 'task-detail/' + this.taskid;
-                    this.router.navigate([redirectUrl]);
-                }, 2000);
-            }else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.notificationService.showSuccess(respData['result']['message'], null);
+                    setTimeout(() => {
+                        var redirectUrl: string = 'task-detail/' + this.taskid;
+                        this.router.navigate([redirectUrl]);
+                    }, 2000);
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
     }
 
     /**
@@ -734,7 +742,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         this.updateTaskForm.controls['groups'].setValue([]);
         this.updateTaskForm.controls['subtasks'].reset();
         this.updateTaskForm.value['subtasks'].forEach(() => {
-                this.subtaskList.removeAt(0);
+            this.subtaskList.removeAt(0);
         });
         $('#showSubtask').hide();
 
@@ -767,7 +775,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         this.updateTaskForm.controls['groups'].setValue([]);
         this.updateTaskForm.controls['subtasks'].reset();
         this.updateTaskForm.value['subtasks'].forEach(() => {
-                this.subtaskList.removeAt(0);
+            this.subtaskList.removeAt(0);
         });
         $('#showSubtask').hide();
     }
@@ -843,7 +851,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  error message if file type is not image
     */
-	errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
+    errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     uploadFile(event: Event) {
         var file: File = (event.target as HTMLInputElement).files[0];
         if (file) {
@@ -875,30 +883,30 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
-     /**
-    * Function is used to cropped and compress the uploaded image
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {object} file object
-    */
-	imageCropped(event: ImageCroppedEvent) {
+    /**
+   * Function is used to cropped and compress the uploaded image
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {object} file object
+   */
+    imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.updateTaskForm.patchValue({ file: this.fileToReturn });
                     this.updateTaskForm.get('file').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
