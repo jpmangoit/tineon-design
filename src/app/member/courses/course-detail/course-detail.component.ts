@@ -465,7 +465,7 @@ export class CourseDetailComponent implements OnInit {
                         if (respData && respData.length > 0) {
                             this.unapprovedParticipants = respData;
                             Object(this.unapprovedParticipants).forEach((val, key) => {
-                                if (this.alluserInformation[val.id].member_id != null) {
+                                if (this.alluserInformation[val.id]?.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.id].member_id, null)
                                         .subscribe(
                                             (resppData: any) => {

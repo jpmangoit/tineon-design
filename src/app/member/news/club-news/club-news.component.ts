@@ -196,6 +196,8 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.dashboardData = respData;
+                        console.log(this.dashboardData);
+
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element, index) => {
                                 if (element.user.member_id != null) {
@@ -212,8 +214,16 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                 } else {
                                     element.user.image = '';
                                 }
+                                console.log('index--------', index);
+                                console.log('index--------', index ,'---------this.dashboardData?.imageUrls----',element?.['imageUrls']);
+
+                                if (element?.['imageUrls']){
+                                    element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                                    // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
+                                }
                             });
                         }
+                        console.log(this.dashboardData);
                     }
                 );
         }
