@@ -118,6 +118,7 @@ export class MallNewsComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.dashboardData = respData.news;
+                            console.log( this.dashboardData );
                             this.dashboardData?.forEach(val => {
                                 if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -133,6 +134,9 @@ export class MallNewsComponent implements OnInit {
                                 } else {
                                     val.user.imagePro = null;
                                 }
+                                if (val?.['imageUrls']){
+                                    val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
+                                }
                             });
                         });
             } else if (this.role == 'guest') {
@@ -144,6 +148,8 @@ export class MallNewsComponent implements OnInit {
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.guestNewsRecords = respData.pagination.rowCount;
                             this.dashboardData = respData.news;
+                            console.log(this.dashboardData);
+
                             if (this.dashboardData && this.dashboardData.length > 0) {
                                 this.dashboardData.forEach(element => {
                                     if (element.user.member_id != null) {
@@ -159,6 +165,9 @@ export class MallNewsComponent implements OnInit {
                                                 })
                                     } else {
                                         element.user.imagePro = '';
+                                    }
+                                    if (element?.['imageUrls']){
+                                        element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
                                     }
                                 });
                             }
@@ -197,7 +206,11 @@ export class MallNewsComponent implements OnInit {
                                     } else {
                                         element.user.imagePro = '';
                                     }
+                                    if (element?.['imageUrls']){
+                                        element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                                    }
                                 });
+
                             }
                         }
                     );

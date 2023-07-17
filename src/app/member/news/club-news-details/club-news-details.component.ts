@@ -265,11 +265,8 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        console.log(this.newsData);
-        console.log(this.newsData['imageUrls']);
         if (this.newsData?.['imageUrls']){
             this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
-            console.log(this.newsData['imageUrls']);
         }
 
         this.memberid = this.newsData.user.member_id;
