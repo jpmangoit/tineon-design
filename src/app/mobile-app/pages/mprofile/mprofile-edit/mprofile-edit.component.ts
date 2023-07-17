@@ -187,8 +187,11 @@ export class MprofileEditComponent implements OnInit {
                 phone: [this.userData.changeRequest.member.dataChanges.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
                 birthDate: [this.datePipe.transform(this.userData.changeRequest.member.dataChanges.birthDate,'yyyy-MM-dd')],
                 share: [this.userData.shareBirthday],
-                allowAdvertis:['']
+                allowAdvertis:[''],
             });
+            if(this.allowAdvertisment == 1){
+                this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+            }
 
         }else{
             if (this.userData.birthDate) {
