@@ -35,6 +35,9 @@
         "pictures":"Pictures",
         "asending":"Ascending",
         "descending":"Descending"
+    },
+    "profile": {
+        "request_approval": " Your current Request is wating for the Approval"
     }
 }
 

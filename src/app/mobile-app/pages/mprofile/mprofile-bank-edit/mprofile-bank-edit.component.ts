@@ -106,7 +106,14 @@ export class MprofileBankEditComponent implements OnInit {
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.user = respData;
-                    this.userData = respData['bankData'];
+
+                    if(this.user.changeRequest.bank.status == 'pending'){
+                        this.userData = this.user.changeRequest.bank.dataChanges;
+                        console.log(this.userData);
+                    }else{
+                        this.userData = respData['bankData'];
+                        console.log(this.userData);
+                    }
                     this.setBankDetails();
                 });
         }

@@ -115,9 +115,9 @@
                     <div class="card-body">
                         <!-- profile header start -->
                         <div class="profile_main_head">
-                            <div class="error-message" *ngIf="checkStatus?.status == 'pending'">
-                                Your current Request is wating for the Approval
-                               </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="checkStatus?.status == 'pending'">
+                                {{language.profile.request_approval}}
+                            </div>
                             <!-- profile header end -->
                             <!-- profile details data start -->
                             <div class="profile_details">

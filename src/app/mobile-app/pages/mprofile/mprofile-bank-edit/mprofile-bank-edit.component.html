@@ -74,6 +74,9 @@
             <div class="profile_content Payment_data_main">
                 <div class="card">
                     <div class="card-body">
+                        <div class="alert alert-success" role="alert" *ngIf="user?.changeRequest?.bank?.status == 'pending'">
+                            {{language.profile.request_approval}}
+                         </div>
                         <!-- <div class="profile_main_head">
                             <div class="profile_title">{{language.profile_bank.title}}</div>
                         </div> -->

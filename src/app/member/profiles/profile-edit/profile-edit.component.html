@@ -213,17 +213,17 @@
                             <!-- profile details data start -->
                             <div class="profile_details">
                                 <div class="alert alert-danger" role="alert" *ngIf="userData?.changeRequest?.member?.status == 'pending'">
-                                   Your current Request is wating for the Approval
+                                    {{language.profile.request_approval}}
                                   </div>
                                 <div class="profile_title">{{language.profile.my_address}}</div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="profile_field">
                                             <label>{{language.profile.street}}</label>
-                                            <input type="text" formControlName='street'
-                                                placeholder="{{language.profile.street}}"
+                                            <input type="text" formControlName='street' placeholder="{{language.profile.street}}"
                                                 [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.street.errors }">
-                                            <div *ngIf="(registrationForm.controls.street.touched || submitted) && (registrationForm.controls.street.errors?.required || registrationForm.controls.street.errors?.whitespace)"
+                                            <div *ngIf="(registrationForm.controls.street.touched || submitted) &&
+                                                 (registrationForm.controls.street.errors?.required || registrationForm.controls.street.errors?.whitespace)"
                                                 class="text-danger">
                                                 <div *ngIf="registrationForm.controls.street.errors.required">
                                                     {{language.error_message.common_required}}
@@ -303,8 +303,10 @@
                                             <label>{{language.profile.phone}}</label>
                                             <input type="text" formControlName='phone' placeholder="{{language.profile.phone}}"
                                                 [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.phone.errors }">
-                                            <div *ngIf="(registrationForm.controls.phone.touched || submitted) && (registrationForm.controls.phone.errors?.required || registrationForm.controls.phone.errors?.pattern)"
-                                                class="text-danger">
+
+                                            <div class="text-danger" *ngIf="(registrationForm.controls.phone.touched || submitted) &&
+                                            (registrationForm.controls.phone.errors?.required || registrationForm.controls.phone.errors?.pattern)">
+
                                                 <div *ngIf="registrationForm.controls.phone.errors.required">
                                                     {{language.error_message.phone_required}}
                                                 </div>

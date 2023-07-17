@@ -284,7 +284,8 @@
         "upload_profile": "Immagine del profilo aggiornata con successo",
         "change_image": "Cambia immagine",
         "change_profile_pic": "Cambia immagine del profilo",
-        "approv_unlock" : "Approvazione / Sblocco"
+        "approv_unlock" : "Approvazione / Sblocco",
+        "request_approval": " Your current Request is wating for the Approval"
     },
     "profile_bank": {
         "title": "Dati bancari",

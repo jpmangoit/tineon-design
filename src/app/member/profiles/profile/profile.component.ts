@@ -154,9 +154,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     this.checkStatus = respData.changeRequest.member;
                     this.userDetails = respData.changeRequest.member.dataChanges;
                     this.allowAdvertisment = this.userDetails.allowAdvertis
-                  }else{
+                }else{
                       this.userDetails = respData;
-                  }
+                }
                 this.role = userData.roles[0];
             });
         }

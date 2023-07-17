@@ -114,7 +114,12 @@ export class MprofileBankComponent implements OnInit {
                     this.loginsubmitted = false;
                     this.authService.setLoader(false);
                     this.user = respData;
-                    this.userData = respData['bankData'];
+                    if(respData.changeRequest.bank.status === 'pending'){
+                        this.userData = respData.changeRequest.bank.dataChanges;
+                        console.log(this.userData);
+                      }else{
+                          this.userData = respData['bankData'];
+                      }
                 });
         }
     }

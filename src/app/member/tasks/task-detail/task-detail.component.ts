@@ -10,7 +10,7 @@ import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { TaskCollaboratorDetails, TaskType } from 'src/app/models/task-type.model';
 import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update-confirm-dialog.service';
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -63,7 +63,8 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
 		private lang: LanguageService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 
 	) {
         this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
@@ -135,6 +136,10 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
+                                if (this.taskDetails?.['image']){
+                                    this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20)));
+                                }
+
                                 if (this.taskDetails) {
                                     this.getOrganizerDetails(taskid);
                                 }

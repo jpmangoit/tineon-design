@@ -66,6 +66,9 @@
             <div class="profile_content">
                 <div class="card">
                     <div class="card-body">
+                        <div class="alert alert-danger" role="alert" *ngIf="checkStatus?.status == 'pending'">
+                            {{language.profile.request_approval}}
+                        </div>
                         <!-- profile header start -->
                         <div class="profile_main_head"  *ngIf="userDetails">
                             <!-- profile header end -->
@@ -79,11 +82,11 @@
                                             <span class="info_detail"><svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 8L10 1L19 8V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M7 21V11H13V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg> 
+                                            </svg>
                                             <!-- {{ (userDetails.street ) ? userDetails.street: language.profile.street}} -->
                                             <span *ngIf="userDetails.street">{{userDetails.street }}</span>
                                             <label *ngIf="!userDetails.street">{{language.profile.street}}</label>
-                                        
+
                                         </span>
                                         </div>
                                     </div>
@@ -109,13 +112,13 @@
                                             <!-- {{ (userDetails.city) ? userDetails.city : language.profile.city }} -->
                                             <span *ngIf="userDetails.city">{{userDetails.city }}</span>
                                             <label *ngIf="!userDetails.city">{{language.profile.city}}</label>
-                                        </span> 
+                                        </span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="profile_field info_field">
                                             <span class="info_label">{{language.profile.zip_code}}</span>
-                                            <span class="info_detail"> 
+                                            <span class="info_detail">
                                                 <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 8L10 1L19 8V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <path d="M7 21V11H13V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -139,7 +142,7 @@
                                             <span class="info_label">{{language.profile.userEmail}}</span>
                                             <span class="info_detail profile-img"><svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.4 19C1.74 19 1.1748 18.7672 0.704402 18.3017C0.234002 17.8362 -0.000797963 17.2773 2.03735e-06 16.625V2.375C2.03735e-06 1.72188 0.235202 1.16256 0.705602 0.697064C1.176 0.231564 1.7408 -0.00078965 2.4 2.01613e-06H21.6C22.26 2.01613e-06 22.8252 0.232752 23.2956 0.698252C23.766 1.16375 24.0008 1.72267 24 2.375V16.625C24 17.2781 23.7648 17.8374 23.2944 18.3029C22.824 18.7684 22.2592 19.0008 21.6 19H2.4ZM12 10.6875L2.4 4.75V16.625H21.6V4.75L12 10.6875ZM12 8.3125L21.6 2.375H2.4L12 8.3125ZM2.4 4.75V2.375V16.625V4.75Z" fill="black"/>
-                                            </svg> 
+                                            </svg>
                                             <!-- {{ (userDetails.email) ? userDetails.email: language.profile.userEmail}} -->
                                             <span *ngIf="userDetails.email">{{userDetails.email }}</span>
                                             <label *ngIf="!userDetails.email">{{language.profile.userEmail}}</label>
@@ -166,7 +169,7 @@
                                                 {{userDetails.birthDate | date: 'dd/MM/YYYY'}}
                                             </span>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                             </div>
 
@@ -176,7 +179,7 @@
                                     <div class="col-md-6">
                                         <div class="profile_field info_field">
                                             <div class="guest-option">
-                                                <label class="guest_label">                                                
+                                                <label class="guest_label">
                                                     <div class="switch_toggle">
                                                         <input type="checkbox" id="switch" readonly [checked]="userDetails.shareBirthday == true"/>
                                                         <label for="switch">{{language.Survey.toggle}}</label>
@@ -190,7 +193,7 @@
                                     <div class="col-md-6">
                                         <div class="profile_field info_field">
                                             <div class="guest-option">
-                                                <label class="guest_label">                                                
+                                                <label class="guest_label">
                                                     <div class="switch_toggle">
                                                         <input type="checkbox" id="switchAdvertis" [checked]="allowAdvertisment == 1"/>
                                                         <label for="switchAdvertis">{{language.Survey.toggle}}</label>

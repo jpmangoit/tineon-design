@@ -288,7 +288,8 @@
         "upload_profile": "Profilbild erfolgreich aktualisiert",
         "change_image": "Bild ändern",
         "change_profile_pic": "Profilbild ändern",
-        "approv_unlock" : "Genehmigung / Freischalten"
+        "approv_unlock" : "Genehmigung / Freischalten",
+        "request_approval": " Your current Request is wating for the Approval"
     },
     "profile_bank": {
         "title": "Bank-Daten",
