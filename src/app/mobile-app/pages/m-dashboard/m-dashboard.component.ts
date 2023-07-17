@@ -291,6 +291,8 @@ export class MDashboardComponent implements OnInit {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.newsData = respData;
+                        console.log(this.newsData);
+
                         this.newsData.forEach(val => {
                             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -305,6 +307,9 @@ export class MDashboardComponent implements OnInit {
                                     );
                             } else {
                                 val.user.imagePro = null;
+                            }
+                            if (val?.['imageUrls']){
+                                val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
                             }
                         });
                     }

@@ -97,6 +97,8 @@ export class MclubNewsComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.dashboardData = respData;
+                    console.log(this.dashboardData);
+
                     if(this.dashboardData?.length > 0){
                         this.dashboardData.forEach((element, index) => {
                             if (index < 7) {
@@ -115,6 +117,7 @@ export class MclubNewsComponent implements OnInit {
                                     element.user.image = '';
                                 }
                             }
+
                         });
                     }
                     this.dashboardData.reverse();

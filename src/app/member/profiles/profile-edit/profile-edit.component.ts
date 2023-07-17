@@ -127,8 +127,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             birthDate: [''],
             allowAdvertis:['']
         });
-        console.log(this.registrationForm);
-
     }
 
 
@@ -177,8 +175,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 // if (Object.keys(respData).length) {
                     this.userData = respData;
-                    console.log(this.userData);
-
                     this.role = this.userDataProfile.roles[0];
                     this.setValue();
                 // }
@@ -205,7 +201,9 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
                 share: [this.userData.shareBirthday],
                 allowAdvertis:['']
             });
-
+            if(this.allowAdvertisment == 1){
+                this.registrationForm.controls.allowAdvertis.setValue(this.allowAdvertisment);
+            }
         }else{
             if (this.userData.birthDate) {
                 this.datePipeString = this.datePipe.transform(this.userData.birthDate,'yyyy-MM-dd');
@@ -283,8 +281,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post','modify-user-data/' + this.userDataProfile.database_id +'/' + this.userDataProfile.team_id +'/' +this.userDataProfile.member_id,this.registrationForm.value)
             .subscribe((respData: any) => {
-                console.log(respData);
-
                 this.authService.setLoader(false);
                 this.successMessage(respData);
                 this.submitted = false;
@@ -296,8 +292,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     }
 
     successMessage(msg: string) {
-        console.log(msg);
-
         if (msg == 'OK') {
             localStorage.removeItem('allowAdvertis');
             localStorage.setItem('allowAdvertis', this.registrationForm.value['allowAdvertis']);

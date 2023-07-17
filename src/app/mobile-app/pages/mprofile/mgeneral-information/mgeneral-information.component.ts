@@ -151,7 +151,7 @@ export class MgeneralInformationComponent implements OnInit {
                     if(respData.changeRequest.member.status === 'pending'){
                         this.checkStatus = respData.changeRequest.member;
                         this.userDetails = respData.changeRequest.member.dataChanges;
-                        this.allowAdvertisment = this.userDetails.allowAdvertis
+                        // this.allowAdvertisment = this.userDetails.allowAdvertis
                     }else{
                           this.userDetails = respData;
                     }

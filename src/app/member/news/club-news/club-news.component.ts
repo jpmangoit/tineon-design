@@ -212,8 +212,12 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                 } else {
                                     element.user.image = '';
                                 }
+                                if (element?.['imageUrls']){
+                                    element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                                }
                             });
                         }
+                        console.log(this.dashboardData);
                     }
                 );
         }
