@@ -137,7 +137,7 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
                                 if (this.taskDetails?.['image']){
-                                    this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20)));
+                                    this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20))); 
                                 }
 
                                 if (this.taskDetails) {

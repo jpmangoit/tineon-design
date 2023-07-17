@@ -75,8 +75,8 @@
                                                         *ngIf="(taskDetails) && (taskDetails.image == null) && (croppedImage == null || croppedImage == '') && !isImage"
                                                         src="assets/img/event_upload.png">
                                                     <img onContextMenu="return false;" id="preview_img"
-                                                        *ngIf="taskDetails && taskDetails.image && (croppedImage == null || croppedImage == '') && !isImage"
-                                                        src="{{taskDetails.image}}">
+                                                        *ngIf="taskDetails && taskDetails.image && (croppedImage == null || croppedImage =='') && !isImage"
+                                                        [src]="taskDetails.image">
                                                 </span>
                                                 <div *ngIf="(updateTaskForm.controls.file.touched || submitted) && (updateTaskForm.controls.file.errors?.required )"
                                                     class="text-danger">
