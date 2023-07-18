@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     if (respData['isError'] == false) {
                         this.clubNewsCount = respData.result.posts;
-                        this.organizerCount = respData.result.events;
+                        this.organizerCount = respData.result.events; 
                         this.communityCount = respData.result.message;
                     }
                 }

@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -39,6 +40,8 @@ export class GroupNewsComponent implements OnInit {
         private lang: LanguageService, private themes: ThemeService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
 
     ) { }
 
@@ -117,19 +120,22 @@ export class GroupNewsComponent implements OnInit {
         if(this.newsData.imageUrls == '' || this.newsData.imageUrls == null){
             this.groupNewsImg = '../../assets/img/no_image.png';
         }else{
-            this.groupNewsImg = this.newsData.imageUrls;
+            if (this.newsData?.['imageUrls']){
+                this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
+                this.groupNewsImg = this.newsData.imageUrls;
+            }
         }
         this.newsTitle = this.newsData.title
         this.memberid = this.newsData.user.member_id;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id='+this.userData.database_id+'&club_id='+this.userData.team_id+'&member_id=' + this.memberid, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.thumbnail = respData;
-                },
-                (error:any) => {
-                    this.thumbnail = null;
-                });
+        .subscribe(
+            (respData: any) => {
+                this.authService.setLoader(false);
+                this.thumbnail = respData;
+            },
+            (error:any) => {
+                this.thumbnail = null;
+            });
     }
 
     /**

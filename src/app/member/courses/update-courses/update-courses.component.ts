@@ -1477,9 +1477,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            formData.forEach((value:any,key:any) => {
-                console.log(key,'------------------',value);
-            });
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateCourse/' + this.courseId, formData)
                 .subscribe(

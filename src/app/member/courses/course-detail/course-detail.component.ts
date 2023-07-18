@@ -255,6 +255,9 @@ export class CourseDetailComponent implements OnInit {
                         if (this.courseDetails[0]?.['author'] == JSON.parse(this.userId) || this.userDetails.roles[0] == 'admin') {
                             if (this.courseDetails[0]['updated_record'] != null && this.courseDetails[0]['updated_record'] != "") {
                                 this.updateCourseData = JSON.parse(this.courseDetails[0]['updated_record']);
+                                console.log(this.courseDetails);
+                                console.log(this.updateCourseData);
+
                                 // this.updateCourseData.date_from = this.courseDate ? this.courseDate + 'T' + this.updateCourseData.date_from.split(' ')[1] : this.updateCourseData.date_from
                                 this.updateCourseData['course_users'] = JSON.parse(this.updateCourseData['course_users']);
                                 this.updateCourseData['courseDate'] = JSON.parse(this.updateCourseData['courseDate']);
