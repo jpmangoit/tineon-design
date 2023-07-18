@@ -163,7 +163,6 @@ export class CourseDetailComponent implements OnInit {
                         this.courseDetails = null;
                         this.updateCourseData = null;
                         this.courseDetails = respData['result'];
-                        console.log(this.courseDetails);
 
                         if (this.courseDetails?.length > 0) {
                             this.courseDetails.forEach(element => {
@@ -191,7 +190,7 @@ export class CourseDetailComponent implements OnInit {
                                 element.recurring_dates = JSON.parse(element.recurring_dates);
                             });
                         }
-                        this.courseDetails[0].recurring_dates.forEach((element:any) =>{
+                        this.courseDetails[0]?.recurring_dates.forEach((element:any) =>{
                             element.start_time = this.commonFunctionService.convertTime(element.start_time);
                             element.end_time = this.commonFunctionService.convertTime(element.end_time);
                         })
@@ -199,13 +198,14 @@ export class CourseDetailComponent implements OnInit {
                         if(this.courseDate){
                             this.courseDetails[0].recurring_dates.unshift( this.courseDetails[0].recurring_dates.splice( this.courseDetails[0].recurring_dates.findIndex(elt => elt.date_from === this.courseDate), 1)[0]);
                         }
-                        this.courseDetails[0].date_from = this.courseDate ? this.courseDate + 'T' + this.courseDetails[0].date_from.split('T')[1] : this.courseDetails[0].date_from;
+
+                        this.courseDetails[0]['date_from'] = this.courseDate ? this.courseDate + 'T' + this.courseDetails[0]?.date_from.split('T')[1] : this.courseDetails[0]?.date_from;
+
                         if (this.courseDetails[0]?.picture_video != "[]") {
                                 this.hasPicture = true;
                                 if (this.courseDetails[0].picture_video){
                                 this.courseDetails[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0].picture_video.substring(20)));
                                 this.eventImage =  this.courseDetails[0].picture_video
-                                console.log(this.eventImage);
                             }
                         } else {
                             this.hasPicture = false;
@@ -214,7 +214,6 @@ export class CourseDetailComponent implements OnInit {
 
                         if (this.courseDetails[0]?.document_url) {
                             this.eventFile =  this.courseDetails[0].document_url;
-                            console.log(this.eventFile);
                         }
 
                         // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
@@ -255,9 +254,6 @@ export class CourseDetailComponent implements OnInit {
                         if (this.courseDetails[0]?.['author'] == JSON.parse(this.userId) || this.userDetails.roles[0] == 'admin') {
                             if (this.courseDetails[0]['updated_record'] != null && this.courseDetails[0]['updated_record'] != "") {
                                 this.updateCourseData = JSON.parse(this.courseDetails[0]['updated_record']);
-                                console.log(this.courseDetails);
-                                console.log(this.updateCourseData);
-
                                 // this.updateCourseData.date_from = this.courseDate ? this.courseDate + 'T' + this.updateCourseData.date_from.split(' ')[1] : this.updateCourseData.date_from
                                 this.updateCourseData['course_users'] = JSON.parse(this.updateCourseData['course_users']);
                                 this.updateCourseData['courseDate'] = JSON.parse(this.updateCourseData['courseDate']);
@@ -267,12 +263,11 @@ export class CourseDetailComponent implements OnInit {
                                 if (this.updateCourseData['instructor_external']) {
                                     this.updateCourseData['instructor_external'] = JSON.parse(this.updateCourseData['instructor_external']);
                                 }
-
                                 if (this.updateCourseData['instructor_internal']) {
                                     this.updateCourseData['instructor_internal'] = JSON.parse(this.updateCourseData['instructor_internal']);
                                 }
-                                this.updateCourseData['course_users'] = this.updateCourseData['course_users'].filter((item) => item.user_id != this.courseDetails[0].author);
 
+                                this.updateCourseData['course_users'] = this.updateCourseData['course_users'].filter((item) => item.user_id != this.courseDetails[0].author);
                                 if (this.updateCourseData && this.updateCourseData['course_users'].length > 0) {
                                     this.updateCourseData['course_users'].forEach(element => {
                                         if (this.allUsers && this.allUsers.length > 0) {
@@ -297,30 +292,44 @@ export class CourseDetailComponent implements OnInit {
                                         }
                                     });
                                 }
-                                if (this.updateCourseData['imageUrl']) {
-                                    if (this.updateCourseData['imageUrl'].length > 0) {
-                                        let resp: string[] = [];
-                                        resp = this.updateCourseData['imageUrl'];
-                                        let imgUpdateArray: string[] = [];
-                                        let fileUpdateArray: string[] = [];
-                                        if (resp && resp.length > 0) {
-                                            resp.forEach((element: string) => {
-                                                if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                                    imgUpdateArray.push(element);
-                                                    this.hasUpdatePicture = true;
-                                                    this.eventUpdateImage = imgUpdateArray[0];
-                                                } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => element.endsWith(char))) {
-                                                    fileUpdateArray.push(element);
-                                                    this.eventUpdateFile = fileUpdateArray[0];
-                                                    this.eventUpdateFile = element;
-                                                }
-                                            });
-                                        }
-                                    } else {
-                                        this.hasUpdatePicture = false;
-                                        this.eventUpdateImage = '';
-                                    }
+                                if (this.updateCourseData['updatedImageUrl']) {
+                                    this.hasUpdatePicture = true;
+                                    if (this.updateCourseData['updatedImageUrl']){
+                                        this.updateCourseData['updatedImageUrl'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateCourseData['updatedImageUrl'].substring(20)));
+                                        this.eventUpdateImage =  this.updateCourseData['updatedImageUrl']
+                                     }
+                                } else {
+                                    this.hasUpdatePicture = false;
+                                    this.eventUpdateImage = '';
                                 }
+                                if (this.updateCourseData['updateDocumentUrl']) {
+                                    this.eventUpdateFile =  this.updateCourseData['updateDocumentUrl'];
+                                }
+                                // if (this.updateCourseData['imageUrl']) {
+                                //     if (this.updateCourseData['imageUrl'].length > 0) {
+                                //         let resp: string[] = [];
+                                //         resp = this.updateCourseData['imageUrl'];
+                                //         let imgUpdateArray: string[] = [];
+                                //         let fileUpdateArray: string[] = [];
+                                //         if (resp && resp.length > 0) {
+                                //             resp.forEach((element: string) => {
+                                //                 if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                                //                     imgUpdateArray.push(element);
+                                //                     this.hasUpdatePicture = true;
+                                //                     this.eventUpdateImage = imgUpdateArray[0];
+                                //                 } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => element.endsWith(char))) {
+                                //                     fileUpdateArray.push(element);
+                                //                     this.eventUpdateFile = fileUpdateArray[0];
+                                //                     this.eventUpdateFile = element;
+                                //                 }
+                                //             });
+                                //         }
+                                //     } else {
+                                //         this.hasUpdatePicture = false;
+                                //         this.eventUpdateImage = '';
+                                //     }
+                                // }
+
                                 if (this.updateCourseData?.task?.length > 0) {
                                     this.isTaskDetailsUpdate = true
                                     this.taskOrganizerDetailsUpdated = [];

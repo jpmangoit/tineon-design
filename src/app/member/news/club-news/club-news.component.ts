@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
+
 @Component({
     selector: 'app-club-news',
     templateUrl: './club-news.component.html',
@@ -44,7 +45,6 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
     private activatedSub: Subscription;
     allowAdvertisment: any;
     headline_word_option: number = 0;
-
     sliderOptions: OwlOptions = {
         loop: true,
         mouseDrag: true,
@@ -81,8 +81,6 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-
-
     ) { }
 
     ngOnInit(): void {
@@ -96,8 +94,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
 
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
-        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
-        parseInt(localStorage.getItem('headlineOption'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.role = this.userData.roles[0];
         this.url = this.router.url;
@@ -175,7 +172,6 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
             user_id: this.userData.userId,
             display_mode: displayMode
         }
-
         this.authService.memberSendRequest('post', 'bannerClick/', data)
             .subscribe((respData: any) => {
             })
@@ -217,7 +213,6 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                 }
                             });
                         }
-                        console.log(this.dashboardData);
                     }
                 );
         }

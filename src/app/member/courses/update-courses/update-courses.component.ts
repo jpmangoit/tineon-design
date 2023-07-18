@@ -649,27 +649,29 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getCoursesById/' + courseid, null)
-            .subscribe(
-                (respData: any) => {
-                    if (respData['isError'] == false && Object.keys(respData.result).length > 0) {
-                        self.courseDetails = respData['result'][0];
-                        if (respData?.result[0]?.courseUsers) {
-                            respData.result[0].courseUsers.forEach(function (value, key) {
-                                self.setEventParticipants.push({ 'id': value.users.id, 'name': value.users.firstname + ' ' + value.users.lastname });
-                                self.userSelected.push(value.users.id);
-                            })
-                            self.setEventParticipants = Object.assign(this.authService.uniqueObjData(self.setEventParticipants, 'id'));
-                            self.userSelected = this.authService.uniqueData(self.userSelected);
-                        }
-                        self.setCourseData();
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                    } else {
-                        this.notificationService.showError(this.language.courses.no_course_found, null);
+        .subscribe(
+            (respData: any) => {
+                if (respData['isError'] == false && Object.keys(respData.result).length > 0) {
+                    console.log(respData['result']);
+
+                    self.courseDetails = respData['result'][0];
+                    if (respData?.result[0]?.courseUsers) {
+                        respData.result[0].courseUsers.forEach(function (value, key) {
+                            self.setEventParticipants.push({ 'id': value.users.id, 'name': value.users.firstname + ' ' + value.users.lastname });
+                            self.userSelected.push(value.users.id);
+                        })
+                        self.setEventParticipants = Object.assign(this.authService.uniqueObjData(self.setEventParticipants, 'id'));
+                        self.userSelected = this.authService.uniqueData(self.userSelected);
                     }
-                    this.authService.setLoader(false);
+                    self.setCourseData();
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                } else {
+                    this.notificationService.showError(this.language.courses.no_course_found, null);
                 }
-            );
+                this.authService.setLoader(false);
+            }
+        );
     }
 
     /**
