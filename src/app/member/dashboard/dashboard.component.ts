@@ -77,6 +77,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService, private sanitizer: DomSanitizer, public formBuilder: UntypedFormBuilder) { }
 
     ngOnInit(): void {
+        this.authService.setLoader(true);
         if (localStorage.getItem('token') != null) {
             interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
              .subscribe(() => {
@@ -108,7 +109,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     if (respData['isError'] == false) {
                         this.clubNewsCount = respData.result.posts;
-                        this.organizerCount = respData.result.events; 
+                        this.organizerCount = respData.result.events;
                         this.communityCount = respData.result.message;
                     }
                 }
@@ -138,44 +139,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
     }
 
-    refreshTokens(){
-        const refreshToken = localStorage.getItem('refresh_token');
-        let data:any = {
-            refresh_token : refreshToken
-        }
-        this.authService.memberSendRequest('post', 'refresh-token', data)
-        .subscribe(
-            (respData: any) => {
-                if (respData['isError'] == false) {
-                    this.authService.setLoader(false);
-                    sessionStorage.setItem('token', respData['result']['access_token']);
-                    localStorage.setItem('token', respData['result']['access_token']);
-                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                } else if (respData['code'] == 400 || respData['code'] == 404) {
-                    this.authService.setLoader(false);
-                };
-            },
-            (error: any) => {
-              // Handle error if token refresh fails
-            }
-        );
-    }
-
-    /**
-    * Function is used to show and hide event list and event calender
-    * @author  MangoIt Solutions
-    */
-    showEvents(item: any) {
-        if (item.value == 'showEventList') {
-            this.showEventList = true;
-            this.showCalendar = false;
-        } else if (item.value == 'showCalendar') {
-            this.showEventList = false;
-            this.showCalendar = true;
-        }
-    }
-
     /**
     * FUnction to get a login user image
     * @author  MangoIt Solutions
@@ -188,7 +151,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.authService.memberInfoRequest('get', 'member-photo?database_id=' + userData.database_id + '&club_id=' + userData.team_id + '&member_id=' + userData.member_id, null)
                 .subscribe(
                     (respData: any) => {
-                        this.authService.setLoader(false);
                         if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'].message, null);
                         } else {
@@ -208,11 +170,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     * @return  {Array Of Object} all the Banner
     */
     getDesktopDeshboardBanner(){
-        this.authService.setLoader(true);
+        // this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
         .subscribe(
             (respData: any) => {
-                this.authService.setLoader(false);
+                // this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner']
                     if(this.bannerData?.length > 0){
@@ -233,6 +195,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
             }
         )
+    }
+
+    refreshTokens(){
+        const refreshToken = localStorage.getItem('refresh_token');
+        let data:any = {
+            refresh_token : refreshToken
+        }
+        this.authService.memberSendRequest('post', 'refresh-token', data)
+        .subscribe(
+            (respData: any) => {
+                if (respData['isError'] == false) {
+                    sessionStorage.setItem('token', respData['result']['access_token']);
+                    localStorage.setItem('token', respData['result']['access_token']);
+                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                } else if (respData['code'] == 400 || respData['code'] == 404) {
+                    // this.authService.setLoader(false);
+                };
+            },
+            (error: any) => {
+              // Handle error if token refresh fails
+            }
+        );
+    }
+
+    /**
+    * Function is used to show and hide event list and event calender
+    * @author  MangoIt Solutions
+    */
+    showEvents(item: any) {
+        if (item.value == 'showEventList') {
+            this.showEventList = true;
+            this.showCalendar = false;
+        } else if (item.value == 'showCalendar') {
+            this.showEventList = false;
+            this.showCalendar = true;
+        }
     }
 
     ngOnDestroy(): void {

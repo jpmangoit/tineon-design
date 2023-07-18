@@ -112,7 +112,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                 let self = this;
                 this.userDetails = JSON.parse(localStorage.getItem('user-data'));
                 this.userRole = this.userDetails.roles[0];
-                this.authService.setLoader(true);
+                // this.authService.setLoader(true);
                 let eventUrl: string;
 
                 if(this.eventData && this.eventData.length > 0){
@@ -347,7 +347,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                         arr.sort(sorter);
                     };
                     sortByDate(this.upcomingEventList);
-                    this.authService.setLoader(false);
+                    // this.authService.setLoader(false);
                     this.getCalendarData();
                 }
             }
