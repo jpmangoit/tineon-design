@@ -274,6 +274,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                                 if (element.imageUrls) {
                                     element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
                                 }
+
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(

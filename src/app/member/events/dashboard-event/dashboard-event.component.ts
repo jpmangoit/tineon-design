@@ -119,23 +119,27 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                     this.date = new Date(); // Today's date
                     this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                     var element: any = null;
+                    console.log(this.eventData);
+
                     for (var key in this.eventData) {
                         if (this.eventData.hasOwnProperty(key)) {
                             element = this.eventData[key];
-                            var url: string[] = [];
-                            for (const key in element) {
-                                if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                    const value: any = element[key];
-                                    if (key == 'picture_video' && value != null) {
-                                        url = value.split('\"');
-                                    }
-                                }
-                            }
-                            if (url && url.length > 0) {
-                                element['picture_video'] = url[1];
-                            } else {
-                                element['picture_video'] = '';
-                            }
+                            // var url: string[] = [];
+
+                            // for (const key in element) {
+                            //     if (Object.prototype.hasOwnProperty.call(element, key)) {
+                            //         const value: any = element[key];
+                            //         if (key == 'picture_video' && value != null) {
+                            //             url = value.split('\"');
+                            //         }
+                            //     }
+                            // }
+                            // if (url && url.length > 0) {
+                            //     element['picture_video'] = url[1];
+                            // } else {
+                            //     element['picture_video'] = '';
+                            // }
+
                             this.allData[key] = element;
                             if (element && element.recurrence != '' && element.recurrence != null) {
                                 let recurrence: string = element.recurrence;

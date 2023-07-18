@@ -124,7 +124,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', eventUrl, null)
             .subscribe(
                 (respData: any) => {
+                    console.log(respData);
+
                     this.eventData = respData;
+                    console.log(this.eventData);
                 }
             );
         this.authService.memberSendRequest('post', 'allCourses', null)

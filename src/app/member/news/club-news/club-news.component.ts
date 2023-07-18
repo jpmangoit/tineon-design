@@ -20,25 +20,25 @@ declare var $: any;
     styleUrls: ['./club-news.component.css']
 })
 
-export class ClubNewsComponent implements OnInit ,OnDestroy{
+export class ClubNewsComponent implements OnInit, OnDestroy {
     @Input() bannerData: any;
-    language:any;
-    role:string = '';
+    language: any;
+    role: string = '';
     thumbnail: string;
-    num:number = 4;
-    num1:number = 3;
+    num: number = 4;
+    num1: number = 3;
     memberid: number;
-    displayError:boolean = false;
-    displayPopup:boolean = false;
-    responseMessage:string = null;
-    userData:LoginDetails;
-    dashboardData:NewsType[];
-    guestNews:NewsType[] = [];
+    displayError: boolean = false;
+    displayPopup: boolean = false;
+    responseMessage: string = null;
+    userData: LoginDetails;
+    dashboardData: NewsType[];
+    guestNews: NewsType[] = [];
     newsData: NewsType;
-    newsDetails:NewsType[] = [];
-    newsDisplay:number;
+    newsDetails: NewsType[] = [];
+    newsDisplay: number;
     url: string;
-    thumb:SafeUrl;
+    thumb: SafeUrl;
     proImage: SafeUrl;
     newImg: string;
     setTheme: ThemeType;
@@ -87,10 +87,10 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
     ngOnInit(): void {
         this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
-            let theme:ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
 
@@ -108,7 +108,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
             this.displayPopup = false;
             this.newsDisplay = 4;
         }
-        if (this.allowAdvertisment == 0){
+        if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
         }
         this.getAllNews();
@@ -192,14 +192,11 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        if(respData){
-                            console.log(respData);
-                            // this.authService.setLoader(false);
-                        }
+                        this.authService.setLoader(false);
                         this.dashboardData = respData;
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element, index) => {
-                                if (element?.['imageUrls']){
+                                if (element?.['imageUrls']) {
                                     element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
                                     // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
                                 }
@@ -210,7 +207,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             })
                                 } else {
@@ -258,10 +255,10 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
         if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls){
+            if (this.newsData.imageUrls) {
                 this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
                 this.newImg = this.newsData.imageUrls;
-                }
+            }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
@@ -270,7 +267,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                     this.authService.setLoader(false);
                     this.thumbnail = respData;
                 },
-                (error:any) => {
+                (error: any) => {
                     this.thumbnail = null;
                 });
     }
@@ -282,7 +279,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
         return tmp.textContent || tmp.innerText || "";
     }
 
-    showToggles:boolean = false;
+    showToggles: boolean = false;
     onShow() {
         let el: HTMLCollectionOf<Element> = document.getElementsByClassName("bunch_drop");
         if (!this.showToggle) {

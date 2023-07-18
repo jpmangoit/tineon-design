@@ -1,7 +1,7 @@
 <div class="card club-widget-appointment">
     <!-- <div class="alert alert-danger" id="responseMessage" *ngIf="responseMessage">{{responseMessage}}</div> -->
     <div class="card-header">
-        <h5 class="card-title">{{ language.group_news.title }}</h5>
+        <h5 class="card-title">{{ language.group_news.title}}</h5>
     </div>
     <div class="card-body" *ngIf="role != 'guest' && role != 'member_light' && role != 'member_light_admin'">
         <div class="empty-data-image" *ngIf="groupNewsData?.length == 0">
@@ -22,7 +22,9 @@
                                     routerLink="/group-detail/{{data.group.id}}">
                                     {{ data.group.name }}
                                 </div>
-                                <span class="club-schedule">{{data.news.publication_date_from| date : "dd. MMMM yyyy"}}</span>
+                                <span class="club-schedule">
+                                    {{data.news.publication_date_from| date : "dd. MMMM.yyyy"}}
+                                </span>
                             </div>
 
                             <div class="club-widget-des-inner">
@@ -30,8 +32,8 @@
                                     (click)="getNewsDetails(data.news.id)">
                                     <div class="club-w-image">
                                         <img onContextMenu="return false;"
-                                            [src]="data.news.imageUrls != null? data.news.imageUrls : 'assets/img/no_image.png'"
-                                            alt="{{ data?.group?.name }}" loading="lazy" />
+                                            [src]="data.news?.imageUrls ? data.news.imageUrls : '../../assets/img/no_image.png'"
+                                            alt="{{ data.news?.title }}" loading="lazy">
                                     </div>
                                 </div>
                                 <div class="club-right-area">
@@ -87,19 +89,30 @@
                                                 <div class="">
                                                     <div class="news_content col-md-12">
                                                         <div class="news_image">
-                                                            <app-image-viewer *ngIf=" imageUrls " [imageURL]="imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
-                                                            <div class="news_image_container" (click)=" viewImage = true " *ngIf=" groupNewsImg">
-                                                                <img onContextMenu="return false;" [src]=" groupNewsImg" alt="{{ language.group_news.title}}" loading="lazy" />
-                                                                <div class="dropdown action_group cm" *ngIf="newsData.author == userData.userId || userData.isAdmin">
-                                                                    <button class="dropdown-toggle" type="button" (click)="onShow()">
+                                                            <app-image-viewer *ngIf=" imageUrls " [imageURL]="imageUrls"
+                                                                [open]="viewImage"
+                                                                (close)="viewImage = false"></app-image-viewer>
+                                                            <div class="news_image_container"
+                                                                (click)=" viewImage = true " *ngIf=" groupNewsImg">
+                                                                <img onContextMenu="return false;" [src]=" groupNewsImg"
+                                                                    alt="{{ language.group_news.title}}"
+                                                                    loading="lazy" />
+                                                                <div class="dropdown action_group cm"
+                                                                    *ngIf="newsData.author == userData.userId || userData.isAdmin">
+                                                                    <button class="dropdown-toggle" type="button"
+                                                                        (click)="onShow()">
                                                                         <i class="fa fa-pencil"></i>
                                                                     </button>
-                                                                    <ul class="dropdown-menu bunch_drop" aria-labelledby="dropdownMenuLink">
+                                                                    <ul class="dropdown-menu bunch_drop"
+                                                                        aria-labelledby="dropdownMenuLink">
                                                                         <li>
-                                                                            <a class="dropdown-item" (click)="updateNews(newsData.id)">{{language.club_news.Edit}}</a>
+                                                                            <a class="dropdown-item"
+                                                                                (click)="updateNews(newsData.id)">{{language.club_news.Edit}}</a>
                                                                         </li>
                                                                         <li>
-                                                                            <a class="dropdown-item" (click)="deleteNews(newsData.id)">{{language.club_news .Delete}}</a>
+                                                                            <a class="dropdown-item"
+                                                                                (click)="deleteNews(newsData.id)">{{language.club_news
+                                                                                .Delete}}</a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -108,10 +121,12 @@
                                                         <!--Remove the tag-->
                                                         <div class="news_heading">
                                                             <h2>
-                                                                {{ newsData.title  }}
+                                                                {{ newsData.title }}
                                                             </h2>
                                                         </div>
-                                                        <div class="news_content_text" [innerHTML]="newsData.text"> ...<a href="#">{{language.dashboard.dashboardNewsContent}}</a>
+                                                        <div class="news_content_text" [innerHTML]="newsData.text">
+                                                            ...<a
+                                                                href="#">{{language.dashboard.dashboardNewsContent}}</a>
                                                         </div>
                                                         <div class="author-info">
                                                             <div class="author-img">
@@ -122,10 +137,14 @@
                                                             </div>
                                                             <div class="author-des">
                                                                 <span class="author-id">
-                                                                    {{language.dashboard.dashboardNewsAuthor}}{{newsData.user.firstname }}{{newsData.user.lastname}}
+                                                                    {{language.dashboard.dashboardNewsAuthor}}{{newsData.user.firstname
+                                                                    }}{{newsData.user.lastname}}
                                                                 </span>
-                                                                <span class="author-date">{{ newsData.created_at| date: "d. MMMM y"}}</span>
-                                                                <span class="author-status" *ngIf="newsData.approved_status == 0">{{language.theme.status }}:-{{language.community_groups.wait_admin_approve}}-</span>
+                                                                <span class="author-date">{{ newsData.created_at| date:
+                                                                    "d. MMMM y"}}</span>
+                                                                <span class="author-status"
+                                                                    *ngIf="newsData.approved_status == 0">{{language.theme.status
+                                                                    }}:-{{language.community_groups.wait_admin_approve}}-</span>
                                                             </div>
                                                         </div>
                                                     </div>
