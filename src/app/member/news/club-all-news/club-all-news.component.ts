@@ -104,10 +104,10 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.role = this.userData.roles[0];
-        if (this.allowAdvertisment  == 0 ){
+        if (this.allowAdvertisment == 0) {
             if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                 this.getMobileAllNewsBanners()
-            }else{
+            } else {
                 this.getDesktopAllNewsBanners()
             }
         }
@@ -218,115 +218,206 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
     }
 
 
+    // getAllNews() {
+    //     if (sessionStorage.getItem('token')) {
+    //         this.dashboardData = [];
+    //         this.guestNews = [];
+    //         if (this.role == 'admin') {
+    //             this.authService.setLoader(true);
+    //             this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+    //                 .subscribe(
+    //                     (respData: any) => {
+    //                         this.authService.setLoader(false);
+    //                         if (respData.news.length == 0) {
+    //                             this.authService.setLoader(false);
+    //                         } else {
+    //                             this.newsTotalRecords = respData.pagination.rowCount;
+    //                             this.dashboardData = respData.news;
+
+    //                             if (this.dashboardData && this.dashboardData.length > 0) {
+    //                                 this.dashboardData.forEach(element => {
+    //                                     if (element.imageUrls) {
+    //                                         element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
+    //                                     }
+
+    //                                     if (element.user.member_id != null) {
+    //                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+    //                                             .subscribe(
+    //                                                 (resppData: any) => {
+    //                                                     this.authService.setLoader(false);
+    //                                                     this.thumb = resppData;
+    //                                                     element.user.image = this.thumb;
+    //                                                 },
+    //                                                 (error: any) => {
+    //                                                     element.user.image = null;
+    //                                                 })
+    //                                     } else {
+    //                                         element.user.image = '';
+    //                                     }
+    //                                 });
+    //                             }
+    //                         }
+    //                     });
+    //         } else if (this.role == 'guest') {
+    //             this.authService.setLoader(true);
+    //             this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+    //                 .subscribe(
+    //                     (respData: any) => {
+    //                         this.authService.setLoader(false);
+    //                         if (respData.news.length == 0) {
+    //                             this.authService.setLoader(false);
+    //                         } else {
+    //                             this.newsTotalRecords = respData.pagination.rowCount;
+    //                             this.guestNewsRecords = respData.pagination.rowCount;
+    //                             this.dashboardData = respData.news;
+
+    //                             if (this.dashboardData && this.dashboardData.length > 0) {
+    //                                 this.dashboardData.forEach(element => {
+    //                                     if (element.imageUrls) {
+    //                                         element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
+    //                                     }
+
+    //                                     if (element.user.member_id != null) {
+    //                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+    //                                             .subscribe(
+    //                                                 (resppData: any) => {
+    //                                                     this.authService.setLoader(false);
+    //                                                     this.thumb = resppData;
+    //                                                     element.user.image = this.thumb;
+    //                                                 },
+    //                                                 (error: any) => {
+    //                                                     element.user.image = null;
+    //                                                 })
+    //                                     } else {
+    //                                         element.user.image = '';
+    //                                     }
+    //                                 });
+
+    //                             }
+    //                             this.guestNews = [];
+    //                             for (const key in this.dashboardData) {
+    //                                 if (Object.prototype.hasOwnProperty.call(this.dashboardData, key)) {
+    //                                     const element = this.dashboardData[key];
+    //                                     console.log(element);
+
+    //                                     if (element.show_guest_list == 'true') {
+    //                                         this.guestNews.push(element);
+    //                                     }
+    //                                 }
+    //                             }
+
+    //                         }
+    //                     });
+    //         } else if ((this.role != 'admin') && (this.role != 'guest')) {
+    //             let userId: string = localStorage.getItem('user-id');
+    //             this.authService.setLoader(true);
+    //             this.authService.memberSendRequest('get', 'news/user/' + userId, null)
+    //                 .subscribe(
+    //                     (respData: any) => {
+    //                         this.authService.setLoader(false);
+    //                         this.dashboardData = respData;
+    //                         this.newsTotalRecords = this.dashboardData.length;
+    //                         if (this.dashboardData && this.dashboardData.length > 0) {
+    //                             this.dashboardData.forEach((element, index) => {
+    //                                 if (element.user.member_id != null) {
+    //                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+    //                                         .subscribe(
+    //                                             (resppData: any) => {
+    //                                                 this.thumb = resppData;
+    //                                                 element.user.image = this.thumb;
+    //                                                 this.authService.setLoader(false);
+    //                                             },
+    //                                             (error: any) => {
+    //                                                 element.user.image = null;
+    //                                             })
+    //                                 } else {
+    //                                     element.user.image = '';
+    //                                 }
+    //                             });
+    //                         }
+    //                     }
+    //                 );
+    //         }
+    //     }
+    // }
+
     getAllNews() {
         if (sessionStorage.getItem('token')) {
             this.dashboardData = [];
             this.guestNews = [];
-            if (this.role == 'admin') {
-                this.authService.setLoader(true);
-                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
-                    .subscribe(
-                        (respData: any) => {
-                            this.authService.setLoader(false);
-                            if (respData.news.length == 0) {
-                                this.authService.setLoader(false);
-                            } else {
-                                this.newsTotalRecords = respData.pagination.rowCount;
-                                this.dashboardData = respData.news;
-                                if (this.dashboardData && this.dashboardData.length > 0) {
-                                    this.dashboardData.forEach(element => {
-                                        if (element.user.member_id != null) {
-                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                                .subscribe(
-                                                    (resppData: any) => {
-                                                        this.authService.setLoader(false);
-                                                        this.thumb = resppData;
-                                                        element.user.image = this.thumb;
-                                                    },
-                                                    (error:any) => {
-                                                        element.user.image = null;
-                                                    })
-                                        } else {
-                                            element.user.image = '';
-                                        }
-                                    });
-                                }
-                            }
-                        });
-            } else if (this.role == 'guest') {
-                this.authService.setLoader(true);
-                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
-                    .subscribe(
-                        (respData: any) => {
-                            this.authService.setLoader(false);
-                            if (respData.news.length == 0) {
-                                this.authService.setLoader(false);
-                            } else {
 
-                                this.newsTotalRecords = respData.pagination.rowCount;
-                                this.guestNewsRecords = respData.pagination.rowCount;
-                                this.dashboardData = respData.news;
-                                if (this.dashboardData && this.dashboardData.length > 0) {
-                                    this.dashboardData.forEach(element => {
-                                        if (element.user.member_id != null) {
-                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                                .subscribe(
-                                                    (resppData: any) => {
-                                                        this.authService.setLoader(false);
-                                                        this.thumb = resppData;
-                                                        element.user.image = this.thumb;
-                                                    },
-                                                    (error:any) => {
-                                                        element.user.image = null;
-                                                    })
-                                        } else {
-                                            element.user.image = '';
-                                        }
-                                    });
+            this.authService.setLoader(true);
+            if (this.role == 'admin' || this.role == 'guest') {
+                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData.news.length == 0) {
+                        this.authService.setLoader(false);
+                    } else {
+                        this.newsTotalRecords = respData.pagination.rowCount;
+                        this.dashboardData = respData.news;
+
+                        if (this.dashboardData && this.dashboardData.length > 0) {
+                            this.dashboardData.forEach(element => {
+                                if (element.imageUrls) {
+                                    element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
                                 }
-                                this.guestNews = [];
-                                for (const key in this.dashboardData) {
-                                    if (Object.prototype.hasOwnProperty.call(this.dashboardData, key)) {
-                                        const element = this.dashboardData[key];
-                                        if (element.show_guest_list == 'true') {
-                                            this.guestNews.push(element);
-                                        }
+
+                                if (element.user.member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.authService.setLoader(false);
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = '';
+                                }
+                                if (this.role == 'guest') {
+                                    if (element.show_guest_list == 'true') {
+                                        this.guestNews.push(element);
                                     }
+                                    this.guestNewsRecords = respData.pagination.rowCount;
                                 }
+                            });
+                        }
+                    }
+                });
+            } else if ((this.role != 'admin') && (this.role != 'guest')) {
+
+                let userId: string = localStorage.getItem('user-id');
+                this.authService.memberSendRequest('get', 'news/user/' + userId, null).subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    this.dashboardData = respData;
+                    this.newsTotalRecords = this.dashboardData.length;
+                    if (this.dashboardData && this.dashboardData.length > 0) {
+                        this.dashboardData.forEach((element, index) => {
+                            if (element.user.member_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            this.thumb = resppData;
+                                            element.user.image = this.thumb;
+                                            this.authService.setLoader(false);
+                                        },
+                                        (error: any) => {
+                                            element.user.image = null;
+                                        });
+                            } else {
+                                element.user.image = '';
                             }
                         });
-            } else if ((this.role != 'admin') && (this.role != 'guest')) {
-                let userId: string = localStorage.getItem('user-id');
-                this.authService.setLoader(true);
-                this.authService.memberSendRequest('get', 'news/user/' + userId, null)
-                    .subscribe(
-                        (respData: any) => {
-                            this.authService.setLoader(false);
-                            this.dashboardData = respData;
-                            this.newsTotalRecords = this.dashboardData.length;
-                            if (this.dashboardData && this.dashboardData.length > 0) {
-                                this.dashboardData.forEach((element, index) => {
-                                    if (element.user.member_id != null) {
-                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                            .subscribe(
-                                                (resppData: any) => {
-                                                    this.thumb = resppData;
-                                                    element.user.image = this.thumb;
-                                                    this.authService.setLoader(false);
-                                                },
-                                                (error:any) => {
-                                                    element.user.image = null;
-                                                })
-                                    } else {
-                                        element.user.image = '';
-                                    }
-                                });
-                            }
-                        }
-                    );
+                    }
+                    
+                });
             }
         }
     }
+
+
 
     /**
     * Function is used to get news details by news id
@@ -360,7 +451,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls){
+            if (this.newsData.imageUrls) {
                 this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
                 this.newImg = this.newsData.imageUrls;
             }
@@ -373,7 +464,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     this.thumbnail = respData;
                 },
-                (error:any) => {
+                (error: any) => {
                     this.thumbnail = null;
                 }
             );

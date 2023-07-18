@@ -51,7 +51,7 @@
                             <ng-template carouselSlide *ngFor='let item of bannerData; let i=index'>
                                 <div  class="news-widget com-g-widget">
                                     <a [href]="item.redirectLink"  target="_blank" (click)="onClickBanner(item.id)">
-                                        <div class="news-image" [ngClass]="item.image == null ? 'no_image' : ''">
+                                        <div class="news-image" [ngClass]="item.image == null ? 'no_image' : ''"> 
                                             <img onContextMenu="return false;" [src]="item.image != null ? item.image : '../../assets/img/no_image.png'" alt="{{item.bannerName}}" loading="lazy">
                                         </div>
                                         <div class="news-content">
@@ -72,7 +72,7 @@
 
                     <div class="news-widget" data-bs-toggle="modal" data-bs-target="#exModal"  (click)="getNewsDetails(data.id)">
                         <div class="news-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                            <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls : '../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
+                            <img onContextMenu="return false;" [src]="data.imageUrls ? data.imageUrls : '../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
                         </div>
                         <div class="news-content">
                             <span *ngIf="data.audience == '0'" class="news-badge">{{language.create_news.title}}</span>
@@ -102,7 +102,7 @@
 
                 </div>
                 <div class="empty-data-image" *ngIf="dashboardData?.length == 0">
-                    <img onContextMenu="return false;"  src="assets/img/no-news-img.png" alt="{{language.group_news.no_news}}" loading="lazy"><br>
+                    <!-- <img onContextMenu="return false;"  src="assets/img/no-news-img.png" alt="{{language.group_news.no_news}}" loading="lazy"><br> -->
                     <span>{{language.group_news.no_news}}</span>
                 </div>
             </div>
@@ -113,7 +113,7 @@
         <div class="card-header ">
             <h5 class="card-title">{{language.dashboard.dashboardNewsTitle}}</h5>
         </div>
-        <div class="paginationHead full_width" *ngIf="guestNews && guestNews.length > 8">
+        <div class="paginationHead full_width" *ngIf="guestNews && guestNews.length > 0">
             <div class="pagintHeadLeft">
                 <pagination-controls (pageChange)="pageChanged($event);" (pageBoundsCorrection)="pageChanged($event)"
                     autoHide="false" previousLabel="{{language.pagination.previous}}"
@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div class="empty-data-image" *ngIf="guestNews?.length == 0">
-                    <img onContextMenu="return false;"  src="assets/img/no-news-img.png" alt="{{language.group_news.no_news}}" loading="lazy"><br>
+                    <!-- <img onContextMenu="return false;"  src="assets/img/no-news-img.png" alt="{{language.group_news.no_news}}" loading="lazy"><br> -->
                     <span>{{language.group_news.no_news}}</span>
                 </div>
             </div>
