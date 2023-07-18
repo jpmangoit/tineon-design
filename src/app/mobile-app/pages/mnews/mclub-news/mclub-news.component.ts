@@ -14,30 +14,30 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-mclub-news',
-  templateUrl: './mclub-news.component.html',
-  styleUrls: ['./mclub-news.component.css']
+    selector: 'app-mclub-news',
+    templateUrl: './mclub-news.component.html',
+    styleUrls: ['./mclub-news.component.css']
 })
 export class MclubNewsComponent implements OnInit {
 
-    language:any;
-    role:string = '';
+    language: any;
+    role: string = '';
     thumbnail: string;
     thumbnail1: string;
-    num:number = 4;
-    num1:number = 3;
+    num: number = 4;
+    num1: number = 3;
     memberid: number;
-    displayError:boolean = false;
-    displayPopup:boolean = false;
-    responseMessage:string = null;
-    userData:LoginDetails;
-    dashboardData:NewsType[];
-    guestNews:NewsType[] = [];
+    displayError: boolean = false;
+    displayPopup: boolean = false;
+    responseMessage: string = null;
+    userData: LoginDetails;
+    dashboardData: NewsType[];
+    guestNews: NewsType[] = [];
     newsData: NewsType;
-    newsDetails:NewsType[] = [];
-    newsDisplay:number;
+    newsDetails: NewsType[] = [];
+    newsDisplay: number;
     url: string;
-    thumb:SafeUrl;
+    thumb: SafeUrl;
     proImage: SafeUrl;
     newImg: string;
     setTheme: ThemeType;
@@ -56,7 +56,7 @@ export class MclubNewsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-            if (localStorage.getItem('club_theme') != null) {
+        if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
@@ -90,39 +90,43 @@ export class MclubNewsComponent implements OnInit {
     */
     getAllNews() {
         if (sessionStorage.getItem('token')) {
-            let userId:string = localStorage.getItem('user-id');
+            let userId: string = localStorage.getItem('user-id');
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'mv/news/user/' + userId, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.dashboardData = respData;
-                    console.log(this.dashboardData);
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.dashboardData = respData;
 
-                    if(this.dashboardData?.length > 0){
-                        this.dashboardData.forEach((element, index) => {
-                            if (index < 7) {
-                                if (element.user.member_id != null) {
-                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                        .subscribe(
-                                            (resppData: any) => {
-                                                this.thumb = resppData;
-                                                element.user.image = this.thumb;
-                                                this.authService.setLoader(false);
-                                            },
-                                            (error:any) => {
-                                                element.user.image = '';
-                                            })
-                                } else {
-                                    element.user.image = '';
+                        if (this.dashboardData?.length > 0) {
+                            this.dashboardData.forEach((element, index) => {
+
+                                if (element.imageUrls) {
+                                    element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
                                 }
-                            }
+                                
+                                if (index < 7) {
+                                    if (element.user.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    element.user.image = this.thumb;
+                                                    this.authService.setLoader(false);
+                                                },
+                                                (error: any) => {
+                                                    element.user.image = '';
+                                                })
+                                    } else {
+                                        element.user.image = '';
+                                    }
+                                }
 
-                        });
+                            });
+                        }
+                        this.dashboardData.reverse();
                     }
-                    this.dashboardData.reverse();
-                }
-            );
+                );
         }
     }
 
@@ -132,17 +136,17 @@ export class MclubNewsComponent implements OnInit {
     * @param   {newsId}
     * @return  {Object}
     */
-    getNewsDetails(newsid:number) {
+    getNewsDetails(newsid: number) {
         this.newImg = '';
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'get-news-by-id/' + newsid, null)
-            .subscribe(
-                (respData: any) => {
-                    this.getFirstNews(respData);
-                    this.authService.setLoader(false);
-                }
-            );
+                .subscribe(
+                    (respData: any) => {
+                        this.getFirstNews(respData);
+                        this.authService.setLoader(false);
+                    }
+                );
         }
     }
 
@@ -152,27 +156,27 @@ export class MclubNewsComponent implements OnInit {
     * @param   {}
     * @return  {Object}
     */
-    getFirstNews(allNews:NewsType) {
-        let news:NewsType = allNews['result'];
+    getFirstNews(allNews: NewsType) {
+        let news: NewsType = allNews['result'];
         this.newsData = news;
-        if(this.newsData.imageUrls == '' || this.newsData.imageUrls == null){
+        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.newImg = '../../assets/img/no_image.png';
-        }else{
-            if (this.newsData.imageUrls){
-                    this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-                    this.newImg = this.newsData.imageUrls;
-                }
+        } else {
+            if (this.newsData.imageUrls) {
+                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
+                this.newImg = this.newsData.imageUrls;
+            }
         }
         this.memberid = this.newsData.user.member_id;
-        this.authService.memberInfoRequest('get', 'profile-photo?database_id='+this.userData.database_id+'&club_id='+this.userData.team_id+'&member_id=' + this.memberid, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                this.thumbnail = respData;
-            },
-            (error:any) => {
-                this.thumbnail = null;
-            });
+        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.thumbnail = respData;
+                },
+                (error: any) => {
+                    this.thumbnail = null;
+                });
     }
 
     showAll() {
@@ -186,14 +190,14 @@ export class MclubNewsComponent implements OnInit {
         return tmp.textContent || tmp.innerText || "";
     }
 
-    showToggles:boolean = false;
-    onShow(){
+    showToggles: boolean = false;
+    onShow() {
         let el: HTMLCollectionOf<Element> = document.getElementsByClassName("bunch_drop");
-        if(!this.showToggle){
+        if (!this.showToggle) {
             this.showToggle = true;
             el[0].className = "bunch_drop show";
         }
-        else{
+        else {
             this.showToggle = false;
             el[0].className = "bunch_drop";
         }

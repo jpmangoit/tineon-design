@@ -291,7 +291,6 @@ export class MDashboardComponent implements OnInit {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.newsData = respData;
-                        console.log(this.newsData);
 
                         this.newsData.forEach(val => {
                             if (this.alluserInformation[val?.user?.id]?.member_id != null) {

@@ -73,7 +73,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
     }
 
     constructor(
-        private authService: AuthServiceService,
+        public authService: AuthServiceService,
         private lang: LanguageService,
         private router: Router,
         private confirmDialogService: ConfirmDialogService,
@@ -100,7 +100,7 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
         parseInt(localStorage.getItem('headlineOption'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.role = this.userData.roles[0];
-        this.url = this.router.url;
+        this.url = this.router.url; 
 
         if (this.url == '/dashboard' || this.url == '/') {
             this.displayPopup = true;
@@ -194,7 +194,11 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        this.authService.setLoader(false);
+                        if(respData){
+                            console.log(respData);
+                            this.authService.setLoader(false);
+                        }
+
                         this.dashboardData = respData;
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element, index) => {
@@ -217,7 +221,6 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                 }
                             });
                         }
-                        console.log(this.dashboardData);
                     }
                 );
         }

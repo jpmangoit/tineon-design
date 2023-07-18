@@ -75,7 +75,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     */
     onDates() {
         this.displayNews = false;
-        this.displayDates = true;
+        this.displayDates = true; 
         this.displayEvents = false;
     }
 
