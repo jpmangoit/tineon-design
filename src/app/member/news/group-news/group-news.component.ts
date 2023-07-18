@@ -22,13 +22,13 @@ declare var $: any;
 
 export class GroupNewsComponent implements OnInit {
     language: any;
-    userData:LoginDetails;
-    role:string = '';
+    userData: LoginDetails;
+    role: string = '';
     thumbnail: string;
     memberid: number;
     setTheme: ThemeType;
-    groupNewsData:NewsGroup[];
-    guestGroupNews:NewsGroup[] = [];
+    groupNewsData: NewsGroup[];
+    guestGroupNews: NewsGroup[] = [];
     newsData: NewsType;
     newsTitle: string;
     groupNewsImg: string;
@@ -47,10 +47,10 @@ export class GroupNewsComponent implements OnInit {
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
-            let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
         this.language = this.lang.getLanguaageFile();
@@ -68,21 +68,28 @@ export class GroupNewsComponent implements OnInit {
     getAllNews() {
         if (sessionStorage.getItem('token')) {
             let userId: string = localStorage.getItem('user-id');
+            this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'get-group-news-by-user-id/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         this.groupNewsData = respData['result'];
-                        if (this.role == 'guest') {
-                            this.guestGroupNews = [];
-                            for (const key in this.groupNewsData) {
-                                if (Object.prototype.hasOwnProperty.call(this.groupNewsData, key)) {
-                                    const element: NewsGroup = this.groupNewsData[key];
-                                    if (element.news['show_guest_list'] == 'true') {
-                                        this.guestGroupNews.push(element);
-                                    }
-                                }
+                        this.groupNewsData.forEach((groupNewsItem: any) => {
+                            if (groupNewsItem?.news?.imageUrls) {
+                                groupNewsItem.news.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem.news.imageUrls.substring(20))) as string;
                             }
-                        }
+                        });
+                        // if (this.role == 'guest') {
+                        //     this.guestGroupNews = [];
+                        //     for (const key in this.groupNewsData) {
+                        //         if (Object.prototype.hasOwnProperty.call(this.groupNewsData, key)) {
+                        //             const element: NewsGroup = this.groupNewsData[key];
+                        //             if (element.news['show_guest_list'] == 'true') {
+                        //                 this.guestGroupNews.push(element);
+                        //             }
+                        //         }
+                        //     }
+                        // }
+                        this.authService.setLoader(false);
                     }
                 );
         }
@@ -108,34 +115,34 @@ export class GroupNewsComponent implements OnInit {
         }
     }
 
-     /**
-    * Function is used to get new details by news Id
-    * @author  MangoIt Solutions
-    * @param   {newsId}
-    * @return  {Object}
-    */
-    getFirstNews(allNews:NewsType) {
-        let news:NewsType = allNews['result'];
+    /**
+   * Function is used to get new details by news Id
+   * @author  MangoIt Solutions
+   * @param   {newsId}
+   * @return  {Object}
+   */
+    getFirstNews(allNews: NewsType) {
+        let news: NewsType = allNews['result'];
         this.newsData = news;
-        if(this.newsData.imageUrls == '' || this.newsData.imageUrls == null){
+        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
             this.groupNewsImg = '../../assets/img/no_image.png';
-        }else{
-            if (this.newsData?.['imageUrls']){
+        } else {
+            if (this.newsData?.['imageUrls']) {
                 this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
                 this.groupNewsImg = this.newsData.imageUrls;
             }
         }
         this.newsTitle = this.newsData.title
         this.memberid = this.newsData.user.member_id;
-        this.authService.memberInfoRequest('get', 'profile-photo?database_id='+this.userData.database_id+'&club_id='+this.userData.team_id+'&member_id=' + this.memberid, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                this.thumbnail = respData;
-            },
-            (error:any) => {
-                this.thumbnail = null;
-            });
+        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.thumbnail = respData;
+                },
+                (error: any) => {
+                    this.thumbnail = null;
+                });
     }
 
     /**
@@ -169,21 +176,21 @@ export class GroupNewsComponent implements OnInit {
             });
     }
 
-    removeHtml(str:any) {
+    removeHtml(str: any) {
         var tmp: HTMLElement = document.createElement("DIV");
         tmp.innerHTML = str;
         return tmp.textContent || tmp.innerText || "";
     }
 
     showToggle: boolean = false;
-    showToggles:boolean = false;
-    onShow(){
+    showToggles: boolean = false;
+    onShow() {
         let el: HTMLCollectionOf<Element> = document.getElementsByClassName("bunch_drop");
-        if(!this.showToggle){
+        if (!this.showToggle) {
             this.showToggle = true;
             el[0].className = "bunch_drop show";
         }
-        else{
+        else {
             this.showToggle = false;
             el[0].className = "bunch_drop";
         }
