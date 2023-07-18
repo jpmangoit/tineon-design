@@ -200,6 +200,11 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
 
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element, index) => {
+                                if (element?.['imageUrls']){
+                                    element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                                    // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
+                                }
+                                
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
@@ -214,16 +219,10 @@ export class ClubNewsComponent implements OnInit ,OnDestroy{
                                 } else {
                                     element.user.image = '';
                                 }
-                                console.log('index--------', index);
-                                console.log('index--------', index ,'---------this.dashboardData?.imageUrls----',element?.['imageUrls']);
 
-                                if (element?.['imageUrls']){
-                                    element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
-                                    // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
-                                }
+                               
                             });
                         }
-                        console.log(this.dashboardData);
                     }
                 );
         }
