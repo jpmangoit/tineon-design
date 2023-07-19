@@ -90,14 +90,14 @@
                                 <div class="notification-panle" *ngIf="notification.notificationType == 'banners'">
                                         <div class="notification_user" *ngIf="notification?.image">
                                             <span class="">
-                                                <img src="{{notification.image}}" alt="bannerImage"  width="60px" height="60px" style="border-radius: 30px;"></span>
+                                                <img [src]="notification.image" alt="bannerImage"  width="60px" height="60px" style="border-radius: 30px;"></span>
                                         </div>
                                         <div class="notification_message">
                                             <a href="{{notification.redirectLink}}" target="_blank">
                                                 <p>
-                                                    <Span>{{notification.bannerName}} </Span>
-                                                <Span [innerHTML]="(notification.description.length > 0 )? (notification.description | slice:0:100)+'...':(notification.description)"></Span>
-                                                </p>
+                                                    <Span>{{notification.bannerName}}</Span>&nbsp;
+                                                    <p [innerHTML]="(notification.description.length > 0 )? (notification.description | slice:0:100)+'...':(notification.description)"></p>
+                                                <!-- </p> -->
                                             </a>
                                             <div class="notification-btn-group">
                                                 <a href="{{notification.redirectLink}}" target="_blank">

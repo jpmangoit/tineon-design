@@ -177,6 +177,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 // this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner']
+                    console.log(this.bannerData);
+
                     if(this.bannerData?.length > 0){
                         this.bannerData.forEach((element: any) => {
                             element['category'] = JSON.parse(element.category);

@@ -34,6 +34,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     totalChildComponents = 2;
     loadedChildComponents = 0;
 
+
     constructor(private lang: LanguageService,  public authService: AuthServiceService,private router: Router, private themes: ThemeService) {
         this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
@@ -57,6 +58,8 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     }
 
     onChildDataLoaded() {
+        console.log(this.totalChildComponents);
+        console.log(this.loadedChildComponents);
         this.loadedChildComponents++;
         // Check if all child components have loaded data
         if (this.loadedChildComponents === this.totalChildComponents) {
@@ -66,6 +69,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.authService.setLoader(true);
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];
@@ -79,6 +83,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onNews() {
+        this.ngOnInit();
         this.displayNews = true;
         this.displayDates = false;
         this.displayEvents = false;
