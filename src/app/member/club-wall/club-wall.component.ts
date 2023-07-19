@@ -83,7 +83,6 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onNews() {
-        this.ngOnInit();
         this.displayNews = true;
         this.displayDates = false;
         this.displayEvents = false;
