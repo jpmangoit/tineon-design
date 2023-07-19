@@ -442,7 +442,7 @@
                                    {{item.date_from | date: 'EEEE':locale}} {{item.start_time.split(":").slice(0,2).join(":")}}
                                 </div>
                                 <div class="course-price"><span>{{language.organizer.price}}</span>
-                                    <span *ngIf="item.chargeable > 0">{{item.chargeable}}</span>
+                                    <span *ngIf="item.chargeable > 0">€{{item.chargeable}}</span>
                                     <span *ngIf="item.chargeable <= 0"> €{{language.organizer.free}}</span>
                                 </div>
                              </div>

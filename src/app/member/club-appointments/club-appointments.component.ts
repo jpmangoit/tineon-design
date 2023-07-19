@@ -107,7 +107,7 @@ export class ClubAppointmentsComponent implements OnInit {
     getDesktopDeshboardBanner() {
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
-        }
+        }         
     }
 
     /**

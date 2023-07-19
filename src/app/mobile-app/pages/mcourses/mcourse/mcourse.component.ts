@@ -552,7 +552,6 @@ export class McourseComponent implements OnInit,OnDestroy {
                                     });
                                 }
                         });
-                        console.log(this.courseByIdData);
 
                         if (this.courseByIdData[0]?.picture_video != null) {
                             if (this.courseByIdData[0].picture_video){

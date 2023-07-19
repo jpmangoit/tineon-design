@@ -14,6 +14,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxImageCompressService,DOC_ORIENTATION } from 'ngx-image-compress';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -110,7 +111,9 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         private themes: ThemeService,
         public navigation: NavigationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService) { }
+        private commonFunctionService: CommonFunctionService, 
+        private sanitizer: DomSanitizer
+        ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -229,8 +232,15 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
 
         if (bannerInfo[0].image != null) {
             this.hasPicture = true;
-            this.updateBannerForm.controls['image'].setValue(JSON.parse(bannerInfo[0].image));
-            this.showBannerImage = JSON.parse(bannerInfo[0].image);
+            // this.updateBannerForm.controls['image'].setValue(JSON.parse(bannerInfo[0].image));
+            // this.showBannerImage = JSON.parse(bannerInfo[0].image);
+            if (bannerInfo[0].image) {
+                bannerInfo[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo[0].image.substring(20))) as string; 
+
+                this.showBannerImage = bannerInfo[0].image 
+                this.updateBannerForm.controls['image'].setValue(this.showBannerImage);
+            }
+            
         }
 
         if (bannerInfo[0]['category']) {
@@ -295,7 +305,8 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         if (this.fileToReturn) {
             this.updateBannerForm.controls["image"].setValue(this.fileToReturn);
         } else {
-            this.updateBannerForm.controls["image"].setValue(JSON.parse(this.bannerDetail[0].image));
+            // this.updateBannerForm.controls["image"].setValue(JSON.parse(this.bannerDetail[0].image));
+            this.updateBannerForm.controls["image"].setValue(this.showBannerImage);
         }
         this.updateBannerForm.value.author = this.userData.userId;
         this.updateBannerForm.value.team_id = this.userData.team_id;

@@ -14,6 +14,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from 'src/app/service/notification.service';
 import { take } from 'rxjs/operators';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 @Component({
     selector: 'app-dashboard',
@@ -70,19 +71,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
     bannerData: [];
     eventData: [];
     courseData: [];
-    allowAdvertisment:any;
+    allowAdvertisment: any;
     isData: boolean = true;
 
-    constructor(private lang: LanguageService, private themes: ThemeService, private notificationService: NotificationService,
-        private authService: AuthServiceService, private sanitizer: DomSanitizer, public formBuilder: UntypedFormBuilder) { }
+    constructor(
+        private lang: LanguageService,
+        private themes: ThemeService,
+        private notificationService: NotificationService,
+        private authService: AuthServiceService,
+        private sanitizer: DomSanitizer,
+        public formBuilder: UntypedFormBuilder,
+        private commonFunctionService: CommonFunctionService,
+
+    ) { }
 
     ngOnInit(): void {
         this.authService.setLoader(true);
         if (localStorage.getItem('token') != null) {
             interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
-             .subscribe(() => {
-                this.refreshTokens();
-              });
+                .subscribe(() => {
+                    this.refreshTokens();
+                });
         }
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
@@ -131,10 +140,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             .subscribe(
                 (respData: any) => {
                     this.courseData = respData['result'];
-               }
+                }
             );
         this.getUserImage();
-        if(this.allowAdvertisment == 0){
+        if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
         }
     }
@@ -169,57 +178,59 @@ export class DashboardComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Array Of Object} all the Banner
     */
-    getDesktopDeshboardBanner(){
+    getDesktopDeshboardBanner() {
         // this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
-        .subscribe(
-            (respData: any) => {
-                // this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner']
-                    console.log(this.bannerData);
+            .subscribe(
+                (respData: any) => {
+                    // this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.bannerData = respData['result']['banner']
+                        if (this.bannerData?.length > 0) {
+                            this.bannerData.forEach((element: any) => {
+                                element['category'] = JSON.parse(element.category);
+                                element['placement'] = JSON.parse(element.placement);
+                                element['display'] = JSON.parse(element.display);
+                                // element['image'] = JSON.parse(element.image);
+                                if (element['image']) {
+                                    element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
+                                }
 
-                    if(this.bannerData?.length > 0){
-                        this.bannerData.forEach((element: any) => {
-                            element['category'] = JSON.parse(element.category);
-                            element['placement'] = JSON.parse(element.placement);
-                            element['display'] = JSON.parse(element.display);
-                            element['image'] = JSON.parse(element.image);
-                            if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                                element['redirectLink'] = element.redirectLink;
-                            }else{
-                                element['redirectLink'] = '//' + element.redirectLink;
-                            }
-                        })
+                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                    element['redirectLink'] = element.redirectLink;
+                                } else {
+                                    element['redirectLink'] = '//' + element.redirectLink;
+                                }
+                            })
+                        }
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
                     }
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
                 }
-            }
-        )
+            )
     }
 
-    refreshTokens(){
+    refreshTokens() {
         const refreshToken = localStorage.getItem('refresh_token');
-        let data:any = {
-            refresh_token : refreshToken
+        let data: any = {
+            refresh_token: refreshToken
         }
         this.authService.memberSendRequest('post', 'refresh-token', data)
-        .subscribe(
-            (respData: any) => {
-                if (respData['isError'] == false) {
-                    sessionStorage.setItem('token', respData['result']['access_token']);
-                    localStorage.setItem('token', respData['result']['access_token']);
-                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                } else if (respData['code'] == 400 || respData['code'] == 404) {
-                    // this.authService.setLoader(false);
-                };
-            },
-            (error: any) => {
-              // Handle error if token refresh fails
-            }
-        );
+            .subscribe(
+                (respData: any) => {
+                    if (respData['isError'] == false) {
+                        sessionStorage.setItem('token', respData['result']['access_token']);
+                        localStorage.setItem('token', respData['result']['access_token']);
+                        sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                        localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    } else if (respData['code'] == 400 || respData['code'] == 404) {
+                        // this.authService.setLoader(false);
+                    };
+                },
+                (error: any) => {
+                    // Handle error if token refresh fails
+                }
+            );
     }
 
     /**

@@ -9,6 +9,9 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Location } from '@angular/common';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+
 
 @Component({
     selector: 'app-banner-detail',
@@ -29,9 +32,19 @@ export class BannerDetailComponent implements OnInit {
     bannerDisplayOption: { name: any; id: string; }[];
     selectedDisplayed: any[] = [];
 
-    constructor(private themes: ThemeService, private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
-        private notificationService: NotificationService, private router: Router,
-        private _location: Location, private authService: AuthServiceService, private route: ActivatedRoute) { }
+    constructor(
+        private themes: ThemeService, 
+        private lang: LanguageService, 
+        private confirmDialogService: ConfirmDialogService,
+        private commonFunctionService: CommonFunctionService,
+        private notificationService: NotificationService, 
+        private router: Router,
+        private _location: Location, 
+        private authService: AuthServiceService, 
+        private route: ActivatedRoute,
+        private sanitizer: DomSanitizer
+
+        ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -80,52 +93,57 @@ export class BannerDetailComponent implements OnInit {
     getBannerById(id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerbyId/' + id, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.bannerDetail = respData['result']
-                    this.bannerDetail.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        element['image'] = JSON.parse(element.image);
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
-                        }
-                        this.showImage = element.image;
-                    })
-
-                    this.bannerDetail[0]['category'].forEach((element: any) => {
-                        this.bannerCategoryOption.forEach((elem: any) => {
-                            if (element == elem.value) {
-                                this.selectedCategory.push(elem);
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.bannerDetail = respData['result']
+                        this.bannerDetail.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            
+                            if (element.image) {
+                                element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.image.substring(20))) as string;
                             }
-                        })
-                    });
 
-                    this.bannerDetail[0]['placement'].forEach((element: any) => {
-                        this.bannerPlacementOption.forEach((elem: any) => {
-                            if (element == elem.value) {
-                                this.selectedPlacement.push(elem);
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
                             }
+                            this.showImage = element.image;
                         })
-                    });
 
-                    this.bannerDetail[0]['display'].forEach((element: any) => {
-                        this.bannerDisplayOption.forEach((elem: any) => {
-                            if (element == elem.id) {
-                                this.selectedDisplayed.push(elem);
-                            }
-                        })
-                    });
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
+                        this.bannerDetail[0]['category'].forEach((element: any) => {
+                            this.bannerCategoryOption.forEach((elem: any) => {
+                                if (element == elem.value) {
+                                    this.selectedCategory.push(elem);
+                                }
+                            })
+                        });
+
+                        this.bannerDetail[0]['placement'].forEach((element: any) => {
+                            this.bannerPlacementOption.forEach((elem: any) => {
+                                if (element == elem.value) {
+                                    this.selectedPlacement.push(elem);
+                                }
+                            })
+                        });
+
+                        this.bannerDetail[0]['display'].forEach((element: any) => {
+                            this.bannerDisplayOption.forEach((elem: any) => {
+                                if (element == elem.id) {
+                                    this.selectedDisplayed.push(elem);
+                                }
+                            })
+                        });
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
                 }
-            }
-        )
+            )
     }
 
     /**

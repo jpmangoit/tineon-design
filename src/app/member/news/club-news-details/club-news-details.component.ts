@@ -149,7 +149,11 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
                         element['category'] = JSON.parse(element.category);
                         element['placement'] = JSON.parse(element.placement);
                         element['display'] = JSON.parse(element.display);
-                        element['image'] = JSON.parse(element.image);
+                        // element['image'] = JSON.parse(element.image);
+                        if (element['image']) {
+                            element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
+                        }
+                        
                         if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
                             element['redirectLink'] = element.redirectLink;
                         }else{
