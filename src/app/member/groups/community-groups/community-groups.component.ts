@@ -10,6 +10,9 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+
 declare var $: any;
 
 @Component({
@@ -72,7 +75,9 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         private lang: LanguageService,
         private themes: ThemeService,
         private notificationService: NotificationService,
-        private router: Router
+        private router: Router,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
@@ -121,7 +126,11 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            element['image'] = JSON.parse(element.image);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element['image']) {
+                                element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
+                            }
+
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                 element['redirectLink'] = element.redirectLink;
                             } else {
