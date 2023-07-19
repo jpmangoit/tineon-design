@@ -480,6 +480,9 @@ export class GroupDetailComponent implements OnInit {
             } else {
                 val.user.imagePro = null;
             }
+            if (val?.['imageUrls']){
+                val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
+            }
         });
         return usersAllData;
     }

@@ -69,8 +69,9 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             }
         },
         nav: false,
-        autoplay: true
-    }
+        autoplay:true
+    };
+    isLoading: boolean = true;
 
     constructor(
         public authService: AuthServiceService,
@@ -84,6 +85,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -123,11 +125,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.newsDisplay = 3;
         }
         else {
-            this.authService.setLoader(true);
+            // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
                     (respData: any) => {
-                        this.authService.setLoader(false);
+                        // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']
                             this.bannerData.forEach((element: any) => {
@@ -186,7 +188,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     getAllNews() {
         if (sessionStorage.getItem('token')) {
             let userId: string = localStorage.getItem('user-id');
-            this.authService.setLoader(true);
+            // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
@@ -198,14 +200,12 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
                                     // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
                                 }
-
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
                                             (resppData: any) => {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
-                                                this.authService.setLoader(false);
                                             },
                                             (error: any) => {
                                                 element.user.image = null;
@@ -214,6 +214,10 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     element.user.image = '';
                                 }
                             });
+                            setTimeout(() => {
+                                this.authService.setLoader(false);
+                                this.isLoading = false;
+                            }, 1500);
                         }
                     }
                 );
@@ -234,7 +238,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         this.getFirstNews(respData);
-                        this.authService.setLoader(false);
                     }
                 );
         }
@@ -246,7 +249,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Object}
     */
-    getFirstNews(allNews: NewsType) {
+        getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
         if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
