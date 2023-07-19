@@ -70,10 +70,10 @@
         <!-- club news top widget start -->
         <div class="row dash-widget" *ngIf="displayNews == true">
             <div class="col-md-9 club_widget club-wall-news">
-                <app-club-news></app-club-news>
+                <app-club-news (dataLoaded)="onChildDataLoaded()"></app-club-news>
             </div>
             <div class="col-md-3 appointment_widget">
-                <app-group-news></app-group-news>
+                <app-group-news (dataLoaded)="onChildDataLoaded()"></app-group-news>
             </div>
             <!-- club news top widget start -->
         </div>

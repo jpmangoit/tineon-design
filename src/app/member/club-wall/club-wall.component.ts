@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs'
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
 declare var $: any;
 
 @Component({
@@ -28,8 +29,13 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     userRole: string;
 
-    constructor(private lang: LanguageService, private router: Router, private themes: ThemeService) {
+    isLoading: boolean = true;
+      // Set the number of child components that should load data
+    totalChildComponents = 2;
+    loadedChildComponents = 0;
 
+    constructor(private lang: LanguageService,  public authService: AuthServiceService,private router: Router, private themes: ThemeService) {
+        this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -47,6 +53,15 @@ export class ClubWallComponent implements OnInit, OnDestroy {
 
         } else {
             this.displayNews = true;
+        }
+    }
+
+    onChildDataLoaded() {
+        this.loadedChildComponents++;
+        // Check if all child components have loaded data
+        if (this.loadedChildComponents === this.totalChildComponents) {
+            this.isLoading = false; // Set the loading state to false
+            this.authService.setLoader(false);
         }
     }
 
@@ -75,7 +90,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     */
     onDates() {
         this.displayNews = false;
-        this.displayDates = true; 
+        this.displayDates = true;
         this.displayEvents = false;
     }
 

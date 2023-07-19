@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
@@ -21,6 +21,8 @@ declare var $: any;
 })
 
 export class GroupNewsComponent implements OnInit {
+    @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
+
     language: any;
     userData: LoginDetails;
     role: string = '';
@@ -68,7 +70,7 @@ export class GroupNewsComponent implements OnInit {
     getAllNews() {
         if (sessionStorage.getItem('token')) {
             let userId: string = localStorage.getItem('user-id');
-            this.authService.setLoader(true);
+            // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'get-group-news-by-user-id/' + userId, null)
                 .subscribe(
                     (respData: any) => {
@@ -78,6 +80,8 @@ export class GroupNewsComponent implements OnInit {
                                 groupNewsItem.news.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem.news.imageUrls.substring(20))) as string;
                             }
                         });
+                        this.dataLoaded.emit();
+                        // this.authService.setLoader(false);
                         // if (this.role == 'guest') {
                         //     this.guestGroupNews = [];
                         //     for (const key in this.groupNewsData) {
@@ -89,7 +93,7 @@ export class GroupNewsComponent implements OnInit {
                         //         }
                         //     }
                         // }
-                        this.authService.setLoader(false);
+
                     }
                 );
         }
@@ -109,7 +113,6 @@ export class GroupNewsComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.getFirstNews(respData);
-                        this.authService.setLoader(false);
                     }
                 );
         }
@@ -141,8 +144,11 @@ export class GroupNewsComponent implements OnInit {
                     this.thumbnail = respData;
                 },
                 (error: any) => {
+                    this.authService.setLoader(false);
                     this.thumbnail = null;
-                });
+                }
+
+            );
     }
 
     /**
