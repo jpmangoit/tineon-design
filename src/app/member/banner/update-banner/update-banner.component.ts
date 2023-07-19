@@ -111,7 +111,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         private themes: ThemeService,
         public navigation: NavigationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService,
+        private commonFunctionService: CommonFunctionService, 
         private sanitizer: DomSanitizer
         ) { }
 
