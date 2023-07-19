@@ -111,7 +111,6 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
 
           if(respData.changeRequest.bank.status === 'pending'){
             this.userData = respData.changeRequest.bank.dataChanges;
-            console.log(this.userData);
           }else{
               this.userData = respData['bankData'];
           }

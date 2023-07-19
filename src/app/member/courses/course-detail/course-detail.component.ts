@@ -219,7 +219,6 @@ export class CourseDetailComponent implements OnInit {
                         // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
                         //     if (this.courseDetails[0].picture_video != "[]") {
                         //         let responseImg: string;
-                        //         console.log(this.courseDetails[0].picture_video);
                         //         responseImg = this.courseDetails[0].picture_video;
                         //         let resp: string[] = [];
                         //         resp = responseImg.split("\"");
@@ -230,7 +229,6 @@ export class CourseDetailComponent implements OnInit {
                         //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
                         //                     imgArray.push(element);
                         //                     this.hasPicture = true;
-                        //                     console.log(imgArray);
                         //                     if (imgArray[0]){
                         //                         imgArray[0] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(imgArray[0].substring(20)));
                         //                         this.eventImage = imgArray[0];
@@ -777,23 +775,18 @@ export class CourseDetailComponent implements OnInit {
             let data = {
                 name: path
             }
-            console.log(path);
-            console.log(this.dowloading);
             this.dowloading = true;
-            console.log(this.dowloading);
             var endPoint = 'get-documentbyname';
             if (data && data.name) {
                 let filename = data.name.split('/')[2]
                this.authService.downloadDocument('post', endPoint, data).toPromise()
                   .then((blob: any) => {
-                       console.log(blob);
                         saveAs(blob, filename);
                        this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);

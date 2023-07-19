@@ -185,7 +185,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                     if (this.eventDetails.picture_video){
                                     this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
                                     this.imageurl =  this.eventDetails.picture_video
-                                    console.log(this.imageurl);
                                     }
                                 } else {
                                     this.showImage = false;
@@ -194,7 +193,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
                                 if (this.eventDetails?.document_url) {
                                     this.docFile =  this.eventDetails.document_url;
-                                    console.log(this.docFile);
                                 }
                                 // if (this.eventDetails.picture_video != null) {
                                 //     var url: string[] = this.eventDetails.picture_video.split('\"');
@@ -221,15 +219,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
-
-                                        console.log(this.eventDetails);
-                                        console.log(this.updateEventData);
                                         if (this.updateEventData?.updatedImageUrl != null) {
                                             this.showUpdateImage = true;
                                             if (this.updateEventData.updatedImageUrl){
-                                            this.updateEventData.updatedImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.updatedImageUrl.substring(20)));
-                                            this.updateImageurl =  this.updateEventData.updatedImageUrl
-                                            console.log(this.imageurl);
+                                                this.updateEventData.updatedImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.updatedImageUrl.substring(20)));
+                                                this.updateImageurl =  this.updateEventData.updatedImageUrl
                                             }
                                         } else {
                                             this.showUpdateImage = false;
@@ -238,7 +232,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
                                         if (this.updateEventData?.updateDocumentUrl) {
                                             this.docFile =  this.updateEventData.updateDocumentUrl;
-                                            console.log(this.docFile);
                                         }
 
                                         // if (this.updateEventData.image != null) {
@@ -699,14 +692,12 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                 let filename = data.name.split('/')[2]
                 this.authService.downloadDocument('post', endPoint, data).toPromise()
                     .then((blob: any) => {
-                        console.log(blob);
                         saveAs(blob, filename);
                         this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);

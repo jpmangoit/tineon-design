@@ -714,14 +714,12 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             end_time = date_to[1].split(".");
         }
 
-        console.log(this.eventDetails);
         if (this.eventDetails?.picture_video != null) {
             this.hasPicture = true;
             if (this.eventDetails.picture_video){
             this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
             this.eventImage =  this.eventDetails.picture_video;
             this.imageUrl = this.eventDetails.picture_video;
-            console.log(this.eventImage);
             }
         } else {
             this.hasPicture = false;
@@ -731,7 +729,6 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         if (this.eventDetails?.document_url) {
             this.eventFile =  this.eventDetails.document_url;
             this.fileUrl = this.eventDetails.document_url;
-            console.log(this.eventFile);
         }
 
         // if (this.eventDetails.picture_video != null) {
@@ -2360,23 +2357,18 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             let data = {
                 name: path
             }
-            console.log(path);
-            console.log(this.dowloading);
             this.dowloading = true;
-            console.log(this.dowloading);
             var endPoint = 'get-documentbyname';
             if (data && data.name) {
                 let filename = data.name.split('/')[2]
                 this.authService.downloadDocument('post', endPoint, data).toPromise()
                     .then((blob: any) => {
-                        console.log(blob);
                         saveAs(blob, filename);
                         this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);

@@ -312,8 +312,6 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                 if (Object.prototype.hasOwnProperty.call(this.updateGroupForm.value, key)) {
                     const element: any = this.updateGroupForm.value[key];
                     if (key == 'add_image') {
-                        console.log(element);
-
                         formData.append('file', element);
                     }
                     if (key == 'participants') {

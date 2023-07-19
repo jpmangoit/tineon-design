@@ -114,7 +114,6 @@ export class ProfileBankEditComponent implements OnInit {
                     }else{
                         this.userData = respData['bankData'];
                     }
-                    console.log(this.user);
                     this.setBankDetails();
                 });
         }
@@ -128,8 +127,6 @@ export class ProfileBankEditComponent implements OnInit {
     */
     setBankDetails() {
         let userDetail: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
-        console.log(this.userData);
-
         this.updateBankForm = this.formBuilder.group({
             database_id: [userDetail.database_id],
             club_id: [userDetail.team_id],

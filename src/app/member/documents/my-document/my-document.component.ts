@@ -349,12 +349,7 @@ export class MyDocumentComponent implements OnInit {
         let data = {
             name: path
         }
-        console.log(path);
-
-        console.log(this.dowloading);
         this.dowloading = true;
-        console.log(this.dowloading);
-
         var endPoint = 'get-documentbyname';
         if (data && data.name) {
             let filename = data.name.split('/')[2]
