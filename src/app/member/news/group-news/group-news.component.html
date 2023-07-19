@@ -1,7 +1,7 @@
 <div class="card club-widget-appointment">
     <!-- <div class="alert alert-danger" id="responseMessage" *ngIf="responseMessage">{{responseMessage}}</div> -->
     <div class="card-header">
-        <h5 class="card-title">{{ language.group_news.title}}</h5>
+        <h5 class="card-title">{{language.group_news.title}}</h5>
     </div>
     <div class="card-body" *ngIf="role != 'guest' && role != 'member_light' && role != 'member_light_admin'">
         <div class="empty-data-image" *ngIf="groupNewsData?.length == 0">
