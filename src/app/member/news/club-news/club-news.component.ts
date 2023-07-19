@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,9 @@ declare var $: any;
 })
 
 export class ClubNewsComponent implements OnInit, OnDestroy {
+    @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
+
     language: any;
     role: string = '';
     thumbnail: string;
@@ -85,7 +87,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.authService.setLoader(true);
+        // this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -192,13 +194,12 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        this.authService.setLoader(false);
+                        // this.authService.setLoader(false);
                         this.dashboardData = respData;
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element, index) => {
                                 if (element?.['imageUrls']) {
                                     element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
-                                    // this.updateNewsForm.controls['add_image'].setValue(element['imageUrls']);
                                 }
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
@@ -214,10 +215,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     element.user.image = '';
                                 }
                             });
-                            setTimeout(() => {
-                                this.authService.setLoader(false);
-                                this.isLoading = false;
-                            }, 1500);
+                            this.dataLoaded.emit();
+                            // setTimeout(() => {
+                            //     this.authService.setLoader(false);
+                            //     this.isLoading = false;
+                            // }, 1500);
                         }
                     }
                 );

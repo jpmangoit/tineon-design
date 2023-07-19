@@ -12,6 +12,7 @@ import { appSetting } from 'src/app/app-settings';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-club-appointments',
@@ -78,7 +79,7 @@ export class ClubAppointmentsComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private datePipe: DatePipe,
-        private router: Router,
+        private router: Router, private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) { }
 
@@ -140,23 +141,27 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                 var element: any = null;
                 var url: string[] = [];
+                // console.log(this.eventData);
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-                        if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
-                            if (element.picture_video) {
-                                url = element.picture_video.split('"');
-                                if (url && url.length > 0) {
-                                    url.forEach((el) => {
-                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                            element.picture_video = el;
-                                        }
-                                    });
-                                } else {
-                                    element.picture_video = '';
-                                }
-                            }
+                        if (element.picture_video){
+                            element.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.picture_video.substring(20)));
                         }
+                        // if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
+                        //     if (element.picture_video) {
+                        //         url = element.picture_video.split('"');
+                        //         if (url && url.length > 0) {
+                        //             url.forEach((el) => {
+                        //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                        //                     element.picture_video = el;
+                        //                 }
+                        //             });
+                        //         } else {
+                        //             element.picture_video = '';
+                        //         }
+                        //     }
+                        // }
                         let self = this;
                         if (element && element.recurrence != '' && element.recurrence != null) {
                             let recurrence: string = element.recurrence;
@@ -315,24 +320,6 @@ export class ClubAppointmentsComponent implements OnInit {
                 }
                 this.upcomingEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
                 this.upcomingEventList.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
-                if (this.eventData && this.eventData.length > 0) {
-                    this.eventData.forEach(element => {
-                        if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
-                            if (element.picture_video) {
-                                url = element.picture_video.split('"');
-                                if (url && url.length > 0) {
-                                    url.forEach((el) => {
-                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                            element.picture_video = el;
-                                        }
-                                    });
-                                } else {
-                                    element['picture_video'] = '';
-                                }
-                            }
-                        }
-                    });
-                }
                 this.events = this.eventData;
                 this.getCalendarData();
             }
