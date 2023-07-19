@@ -75,7 +75,7 @@ export class MchatListComponent implements OnInit {
         private lang: LanguageService,private notificationService: NotificationService,
         private authService: AuthServiceService, private themes: ThemeService,
         private _router: Router,
-        private route: ActivatedRoute, 
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -96,9 +96,8 @@ export class MchatListComponent implements OnInit {
 
         this.route.queryParams.subscribe(params => {
             this.chatId = params.id;
-            console.log(this.chatId)
         });
-       
+
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];
@@ -269,7 +268,6 @@ export class MchatListComponent implements OnInit {
     }
 
     clickChat(chat: { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string },event:any) {
-        console.log(chat)
         this.chatData = ''
         this.chatData = chat
     }

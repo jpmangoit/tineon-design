@@ -107,7 +107,7 @@ export class ClubAppointmentsComponent implements OnInit {
     getDesktopDeshboardBanner() {
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
-        }         
+        }
     }
 
     /**
@@ -141,7 +141,6 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                 var element: any = null;
                 var url: string[] = [];
-                // console.log(this.eventData);
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];

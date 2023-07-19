@@ -564,7 +564,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.editInstructorForm.controls['emaill'].setValue(  this.instructorById.emaill );
         this.editInstructorForm.controls['phone_no'].setValue( this.instructorById.phone_no  );
         this.editInstructorForm.controls['address'].setValue( this.instructorById.address   );
-        console.log(this.instructorById.add_img);
         this.editInstructorForm.controls['add_img'].setValue( this.instructorById.add_img );
         this.editInstructorForm.controls['active_from'].setValue(this.instructorById.active_from);
         this.editInstructorForm.controls['active_to'].setValue(this.instructorById.active_to);

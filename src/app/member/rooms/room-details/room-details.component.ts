@@ -139,8 +139,6 @@ export class RoomDetailsComponent implements OnInit {
             if (this.roomDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                 if (this.roomDetails.updated_record != null) {
                     this.updateRoomData = JSON.parse(this.roomDetails.updated_record);
-                    console.log(this.updateRoomData);
-
                     this.updateRoomData.weekdays = JSON.parse(this.updateRoomData['weekdays']);
                     this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
                     .subscribe(

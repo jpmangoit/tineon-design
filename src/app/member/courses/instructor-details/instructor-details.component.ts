@@ -154,11 +154,9 @@ export class InstructorDetailsComponent implements OnInit {
                 this.instructorDetails = null;
                 this.updateInstructorData = null;
                 this.instructorDetails = respData['result'];
-                console.log(this.instructorDetails);
                 if (this.instructorDetails?.['add_img']){
                     this.instructorDetails['add_img'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorDetails['add_img'].substring(20)));
                 }
-                console.log(this.instructorDetails['add_img'] );
                 if(this.instructorDetails?.user?.member_id){
                     this.memberid = this.instructorDetails?.user?.member_id;
                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)

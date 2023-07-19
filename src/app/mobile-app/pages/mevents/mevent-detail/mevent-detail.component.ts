@@ -206,7 +206,6 @@ export class MeventDetailComponent implements OnInit {
 
                                 if (this.eventDetails?.document_url) {
                                     this.docFile =  this.eventDetails.document_url;
-                                    console.log(this.docFile);
                                 }
 
                                 // if (this.eventDetails.picture_video != null) {
@@ -640,7 +639,6 @@ export class MeventDetailComponent implements OnInit {
                             // this.collaborators.sort((a, b) => {
                             //     return b.image - a.image;
                             // });
-                            // console.log(this.collaborators)
                         }
                     }
                 );
@@ -721,7 +719,6 @@ export class MeventDetailComponent implements OnInit {
         }else{
             this.router.navigate(['create-chat']);
         }
-        console.log(chatUser)
     }
 
     /**
@@ -733,23 +730,18 @@ export class MeventDetailComponent implements OnInit {
             let data = {
                 name: path
             }
-            console.log(path);
-            console.log(this.dowloading);
             this.dowloading = true;
-            console.log(this.dowloading);
             var endPoint = 'get-documentbyname';
             if (data && data.name) {
                 let filename = data.name.split('/')[2]
                 this.authService.downloadDocument('post', endPoint, data).toPromise()
                     .then((blob: any) => {
-                        console.log(blob);
                         saveAs(blob, filename);
                         this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);

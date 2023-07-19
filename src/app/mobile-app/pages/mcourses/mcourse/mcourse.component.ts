@@ -558,7 +558,6 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 this.hasPicture = true;
                                 this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
                                 this.eventImage =  this.courseByIdData[0].picture_video
-                                console.log(this.eventImage);
                             }
                         } else {
                             this.hasPicture = false;
@@ -566,7 +565,6 @@ export class McourseComponent implements OnInit,OnDestroy {
                         }
                         if (this.courseByIdData[0]?.document_url) {
                             this.eventFile =  this.courseByIdData[0].document_url;
-                            console.log(this.eventFile);
                         }
                         // if (this.courseByIdData[0].picture_video != "[]") {
                         //     let responseImg: string;
@@ -1548,23 +1546,18 @@ export class McourseComponent implements OnInit,OnDestroy {
             let data = {
                 name: path
             }
-            console.log(path);
-            console.log(this.dowloading);
             this.dowloading = true;
-            console.log(this.dowloading);
             var endPoint = 'get-documentbyname';
             if (data && data.name) {
                 let filename = data.name.split('/')[2]
                 this.authService.downloadDocument('post', endPoint, data).toPromise()
                     .then((blob: any) => {
-                        console.log(blob);
                         saveAs(blob, filename);
                         this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);

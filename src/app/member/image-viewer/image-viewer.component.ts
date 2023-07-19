@@ -17,8 +17,6 @@ export class ImageViewerComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-        console.log(this.open);
-        console.log(this.imageURL);
         this.isImage = true;
         // let ext:string[] = this.imageURL.split(".");
         // let docExt:string = ext[(ext.length) - 1];

@@ -592,8 +592,6 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'getCoursesById/' + id, null)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-
                     if (respData['isError'] == false) {
                         this.courseByIdData = respData['result'];
                         if (this.courseByIdData?.length > 0) {
@@ -630,7 +628,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                             if (this.courseByIdData[0].picture_video){
                                this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
                                this.eventImage =  this.courseByIdData[0].picture_video
-                               console.log(this.eventImage);
                             }
                         } else {
                             this.hasPicture = false;
@@ -639,7 +636,6 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                         if (this.courseByIdData[0]?.document_url) {
                             this.eventFile =  this.courseByIdData[0].document_url;
-                            console.log(this.eventFile);
                         }
 
                         // if (this.courseByIdData[0]?.picture_video && this.courseByIdData[0].picture_video != "[]") {

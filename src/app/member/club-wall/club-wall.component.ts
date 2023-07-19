@@ -58,8 +58,6 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     }
 
     onChildDataLoaded() {
-        console.log(this.totalChildComponents);
-        console.log(this.loadedChildComponents);
         this.loadedChildComponents++;
         // Check if all child components have loaded data
         if (this.loadedChildComponents === this.totalChildComponents) {

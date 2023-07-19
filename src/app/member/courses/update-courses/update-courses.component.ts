@@ -652,8 +652,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         .subscribe(
             (respData: any) => {
                 if (respData['isError'] == false && Object.keys(respData.result).length > 0) {
-                    console.log(respData['result']);
-
                     self.courseDetails = respData['result'][0];
                     if (respData?.result[0]?.courseUsers) {
                         respData.result[0].courseUsers.forEach(function (value, key) {
@@ -761,8 +759,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails.chargeable) {
             this.eventPriceDisplay = true;
         }
-        console.log(this.courseDetails);
-
         if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
             this.hasPicture = true;
             this.image = this.courseDetails.picture_video;
@@ -776,7 +772,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails?.document_url) {
                 this.eventFile =  this.courseDetails.document_url;
                 this.fileUrl = this.courseDetails.document_url
-                console.log(this.eventFile);
         }
 
         // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
@@ -1293,12 +1288,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             for (const key in this.courseForm.value) {
                 if (Object.prototype.hasOwnProperty.call(self.courseForm.value, key)) {
                     const element = self.courseForm.value[key];
-                    console.log('this.fileToReturn', this.fileToReturn);
-                    console.log('this.imageUrl', this.imageUrl);
-                    console.log('this.picVid1',this.picVid1);
-                    console.log('this.fileUrl',this.fileUrl);
-                    console.log('this.fileAndimage',this.fileAndimage);
-
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
                             formData.append('file', this.fileToReturn)
@@ -3015,14 +3004,12 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                 let filename = data.name.split('/')[2]
                this.authService.downloadDocument('post', endPoint, data).toPromise()
                   .then((blob: any) => {
-                       console.log(blob);
                         saveAs(blob, filename);
                        this.authService.setLoader(false);
                         this.dowloading = false;
                         setTimeout(() => {
                             this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
                                 this.result = result;
-                                console.log(this.result);
                                 this.authService.setLoader(false);
                                 if (this.result.success == false) {
                                     this.notificationService.showError(this.result['result']['message'], null);
