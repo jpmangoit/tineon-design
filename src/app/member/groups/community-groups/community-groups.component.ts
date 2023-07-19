@@ -130,7 +130,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                             if (element['image']) {
                                 element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
                             }
-
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                 element['redirectLink'] = element.redirectLink;
                             } else {
