@@ -81,6 +81,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onNews() {
+        // this.authService.setLoader(true);
         this.displayNews = true;
         this.displayDates = false;
         this.displayEvents = false;

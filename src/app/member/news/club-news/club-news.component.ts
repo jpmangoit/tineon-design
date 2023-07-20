@@ -142,7 +142,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                 if (element['image']) {
                                     element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
                                 }
-                                
+
                                 if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                     element['redirectLink'] = element.redirectLink;
                                 } else {
@@ -194,7 +194,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     getAllNews() {
         if (sessionStorage.getItem('token')) {
             let userId: string = localStorage.getItem('user-id');
-            // this.authService.setLoader(true);
+            this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
@@ -220,6 +220,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                 }
                             });
                             this.dataLoaded.emit();
+                            // this.authService.setLoader(false);
                             // setTimeout(() => {
                             //     this.authService.setLoader(false);
                             //     this.isLoading = false;

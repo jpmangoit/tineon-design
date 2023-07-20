@@ -81,7 +81,7 @@ export class GroupNewsComponent implements OnInit {
                             }
                         });
                         this.dataLoaded.emit();
-                        // this.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         // if (this.role == 'guest') {
                         //     this.guestGroupNews = [];
                         //     for (const key in this.groupNewsData) {
