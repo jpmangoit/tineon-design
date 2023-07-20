@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';

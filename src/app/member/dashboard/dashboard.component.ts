@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { take } from 'rxjs/operators';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -73,6 +74,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     courseData: [];
     allowAdvertisment: any;
     isData: boolean = true;
+    totalChildComponents = 1;
+    loadedChildComponents = 0;
 
     constructor(
         private lang: LanguageService,
@@ -84,6 +87,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private commonFunctionService: CommonFunctionService,
 
     ) { }
+
 
     ngOnInit(): void {
         this.authService.setLoader(true);
@@ -181,33 +185,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
     getDesktopDeshboardBanner() {
         // this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
-            .subscribe(
-                (respData: any) => {
-                    // this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.bannerData = respData['result']['banner']
-                        if (this.bannerData?.length > 0) {
-                            this.bannerData.forEach((element: any) => {
-                                element['category'] = JSON.parse(element.category);
-                                element['placement'] = JSON.parse(element.placement);
-                                element['display'] = JSON.parse(element.display);
-                                // element['image'] = JSON.parse(element.image);
-                                if (element['image']) {
-                                    element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
-                                }
-
-                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                    element['redirectLink'] = element.redirectLink;
-                                } else {
-                                    element['redirectLink'] = '//' + element.redirectLink;
-                                }
-                            })
-                        }
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+        .subscribe(
+            (respData: any) => {
+                console.log(respData);
+                if (respData['isError'] == false) {
+                    this.bannerData = respData['result']['banner']
+                    if (this.bannerData?.length > 0) {
+                        this.bannerData.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element['image']) {
+                                element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
+                            }
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
+                            }
+                        })
                     }
+                    this.authService.setLoader(false);
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                    this.authService.setLoader(false);
                 }
-            )
+            }
+        )
     }
 
     refreshTokens() {
@@ -232,6 +237,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
             );
     }
+
 
     /**
     * Function is used to show and hide event list and event calender

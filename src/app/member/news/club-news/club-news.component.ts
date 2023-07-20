@@ -73,7 +73,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         nav: false,
         autoplay:true
     };
-    isLoading: boolean = true;
 
     constructor(
         public authService: AuthServiceService,
@@ -131,6 +130,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
                     (respData: any) => {
+                        console.log(respData);
+
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']

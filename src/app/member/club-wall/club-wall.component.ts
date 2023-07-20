@@ -29,7 +29,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     userRole: string;
 
-    isLoading: boolean = true;
+    // isLoading: boolean = true;
       // Set the number of child components that should load data
     totalChildComponents = 2;
     loadedChildComponents = 0;
@@ -61,7 +61,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
         this.loadedChildComponents++;
         // Check if all child components have loaded data
         if (this.loadedChildComponents === this.totalChildComponents) {
-            this.isLoading = false; // Set the loading state to false
+            // this.isLoading = false; // Set the loading state to false
             this.authService.setLoader(false);
         }
     }
