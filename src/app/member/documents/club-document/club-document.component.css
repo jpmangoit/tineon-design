@@ -31,8 +31,8 @@
 
 @media only screen and (max-width:1024px){
     .document-inner.list_document .doc_box.toggle-main a:first-child {
-        width: 75px !important;
-        height: 75px !important;
+        width:100% !important;
+        height: 100% !important;
         overflow: hidden;
     }
     .document-item{
@@ -221,6 +221,12 @@ cursor: pointer;
 @media(max-width:767px) {
   ::ng-deep .document-inner.list_document > div > ul {
         overflow: auto;
+    }
+
+   ::ng-deep body  .document-item {
+         max-width: 100% !important;
+         flex: 0 0 100% !important;
+      
     }
 }
 

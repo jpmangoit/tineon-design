@@ -11900,6 +11900,7 @@ button.btn-close svg {
   border-radius: 6px;
   padding: 3px 13px;
   align-items: center;
+  height: 51px;
 }
 .profile_field > span input {
   /*! width: auto; */
@@ -12185,6 +12186,17 @@ body .schedule.ng-star-inserted {
 }
 
 @media (max-width: 767px) {
+
+    .content.n-detail-main .news_details .news_image .col-md-2 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+
+
+::ng-deep body .news_content.col-md-6 {
+  margin-top: 15px !important;
+}
     .download-overlay .loading {
         font-size: 20px !important;
     }
@@ -12430,6 +12442,15 @@ line-height: 42px;
 font-size: 12px !important;
 
 
+}
+
+.tab-button button {
+    background: none !important;
+}
+
+body .modal-content  .parti_name {
+   width: 56px !important;
+height: 56px !important;
 }
 
 .mobile-green .tab-button button.active {

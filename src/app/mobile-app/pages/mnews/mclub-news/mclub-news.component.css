@@ -216,6 +216,8 @@ top: -1px;
   justify-content: space-between;
 }
 
+
+
 @media (min-width: 600px) and (max-width: 767px) {
     .news-item {
         width: 48%;
