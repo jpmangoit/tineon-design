@@ -1320,4 +1320,15 @@ span.get-btn {
     ::ng-deep .news_image_container {
         max-height: 250px !important;
     }
+
+    ::ng-deep body .page-action-right 
+    { 
+       margin-top: 18px !important;
+    }
+
+    ::ng-deep body .page-action-right svg path {
+        fill: #fff !important;
+    } 
+
+    
 }

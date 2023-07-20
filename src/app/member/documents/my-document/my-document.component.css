@@ -242,6 +242,9 @@ cursor: pointer;
     flex: 0 0 100%;
     position: relative;
 }
+.document-inner.list_document > div > ul {
+  padding-bottom: 12px;
+}
 }
 
 

@@ -60,6 +60,7 @@
 nav.scroll-navigation {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile-area-mobile+.tabs-content-section .card-toggle {
