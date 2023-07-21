@@ -16,10 +16,11 @@ import { appSetting } from 'src/app/app-settings';
 })
 
 export class McommunityComponent implements OnInit,OnDestroy {
-    displayChats: boolean = true;
+    displayChats: boolean = false;
     displayMessages: boolean = false;
     displayGroups: boolean = false;
-    activeClass: string = 'chatActive';
+    activeClass: string;
+    // activeClass: string = 'chatActive';
     language: any;
     userDetails: LoginDetails;
     userAccess: UserAccess;
@@ -28,6 +29,50 @@ export class McommunityComponent implements OnInit,OnDestroy {
     authorizationAccess: AuthorizationAccess;
     setTheme: ThemeType;
     private activatedSub: Subscription;
+
+    constructor(private lang: LanguageService, private authService: AuthServiceService,
+        private router: Router, private themes: ThemeService) {
+        if(this.router.url == '/community'){
+            this.displayChats = true;
+            this.onClick(1)
+        }else{
+            var getParamFromUrl: string = this.router.url.split("/")['2'];
+            if (getParamFromUrl != undefined && (getParamFromUrl == 'groups' || getParamFromUrl == 'community-groups')) {
+                this.displayGroups = true;
+                this.onClick(3)
+                this.communityGroups();
+            } else  if (getParamFromUrl == 'messages'|| getParamFromUrl == 'community-messages') {
+                this.displayMessages = true;
+                this.onClick(2)
+            } else {
+                this.displayChats = true;
+                this.onClick(1)
+            }
+        }
+    }
+
+    ngOnInit(): void {
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            this.setTheme = theme;
+        }
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
+        });
+        this.language = this.lang.getLanguaageFile();
+        this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        let userRole = this.userDetails.roles[0];
+        this.userAccess = appSetting.role;
+        this.createAccess = this.userAccess[userRole].create;
+        this.participateAccess = this.userAccess[userRole].participate;
+        this.authorizationAccess = this.userAccess[userRole].authorization;
+        if (localStorage.getItem('backItem')) {
+            if (localStorage.getItem('backItem') == 'groups') {
+                localStorage.removeItem('backItem');
+                this.communityGroups();
+            }
+        }
+    }
 
     /**
     * Function is used to display chat list tab
@@ -59,44 +104,13 @@ export class McommunityComponent implements OnInit,OnDestroy {
         this.displayGroups = true;
     }
 
-    constructor(private lang: LanguageService, private authService: AuthServiceService,
-        private router: Router, private themes: ThemeService) {
-        var getParamFromUrl: string = this.router.url.split("/")['2'];
-        if (getParamFromUrl != undefined && getParamFromUrl == 'community-groups') {
-            this.displayGroups = true;
-            this.onClick(3)
-            this.communityGroups();
-        } else {
-            this.displayChats = true;
-        }
-    }
-
-    ngOnInit(): void {
-        if (localStorage.getItem('club_theme') != null) {
-            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
-            this.setTheme = theme;
-        }
-        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
-            this.setTheme = resp;
-        });
-        this.language = this.lang.getLanguaageFile();
-        this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        let userRole = this.userDetails.roles[0];
-        this.userAccess = appSetting.role;
-        this.createAccess = this.userAccess[userRole].create;
-        this.participateAccess = this.userAccess[userRole].participate;
-        this.authorizationAccess = this.userAccess[userRole].authorization;
-        if (localStorage.getItem('backItem')) {
-            if (localStorage.getItem('backItem') == 'groups') {
-                localStorage.removeItem('backItem');
-                this.communityGroups();
-            }
-        }
-    }
-
     // active class functions
     onClick(check) {
+        console.log(check);
+
         this.activeClass = check == 1 ? "chatActive" : check == 2 ? "messageActive" : check == 3 ? "groupActive" : "chatActive";
+        console.log(this.activeClass);
+
     }
 
     ngOnDestroy(){

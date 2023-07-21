@@ -189,16 +189,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
             (respData: any) => {
                 console.log(respData);
                 if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner']
+                    this.bannerData = respData['result']['banner'];
+                    console.log(this.bannerData);
+
                     if (this.bannerData?.length > 0) {
                         this.bannerData.forEach((element: any) => {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            element['image'] = JSON.parse(element.image);
-                            // if (element['image']) {
-                            //     element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
-                            // }
+                            // element['image'] = JSON.parse(element.image);
+
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
+                            }
+
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                 element['redirectLink'] = element.redirectLink;
                             } else {

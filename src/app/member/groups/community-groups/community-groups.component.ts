@@ -127,8 +127,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
                             // element['image'] = JSON.parse(element.image);
-                            if (element['image']) {
-                                element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                 element['redirectLink'] = element.redirectLink;

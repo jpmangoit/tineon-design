@@ -130,8 +130,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']
@@ -139,11 +137,10 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
                                 element['display'] = JSON.parse(element.display);
-                                element['image'] = JSON.parse(element.image);
-                                // if (element['image']) {
-                                //     element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20))) as string;
-                                // }
-
+                                // element['image'] = JSON.parse(element.image);
+                                if (element.banner_image[0]?.banner_image) {
+                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
+                                }
                                 if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                     element['redirectLink'] = element.redirectLink;
                                 } else {

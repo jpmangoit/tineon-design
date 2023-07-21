@@ -35,129 +35,53 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="
-                                                let item of bannerLists
-                                                    | paginate
-                                                        : {
-                                                              itemsPerPage:
-                                                                  itemPerPage,
-                                                              currentPage:
-                                                                  currentPageNmuber,
-                                                              totalItems:
-                                                                  totalBanners
-                                                          }
-                                            ">
+                                                let item of bannerLists| paginate : {itemsPerPage:itemPerPage, currentPage: currentPageNmuber, totalItems: totalBanners }">
                                             <td>
-                                                <span>{{
-                                                    item.bannerName
-                                                    }}</span>
+                                                <span>{{item.bannerName }}</span>
                                             </td>
                                             <td>
-                                                <a [href]="item.redirectLink" target="_blank">{{ item.redirectLink
-                                                    }}</a>
+                                                <a [href]="item.redirectLink" target="_blank">{{ item.redirectLink }}</a>
                                             </td>
                                             <td>
-                                                <p [innerHTML]="
-                                                        item['description']
-                                                            .length > 0
-                                                            ? (item[
-                                                                  'description'
-                                                              ]
-                                                                  | slice
-                                                                      : 0
-                                                                      : 50) +
-                                                              '...'
-                                                            : item[
-                                                                  'description'
-                                                              ]
-                                                    "></p>
+                                                <p [innerHTML]=" item['description'].length > 0? (item[ 'description' ]| slice  : 0 : 50) + '...' : item[ 'description'] "></p>
                                             </td>
                                             <td style="text-align: center" style="width: 75px">
                                                 <div class="email_img">
-                                                    <img onContextMenu="return false;" [src]="item?.banner_image[0]?.banner_image" alt=""
-                                                        loading="lazy" />
+                                                    <img onContextMenu="return false;" [src]="item?.banner_image[0]?.banner_image" alt="" loading="lazy" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <span>{{
-                                                    item.bannerStartDate.split( "T"  )[0] | date : "d. MMMM y"  }}</span>
+                                                <span>{{item.bannerStartDate.split( "T"  )[0] | date : "d. MMMM y"  }}</span>
                                             </td>
                                             <td>
-                                                <span>{{
-                                                    item.bannerEndDate.split("T")[0] | date : "d. MMMM y"}}</span>
+                                                <span>{{item.bannerEndDate.split("T")[0] | date : "d. MMMM y"}}</span>
                                             </td>
                                             <td>
-                                                <span *ngIf="item.status == 0">{{
-                                                    language.banner.active
-                                                    }}</span>
-                                                <span *ngIf="item.status == 1">{{
-                                                    language.banner.inactive
-                                                    }}</span>
+                                                <span *ngIf="item.status == 0">{{language.banner.active }}</span>
+                                                <span *ngIf="item.status == 1">{{ language.banner.inactive }}</span>
                                             </td>
                                             <td>
-                                                <span *ngIf="item.invoice == 0">{{
-                                                    language.banner.created
-                                                    }}</span>
-                                                <span *ngIf="item.invoice == 1">{{
-                                                    language.banner.paid
-                                                    }}</span>
-                                                <span *ngIf="item.invoice == 2">{{
-                                                    language.banner.not_paid
-                                                    }}</span>
+                                                <span *ngIf="item.invoice == 0">{{language.banner.created}}</span>
+                                                <span *ngIf="item.invoice == 1">{{language.banner.paid}}</span>
+                                                <span *ngIf="item.invoice == 2">{{ language.banner.not_paid }}</span>
                                             </td>
                                             <td>
-                                                <div *ngFor="
-                                                        let cate of item.category
-                                                    ">
-                                                    <span *ngIf="cate == 1">{{
-                                                        language.banner
-                                                        .app_sponsor
-                                                        }},</span>
-                                                    <span *ngIf="cate == 2">{{
-                                                        language.banner
-                                                        .sponsor
-                                                        }},</span>
-                                                    <span *ngIf="cate == 3">{{
-                                                        language.banner
-                                                        .free_space
-                                                        }}</span>
+                                                <div *ngFor=" let cate of item.category">
+                                                    <span *ngIf="cate == 1">{{ language.banner .app_sponsor }},</span>
+                                                    <span *ngIf="cate == 2">{{ language.banner.sponsor }},</span>
+                                                    <span *ngIf="cate == 3">{{language.banner.free_space }}</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="event-action text-center">
-                                                    <button mat-button [matMenuTriggerFor]="
-                                                            menu
-                                                        ">
-                                                        <img onContextMenu="return false;"
-                                                            src="../../../../assets/img/new-design/dashboard/event-action.svg"
+                                                    <button mat-button [matMenuTriggerFor]="menu">
+                                                        <img onContextMenu="return false;" src="../../../../assets/img/new-design/dashboard/event-action.svg"
                                                             alt="" loading="lazy" />
                                                     </button>
                                                     <mat-menu #menu="matMenu" xPosition="before">
-                                                        <button mat-menu-item routerLink="/update-banner/{{
-                                                                item.id
-                                                            }}">
-                                                            {{
-                                                            language.theme
-                                                            .edit
-                                                            }}
-                                                        </button>
-                                                        <button mat-menu-item routerLink="/banner-detail/{{
-                                                                item.id
-                                                            }}">
-                                                            {{
-                                                            language.header
-                                                            .view
-                                                            }}
-                                                        </button>
-                                                        <button mat-menu-item (click)="
-                                                                deleteBanner(
-                                                                    item.id
-                                                                )
-                                                            ">
-                                                            {{
-                                                            language.theme
-                                                            .delete
-                                                            }}
-                                                        </button>
+                                                        <button mat-menu-item routerLink="/update-banner/{{item.id }}">{{language.theme .edit }}</button>
+                                                        <button mat-menu-item routerLink="/banner-detail/{{ item.id}}"> {{language.header.view }}</button>
+                                                        <button mat-menu-item (click)="deleteBanner( item.id )">{{ language.theme.delete }}</button>
                                                     </mat-menu>
                                                 </div>
                                             </td>
@@ -166,56 +90,22 @@
                                 </table>
                                 <div class="paginationHead full_width" *ngIf="bannerLists?.length > 0">
                                     <div class="pagintHeadLeft">
-                                        <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)="
-                                                pageChanged($event)
-                                            " autoHide="true" previousLabel="{{
-                                                language.pagination.previous
-                                            }}" nextLabel="{{
-                                                language.pagination.next
-                                            }}">
+                                        <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)=" pageChanged($event)
+                                            "autoHide="true" previousLabel="{{language.pagination.previous }}" nextLabel="{{language.pagination.next }}">
                                         </pagination-controls>
                                     </div>
                                     <div class="searchRefine">
-                                        <span>{{
-                                            language.pagination.go_to_page
-                                            }}
-                                            <input type="text" #cPg value="{{ currentPageNmuber }}"
-                                                (change)="goToPg(cPg.value)" />
+                                        <span>{{ language.pagination.go_to_page }}
+                                            <input type="text" #cPg value="{{ currentPageNmuber }}" (change)="goToPg(cPg.value)" />
                                         </span>
-                                        <span>{{
-                                            language.pagination
-                                            .limit_per_page
-                                            }}
-                                            <select #lPg value="{{ itemPerPage }}" (change)="
-                                                    setItemPerPage(lPg.value)
-                                                ">
-                                                <option *ngFor="
-                                                        let limitValue of limitPerPage
-                                                    " value="{{
-                                                        limitValue.value
-                                                    }}">
-                                                    {{ limitValue.value }}
-                                                </option>
+                                        <span>{{ language.pagination .limit_per_page }}
+                                            <select #lPg value="{{ itemPerPage }}" (change)="setItemPerPage(lPg.value)">
+                                                <option *ngFor=" let limitValue of limitPerPage "value="{{ limitValue.value }}"> {{ limitValue.value }} </option>
                                             </select>
                                         </span>
                                         <div class="pagintHeadRight text-center">
-                                            {{
-                                            (currentPageNmuber - 1) *
-                                            itemPerPage +
-                                            1
-                                            }}
-                                            {{ language.header.to }}
-                                            {{
-                                            currentPageNmuber *
-                                            itemPerPage >
-                                            totalBanners
-                                            ? totalBanners
-                                            : currentPageNmuber *
-                                            itemPerPage
-                                            }}
-                                            {{ language.header.of }}
-                                            {{ totalBanners | number }}
-                                            {{ language.banner.banner }}
+                                            {{ (currentPageNmuber - 1) * itemPerPage + 1 }}{{ language.header.to }}
+                                            {{ currentPageNmuber * itemPerPage > totalBanners  ? totalBanners : currentPageNmuber *itemPerPage}} {{ language.header.of }} {{ totalBanners | number }}{{ language.banner.banner }}
                                         </div>
                                     </div>
                                 </div>

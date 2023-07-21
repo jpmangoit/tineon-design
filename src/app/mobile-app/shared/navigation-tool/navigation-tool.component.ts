@@ -9,6 +9,8 @@ import { SettingToolComponent } from '../setting-tool/setting-tool.component';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'app-navigation-tool',
     templateUrl: './navigation-tool.component.html',
@@ -33,7 +35,10 @@ export class NavigationToolComponent implements OnInit {
     adsTineon: any;
     allowAdvertisment: any;
 
-    constructor(private _bottomSheet: MatBottomSheet,private tostrNotificationService: NotificationService,private router:Router,
+    constructor(private _bottomSheet: MatBottomSheet,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
+        private tostrNotificationService: NotificationService,private router:Router,
         private notificationService: NotificationsService, private lang: LanguageService,private authService:AuthServiceService) { }
 
     openBottomSheet(): void {
@@ -141,11 +146,16 @@ export class NavigationToolComponent implements OnInit {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner']
+                    console.log(this.bannerData);
+
                     this.bannerData.forEach((element: any) => {
                         element['category'] = JSON.parse(element.category);
                         element['placement'] = JSON.parse(element.placement);
                         element['display'] = JSON.parse(element.display);
-                        element['image'] = JSON.parse(element.image);
+                        // element['image'] = JSON.parse(element.image);
+                        if (element.banner_image[0]?.banner_image) {
+                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                        }
                         if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
                             element['redirectLink'] = element.redirectLink;
                         }else{
@@ -167,6 +177,8 @@ export class NavigationToolComponent implements OnInit {
                 count = 0;
             }
             this.adsTineon = this.bannerData[count];
+            console.log(this.adsTineon);
+
             count++;
         }, 3000);
     }

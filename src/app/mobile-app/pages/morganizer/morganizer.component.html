@@ -11,21 +11,24 @@
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                             : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
-                     <Span>{{language.organizer.events}}</Span></button>
+                          <Span>{{language.organizer.events}}</Span>
+                    </button>
                     <button type="button"  *ngIf="participateAccess.task == 'Yes'"  (click)="onTasks()" (click)="onClick('2')" routerLink="organizer-task"
                         [ngClass]="{'active': activeClass==='tasksActive'}"
                         [ngStyle]="displayTasks == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                             : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
-                    <Span>{{language.organizer.task_list}}</Span></button>
+                         <Span>{{language.organizer.task_list}}</Span>
+                    </button>
                     <button type="button" *ngIf="participateAccess.document == 'Yes'" (click)="onDocuments()" (click)="onClick('3')" routerLink="organizer-documents"
                         [ngClass]="{'active': activeClass==='documentsActive'}"
                         [ngStyle]="displayDocuments == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                             : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
-                    <span>{{language.organizer.documents}}</span></button>
+                        <span>{{language.organizer.documents}}</span>
+                    </button>
                 </div>
             </div>
         </div>

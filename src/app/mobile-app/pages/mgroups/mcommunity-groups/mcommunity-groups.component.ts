@@ -8,6 +8,8 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -52,7 +54,9 @@ export class McommunityGroupsComponent implements OnInit {
         private themes: ThemeService,
         private router: Router,
         private notificationService: NotificationService,
-        private tostrNotificationService: NotificationService
+        private tostrNotificationService: NotificationService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 
     ) { }
 
@@ -95,7 +99,10 @@ export class McommunityGroupsComponent implements OnInit {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            element['image'] = JSON.parse(element.image);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                            }
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                 element['redirectLink'] = element.redirectLink;
                             } else {

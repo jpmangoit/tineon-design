@@ -19,10 +19,11 @@ declare var $: any;
 })
 
 export class MorganizerComponent implements OnInit {
-    displayEvent: boolean = true;
+    displayEvent: boolean = false;
     displayTasks: boolean = false;
     displayDocuments: boolean = false;
-    activeClass: string = 'eventsActive';
+    activeClass: string;
+    // activeClass: string = 'eventsActive';
     language: any;
     userDetails: LoginDetails;
     userAccess: UserAccess;
@@ -30,8 +31,8 @@ export class MorganizerComponent implements OnInit {
     participateAccess: ParticipateAccess;
     authorizationAccess: AuthorizationAccess;
     documentForm: UntypedFormGroup;
-    displayEvents: boolean = false;
-    displayDocs: boolean = false;
+    // displayEvents: boolean = false;
+    // displayDocs: boolean = false;
     setTheme: ThemeType;
     responseMessage: string = '';
     extensions: any;
@@ -44,13 +45,22 @@ export class MorganizerComponent implements OnInit {
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService
     ) {
-        var url: string = this.router.url.split("/")['2'];
-        if (url == 'organizer-task') {
-            this.displayTasks = true;
-        } else if (url == 'organizer-documents') {
-            this.displayDocs = true;
-        } else {
-            this.displayEvents = true;
+        console.log(this.router.url);
+        if(this.router.url == '/organizer'){
+            this.displayEvent = true;
+            this.onClick(1)
+        }else{
+            var url: string = this.router.url.split("/")['2'];
+            if (url == 'organizer-task') {
+                this.displayTasks = true;
+                this.onClick(2)
+            } else if (url == 'organizer-documents') {
+                this.displayDocuments = true;
+                this.onClick(3)
+            } else {
+                this.displayEvent = true;
+                this.onClick(1)
+            }
         }
     }
 
@@ -98,8 +108,6 @@ export class MorganizerComponent implements OnInit {
     }
     // active class functions
     onClick(check) {
-        console.log(check);
-
         this.activeClass = check == 1 ? "eventsActive" : check == 2 ? "tasksActive" : check == 3 ? "documentsActive" : "eventsActive";
     }
 

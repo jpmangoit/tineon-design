@@ -257,8 +257,8 @@ export class NotificationsService {
                                 element['placement'] = JSON.parse(element.placement);
                                 element['display'] = JSON.parse(element.display);
                                 // element['image'] = JSON.parse(element.image);
-                                if (element['image']) {
-                                    element['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['image'].substring(20)));
+                                if (element.banner_image[0]?.banner_image) {
+                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                                 }
                                 if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
                                     element['redirectLink'] = element.redirectLink;
@@ -268,7 +268,7 @@ export class NotificationsService {
                                 this.showNotifications.push({
                                     'id': element.id,
                                     'bannerName': element.bannerName,
-                                    'image': element.image,
+                                    'image': element.banner_image[0].banner_image,
                                     'redirectLink': element.redirectLink,
                                     'description': element.description,
                                     'notificationType': 'banners',

@@ -36,12 +36,12 @@ export class BannerDetailComponent implements OnInit {
         private themes: ThemeService,
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
-        private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,
         private router: Router,
         private _location: Location,
         private authService: AuthServiceService,
         private route: ActivatedRoute,
+        private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
 
         ) { }

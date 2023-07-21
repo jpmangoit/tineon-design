@@ -81,7 +81,8 @@ export class ClubAppointmentsComponent implements OnInit {
         private datePipe: DatePipe,
         private router: Router, private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
-    ) { }
+    ) {
+     }
 
     ngOnInit(): void {
         if (sessionStorage.getItem('token')) {
@@ -105,6 +106,7 @@ export class ClubAppointmentsComponent implements OnInit {
     * @author  MangoIt Solutions
     */
     getDesktopDeshboardBanner() {
+
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
         }

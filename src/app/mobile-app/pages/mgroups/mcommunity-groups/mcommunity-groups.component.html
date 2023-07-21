@@ -161,7 +161,7 @@
                                         <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
                                             alt="{{language.community_groups.no_groups}}"
                                             loading="lazy"><br> -->
-                                            
+
                                             <span>{{language.community_groups.no_groups}}</span>
                                     </div>
                                 </div>
@@ -259,7 +259,7 @@
                 <div class="ad-right">
                     <span>
                         <img onContextMenu="return false;"
-                            [src]="adsTineon && adsTineon.image ? adsTineon.image : '../../../../assets/img/mobile-img/dashboard/ad-img.png'"
+                            [src]="adsTineon && adsTineon.banner_image[0]?.banner_image ? adsTineon.banner_image[0]?.banner_image : '../../../../assets/img/mobile-img/dashboard/ad-img.png'"
                             alt="" loading="lazy">
                     </span>
                 </div>

@@ -58,7 +58,7 @@
             <div class="add-inner" >
                 <div class="ad-right">
                     <span>
-                        <img onContextMenu="return false;" [src]="adsTineon && adsTineon.image ? adsTineon.image : '../../../../assets/img/mobile-img/dashboard/ad-img.png'" alt="" loading="lazy">
+                        <img onContextMenu="return false;" [src]="adsTineon && adsTineon.banner_image[0]?.banner_image ? adsTineon.banner_image[0]?.banner_image : '../../../../assets/img/mobile-img/dashboard/ad-img.png'" alt="" loading="lazy">
                     </span>
                 </div>
                 <div class="ad-left">
