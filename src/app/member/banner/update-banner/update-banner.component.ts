@@ -111,7 +111,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         private themes: ThemeService,
         public navigation: NavigationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService, 
+        private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
         ) { }
 
@@ -208,43 +208,48 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     * @return  {}
     */
     setBannerData(bannerInfo: any) {
+        console.log(bannerInfo);
+
         var date_to: string[];
         var date_from: string[];
-        this.updateBannerForm.controls['bannerName'].setValue(bannerInfo[0].bannerName);
-        this.updateBannerForm.controls['description'].setValue(bannerInfo[0].description);
-        this.updateBannerForm.controls['redirectLink'].setValue(bannerInfo[0].redirectLink);
+        this.updateBannerForm.controls['bannerName'].setValue(bannerInfo.bannerName);
+        this.updateBannerForm.controls['description'].setValue(bannerInfo.description);
+        this.updateBannerForm.controls['redirectLink'].setValue(bannerInfo.redirectLink);
 
-        if (bannerInfo[0]['bannerStartDate']) {
-            date_from = bannerInfo[0]['bannerStartDate'].split("T");
+        if (bannerInfo['bannerStartDate']) {
+            date_from = bannerInfo['bannerStartDate'].split("T");
             this.updateBannerForm.controls['bannerStartDate'].setValue(date_from[0]);
         }
 
-        if (bannerInfo[0]['bannerEndDate']) {
-            date_to = bannerInfo[0]['bannerEndDate'].split("T");
+        if (bannerInfo['bannerEndDate']) {
+            date_to = bannerInfo['bannerEndDate'].split("T");
             this.updateBannerForm.controls['bannerEndDate'].setValue(date_to[0]);
         }
 
-        this.checkedStatus = bannerInfo[0]['status'];
+        this.checkedStatus = bannerInfo['status'];
         this.updateBannerForm.controls['status'].setValue(this.checkedStatus);
 
-        this.checkedInvoice = bannerInfo[0]['invoice'];
+        this.checkedInvoice = bannerInfo['invoice'];
         this.updateBannerForm.controls['invoice'].setValue(this.checkedInvoice);
 
-        if (bannerInfo[0].image != null) {
+        if (bannerInfo.banner_image[0].banner_image != null) {
             this.hasPicture = true;
-            // this.updateBannerForm.controls['image'].setValue(JSON.parse(bannerInfo[0].image));
-            // this.showBannerImage = JSON.parse(bannerInfo[0].image);
-            if (bannerInfo[0].image) {
-                bannerInfo[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo[0].image.substring(20))) as string; 
-
-                this.showBannerImage = bannerInfo[0].image 
+            // this.updateBannerForm.controls['image'].setValue(JSON.parse(bannerInfo.banner_image[0].banner_image));
+            // this.showBannerImage = JSON.parse(bannerInfo.banner_image[0].banner_image);
+            if (bannerInfo.banner_image[0].banner_image) {
+                // bannerInfo.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo.banner_image[0].banner_image.substring(20))) as string;
+                // this.showBannerImage = bannerInfo.banner_image[0].banner_image
+                this.showBannerImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo.banner_image[0].banner_image.substring(20))) as string;
                 this.updateBannerForm.controls['image'].setValue(this.showBannerImage);
+                console.log(this.showBannerImage);
+                console.log(bannerInfo.banner_image[0].banner_image);
+
             }
-            
+
         }
 
-        if (bannerInfo[0]['category']) {
-            let bennerCate = JSON.parse(bannerInfo[0]['category']);
+        if (bannerInfo['category']) {
+            let bennerCate = JSON.parse(bannerInfo['category']);
             if (this.bannerCategoryOption?.length > 0) {
                 this.bannerCategoryOption.forEach((element: any, index: any) => {
                     let cateVal: number = bennerCate.find((data: any) => data == element.value);
@@ -259,8 +264,8 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
             }
         }
 
-        if (bannerInfo[0]['placement']) {
-            let bannerPlace = JSON.parse(bannerInfo[0]['placement']);
+        if (bannerInfo['placement']) {
+            let bannerPlace = JSON.parse(bannerInfo['placement']);
             if (this.bannerPlacementOption?.length > 0) {
                 this.bannerPlacementOption.forEach((element: any, index: any) => {
                     let placeVal: number = bannerPlace.find((data: any) => data == element.value);
@@ -276,8 +281,8 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
             }
         }
 
-        if (bannerInfo[0]['display']) {
-            let bannerDisp = JSON.parse(bannerInfo[0]['display']);
+        if (bannerInfo['display']) {
+            let bannerDisp = JSON.parse(bannerInfo['display']);
             if (this.bannerDisplayOption?.length > 0) {
                 this.bannerDisplayOption.forEach((element: any) => {
                     bannerDisp.forEach((elem: any) => {
@@ -306,7 +311,8 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
             this.updateBannerForm.controls["image"].setValue(this.fileToReturn);
         } else {
             // this.updateBannerForm.controls["image"].setValue(JSON.parse(this.bannerDetail[0].image));
-            this.updateBannerForm.controls["image"].setValue(this.showBannerImage);
+            // this.updateBannerForm.controls["image"].setValue(this.showBannerImage);
+            this.updateBannerForm.controls["image"].setValue(this.bannerDetail.banner_image[0].banner_image);
         }
         this.updateBannerForm.value.author = this.userData.userId;
         this.updateBannerForm.value.team_id = this.userData.team_id;

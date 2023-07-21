@@ -33,14 +33,14 @@ export class BannerDetailComponent implements OnInit {
     selectedDisplayed: any[] = [];
 
     constructor(
-        private themes: ThemeService, 
-        private lang: LanguageService, 
+        private themes: ThemeService,
+        private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
         private commonFunctionService: CommonFunctionService,
-        private notificationService: NotificationService, 
+        private notificationService: NotificationService,
         private router: Router,
-        private _location: Location, 
-        private authService: AuthServiceService, 
+        private _location: Location,
+        private authService: AuthServiceService,
         private route: ActivatedRoute,
         private sanitizer: DomSanitizer
 
@@ -95,28 +95,49 @@ export class BannerDetailComponent implements OnInit {
         this.authService.memberSendRequest('get', 'getBannerbyId/' + id, null)
             .subscribe(
                 (respData: any) => {
+                    console.log(respData);
+
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerDetail = respData['result']
-                        this.bannerDetail.forEach((element: any) => {
-                            element['category'] = JSON.parse(element.category);
-                            element['placement'] = JSON.parse(element.placement);
-                            element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
-                            
-                            if (element.image) {
-                                element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.image.substring(20))) as string;
+
+
+                            this.bannerDetail['category'] = JSON.parse(this.bannerDetail.category);
+                            this.bannerDetail['placement'] = JSON.parse(this.bannerDetail.placement);
+                            this.bannerDetail['display'] = JSON.parse(this.bannerDetail.display);
+                            // this.bannerDetail['image'] = JSON.parse(this.bannerDetail.image);
+
+                            if (this.bannerDetail.banner_image[0].banner_image ) {
+                                this.bannerDetail.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.bannerDetail.banner_image[0].banner_image.substring(20))) as string;
+                                this.showImage =  this.bannerDetail.banner_image[0].banner_image
                             }
 
-                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                element['redirectLink'] = element.redirectLink;
+                            if ((this.bannerDetail['redirectLink'].includes('https://')) || (this.bannerDetail['redirectLink'].includes('http://'))) {
+                                this.bannerDetail['redirectLink'] = this.bannerDetail.redirectLink;
                             } else {
-                                element['redirectLink'] = '//' + element.redirectLink;
+                                this.bannerDetail['redirectLink'] = '//' + this.bannerDetail.redirectLink;
                             }
-                            this.showImage = element.image;
-                        })
 
-                        this.bannerDetail[0]['category'].forEach((element: any) => {
+                        // this.bannerDetail.forEach((element: any) => {
+                        //     element['category'] = JSON.parse(element.category);
+                        //     element['placement'] = JSON.parse(element.placement);
+                        //     element['display'] = JSON.parse(element.display);
+                        //     // element['image'] = JSON.parse(element.image);
+
+                        //     if (element.banner_image[0].banner_image ) {
+                        //         element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0].banner_image.substring(20))) as string;
+                        //         this.showImage =  element.banner_image[0].banner_image
+                        //     }
+
+                        //     if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                        //         element['redirectLink'] = element.redirectLink;
+                        //     } else {
+                        //         element['redirectLink'] = '//' + element.redirectLink;
+                        //     }
+
+                        // })
+
+                        this.bannerDetail['category'].forEach((element: any) => {
                             this.bannerCategoryOption.forEach((elem: any) => {
                                 if (element == elem.value) {
                                     this.selectedCategory.push(elem);
@@ -124,7 +145,7 @@ export class BannerDetailComponent implements OnInit {
                             })
                         });
 
-                        this.bannerDetail[0]['placement'].forEach((element: any) => {
+                        this.bannerDetail['placement'].forEach((element: any) => {
                             this.bannerPlacementOption.forEach((elem: any) => {
                                 if (element == elem.value) {
                                     this.selectedPlacement.push(elem);
@@ -132,7 +153,7 @@ export class BannerDetailComponent implements OnInit {
                             })
                         });
 
-                        this.bannerDetail[0]['display'].forEach((element: any) => {
+                        this.bannerDetail['display'].forEach((element: any) => {
                             this.bannerDisplayOption.forEach((elem: any) => {
                                 if (element == elem.id) {
                                     this.selectedDisplayed.push(elem);

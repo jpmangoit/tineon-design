@@ -98,6 +98,8 @@ export class MorganizerComponent implements OnInit {
     }
     // active class functions
     onClick(check) {
+        console.log(check);
+
         this.activeClass = check == 1 ? "eventsActive" : check == 2 ? "tasksActive" : check == 3 ? "documentsActive" : "eventsActive";
     }
 
