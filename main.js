@@ -17761,7 +17761,7 @@ class CreateEventComponent {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'createEvent', formData)
                 .subscribe((respData) => {
-                this.authService.setLoader(false);
+                this.authService.setLoader(false); 
                 this.eventSubmitted = false;
                 if (respData['isError'] == false) {
                     this.responseMessage = respData['result']['message'];

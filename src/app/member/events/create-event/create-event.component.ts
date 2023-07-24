@@ -761,7 +761,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                             this.notificationService.showSuccess(this.language.response_message.event_success, null);
                             var self = this;
                             setTimeout(function () {
-                                self.router.navigate(['event-detail/' + respData['result']['news']['id']]);
+                                self.router.navigate(['event-detail/' + respData['result']['news']['id']]); 
                             }, 1500);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

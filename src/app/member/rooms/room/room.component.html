@@ -89,10 +89,8 @@
 							<div class="room-grid-list" *ngFor="let item of allRooms  | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalRoomData}">
 								<div class="news-widget" data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)">
 									<div class="news-image">
-										
 										<img onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
 										alt="" loading="lazy">
-										
 										<!-- <img onContextMenu="return false;" src="{{item.room_image[0]?.room_image}}"  alt="" loading="lazy"> -->
 									</div>
 									<div class="news-content">

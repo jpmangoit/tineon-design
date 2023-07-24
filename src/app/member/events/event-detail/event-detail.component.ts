@@ -172,19 +172,30 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             this.eventDetails = respData['result'][0];
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
-                            this.eventDetails.recurring_dates.forEach((element:any) =>{
+                            this.eventDetails.recurring_dates.forEach((element: any) => {
                                 element.start_time = this.commonFunctionService.convertTime(element.start_time);
                                 element.end_time = this.commonFunctionService.convertTime(element.end_time);
                             });
-                            if(this.eventDate){
+                            if (this.eventDate) {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                if (this.eventDetails?.picture_video != null) {
+                                // if (this.eventDetails?.picture_video != null) {
+                                //     this.showImage = true;
+                                //     if (this.eventDetails.picture_video) {
+                                //         this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
+                                //         this.imageurl = this.eventDetails.picture_video
+                                //     }
+                                // } else {
+                                //     this.showImage = false;
+                                //     this.imageurl = '';
+                                // } 
+
+                                if (this.eventDetails?.event_images[0]?.event_image != null) {
                                     this.showImage = true;
-                                    if (this.eventDetails.picture_video){
-                                    this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
-                                    this.imageurl =  this.eventDetails.picture_video
+                                    if (this.eventDetails?.event_images[0]?.event_image) {
+                                        this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
+                                        this.imageurl = this.eventDetails?.event_images[0]?.event_image
                                     }
                                 } else {
                                     this.showImage = false;
@@ -192,7 +203,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 }
 
                                 if (this.eventDetails?.document_url) {
-                                    this.docFile =  this.eventDetails.document_url;
+                                    this.docFile = this.eventDetails.document_url;
                                 }
                                 // if (this.eventDetails.picture_video != null) {
                                 //     var url: string[] = this.eventDetails.picture_video.split('\"');
@@ -221,9 +232,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
                                         if (this.updateEventData?.updatedImageUrl != null) {
                                             this.showUpdateImage = true;
-                                            if (this.updateEventData.updatedImageUrl){
+                                            if (this.updateEventData.updatedImageUrl) {
                                                 this.updateEventData.updatedImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.updatedImageUrl.substring(20)));
-                                                this.updateImageurl =  this.updateEventData.updatedImageUrl
+                                                this.updateImageurl = this.updateEventData.updatedImageUrl
                                             }
                                         } else {
                                             this.showUpdateImage = false;
@@ -231,7 +242,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         }
 
                                         if (this.updateEventData?.updateDocumentUrl) {
-                                            this.docFile =  this.updateEventData.updateDocumentUrl;
+                                            this.docFile = this.updateEventData.updateDocumentUrl;
                                         }
 
                                         // if (this.updateEventData.image != null) {
@@ -266,7 +277,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                                                 this.thumb = resppData;
                                                                                 element.user.image = this.thumb
                                                                             },
-                                                                            (error:any) => {
+                                                                            (error: any) => {
                                                                                 element.user.image = null;
                                                                             });
                                                                 } else {
@@ -294,7 +305,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                                             this.thumb = resppData;
                                                                             element.user.image = this.thumb
                                                                         },
-                                                                        (error:any) => {
+                                                                        (error: any) => {
                                                                             element.user.image = null;
                                                                         });
                                                             } else {
@@ -310,14 +321,14 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                             });
                                         }
 
-                                        if(this.updateEventData.room != 'null'){
+                                        if (this.updateEventData.room != 'null') {
                                             this.commonFunctionService.roomsById(this.updateEventData.room)
-                                            .then((resp: any) => {
-                                                   this.updateEventData.roomData = resp;
+                                                .then((resp: any) => {
+                                                    this.updateEventData.roomData = resp;
                                                 })
-                                            .catch((erro: any) => {
-                                                this.notificationService.showError(erro, null);
-                                            });
+                                                .catch((erro: any) => {
+                                                    this.notificationService.showError(erro, null);
+                                                });
                                         }
                                     }
                                 }
@@ -378,7 +389,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                         this.thumb = resppData;
                                                         val.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.image = null;
                                                     });
                                         }
@@ -395,7 +406,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                         this.thumb = resppData;
                                                         val.users.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.users.image = null;
                                                     });
                                         }
@@ -436,7 +447,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb;
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -615,7 +626,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -682,36 +693,36 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     * @param   {path}
     */
-        download(path: any) {
-            let data = {
-                name: path
-            }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/')[2]
-                this.authService.downloadDocument('post', endPoint, data).toPromise()
-                    .then((blob: any) => {
-                        saveAs(blob, filename);
-                        this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
+    download(path: any) {
+        let data = {
+            name: path
         }
+        this.dowloading = true;
+        var endPoint = 'get-documentbyname';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
 
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();

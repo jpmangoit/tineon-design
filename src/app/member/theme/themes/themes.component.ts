@@ -94,6 +94,7 @@ export class ThemesComponent implements OnInit {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'club-theme/' + this.userDetails.team_id, null)
             .subscribe((respData: any) => {
+                
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.themeData = respData['result']['clubTheme'];
