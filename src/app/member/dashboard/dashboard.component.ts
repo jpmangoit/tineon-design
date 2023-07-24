@@ -187,10 +187,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
         .subscribe(
             (respData: any) => {
-                console.log(respData);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner'];
-                    console.log(this.bannerData);
 
                     if (this.bannerData?.length > 0) {
                         this.bannerData.forEach((element: any) => {

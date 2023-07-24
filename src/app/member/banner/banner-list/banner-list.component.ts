@@ -73,7 +73,7 @@ export class BannerListComponent implements OnInit {
                         this.bannerLists = respData['result']['banner'];
                         console.log(this.bannerLists);
 
-                        this.bannerLists.forEach((element: any) => {
+                        this.bannerLists.forEach((element: any) => { 
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);

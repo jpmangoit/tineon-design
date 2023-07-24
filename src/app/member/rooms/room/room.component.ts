@@ -144,6 +144,13 @@ export class RoomComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.allRooms = respData['result']['room'];
+                    
+                    this.allRooms.forEach((element:any) =>{
+                        if(element?.room_image[0]?.room_image){
+                            element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
+                        }
+                    })
+                    
                     this.totalRoomData = respData['result'].pagination.rowCount;
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
@@ -265,6 +272,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                 (error:any) => {
                     this.thumbnail = null;
                 });
+                
             if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
                 this.roomImg = '../../assets/img/no_image.png';
             } else {

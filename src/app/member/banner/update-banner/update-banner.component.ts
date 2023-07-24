@@ -241,8 +241,6 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
                 // this.showBannerImage = bannerInfo.banner_image[0].banner_image
                 this.showBannerImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo.banner_image[0].banner_image.substring(20))) as string;
                 this.updateBannerForm.controls['image'].setValue(this.showBannerImage);
-                console.log(this.showBannerImage);
-                console.log(bannerInfo.banner_image[0].banner_image);
 
             }
 
@@ -330,7 +328,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
                     formData.append('display', JSON.stringify(element));
                 }
                 if (key == 'image') {
-                    formData.append('file', element);
+                    formData.append('file', element); 
                 } else {
                     if ((key != 'image') && (key != 'category') && (key != 'placement') && (key != 'display')) {
                         formData.append(key, element);

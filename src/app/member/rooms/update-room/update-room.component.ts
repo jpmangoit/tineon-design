@@ -240,6 +240,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {object array}
     */
+   originalImg:any;
     getRoomInfo() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getRoomsById/' + this.roomId, null)
@@ -253,12 +254,12 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 this.roomForm.controls['description'].setValue(this.roomData.description);
                 this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
                 this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
-                console.log(this.roomData);
-                console.log(this.roomData['room_image']?.[0]['room_image']);
 
                 if (this.roomData['room_image']?.[0]['room_image']){
                     this.hasPicture = true;
                     this.roomForm.controls['image'].setValue(this.roomData['room_image']?.[0]['room_image']);
+                    this.originalImg = this.roomData['room_image']?.[0]['room_image']
+                    
                     this.roomData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData['room_image']?.[0]['room_image'].substring(20)));
                     this.imageUrl = this.roomData['room_image']?.[0]['room_image'];
                 }
@@ -317,10 +318,13 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         }
         this.roomForm.value['team_id'] = this.teamId;
 
+        console.log( this.originalImg);
+        
         if (this.fileToReturn) {
             this.roomForm.value['image'] = this.fileToReturn;
         } else {
-            this.roomForm.value['image'] = this.imageUrl;
+            this.roomForm.value['image'] = this.originalImg;
+            // this.roomForm.value['image'] = this.imageUrl;
         }
 
         if (this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {

@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 @Component({
     selector: 'app-room-list',
@@ -40,6 +42,9 @@ export class RoomListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
+
     ) { }
 
     ngOnInit(): void {
@@ -72,6 +77,12 @@ export class RoomListComponent implements OnInit {
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;
+
+                    this.dataSource.filteredData.forEach((element:any) =>{
+                        if(element?.room_image[0]?.room_image){
+                            element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
+                        }
+                    }) 
                 }
             )
     }
