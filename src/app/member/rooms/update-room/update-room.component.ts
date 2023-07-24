@@ -253,12 +253,14 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 this.roomForm.controls['description'].setValue(this.roomData.description);
                 this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
                 this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
+                console.log(this.roomData);
+                console.log(this.roomData['room_image']?.[0]['room_image']);
 
-                if (this.roomData.image){
+                if (this.roomData['room_image']?.[0]['room_image']){
                     this.hasPicture = true;
-                    this.roomData.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData.image.substring(20)));
-                    this.roomForm.controls['image'].setValue(this.roomData.image);
-                    this.imageUrl = this.roomData.image;
+                    this.roomForm.controls['image'].setValue(this.roomData['room_image']?.[0]['room_image']);
+                    this.roomData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData['room_image']?.[0]['room_image'].substring(20)));
+                    this.imageUrl = this.roomData['room_image']?.[0]['room_image'];
                 }
 
                 if ( this.roomData['active_from']) {

@@ -84,8 +84,8 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
         private lang: LanguageService,
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
-        private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,
+        private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
 
     ) {

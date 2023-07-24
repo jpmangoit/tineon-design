@@ -265,11 +265,11 @@ export class RoomComponent implements OnInit, OnDestroy {
                 (error:any) => {
                     this.thumbnail = null;
                 });
-            if (this.roomsByIdData.image == '' || this.roomsByIdData.image == null) {
+            if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
                 this.roomImg = '../../assets/img/no_image.png';
             } else {
-                this.roomsByIdData['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['image'].substring(20)));
-                this.roomImg = this.roomsByIdData.image;
+                this.roomsByIdData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['room_image']?.[0]['room_image'].substring(20)));
+                this.roomImg = this.roomsByIdData['room_image']?.[0]['room_image'];
             }
             setTimeout(() => {
                 this.getRoomCalendar(this.roomsByIdData);
