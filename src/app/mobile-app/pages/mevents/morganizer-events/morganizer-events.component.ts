@@ -13,6 +13,7 @@ import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { appSetting } from 'src/app/app-settings';
 import { Extentions } from 'src/app/models/extentions.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-morganizer-events',
@@ -94,7 +95,9 @@ export class MorganizerEventsComponent implements OnInit {
         private lang: LanguageService,
         private themes: ThemeService,
         private route: ActivatedRoute,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
+
     ) { }
 
 
@@ -159,6 +162,10 @@ export class MorganizerEventsComponent implements OnInit {
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
+                                if (element?.event_images[0]?.event_image) {
+                                    element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
+                                }
+
                                 var url: string[] = [];
                                 if (element.picture_video != null && element.picture_video != '') {
                                     if (element.picture_video) {
@@ -212,11 +219,12 @@ export class MorganizerEventsComponent implements OnInit {
                                             let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             // let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let rrEvents: EventsType = {
+                                            let rrEvents: any = {
                                                 "id": element.id,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate,
                                                 "date_to": rrDateEnd,
                                                 "description": element.description,
@@ -260,6 +268,7 @@ export class MorganizerEventsComponent implements OnInit {
                                                 self.upcomingEvent.push(rrEvents);
                                                 self.upcomingEventList.push(rrEvents);
                                             }
+                                            
                                         })
                                     }
                                 } else {
@@ -290,13 +299,14 @@ export class MorganizerEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + dd.start_time + ':00.000Z'
                                             // let rrDateEnd1: string = dt1 + "T" + dd.end_time + ':00.000Z';
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,
@@ -367,13 +377,14 @@ export class MorganizerEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,

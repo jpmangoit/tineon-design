@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 @Component({
     selector: 'app-event-list',
@@ -13,7 +15,7 @@ import { LoginDetails } from 'src/app/models/login-details.model';
     styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-    eventTypeList: { name: string}[] = [];
+    eventTypeList: { name: string }[] = [];
     userData: LoginDetails;
     language: any;
     isData: boolean = true;
@@ -37,17 +39,19 @@ export class EventListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
-        this.eventTypeList[1] = { name: this.language.create_event.club_event};
-        this.eventTypeList[2] = { name: this.language.create_event.group_event};
-        this.eventTypeList[3] = { name: this.language.create_event.functionaries_event};
-        this.eventTypeList[4] = { name: this.language.create_event.course_event};
-        this.eventTypeList[5] = { name: this.language.create_event.seminar};
-        this.getUserAllEvents("");        
+        this.eventTypeList[1] = { name: this.language.create_event.club_event };
+        this.eventTypeList[2] = { name: this.language.create_event.group_event };
+        this.eventTypeList[3] = { name: this.language.create_event.functionaries_event };
+        this.eventTypeList[4] = { name: this.language.create_event.course_event };
+        this.eventTypeList[5] = { name: this.language.create_event.seminar };
+        this.getUserAllEvents("");
     }
 
     /**
@@ -62,7 +66,7 @@ export class EventListComponent implements OnInit {
         var endPoint: string;
         if (search && search.target.value != '') {
             endPoint = 'getOwnerEvents/' + pageNo + '/' + this.pageSize + '?search=' + search.target.value;
-        }else{
+        } else {
             endPoint = 'getOwnerEvents/' + pageNo + '/' + this.pageSize;
         }
         this.authService.memberSendRequest('get', endPoint, null)
@@ -87,9 +91,16 @@ export class EventListComponent implements OnInit {
                         }
                     });
 
+                    respData.events.forEach((element: any) => {
+                        if (element?.event_images[0]?.event_image) {
+                            element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.event_images[0]?.event_image.substring(20)));
+                        }
+                    });
+
                     this.dataSource = new MatTableDataSource(respData.events);
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
+
                     this.isData = true;
                 }
             )
@@ -129,5 +140,5 @@ export class EventListComponent implements OnInit {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-    
+
 }

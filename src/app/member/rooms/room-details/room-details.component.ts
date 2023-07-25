@@ -19,48 +19,46 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
-  selector: 'app-room-details',
-  templateUrl: './room-details.component.html',
-  styleUrls: ['./room-details.component.css'],
-  providers: [DatePipe],
+    selector: 'app-room-details',
+    templateUrl: './room-details.component.html',
+    styleUrls: ['./room-details.component.css'],
+    providers: [DatePipe],
 })
 
 export class RoomDetailsComponent implements OnInit {
-    updateRoomData:any
+    updateRoomData: any
     roomDetails: any;
     responseMessage: any;
     imageShow: string;
-    userDetails:LoginDetails;
+    userDetails: LoginDetails;
     setTheme: ThemeType;
     private activatedSub: Subscription;
-    language:any;
-    thumbnail:string;
+    language: any;
+    thumbnail: string;
     memberid: number;
-    displayError:boolean = false
+    displayError: boolean = false
     getclubInfo: ClubDetail;
     profile_data: ProfileDetails;
     birthdateStatus: boolean;
     memberStartDateStatus: Date;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
-    calendarRooms:any;
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
+    calendarRooms: any;
     calendarOptions: CalendarOptions;
     selectLanguage: string;
     allRoomCalndr: any[];
     allWeekDayArray: any[];
 
-    constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
-        private notificationService: NotificationService,private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
-        private themes: ThemeService,private denyReasonService: DenyReasonConfirmDialogService, private router: Router,
+    constructor(private authService: AuthServiceService, private commonFunctionService: CommonFunctionService,
+        private notificationService: NotificationService, private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
+        private themes: ThemeService, private denyReasonService: DenyReasonConfirmDialogService, private router: Router,
         private datePipe: DatePipe,
-        private updateConfirmDialogService: UpdateConfirmDialogService,private route: ActivatedRoute,
-        private sanitizer: DomSanitizer)
-
-    {
+        private updateConfirmDialogService: UpdateConfirmDialogService, private route: ActivatedRoute,
+        private sanitizer: DomSanitizer) {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
@@ -91,7 +89,7 @@ export class RoomDetailsComponent implements OnInit {
 
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -118,73 +116,82 @@ export class RoomDetailsComponent implements OnInit {
     * @param   {id}
     * @return  {object array}
     */
-    getRoomDetail(id:number){
+    getRoomDetail(id: number) {
         this.commonFunctionService.roomsById(id)
-        .then((resp: any) => {
-            this.roomDetails = [];
-            this.updateRoomData = null;
-            this.roomDetails = resp;
+            .then((resp: any) => {
+                this.roomDetails = [];
+                this.updateRoomData = null;
+                this.roomDetails = resp;
 
-            if (this.roomDetails?.['room_image']?.[0]['room_image']){
-                this.roomDetails['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomDetails['room_image']?.[0]['room_image'].substring(20)));
-            }
-            this.memberid = this.roomDetails.user.member_id;
-            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
-                .subscribe((respData: any) => {
-                    this.thumbnail = respData;
-                },
-                (error:any) => {
-                    this.thumbnail = null;
-                });
-            if (this.roomDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
-                if (this.roomDetails.updated_record != null) {
-                    this.updateRoomData = JSON.parse(this.roomDetails.updated_record);
-                    this.updateRoomData.weekdays = JSON.parse(this.updateRoomData['weekdays']);
-                    this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-                    .subscribe(
-                        (respData: any) => {
-                            if (respData && respData.length > 0) {
-                                respData.forEach(el => {
-                                    if (el.id == this.updateRoomData.author) {
-                                        this.updateRoomData.user = el;
-                                        if (this.updateRoomData.user.member_id != null) {
-                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.updateRoomData.user.member_id, null)
-                                                .subscribe(
-                                                    (resppData: any) => {
-                                                        this.updateRoomData.user.imagePro = resppData
-                                                    },
-                                                    (error:any) => {
-                                                        this.updateRoomData.user.imagePro = null;
-                                                    });
-                                        } else {
-                                            this.updateRoomData.user.imagePro = null;
-                                        }
+                if (this.roomDetails?.['room_image']?.[0]['room_image']) {
+                    this.roomDetails['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomDetails['room_image']?.[0]['room_image'].substring(20)));
+                }
+                this.memberid = this.roomDetails.user.member_id;
+                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
+                    .subscribe((respData: any) => {
+                        this.thumbnail = respData;
+                    },
+                        (error: any) => {
+                            this.thumbnail = null;
+                        });
+                if (this.roomDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
+                    if (this.roomDetails.updated_record != null) {
+
+                        this.updateRoomData = JSON.parse(this.roomDetails.updated_record);
+                        if (this.updateRoomData?.newImage) {
+                            this.updateRoomData.newImage= this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateRoomData?.newImage.substring(20)));
+                            // this.updateRoomData.file= this.updateRoomData?.file 
+                        }
+                        console.log(this.updateRoomData);
+
+
+                        this.updateRoomData.weekdays = JSON.parse(this.updateRoomData['weekdays']);
+                        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+                            .subscribe(
+                                (respData: any) => {
+                                    if (respData && respData.length > 0) {
+                                        respData.forEach(el => {
+
+                                            if (el.id == this.updateRoomData.author) {
+                                                this.updateRoomData.user = el;
+                                                if (this.updateRoomData.user.member_id != null) {
+                                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.updateRoomData.user.member_id, null)
+                                                        .subscribe(
+                                                            (resppData: any) => {
+                                                                this.updateRoomData.user.imagePro = resppData
+                                                            },
+                                                            (error: any) => {
+                                                                this.updateRoomData.user.imagePro = null;
+                                                            });
+                                                } else {
+                                                    this.updateRoomData.user.imagePro = null;
+                                                }
+                                            }
+                                        });
                                     }
                                 });
-                            }
-                        });
+                    }
                 }
-            }
-            setTimeout(() => {
-                this.getRoomCalendar(this.roomDetails);
-            }, 500);
+                setTimeout(() => {
+                    this.getRoomCalendar(this.roomDetails);
+                }, 500);
             })
-        .catch((erro: any) => {
-            this.notificationService.showError(erro, null);
-        });
+            .catch((erro: any) => {
+                this.notificationService.showError(erro, null);
+            });
     }
 
-    getRoomCalendar(roomsByIdData:any){
+    getRoomCalendar(roomsByIdData: any) {
         // this.calendarRooms = this.commonFunctionService.getRoomCalendar(roomsByIdData);
         this.allRoomCalndr = this.commonFunctionService.getRoomCalendar(roomsByIdData);
         this.calendarRooms = this.allRoomCalndr[0].cal
         this.calendarOptions = {
-            plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
             initialView: 'timeGridWeek',
             headerToolbar: {
-              left: 'prev,next today',
-              center: 'title',
-              right: ''
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
             },
             slotDuration: '00:02:30', // length of time slots
             allDaySlot: false, // display all-day events in a separate all-day slot
@@ -193,7 +200,7 @@ export class RoomDetailsComponent implements OnInit {
                 minute: '2-digit',
                 hour12: false
             },
-            firstDay:1,
+            firstDay: 1,
             weekends: true,
             editable: false,
             selectable: false,
@@ -216,14 +223,14 @@ export class RoomDetailsComponent implements OnInit {
                 meridiem: false,
                 hour12: false
             }
-          };
-          this.authService.setLoader(false);
+        };
+        this.authService.setLoader(false);
 
     }
 
     handleEventClick(arg) {
-        if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-            this.viewDetails(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetails(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
         }
     }
 
@@ -231,14 +238,14 @@ export class RoomDetailsComponent implements OnInit {
         console.log(arg.date);
     }
 
-        /**
-    * Function to redirect the user with date parameter
-    * Date: 14 Mar 2023
-    * @author  MangoIt Solutions (R)
-    * @param   {id , date}
-    * @return  {}
-    */
-    viewDetails(id: any, date: any ,type:any) {
+    /**
+* Function to redirect the user with date parameter
+* Date: 14 Mar 2023
+* @author  MangoIt Solutions (R)
+* @param   {id , date}
+* @return  {}
+*/
+    viewDetails(id: any, date: any, type: any) {
         $('#view-rooms').modal('hide');
         if (type == 'course') {
             const url = '/course-detail/' + id;
@@ -258,46 +265,46 @@ export class RoomDetailsComponent implements OnInit {
     }
 
 
-    updateRoom(room_id:number){
-        this.router.navigate(['update-room/'+ room_id])
+    updateRoom(room_id: number) {
+        this.router.navigate(['update-room/' + room_id])
     }
 
-    approveRoom(roomId:number){
+    approveRoom(roomId: number) {
         let self = this;
-        let userId:string = localStorage.getItem('user-id');
+        let userId: string = localStorage.getItem('user-id');
         self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
             self.authService.memberSendRequest('get', 'set-approve-room-status/' + roomId + '/' + userId, null)
-            .subscribe(
-                (respData: any) => {
-                    self.ngOnInit();
-                }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.ngOnInit();
+                    }
+                )
         }, function () {
         })
     }
 
-    approvedUpdateRoom(room_id:number){
+    approvedUpdateRoom(room_id: number) {
         let self = this;
-        let userId:string = localStorage.getItem('user-id');
+        let userId: string = localStorage.getItem('user-id');
         self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
             self.authService.memberSendRequest('get', 'approve-updatedrooms/' + room_id + '/' + userId, null)
-            .subscribe(
-                (respData: any) => {
-                    self.ngOnInit();
-                    self.getRoomDetail(room_id)
-                }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.ngOnInit();
+                        self.getRoomDetail(room_id)
+                    }
+                )
         }, function () {
         })
     }
 
-    unapprovedRoom(roomId:number){
+    unapprovedRoom(roomId: number) {
         let self = this;
         this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, function () {
-            let reason  = $("#message-text").val();
+            let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id":self.userDetails.userId
+                "deny_by_id": self.userDetails.userId
             };
             self.authService.memberSendRequest('put', 'deny-rooms/room_id/' + roomId, postData)
                 .subscribe(
@@ -310,36 +317,36 @@ export class RoomDetailsComponent implements OnInit {
     }
 
 
-    deleteRoom(room_id:number){
+    deleteRoom(room_id: number) {
         let self = this;
         self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
             self.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
-            .subscribe(
-            (respData: any) => {
-                self.responseMessage = respData.result.message;
-                self.notificationService.showSuccess(self.responseMessage,null);
-                self.router.navigate(['/room'])
-            }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.responseMessage = respData.result.message;
+                        self.notificationService.showSuccess(self.responseMessage, null);
+                        self.router.navigate(['/room'])
+                    }
+                )
         }, function () {
         })
     }
 
-    deleteUpdateRoom(room_id:number){
+    deleteUpdateRoom(room_id: number) {
         let self = this;
         self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
             self.authService.memberSendRequest('get', 'get-reset-updatedroom/' + room_id, null)
-            .subscribe(
-            (respData: any) => {
-                self.router.navigate(['room-detail/'+ room_id]);
-                setTimeout(() => {
-                    self.ngOnInit();
-                    self.getRoomDetail(room_id)
-                },1000);
-            }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.router.navigate(['room-detail/' + room_id]);
+                        setTimeout(() => {
+                            self.ngOnInit();
+                            self.getRoomDetail(room_id)
+                        }, 1000);
+                    }
+                )
         }, function () {
-        },'deleteUpdate')
+        }, 'deleteUpdate')
     }
 
 
@@ -349,7 +356,7 @@ export class RoomDetailsComponent implements OnInit {
      * @param {user id}
      * @returns {Object} Details of the User
      */
-    getMemId(id:number) {
+    getMemId(id: number) {
         $("#profileSpinner").show();
         this.thumbnail = '';
         this.commonFunctionService.getMemberId(id)
@@ -379,11 +386,11 @@ export class RoomDetailsComponent implements OnInit {
         }
     }
 
-	goBack() {
+    goBack() {
         this.router.navigate(['/room']);
-	}
+    }
 
-    getDayName(id:any){
+    getDayName(id: any) {
         return this.allWeekDayArray[id];
     }
 

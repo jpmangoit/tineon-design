@@ -29,7 +29,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     weekdayList: UntypedFormArray;
     formSubmit: boolean = false;
     roomsSubmitted: boolean = false;
-    responseMessage: string;
+    responseMessage: string; 
     checkNum: boolean = false;
     fileToReturn: File;
     roomId: number;

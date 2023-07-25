@@ -269,8 +269,9 @@
                                         <!-- upcoming item start -->
                                         <div class="upcoming-item">
                                             <div class="news-items">
-                                                <div class="news-image-area">
-                                                    <img onContextMenu="return false;" [src]="upcoming.picture_video ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                                                <div class="news-image-area" *ngIf="upcoming.event_image != undefined">
+                                                    <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                                                    <!-- <img onContextMenu="return false;" [src]="upcoming?.event_images[0]?.event_image ? upcoming?.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                                 </div>
                                                 <div class="news-des-area">
                                                     <div class="news-top-content">

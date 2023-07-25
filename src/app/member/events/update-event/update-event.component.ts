@@ -714,17 +714,29 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             end_time = date_to[1].split(".");
         }
 
-        if (this.eventDetails?.picture_video != null) {
+        if (this.eventDetails?.event_images[0]?.event_image != null) {
             this.hasPicture = true;
-            if (this.eventDetails.picture_video){
-            this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
-            this.eventImage =  this.eventDetails.picture_video;
-            this.imageUrl = this.eventDetails.picture_video;
+            if (this.eventDetails?.event_images[0]?.event_image){
+            this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
+            this.eventImage =  this.eventDetails?.event_images[0]?.event_image;
+            this.imageUrl = this.eventDetails?.event_images[0]?.event_image;
             }
         } else {
             this.hasPicture = false;
             this.eventImage = '';
-        }
+        } 
+
+        // if (this.eventDetails?.picture_video != null) {
+        //     this.hasPicture = true;
+        //     if (this.eventDetails.picture_video){
+        //     this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
+        //     this.eventImage =  this.eventDetails.picture_video;
+        //     this.imageUrl = this.eventDetails.picture_video;
+        //     }
+        // } else {
+        //     this.hasPicture = false;
+        //     this.eventImage = '';
+        // } 
 
         if (this.eventDetails?.document_url) {
             this.eventFile =  this.eventDetails.document_url;
@@ -880,6 +892,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                     .subscribe(
                                         (respData) => {
                                             this.authService.setLoader(false);
+                                            console.log(respData);
+                                            
                                             var groupParticipants: any = respData[0].participants;
                                             var groupUsers: any = [];
                                             if (groupParticipants && groupParticipants.length > 0) {

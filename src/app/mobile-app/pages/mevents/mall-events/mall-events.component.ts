@@ -11,6 +11,7 @@ import { EventsType } from 'src/app/models/events-type.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -59,7 +60,9 @@ export class MallEventsComponent implements OnInit {
         private router: Router,
         private lang: LanguageService,
         private themes: ThemeService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
+
     ) { }
 
     ngOnInit(): void {
@@ -96,14 +99,14 @@ export class MallEventsComponent implements OnInit {
             let eventUrl: string;
             if (this.userRole == 'guest') {
                 eventUrl = 'openevents/';
-            } else {
+            } else { 
                 eventUrl = 'approvedEvents/user/' + userId;
             }
             this.authService.memberSendRequest('get', eventUrl, null)
                 .subscribe(
                     (respData: any) => {
-
                         this.eventData = respData;
+                        
                         this.authService.setLoader(false);
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
@@ -111,6 +114,10 @@ export class MallEventsComponent implements OnInit {
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
+                                if (element?.event_images[0]?.event_image) {
+                                    element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
+                                }
+
                                 var url: string[] = [];
                                 for (const key in element) {
                                     if (Object.prototype.hasOwnProperty.call(element, key)) {
@@ -158,13 +165,14 @@ export class MallEventsComponent implements OnInit {
                                             let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             // let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let rrEvents: EventsType = {
+                                            let rrEvents: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate,
                                                 "date_to": rrDateEnd,
                                                 "place": element.place,
@@ -235,13 +243,14 @@ export class MallEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + dd.start_time + ':00.000Z'
                                             // let rrDateEnd1: string = dt1 + "T" + dd.end_time + ':00.000Z';
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,
@@ -305,13 +314,14 @@ export class MallEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,
@@ -398,15 +408,17 @@ export class MallEventsComponent implements OnInit {
         //     Array.prototype.push.apply(this.eventList, this.courseList);
         // }
         if (this.eventList && this.eventList.length > 0) {
+            
             this.eventList.forEach((keys: any, vals: any) => {
                 let date_from: string = keys.date_from.replace('Z', '');
                 let date_to: string = keys.date_to.replace('Z', '');
                 this.calendarEvents[count] = {
                     'title': keys.name, 'start': date_from, 'end': date_to, 'description': keys.description, 'event_id': keys.id,
-                    'type': keys.type, 'classNames': this.eventTypeList[keys.type].class, 'event_name': keys.name, 'picture_video': keys.picture_video, 'isCourse': keys.isCourse
+                    'type': keys.type, 'classNames': this.eventTypeList[keys.type].class, 'event_name': keys.name, 'event_image': keys.event_image, 'isCourse': keys.isCourse
                 };
                 count++;
             });
+            
         }
         this.calendarOptionsTimeGrid = {
             locale: this.selectLanguage,
@@ -465,7 +477,7 @@ export class MallEventsComponent implements OnInit {
     handleEventClick(res: any) {
         this.calendarEventClicked = true;
         this.newClickedEvent = res.event;
-        this.thumbnail = this.newClickedEvent.extendedProps.picture_video;
+        this.thumbnail = this.newClickedEvent.extendedProps.event_image;
         $('#exampleModalLabel').text(this.eventTypeList[this.newClickedEvent.extendedProps.type].name);
         $('#showPopup').trigger('click');
     }

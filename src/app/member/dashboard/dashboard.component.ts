@@ -138,6 +138,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             .subscribe(
                 (respData: any) => {
                     this.eventData = respData;
+                    this.eventData.forEach((element: any) => {
+                        if ( element?.event_images[0]?.event_image) {
+                            element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.event_images[0]?.event_image.substring(20)));
+                        }
+                    });  
                 }
             );
         this.authService.memberSendRequest('post', 'allCourses', null)

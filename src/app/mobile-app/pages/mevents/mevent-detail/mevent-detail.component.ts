@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
@@ -21,9 +21,9 @@ import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
-  selector: 'app-mevent-detail',
-  templateUrl: './mevent-detail.component.html',
-  styleUrls: ['./mevent-detail.component.css']
+    selector: 'app-mevent-detail',
+    templateUrl: './mevent-detail.component.html',
+    styleUrls: ['./mevent-detail.component.css']
 })
 export class MeventDetailComponent implements OnInit {
     language: any;
@@ -131,9 +131,9 @@ export class MeventDetailComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             this.eventDate = params.date
         });
-        this.eventType[1] = this.language.create_event.club_event ;
-        this.eventType[2] = this.language.create_event.group_event ;
-        this.eventType[3] = this.language.create_event.functionaries_event ;
+        this.eventType[1] = this.language.create_event.club_event;
+        this.eventType[2] = this.language.create_event.group_event;
+        this.eventType[3] = this.language.create_event.functionaries_event;
         this.eventType[4] = this.language.create_event.courses;
         this.eventType[5] = this.language.create_event.seminar;
         this.chats();
@@ -185,19 +185,20 @@ export class MeventDetailComponent implements OnInit {
                             this.eventDetails = respData['result'][0];
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
-                            this.eventDetails.recurring_dates.forEach((element:any) =>{
+                            this.eventDetails.recurring_dates.forEach((element: any) => {
                                 element.start_time = this.commonFunctionService.convertTime(element.start_time);
                                 element.end_time = this.commonFunctionService.convertTime(element.end_time);
                             });
-                            if(this.eventDate){
+                            if (this.eventDate) {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                if (this.eventDetails?.picture_video != null) {
+
+                                if (this.eventDetails?.event_images[0]?.event_image != null) {
                                     this.showImage = true;
-                                    if (this.eventDetails.picture_video){
-                                    this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
-                                    this.imageurl =  this.eventDetails.picture_video
+                                    if (this.eventDetails?.event_images[0]?.event_image) {
+                                        this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
+                                        this.imageurl = this.eventDetails?.event_images[0]?.event_image
                                     }
                                 } else {
                                     this.showImage = false;
@@ -205,7 +206,7 @@ export class MeventDetailComponent implements OnInit {
                                 }
 
                                 if (this.eventDetails?.document_url) {
-                                    this.docFile =  this.eventDetails.document_url;
+                                    this.docFile = this.eventDetails.document_url;
                                 }
 
                                 // if (this.eventDetails.picture_video != null) {
@@ -233,6 +234,9 @@ export class MeventDetailComponent implements OnInit {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
+
+                                        console.log(this.updateEventData);
+                                        
 
                                         if (this.updateEventData.image != null) {
                                             var url: string[] = this.updateEventData.image.split('\"');
@@ -266,7 +270,7 @@ export class MeventDetailComponent implements OnInit {
                                                                                 this.thumb = resppData;
                                                                                 element.user.image = this.thumb
                                                                             },
-                                                                            (error:any) => {
+                                                                            (error: any) => {
                                                                                 element.user.image = null;
                                                                             });
                                                                 } else {
@@ -294,7 +298,7 @@ export class MeventDetailComponent implements OnInit {
                                                                             this.thumb = resppData;
                                                                             element.user.image = this.thumb
                                                                         },
-                                                                        (error:any) => {
+                                                                        (error: any) => {
                                                                             element.user.image = null;
                                                                         });
                                                             } else {
@@ -310,14 +314,14 @@ export class MeventDetailComponent implements OnInit {
                                             });
                                         }
 
-                                        if(this.updateEventData.room != 'null'){
+                                        if (this.updateEventData.room != 'null') {
                                             this.commonFunctionService.roomsById(this.updateEventData.room)
-                                            .then((resp: any) => {
-                                                   this.updateEventData.roomData = resp;
+                                                .then((resp: any) => {
+                                                    this.updateEventData.roomData = resp;
                                                 })
-                                            .catch((erro: any) => {
-                                                this.notificationService.showError(erro, null);
-                                            });
+                                                .catch((erro: any) => {
+                                                    this.notificationService.showError(erro, null);
+                                                });
                                         }
                                     }
                                 }
@@ -378,7 +382,7 @@ export class MeventDetailComponent implements OnInit {
                                                         this.thumb = resppData;
                                                         val.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.image = null;
                                                     });
                                         }
@@ -395,7 +399,7 @@ export class MeventDetailComponent implements OnInit {
                                                         this.thumb = resppData;
                                                         val.users.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.users.image = null;
                                                     });
                                         }
@@ -436,7 +440,7 @@ export class MeventDetailComponent implements OnInit {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb;
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -615,7 +619,7 @@ export class MeventDetailComponent implements OnInit {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -683,40 +687,40 @@ export class MeventDetailComponent implements OnInit {
     chats() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
-        .subscribe(
-            (resp: any) => {
-                setTimeout(() => {
-                    this.authService.setLoader(false);
-                }, 2000);
-                this.chatUserArr = resp;
-                let grp: any;
-                if(this.chatUserArr && this.chatUserArr.length > 0){
-                    this.chatUserArr.forEach(element => {
-                        if (element.type == 'individual') {
-                            element.lastMessage = JSON.parse(element.lastMessage)
-                            element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
-                            let cudate = new Date().toISOString().split('T')[0]
-                            let msgdate = element.lastMsgTime.split('T')[0]
-                            if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
-                                element.lastMsgTimming = element.lastMsgTime
-                            } else {
-                                element.lastMsgDate = msgdate
+            .subscribe(
+                (resp: any) => {
+                    setTimeout(() => {
+                        this.authService.setLoader(false);
+                    }, 2000);
+                    this.chatUserArr = resp;
+                    let grp: any;
+                    if (this.chatUserArr && this.chatUserArr.length > 0) {
+                        this.chatUserArr.forEach(element => {
+                            if (element.type == 'individual') {
+                                element.lastMessage = JSON.parse(element.lastMessage)
+                                element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
+                                let cudate = new Date().toISOString().split('T')[0]
+                                let msgdate = element.lastMsgTime.split('T')[0]
+                                if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
+                                    element.lastMsgTimming = element.lastMsgTime
+                                } else {
+                                    element.lastMsgDate = msgdate
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                    this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
+                    this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
                 }
-                this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
-                this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
-            }
 
-        );
+            );
     }
 
-    checkChatDetails(userId:any){
+    checkChatDetails(userId: any) {
         let chatUser = this.chatUserArr.filter(x => x.id == userId);
-        if(chatUser.length > 0){
-            this.router.navigate(['/community/'], { queryParams: { id: userId} });
-        }else{
+        if (chatUser.length > 0) {
+            this.router.navigate(['/community/'], { queryParams: { id: userId } });
+        } else {
             this.router.navigate(['create-chat']);
         }
     }
@@ -726,36 +730,36 @@ export class MeventDetailComponent implements OnInit {
     * @author  MangoIt Solutions
     * @param   {path}
     */
-        download(path: any) {
-            let data = {
-                name: path
-            }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/')[2]
-                this.authService.downloadDocument('post', endPoint, data).toPromise()
-                    .then((blob: any) => {
-                        saveAs(blob, filename);
-                        this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
+    download(path: any) {
+        let data = {
+            name: path
         }
+        this.dowloading = true;
+        var endPoint = 'get-documentbyname';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
 
 
     ngOnDestroy(): void {

@@ -62,9 +62,9 @@ export class MDashboardComponent implements OnInit {
     bannerData: any;
     adsTineon: any;
     userId: string
-    allUser: any[]=[];
-    alluserInformation:{member_id: number}[] = [];
-    userInfo:any;
+    allUser: any[] = [];
+    alluserInformation: { member_id: number }[] = [];
+    userInfo: any;
     All() {
         this.displayAll = true;
         this.displayNews = false;
@@ -237,19 +237,19 @@ export class MDashboardComponent implements OnInit {
    * @param   {}
    * @return  {Array Of Object} all the Users
    */
-	getAllUserInfo() {
-		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-		.subscribe(
-			(respData: any) => {
-                if(respData && respData.length > 0){
-                    this.allUser = respData;
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+    getAllUserInfo() {
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        this.allUser = respData;
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
                 }
-			}
-		);
-	}
+            );
+    }
 
     /**
     * FUnction to get a login user image
@@ -300,14 +300,14 @@ export class MDashboardComponent implements OnInit {
                                             // this.thumb = resppData;
                                             val.user.imagePro = resppData;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             val.user.imagePro = null;
                                         }
                                     );
                             } else {
                                 val.user.imagePro = null;
                             }
-                            if (val?.['imageUrls']){
+                            if (val?.['imageUrls']) {
                                 val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
                             }
                         });
@@ -333,7 +333,7 @@ export class MDashboardComponent implements OnInit {
                         if (this.modalNews.imageUrls == '' || this.modalNews.imageUrls == null) {
                             this.newImg = '../../assets/img/no_image.png';
                         } else {
-                            if (this.modalNews.imageUrls){
+                            if (this.modalNews.imageUrls) {
                                 this.modalNews.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.modalNews.imageUrls.substring(20)));
                                 this.newImg = this.modalNews.imageUrls;
                             }
@@ -345,7 +345,7 @@ export class MDashboardComponent implements OnInit {
                                     this.authService.setLoader(false);
                                     this.thumbnail = respData;
                                 },
-                                (error:any) => {
+                                (error: any) => {
                                     this.thumbnail = null;
                                 });
                         this.authService.setLoader(false);
@@ -382,24 +382,29 @@ export class MDashboardComponent implements OnInit {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                         var element: any = null;
+
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
-                                var url: string[] = [];
-                                if (element.picture_video != null && element.picture_video != '') {
-                                    if (element.picture_video) {
-                                        url = element.picture_video.split('"');
-                                        if (url && url.length > 0) {
-                                            url.forEach((el) => {
-                                                if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                    element.picture_video = el;
-                                                }
-                                            });
-                                        } else {
-                                            element.picture_video = '';
-                                        }
-                                    }
+                                if (element?.event_images[0]?.event_image) {
+                                    element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                                 }
+
+                                // var url: string[] = [];
+                                // if (element.picture_video != null && element.picture_video != '') {
+                                //     if (element.picture_video) {
+                                //         url = element.picture_video.split('"');
+                                //         if (url && url.length > 0) {
+                                //             url.forEach((el) => {
+                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                //                     element.picture_video = el;
+                                //                 }
+                                //             });
+                                //         } else {
+                                //             element.picture_video = '';
+                                //         }
+                                //     }
+                                // }
 
                                 if (element && element.recurrence != '' && element.recurrence != null) {
                                     let recurrence: string = element.recurrence;
@@ -417,12 +422,12 @@ export class MDashboardComponent implements OnInit {
                                             let dt: string = yourDate.toISOString().split('T')[0];
 
                                             let recurring_dates = JSON.parse(element.recurring_dates);
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
                                                 recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                 recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -431,13 +436,15 @@ export class MDashboardComponent implements OnInit {
 
                                             // let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let rrEvents: EventsType = {
+
+                                            let rrEvents: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate,
                                                 "date_to": rrDateEnd,
                                                 "place": element.place,
@@ -483,17 +490,17 @@ export class MDashboardComponent implements OnInit {
                                 } else {
                                     if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                         const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                        dates?.forEach((dd:any,index:any)  => {
+                                        dates?.forEach((dd: any, index: any) => {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
 
                                             let recurring_dates = JSON.parse(element.recurring_dates);
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
                                                 recurring_time = this.commonFunctionService.formatTime(recurring_dates[index]?.start_time);
                                                 recurring_etime = this.commonFunctionService.formatTime(recurring_dates[index]?.end_time);
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -504,13 +511,14 @@ export class MDashboardComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                "event_document": element?.event_images?.[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,
@@ -561,12 +569,12 @@ export class MDashboardComponent implements OnInit {
                                                 let yourDate1: Date = new Date(dd)
                                                 let dt1: string = yourDate1.toISOString().split('T')[0];
                                                 let recurring_dates = JSON.parse(element.recurring_dates);
-                                                var recurring_time:any
-                                                var recurring_etime:any
-                                                if(recurring_dates){
+                                                var recurring_time: any
+                                                var recurring_etime: any
+                                                if (recurring_dates) {
                                                     recurring_time = this.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                     recurring_etime = this.commonFunctionService.formatTime(recurring_dates[0].end_time);
-                                                }else{
+                                                } else {
                                                     recurring_time = element.date_from.split("T")["1"]
                                                     recurring_etime = element.date_to.split("T")["1"];
                                                 }
@@ -576,13 +584,14 @@ export class MDashboardComponent implements OnInit {
                                                 // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                                 // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                 let self = this;
-                                                let rrEvents1: EventsType = {
+                                                let rrEvents1: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "event_image": (element?.event_images[0]?.event_image && element?.event_images[0]?.event_image != undefined) ? element.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                    "event_document": element?.event_images?.[0]?.event_document,
                                                     "date_from": rrDate1,
                                                     "date_to": rrDateEnd1,
                                                     "place": element.place,
@@ -632,6 +641,7 @@ export class MDashboardComponent implements OnInit {
                         }
                         this.upcomingEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
                         this.upcomingEventList.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
+
                     }
                 );
         }
@@ -693,31 +703,31 @@ export class MDashboardComponent implements OnInit {
         this.activatedSub.unsubscribe();
     }
 
-    openbox(id:number){
+    openbox(id: number) {
         if (id = 1) {
             $('.qr-info-main.profile-qr-box').addClass('open');
             $('.profile-inner-or').removeClass('show');
         } else if (id = 2) {
-             $('.profile-inner-or').addClass('show');
+            $('.profile-inner-or').addClass('show');
             $('.qr-info-main.profile-qr-box').removeClass('open');
         }
 
     }
 
-    openbox1(){
+    openbox1() {
         $('.profile-inner-or').addClass('show');
         $('.qr-info-main.profile-qr-box').removeClass('open');
     }
 
     getProfileData() {
         if (sessionStorage.getItem('token')) {
-            let userData: LoginDetails = JSON.parse( localStorage.getItem('user-data') );
+            let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
             this.authService.setLoader(true);
-            this.authService.memberSendRequest( 'get', 'member-info/' + userData.database_id + '/' + userData.team_id + '/' +userData.member_id, userData)
-            .subscribe((respData: any) => {
-                this.authService.setLoader(false);
-                this.userInfo = respData;
-            });
+            this.authService.memberSendRequest('get', 'member-info/' + userData.database_id + '/' + userData.team_id + '/' + userData.member_id, userData)
+                .subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    this.userInfo = respData;
+                });
         }
     }
 }

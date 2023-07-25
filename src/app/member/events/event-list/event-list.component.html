@@ -52,7 +52,9 @@
                             {{language.banner.image}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
-                            <img src="{{row.picture_video}}" width="60px" height="60px" />
+                            <!-- <img src="{{row.picture_video}}" width="60px" height="60px" /> -->
+                            <img [src]="row?.event_images[0]?.event_image ? row?.event_images[0]?.event_image: '../../../assets/img/no_image.png'"
+                            alt="" width="60px" height="60px" />
                         </td>
                     </ng-container>
 

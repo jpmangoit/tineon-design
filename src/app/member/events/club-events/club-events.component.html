@@ -61,7 +61,7 @@
                                         <div class="event-box-inner">
                                             <div class="event_box_left">
                                                 <span class="event_month">{{todays_date | date: 'EEEE'}}</span>
-                                                <span class="event_date">{{today.date_from | date: 'HH:mm':'UTC'}}</span>
+                                                <span class="event_date">{{today.date_from | date: 'HH:mm':'UTC'}}</span> 
                                             </div>
                                             <div class="event_box_right">
                                                 <h6><a (click)="eventDetails(today.id,todays_date)">{{today.name}}</a>

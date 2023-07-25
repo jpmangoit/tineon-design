@@ -190,17 +190,18 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 //     this.showImage = false;
                                 //     this.imageurl = '';
                                 // } 
+                                console.log(this.eventDetails); 
 
-                                if (this.eventDetails?.event_images[0]?.event_image != null) {
+                                if (this.eventDetails?.event_images[0]?.event_image) {
                                     this.showImage = true;
-                                    if (this.eventDetails?.event_images[0]?.event_image) {
-                                        this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
-                                        this.imageurl = this.eventDetails?.event_images[0]?.event_image
-                                    }
-                                } else {
+                                    this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
+                                    this.imageurl = this.eventDetails?.event_images[0]?.event_image
+                                }
+                                else {
                                     this.showImage = false;
                                     this.imageurl = '';
                                 }
+
 
                                 if (this.eventDetails?.document_url) {
                                     this.docFile = this.eventDetails.document_url;
@@ -240,6 +241,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                             this.showUpdateImage = false;
                                             this.updateImageurl = '';
                                         }
+                                        // console.log(this.updateEventData);
+
 
                                         if (this.updateEventData?.updateDocumentUrl) {
                                             this.docFile = this.updateEventData.updateDocumentUrl;

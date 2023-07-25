@@ -85,6 +85,7 @@ export class ClubAppointmentsComponent implements OnInit {
      }
 
     ngOnInit(): void {
+        
         if (sessionStorage.getItem('token')) {
             this.language = this.lang.getLanguaageFile();
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -143,12 +144,16 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                 var element: any = null;
                 var url: string[] = [];
+                
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-                        if (element.picture_video){
-                            element.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.picture_video.substring(20)));
-                        }
+                        
+                        // if (element.picture_video){
+                        //     element.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.picture_video.substring(20)));
+                        // }
+
+
                         // if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
                         //     if (element.picture_video) {
                         //         url = element.picture_video.split('"');
@@ -200,7 +205,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                         "id": element.id,
                                         "type": element.type,
                                         "name": element.name,
-                                        "picture_video": element.picture_video,
+                                        "event_image": element?.event_images[0]?.event_image,
+                                        "event_document": element?.event_images[0]?.event_document,
                                         "date_from": rrDate,
                                         "date_to": rrDateEnd,
                                         "description": element.description,
@@ -216,8 +222,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                         self.upcomingEvent.push(rrEvents);
                                         self.upcomingEventList.push(rrEvents);
                                     }
+                                    
                                 })
                             }
+                            
                         } else {
                             if (element && element.recurring_dates && element.recurring_dates != '' && element.recurring_dates != null) {
                                 JSON.parse(element.recurring_dates).forEach((dd:any,index:any) => {
@@ -246,7 +254,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "id": element.id,
                                             "type": element.type,
                                             "name": element.name,
-                                            "picture_video": element.picture_video,
+                                            "picture_video": element.event_images,
                                             "date_from": rrDate1,
                                             "date_to": rrDateEnd1,
                                             "description": element.description,
@@ -296,7 +304,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "id": element.id,
                                             "type": element.type,
                                             "name": element.name,
-                                            "picture_video": element.picture_video,
+                                            "picture_video": element.event_images,
                                             "date_from": rrDate1,
                                             "date_to": rrDateEnd1,
                                             "description": element.description,
@@ -316,6 +324,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                     });
                                 }
                             }
+                            
                         }
                     }
                 }

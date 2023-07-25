@@ -6,7 +6,8 @@
                 <div class="news-widget com-g-widget">
                     <a [href]="item.redirectLink" target="_blank" (click)="onClickBanner(item.id)">
                         <div class="news-image" [ngClass]="item.banner_image[0]?.banner_image == null ?'no_image' : ''">
-                            <img onContextMenu="return false;" [src]="item.banner_image[0]?.banner_image!= null? item.banner_image[0]?.banner_image: '../../assets/img/no_image.png'"
+                            <img onContextMenu="return false;"
+                                [src]="item.banner_image[0]?.banner_image!= null? item.banner_image[0]?.banner_image: '../../assets/img/no_image.png'"
                                 alt="{{item.bannerName }}" loading="lazy" />
                         </div>
                         <div class="news-content">
@@ -48,24 +49,31 @@
                                 <div class="club-widget-des-inner">
                                     <div class="club-left-area">
                                         <div class="club-category"> {{ language.header.event }} </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
                                             <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id, item.date_from)">
+                                            <img onContextMenu="return false;" [src]="item.event_image? item.event_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
                                     <div class="club-right-area">
                                         <span class="club-schedule">{{ item.date_from | date : "d. MMMM y"}}</span>
-                                        <h5 *ngIf=" item && item.isCourse == true" (click)="courseDetails(item.id,item.date_from)"> {{ item.name }}
+                                        <h5 *ngIf=" item && item.isCourse == true"
+                                            (click)="courseDetails(item.id,item.date_from)"> {{ item.name }}
                                         </h5>
-                                        <h5 *ngIf="item && item.isCourse == false" (click)="eventDetails(item.id,item.date_from)">  {{ item.name }}
+                                        <h5 *ngIf="item && item.isCourse == false"
+                                            (click)="eventDetails(item.id,item.date_from)"> {{ item.name }}
                                         </h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm" }} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm" }} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>
@@ -84,24 +92,31 @@
                                 <div class="club-widget-des-inner">
                                     <div class="club-left-area">
                                         <div class="club-category">
-                                        {{ language.header.group }}
-                                    </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
+                                            {{ language.header.group }}
+                                        </div>
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
                                             <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf="item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id,item.date_from)">
+                                        <div *ngIf="item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video:'../../../../assets/img/new-design/dashboard/group-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
                                     <div class="club-right-area">
                                         <span class="club-schedule">{{item.date_from | date : " d. MMMM y"}}</span>
-                                        <h5 *ngIf="item && item.isCourse == true"(click)="courseDetails(item.id,item.date_from)"> {{ item.name }}  </h5>
-                                        <h5 *ngIf="item && item.isCourse == false" (click)="eventDetails(item.id,item.date_from)"> {{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == true"
+                                            (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == false"
+                                            (click)="eventDetails(item.id,item.date_from)"> {{ item.name }} </h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>
@@ -122,11 +137,13 @@
                                     <div class="club-left-area">
                                         <div class="club-category">{{ language.club.ticket }}</div>
 
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
                                             <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id,item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video :'../../../../assets/img/new-design/dashboard/ticket-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
@@ -134,11 +151,16 @@
                                     </div>
                                     <div class="club-right-area">
                                         <span class="club-schedule">{{ item.date_from | date : "d. MMMM y" }}</span>
-                                        <h5 *ngIf="item && item.isCourse == true" (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
-                                        <h5 *ngIf="item && item.isCourse == false" (click)="eventDetails(item.id,item.date_from)"> {{ item.name }}</h5>
+                                        <h5 *ngIf="item && item.isCourse == true"
+                                            (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == false"
+                                            (click)="eventDetails(item.id,item.date_from)"> {{ item.name }}</h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>
@@ -161,26 +183,32 @@
                                 <div class="club-widget-des-inner">
                                     <div class="club-left-area">
                                         <div class="club-category">
-                                        {{ language.header.event }}
-                                    </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;"
-                                                [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            {{ language.header.event }}
+                                        </div>
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
+                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id,item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
                                     <div class="club-right-area">
-                                         <span class="club-schedule">{{ item.date_from | date : "d. MMMM y"}}</span>
-                                        <h5 *ngIf="item && item.isCourse == true"  (click)="courseDetails(item.id,item.date_from)">  {{ item.name }} </h5>
-                                        <h5 *ngIf="item && item.isCourse == false" (click)="eventDetails(item.id,item.date_from)"> {{ item.name }}</h5>
+                                        <span class="club-schedule">{{ item.date_from | date : "d. MMMM y"}}</span>
+                                        <h5 *ngIf="item && item.isCourse == true"
+                                            (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == false"
+                                            (click)="eventDetails(item.id,item.date_from)"> {{ item.name }}</h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>
@@ -200,22 +228,23 @@
 
                                 <div class="club-widget-des-inner">
                                     <div class="club-left-area">
-                                         <div class="club-category">
-                                        {{ language.header.group }}
-                                    </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;"
-                                                [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                        <div class="club-category">
+                                            {{ language.header.group }}
+                                        </div>
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
+                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id,item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video : '../../../../assets/img/new-design/dashboard/group-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
                                     <div class="club-right-area">
-                                          <span class="club-schedule">{{item.date_from | date : "d. MMMM y"}}</span>
+                                        <span class="club-schedule">{{item.date_from | date : "d. MMMM y"}}</span>
                                         <h5 *ngIf="item && item.isCourse == true "
                                             (click)="courseDetails(item.id,item.date_from)">
                                             {{ item.name }}
@@ -225,8 +254,11 @@
                                             {{ item.name }}
                                         </h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>
@@ -247,12 +279,13 @@
                                         <div class="club-category">
                                             {{ language.club.ticket }}
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image" (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;"
-                                                [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                            (click)="courseDetails(item.id, item.date_from)">
+                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image" (click)="eventDetails(item.id,item.date_from)">
+                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                            (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video :'../../../../assets/img/new-design/dashboard/ticket-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
@@ -260,11 +293,16 @@
                                     </div>
                                     <div class="club-right-area">
                                         <span class="club-schedule">{{item.date_from | date : "d. MMMM y"}}</span>
-                                        <h5 *ngIf="item && item.isCourse == true" (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
-                                        <h5 *ngIf="item && item.isCourse == false" (click)="eventDetails(item.id,item.date_from)">{{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == true"
+                                            (click)="courseDetails(item.id,item.date_from)"> {{ item.name }} </h5>
+                                        <h5 *ngIf="item && item.isCourse == false"
+                                            (click)="eventDetails(item.id,item.date_from)">{{ item.name }} </h5>
                                         <div class="ticket-time">
-                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
-                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date: "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><strong>{{language.room.from}}:</strong> {{ item.date_from| date:
+                                                "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span>
+                                            <span><Strong>{{language.room.to}}:</Strong> {{ item.date_from| date:
+                                                "dd.MM.yy"}} / {{ item.date_to| date: "HH:mm"}}
+                                                {{language.login.o_clock}}</span>
                                             <!-- <span><Strong>{{language.room.to}}:</Strong> {{ item.date_to| date: "dd.MM.yy / HH:mm"}} {{language.login.o_clock}}</span> -->
                                         </div>
                                     </div>

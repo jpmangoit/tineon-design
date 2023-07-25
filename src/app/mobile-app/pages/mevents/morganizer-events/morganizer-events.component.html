@@ -85,8 +85,9 @@
                     <div class="event-box-inner">
                         <div class="event_box_left">
                             <div class="images">
-                                <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
-                            </div>                           
+                                <!-- <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
+                                <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                            </div>   
                         </div>
                         <div class="event_box_right">
                             <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>                             
@@ -133,7 +134,8 @@
                     <div class="event-box-inner">
                         <div class="event_box_left">
                             <div class="images">
-                                <img onContextMenu="return false;" [src]="today.picture_video != null ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                                <!-- <img onContextMenu="return false;" [src]="today.picture_video != null ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
+                                <img onContextMenu="return false;" [src]="today.event_image && today.event_image != undefined ? today?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
                             </div>                           
                         </div>
                         <div class="event_box_right">
@@ -181,7 +183,8 @@
                     <div class="event-box-inner">
                         <div class="event_box_left">
                             <div class="images">
-                                <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                                <!-- <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
+                                <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
                             </div>                           
                         </div>
                         <div class="event_box_right">

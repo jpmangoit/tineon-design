@@ -161,7 +161,7 @@ export class EventsCalendarComponent implements OnInit {
                                             });
                                         } else {
                                             element.picture_video = '';
-                                        }
+                                        } 
                                     }
                                 }
                                 if (element?.recurrence && element?.recurrence != '' && element?.recurrence != null) {

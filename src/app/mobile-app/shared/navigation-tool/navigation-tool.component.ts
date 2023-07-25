@@ -146,7 +146,6 @@ export class NavigationToolComponent implements OnInit {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner']
-                    console.log(this.bannerData);
 
                     this.bannerData.forEach((element: any) => {
                         element['category'] = JSON.parse(element.category);
@@ -177,7 +176,6 @@ export class NavigationToolComponent implements OnInit {
                 count = 0;
             }
             this.adsTineon = this.bannerData[count];
-            console.log(this.adsTineon);
 
             count++;
         }, 3000);

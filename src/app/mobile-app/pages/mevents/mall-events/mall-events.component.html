@@ -35,6 +35,8 @@
                                                 <div class="event-widget" [ngClass]="newClickedEvent.classNames[0]"
                                                     *ngIf="calendarEventClicked == true">
                                                     <img onContextMenu="return false;" [src]="thumbnail != null && thumbnail != '' ? thumbnail : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                    <!-- <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
+
                                                     <div class="class_title">
                                                         {{newClickedEvent.extendedProps.event_name}}</div>
                                                     <div class="class_duration">
