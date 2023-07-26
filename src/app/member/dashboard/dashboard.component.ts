@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     userDetails: LoginDetails;
     userAccess: UserAccess;
     createAccess: CreateAccess;
-    participateAccess: ParticipateAccess;
+    participateAccess: ParticipateAccess; 
     authorizationAccess: AuthorizationAccess;
     clubNewsCount: number = 0;
     communityCount: number = 0;
@@ -149,6 +149,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
             .subscribe(
                 (respData: any) => {
                     this.courseData = respData['result'];
+                    this.courseData.forEach((element: any) => {
+                        if (element?.course_image[0]?.course_image) {
+                            element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
+                        }
+                    });  
+                    
                 }
             );
         this.getUserImage();

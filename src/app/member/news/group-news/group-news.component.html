@@ -23,7 +23,7 @@
                                     {{ data.group.name }}
                                 </div>
                                 <span class="club-schedule">
-                                    {{data.news.publication_date_from| date : "dd. MMMM.yyyy"}}
+                                    {{data.news.publication_date_from| date : "dd. MMMM.yyyy"}} 
                                 </span>
                             </div>
 
@@ -32,9 +32,9 @@
                                     (click)="getNewsDetails(data.news.id)">
                                     <div class="club-w-image">
                                         <img onContextMenu="return false;"
-                                            [src]="data.news?.imageUrls ? data.news.imageUrls : '../../assets/img/no_image.png'"
+                                            [src]="data.news?.news_image[0]?.news_image ? data.news?.news_image[0]?.news_image : '../../assets/img/no_image.png'"
                                             alt="{{ data.news?.title }}" loading="lazy">
-                                    </div>
+                                    </div>   
                                 </div>
                                 <div class="club-right-area">
                                     <h5 [innerHTML]="data.news.title" data-bs-toggle="modal" data-bs-target="#exModal1"
@@ -94,9 +94,14 @@
                                                                 (close)="viewImage = false"></app-image-viewer>
                                                             <div class="news_image_container"
                                                                 (click)=" viewImage = true " *ngIf=" groupNewsImg">
+
+
                                                                 <img onContextMenu="return false;" [src]=" groupNewsImg"
                                                                     alt="{{ language.group_news.title}}"
                                                                     loading="lazy" />
+
+
+                                                                    
                                                                 <div class="dropdown action_group cm"
                                                                     *ngIf="newsData.author == userData.userId || userData.isAdmin">
                                                                     <button class="dropdown-toggle" type="button"

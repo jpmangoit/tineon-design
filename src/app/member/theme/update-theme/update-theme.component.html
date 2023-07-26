@@ -32,7 +32,7 @@
                                                         src="../../../../assets/img/event_upload.png">
                                                     <img onContextMenu="return false;" class="preview_img"
                                                         *ngIf="(thumbnail && (thumbnail != ''|| thumbnail != null))  && (croppedImage == null || croppedImage == '')&& !isImage"
-                                                        src="{{thumbnail}}">
+                                                        [src]="thumbnail">
                                                 </span>
                                                 <div *ngIf="(updateThemeForm.controls.add_image.touched || submitted) && (updateThemeForm.controls.add_image.errors?.required )"
                                                     class="text-danger">
@@ -42,18 +42,11 @@
                                         </div>
                                         <div class="row" style="margin-top: 1px;">
                                             <div class="text-center col-md-6">
-                                                <image-cropper
-                                                    [imageChangedEvent]="imageChangedEvent"
-                                                    [maintainAspectRatio]="true"
-                                                    [aspectRatio]="4/3"
-                                                    autoCrop="false"
-                                                    hideResizeSquares="true"
-                                                    [resizeToHeight]="500"
-                                                    [onlyScaleDown]="true"
-                                                    [roundCropper]="false"
-                                                    format="webp"
-                                                    (imageCropped)="imageCropped($event)"
-                                                    (imageLoaded)="imageLoaded()"
+                                                <image-cropper [imageChangedEvent]="imageChangedEvent"
+                                                    [maintainAspectRatio]="true" [aspectRatio]="4/3" autoCrop="false"
+                                                    hideResizeSquares="true" [resizeToHeight]="500"
+                                                    [onlyScaleDown]="true" [roundCropper]="false" format="webp"
+                                                    (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
                                                     (cropperReady)="cropperReady()"
                                                     (loadImageFailed)="loadImageFailed()">
                                                 </image-cropper>
@@ -101,9 +94,9 @@
                                                 <label>{{language.theme.sidebar_background}}</label>
                                                 <div class="field-area">
                                                     <div class="color-area">
-                                                        <div class="color-box" [style.background]="show_sidebarr_color"></div>
-                                                        <input class="picker-value"
-                                                            [value]="show_sidebarr_color"
+                                                        <div class="color-box" [style.background]="show_sidebarr_color">
+                                                        </div>
+                                                        <input class="picker-value" [value]="show_sidebarr_color"
                                                             formControlName="sidebar_color"
                                                             [(colorPicker)]="show_sidebarr_color"
                                                             [cpPosition]="'bottom'"
@@ -111,8 +104,7 @@
                                                     </div>
                                                     <input class="btn btn-primary" type="button"
                                                         value={{language.theme.choose_color}}
-                                                        [(colorPicker)]="show_sidebarr_color"
-                                                        [cpPosition]="'bottom'"
+                                                        [(colorPicker)]="show_sidebarr_color" [cpPosition]="'bottom'"
                                                         (colorPickerClose)="onsideBarEventLog($event)" />
                                                 </div>
 

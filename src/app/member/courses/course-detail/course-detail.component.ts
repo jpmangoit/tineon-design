@@ -23,7 +23,7 @@ declare var $: any;
     styleUrls: ['./course-detail.component.css']
 })
 
-export class CourseDetailComponent implements OnInit {
+export class CourseDetailComponent implements OnInit { 
     language: any;
     updateCourseData: any
     courseDetails: any

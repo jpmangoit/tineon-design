@@ -36,7 +36,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     userData: LoginDetails;
     dashboardData: NewsType[];
     guestNews: NewsType[] = [];
-    newsData: NewsType;
+    newsData: any;
     newsDetails: NewsType[] = [];
     newsDisplay: number;
     url: string;
@@ -198,10 +198,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         this.dashboardData = respData;
+                        
                         if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach((element, index) => {
-                                if (element?.['imageUrls']) {
-                                    element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                            this.dashboardData.forEach((element:any, index) => {
+                                if (element?.news_image[0]?.news_image) {
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                 }
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
@@ -257,14 +258,18 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
+        
+        console.log(this.newsData);
+        if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls) {
-                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-                this.newImg = this.newsData.imageUrls;
+
+            if (this.newsData?.news_image[0]?.news_image) {
+                this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
+                this.newImg = this.newsData?.news_image[0]?.news_image;
             }
         }
+
         this.memberid = this.newsData.user.member_id;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
             .subscribe(

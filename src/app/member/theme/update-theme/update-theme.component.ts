@@ -14,6 +14,7 @@ import { ThemeData, ThemeType } from 'src/app/models/theme-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -78,6 +79,8 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
     isImage: boolean = false;
     imgHeight: any;
     imgWidth: any;
+    originalImg: string;
+
 
 	constructor(
 		private authService: AuthServiceService,
@@ -88,7 +91,8 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
 		private themes: ThemeService,
         private notificationService: NotificationService,
 		private imageCompress: NgxImageCompressService,
-		private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 	) { }
 
 	editorConfig: AngularEditorConfig = {
@@ -213,8 +217,12 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
 	}
 
 	setThemes() {
-		this.thumbnail = this.getThemeData.logo_url;
-		this.updateThemeForm.controls["add_image"].setValue(this.getThemeData.logo_url);
+        if (this.getThemeData?.club_image[0]?.theme_url) {;
+            this.originalImg = this.getThemeData?.club_image[0]?.theme_url
+            this.getThemeData.club_image[0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.getThemeData?.club_image[0]?.theme_url.substring(20))) as string;
+        }
+		this.thumbnail = this.getThemeData?.club_image[0]?.theme_url;
+		this.updateThemeForm.controls["add_image"].setValue(this.getThemeData?.club_image[0]?.theme_url);
 		this.updateThemeForm.controls["sidebar_color"].setValue('#' + this.getThemeData.sidebar_color);
 		this.updateThemeForm.controls["navigation_color"].setValue('#' + this.getThemeData.navigation_color);
 		this.updateThemeForm.controls["icon_color"].setValue('#' + this.getThemeData.icon_color);
@@ -406,11 +414,10 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
                     const element = this.updateThemeForm.value[key];
                     if (key == 'add_image') {
                         if (this.fileToReturn) {
-
-                            formData.append('file', this.fileToReturn);
+                            formData.append('file', this.fileToReturn); 
 
                         } else {
-                            formData.append('imageUrl', this.thumbnail);
+                            formData.append('file', this.originalImg);
                         }
                     }
                     if (key == 'sidebar_color') {

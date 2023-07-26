@@ -25,7 +25,7 @@ export interface NewsType {
   updated_record:string
   deny_by_id:number
   deny_reason:string
-
+  news_image:any
 }
 
 export interface NewsUsers{

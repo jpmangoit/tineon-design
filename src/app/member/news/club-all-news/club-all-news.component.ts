@@ -236,11 +236,13 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                     } else {
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.dashboardData = respData.news;
+
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach(element => {
-                                if (element.imageUrls) {
-                                    element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
+                                if (element?.news_image[0]?.news_image) {
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
+                                
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
@@ -268,7 +270,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
             } else if ((this.role != 'admin') && (this.role != 'guest')) {
                 let userId: string = localStorage.getItem('user-id');
 
-                this.authService.memberSendRequest('get', 'uposts/' + userId + '/'+ this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+                this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     if (respData.news.length == 0) {
                         this.authService.setLoader(false);

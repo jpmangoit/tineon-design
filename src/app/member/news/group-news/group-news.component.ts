@@ -76,8 +76,8 @@ export class GroupNewsComponent implements OnInit {
                     (respData: any) => {
                         this.groupNewsData = respData['result'];
                         this.groupNewsData.forEach((groupNewsItem: any) => {
-                            if (groupNewsItem?.news?.imageUrls) {
-                                groupNewsItem.news.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem.news.imageUrls.substring(20))) as string;
+                            if (groupNewsItem?.news?.news_image[0]?.news_image) {
+                                groupNewsItem.news.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem?.news?.news_image[0]?.news_image.substring(20))) as string;
                             }
                         });
                         this.dataLoaded.emit();
@@ -127,13 +127,15 @@ export class GroupNewsComponent implements OnInit {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
+
+        if (this.newsData.news_image[0]?.news_image == '' || this.newsData.news_image[0]?.news_image == null) {
             this.groupNewsImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData?.['imageUrls']) {
-                this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
-                this.groupNewsImg = this.newsData.imageUrls;
+            if (this.newsData?.news_image[0]?.news_image) {
+                this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20))) as string;
+                this.groupNewsImg = this.newsData?.news_image[0]?.news_image;
             }
+
         }
         this.newsTitle = this.newsData.title
         this.memberid = this.newsData.user.member_id;

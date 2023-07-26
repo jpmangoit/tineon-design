@@ -187,14 +187,18 @@
                                         </div>
                                         <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <!-- <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                                " alt="{{ item.name }}" loading="lazy" /> -->
+                                            <img onContextMenu="return false;" [src]="item.event_image? item.event_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                         <div *ngIf=" item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id,item.date_from)">
-                                            <img onContextMenu="return false;"
+                                            <!-- <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'"
-                                                alt="{{ item.name }}" loading="lazy" />
+                                                alt="{{ item.name }}" loading="lazy" /> -->
+                                            <img onContextMenu="return false;" [src]="item.event_image? item.event_image :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                                " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
                                     <div class="club-right-area">

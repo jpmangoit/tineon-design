@@ -37,7 +37,7 @@ export class MDashboardComponent implements OnInit {
     setTheme: ThemeType;
     private activatedSub: Subscription;
     clubNewsCount: number = 0;
-    communityCount: number = 0;
+    communityCount: number = 0; 
     organizerCount: number = 0;
     userRespData: string;
     thumbnail: string;
@@ -290,7 +290,7 @@ export class MDashboardComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        this.newsData = respData;
+                        this.newsData = respData;                        
 
                         this.newsData.forEach(val => {
                             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
@@ -307,8 +307,8 @@ export class MDashboardComponent implements OnInit {
                             } else {
                                 val.user.imagePro = null;
                             }
-                            if (val?.['imageUrls']) {
-                                val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
+                            if (val?.news_image[0]?.news_image) {
+                                val.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.news_image[0]?.news_image.substring(20)));
                             }
                         });
                     }
@@ -330,12 +330,12 @@ export class MDashboardComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.modalNews = respData['result'];
-                        if (this.modalNews.imageUrls == '' || this.modalNews.imageUrls == null) {
+                        if (this.modalNews?.news_image[0]?.news_image == '' || this.modalNews?.news_image[0]?.news_image == null) {
                             this.newImg = '../../assets/img/no_image.png';
                         } else {
-                            if (this.modalNews.imageUrls) {
-                                this.modalNews.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.modalNews.imageUrls.substring(20)));
-                                this.newImg = this.modalNews.imageUrls;
+                            if (this.modalNews?.news_image[0]?.news_image) {
+                                this.modalNews.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.modalNews?.news_image[0]?.news_image.substring(20)));
+                                this.newImg = this.modalNews?.news_image[0]?.news_image;
                             }
                         }
                         this.memberid = this.modalNews.user.member_id;

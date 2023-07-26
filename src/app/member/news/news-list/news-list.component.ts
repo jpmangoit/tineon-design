@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 @Component({
     selector: 'app-news-list',
     templateUrl: './news-list.component.html',
@@ -26,7 +28,7 @@ export class NewsListComponent implements OnInit {
     columnsToDisplay: string[] = this.displayedColumns.slice();
     dataSource !: MatTableDataSource<any>;
     result: any;
-    @ViewChild(MatPaginator) matpaginator!: MatPaginator;
+    @ViewChild(MatPaginator) matpaginator!: MatPaginator; 
     @ViewChild(MatSort) matsort!: MatSort;
     totalRows: number = 0;
     pageSize: number = 10;
@@ -37,6 +39,9 @@ export class NewsListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
+
     ) { }
 
     ngOnInit(): void {
@@ -66,6 +71,12 @@ export class NewsListComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.dataSource = new MatTableDataSource(respData.news);
+
+                    this.dataSource?.filteredData.forEach((element:any) =>{
+                        if (element?.news_image[0]?.news_image) {
+                            element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
+                        }
+                    })                    
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;

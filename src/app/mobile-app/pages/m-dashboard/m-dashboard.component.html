@@ -227,7 +227,7 @@
                                             <span class="news-badge">{{language.create_news.title}}</span>
                                      </div>
                                     <div class="news-image-area">
-                                        <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls : '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="{{data.name}}" loading="lazy">
+                                        <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ? data?.news_image[0]?.news_image : '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="{{data.name}}" loading="lazy">
                                     </div>
                                     <div class="news-des-area">
                                         <div class="news-top-content"></div>
