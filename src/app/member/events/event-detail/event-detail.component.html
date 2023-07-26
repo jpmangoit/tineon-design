@@ -57,8 +57,7 @@
                                                                                     onContextMenu="return false;"
                                                                                     alt="calender"
                                                                                     loading="lazy" /></span>
-                                                                            <span>{{eventDetails.date_from| date: "d.
-                                                                                MMMM y"}}</span>
+                                                                            <span>{{eventDetails.date_from| date: "d.MMMM y"}}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -746,7 +745,7 @@
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a> 
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"

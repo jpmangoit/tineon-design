@@ -717,9 +717,10 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         if (this.eventDetails?.event_images[0]?.event_image != null) {
             this.hasPicture = true;
             if (this.eventDetails?.event_images[0]?.event_image){
-            this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
-            this.eventImage =  this.eventDetails?.event_images[0]?.event_image;
-            this.imageUrl = this.eventDetails?.event_images[0]?.event_image;
+                this.imageUrl = this.eventDetails?.event_images[0]?.event_image;
+                
+                this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
+                this.eventImage =  this.eventDetails?.event_images[0]?.event_image;
             }
         } else {
             this.hasPicture = false;
@@ -738,9 +739,10 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         //     this.eventImage = '';
         // } 
 
-        if (this.eventDetails?.document_url) {
-            this.eventFile =  this.eventDetails.document_url;
-            this.fileUrl = this.eventDetails.document_url;
+        
+        if (this.eventDetails?.event_images[0]?.event_document ) {
+            this.eventFile =  this.eventDetails?.event_images[0]?.event_document;
+            this.fileUrl = this.eventDetails?.event_images[0]?.event_document;
         }
 
         // if (this.eventDetails.picture_video != null) {
@@ -892,7 +894,6 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                     .subscribe(
                                         (respData) => {
                                             this.authService.setLoader(false);
-                                            console.log(respData);
                                             
                                             var groupParticipants: any = respData[0].participants;
                                             var groupUsers: any = [];
@@ -1197,27 +1198,32 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             for (const key in this.eventForm.value) {
                 if (Object.prototype.hasOwnProperty.call(self.eventForm.value, key)) {
                     const element: any = self.eventForm.value[key];
+
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
-                            formData.append('file', this.fileToReturn);
+                            formData.append('file', this.fileToReturn); 
 
                         } else {
-                            this.fileAndimage.push(this.imageUrl);
+                            formData.append('event_image', this.imageUrl); 
+                            // this.fileAndimage.push(this.imageUrl);
                         }
                     }
+
                     if (key == 'file' && (this.picVid1 || this.fileUrl)) {
                         if (self.picVid1) {
                             formData.append('file', self.picVid1)
 
                         } else {
-                            this.fileAndimage.push(this.fileUrl);
+                            formData.append('event_document', this.fileUrl); 
+                            // this.fileAndimage.push(this.fileUrl);
                         }
                     }
-                    if (key == 'file') {
-                        if (this.fileAndimage.length > 0) {
-                            formData.append('imageUrl', JSON.stringify(this.fileAndimage))
-                        }
-                    }
+
+                    // if (key == 'file') {
+                    //     if (this.fileAndimage.length > 0) {
+                    //         formData.append('imageUrl', JSON.stringify(this.fileAndimage))
+                    //     }
+                    // }
                     if (key == 'room') {
                         if ((this.roomSelected)) {
                             formData.append("room", this.roomSelected);
@@ -2463,6 +2469,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.eventForm.patchValue({ file: this.fileToReturn });
+
                     this.eventForm.get('file').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
                     $('.preview_txt').text(this.fileToReturn.name);

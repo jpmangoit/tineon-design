@@ -190,7 +190,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 //     this.showImage = false;
                                 //     this.imageurl = '';
                                 // } 
-                                console.log(this.eventDetails); 
 
                                 if (this.eventDetails?.event_images[0]?.event_image) {
                                     this.showImage = true;
@@ -201,11 +200,15 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                     this.showImage = false;
                                     this.imageurl = '';
                                 }
-
-
-                                if (this.eventDetails?.document_url) {
-                                    this.docFile = this.eventDetails.document_url;
+                                
+                                // if (this.eventDetails?.document_url) {
+                                //     this.docFile = this.eventDetails.document_url;
+                                // }
+                                if (this.eventDetails?.event_images[0]?.event_document) {
+                                    this.docFile = this.eventDetails?.event_images[0]?.event_document;
                                 }
+
+
                                 // if (this.eventDetails.picture_video != null) {
                                 //     var url: string[] = this.eventDetails.picture_video.split('\"');
                                 //     let self = this;
@@ -225,27 +228,31 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 // }
                                 this.getOrganizerDetails(eventid);
                                 this.getParticipantDetails(eventid);
+
+                                
                                 if (this.eventDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                                     if (this.eventDetails['updated_record'] != null && this.eventDetails['updated_record'] != "") {
                                         this.updateEventData = JSON.parse(this.eventDetails['updated_record']);
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
-                                        if (this.updateEventData?.updatedImageUrl != null) {
+
+                                        if (this.updateEventData?.baseImage[0]?.image != null) {
                                             this.showUpdateImage = true;
-                                            if (this.updateEventData.updatedImageUrl) {
-                                                this.updateEventData.updatedImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.updatedImageUrl.substring(20)));
-                                                this.updateImageurl = this.updateEventData.updatedImageUrl
+                                            if (this.updateEventData?.baseImage[0]?.image) {
+                                                this.updateEventData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData?.baseImage[0]?.image.substring(20)));
+                                                this.updateImageurl = this.updateEventData?.baseImage[0]?.image
                                             }
                                         } else {
                                             this.showUpdateImage = false;
                                             this.updateImageurl = '';
                                         }
-                                        // console.log(this.updateEventData);
 
-
-                                        if (this.updateEventData?.updateDocumentUrl) {
-                                            this.docFile = this.updateEventData.updateDocumentUrl;
+                                        // if (this.updateEventData?.updateDocumentUrl) {
+                                        //     this.docFile = this.updateEventData.updateDocumentUrl;
+                                        // }
+                                        if(this.updateEventData?.baseImage[0]?.documentUrl){
+                                            this.docFile = this.updateEventData?.baseImage[0]?.documentUrl;
                                         }
 
                                         // if (this.updateEventData.image != null) {
