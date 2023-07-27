@@ -23,7 +23,7 @@ declare var $: any
 
 @Component({
   selector: 'app-mcourse',
-  templateUrl: './mcourse.component.html',
+  templateUrl: './mcourse.component.html', 
   styleUrls: ['./mcourse.component.css'],
   providers: [DatePipe]
 })
@@ -239,6 +239,15 @@ export class McourseComponent implements OnInit,OnDestroy {
                                     else {
                                         element['picture_video'] = '';
                                     }
+
+                                    this.allCourses.forEach((element: any) => {
+                                        if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                            const base64String = element.course_image[0].course_image;
+                                            const base64Data = base64String.substring(20);
+                                            const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                            element.course_image[0].course_image = blobUrl;
+                                        }
+                                    });
                                     this.allData[key] = element;
                                     if (element && element.recurrence != '' && element.recurrence != null) {
                                         let recurrence: string = element.recurrence;
@@ -257,14 +266,15 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                 let dt: string = yourDate.toISOString().split('T')[0];
                                                 let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
                                                 let rrDateEnd:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents: Courses = {
+                                                let rrEvents: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate,
                                                     "date_to": rrDate,
@@ -321,14 +331,15 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                 let dt1: string = yourDate1.toISOString().split('T')[0];
                                                 var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                                 var rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents1: Courses = {
+                                                let rrEvents1: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate1,
                                                     "date_to": rrDateEnd1,
@@ -383,14 +394,15 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                 let dt1: string = yourDate1.toISOString().split('T')[0];
                                                 var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                                 var rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents1: Courses = {
+                                                let rrEvents1: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate1,
                                                     "date_to": rrDateEnd1,
@@ -553,16 +565,18 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 }
                         });
 
-                        if (this.courseByIdData[0]?.picture_video != null) {
-                            if (this.courseByIdData[0].picture_video){
+                        if (this.courseByIdData[0]?.course_image[0]?.course_image != null) {
+                            if (this.courseByIdData[0]?.course_image[0]?.course_image){
                                 this.hasPicture = true;
-                                this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
-                                this.eventImage =  this.courseByIdData[0].picture_video
+                                this.courseByIdData[0].course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0]?.course_image[0]?.course_image.substring(20)));
+                                this.eventImage =  this.courseByIdData[0]?.course_image[0]?.course_image
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
+                        console.log(this.courseByIdData);
+                        
                         if (this.courseByIdData[0]?.document_url) {
                             this.eventFile =  this.courseByIdData[0].document_url;
                         }

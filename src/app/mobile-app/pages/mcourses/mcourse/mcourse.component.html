@@ -125,7 +125,8 @@
                     <div class="course-top-area">
                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course"
                             (click)="courseById(item.id)">
-                            <img onContextMenu="return false;" [src]="item.picture_video != null ? item.picture_video : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                            <img onContextMenu="return false;" [src]="item.course_image != null ? item.course_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+
                         </div>
                         <div class="coruse-description">
                             <div class="course-category">
@@ -258,7 +259,7 @@
                     <div class="course-top-area">
                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course"
                             (click)="courseById(item.id)">
-                            <img onContextMenu="return false;" [src]="item.picture_video != null ? item.picture_video : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                            <img onContextMenu="return false;" [src]="item.course_image != null ? item.course_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                         </div>
                         <div class="coruse-description">
                             <div class="course-category">
@@ -407,6 +408,9 @@
                             <div class="ins_img_inner">
                                 <label class="preview_txt" style="display: none;"></label>
                                 <img onContextMenu="return false;" [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+
+
+                                
                                 <div class="avail_detail">
                                     <div class="event_pricing FREE">
                                         <span>{{language.courses.availability}}</span>

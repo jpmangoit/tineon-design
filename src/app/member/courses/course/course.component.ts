@@ -84,7 +84,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     taskPopId: number;
     countParti: number = 0;
-    allUsers:any;
+    allUsers: any;
 
     constructor(private formbuilder: UntypedFormBuilder,
         private authService: AuthServiceService,
@@ -112,10 +112,10 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
-		this.createAccess = this.userAccess[this.userRole].create;
-		this.participateAccess = this.userAccess[this.userRole].participate;
-		this.authorizationAccess = this.userAccess[this.userRole].authorization;
-        if( this.participateAccess.course == 'Yes'){
+        this.createAccess = this.userAccess[this.userRole].create;
+        this.participateAccess = this.userAccess[this.userRole].participate;
+        this.authorizationAccess = this.userAccess[this.userRole].authorization;
+        if (this.participateAccess.course == 'Yes') {
             this.getCourseOtherInfo();
             setTimeout(() => {
                 this.getAllCourses();
@@ -227,7 +227,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
-                                    
+                                    this.allCourses.forEach((element: any) => {
+                                        if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                            const base64String = element.course_image[0].course_image;
+                                            const base64Data = base64String.substring(20);
+                                            const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                            element.course_image[0].course_image = blobUrl;
+                                            this.eventImage = element.course_image[0].course_image
+                                        }
+                                    });
 
                                     var url: string[] = [];
                                     if (element) {
@@ -243,7 +251,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                     if (url && url.length > 0) {
                                         let self = this;
                                         url.forEach(el => {
-                                            if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
                                                 element.picture_video = el;
                                             }
                                         });
@@ -268,19 +276,19 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 let yourDate: Date = new Date(val)
                                                 let dt: string = yourDate.toISOString().split('T')[0];
                                                 let recurring_dates = element.recurring_dates;
-                                                var recurring_time:any
-                                                var recurring_etime:any
-                                                if(recurring_dates){
-                                                    if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                        recurring_dates[0].start_time ;
+                                                var recurring_time: any
+                                                var recurring_etime: any
+                                                if (recurring_dates) {
+                                                    if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                        recurring_dates[0].start_time;
                                                         recurring_dates[0].end_time;
-                                                    }else{
+                                                    } else {
                                                         recurring_dates[0].start_time + ':00.000Z';
                                                         recurring_dates[0].end_time + ':00.000Z'
                                                     }
                                                     recurring_time = recurring_dates[0].start_time;
                                                     recurring_etime = recurring_dates[0].end_time;
-                                                }else{
+                                                } else {
                                                     recurring_time = element.date_from.split("T")["1"]
                                                     recurring_etime = element.date_to.split("T")["1"];
                                                 }
@@ -288,14 +296,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time + ':00.000Z' : element.date_to.split("T")["1"];
                                                 let rrDate: string = dt + "T" + recurring_time;
                                                 let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
-                                                let rrEvents: Courses = {
+                                                let rrEvents: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate,
                                                     "date_to": rrDateEnd,
@@ -336,6 +345,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 if (dt == self.todays_date) {
                                                     self.currentCourse.push(rrEvents);
                                                     self.currentCourseList.push(rrEvents);
+
                                                 } else if (dt > self.todays_date) {
                                                     self.upcomingCourse.push(rrEvents);
                                                     self.upcomingCourseList.push(rrEvents);
@@ -350,19 +360,19 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 let dt1: string = yourDate1.toISOString().split('T')[0];
                                                 let recurring_dates = element.recurring_dates;
 
-                                                var recurring_time:any
-                                                var recurring_etime:any
-                                                if(recurring_dates){
-                                                    if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                        recurring_dates[0].start_time ;
+                                                var recurring_time: any
+                                                var recurring_etime: any
+                                                if (recurring_dates) {
+                                                    if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                        recurring_dates[0].start_time;
                                                         recurring_dates[0].end_time;
-                                                    }else{
+                                                    } else {
                                                         recurring_dates[0].start_time + ':00.000Z';
                                                         recurring_dates[0].end_time + ':00.000Z'
                                                     }
                                                     recurring_time = recurring_dates[0].start_time;
                                                     recurring_etime = recurring_dates[0].end_time;
-                                                }else{
+                                                } else {
                                                     recurring_time = element.date_from.split("T")["1"]
                                                     recurring_etime = element.date_to.split("T")["1"];
                                                 }
@@ -372,14 +382,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 let rrDate1: string = dt1 + "T" + recurring_time;
                                                 let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
 
-                                                let rrEvents1: Courses = {
+                                                let rrEvents1: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
                                                     "official_club_date": element.official_club_date,
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate1,
                                                     "date_to": rrDateEnd1,
@@ -433,19 +444,19 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     let yourDate1: Date = new Date(dd)
                                                     let dt1: string = yourDate1.toISOString().split('T')[0];
                                                     let recurring_dates = element.recurring_dates;
-                                                    var recurring_time:any
-                                                    var recurring_etime:any
-                                                    if(recurring_dates){
-                                                        if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                            recurring_dates[0].start_time ;
+                                                    var recurring_time: any
+                                                    var recurring_etime: any
+                                                    if (recurring_dates) {
+                                                        if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                            recurring_dates[0].start_time;
                                                             recurring_dates[0].end_time;
-                                                        }else{
+                                                        } else {
                                                             recurring_dates[0].start_time + ':00.000Z';
                                                             recurring_dates[0].end_time + ':00.000Z'
                                                         }
                                                         recurring_time = recurring_dates[0].start_time;
                                                         recurring_etime = recurring_dates[0].end_time;
-                                                    }else{
+                                                    } else {
                                                         recurring_time = element.date_from.split("T")["1"]
                                                         recurring_etime = element.date_to.split("T")["1"];
                                                     }
@@ -454,14 +465,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     let rrDate1: string = dt1 + "T" + recurring_time;
                                                     let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
 
-                                                    let rrEvents1: Courses = {
+                                                    let rrEvents1: any = {
                                                         "id": element.id,
                                                         "schedule": element.schedule,
                                                         "official_club_date": element.official_club_date,
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "picture_video": element.picture_video,
+                                                        "course_image": element.course_image[0]?.course_image,
+                                                        "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate1,
                                                         "date_to": rrDateEnd1,
@@ -525,8 +537,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                             let self = this;
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
-                                    if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                        if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                    if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                             // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                             if (el.member_id != null) {
                                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
@@ -535,11 +547,11 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             this.thumb = resppData;
                                                             element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
                                                         },
-                                                        (error:any) => {
+                                                        (error: any) => {
                                                             element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                         });
                                             } else {
-                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                             }
                                         }
                                     }
@@ -549,8 +561,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                         this.upcomingCourseList.forEach(element => {
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
-                                    if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                        if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                    if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                             // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                             if (el.member_id != null) {
                                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
@@ -559,11 +571,11 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             this.thumb = resppData;
                                                             element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
                                                         },
-                                                        (error:any) => {
+                                                        (error: any) => {
                                                             element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                         });
                                             } else {
-                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                             }
                                         }
                                     }
@@ -601,7 +613,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                 element.recurring_dates = JSON.parse(element.recurring_dates);
                                 if (this.allUsers?.length > 0) {
                                     this.allUsers.forEach(el => {
-                                        if(element?.CourseInternalInstructor[0]?.internalUsers.id){
+                                        if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                             if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                 if (el.member_id != null) {
                                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
@@ -609,11 +621,11 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             (resppData: any) => {
                                                                 element.CourseInternalInstructor[0].internalUsers.add_img = resppData;
                                                             },
-                                                            (error:any) => {
+                                                            (error: any) => {
                                                                 element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                             });
                                                 } else {
-                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                    element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                 }
                                             }
                                         }
@@ -621,15 +633,16 @@ export class CourseComponent implements OnInit, OnDestroy {
                                 }
                             });
                         }
-                        this.courseByIdData[0].recurring_dates.forEach((element:any) =>{
+                        this.courseByIdData[0].recurring_dates.forEach((element: any) => {
                             element.start_time = this.commonFunctionService.convertTime(element.start_time);
                             element.end_time = this.commonFunctionService.convertTime(element.end_time);
                         })
-                        if (this.courseByIdData[0]?.picture_video != "[]") {
+                        
+                        if (this.courseByIdData[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
-                            if (this.courseByIdData[0].picture_video){
-                               this.courseByIdData[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0].picture_video.substring(20)));
-                               this.eventImage =  this.courseByIdData[0].picture_video
+                            if (this.courseByIdData[0]?.course_image[0]?.course_image) {
+                                this.courseByIdData[0].course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0]?.course_image[0]?.course_image.substring(20)));
+                                this.eventImage = this.courseByIdData[0]?.course_image[0]?.course_image
                             }
                         } else {
                             this.hasPicture = false;
@@ -637,7 +650,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                         }
 
                         if (this.courseByIdData[0]?.document_url) {
-                            this.eventFile =  this.courseByIdData[0].document_url;
+                            this.eventFile = this.courseByIdData[0].document_url;
                         }
 
                         // if (this.courseByIdData[0]?.picture_video && this.courseByIdData[0].picture_video != "[]") {
@@ -706,43 +719,43 @@ export class CourseComponent implements OnInit, OnDestroy {
             this.collaboratorDetails = []
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getTaskCollaborator/task/' + taskid, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.collaboratorDetails = respData;
-                    Object(this.collaboratorDetails) && Object(this.collaboratorDetails).forEach((val, key) => {
-                        if (val?.user?.length > 0) {
-                            val.user.forEach(element => {
-                                if (element.member_id != null) {
-                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
-                                        .subscribe(
-                                            (resppData: any) => {
-                                                this.thumb = resppData;
-                                                val.image = this.thumb
-                                            },
-                                            (error:any) => {
-                                                val.image = null;
-                                            });
-                                } else {
-                                    val.image = null;
-                                }
-                            });
-                        }
-                    });
-                    let org_id = 0;
-                    if (this.collaboratorDetails && this.collaboratorDetails.length > 0) {
-                        this.collaboratorDetails.forEach((value: any) => {
-                            if (value.user_id == this.courseByIdData[0]?.courseTask?.['organizer_id']) {
-                                this.taskOrganizerDetails.push(value);
-                                org_id = 1;
-                            } else {
-                                this.collaborators.push(value);
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.collaboratorDetails = respData;
+                        Object(this.collaboratorDetails) && Object(this.collaboratorDetails).forEach((val, key) => {
+                            if (val?.user?.length > 0) {
+                                val.user.forEach(element => {
+                                    if (element.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    val.image = this.thumb
+                                                },
+                                                (error: any) => {
+                                                    val.image = null;
+                                                });
+                                    } else {
+                                        val.image = null;
+                                    }
+                                });
                             }
-                        })
-                        this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'user_id'));
+                        });
+                        let org_id = 0;
+                        if (this.collaboratorDetails && this.collaboratorDetails.length > 0) {
+                            this.collaboratorDetails.forEach((value: any) => {
+                                if (value.user_id == this.courseByIdData[0]?.courseTask?.['organizer_id']) {
+                                    this.taskOrganizerDetails.push(value);
+                                    org_id = 1;
+                                } else {
+                                    this.collaborators.push(value);
+                                }
+                            })
+                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'user_id'));
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -770,15 +783,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         val.id = val.users.id;
                                         if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id] != null) {
                                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
-                                            .subscribe(
-                                                (resppData: any) => {
-                                                    this.thumb = resppData;
-                                                    val.users.image = this.thumb;
-                                                },
-                                                (error:any) => {
-                                                    val.users.image = null;
-                                                }
-                                            );
+                                                .subscribe(
+                                                    (resppData: any) => {
+                                                        this.thumb = resppData;
+                                                        val.users.image = this.thumb;
+                                                    },
+                                                    (error: any) => {
+                                                        val.users.image = null;
+                                                    }
+                                                );
                                         }
                                     })
                                 } else {
@@ -793,15 +806,15 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         this.thumb = resppData;
                                                         val.users.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.users.image = null;
                                                     });
                                         }
                                     });
                                 }
                             });
-                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
-                            this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants,'id'));
+                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
+                            this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
                         }
                     }
                 );
@@ -832,7 +845,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 this.thumb = resppData;
                                                 val.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 val.image = null;
                                             });
                                 } else {
@@ -840,8 +853,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                                 }
                                 this.memImg.push(val);
                             });
-                            this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg,'id'));
-                            this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants,'id'));
+                            this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg, 'id'));
+                            this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants, 'id'));
                         }
                         this.authService.setLoader(false);
                     }
@@ -1113,7 +1126,7 @@ export class CourseComponent implements OnInit, OnDestroy {
         if (!this.showToggle) {
             this.showToggle = true;
             el[0].className = "bunch_drop show";
-        }else {
+        } else {
             this.showToggle = false;
             el[0].className = "bunch_drop";
         }
@@ -1315,7 +1328,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             if (respData['result'] && respData['result'].length > 0) {
                                 this.allCourses = respData['result'];
                                 var element = null;
-                                if(this.allCourses){
+                                if (this.allCourses) {
                                     for (var key in this.allCourses) {
                                         if (this.allCourses.hasOwnProperty(key)) {
                                             element = this.allCourses[key];
@@ -1332,7 +1345,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 // let imgArray: any = [];
                                                 let self = this;
                                                 url.forEach(el => {
-                                                    if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
                                                         element.picture_video = el;
                                                     }
                                                 });
@@ -1350,13 +1363,13 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                                                 let rule: RRule = RRule.fromString(recurrence)
                                                 let rules: Date[] = rule.all();
-                                                if(rules && rules.length > 0){
+                                                if (rules && rules.length > 0) {
                                                     rules.forEach(function (val, index) {
                                                         let yourDate: Date = new Date(val)
                                                         let dt: string = yourDate.toISOString().split('T')[0];
                                                         let rDate: string = dt + "T" + element.date_from.split("T")["1"];
                                                         let rrDate = rDate.split("T")["0"];
-                                                        let rrDateEnd:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                        let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                         let rrEvents: Courses = {
                                                             "id": element.id,
                                                             "schedule": element.schedule,
@@ -1412,7 +1425,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                                                         }
                                                         if ((self.allCourses.length == 0)) {
-                                                            self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                            self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                         }
                                                     })
                                                 }
@@ -1423,7 +1436,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         let yourDate1: Date = new Date(dd.date_from)
                                                         let dt1: string = yourDate1.toISOString().split('T')[0];
                                                         let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                        let rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                        let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                         let rrEvents1: Courses = {
                                                             "id": element.id,
                                                             "schedule": element.schedule,
@@ -1472,22 +1485,23 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         if (dt1 == self.todays_date) {
                                                             self.currentCourse.push(rrEvents1);
                                                             self.currentCourseList.push(rrEvents1);
+
                                                         } else if (dt1 > self.todays_date) {
                                                             self.upcomingCourse.push(rrEvents1);
                                                             self.upcomingCourseList.push(rrEvents1);
                                                         }
                                                         if ((self.allCourses.length == 0)) {
-                                                            self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                            self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                         }
                                                     });
                                                 } else {
                                                     const dates = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to));
-                                                    if(dates && dates.length > 0){
+                                                    if (dates && dates.length > 0) {
                                                         dates.forEach(dd => {
                                                             let yourDate1: Date = new Date(dd)
                                                             let dt1: string = yourDate1.toISOString().split('T')[0];
                                                             let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                            let rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                            let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                             let rrEvents1: Courses = {
                                                                 "id": element.id,
                                                                 "schedule": element.schedule,
@@ -1536,12 +1550,13 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             if (dt1 == self.todays_date) {
                                                                 self.currentCourse.push(rrEvents1);
                                                                 self.currentCourseList.push(rrEvents1);
+
                                                             } else if (dt1 > self.todays_date) {
                                                                 self.upcomingCourse.push(rrEvents1);
                                                                 self.upcomingCourseList.push(rrEvents1);
                                                             }
                                                             if ((self.allCourses.length == 0)) {
-                                                                self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                                self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                             }
                                                         });
                                                     }
@@ -1550,6 +1565,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                                         }
                                     }
+
                                 }
                                 const sortByDate = (arr: any) => {
                                     const sorter = (a: any, b: any) => {
@@ -1560,7 +1576,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                 sortByDate(this.upcomingCourseList);
                                 this.authService.setLoader(false);
                             } else {
-                                this.notificationService.showError(this.language.create_faq.search_not_found,null);
+                                this.notificationService.showError(this.language.create_faq.search_not_found, null);
                             }
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -1568,7 +1584,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                     }
                 );
         } else {
-            this.notificationService.showError(this.language.instructor.text_for_search,null);
+            this.notificationService.showError(this.language.instructor.text_for_search, null);
         }
     }
 
@@ -1598,7 +1614,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     checkFor(arrayOfObject: any) {
         if (arrayOfObject.some(obj => (obj.user_id === this.userDetails.userId && obj.approved_status === 0))) {
             return true;
-        } else  if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2))  { return false } else{
+        } else if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2)) { return false } else {
             return true
         }
     }
@@ -1610,7 +1626,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     checkForWaiting(arrayOfObject: any) {
         if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2)) {
             return true;
-        } else  { return false }
+        } else { return false }
     }
 
     /**
