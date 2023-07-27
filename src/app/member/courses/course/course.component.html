@@ -135,9 +135,9 @@
                                 <ng-container *ngFor="let item of currentCourseList ">
                                     <div class="course-item" *ngIf="checkType(item)">
                                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
-                                            <!-- <h2>assaasa</h2> -->
                                             <img onContextMenu="return false;"  alt="{{item.name}}" loading="lazy"
-                                            [src]="item.picture_video ? item.picture_video : '../../../../assets/img/no_image.png'" >
+                                            [src]="item?.course_image ? item?.course_image : '../../../../assets/img/no_image.png'" >
+
                                         </div>
                                         <div class="course-data">
                                             <div class="course-category-header">
@@ -255,7 +255,10 @@
                                     <!-- course-item start -->
                                     <div class="course-item" *ngIf="checkType(item)">
                                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video ? item.picture_video : '../../../../assets/img/no_image.png'" alt="{{item.name}}" loading="lazy">
+                                            <!-- <img onContextMenu="return false;" [src]="item.picture_video ? item.picture_video : '../../../../assets/img/no_image.png'" alt="{{item.name}}" loading="lazy"> -->
+
+                                            <img onContextMenu="return false;"  alt="{{item.name}}" loading="lazy"
+                                            [src]="item.course_image ? item.course_image : '../../../../assets/img/no_image.png'" >
                                         </div>
                                         <div class="course-data">
                                             <div class="course-category-header">
@@ -500,6 +503,7 @@
                             <div class="ins_img_inner">
                                 <label class="preview_txt" style="display: none;"></label>
                                 <img class="preview_img" onContextMenu="return false;" [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" alt="{{item.name}}" loading="lazy">
+
                                 <div class="avail_detail">
                                     <div class="event_pricing FREE">
                                         <span>{{language.courses.availability}}</span>
