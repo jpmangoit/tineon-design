@@ -3,6 +3,7 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { TaskType } from 'src/app/models/task-type.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -23,7 +24,8 @@ export class OrganizerPersonalTaskComponent implements OnInit {
 	constructor(
 		private authService: AuthServiceService,
 		private lang: LanguageService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 	) { }
 
     ngOnInit(): void {
@@ -35,6 +37,9 @@ export class OrganizerPersonalTaskComponent implements OnInit {
             this.completed = [];
             if (this.organizerTask?.length > 0) {
                 this.organizerTask.forEach((element) => {
+                    if (element?.['task_image'][0]?.['task_image']) {
+                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                    }
                     if (element.group_id == 0 || element.group_id == null || element.group_id == '') {
                         element.approvedCount = 0;
                         element.progressVal = 0;

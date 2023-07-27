@@ -10,6 +10,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -90,7 +91,9 @@ export class MorganizerTaskComponent implements OnInit {
         private authService: AuthServiceService,
         private confirmDialogService: ConfirmDialogService,private themes: ThemeService,
         private lang: LanguageService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -130,6 +133,9 @@ export class MorganizerTaskComponent implements OnInit {
                         if (respData['isError'] == false) {
                             if(respData['result'] && respData['result'].length > 0){
                                 respData['result'].forEach((element) => {
+                                    if (element?.['task_image'][0]?.['task_image']) {
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                                    }
                                     element.approvedCount = 0
                                     element.progressVal = 0
                                     if (element.subtasks.length > 0) {
@@ -174,18 +180,18 @@ export class MorganizerTaskComponent implements OnInit {
                         this.perToDoTask = [];
                         this.perInProgress = [];
                         this.perCompleted = [];
-
                         this.groupToDoTask = [];
                         this.groupInProgress = [];
                         this.groupCompleted = [];
-
                         this.createdToDoTask = [];
                         this.createdInProgress = [];
                         this.createdCompleted = [];
-
                         if (respData['isError'] == false) {
                             if(respData['result'] && respData['result'].length > 0){
                                 respData['result'].forEach((element) => {
+                                    if (element?.['task_image'][0]?.['task_image']) {
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                                    }
                                     if(element.group_id == 0 || element.group_id == null || element.group_id == ''){
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
@@ -193,7 +199,6 @@ export class MorganizerTaskComponent implements OnInit {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
                                             element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
                                         }
-
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
                                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -213,7 +218,6 @@ export class MorganizerTaskComponent implements OnInit {
                                             this.perCompleted;
                                         }
                                     }
-
                                     if(element.group_id > 0){
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
@@ -221,7 +225,6 @@ export class MorganizerTaskComponent implements OnInit {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
                                             element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
                                         }
-
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
                                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -241,7 +244,6 @@ export class MorganizerTaskComponent implements OnInit {
                                             this.groupCompleted;
                                         }
                                     }
-
                                     if(element.organizer_id == this.user_id){
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
@@ -249,7 +251,6 @@ export class MorganizerTaskComponent implements OnInit {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
                                             element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
                                         }
-
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
                                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -257,7 +258,6 @@ export class MorganizerTaskComponent implements OnInit {
                                         } else {
                                             element.remain = this.language.organizer_task.daysOverride;
                                         }
-
                                         if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
                                             this.createdToDoTask.push(element)
                                             this.createdToDoTask;
@@ -287,7 +287,6 @@ export class MorganizerTaskComponent implements OnInit {
 
     closeModal() {
         let self = this;
-
         $('#subtask').modal('hide')
         $('#styled-checkbox-' + this.task_id).prop('checked', false);
     }

@@ -37,7 +37,7 @@ export class MDashboardComponent implements OnInit {
     setTheme: ThemeType;
     private activatedSub: Subscription;
     clubNewsCount: number = 0;
-    communityCount: number = 0; 
+    communityCount: number = 0;
     organizerCount: number = 0;
     userRespData: string;
     thumbnail: string;
@@ -290,7 +290,7 @@ export class MDashboardComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        this.newsData = respData;                        
+                        this.newsData = respData;
 
                         this.newsData.forEach(val => {
                             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
@@ -658,6 +658,11 @@ export class MDashboardComponent implements OnInit {
         this.authService.memberSendRequest('get', 'mv/web/get-groups-by-user-id/' + this.userId, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
+                this.groupJoinData.forEach((element:any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
                 this.authService.setLoader(false);
             });
     }

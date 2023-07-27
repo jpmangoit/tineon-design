@@ -3,6 +3,7 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { TaskType } from 'src/app/models/task-type.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -22,7 +23,8 @@ export class OrganizerGroupTaskComponent implements OnInit {
 	constructor(
 		private authService: AuthServiceService,
 		private lang: LanguageService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
 	) { }
 
     ngOnInit(): void {
@@ -34,6 +36,9 @@ export class OrganizerGroupTaskComponent implements OnInit {
             this.completed = [];
             if (this.organizerTask?.length > 0) {
                 this.organizerTask.forEach((element) => {
+                    if (element?.['task_image'][0]?.['task_image']) {
+                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                    }
                     if (element.group_id > 0) {
                         element.approvedCount = 0;
                         element.progressVal = 0;
@@ -44,7 +49,7 @@ export class OrganizerGroupTaskComponent implements OnInit {
 
                         let cudate: Date = new Date();
                         element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
-                        
+
                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
                             element.remain = this.language.Survey.day_left;
                         } else {

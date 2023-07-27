@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 @Component({
   selector: 'app-task-list',
@@ -35,7 +37,9 @@ export class TaskListComponent implements OnInit {
     pageSizeOptions: number[] = [10, 25, 50];
 
 
-  constructor(private authService: AuthServiceService, private lang: LanguageService,) { }
+  constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
+    private sanitizer: DomSanitizer
+) { }
 
   ngOnInit(): void {
     this.language = this.lang.getLanguaageFile();
@@ -62,6 +66,11 @@ export class TaskListComponent implements OnInit {
         .subscribe(
             (respData: any) => {
                 this.authService.setLoader(false);
+                respData?.tasks?.forEach(element => {
+                    if (element?.['task_image'][0]?.['task_image']) {
+                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['task_image'][0]?.['task_image'].substring(20)))as string;
+                    }
+                });
                 this.dataSource = new MatTableDataSource(respData.tasks);
                 this.totalRows = respData.pagination.rowCount;
                 this.dataSource.sort = this.matsort;

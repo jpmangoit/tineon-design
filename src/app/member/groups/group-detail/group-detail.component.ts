@@ -306,10 +306,9 @@ export class GroupDetailComponent implements OnInit {
                         this.groupDetails = respData[0];
                         this.groupAction = 0;
                         let count = 0;
-                        if (this.groupDetails && this.groupDetails['image']){
-                            this.groupDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupDetails['image'].substring(20)));
+                        if (this.groupDetails?.['group_images'][0]?.['group_image']){
+                            this.groupDetails['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupDetails?.['group_images'][0]?.['group_image'].substring(20)));
                         }
-
                         if (this.groupDetails && this.groupDetails['participants']) {
                             Object(this.groupDetails['participants']).forEach((val, key) => {
                                 if (this.alluserInformation?.[val.user_id]?.member_id != null) {
@@ -413,6 +412,7 @@ export class GroupDetailComponent implements OnInit {
                                 }
                                 this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails,'id'));
                                 // this.updatedGroupParticipnts = Object.assign(this.authService.uniqueObjData(this.updatedGroupParticipnts,'id'));
+                                console.log( this.updatedGroupData );
                             }
                         } else {
                             this.notificationService.showError(this.language.community_groups.no_groups, null);
@@ -486,8 +486,8 @@ export class GroupDetailComponent implements OnInit {
             } else {
                 val.user.imagePro = null;
             }
-            if (val?.['imageUrls']){
-                val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
+            if (val?.['news_image'][0]?.['news_image']){
+                val['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['news_image'][0]?.['news_image'].substring(20)));
             }
         });
         return usersAllData;

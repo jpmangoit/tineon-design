@@ -72,11 +72,11 @@
                                                     <div class="loader_image" *ngIf="isImage"></div>
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
                                                     <img onContextMenu="return false;" class="preview_img"
-                                                        *ngIf="(taskDetails) && (taskDetails.image == null) && (croppedImage == null || croppedImage == '') && !isImage"
+                                                        *ngIf="(taskDetails) && (taskDetails?.['task_image'][0]?.['task_image'] == null) && (croppedImage == null || croppedImage == '') && !isImage"
                                                         src="assets/img/event_upload.png">
                                                     <img onContextMenu="return false;" id="preview_img"
-                                                        *ngIf="taskDetails && taskDetails.image && (croppedImage == null || croppedImage =='') && !isImage"
-                                                        [src]="taskDetails.image">
+                                                        *ngIf="taskDetails && taskDetails?.['task_image'][0]?.['task_image'] && (croppedImage == null || croppedImage =='') && !isImage"
+                                                        [src]="taskDetails?.['task_image'][0]?.['task_image']">
                                                 </span>
                                                 <div *ngIf="(updateTaskForm.controls.file.touched || submitted) && (updateTaskForm.controls.file.errors?.required )"
                                                     class="text-danger">

@@ -53,9 +53,9 @@
                                     <div class="community-group-column"
                                         *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
                                         <div class="news-widget com-g-widget">
-                                            <div class="news-image" [ngClass]="data.image == null ? 'no_image' : ''">
+                                            <div class="news-image" [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
                                                 <img onContextMenu="return false;"
-                                                    [src]="data.image  != null ? data.image : '../../assets/img/no_image.png'"
+                                                    [src]="data.group_images[0]?.['group_image']  != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                     alt="" loading="lazy">
                                             </div>
                                             <div class="news-content">
@@ -169,9 +169,9 @@
                                 <div class="community-group-row">
                                     <div class="community-group-column" *ngFor='let data of groupJoinData'>
                                         <div class="news-widget com-g-widget">
-                                            <div class="news-image" [ngClass]="data.image == null ? 'no_image' : ''">
+                                            <div class="news-image" [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
                                                 <img onContextMenu="return false;"
-                                                    [src]="data.image != null ? data.image : '../../assets/img/no_image.png'"
+                                                    [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                     alt="" loading="lazy">
                                             </div>
                                             <div class="news-content">
@@ -237,7 +237,7 @@
                     <div class="widget-group-news widget mg_widget" *ngFor='let data of groupsYouManageData'>
                         <div class="widget-gn-content">
                             <div class="gn-left">
-                                <img onContextMenu="return false;" [src]="data.image  != null ? data.image : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                <img onContextMenu="return false;" [src]="(data.group_images[0]?.['group_image']  != null) ? (data.group_images[0]?.['group_image']) : '../../assets/img/no_image.png'" alt="" loading="lazy">
                             </div>
                             <div class="gn-right">
                                 <a routerLink="/group-detail/{{data.id}}">

@@ -182,6 +182,11 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'getGroupsNotParticipantPagination/user/' + this.user_Id + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
                 this.groupData = respData['result']['group'];
+                this.groupData.forEach((element:any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
                 this.totalgroupData = respData['result']['pagination']['rowCount'];
                 this.authService.setLoader(false);
             });
@@ -199,6 +204,11 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.user_Id, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
+                this.groupJoinData.forEach((element:any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
                 // this.totalJoinedGroupData = this.groupJoinData.length;
                 this.authService.setLoader(false);
             });
@@ -215,6 +225,13 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.groupsYouManageData = [];
         this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null).subscribe((respData: any) => {
             this.groupsYouManageData = respData.reverse();
+            console.log(this.groupsYouManageData);
+
+            this.groupsYouManageData.forEach((element:any) => {
+                if (element.group_images[0]?.['group_image']) {
+                    element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                }
+            })
             this.authService.setLoader(false);
         });
     }

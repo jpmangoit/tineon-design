@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-group-list',
@@ -34,7 +36,8 @@ export class GroupListComponent implements OnInit {
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
 
-  constructor(private authService: AuthServiceService, private lang: LanguageService,) { }
+  constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.language = this.lang.getLanguaageFile();
@@ -61,6 +64,11 @@ export class GroupListComponent implements OnInit {
         .subscribe(
             (respData: any) => {
                 this.authService.setLoader(false);
+                respData?.groups?.forEach(element => {
+                    if (element?.['group_images'][0]?.['group_image']) {
+                        element['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['group_images'][0]?.['group_image'].substring(20)))as string;
+                    }
+                });
                 this.dataSource = new MatTableDataSource(respData.groups);
                 this.totalRows = respData.pagination.rowCount;
                 this.dataSource.sort = this.matsort;

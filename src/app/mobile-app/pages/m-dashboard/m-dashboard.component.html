@@ -318,7 +318,7 @@
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
                                         <div class="news-image-area">
-                                            <img onContextMenu="return false;" [src]="data.image != null ? data.image : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                            <img onContextMenu="return false;" [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                         </div>
                                         <div class="news-des-area">
                                             <div class="news-top-content">
@@ -359,7 +359,7 @@
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
                                         <div class="news-image-area">
-                                            <img onContextMenu="return false;" [src]="data.image != null ? data.image : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                            <img onContextMenu="return false;" [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                         </div>
                                         <div class="news-des-area">
                                             <div class="news-top-content">

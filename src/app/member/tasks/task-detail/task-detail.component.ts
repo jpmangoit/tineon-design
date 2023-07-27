@@ -136,10 +136,9 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
-                                if (this.taskDetails?.['image']){
-                                    this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20))); 
+                                if (this.taskDetails?.['task_image'][0]?.['task_image']){
+                                    this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
-
                                 if (this.taskDetails) {
                                     this.getOrganizerDetails(taskid);
                                 }
@@ -179,6 +178,8 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedTaskData = null;
                                     this.updatedTaskData = JSON.parse(this.taskDetails['updated_record']);
+                                    console.log(this.updatedTaskData );
+
                                     if (this.updatedTaskData) {
                                         this.updatedTaskData.subtasks = JSON.parse(this.updatedTaskData.subtasks);
                                         this.updatedTaskData.collaborators = JSON.parse(this.updatedTaskData.collaborators);
