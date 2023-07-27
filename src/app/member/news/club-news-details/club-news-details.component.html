@@ -14,9 +14,9 @@
                                 <div class="news_details" *ngIf="newsData">
                                     <div class="row">
                                         <div class="news_image col-md-6">
-                                            <app-image-viewer *ngIf="newsData.imageUrls" [imageURL]="newsData.imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                            <app-image-viewer *ngIf="newsData?.news_image[0]?.news_image" [imageURL]="newsData?.news_image[0]?.news_image" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
-                                                <img onContextMenu="return false;" [src]="newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                <img onContextMenu="return false;" [src]="newsData?.news_image[0]?.news_image ? newsData?.news_image[0]?.news_image : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                             </div>
                                             <div class="dropdown action_group">
                                                 <button class="dropdown-toggle" type="button" (click)="onShow()">
@@ -54,9 +54,9 @@
                                 <div class="news_details" *ngIf="updateNewsData">
                                     <div class="row">
                                         <div class="news_image col-md-6">
-                                            <app-image-viewer *ngIf="updateNewsData.imageUrls" [imageURL]="updateNewsData.imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                            <app-image-viewer *ngIf="updateNewsData?.newImage" [imageURL]="updateNewsData?.newImage" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
-                                                <img onContextMenu="return false;" [src]="updateNewsData.imageUrls ? updateNewsData.imageUrls : newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                <img onContextMenu="return false;" [src]="updateNewsData?.newImage ? updateNewsData?.newImage : newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                             </div>
                                             <div class="dropdown action_group">
                                                 <button class="dropdown-toggle" type="button" (click)="onShow()">
@@ -135,10 +135,14 @@
                         <div class="news_details" *ngIf="newsData">
                             <div class="row">
                                 <div class="news_image col-md-6">
-                                    <app-image-viewer *ngIf="newsData.imageUrls" [imageURL]="newsData.imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                    <!-- <app-image-viewer *ngIf="newsData.imageUrls" [imageURL]="newsData.imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                     <div class="detail-big-img" (click)="viewImage=true">
                                         <img onContextMenu="return false;" [src]="newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
-                                    </div>
+                                    </div> -->
+                                    <app-image-viewer *ngIf="newsData?.news_image[0]?.news_image" [imageURL]="newsData?.news_image[0]?.news_image" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                            <div class="detail-big-img" (click)="viewImage=true">
+                                                <img onContextMenu="return false;" [src]="newsData?.news_image[0]?.news_image ? newsData?.news_image[0]?.news_image : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                            </div>
                                     <div class="dropdown action_group">
                                         <button class="dropdown-toggle" type="button" (click)="onShow()">
                                             <i class="fa fa-pencil"></i>

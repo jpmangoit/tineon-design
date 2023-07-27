@@ -227,6 +227,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
+                                    
+
                                     var url: string[] = [];
                                     if (element) {
                                         for (const key in element) {

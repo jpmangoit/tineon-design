@@ -82,10 +82,10 @@ export class ClubAppointmentsComponent implements OnInit {
         private router: Router, private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) {
-     }
+    }
 
     ngOnInit(): void {
-        
+
         if (sessionStorage.getItem('token')) {
             this.language = this.lang.getLanguaageFile();
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -107,7 +107,6 @@ export class ClubAppointmentsComponent implements OnInit {
     * @author  MangoIt Solutions
     */
     getDesktopDeshboardBanner() {
-
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
         }
@@ -128,9 +127,9 @@ export class ClubAppointmentsComponent implements OnInit {
             this.eventTypeList[5] = { name: this.language.create_event.seminar, class: "seminar-event-color" };
 
             this.eventTypeVisibility[1] = { name: this.language.create_event.public },
-            this.eventTypeVisibility[2] = { name: this.language.create_event.private },
-            this.eventTypeVisibility[3] = { name: this.language.create_event.group },
-            this.eventTypeVisibility[4] = { name: this.language.create_event.club }
+                this.eventTypeVisibility[2] = { name: this.language.create_event.private },
+                this.eventTypeVisibility[3] = { name: this.language.create_event.group },
+                this.eventTypeVisibility[4] = { name: this.language.create_event.club }
 
             let cudate: Date = new Date()
             let cuday: string = cudate.getDate().toString().padStart(2, "0");
@@ -144,15 +143,10 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                 var element: any = null;
                 var url: string[] = [];
-                
+
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-                        
-                        // if (element.picture_video){
-                        //     element.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.picture_video.substring(20)));
-                        // }
-
 
                         // if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
                         //     if (element.picture_video) {
@@ -183,19 +177,19 @@ export class ClubAppointmentsComponent implements OnInit {
                                     let yourDate: Date = new Date(val)
                                     let dt: string = yourDate.toISOString().split('T')[0];
                                     let recurring_dates = JSON.parse(element.recurring_dates);
-                                    var recurring_time:any
-                                    var recurring_etime:any
-                                    if(recurring_dates){
-                                        if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                            recurring_dates[0].start_time ;
+                                    var recurring_time: any
+                                    var recurring_etime: any
+                                    if (recurring_dates) {
+                                        if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                            recurring_dates[0].start_time;
                                             recurring_dates[0].end_time;
-                                        }else{
+                                        } else {
                                             recurring_dates[0].start_time + ':00.000Z';
                                             recurring_dates[0].end_time + ':00.000Z'
                                         }
                                         recurring_time = recurring_dates[0].start_time;
                                         recurring_etime = recurring_dates[0].end_time;
-                                    }else{
+                                    } else {
                                         recurring_time = element.date_from.split("T")["1"]
                                         recurring_etime = element.date_to.split("T")["1"];
                                     }
@@ -222,55 +216,56 @@ export class ClubAppointmentsComponent implements OnInit {
                                         self.upcomingEvent.push(rrEvents);
                                         self.upcomingEventList.push(rrEvents);
                                     }
-                                    
+
                                 })
                             }
-                            
+
                         } else {
                             if (element && element.recurring_dates && element.recurring_dates != '' && element.recurring_dates != null) {
-                                JSON.parse(element.recurring_dates).forEach((dd:any,index:any) => {
+                                JSON.parse(element.recurring_dates).forEach((dd: any, index: any) => {
                                     let yourDate1: Date = new Date(dd.date_from);
                                     let dt1: string = yourDate1.toISOString().split('T')[0];
                                     let recurring_dates = JSON.parse(element.recurring_dates);
-                                        var recurring_time:any
-                                        var recurring_etime:any
-                                        if(recurring_dates){
-                                            if(recurring_dates[index].start_time.includes(':00:00') && recurring_dates[index].end_time.includes(':00:00')){
-                                                recurring_dates[index].start_time ;
-                                                recurring_dates[index].end_time;
-                                            }else{
-                                                recurring_dates[index].start_time + ':00.000Z';
-                                                recurring_dates[index].end_time + ':00.000Z'
-                                            }
-                                            recurring_time = recurring_dates[index].start_time;
-                                            recurring_etime = recurring_dates[index].end_time;
-                                        }else{
-                                            recurring_time = element.date_from.split("T")["1"]
-                                            recurring_etime = element.date_to.split("T")["1"];
+                                    var recurring_time: any
+                                    var recurring_etime: any
+                                    if (recurring_dates) {
+                                        if (recurring_dates[index].start_time.includes(':00:00') && recurring_dates[index].end_time.includes(':00:00')) {
+                                            recurring_dates[index].start_time;
+                                            recurring_dates[index].end_time;
+                                        } else {
+                                            recurring_dates[index].start_time + ':00.000Z';
+                                            recurring_dates[index].end_time + ':00.000Z'
                                         }
-                                        let rrDate1: string = dt1 + "T" + recurring_time;
-                                        let rrDateEnd1: string = dt1 + "T" + recurring_etime;
-                                        let rrEvents1: any = {
-                                            "id": element.id,
-                                            "type": element.type,
-                                            "name": element.name,
-                                            "picture_video": element.event_images,
-                                            "date_from": rrDate1,
-                                            "date_to": rrDateEnd1,
-                                            "description": element.description,
-                                            "start_time": element.start_time,
-                                            "end_time": element.end_time,
-                                            "isCourse": false
-                                        }
-                                        self.eventList.push(rrEvents1);
-                                        if (dt1 == self.todays_date) {
-                                            self.currentEvent.push(rrEvents1);
-                                            self.currentEventList.push(rrEvents1);
+                                        recurring_time = recurring_dates[index].start_time;
+                                        recurring_etime = recurring_dates[index].end_time;
+                                    } else {
+                                        recurring_time = element.date_from.split("T")["1"]
+                                        recurring_etime = element.date_to.split("T")["1"];
+                                    }
+                                    let rrDate1: string = dt1 + "T" + recurring_time;
+                                    let rrDateEnd1: string = dt1 + "T" + recurring_etime;
+                                    let rrEvents1: any = {
+                                        "id": element.id,
+                                        "type": element.type,
+                                        "name": element.name,
+                                        "event_image": element?.event_images[0]?.event_image,
+                                        "event_document": element?.event_images[0]?.event_document,
+                                        "date_from": rrDate1,
+                                        "date_to": rrDateEnd1,
+                                        "description": element.description,
+                                        "start_time": element.start_time,
+                                        "end_time": element.end_time,
+                                        "isCourse": false
+                                    }
+                                    self.eventList.push(rrEvents1);
+                                    if (dt1 == self.todays_date) {
+                                        self.currentEvent.push(rrEvents1);
+                                        self.currentEventList.push(rrEvents1);
 
-                                        } else if (dt1 > self.todays_date) {
-                                            self.upcomingEvent.push(rrEvents1);
-                                            self.upcomingEventList.push(rrEvents1);
-                                        }
+                                    } else if (dt1 > self.todays_date) {
+                                        self.upcomingEvent.push(rrEvents1);
+                                        self.upcomingEventList.push(rrEvents1);
+                                    }
 
                                 });
                             } else {
@@ -280,19 +275,19 @@ export class ClubAppointmentsComponent implements OnInit {
                                         let yourDate1: Date = new Date(dd)
                                         let dt1: string = yourDate1.toISOString().split('T')[0];
                                         let recurring_dates = element.recurring_dates;
-                                        var recurring_time:any
-                                        var recurring_etime:any
-                                        if(recurring_dates){
-                                            if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                recurring_dates[0].start_time ;
+                                        var recurring_time: any
+                                        var recurring_etime: any
+                                        if (recurring_dates) {
+                                            if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                recurring_dates[0].start_time;
                                                 recurring_dates[0].end_time;
-                                            }else{
+                                            } else {
                                                 recurring_dates[0].start_time + ':00.000Z';
                                                 recurring_dates[0].end_time + ':00.000Z'
                                             }
                                             recurring_time = recurring_dates[0].start_time;
                                             recurring_etime = recurring_dates[0].end_time;
-                                        }else{
+                                        } else {
                                             recurring_time = element.date_from.split("T")["1"]
                                             recurring_etime = element.date_to.split("T")["1"];
                                         }
@@ -304,7 +299,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "id": element.id,
                                             "type": element.type,
                                             "name": element.name,
-                                            "picture_video": element.event_images,
+                                            "event_image": element?.event_images[0]?.event_image,
+                                            "event_document": element?.event_images[0]?.event_document,
                                             "date_from": rrDate1,
                                             "date_to": rrDateEnd1,
                                             "description": element.description,
@@ -324,7 +320,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                     });
                                 }
                             }
-                            
+
                         }
                     }
                 }
@@ -395,19 +391,19 @@ export class ClubAppointmentsComponent implements OnInit {
                                         let yourDate: Date = new Date(val)
                                         let dt: string = yourDate.toISOString().split('T')[0];
                                         let recurring_dates = element.recurring_dates;
-                                        var recurring_time:any
-                                        var recurring_etime:any
-                                        if(recurring_dates){
-                                            if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                recurring_dates[0].start_time ;
+                                        var recurring_time: any
+                                        var recurring_etime: any
+                                        if (recurring_dates) {
+                                            if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                recurring_dates[0].start_time;
                                                 recurring_dates[0].end_time;
-                                            }else{
+                                            } else {
                                                 recurring_dates[0].start_time + ':00.000Z';
                                                 recurring_dates[0].end_time + ':00.000Z'
                                             }
                                             recurring_time = recurring_dates[0].start_time;
                                             recurring_etime = recurring_dates[0].end_time;
-                                        }else{
+                                        } else {
                                             recurring_time = element.date_from.split("T")["1"]
                                             recurring_etime = element.date_to.split("T")["1"];
                                         }
@@ -419,7 +415,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "id": element.id,
                                             "type": '4',
                                             "name": element.name,
-                                            "picture_video": element.picture_video,
+                                            "course_image": element?.course_image[0]?.course_image,
+                                            "course_document": element?.course_image[0]?.course_document,
                                             "allowed_persons": element.allowed_persons,
                                             "date_from": rrDate,
                                             "date_to": rrDateEnd,
@@ -431,20 +428,20 @@ export class ClubAppointmentsComponent implements OnInit {
                                         }
                                         self.courseList.push(rrEvents);
                                         if (dt == self.todays_date) {
-                                                if (rrEvents.visibility == 2) {
-                                                    if (rrEvents.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                        self.currentEvent.push(rrEvents);
-                                                        self.currentEventList.push(rrEvents);
-                                                    }
-                                                } else {
-                                                    if(self.userDetails.roles[0] == 'guest'  && rrEvents.show_guest_list == 'true'){
-                                                        self.currentEvent.push(rrEvents);
-                                                        self.currentEventList.push(rrEvents);
-                                                    }else if(self.userDetails.roles[0] != 'guest'){
-                                                        self.currentEvent.push(rrEvents);
-                                                        self.currentEventList.push(rrEvents);
-                                                    }
+                                            if (rrEvents.visibility == 2) {
+                                                if (rrEvents.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
+                                                    self.currentEvent.push(rrEvents);
+                                                    self.currentEventList.push(rrEvents);
                                                 }
+                                            } else {
+                                                if (self.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
+                                                    self.currentEvent.push(rrEvents);
+                                                    self.currentEventList.push(rrEvents);
+                                                } else if (self.userDetails.roles[0] != 'guest') {
+                                                    self.currentEvent.push(rrEvents);
+                                                    self.currentEventList.push(rrEvents);
+                                                }
+                                            }
                                         } else if (dt > self.todays_date) {
                                             if (rrEvents.visibility == 2) {
                                                 if (rrEvents.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
@@ -452,10 +449,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                                     self.upcomingEventList.push(rrEvents);
                                                 }
                                             } else {
-                                                if(self.userDetails.roles[0] == 'guest'  && rrEvents.show_guest_list == 'true'){
+                                                if (self.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
                                                     self.upcomingEvent.push(rrEvents);
                                                     self.upcomingEventList.push(rrEvents);
-                                                }else if(self.userDetails.roles[0] != 'guest'){
+                                                } else if (self.userDetails.roles[0] != 'guest') {
                                                     self.upcomingEvent.push(rrEvents);
                                                     self.upcomingEventList.push(rrEvents);
                                                 }
@@ -466,23 +463,23 @@ export class ClubAppointmentsComponent implements OnInit {
                             } else {
                                 if (element && element.recurring_dates && element.recurring_dates != '' && element.recurring_dates != null) {
                                     const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to));
-                                    element.recurring_dates.forEach((dd:any,index:any) => {
+                                    element.recurring_dates.forEach((dd: any, index: any) => {
                                         let yourDate1: Date = new Date(dd.date_from);
                                         let dt1: string = yourDate1.toISOString().split('T')[0];
                                         let recurring_dates = element.recurring_dates;
-                                        var recurring_time:any
-                                        var recurring_etime:any
-                                        if(recurring_dates){
-                                            if(recurring_dates[index].start_time.includes(':00:00') && recurring_dates[index].end_time.includes(':00:00')){
-                                                recurring_dates[index].start_time ;
+                                        var recurring_time: any
+                                        var recurring_etime: any
+                                        if (recurring_dates) {
+                                            if (recurring_dates[index].start_time.includes(':00:00') && recurring_dates[index].end_time.includes(':00:00')) {
+                                                recurring_dates[index].start_time;
                                                 recurring_dates[index].end_time;
-                                            }else{
+                                            } else {
                                                 recurring_dates[index].start_time + ':00.000Z';
                                                 recurring_dates[index].end_time + ':00.000Z'
                                             }
                                             recurring_time = recurring_dates[index].start_time;
                                             recurring_etime = recurring_dates[index].end_time;
-                                        }else{
+                                        } else {
                                             recurring_time = element.date_from.split("T")["1"]
                                             recurring_etime = element.date_to.split("T")["1"];
                                         }
@@ -494,7 +491,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "id": element.id,
                                             "type": 4,
                                             "name": element.name,
-                                            "picture_video": element.picture_video,
+                                            "course_image": element?.course_image[0]?.course_image,
+                                            "course_document": element?.course_image[0]?.course_document,
                                             "allowed_persons": element.allowed_persons,
                                             "date_from": rrDate1,
                                             "date_to": rrDateEnd1,
@@ -512,10 +510,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                                     self.currentEventList.push(rrEvents1);
                                                 }
                                             } else {
-                                                if(self.userDetails.roles[0] == 'guest'  && rrEvents1.show_guest_list == 'true'){
+                                                if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
                                                     self.currentEvent.push(rrEvents1);
                                                     self.currentEventList.push(rrEvents1);
-                                                }else if(self.userDetails.roles[0] != 'guest'){
+                                                } else if (self.userDetails.roles[0] != 'guest') {
                                                     self.currentEvent.push(rrEvents1);
                                                     self.currentEventList.push(rrEvents1);
                                                 }
@@ -527,10 +525,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                                     self.upcomingEventList.push(rrEvents1);
                                                 }
                                             } else {
-                                                if(self.userDetails.roles[0] == 'guest'  && rrEvents1.show_guest_list == 'true'){
+                                                if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
                                                     self.upcomingEvent.push(rrEvents1);
                                                     self.upcomingEventList.push(rrEvents1);
-                                                }else if(self.userDetails.roles[0] != 'guest'){
+                                                } else if (self.userDetails.roles[0] != 'guest') {
                                                     self.upcomingEvent.push(rrEvents1);
                                                     self.upcomingEventList.push(rrEvents1);
                                                 }
@@ -544,19 +542,19 @@ export class ClubAppointmentsComponent implements OnInit {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
                                             let recurring_dates = element.recurring_dates;
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
-                                                if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                    recurring_dates[0].start_time ;
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
+                                                if (recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')) {
+                                                    recurring_dates[0].start_time;
                                                     recurring_dates[0].end_time;
-                                                }else{
+                                                } else {
                                                     recurring_dates[0].start_time + ':00.000Z';
                                                     recurring_dates[0].end_time + ':00.000Z'
                                                 }
                                                 recurring_time = recurring_dates[0].start_time;
                                                 recurring_etime = recurring_dates[0].end_time;
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -568,7 +566,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                                 "id": element.id,
                                                 "type": 4,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                "course_image": element?.course_image[0]?.course_image,
+                                                "course_document": element?.course_image[0]?.course_document,
                                                 "allowed_persons": element.allowed_persons,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
@@ -587,10 +586,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                                         self.currentEventList.push(rrEvents1);
                                                     }
                                                 } else {
-                                                    if(self.userDetails.roles[0] == 'guest'  && rrEvents1.show_guest_list == 'true'){
+                                                    if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
                                                         self.currentEvent.push(rrEvents1);
                                                         self.currentEventList.push(rrEvents1);
-                                                    }else if(self.userDetails.roles[0] != 'guest'){
+                                                    } else if (self.userDetails.roles[0] != 'guest') {
                                                         self.currentEvent.push(rrEvents1);
                                                         self.currentEventList.push(rrEvents1);
                                                     }
@@ -602,10 +601,10 @@ export class ClubAppointmentsComponent implements OnInit {
                                                         self.upcomingEventList.push(rrEvents1);
                                                     }
                                                 } else {
-                                                    if(self.userDetails.roles[0] == 'guest'  && rrEvents1.show_guest_list == 'true'){
+                                                    if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
                                                         self.upcomingEvent.push(rrEvents1);
                                                         self.upcomingEventList.push(rrEvents1);
-                                                    }else if(self.userDetails.roles[0] != 'guest'){
+                                                    } else if (self.userDetails.roles[0] != 'guest') {
                                                         self.upcomingEvent.push(rrEvents1);
                                                         self.upcomingEventList.push(rrEvents1);
                                                     }
@@ -666,7 +665,7 @@ export class ClubAppointmentsComponent implements OnInit {
     */
     eventDetails(id: any, date: any) {
         // this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: date.split('T')[0]} });
+        this.router.navigate(['/event-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 
     /**
@@ -678,7 +677,7 @@ export class ClubAppointmentsComponent implements OnInit {
     */
     courseDetails(id: any, date: any) {
         // this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
-        this.router.navigate(['/course-detail/' + id], { queryParams: { date: date.split('T')[0]} });
+        this.router.navigate(['/course-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 
 }

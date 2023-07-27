@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 @Component({
     selector: 'app-course-list',
@@ -16,7 +18,7 @@ export class CourseListComponent implements OnInit {
 
     eventTypeList: { name: string }[] = [];
     userData: LoginDetails;
-    language: any;
+    language: any; 
     isData: boolean = true;
     displayedColumns: string[] = [
         'name',
@@ -40,6 +42,8 @@ export class CourseListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
@@ -86,6 +90,16 @@ export class CourseListComponent implements OnInit {
                     });
 
                     this.dataSource = new MatTableDataSource(respData.courses);
+                    
+                    this.dataSource.filteredData.forEach((element:any)=>{
+                        if (element?.course_image[0]?.course_image){
+                            element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
+                        }
+                    })
+                    // console.log(this.dataSource.filteredData?.course_image[0]?.course_image );
+                    
+
+                    
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;

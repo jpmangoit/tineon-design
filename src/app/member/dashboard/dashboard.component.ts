@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                             element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.event_images[0]?.event_image.substring(20)));
                         }
                     });  
-                }
+                } 
             );
         this.authService.memberSendRequest('post', 'allCourses', null)
             .subscribe(
@@ -154,7 +154,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                             element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                         }
                     });  
-                    
                 }
             );
         this.getUserImage();

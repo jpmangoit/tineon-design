@@ -135,6 +135,7 @@
                                 <ng-container *ngFor="let item of currentCourseList ">
                                     <div class="course-item" *ngIf="checkType(item)">
                                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
+                                            <!-- <h2>assaasa</h2> -->
                                             <img onContextMenu="return false;"  alt="{{item.name}}" loading="lazy"
                                             [src]="item.picture_video ? item.picture_video : '../../../../assets/img/no_image.png'" >
                                         </div>
