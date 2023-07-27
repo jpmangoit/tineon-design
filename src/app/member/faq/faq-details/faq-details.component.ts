@@ -20,6 +20,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -149,7 +150,8 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) {
         this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
@@ -250,6 +252,10 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     if (respData['isError'] == false) {
                         this.faqsData = null;
                         this.faqsData = respData?.result[0];
+                        console.log(this.faqsData);
+                        if (this.faqsData['faq_image'][0]?.['faq_image']) {
+                            this.faqsData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqsData['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                        }
                         this.getProfileImages(this.faqsData);
                         this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
                     } else if (respData['code'] == 400) {
@@ -380,27 +386,38 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.hasDoc = true;
         this.hasPicture = false;
         this.imageUrl = "";
-        if (this.faqDataById.image) {
-            if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
-                (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
-                (this.faqDataById.image.endsWith(".avif"))  || (this.faqDataById.image.endsWith(".apng")) || (this.faqDataById.image.endsWith(".jfif")) ||
-                (this.faqDataById.image.endsWith(".pjpeg")) ||  (this.faqDataById.image.endsWith(".pjp"))
-            ) {
-                this.hasDoc = false;
-                this.hasPicture = true;
-                this.imageUrl = this.faqDataById.image;
+        console.log(this.faqDataById);
 
-            } else if ((this.faqDataById.image.endsWith(".pdf")) || (this.faqDataById.image.endsWith(".doc")) || (this.faqDataById.image.endsWith(".zip"))||
-                (this.faqDataById.image.endsWith(".docx")) || (this.faqDataById.image.endsWith(".docm")) || (this.faqDataById.image.endsWith(".dot")) ||
-                (this.faqDataById.image.endsWith(".odt")) || (this.faqDataById.image.endsWith(".txt")) || (this.faqDataById.image.endsWith(".xml")) ||
-                (this.faqDataById.image.endsWith(".wps")) || (this.faqDataById.image.endsWith(".xps")) || (this.faqDataById.image.endsWith(".html")) ||
-                (this.faqDataById.image.endsWith(".htm")) ||  (this.faqDataById.image.endsWith(".rtf"))) {
-                    this.hasPicture = false;
-                    this.hasDoc = true;
-                    this.imageUrl = this.faqDataById.image;
-                    $('.preview_img').attr('src', 'assets/img/event_upload.png');
+        if (this.faqDataById['faq_image'][0]?.['faq_image']) {
+            if (this.faqDataById['faq_image'][0]?.['faq_image']) {
+                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
             }
         }
+        if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
+            this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+        }
+        // if (this.faqDataById.image) {
+        //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
+        //         (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
+        //         (this.faqDataById.image.endsWith(".avif"))  || (this.faqDataById.image.endsWith(".apng")) || (this.faqDataById.image.endsWith(".jfif")) ||
+        //         (this.faqDataById.image.endsWith(".pjpeg")) ||  (this.faqDataById.image.endsWith(".pjp"))
+        //     ) {
+        //         this.hasDoc = false;
+        //         this.hasPicture = true;
+        //         this.imageUrl = this.faqDataById.image;
+
+        //     } else if ((this.faqDataById.image.endsWith(".pdf")) || (this.faqDataById.image.endsWith(".doc")) || (this.faqDataById.image.endsWith(".zip"))||
+        //         (this.faqDataById.image.endsWith(".docx")) || (this.faqDataById.image.endsWith(".docm")) || (this.faqDataById.image.endsWith(".dot")) ||
+        //         (this.faqDataById.image.endsWith(".odt")) || (this.faqDataById.image.endsWith(".txt")) || (this.faqDataById.image.endsWith(".xml")) ||
+        //         (this.faqDataById.image.endsWith(".wps")) || (this.faqDataById.image.endsWith(".xps")) || (this.faqDataById.image.endsWith(".html")) ||
+        //         (this.faqDataById.image.endsWith(".htm")) ||  (this.faqDataById.image.endsWith(".rtf"))) {
+        //             this.hasPicture = false;
+        //             this.hasDoc = true;
+        //             this.imageUrl = this.faqDataById.image;
+        //             $('.preview_img').attr('src', 'assets/img/event_upload.png');
+        //     }
+        // }
         $('#exModal').modal('show');
         $("#editFaq").click();
         this.authService.setLoader(false);
@@ -461,6 +478,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                         formData.append('file', this.fileToReturn);
 
                     }else {
+                        console.log(this.imageUrl);
                         formData.append('imageUrl', JSON.stringify(this.imageUrl));
                     }
                 }

@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="news_content_text" [innerHTML]="faqsData.description">...<a href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
 
-                                    <div class="attach_btn" *ngIf="faqsData.image != null">
+                                    <div class="attach_btn" *ngIf="faqsData['faq_image'][0]?.['faq_image'] != null || faqsData['faq_image'][0]?.['faq_document'] != ''">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                             viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                             stroke-width="2" stroke-linecap="round"
@@ -179,12 +179,19 @@
                                             <polyline points="7 10 12 15 17 10" />
                                             <line x1="12" y1="15" x2="12" y2="3" />
                                         </svg>
-                                        <a href="{{faqsData.image}}" >
-                                            {{language.create_event.download_attachment}}
-                                        </a>
+
+                                        <span *ngIf="faqsData['faq_image'][0]?.['faq_image'] != null" >
+                                            <a href="{{faqsData['faq_image'][0]?.['faq_image']}}" >
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </span>
+                                        <span *ngIf="faqsData['faq_image'][0]?.['faq_document'] != ''">
+                                            <a  href="{{faqsData['faq_image'][0]?.['faq_document']}}" >
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="author-info">
-
                                         <div class="parti_name" *ngIf="faqsData?.user?.imagePro == null || faqsData?.user?.imagePro == ''" >
                                             {{faqsData?.user?.firstname.charAt(0)}}{{faqsData?.user?.lastname.charAt(0)}}
                                         </div>
@@ -378,7 +385,8 @@
                                         </span>
                                         <div class="attach_btn preview_img">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E12217"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                             <a href="{{imageUrl}}">{{language.create_event.download_attachment}} </a>
                                         </div>
                                     </div>
