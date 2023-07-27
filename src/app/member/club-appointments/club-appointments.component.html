@@ -49,11 +49,11 @@
                                 <div class="club-widget-des-inner">
                                     <div class="club-left-area">
                                         <div class="club-category"> {{ language.header.event }} </div>
-                                        <div *ngIf=" item && item.isCourse == true" class="club-w-image"
+                                        <!-- <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
-                                        </div>
+                                        </div> -->
                                         <div *ngIf=" item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id, item.date_from)">
                                             <img onContextMenu="return false;" [src]="item.event_image? item.event_image :'../../../../assets/img/new-design/dashboard/event-img.png'
@@ -96,12 +96,12 @@
                                         </div>
                                         <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                         <div *ngIf="item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id,item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video:'../../../../assets/img/new-design/dashboard/group-img.png'
+                                            <img onContextMenu="return false;" [src]="item.event_image? item.event_image:'../../../../assets/img/new-design/dashboard/group-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
@@ -139,15 +139,15 @@
 
                                         <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
-                                        <div *ngIf=" item && item.isCourse == false" class="club-w-image"
+                                        <!-- <div *ngIf=" item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
                                                 [src]="item.picture_video ? item.picture_video :'../../../../assets/img/new-design/dashboard/ticket-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="club-right-area">
                                         <span class="club-schedule">{{ item.date_from | date : "d. MMMM y" }}</span>
@@ -189,7 +189,7 @@
                                             (click)="courseDetails(item.id, item.date_from)">
                                             <!-- <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" /> -->
-                                            <img onContextMenu="return false;" [src]="item.event_image? item.event_image :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                         <div *ngIf=" item && item.isCourse == false" class="club-w-image"
@@ -237,13 +237,13 @@
                                         </div>
                                         <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                         <div *ngIf=" item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
-                                                [src]="item.picture_video ? item.picture_video : '../../../../assets/img/new-design/dashboard/group-img.png'"
+                                                [src]="item.event_image ? item.event_image : '../../../../assets/img/new-design/dashboard/group-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>
@@ -285,13 +285,13 @@
                                         </div>
                                         <div *ngIf=" item && item.isCourse == true" class="club-w-image"
                                             (click)="courseDetails(item.id, item.date_from)">
-                                            <img onContextMenu="return false;" [src]="item.picture_video? item.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'
+                                            <img onContextMenu="return false;" [src]="item.course_image? item.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'
                                                 " alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                         <div *ngIf=" item && item.isCourse == false" class="club-w-image"
                                             (click)="eventDetails(item.id,item.date_from)">
                                             <img onContextMenu="return false;"
-                                                [src]="item.picture_video ? item.picture_video :'../../../../assets/img/new-design/dashboard/ticket-img.png'"
+                                                [src]="item.event_image ? item.event_image :'../../../../assets/img/new-design/dashboard/ticket-img.png'"
                                                 alt="{{ item.name }}" loading="lazy" />
                                         </div>
                                     </div>

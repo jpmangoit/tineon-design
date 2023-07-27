@@ -150,10 +150,10 @@
                                                     </label>
                                                     <div class="loader_image" *ngIf="isImage"></div>
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
-                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="(newsData.imageUrls == null) && (croppedImage == null || croppedImage == '') && !isImage"
+                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="(newsData.news_image[0]?.news_image == null) && (croppedImage == null || croppedImage == '') && !isImage"
                                                         src="assets/img/event_upload.png">
                                                     <img onContextMenu="return false;" id="preview_img"
-                                                        *ngIf="newsData.imageUrls && (croppedImage == null || croppedImage == '') && !isImage" [src]="newsData.imageUrls">
+                                                        *ngIf="newsData.news_image[0]?.news_image && (croppedImage == null || croppedImage == '') && !isImage" [src]="newsData.news_image[0]?.news_image">
                                                 </span>
                                                 <div *ngIf="(updateNewsForm.controls.add_image.touched || submitted) && (updateNewsForm.controls.add_image.errors?.required )"
                                                     class="text-danger">

@@ -272,8 +272,9 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData?.['imageUrls']){
-            this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
+
+        if (this.newsData?.news_image[0]?.news_image){
+            this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
         }
 
         this.memberid = this.newsData.user.member_id;
@@ -288,6 +289,12 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
                     });
         if (this.newsData['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
             this.updateNewsData = JSON.parse(news.updated_record);
+
+            if (this.updateNewsData?.newImage){
+                this.updateNewsData.newImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateNewsData?.newImage.substring(20)));
+            }
+            console.log(this.updateNewsData );
+            
         }
     }
 

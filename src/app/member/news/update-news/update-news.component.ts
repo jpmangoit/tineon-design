@@ -44,7 +44,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     visiblityDropdownSettings:IDropdownSettings;
     groupDropdownSettings:IDropdownSettings;
     categoryDropdownSettings:IDropdownSettings;
-    dropdownSettings:IDropdownSettings;
+    dropdownSettings:IDropdownSettings; 
     groups:CommunityGroup;
     newsid:number;
     groupSelectedItem :number[]= [];
@@ -102,6 +102,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     };
     imgHeight: any;
     imgWidth: any;
+    originalImg:string;
 
     constructor(
         private authService: AuthServiceService,
@@ -255,10 +256,13 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         this.updateNewsForm.controls['title'].setValue(this.newsData.title);
         this.updateNewsForm.controls['content'].setValue(this.newsData.text);
 
-        if (this.newsData?.['imageUrls']){
-            this.newsData['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData['imageUrls'].substring(20)));
-            this.updateNewsForm.controls['add_image'].setValue(this.newsData.imageUrls);
+        
+        if (this.newsData?.news_image[0]?.news_image){
+            this.originalImg = this.newsData?.news_image[0]?.news_image
+            this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
+            // this.updateNewsForm.controls['add_image'].setValue(this.newsData?.news_image[0]?.news_image);
         }
+
         this.updateNewsForm.controls['visible_dropdown'].setValue(type);
         if (this.newsData.show_guest_list == 'false') {
             this.updateNewsForm.controls['show_guest'].setValue('');
@@ -286,7 +290,8 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             if(this.fileToReturn){
                 formData.append("file", this.updateNewsForm.get('add_image').value);
             }else{
-                this.updateNewsForm.controls['add_image'].setValue(this.newsData.imageUrls);
+                // this.updateNewsForm.controls['add_image'].setValue(this.newsData?.news_image[0]?.news_image);
+                formData.append("file", this.originalImg );
             }
             formData.append("team_id", this.userDetails.team_id);
             formData.append("title", this.updateNewsForm.get('title').value);

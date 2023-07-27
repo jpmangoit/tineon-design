@@ -47,7 +47,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     responseMessage: string = null;
     courseId: number;
     imageUrl: string;
-    fileUrl: string;
+    fileUrl: string = '';
     picVid1: File;
     recurrenceSelected: number;
     customRecurrenceTypeSelected: any;
@@ -93,7 +93,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     checkPric: boolean = false;
     recurrenceDropdownSettings: IDropdownSettings;
     customRecurrenceDropdownSettings: IDropdownSettings;
-    visibilityDropdownSettings: IDropdownSettings;
+    visibilityDropdownSettings: IDropdownSettings; 
     eventTypeDropdownSettings: IDropdownSettings;
     groupDropdownSettings: IDropdownSettings;
     weekDayDropdownSettings: IDropdownSettings;
@@ -759,19 +759,24 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails.chargeable) {
             this.eventPriceDisplay = true;
         }
-        if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
+        console.log(this.courseDetails);
+        
+        if (this.courseDetails.course_image[0]?.course_image && this.courseDetails.course_image[0]?.course_image != "[]") {
             this.hasPicture = true;
-            this.image = this.courseDetails.picture_video;
-            if (this.courseDetails.picture_video){
-                this.courseDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails.picture_video.substring(20)));
-                this.eventImage =  this.courseDetails.picture_video
-                this.imageUrl = this.courseDetails.picture_video;
+            this.image = this.courseDetails.course_image[0]?.course_image;
+            if (this.courseDetails.course_image[0]?.course_image){
+                this.imageUrl = this.courseDetails.course_image[0]?.course_image;
+                this.courseDetails.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails.course_image[0]?.course_image.substring(20)));
+                this.eventImage =  this.courseDetails.course_image[0]?.course_image
             }
         }
-
-        if (this.courseDetails?.document_url) {
-                this.eventFile =  this.courseDetails.document_url;
-                this.fileUrl = this.courseDetails.document_url
+        console.log(this.courseDetails);
+        
+        if (this.courseDetails?.course_image[0]?.course_document) {
+                this.eventFile =  this.courseDetails?.course_image[0]?.course_document;
+                this.fileUrl = this.courseDetails?.course_image[0]?.course_document
+                console.log(this.fileUrl);
+                
         }
 
         // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
@@ -1292,25 +1297,29 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         if (this.fileToReturn) {
                             formData.append('file', this.fileToReturn)
                         } else {
-                            this.fileAndimage.push(this.imageUrl);
+                            formData.append('course_image', this.imageUrl); 
+                            // this.fileAndimage.push(this.imageUrl); 
                         }
                     }
-                    if (key == 'file' && this.fileToReturn == null && this.imageUrl == null) {
-                        formData.append('file', '')
-                    }
-                    if (key == 'file' && (this.picVid1 || this.fileUrl)) {
+                    // if (key == 'file' && this.fileToReturn == null && this.imageUrl == null) {
+                    //     formData.append('file', '')
+                    // }
+                    // if (key == 'file' && (this.picVid1 || this.fileUrl)) {
+                        if (key == 'file') {
                         if (self.picVid1) {
                             formData.append('file', self.picVid1)
                         } else {
-                            this.fileAndimage.push(this.fileUrl);
+                            console.log(this.fileUrl); 
+                            formData.append('course_document', this.fileUrl); 
+                            // this.fileAndimage.push(this.fileUrl);
                         }
                     }
-                    if (key == 'file' && this.picVid1 == null && this.fileUrl == null) {
-                        formData.append('file', '')
-                    }
-                    if (key == 'file' && this.fileAndimage.length > 0) {
-                        formData.append('imageUrl', JSON.stringify(this.fileAndimage))
-                    }
+                    // if (key == 'file' && this.picVid1 == null && this.fileUrl == null) {
+                    //     formData.append('file', '')
+                    // }
+                    // if (key == 'file' && this.fileAndimage.length > 0) {
+                    //     formData.append('imageUrl', JSON.stringify(this.fileAndimage))
+                    // }
 
                     if (key == 'instructor_internal' && this.instrucType == 1) {
                         let internalUser = this.authService.uniqueData(this.internalInstructor)

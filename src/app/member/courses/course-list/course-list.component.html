@@ -53,7 +53,12 @@
                            {{language.banner.image}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
-                            <img src="{{row.picture_video}}" width="60px" height="60px" />
+                            <!-- <img src="{{row?.filteredData?.course_image[0]?.course_image}}" width="60px" height="60px" />     -->
+                            <!-- <img  [src]="row?.filteredData?.course_image[0]?.course_image ? row?.filteredData?.course_image[0]?.course_image :'../../../../assets/img/new-design/dashboard/event-img.png'"
+                            width="60px" height="60px"  /> -->
+                            <img [src]="row.course_image[0]?.course_image ? row.course_image[0]?.course_image : '../../assets/img/no_image.png'" width="60px" height="60px" />
+
+                            
                         </td>
                     </ng-container>
 

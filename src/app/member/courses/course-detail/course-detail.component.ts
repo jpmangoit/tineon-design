@@ -23,7 +23,7 @@ declare var $: any;
     styleUrls: ['./course-detail.component.css']
 })
 
-export class CourseDetailComponent implements OnInit { 
+export class CourseDetailComponent implements OnInit {
     language: any;
     updateCourseData: any
     courseDetails: any
@@ -33,7 +33,7 @@ export class CourseDetailComponent implements OnInit {
     userId: any;
     private activatedSub: Subscription;
     responseMessage: any;
-    eventImage: string;
+    eventImage: string; 
     eventUpdateImage: string;
     eventFile: string;
     eventUpdateFile: string;
@@ -41,7 +41,7 @@ export class CourseDetailComponent implements OnInit {
     hasUpdatePicture: boolean = false;
     thumb: string;
     count: number;
-    countParti:number = 0;
+    countParti: number = 0;
     alluserInformation: { member_id: string }[] = [];
     memImg: { email: string, firstname: string, id: number, image: string, lastname: string, username: string }[] = [];
     unapprovedParticipants: { email: string, firstname: string, id: number, image: string, lastname: string, username: string }[]
@@ -56,7 +56,7 @@ export class CourseDetailComponent implements OnInit {
     taskOrganizerDetailsUpdated: any[] = [];
     isTaskDetails: boolean = false;
     isTaskDetailsUpdate: boolean = false;
-    allUsers:any;
+    allUsers: any;
     getclubInfo: ProfileDetails;
     memberStartDateStatus: Date;
     displayError: boolean = false;
@@ -168,8 +168,8 @@ export class CourseDetailComponent implements OnInit {
                             this.courseDetails.forEach(element => {
                                 if (this.allUsers?.length > 0) {
                                     this.allUsers.forEach(el => {
-                                        if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                            if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                 if (el.member_id != null) {
                                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
                                                         .subscribe(
@@ -177,11 +177,11 @@ export class CourseDetailComponent implements OnInit {
                                                                 this.thumb = resppData;
                                                                 element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
                                                             },
-                                                            (error:any) => {
+                                                            (error: any) => {
                                                                 element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                             });
                                                 } else {
-                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                    element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                 }
                                             }
                                         }
@@ -190,22 +190,32 @@ export class CourseDetailComponent implements OnInit {
                                 element.recurring_dates = JSON.parse(element.recurring_dates);
                             });
                         }
-                        this.courseDetails[0]?.recurring_dates.forEach((element:any) =>{
+                        this.courseDetails[0]?.recurring_dates.forEach((element: any) => {
                             element.start_time = this.commonFunctionService.convertTime(element.start_time);
                             element.end_time = this.commonFunctionService.convertTime(element.end_time);
                         })
 
-                        if(this.courseDate){
-                            this.courseDetails[0].recurring_dates.unshift( this.courseDetails[0].recurring_dates.splice( this.courseDetails[0].recurring_dates.findIndex(elt => elt.date_from === this.courseDate), 1)[0]);
+                        if (this.courseDate) {
+                            this.courseDetails[0].recurring_dates.unshift(this.courseDetails[0].recurring_dates.splice(this.courseDetails[0].recurring_dates.findIndex(elt => elt.date_from === this.courseDate), 1)[0]);
                         }
 
                         this.courseDetails[0]['date_from'] = this.courseDate ? this.courseDate + 'T' + this.courseDetails[0]?.date_from.split('T')[1] : this.courseDetails[0]?.date_from;
 
-                        if (this.courseDetails[0]?.picture_video != "[]") {
-                                this.hasPicture = true;
-                                if (this.courseDetails[0].picture_video){
-                                this.courseDetails[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0].picture_video.substring(20)));
-                                this.eventImage =  this.courseDetails[0].picture_video
+                        // if (this.courseDetails[0]?.picture_video != "[]") {
+                        //         this.hasPicture = true;
+                        //         if (this.courseDetails[0].picture_video){
+                        //         this.courseDetails[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0].picture_video.substring(20)));
+                        //         this.eventImage =  this.courseDetails[0].picture_video
+                        //     }
+                        // } else {
+                        //     this.hasPicture = false;
+                        //     this.eventImage = '';
+                        // }
+                        if (this.courseDetails[0]?.course_image[0]?.course_image != "[]") {
+                            this.hasPicture = true;
+                            if (this.courseDetails[0]?.course_image[0]?.course_image ) {
+                                this.courseDetails[0].course_image[0].course_image  = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0]?.course_image[0]?.course_image .substring(20)));
+                                this.eventImage = this.courseDetails[0]?.course_image[0]?.course_image 
                             }
                         } else {
                             this.hasPicture = false;
@@ -213,7 +223,7 @@ export class CourseDetailComponent implements OnInit {
                         }
 
                         if (this.courseDetails[0]?.document_url) {
-                            this.eventFile =  this.courseDetails[0].document_url;
+                            this.eventFile = this.courseDetails[0].document_url;
                         }
 
                         // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
@@ -279,7 +289,7 @@ export class CourseDetailComponent implements OnInit {
                                                                     this.thumb = resppData;
                                                                     element.user.image = this.thumb
                                                                 },
-                                                                (error:any) => {
+                                                                (error: any) => {
                                                                     element.user.image = null;
                                                                 });
                                                     } else {
@@ -290,18 +300,20 @@ export class CourseDetailComponent implements OnInit {
                                         }
                                     });
                                 }
-                                if (this.updateCourseData['updatedImageUrl']) {
+                                console.log(this.updateCourseData);
+                                
+                                if (this.updateCourseData?.baseImage[0]?.image) {
                                     this.hasUpdatePicture = true;
-                                    if (this.updateCourseData['updatedImageUrl']){
-                                        this.updateCourseData['updatedImageUrl'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateCourseData['updatedImageUrl'].substring(20)));
-                                        this.eventUpdateImage =  this.updateCourseData['updatedImageUrl']
-                                     }
+                                    if (this.updateCourseData?.baseImage[0]?.image) {
+                                        this.updateCourseData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateCourseData?.baseImage[0]?.image.substring(20)));
+                                        this.eventUpdateImage = this.updateCourseData?.baseImage[0]?.image
+                                    }
                                 } else {
                                     this.hasUpdatePicture = false;
                                     this.eventUpdateImage = '';
                                 }
                                 if (this.updateCourseData['updateDocumentUrl']) {
-                                    this.eventUpdateFile =  this.updateCourseData['updateDocumentUrl'];
+                                    this.eventUpdateFile = this.updateCourseData['updateDocumentUrl'];
                                 }
                                 // if (this.updateCourseData['imageUrl']) {
                                 //     if (this.updateCourseData['imageUrl'].length > 0) {
@@ -343,7 +355,7 @@ export class CourseDetailComponent implements OnInit {
                                                                     this.thumb = resppData;
                                                                     element.user.image = this.thumb
                                                                 },
-                                                                (error:any) => {
+                                                                (error: any) => {
                                                                     element.user.image = null;
                                                                 });
                                                     } else {
@@ -358,39 +370,39 @@ export class CourseDetailComponent implements OnInit {
                                         }
                                     });
                                 }
-                                if(this.updateCourseData?.room != 'null'){
+                                if (this.updateCourseData?.room != 'null') {
                                     this.commonFunctionService.roomsById(this.updateCourseData?.room)
-                                    .then((resp: any) => {
-                                           this.updateCourseData.roomData = resp;
+                                        .then((resp: any) => {
+                                            this.updateCourseData.roomData = resp;
                                         })
-                                    .catch((erro: any) => {
-                                        this.notificationService.showError(erro, null);
-                                    });
+                                        .catch((erro: any) => {
+                                            this.notificationService.showError(erro, null);
+                                        });
                                 }
                             }
                         }
 
                         if (this.courseDetails && this.courseDetails[0]?.courseTask && Object.keys(this.courseDetails[0]?.courseTask).length != 0) {
-                            this.authService .memberSendRequest('get', 'getTaskCollaborator/task/' + this.courseDetails[0]?.courseTask.id, null)
-                            .subscribe((respData: any) => {
-                                if(respData && respData.length > 0){
-                                    respData.forEach(ele => {
-                                        if(ele.user_id == this.userDetails.userId){
-                                            this.countParti = 1;
-                                        }
-                                    });
-                                }
-                              });
-                              setTimeout(() => {
-                                if(this.courseDetails && this.courseDetails[0]?.courseTask && this.courseDetails[0]?.courseTask['organizer_id'] == this.userDetails.userId  || this.userDetails.isAdmin == true || this.countParti == 1 ){
+                            this.authService.memberSendRequest('get', 'getTaskCollaborator/task/' + this.courseDetails[0]?.courseTask.id, null)
+                                .subscribe((respData: any) => {
+                                    if (respData && respData.length > 0) {
+                                        respData.forEach(ele => {
+                                            if (ele.user_id == this.userDetails.userId) {
+                                                this.countParti = 1;
+                                            }
+                                        });
+                                    }
+                                });
+                            setTimeout(() => {
+                                if (this.courseDetails && this.courseDetails[0]?.courseTask && this.courseDetails[0]?.courseTask['organizer_id'] == this.userDetails.userId || this.userDetails.isAdmin == true || this.countParti == 1) {
                                     this.isTaskDetails = true;
                                     this.setUsers(this.courseDetails[0]?.courseTask?.id);
                                 }
-                              }, 2000);
+                            }, 2000);
                         }
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
-                    }else{
+                    } else {
                         this.notificationService.showError(this.language.courses.no_course_found, null);
                     }
                     this.authService.setLoader(false);
@@ -410,51 +422,51 @@ export class CourseDetailComponent implements OnInit {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'approvedParticipants/course/' + courseId, null)
-            .subscribe(
-                (respData: any) => {
-                    if (respData && respData.length > 0) {
-                        respData.forEach((value, key) => {
-                            if (this.courseDetails[0].author == value.users.id) {
-                                this.organizerDetails.push(value);
-                                Object(this.organizerDetails).forEach((val, key) => {
-                                    val.users.image = null;
-                                    val.id = val.users.id;
-                                    if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id] != null) {
-                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
-                                            .subscribe(
-                                                (resppData: any) => {
-                                                    this.thumb = resppData;
-                                                    val.users.image = this.thumb;
-                                                },
-                                                (error:any) => {
-                                                    val.users.image = null;
-                                                });
-                                    }
-                                })
-                            } else {
-                                this.approvedParticipants.push(value);
-                                Object(this.approvedParticipants).forEach((val, key) => {
-                                    val.users.image = null;
-                                    val.id = val.users.id;
-                                    if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id].member_id != null) {
-                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
-                                            .subscribe(
-                                                (resppData: any) => {
-                                                    this.thumb = resppData;
-                                                    val.users.image = this.thumb;
-                                                },
-                                                (error:any) => {
-                                                    val.users.image = null;
-                                                });
-                                    }
-                                });
-                            }
-                        });
-                        this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
-                        this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants,'id'));
+                .subscribe(
+                    (respData: any) => {
+                        if (respData && respData.length > 0) {
+                            respData.forEach((value, key) => {
+                                if (this.courseDetails[0].author == value.users.id) {
+                                    this.organizerDetails.push(value);
+                                    Object(this.organizerDetails).forEach((val, key) => {
+                                        val.users.image = null;
+                                        val.id = val.users.id;
+                                        if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id] != null) {
+                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
+                                                .subscribe(
+                                                    (resppData: any) => {
+                                                        this.thumb = resppData;
+                                                        val.users.image = this.thumb;
+                                                    },
+                                                    (error: any) => {
+                                                        val.users.image = null;
+                                                    });
+                                        }
+                                    })
+                                } else {
+                                    this.approvedParticipants.push(value);
+                                    Object(this.approvedParticipants).forEach((val, key) => {
+                                        val.users.image = null;
+                                        val.id = val.users.id;
+                                        if (this.alluserInformation[val.users.id] && this.alluserInformation[val.users.id].member_id != null) {
+                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val.users.id].member_id, null)
+                                                .subscribe(
+                                                    (resppData: any) => {
+                                                        this.thumb = resppData;
+                                                        val.users.image = this.thumb;
+                                                    },
+                                                    (error: any) => {
+                                                        val.users.image = null;
+                                                    });
+                                        }
+                                    });
+                                }
+                            });
+                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
+                            this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -482,7 +494,7 @@ export class CourseDetailComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 val.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 val.image = null;
                                             });
                                 } else {
@@ -490,8 +502,8 @@ export class CourseDetailComponent implements OnInit {
                                 }
                                 this.memImg.push(val);
                             });
-                            this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg,'id'));
-                            this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants,'id'));
+                            this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg, 'id'));
+                            this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants, 'id'));
                         }
                         this.authService.setLoader(false);
                     }
@@ -684,7 +696,7 @@ export class CourseDetailComponent implements OnInit {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -766,41 +778,41 @@ export class CourseDetailComponent implements OnInit {
             })
     }
 
-        /**
-    * Function is used to download document
-    * @author  MangoIt Solutions
-    * @param   {path}
-    */
-        download(path: any) {
-            let data = {
-                name: path
-            }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/')[2]
-               this.authService.downloadDocument('post', endPoint, data).toPromise()
-                  .then((blob: any) => {
-                        saveAs(blob, filename);
-                       this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
+    /**
+* Function is used to download document
+* @author  MangoIt Solutions
+* @param   {path}
+*/
+    download(path: any) {
+        let data = {
+            name: path
         }
+        this.dowloading = true;
+        var endPoint = 'get-documentbyname';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
 
 
     ngOnDestroy(): void {
