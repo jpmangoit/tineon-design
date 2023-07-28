@@ -16,6 +16,7 @@ import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -24,7 +25,7 @@ declare var $: any;
     styleUrls: ['./update-email.component.css']
 })
 
-export class UpdateEmailComponent implements OnInit,OnDestroy {
+ export class UpdateEmailComponent implements OnInit,OnDestroy {
     language :any;
     createAccess:CreateAccess;
     imageChangedEvent: Event = null;
@@ -108,7 +109,8 @@ export class UpdateEmailComponent implements OnInit,OnDestroy {
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
@@ -180,10 +182,22 @@ export class UpdateEmailComponent implements OnInit,OnDestroy {
             }
             this.updateEmailForm.controls["template_type"].setValue(this.type);
         }
-        if (this.emailDetails.logo) {
-            this.imageUrl = this.emailDetails.logo;
-            this.updateEmailForm.controls["file"].setValue(this.emailDetails.logo);
+        if(this.emailDetails.template_logo[0]?.template_image){
+            console.log(this.emailDetails);
+            this.updateEmailForm.controls["file"].setValue(this.emailDetails.template_logo[0]?.template_image);
+            
+            this.emailDetails.template_logo[0].template_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.emailDetails.template_logo[0]?.template_image.substring(20)));
+
+            this.imageUrl = this.emailDetails.template_logo[0]?.template_image;
+            
         }
+        console.log(this.emailDetails);
+
+        
+        // if (this.emailDetails.logo) {
+        //     this.imageUrl = this.emailDetails.logo;
+        //     this.updateEmailForm.controls["file"].setValue(this.emailDetails.logo);
+        // }
         this.updateEmailForm.controls["subject"].setValue(this.emailDetails.subject);
         this.updateEmailForm.controls["header_content"].setValue(this.emailDetails.header_content);
         this.updateEmailForm.controls["template_body"].setValue(this.emailDetails.template_body);
