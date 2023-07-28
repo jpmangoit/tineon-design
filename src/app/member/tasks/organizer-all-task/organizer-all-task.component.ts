@@ -51,9 +51,10 @@ export class OrganizerAllTaskComponent implements OnInit {
                         this.inProgress = [];
                         this.completed = [];
                         if (respData['isError'] == false) {
+
                             if (respData['result']?.length > 0) {
-                                respData['result'].forEach((element) => {
-                                    if (element?.['task_image'][0]?.['task_image']) {
+                                respData?.['result']?.forEach((element) => {
+                                    if (element['task_image'] && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                                     }
                                     element.approvedCount = 0

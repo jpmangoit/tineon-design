@@ -53,6 +53,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
     isImage: boolean = false;
     imgHeight: any;
     imgWidth: any;
+    group_img: string = '';
 
 
     constructor(
@@ -262,16 +263,20 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                         });
                         this.participantSelectedItem= this.authService.uniqueData(this.participantSelectedItem);
                         this.groupParticipant = Object.assign(this.authService.uniqueObjData(this.groupParticipant,'id'));
-                        this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow,'id'));
-                        if (this.groupData && this.groupData['image']){
-                            this.groupData['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupData['image'].substring(20)));
-                            this.showImage = this.groupData['image'];
+                        this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow,'id'))
+
+                        if (this.groupData['group_images'].length > 0 && this.groupData['group_images'][0]?.['group_image']){
+                            this.group_img = this.groupData['group_images'][0]['group_image'];
+                            this.groupData['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupData['group_images'][0]['group_image'].substring(20)));
+                            this.showImage = this.groupData['group_images'][0]['group_image'];
                         }
                         this.showParticipants = true;
                         if (this.groupData) {
                             this.updateGroupForm.controls['name'].setValue(this.groupData['name']);
                             this.updateGroupForm.controls['description'].setValue(this.groupData['description']);
-                            this.updateGroupForm.controls['add_image'].setValue(this.showImage);
+
+                            this.updateGroupForm.controls['add_image'].setValue(this.group_img);
+
                             this.updateGroupForm.controls['created_by'].setValue(this.groupData['created_by']);
                             this.updateGroupForm.controls['team_id'].setValue(this.groupData['team_id']);
                             this.updateGroupForm.controls['participants'].setValue(this.groupParticipant);

@@ -1,5 +1,5 @@
 export interface Instructors {
-  add_img: any
+instructor_image: any
   address: string
   availablity: InstructorsAvailablity[]
   courses_type: null

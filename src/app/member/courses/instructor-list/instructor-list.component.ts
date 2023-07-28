@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-instructor-list',
@@ -20,7 +22,7 @@ export class InstructorListComponent implements OnInit {
     displayedColumns: string[] = [
         'first_name',
         'last_name',
-        'emaill',        
+        'emaill',
         'add_img',
         'created_at',
         'author',
@@ -40,6 +42,8 @@ export class InstructorListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -68,6 +72,12 @@ export class InstructorListComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
+                    console.log(respData.instructors);
+                    respData?.instructors?.forEach((element:any) =>{
+                        if(element['instructor_image'][0]?.['instructor_image']){
+                            element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
+                        }
+                    })
                     this.dataSource = new MatTableDataSource(respData.instructors);
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;

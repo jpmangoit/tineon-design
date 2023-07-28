@@ -35,9 +35,9 @@ export class OrganizerPersonalTaskComponent implements OnInit {
             this.toDoTask = [];
             this.inProgress = [];
             this.completed = [];
-            if (this.organizerTask?.length > 0) {
-                this.organizerTask.forEach((element) => {
-                    if (element?.['task_image'][0]?.['task_image']) {
+            if (this.organizerTask && this.organizerTask?.length > 0) {
+                this.organizerTask?.forEach((element) => {
+                    if (element['task_image'] && element['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                     }
                     if (element.group_id == 0 || element.group_id == null || element.group_id == '') {
@@ -47,7 +47,6 @@ export class OrganizerPersonalTaskComponent implements OnInit {
                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
                             element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                         }
-
                         let cudate: Date = new Date();
                         element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -55,7 +54,6 @@ export class OrganizerPersonalTaskComponent implements OnInit {
                         } else {
                             element.remain = this.language.organizer_task.daysOverride;
                         }
-
                         if ((element.group_id == null || element.group_id == 0) && ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0))) {
                             this.toDoTask.push(element);
                             this.toDoTask;

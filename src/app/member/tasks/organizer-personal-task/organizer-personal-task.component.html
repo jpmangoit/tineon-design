@@ -101,7 +101,10 @@
              <ng-container *ngFor="let task of completed; let i = index">
              <div class="task-list-item"  *ngIf="completed && completed.length > 0">
                 <div class="task-list-image">
-                    <img onContextMenu="return false;" [src]="task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' ? task['task_image'][0]?.['task_image'] : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                    <img onContextMenu="return false;"
+                         [src]="(task['task_image'] && task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '')
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                 </div>
                 <div class="task-category">
                     <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>

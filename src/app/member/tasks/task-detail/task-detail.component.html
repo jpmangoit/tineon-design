@@ -231,7 +231,9 @@
                                                 <div class="group_detail_content" *ngIf="updatedTaskData">
                                                     <div class="detail-big-img">
                                                         <img onContextMenu="return false;"
-                                                            [src]="updatedTaskData.image != null && updatedTaskData.image != '' ? updatedTaskData.image : '../../../../assets/img/no_image.png'"
+                                                            [src]="(updatedTaskData.file != 'undefined' && updatedTaskData.file != null && updatedTaskData.file != '')
+                                                                    ? updatedTaskData.file
+                                                                    : '../../../../assets/img/no_image.png'"
                                                             alt="" loading="lazy">
                                                         <div class="dropdown action_group">
                                                             <button class="dropdown-toggle" type="button"

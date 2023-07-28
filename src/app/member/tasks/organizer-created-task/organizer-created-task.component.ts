@@ -37,10 +37,8 @@ export class OrganizerCreatedTaskComponent implements OnInit {
             this.inProgress = [];
             this.completed = [];
             if (this.organizerTask?.length > 0) {
-                this.organizerTask.forEach((element) => {
-                    console.log(element?.['task_image'][0]?.['task_image']);
-
-                    if (element?.['task_image'][0]?.['task_image']) {
+                this.organizerTask?.forEach((element) => {
+                    if (element && element['task_image'] && element?.['task_image'][0]?.['task_image']) {
                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['task_image'][0]?.['task_image'].substring(20)))as string;
                     }
                     if (element.organizer_id == this.user_id) {

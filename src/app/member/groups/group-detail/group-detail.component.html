@@ -222,7 +222,7 @@
                                             <div class="group_detail_main">
                                                 <div class="group_img_sec">
                                                     <div class="detail-big-img">
-                                                        <img onContextMenu="return false;" [src]="updatedGroupData?.image != null ? updatedGroupData.image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                        <img onContextMenu="return false;" [src]="updatedGroupData?.file != '' ? updatedGroupData.file : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                                     </div>
                                                     <div class="membar_count">{{updatedGroupData.participantsCount}} {{language.community_groups.participants}}</div>
                                                     <div class="dropdown action_group">

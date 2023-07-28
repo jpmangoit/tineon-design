@@ -325,23 +325,19 @@ export class GroupDetailComponent implements OnInit {
                                 } else {
                                     val.imagePro = null;
                                 }
-
                                 if (val.user_id == this.groupDetails['created_by']) {
                                     this.organizerDetails.push(val)
                                 } else {
                                     this.groupParticipnts.push(val);
                                 }
-
                                 if (val.user_id.toString() == this.userId && val.approved_status == 1) {
                                     this.groupAction = 1;
                                     this.getGroupNews(groupid);
                                 }
-
                                 if (this.groupDetails['approved_status'] == 1) {
                                     if (val.user_id == this.userId) {
                                         count = 1;
                                     }
-
                                     if (count == 1) {
                                         if ((val.user_id == this.userId && val.approved_status == 0)) {
                                             this.invited = true;
@@ -365,6 +361,9 @@ export class GroupDetailComponent implements OnInit {
                             this.groupParticipnts = Object.assign(this.authService.uniqueObjData(this.groupParticipnts,'id'));
                             if (this.groupDetails['created_by'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                 this.updatedGroupData = JSON.parse(this.groupDetails['updated_record']);
+                                if (this.updatedGroupData?.file){
+                                    this.updatedGroupData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedGroupData?.file.substring(20)));
+                                }
                                 if (this.updatedGroupData != null) {
                                     this.updatedOrganizerDetails = [];
                                     this.updatedGroupParticipnts = [];
@@ -412,7 +411,6 @@ export class GroupDetailComponent implements OnInit {
                                 }
                                 this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails,'id'));
                                 // this.updatedGroupParticipnts = Object.assign(this.authService.uniqueObjData(this.updatedGroupParticipnts,'id'));
-                                console.log( this.updatedGroupData );
                             }
                         } else {
                             this.notificationService.showError(this.language.community_groups.no_groups, null);

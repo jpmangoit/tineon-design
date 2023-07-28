@@ -91,6 +91,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     allExternlCalndr:any[];
     allWeekDayArray: any[];
     allWeekDayArrayName: any[];
+    instruct_img: any;
     constructor(
         private formbuilder: UntypedFormBuilder,
         private lang: LanguageService,
@@ -316,6 +317,12 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.instructorData = respData['result']['instructor'];
+                    console.log(this.instructorData);
+                    this.instructorData.forEach((element:any) =>{
+                        if(element['instructor_image'][0]?.['instructor_image']){
+                            element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
+                        }
+                    })
                     this.totalInstructor = respData['result'].pagination.rowCount;
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
@@ -434,6 +441,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.instructorById = respData['result'];
+                    console.log(this.instructorById);
+
                     this.memberid = this.instructorById.user.member_id;
                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
                         .subscribe(
@@ -445,12 +454,13 @@ export class InstructorComponent implements OnInit, OnDestroy {
                                 this.thumbnail = null;
                             });
 
-                    if (this.instructorById.add_img == '' || this.instructorById.add_img == null) {
+                    if (this.instructorById.instructor_image[0]['instructor_image'] == '' || this.instructorById.instructor_image[0]['instructor_image'] == null) {
                         this.imageShow = '../../assets/img/no_image.png';
                     } else {
-                        if (this.instructorById.add_img){
-                            this.instructorById.add_img = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorById.add_img.substring(20)));
-                            this.imageShow = this.instructorById.add_img;
+                        if (this.instructorById.instructor_image[0]?.['instructor_image']){
+                            this.instruct_img = this.instructorById.instructor_image[0]['instructor_image'];
+                            this.instructorById.instructor_image[0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorById.instructor_image[0]['instructor_image'].substring(20)));
+                            this.imageShow = this.instructorById.instructor_image[0]['instructor_image'];
                         }
                     }
                     this.editId = this.instructorById.id;
@@ -564,10 +574,11 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.editInstructorForm.controls['emaill'].setValue(  this.instructorById.emaill );
         this.editInstructorForm.controls['phone_no'].setValue( this.instructorById.phone_no  );
         this.editInstructorForm.controls['address'].setValue( this.instructorById.address   );
-        this.editInstructorForm.controls['add_img'].setValue( this.instructorById.add_img );
+
+        this.editInstructorForm.controls['add_img'].setValue(this.instruct_img);
+
         this.editInstructorForm.controls['active_from'].setValue(this.instructorById.active_from);
         this.editInstructorForm.controls['active_to'].setValue(this.instructorById.active_to);
-
         this.getInTouchInstructorForm.controls['receiver_email'].setValue(this.instructorById.emaill);
         this.getInTouchInstructorForm.controls['receiver_id'].setValue(this.instructorById.id);
         this.getInTouchInstructorForm.controls['sender_email'].setValue(this.userDetails.email);
@@ -647,7 +658,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
         if (this.fileToReturn) {
             this.editInstructorForm.value['add_img'] = this.fileToReturn;
         } else {
-            this.editInstructorForm.value['add_img'] = this.instructorById.add_img;
+            console.log(this.instruct_img);
+            this.editInstructorForm.value['add_img'] = this.instruct_img;
         }
         var formData: FormData = new FormData();
         let self = this;
@@ -688,6 +700,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 }
             }
         }
+
         if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateInstructor/' + this.editId, formData)

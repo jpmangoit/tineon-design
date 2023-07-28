@@ -154,8 +154,10 @@ export class InstructorDetailsComponent implements OnInit {
                 this.instructorDetails = null;
                 this.updateInstructorData = null;
                 this.instructorDetails = respData['result'];
-                if (this.instructorDetails?.['add_img']){
-                    this.instructorDetails['add_img'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorDetails['add_img'].substring(20)));
+                console.log( this.instructorDetails);
+
+                if (this.instructorDetails?.instructor_image[0]?.['instructor_image']){
+                    this.instructorDetails.instructor_image[0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorDetails.instructor_image[0]['instructor_image'].substring(20)));
                 }
                 if(this.instructorDetails?.user?.member_id){
                     this.memberid = this.instructorDetails?.user?.member_id;
@@ -177,6 +179,11 @@ export class InstructorDetailsComponent implements OnInit {
                         this.updateInstructorData = JSON.parse(this.instructorDetails.updated_record);
                         this.updateInstructorData.qualifications = this.updateInstructorData['qualifications'];
                         this.updateInstructorData.weekdays = JSON.parse(this.updateInstructorData['weekdays']);
+                        console.log(this.updateInstructorData);
+
+                        if (this.updateInstructorData?.newImage){
+                            this.updateInstructorData.newImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateInstructorData.newImage.substring(20)));
+                        }
                         if ( this.allUser?.length > 0) {
                                 this.allUser.forEach(el => {
                                 if (el.id == this.updateInstructorData.author) {

@@ -1216,6 +1216,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             formData.append('event_document', this.fileUrl);
                             // this.fileAndimage.push(this.fileUrl);
                         }
+                    }else if (key == 'file' && (this.picVid1 == null || this.picVid1 == undefined)
+                             && (this.fileUrl == null || this.fileUrl == '' || this.fileUrl == undefined)) {
+                        formData.append('event_document', '')
                     }
 
                     // if (key == 'file') {

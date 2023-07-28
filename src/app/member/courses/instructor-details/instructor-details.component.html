@@ -14,9 +14,9 @@
                                 <div class="news_details" *ngIf="instructorDetails">
                                     <div class="row">
                                         <div class="news_image col-md-6">
-                                            <app-image-viewer *ngIf="instructorDetails.add_img" [imageURL]="instructorDetails.add_img" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                            <app-image-viewer *ngIf="instructorDetails.instructor_image[0]?.['instructor_image']" [imageURL]="instructorDetails.instructor_image[0]?.['instructor_image']" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
-                                                <img onContextMenu="return false;" [src]="instructorDetails.add_img ? instructorDetails.add_img : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                <img onContextMenu="return false;" [src]="instructorDetails.instructor_image[0]?.['instructor_image'] ? instructorDetails.instructor_image[0]?.['instructor_image'] : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                             </div>
                                             <div class="dropdown action_group">
                                                 <button class="dropdown-toggle" type="button" (click)="onShow()">
@@ -168,9 +168,9 @@
                                 <div class="news_details" *ngIf="updateInstructorData">
                                     <div class="row">
                                         <div class="news_image col-md-6">
-                                            <app-image-viewer *ngIf="updateInstructorData.add_img" [imageURL]="updateInstructorData.add_img" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                            <app-image-viewer *ngIf="updateInstructorData.newImage" [imageURL]="updateInstructorData.newImage" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
-                                                <img onContextMenu="return false;" [src]="updateInstructorData.add_img ? updateInstructorData.add_img : '../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                <img onContextMenu="return false;" [src]="updateInstructorData.newImage ? updateInstructorData.newImage : '../../assets/img/no_image.png'" alt="" loading="lazy">
                                             </div>
                                             <div class="dropdown action_group">
                                                 <button class="dropdown-toggle" type="button" (click)="onShow()">
@@ -341,9 +341,9 @@
                         <div class="news_details" *ngIf="instructorDetails">
                             <div class="row">
                                 <div class="news_image col-md-6">
-                                    <app-image-viewer *ngIf="instructorDetails.add_img" [imageURL]="instructorDetails.add_img" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
+                                    <app-image-viewer *ngIf="instructorDetails.instructor_image[0]?.['instructor_image']" [imageURL]="instructorDetails.instructor_image[0]?.['instructor_image']" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                     <div class="detail-big-img" (click)="viewImage=true">
-                                        <img onContextMenu="return false;" [src]="instructorDetails.add_img ? instructorDetails.add_img : '../../assets/img/no_image.png'">
+                                        <img onContextMenu="return false;" [src]="instructorDetails.instructor_image[0]?.['instructor_image'] ? instructorDetails.instructor_image[0]?.['instructor_image'] : '../../assets/img/no_image.png'">
                                     </div>
                                     <div class="dropdown action_group">
                                         <button class="dropdown-toggle" type="button" (click)="onShow()">
