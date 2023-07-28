@@ -276,7 +276,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+ 
                                         <div class="col-md-12 event_field anonymous-field">
                                             <div class="event_field">
                                                 <label>{{language.create_news.add_picture}}</label>
@@ -288,10 +288,10 @@
                                                         <label class="preview_txt" style="display: none;"></label>
                                                         <div class="loader_image" *ngIf="isImage"></div>
                                                         <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
-                                                        <img onContextMenu="return false;" class="preview_img" *ngIf="hasPicture==false && (croppedImage == null || croppedImage == '') && !isImage" src="assets/img/event_upload.png">
-                                                        <img onContextMenu="return false;" class="preview_img"*ngIf="showImage == 'undefine'"src="../../../../assets/img/no_image.png">
-                                                        <img onContextMenu="return false;" class="preview_img" id="preview_img" *ngIf="hasPicture==true && (croppedImage == null || croppedImage == '') && !isImage" src="{{showImage}}">
-
+                                                        <img onContextMenu="return false;" class="preview_img" *ngIf="hasPicture==false && (croppedImage == null || croppedImage == '') && !isImage && !showFile" src="assets/img/event_upload.png">
+                                                        <img onContextMenu="return false;" class="preview_img" *ngIf="showImage == 'undefine'" src="../../../../assets/img/no_image.png">
+                                                        <img onContextMenu="return false;" class="preview_img" *ngIf=" (croppedImage == null || croppedImage == '') && !isImage && showFile" src="../../../../assets/img/doc-icons/folder.svg">
+                                                        <img onContextMenu="return false;" class="preview_img" id="preview_img" *ngIf="hasPicture==true && (croppedImage == null || croppedImage == '') && !isImage" [src]="showImage">
                                                         <!-- <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
                                                         <img onContextMenu="return false;" class="preview_img" *ngIf="hasPicture == false && (croppedImage == null || croppedImage == '') && !isImage " src="../../../../assets/img/no_image.png">
                                                         <img onContextMenu="return false;" class="preview_img"*ngIf="showImage == 'undefine'"src="../../../../assets/img/no_image.png">

@@ -9,5 +9,6 @@ export interface Email {
     team_id: number
     template_body: string
     template_type: string
-    url: string
+    url: string,
+    template_logo:any
 }

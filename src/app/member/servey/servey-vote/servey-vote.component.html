@@ -34,8 +34,9 @@
                                     </div>
                                 </div>
                                 <div class="msg-text-wrap">
-                                    <div class="detail-big-img" *ngIf="showImage">
-                                        <img onContextMenu="return false;" [src]="showImage ? showImage : '../../../assets/img/no_image.png'"  alt="" loading="lazy">
+                                    <div class="detail-big-img">
+                                        <img  *ngIf="showImage" onContextMenu="return false;" [src]="showImage ? showImage : '../../../assets/img/no_image.png'"  alt="" loading="lazy">
+                                        <img  *ngIf="showFile" onContextMenu="return false;" src="../../../../assets/img/doc-icons/folder.svg"  alt="" loading="lazy">
                                     </div><br>
                                     <div *ngIf="showFile">
                                         <div class="attach_btn preview_img">

@@ -8,7 +8,9 @@ import { LoginDetails } from 'src/app/models/login-details.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { Email } from 'src/app/models/email.model';
 import { NotificationService } from 'src/app/service/notification.service';
-declare var $:any
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+declare var $: any
 
 @Component({
     selector: 'app-show-email',
@@ -16,7 +18,7 @@ declare var $:any
     styleUrls: ['./show-email.component.css']
 })
 
-export class ShowEmailComponent implements OnInit ,OnDestroy{
+export class ShowEmailComponent implements OnInit, OnDestroy {
     language: any;
     userDetails: LoginDetails;
     userRole: string;
@@ -37,17 +39,23 @@ export class ShowEmailComponent implements OnInit ,OnDestroy{
         { value: '50' }
     ];
 
-    constructor(private notificationService: NotificationService,
-                private authService: AuthServiceService, private themes: ThemeService,
-        private lang: LanguageService,private confirmDialogService: ConfirmDialogService) { }
+    constructor(
+        private notificationService: NotificationService,
+        private authService: AuthServiceService,
+        private themes: ThemeService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
+        private lang: LanguageService,
+        private confirmDialogService: ConfirmDialogService
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
-            let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
-          this.setTheme = resp;
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
         });
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -55,66 +63,73 @@ export class ShowEmailComponent implements OnInit ,OnDestroy{
         this.getEmail();
     }
 
-    getEmail(){
+    getEmail() {
         this.authService.memberSendRequest('get', 'getAllEmailTemplate', null).subscribe(
             (respData: any) => {
                 this.authService.setLoader(false);
                 this.emailData = respData;
+                this.emailData.forEach((element: any) => {
+                    console.log(element);
+                    
+                    if ( element?.template_logo[0]?.template_image) {
+                        element.template_logo[0].template_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.template_logo[0]?.template_image.substring(20)));
+                    }
+                });  
                 this.totalEmails = this.emailData.length;
             }
         )
     }
 
-    deleteEmail(id:number){
-      let self = this;
-	  	self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Email, function () {
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('delete', 'deleteEmailTemplate/' + id, null)
-				.subscribe(
-					(respData:any) => {
-						self.authService.setLoader(false);
+    deleteEmail(id: number) {
+        let self = this;
+        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Email, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteEmailTemplate/' + id, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
 
-						if (respData['isError'] == false) {
-							// $('#responseMessage').show();
-							self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage,null);
-							setTimeout(function () {
-								// $('#responseMessage').delay(1000).fadeOut();
-								// self.responseMessage = '';
-								self.getEmail()
-							},1000);
-						}else if (respData['code'] == 400) {
-							self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage,null);
-							// setTimeout(function () {
-							// 	$('#responseMessage').delay(1000).fadeOut();
-							// 	self.responseMessage = '';
-							// },1000);
-						}
-					}
-				)
-		}, function () { }
-		)
+                        if (respData['isError'] == false) {
+                            // $('#responseMessage').show();
+                            self.responseMessage = respData['result']['message'];
+                            self.notificationService.showSuccess(self.responseMessage, null);
+                            setTimeout(function () {
+                                // $('#responseMessage').delay(1000).fadeOut();
+                                // self.responseMessage = '';
+                                self.getEmail()
+                            }, 1000);
+                        } else if (respData['code'] == 400) {
+                            self.responseMessage = respData['message'];
+                            self.notificationService.showError(self.responseMessage, null);
+                            // setTimeout(function () {
+                            // 	$('#responseMessage').delay(1000).fadeOut();
+                            // 	self.responseMessage = '';
+                            // },1000);
+                        }
+                    }
+                )
+        }, function () { }
+        )
     }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
     pageChanged(event: number) {
         this.currentPageNmuber = event;
     }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
     goToPg(eve: number) {
         if (isNaN(eve)) {
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalEmails / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
                 // this.getEmail();
@@ -122,10 +137,10 @@ export class ShowEmailComponent implements OnInit ,OnDestroy{
         }
     }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
     setItemPerPage(limit: number) {
         if (isNaN(limit)) {
             limit = this.itemPerPage;

@@ -17,7 +17,7 @@ declare var $: any;
   styleUrls: ['./mactive-survey.component.css']
 })
 
-export class MactiveSurveyComponent implements OnInit {
+ export class MactiveSurveyComponent implements OnInit {
     language: any;
     alluserInformation: { member_id: number }[] = [];
     setTheme: ThemeType;

@@ -17,6 +17,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -34,7 +35,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     groupTypeDropdownSettings: IDropdownSettings;
     surveyType: string;
     TypeDropdownList: { item_id: string, item_text: string }[];
-    groupTypeDropdownList: { id: number, name: string }[] = [];
+    groupTypeDropdownList: { id: number, name: string }[] = []; 
     selectedGroup: number[] = [];
     choiceData: { name: string, value: number, noti_id: any }[];
     teamId: number;
@@ -58,6 +59,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     isImage: boolean = false;
     hasPicture: boolean = false;
     showImage: string;
+    originalImage: string;
     showFile: string;
     editorConfig: AngularEditorConfig = {
         editable: true,
@@ -119,7 +121,9 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         public navigation: NavigationService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService) { }
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
+        ) { }
 
     ngOnInit(): void {
         this.authService.setLoader(false);
@@ -314,29 +318,45 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         } else {
             this.updateServeyForm.controls["additional_cast_vote"].setValue('');
         }
-
+        
         this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
-        if (this.surveyDetails.image) {
-            if ((this.surveyDetails.image.endsWith(".jpg")) || (this.surveyDetails.image.endsWith(".jpeg")) || (this.surveyDetails.image.endsWith(".png")) ||
-                (this.surveyDetails.image.endsWith(".gif")) || (this.surveyDetails.image.endsWith(".svg")) || (this.surveyDetails.image.endsWith(".webp")) ||
-                (this.surveyDetails.image.endsWith(".avif")) || (this.surveyDetails.image.endsWith(".apng")) || (this.surveyDetails.image.endsWith(".jfif")) ||
-                (this.surveyDetails.image.endsWith(".pjpeg")) || (this.surveyDetails.image.endsWith(".pjp"))
-            ) {
+
+        if (this.surveyDetails?.surevyImage[0]) {
+            if (this.surveyDetails?.surevyImage[0]?.survey_image)
+             {
                 this.hasPicture = true;
-                this.showImage = this.surveyDetails.image;
-                $('.preview_img').attr('src', this.showImage);
-            } else if ((this.surveyDetails.image.endsWith(".pdf")) || (this.surveyDetails.image.endsWith(".doc")) || (this.surveyDetails.image.endsWith(".zip")) ||
-                (this.surveyDetails.image.endsWith(".docx")) || (this.surveyDetails.image.endsWith(".docm")) || (this.surveyDetails.image.endsWith(".dot")) ||
-                (this.surveyDetails.image.endsWith(".odt")) || (this.surveyDetails.image.endsWith(".txt")) || (this.surveyDetails.image.endsWith(".xml")) ||
-                (this.surveyDetails.image.endsWith(".wps")) || (this.surveyDetails.image.endsWith(".xps")) || (this.surveyDetails.image.endsWith(".html")) ||
-                (this.surveyDetails.image.endsWith(".htm")) || (this.surveyDetails.image.endsWith(".rtf"))) {
+                this.originalImage = this.surveyDetails?.surevyImage[0]?.survey_image
+                this.surveyDetails.surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyDetails?.surevyImage[0]?.survey_image.substring(20))) as string;
+                this.showImage = this.surveyDetails?.surevyImage[0]?.survey_image;
+            } else if (this.surveyDetails?.surevyImage[0]?.surevy_document) {
                 this.hasPicture = false;
-                this.showFile = this.surveyDetails.image;
-                $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-                // $('.preview_txt').text(this.showFile);
-                // $('.preview_img').attr('src', '/src/assets/img/doc-icons/folder.svg');
+                this.showFile = this.surveyDetails?.surevyImage[0]?.surevy_document;
             }
         }
+        
+
+        // this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
+        // if (this.surveyDetails.image) {
+        //     if ((this.surveyDetails.image.endsWith(".jpg")) || (this.surveyDetails.image.endsWith(".jpeg")) || (this.surveyDetails.image.endsWith(".png")) ||
+        //         (this.surveyDetails.image.endsWith(".gif")) || (this.surveyDetails.image.endsWith(".svg")) || (this.surveyDetails.image.endsWith(".webp")) ||
+        //         (this.surveyDetails.image.endsWith(".avif")) || (this.surveyDetails.image.endsWith(".apng")) || (this.surveyDetails.image.endsWith(".jfif")) ||
+        //         (this.surveyDetails.image.endsWith(".pjpeg")) || (this.surveyDetails.image.endsWith(".pjp"))
+        //     ) {
+        //         this.hasPicture = true;
+        //         this.showImage = this.surveyDetails.image;
+        //         $('.preview_img').attr('src', this.showImage);
+        //     } else if ((this.surveyDetails.image.endsWith(".pdf")) || (this.surveyDetails.image.endsWith(".doc")) || (this.surveyDetails.image.endsWith(".zip")) ||
+        //         (this.surveyDetails.image.endsWith(".docx")) || (this.surveyDetails.image.endsWith(".docm")) || (this.surveyDetails.image.endsWith(".dot")) ||
+        //         (this.surveyDetails.image.endsWith(".odt")) || (this.surveyDetails.image.endsWith(".txt")) || (this.surveyDetails.image.endsWith(".xml")) ||
+        //         (this.surveyDetails.image.endsWith(".wps")) || (this.surveyDetails.image.endsWith(".xps")) || (this.surveyDetails.image.endsWith(".html")) ||
+        //         (this.surveyDetails.image.endsWith(".htm")) || (this.surveyDetails.image.endsWith(".rtf"))) {
+        //         this.hasPicture = false;
+        //         this.showFile = this.surveyDetails.image;
+        //         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
+        //         // $('.preview_txt').text(this.showFile);
+        //         // $('.preview_img').attr('src', '/src/assets/img/doc-icons/folder.svg');
+        //     }
+        // }
 
     }
 
@@ -366,10 +386,18 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
             this.updateServeyForm.value['image'] = this.fileToReturn;
         } else {
             if (this.showImage) {
-                this.updateServeyForm.value['image'] = this.showImage;
+                this.updateServeyForm.value['survey_image'] = this.originalImage;
+                this.updateServeyForm.value['surevy_document'] = "";
+
+
             } else if (this.showFile) {
-                this.updateServeyForm.value['image'] = this.showFile;
+                this.updateServeyForm.value['surevy_document'] = this.showFile;
+                this.updateServeyForm.value['survey_image'] = "";
+
             }
+            //  else{
+            //     this.updateServeyForm.value['image'] = ;
+            // }
         }
         this.updateServeyForm.value.team_id = this.teamId;
         this.updateServeyForm.value.user_id = this.surveyDetails.user_id;
@@ -380,6 +408,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         for (const key in this.updateServeyForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.updateServeyForm.value, key)) {
                 const element: any = this.updateServeyForm.value[key];
+                
                 if (key == 'surveyNotificationOption') {
                     formData.append('surveyNotificationOption', JSON.stringify(element))
                 }

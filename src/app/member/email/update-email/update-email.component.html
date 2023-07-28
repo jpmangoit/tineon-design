@@ -90,9 +90,18 @@
                                                     <label *ngIf="errorImage.isError" class="text-danger">
                                                         {{ errorImage.errorMessage }}
                                                     </label>
-                                                    <div class="loader_image" *ngIf="isImage"></div>                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="((imageUrl == null) && (croppedImage == null || croppedImage == '')) && !isImage"  src="assets/img/event_upload.png">
+                                                    <div class="loader_image" *ngIf="isImage"></div>       
+                                                    
+                                                    
+                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="((imageUrl == null) && (croppedImage == null || croppedImage == '')) && !isImage"  src="assets/img/event_upload.png">
+
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
-                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="imageUrl && (croppedImage == null || croppedImage == '') && !isImage"  src="{{imageUrl}}">
+
+                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="imageUrl && (croppedImage == null || croppedImage == '') && !isImage"  [src]="imageUrl">
+
+                                                    
+                                                    <!-- <img onContextMenu="return false;"  [src]="imageUrl"> -->
+                                                    
                                                 </span>
                                                 <div *ngIf="(updateEmailForm.controls.file.touched || emailSubmitted) && (updateEmailForm.controls.file.errors?.required )"
                                                     class="text-danger">
