@@ -137,6 +137,8 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         defaultFontSize: '2',
         defaultParagraphSeparator: 'p',
     };
+    faq_image: string = '';
+    faq_document: string = '';
 
     constructor(
         private authService: AuthServiceService,
@@ -258,6 +260,10 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                         }
                         this.getProfileImages(this.faqsData);
                         this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
+                        console.log(this.updateFaqsData);
+                        if (this.updateFaqsData['baseImage'][0]?.['image']) {
+                            this.updateFaqsData['baseImage'][0]['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateFaqsData['baseImage'][0]?.['image'].substring(20)))as string;
+                        }
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
@@ -319,6 +325,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 this.tenCategoryFAQ = true;
                 this.allCategoryFAQ = false;
                 this.faqDataByCat = respData;
+
                 if(this.faqDataByCat && this.faqDataByCat.length == 10){
                     this.showButton = true;
                 }else{
@@ -341,7 +348,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 this.authService.setLoader(false);
                 this.editId = respData.result[0].id;
                 let self = this;
-                if(respData && respData.result && respData.result.length > 0){
+                if(respData?.result?.length > 0){
                     respData.result.forEach(function (val, key) {
                         self.faqDataById = val;
                     })
@@ -390,13 +397,21 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
 
         if (this.faqDataById['faq_image'][0]?.['faq_image']) {
             if (this.faqDataById['faq_image'][0]?.['faq_image']) {
+                this.faq_image = this.faqDataById['faq_image'][0]?.['faq_image'];
+                this.hasDoc = false;
+                this.hasPicture = true;
                 this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
                 this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
             }
         }
         if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
             this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            this.hasPicture = false;
+            this.hasDoc = true;
+            this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
         }
+        console.log(this.imageUrl);
+
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
         //         (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
@@ -476,10 +491,12 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-
                     }else {
-                        console.log(this.imageUrl);
-                        formData.append('imageUrl', JSON.stringify(this.imageUrl));
+                        if(this.faq_image ){
+                            formData.append('faq_image', this.faq_image);
+                        }else if(this.faq_document){
+                            formData.append('faq_document', JSON.stringify(this.faq_document));
+                        }
                     }
                 }
                 if (key == 'team_id'){

@@ -17,6 +17,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -135,6 +136,8 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
         defaultFontSize: '2',
         defaultParagraphSeparator: 'p',
     };
+    faq_image: string = '';
+    faq_document: string = '';
 
     constructor(
         private authService: AuthServiceService,
@@ -145,7 +148,8 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
         private imageCompress: NgxImageCompressService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit() {
@@ -243,6 +247,11 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 this.tenCategoryFAQ = true;
                 this.allCategoryFAQ = false;
                 this.faqDataByCat = respData;
+                this.faqDataByCat.forEach((element:any) => {
+                    if (element['faq_image'][0]?.['faq_image']) {
+                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                     }
+                })
                 if (this.faqDataByCat && this.faqDataByCat.length == 10) {
                     this.showButton = true;
                 } else {
@@ -261,6 +270,12 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                     this.tenCategoryFAQ = false;
                     this.allCategoryFAQ = true;
                     this.categoryAllFaq = respData;
+                    console.log( this.categoryAllFaq);
+                    this.categoryAllFaq.forEach((element:any) => {
+                        if (element['faq_image'][0]?.['faq_image']) {
+                            element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                        }
+                    })
                 }
             }
         )
@@ -292,6 +307,8 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
     setEditFaqData() {
         this.authService.setLoader(true);
         this.positionn = [];
+        this.faq_image = '';
+        this.faq_document = '';
         if (this.faqDataById.position) {
             let self = this
             if (this.positionList && this.positionList.length > 0) {
@@ -323,27 +340,44 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
         this.hasDoc = true;
         this.hasPicture = false;
         this.imageUrl = "";
-        if (this.faqDataById.image) {
-            if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
-                (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
-                (this.faqDataById.image.endsWith(".avif")) || (this.faqDataById.image.endsWith(".apng")) || (this.faqDataById.image.endsWith(".jfif")) ||
-                (this.faqDataById.image.endsWith(".pjpeg")) || (this.faqDataById.image.endsWith(".pjp"))
-            ) {
+
+        if (this.faqDataById['faq_image'][0]?.['faq_image']) {
+            if (this.faqDataById['faq_image'][0]?.['faq_image']) {
+                this.faq_image = this.faqDataById['faq_image'][0]?.['faq_image'];
                 this.hasDoc = false;
                 this.hasPicture = true;
-                this.imageUrl = this.faqDataById.image;
-
-            } else if ((this.faqDataById.image.endsWith(".pdf")) || (this.faqDataById.image.endsWith(".doc")) || (this.faqDataById.image.endsWith(".zip")) ||
-                (this.faqDataById.image.endsWith(".docx")) || (this.faqDataById.image.endsWith(".docm")) || (this.faqDataById.image.endsWith(".dot")) ||
-                (this.faqDataById.image.endsWith(".odt")) || (this.faqDataById.image.endsWith(".txt")) || (this.faqDataById.image.endsWith(".xml")) ||
-                (this.faqDataById.image.endsWith(".wps")) || (this.faqDataById.image.endsWith(".xps")) || (this.faqDataById.image.endsWith(".html")) ||
-                (this.faqDataById.image.endsWith(".htm")) || (this.faqDataById.image.endsWith(".rtf"))) {
-                this.hasPicture = false;
-                this.hasDoc = true;
-                this.imageUrl = this.faqDataById.image;
-                $('.preview_img').attr('src', 'assets/img/doc-icons');
+                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
             }
         }
+        if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
+            this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            this.hasPicture = false;
+            this.hasDoc = true;
+            this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
+        }
+
+        // if (this.faqDataById.image) {
+        //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
+        //         (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
+        //         (this.faqDataById.image.endsWith(".avif")) || (this.faqDataById.image.endsWith(".apng")) || (this.faqDataById.image.endsWith(".jfif")) ||
+        //         (this.faqDataById.image.endsWith(".pjpeg")) || (this.faqDataById.image.endsWith(".pjp"))
+        //     ) {
+        //         this.hasDoc = false;
+        //         this.hasPicture = true;
+        //         this.imageUrl = this.faqDataById.image;
+
+        //     } else if ((this.faqDataById.image.endsWith(".pdf")) || (this.faqDataById.image.endsWith(".doc")) || (this.faqDataById.image.endsWith(".zip")) ||
+        //         (this.faqDataById.image.endsWith(".docx")) || (this.faqDataById.image.endsWith(".docm")) || (this.faqDataById.image.endsWith(".dot")) ||
+        //         (this.faqDataById.image.endsWith(".odt")) || (this.faqDataById.image.endsWith(".txt")) || (this.faqDataById.image.endsWith(".xml")) ||
+        //         (this.faqDataById.image.endsWith(".wps")) || (this.faqDataById.image.endsWith(".xps")) || (this.faqDataById.image.endsWith(".html")) ||
+        //         (this.faqDataById.image.endsWith(".htm")) || (this.faqDataById.image.endsWith(".rtf"))) {
+        //         this.hasPicture = false;
+        //         this.hasDoc = true;
+        //         this.imageUrl = this.faqDataById.image;
+        //         $('.preview_img').attr('src', 'assets/img/doc-icons');
+        //     }
+        // }
         $('#exModal').modal('show');
         $("#editFaq").click();
         this.authService.setLoader(false);
@@ -400,9 +434,10 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-
-                    } else {
-                        formData.append('imageUrl', JSON.stringify(this.imageUrl));
+                    }else if(this.faq_image ){
+                        formData.append('faq_image', this.faq_image);
+                    }else if(this.faq_document){
+                        formData.append('faq_document', JSON.stringify(this.faq_document));
                     }
                 }
                 if (key == 'team_id') {
@@ -410,7 +445,6 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 }
             }
         }
-
         if (this.FAQForm.valid) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateFaq/' + this.editId, formData).subscribe(
