@@ -209,7 +209,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
             position: ['',],
             description: ['', Validators.required],
             image: [''],
-            approved_status: ['']
+            approved_status: [''],
         });
 
         this.searchForm = new UntypedFormGroup({
@@ -356,6 +356,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
             this.hasDoc = true;
             this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
         }
+        console.log(this.faqDataById);
 
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
@@ -434,10 +435,17 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-                    }else if(this.faq_image ){
-                        formData.append('faq_image', this.faq_image);
-                    }else if(this.faq_document){
-                        formData.append('faq_document', JSON.stringify(this.faq_document));
+                    }else{
+                        if(this.faq_image ){
+                           formData.append('faq_image', this.faq_image);
+                        }else{
+                            formData.append('faq_image', '');
+                        }
+                        if(this.faq_document){
+                           formData.append('faq_document', this.faq_document);
+                        }else{
+                            formData.append('faq_document', '');
+                        }
                     }
                 }
                 if (key == 'team_id') {
@@ -522,7 +530,10 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                         $('#individualFAQ').hide();
                         $('#searchId').show();
                         this.searchData = respData;
-                    }
+                        if (this.searchData['faq_image'][0]?.['faq_image']) {
+                            this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                        }
+                        }
                     if (respData['success'] == false) {
                         this.notificationService.showError(respData['message'], null);
                     }

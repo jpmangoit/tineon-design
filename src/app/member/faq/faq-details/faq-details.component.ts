@@ -490,8 +490,13 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     }else {
                         if(this.faq_image ){
                             formData.append('faq_image', this.faq_image);
-                        }else if(this.faq_document){
-                            formData.append('faq_document', JSON.stringify(this.faq_document));
+                        }else{
+                             formData.append('faq_image', '');
+                        }
+                        if(this.faq_document){
+                            formData.append('faq_document', this.faq_document);
+                        }else{
+                             formData.append('faq_document', '');
                         }
                     }
                 }
