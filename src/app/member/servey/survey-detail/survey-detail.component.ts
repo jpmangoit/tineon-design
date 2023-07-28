@@ -15,6 +15,7 @@ import { ProfileDetails } from 'src/app/models/profile-details.model';
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -22,7 +23,7 @@ declare var $: any;
     templateUrl: './survey-detail.component.html',
     styleUrls: ['./survey-detail.component.css']
 })
-export class SurveyDetailComponent implements OnInit,OnDestroy {
+export class SurveyDetailComponent implements OnInit, OnDestroy {
     language: any;
     userDetails: LoginDetails;
     surveyId: string;
@@ -31,44 +32,52 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
     private activatedSub: Subscription;
     updateSurveyData: any;
     showToggle: any;
-    thumbnail:string;
+    thumbnail: string;
     memberid: number;
-    displayError:boolean = false
+    displayError: boolean = false
     getclubInfo: ClubDetail;
     profile_data: ProfileDetails;
     birthdateStatus: boolean;
     memberStartDateStatus: Date;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
     showImage: any;
     showUpdatedImage: any;
     showFile: any;
     showUpdatedFile: any;
     thumb: string;
 
-    constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
-        private denyReasonService: DenyReasonConfirmDialogService, private themes: ThemeService,
-        private router: Router, public formBuilder: UntypedFormBuilder,private notificationService: NotificationService,
+    constructor(
+        private authService: AuthServiceService,
+        private commonFunctionService: CommonFunctionService,
+        private denyReasonService: DenyReasonConfirmDialogService,
+        private themes: ThemeService,
+        private router: Router,
+        public formBuilder: UntypedFormBuilder,
+        private notificationService: NotificationService,
         private confirmDialogService: ConfirmDialogService,
-        private lang: LanguageService, private route: ActivatedRoute,
-        private updateConfirmDialogService: UpdateConfirmDialogService, private _location: Location) {
-            this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
-                setTimeout(() => {
-                    this.ngOnInit();
-                }, 2000);
-            });
-            this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
-                setTimeout(() => {
-                    this.ngOnInit();
-                }, 2000);
-            });
-            this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
-                setTimeout(() => {
-                    this.ngOnInit();
-                }, 1000);
-            })
-         }
+        private lang: LanguageService,
+        private route: ActivatedRoute,
+        private sanitizer: DomSanitizer,
+        private updateConfirmDialogService: UpdateConfirmDialogService,
+        private _location: Location) {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
+            setTimeout(() => {
+                this.ngOnInit();
+            }, 2000);
+        });
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
+            setTimeout(() => {
+                this.ngOnInit();
+            }, 2000);
+        });
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
+            setTimeout(() => {
+                this.ngOnInit();
+            }, 1000);
+        })
+    }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -97,46 +106,70 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
             (respData: any) => {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
-                    if(respData?.['result']?.length > 0){
+                    if (respData?.['result']?.length > 0) {
                         this.surveyData = respData['result'];
                         this.memberid = this.surveyData[0].user_name['member_id'];
                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
-                        .subscribe(
-                        (respData: any) => {
-                            this.authService.setLoader(false);
-                            this.thumbnail = respData;
-                        },
-                        (error:any) => {
-                            this.thumbnail = null;
-                        });
-                        if (this.surveyData[0].image != null) {
-                            if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
-                                this.showImage = this.surveyData[0].image;
-                            } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
-                                this.showFile = this.surveyData[0].image;
-                                $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-                            }
+                            .subscribe(
+                                (respData: any) => {
+                                    this.authService.setLoader(false);
+                                    this.thumbnail = respData;
+                                },
+                                (error: any) => {
+                                    this.thumbnail = null;
+                                });
+
+                        if (this.surveyData[0]?.surevyImage[0]?.survey_image) {
+                            this.surveyData[0].surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyData[0]?.surevyImage[0]?.survey_image.substring(20))) as string;
+                            this.showImage = this.surveyData[0]?.surevyImage[0]?.survey_image;
+
+                        } else if (this.surveyData[0]?.surevyImage[0]?.surevy_document) {
+                            this.showFile = this.surveyData[0]?.surevyImage[0]?.surevy_document
+                            $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
                         }
+
+                        // if (this.surveyData[0].image != null) {
+                        //     if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
+                        //         this.showImage = this.surveyData[0].image;
+                        //     } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
+                        //         this.showFile = this.surveyData[0].image;
+                        //         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
+                        //     }
+                        // }
+
+
                         if (this.surveyData[0]['user_id'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                             this.updateSurveyData = JSON.parse(this.surveyData[0]['updated_record']);
-                            if(this.updateSurveyData != null){
+                            if (this.updateSurveyData != null) {
                                 this.updateSurveyData.survey_Answers = JSON.parse(this.updateSurveyData.survey_Answers);
-                                if(this.updateSurveyData?.image){
-                                    if (this.updateSurveyData.image) {
-                                        if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.updateSurveyData.image.endsWith(char))) {
-                                            this.showUpdatedImage = this.updateSurveyData.image;
-                                        } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.updateSurveyData.image.endsWith(char))) {
-                                            this.showUpdatedFile = this.updateSurveyData.image;
-                                            $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-                                        }
+
+                                if (this.updateSurveyData?.baseImage) {
+                                    if (this.updateSurveyData?.baseImage[0]?.image) {
+                                        this.updateSurveyData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateSurveyData?.baseImage[0]?.image.substring(20))) as string;
+                                        this.showUpdatedImage = this.updateSurveyData?.baseImage[0]?.image;
+                                    } else if (this.updateSurveyData?.baseImage[0]?.documentUrl) {
+                                        this.showUpdatedFile = this.updateSurveyData?.baseImage[0]?.documentUrl;
                                     }
+
                                 }
+
+
+                                // if (this.updateSurveyData?.image) {
+                                //     if (this.updateSurveyData.image) {
+                                //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => this.updateSurveyData.image.endsWith(char))) {
+                                //             this.showUpdatedImage = this.updateSurveyData.image;
+                                //         } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => this.updateSurveyData.image.endsWith(char))) {
+                                //             this.showUpdatedFile = this.updateSurveyData.image;
+                                //             $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
+                                //         }
+                                //     }
+                                // }
                             }
                         }
-                    }else{
-                        this.notificationService.showError(this.language.Survey.no_survey,null);
+                    } else {
+                        this.notificationService.showError(this.language.Survey.no_survey, null);
                     }
-                }else{
+                } else {
                     this.notificationService.showError(respData['result'], null);
                 }
             }
@@ -181,13 +214,13 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
         })
     }
 
-     /**
-    * Function is used to Approve updated survey BY admin
-    * @author  MangoIt Solutions
-    * @param   {survey_id,userId}
-    * @return  {staring}
-    */
-    approveUpdateSurvey(survey_id: number){
+    /**
+   * Function is used to Approve updated survey BY admin
+   * @author  MangoIt Solutions
+   * @param   {survey_id,userId}
+   * @return  {staring}
+   */
+    approveUpdateSurvey(survey_id: number) {
         let userId: string = localStorage.getItem('user-id');
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
@@ -242,10 +275,10 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess( respData['result']['message'],null);
+                            self.notificationService.showSuccess(respData['result']['message'], null);
                             self.router.navigate(['survey'])
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'],null);
+                            self.notificationService.showError(respData['message'], null);
                         }
                     }
                 )
@@ -259,7 +292,7 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
     * @param   {survey_id,userId}
     * @return  {staring}
     */
-    deleteUpdatedSurvey(id: number){
+    deleteUpdatedSurvey(id: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey, function () {
             self.authService.setLoader(true);
@@ -267,12 +300,12 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        const url: string[] = ['survey-detail/'+ id];
+                        const url: string[] = ['survey-detail/' + id];
                         self.router.navigate(url);
                     }
                 )
         }, function () {
-        },'deleteUpdate')
+        }, 'deleteUpdate')
     }
 
     /**
@@ -281,21 +314,21 @@ export class SurveyDetailComponent implements OnInit,OnDestroy {
      * @param {user id}
      * @returns {Object} Details of the User
      */
-    getMemId(id:number) {
+    getMemId(id: number) {
         $("#profileSpinner").show();
         this.thumb = '';
         this.commonFunctionService.getMemberId(id)
-        .then((resp:any)=>{
+            .then((resp: any) => {
                 this.getclubInfo = resp.getclubInfo;
                 this.birthdateStatus = resp.birthdateStatus;
                 this.profile_data = resp.profile_data
                 this.memberStartDateStatus = resp.memberStartDateStatus
                 this.thumb = resp.thumbnail
                 this.displayError = resp.displayError
-        })
-        .catch((err:any) => {
-            console.log(err);
-        })
+            })
+            .catch((err: any) => {
+                console.log(err);
+            })
     }
 
     ngOnDestroy(): void {

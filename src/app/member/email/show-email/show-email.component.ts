@@ -26,7 +26,7 @@ export class ShowEmailComponent implements OnInit ,OnDestroy{
     totalEmail: number;
     private activatedSub: Subscription;
     currentPageNmuber: number = 1;
-    itemPerPage: number = 10;
+    itemPerPage: number = 10; 
     totalRecord: number = 0;
     totalEmails: number = 0;
     limitPerPage: { value: string }[] = [

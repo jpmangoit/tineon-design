@@ -128,7 +128,8 @@
         voting_setting: string
         web_notification: string
         user_id:any
-        image:string
+        image:string,
+        surevyImage:any
     }
 
     export interface Button{

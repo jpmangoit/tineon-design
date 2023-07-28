@@ -132,7 +132,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            this.bannerData = respData['result']['banner']
+                            this.bannerData = respData['result']['banner'] 
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
