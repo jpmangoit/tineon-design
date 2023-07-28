@@ -122,6 +122,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     };
     imgHeight: any;
     imgWidth: any;
+    taskImage: any;
 
     constructor(
         private authService: AuthServiceService,
@@ -500,9 +501,9 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                         this.taskDetails = respData['result'][0];
                         if (this.taskDetails) {
                             var task_date: string[];
-
-                            if (this.taskDetails?.['image']) {
-                                this.taskDetails['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['image'].substring(20)))as string;
+                            if (this.taskDetails?.['task_image'][0]?.['task_image']) {
+                                this.taskImage = this.taskDetails?.['task_image'][0]?.['task_image'];
+                                this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)))as string;
                             }
                             if (this.taskDetails.date) {
                                 task_date = this.taskDetails.date.split('T');
@@ -552,7 +553,8 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                             this.updateTaskForm.controls['type_dropdown'].setValue(this.types);
                             this.updateTaskForm.controls['user_participant'].setValue(this.setTaskUsers);
                             this.updateTaskForm.controls['groups'].setValue(this.groups);
-                            this.updateTaskForm.controls['file'].setValue(this.taskDetails.image);
+
+                            this.updateTaskForm.controls['file'].setValue(this.taskImage);
 
                             if (this.taskDetails?.subtasks?.length > 0) {
                                 this.taskDetails.subtasks.forEach((value, index) => {
@@ -695,7 +697,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                     if (this.fileToReturn) {
                         formData.append("file", this.fileToReturn);
                     } else {
-                        this.updateTaskForm.controls['file'].setValue(this.taskDetails.image);
+                        this.updateTaskForm.controls['file'].setValue(this.taskImage);
                         formData.append("file", this.updateTaskForm.get('file').value);
                     }
                 }

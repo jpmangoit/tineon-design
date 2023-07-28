@@ -16,8 +16,11 @@
                                         <div class="col-md-6">
                                             <div class="group_detail_main">
                                                 <div class="group_img_sec">
+                                                    <!-- <div class="detail-big-img">
+                                                        <img onContextMenu="return false;"  [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                    </div> -->
                                                     <div class="detail-big-img">
-                                                        <img onContextMenu="return false;" [src]=" groupDetails?.image != null ? groupDetails.image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                        <img onContextMenu="return false;" [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                                     </div>
                                                     <div class="membar_count">{{groupDetails.participantsCount}} {{language.community_groups.participants}}</div>
                                                     <div class="dropdown action_group">
@@ -403,7 +406,7 @@
                                     <div class="group_detail_main">
                                         <div class="group_img_sec">
                                             <div class="detail-big-img">
-                                                <img onContextMenu="return false;" [src]=" groupDetails?.image != null ? groupDetails.image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                <img onContextMenu="return false;" [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                             </div>
                                             <div class="membar_count">{{groupDetails.participantsCount}} {{language.community_groups.participants}}</div>
                                             <div class="dropdown action_group">
@@ -575,11 +578,11 @@
                                                     <!-- <div class="card-header">
                                                         <h5 class="card-title">{{language.community_groups.group_news}}</h5>
                                                     </div> -->
-                                                    <div class="all-news-column" *ngFor='let data of groupNewsDetails | paginate: { itemsPerPage: itemPerPage,
-                                                        currentPage: currentPageNmuber, totalItems: newsTotalRecords }'>
+                                                    <div class="all-news-column" *ngFor='let data of groupNewsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords }'>
                                                         <div class="news-widget" (click)="getNewsDetails(data.id)">
-                                                            <div class="news-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                                                                <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls : '../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
+                                                            <div class="news-image" [ngClass]="data['news_image'][0]?.['news_image'] == null ? 'no_image' : ''">
+                                                                <img onContextMenu="return false;" alt="{{data.title}}" loading="lazy"
+                                                                [src]="(data['news_image'][0]?.['news_image'] != null) ? (data['news_image'][0]?.['news_image']) : '../../assets/img/no_image.png'">
                                                             </div>
                                                             <div class="news-content">
                                                                 <h5 class="news-content-heading" [innerHTML]="data.title"></h5>

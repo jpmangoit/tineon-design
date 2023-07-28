@@ -53,7 +53,11 @@
                             {{language.banner.image}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
-                            <img src="{{row.image}}" width="60px" height="60px" />
+                            <!-- <img src="{{row.image}}" width="60px" height="60px" /> -->
+
+                            <img [src]="(row?.['faq_image'].length > 0 && row['faq_image'][0]?.['faq_image'] != '')
+                                      ? row['faq_image'][0]?.['faq_image']
+                                       : '../../../../assets/img/no_image.png'" width="60px" height="60px">
                         </td>
                     </ng-container>
 

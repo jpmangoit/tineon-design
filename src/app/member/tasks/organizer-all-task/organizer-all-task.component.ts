@@ -3,6 +3,7 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { TaskType } from 'src/app/models/task-type.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -26,7 +27,9 @@ export class OrganizerAllTaskComponent implements OnInit {
     constructor(
         private authService: AuthServiceService,
         private lang: LanguageService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -50,13 +53,16 @@ export class OrganizerAllTaskComponent implements OnInit {
                         if (respData['isError'] == false) {
                             if (respData['result']?.length > 0) {
                                 respData['result'].forEach((element) => {
+                                    if (element?.['task_image'][0]?.['task_image']) {
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                                    }
                                     element.approvedCount = 0
                                     element.progressVal = 0
                                     if (element?.subtasks?.length > 0) {
                                         element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length;
                                         element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                                     }
-    
+
                                     let cudate: Date = new Date();
                                     element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
                                     if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -64,7 +70,7 @@ export class OrganizerAllTaskComponent implements OnInit {
                                     } else {
                                         element.remain = this.language.organizer_task.daysOverride;
                                     }
-                                    
+
                                     if ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0)) {
                                         this.toDoTask.push(element);
                                         this.toDoTask;
@@ -78,7 +84,7 @@ export class OrganizerAllTaskComponent implements OnInit {
                                 });
                             }
                         }
-                        
+
                         this.authService.setLoader(false);
                         this.allTasks = respData['result'];
                     }

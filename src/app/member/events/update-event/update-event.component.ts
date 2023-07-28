@@ -718,14 +718,14 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.hasPicture = true;
             if (this.eventDetails?.event_images[0]?.event_image){
                 this.imageUrl = this.eventDetails?.event_images[0]?.event_image;
-                
+
                 this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
                 this.eventImage =  this.eventDetails?.event_images[0]?.event_image;
             }
         } else {
             this.hasPicture = false;
             this.eventImage = '';
-        } 
+        }
 
         // if (this.eventDetails?.picture_video != null) {
         //     this.hasPicture = true;
@@ -737,9 +737,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         // } else {
         //     this.hasPicture = false;
         //     this.eventImage = '';
-        // } 
+        // }
 
-        
+
         if (this.eventDetails?.event_images[0]?.event_document ) {
             this.eventFile =  this.eventDetails?.event_images[0]?.event_document;
             this.fileUrl = this.eventDetails?.event_images[0]?.event_document;
@@ -894,7 +894,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                     .subscribe(
                                         (respData) => {
                                             this.authService.setLoader(false);
-                                            
+
                                             var groupParticipants: any = respData[0].participants;
                                             var groupUsers: any = [];
                                             if (groupParticipants && groupParticipants.length > 0) {
@@ -1201,20 +1201,19 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
-                            formData.append('file', this.fileToReturn); 
+                            formData.append('file', this.fileToReturn);
 
                         } else {
-                            formData.append('event_image', this.imageUrl); 
+                            formData.append('event_image', this.imageUrl);
                             // this.fileAndimage.push(this.imageUrl);
                         }
-                    } 
+                    }
 
                     if (key == 'file' && (this.picVid1 || this.fileUrl)) {
                         if (self.picVid1) {
                             formData.append('file', self.picVid1)
-
                         } else {
-                            formData.append('event_document', this.fileUrl); 
+                            formData.append('event_document', this.fileUrl);
                             // this.fileAndimage.push(this.fileUrl);
                         }
                     }

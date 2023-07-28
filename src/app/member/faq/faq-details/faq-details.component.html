@@ -31,7 +31,28 @@
                                                 <span>{{language.create_faq.category}}</span>:-<span>{{faqsData.faqCategory.category_title}}</span>
                                             </div>
                                             <div class="news_content_text" [innerHTML]="faqsData.description">...<a href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
-                                            <div class="attach_btn" *ngIf="faqsData.image != null">
+
+                                            <div class="attach_btn" *ngIf="(faqsData['faq_image'].length > 0) && (faqsData['faq_image'][0]?.['faq_image'] != '' || faqsData['faq_image'][0]?.['faq_document'] != '')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#E12217"
+                                                    stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather feather-download">
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                    <polyline points="7 10 12 15 17 10" />
+                                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                                </svg>
+                                                <span *ngIf="faqsData['faq_image'][0]?.['faq_image'] != ''" >
+                                                    <a href="{{faqsData['faq_image'][0]?.['faq_image']}}" >
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </span>
+                                                <span *ngIf="faqsData['faq_image'][0]?.['faq_document'] != ''">
+                                                    <a  href="{{faqsData['faq_image'][0]?.['faq_document']}}" >
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <!-- <div class="attach_btn" *ngIf="faqsData.image != null">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                     viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                                     stroke-width="2" stroke-linecap="round"
@@ -43,7 +64,7 @@
                                                 <a href="{{faqsData.image}}">
                                                     {{language.create_event.download_attachment}}
                                                 </a>
-                                            </div>
+                                            </div> -->
                                             <div class="author-info">
                                                 <div class="parti_name" *ngIf="faqsData?.user?.imagePro == null || faqsData?.user?.imagePro == ''" >
                                                     {{faqsData?.user?.firstname.charAt(0)}}{{faqsData?.user?.lastname.charAt(0)}}
@@ -109,7 +130,28 @@
                                                 <span>{{language.create_faq.category}}</span>:-<span>{{updateFaqsData.faqCategory.category_title}}</span>
                                             </div>
                                             <div class="news_content_text" [innerHTML]="updateFaqsData.description">...<a href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
-                                            <div class="attach_btn" *ngIf="updateFaqsData.image != null">
+
+                                            <div class="attach_btn" *ngIf="(updateFaqsData['baseImage'].length > 0) && (updateFaqsData['baseImage'][0]?.['image'] != '' || updateFaqsData['baseImage'][0]?.['documentUrl'] != '')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#E12217"
+                                                    stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather feather-download">
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                    <polyline points="7 10 12 15 17 10" />
+                                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                                </svg>
+                                                <span *ngIf="updateFaqsData['baseImage'][0]?.['image'] != ''" >
+                                                    <a href="{{updateFaqsData['baseImage'][0]?.['image']}}" >
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </span>
+                                                <span *ngIf="updateFaqsData['baseImage'][0]?.['documentUrl'] != ''">
+                                                    <a  href="{{updateFaqsData['baseImage'][0]?.['documentUrl']}}" >
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <!-- <div class="attach_btn" *ngIf="updateFaqsData.image != null">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                     viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                                     stroke-width="2" stroke-linecap="round"
@@ -121,7 +163,7 @@
                                                 <a href="{{updateFaqsData.image}}">
                                                     {{language.create_event.download_attachment}}
                                                 </a>
-                                            </div>
+                                            </div> -->
                                             <div class="author-info">
                                                 <div class="parti_name" *ngIf="faqsData?.user?.imagePro == null || faqsData?.user?.imagePro == ''" >
                                                     {{faqsData?.user?.firstname.charAt(0)}}{{faqsData?.user?.lastname.charAt(0)}}
@@ -170,7 +212,7 @@
                                     </div>
                                     <div class="news_content_text" [innerHTML]="faqsData.description">...<a href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
 
-                                    <div class="attach_btn" *ngIf="faqsData.image != null">
+                                    <div class="attach_btn" *ngIf="(faqsData['faq_image'].length > 0) && (faqsData['faq_image'][0]?.['faq_image'] != '' || faqsData['faq_image'][0]?.['faq_document'] != '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                             viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                             stroke-width="2" stroke-linecap="round"
@@ -179,12 +221,46 @@
                                             <polyline points="7 10 12 15 17 10" />
                                             <line x1="12" y1="15" x2="12" y2="3" />
                                         </svg>
-                                        <a href="{{faqsData.image}}" >
+                                        <span *ngIf="faqsData['faq_image'][0]?.['faq_image'] != ''" >
+                                            <a href="{{faqsData['faq_image'][0]?.['faq_image']}}" >
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </span>
+                                        <span *ngIf="faqsData['faq_image'][0]?.['faq_document'] != ''">
+                                            <a  href="{{faqsData['faq_image'][0]?.['faq_document']}}" >
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <!-- <div class="attach_btn" *ngIf="faqsData['faq_image'].length > 0 && faqsData['faq_image'][0]?.['faq_image'] != ''">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                            viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-download">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                            <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                            <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                        </svg>
+                                        <a href="{{faqsData['faq_image'][0]?.['faq_image']}}"
+                                            [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
                                             {{language.create_event.download_attachment}}
                                         </a>
                                     </div>
-                                    <div class="author-info">
+                                    <div class="attach_btn" *ngIf="faqsData['faq_image'].length > 0 && faqsData['faq_image'][0]?.['faq_document'] != ''">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                            viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-download">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                            <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                            <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                        </svg>
+                                        <a href="{{faqsData['faq_image'][0]?.['faq_document']}}"
+                                            [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                            {{language.create_event.download_attachment}}
+                                        </a>
+                                    </div> -->
 
+                                    <div class="author-info">
                                         <div class="parti_name" *ngIf="faqsData?.user?.imagePro == null || faqsData?.user?.imagePro == ''" >
                                             {{faqsData?.user?.firstname.charAt(0)}}{{faqsData?.user?.lastname.charAt(0)}}
                                         </div>
@@ -310,8 +386,7 @@
     </div>
 </div>
 
-<div class="modal fade change_pass_section faq_edit all_news" id="exModal" tabindex="-1"
-    aria-labelledby="exampleModalLabel">
+<div class="modal fade change_pass_section faq_edit all_news" id="exModal" tabindex="-1" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -374,11 +449,13 @@
                                             <div class="loader_image" *ngIf="isImage"></div>
                                             <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
                                             <img onContextMenu="return false;" class="preview_img" *ngIf="hasDoc == true && (croppedImage == null || croppedImage == '') && !isImage" src="assets/img/event_upload.png">
-                                            <img onContextMenu="return false;" class="preview_img" *ngIf="hasPicture == true  && (croppedImage == null || croppedImage == '') && !isImage" src="{{imageUrl}}">
+                                            <img onContextMenu="return false;" class="preview_img"
+                                                 *ngIf="hasPicture == true  && (croppedImage == null || croppedImage == '') && !isImage && imageUrl != undefined" [src]="imageUrl">
                                         </span>
-                                        <div class="attach_btn preview_img">
+                                        <div class="attach_btn preview_img" *ngIf="imageUrl != undefined">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E12217"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                             <a href="{{imageUrl}}">{{language.create_event.download_attachment}} </a>
                                         </div>
                                     </div>

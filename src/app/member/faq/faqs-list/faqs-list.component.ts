@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-faqs-list',
@@ -34,7 +36,9 @@ export class FaqsListComponent implements OnInit {
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
 
-  constructor(private authService: AuthServiceService, private lang: LanguageService) { }
+  constructor(private authService: AuthServiceService, private lang: LanguageService,
+    private commonFunctionService: CommonFunctionService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.language = this.lang.getLanguaageFile();
@@ -61,6 +65,11 @@ export class FaqsListComponent implements OnInit {
         .subscribe(
             (respData: any) => {
                 this.authService.setLoader(false);
+                respData?.faqs.forEach(element => {
+                    if(element['faq_image'][0]?.['faq_image']){
+                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                    }
+                });
                 this.dataSource = new MatTableDataSource(respData.faqs);
                 this.totalRows = respData.pagination.rowCount;
                 this.dataSource.sort = this.matsort;

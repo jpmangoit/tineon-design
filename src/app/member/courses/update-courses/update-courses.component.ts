@@ -48,7 +48,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     courseId: number;
     imageUrl: string;
     fileUrl: string = '';
-    picVid1: File;
+    picVid1: any= '';
     recurrenceSelected: number;
     customRecurrenceTypeSelected: any;
     todayName: string;
@@ -93,7 +93,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     checkPric: boolean = false;
     recurrenceDropdownSettings: IDropdownSettings;
     customRecurrenceDropdownSettings: IDropdownSettings;
-    visibilityDropdownSettings: IDropdownSettings; 
+    visibilityDropdownSettings: IDropdownSettings;
     eventTypeDropdownSettings: IDropdownSettings;
     groupDropdownSettings: IDropdownSettings;
     weekDayDropdownSettings: IDropdownSettings;
@@ -609,7 +609,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             Object(respData.result.rooms).forEach((val, key) => {
                                 this.roomDropdownList.push({ 'id': val.id, 'name': val.name });
                             });
-
                             self.roomDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
@@ -618,7 +617,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 closeDropDownOnSelection: true
                             };
                         }
-
                         if (respData && respData?.result?.instructors?.length > 0) {
                             Object(respData.result.instructors).forEach((val, key) => {
                                 this.externalInstructorList.push({ 'id': val.id, 'name': val.first_name + ' ' + val.last_name });
@@ -760,7 +758,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             this.eventPriceDisplay = true;
         }
         console.log(this.courseDetails);
-        
+
         if (this.courseDetails.course_image[0]?.course_image && this.courseDetails.course_image[0]?.course_image != "[]") {
             this.hasPicture = true;
             this.image = this.courseDetails.course_image[0]?.course_image;
@@ -770,13 +768,10 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                 this.eventImage =  this.courseDetails.course_image[0]?.course_image
             }
         }
-        console.log(this.courseDetails);
-        
         if (this.courseDetails?.course_image[0]?.course_document) {
                 this.eventFile =  this.courseDetails?.course_image[0]?.course_document;
                 this.fileUrl = this.courseDetails?.course_image[0]?.course_document
                 console.log(this.fileUrl);
-                
         }
 
         // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
@@ -1293,34 +1288,25 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             for (const key in this.courseForm.value) {
                 if (Object.prototype.hasOwnProperty.call(self.courseForm.value, key)) {
                     const element = self.courseForm.value[key];
+
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
                             formData.append('file', this.fileToReturn)
                         } else {
-                            formData.append('course_image', this.imageUrl); 
-                            // this.fileAndimage.push(this.imageUrl); 
+                            formData.append('course_image', this.imageUrl);
                         }
                     }
-                    // if (key == 'file' && this.fileToReturn == null && this.imageUrl == null) {
-                    //     formData.append('file', '')
-                    // }
-                    // if (key == 'file' && (this.picVid1 || this.fileUrl)) {
-                        if (key == 'file') {
-                        if (self.picVid1) {
-                            formData.append('file', self.picVid1)
-                        } else {
-                            console.log(this.fileUrl); 
-                            formData.append('course_document', this.fileUrl); 
-                            // this.fileAndimage.push(this.fileUrl);
-                        }
-                    }
-                    // if (key == 'file' && this.picVid1 == null && this.fileUrl == null) {
-                    //     formData.append('file', '')
-                    // }
-                    // if (key == 'file' && this.fileAndimage.length > 0) {
-                    //     formData.append('imageUrl', JSON.stringify(this.fileAndimage))
-                    // }
+                    if (key == 'file'&& (this.picVid1 || this.fileUrl)) {
+                        if (self.picVid1 && self.picVid1 != undefined) {
+                            formData.append('file', self.picVid1);
 
+                        } else if(this.fileUrl != '' && this.fileUrl != null) {
+                            formData.append('course_document', this.fileUrl);
+                        }
+                    }else if (key == 'file' && (this.picVid1 == null || this.picVid1 == '' || this.picVid1 == undefined)
+                                      && (this.fileUrl == null || this.fileUrl == '' || this.fileUrl == undefined)) {
+                        formData.append('course_document', '')
+                    }
                     if (key == 'instructor_internal' && this.instrucType == 1) {
                         let internalUser = this.authService.uniqueData(this.internalInstructor)
                         formData.append("instructor_internal", JSON.stringify(internalUser));

@@ -43,7 +43,9 @@
                             {{language.banner.image}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
-                            <img src="{{row.image}}" width="60px" height="60px" />
+                            <img [src]="row['group_images'][0]?.['group_image'] != null && row['group_images'][0]?.['group_image'] != ''
+                            ? row['group_images'][0]?.['group_image']
+                            : '../../../../assets/img/no_image.png'" width="60px" height="60px">
                         </td>
                     </ng-container>
 
