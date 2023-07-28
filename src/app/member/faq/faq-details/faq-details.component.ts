@@ -254,14 +254,12 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     if (respData['isError'] == false) {
                         this.faqsData = null;
                         this.faqsData = respData?.result[0];
-                        console.log(this.faqsData);
                         if (this.faqsData['faq_image'][0]?.['faq_image']) {
                             this.faqsData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqsData['faq_image'][0]?.['faq_image'].substring(20)))as string;
                         }
                         this.getProfileImages(this.faqsData);
                         this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
-                        console.log(this.updateFaqsData);
-                        if (this.updateFaqsData['baseImage'][0]?.['image']) {
+                        if (this.updateFaqsData != null && this.updateFaqsData?.['baseImage'][0]?.['image']) {
                             this.updateFaqsData['baseImage'][0]['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateFaqsData['baseImage'][0]?.['image'].substring(20)))as string;
                         }
                     } else if (respData['code'] == 400) {
@@ -393,7 +391,6 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.hasDoc = true;
         this.hasPicture = false;
         this.imageUrl = "";
-        console.log(this.faqDataById);
 
         if (this.faqDataById['faq_image'][0]?.['faq_image']) {
             if (this.faqDataById['faq_image'][0]?.['faq_image']) {
@@ -410,7 +407,6 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
             this.hasDoc = true;
             this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
         }
-        console.log(this.imageUrl);
 
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
