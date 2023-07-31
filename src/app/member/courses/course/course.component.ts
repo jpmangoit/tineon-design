@@ -637,7 +637,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             element.start_time = this.commonFunctionService.convertTime(element.start_time);
                             element.end_time = this.commonFunctionService.convertTime(element.end_time);
                         })
-                        
+
                         if (this.courseByIdData[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
                             if (this.courseByIdData[0]?.course_image[0]?.course_image) {

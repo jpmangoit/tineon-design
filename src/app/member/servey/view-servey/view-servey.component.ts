@@ -76,7 +76,6 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
                 if(this.surveyVoteResult && this.surveyVoteResult['result'] && this.surveyVoteResult['result'].length > 0){
                     this.surveyData = this.surveyVoteResult['result'];
                     this.show_name = this.surveyData[0].additional_anonymous_voting;
-                    console.log(this.surveyData[0]);
 
                     if (this.surveyData[0]?.surevyImage[0]?.survey_image) {
                         this.surveyData[0].surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyData[0]?.surevyImage[0]?.survey_image.substring(20)));
