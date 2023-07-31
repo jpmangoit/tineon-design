@@ -19,6 +19,7 @@ export interface Room {
     roomBooking:any
     active_from:any
     active_to:any
+    room_image:any
 }
 
 export interface RoomAvailability{

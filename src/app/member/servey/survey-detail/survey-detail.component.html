@@ -76,8 +76,11 @@
                                                                 <line x1="12" y1="15" x2="12" y2="3"
                                                                     [ngStyle]="{'stroke':'#fff'}" />
                                                             </svg>
-                                                            <a href="{{showFile}}"
+                                                            <!-- <a href="{{showFile}}"
                                                                 [ngStyle]="{'border-color':setTheme.button_bgcolor,'color':setTheme.button_bgcolor}">
+                                                                {{language.create_event.download_attachment}}
+                                                            </a> -->
+                                                            <a href="{{showFile}}">
                                                                 {{language.create_event.download_attachment}}
                                                             </a>
                                                         </div>
@@ -244,8 +247,7 @@
                                                                 <line x1="12" y1="15" x2="12" y2="3"
                                                                     [ngStyle]="{'stroke':'#fff'}" />
                                                             </svg>
-                                                            <a href="{{showUpdatedFile}}"
-                                                                [ngStyle]="{'border-color':setTheme.button_bgcolor,'color':setTheme.button_bgcolor}">
+                                                            <a href="{{showUpdatedFile}}">
                                                                 {{language.create_event.download_attachment}}
                                                             </a>
                                                         </div>
@@ -420,7 +422,7 @@
                                                             [ngStyle]="{'stroke':'#fff'}" />
                                                     </svg>
                                                     <a href="{{showFile}}"
-                                                        [ngStyle]="{'border-color':setTheme.button_bgcolor,'color':setTheme.button_bgcolor}">
+                                                        >
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </div>

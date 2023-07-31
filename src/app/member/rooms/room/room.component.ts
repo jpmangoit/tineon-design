@@ -35,7 +35,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     userData: LoginDetails;
     responseMessage: string;
     searchSubmit: boolean = false;
-    searchForm: UntypedFormGroup;
+    searchForm: UntypedFormGroup; 
     displayCourse: boolean;
     displayInstructor: boolean;
     displayRoom: boolean = true;
@@ -139,7 +139,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     getAllRooms() {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+            this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null) 
             .subscribe((respData: Room) => {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
@@ -150,7 +150,6 @@ export class RoomComponent implements OnInit, OnDestroy {
                             element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
                         }
                     })
-                    
                     this.totalRoomData = respData['result'].pagination.rowCount;
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
@@ -180,6 +179,12 @@ export class RoomComponent implements OnInit, OnDestroy {
                         this.totalRoomData = 0;
                         this.searchData = respData['result']['room'];
                         this.allRooms = respData['result']['room'];
+                        console.log(this.allRooms );
+                        this.allRooms.forEach((element:any) =>{
+                            if(element?.room_image[0]?.room_image){
+                                element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
+                            }
+                        })
                         this.totalRoomData = respData['result'].pagination.rowCount;
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -272,13 +277,32 @@ export class RoomComponent implements OnInit, OnDestroy {
                 (error:any) => {
                     this.thumbnail = null;
                 });
-                
-            if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
+               
+            if(this.roomsByIdData?.room_image[0]?.room_image == undefined || this.roomsByIdData?.room_image[0]?.room_image == '' || this.roomsByIdData?.room_image[0]?.room_image == null || !this.roomsByIdData?.room_image[0]?.room_image){
                 this.roomImg = '../../assets/img/no_image.png';
-            } else {
-                this.roomsByIdData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['room_image']?.[0]['room_image'].substring(20)));
-                this.roomImg = this.roomsByIdData['room_image']?.[0]['room_image'];
+                console.log(this.roomImg);
+                
+
+            } else{
+                // this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
+                // this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
+                // console.log(this.roomImg);
+                if(this.roomsByIdData?.room_image[0]?.room_image){
+                    this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
+                    this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
+                }
+
             }
+            console.log(this.roomsByIdData);
+
+            
+            // if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
+            //     this.roomImg = '../../assets/img/no_image.png';
+            // } else {
+            //     this.roomsByIdData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['room_image']?.[0]['room_image'].substring(20)));
+            //     this.roomImg = this.roomsByIdData['room_image']?.[0]['room_image'];
+            // }
+
             setTimeout(() => {
                 this.getRoomCalendar(this.roomsByIdData);
             }, 500);

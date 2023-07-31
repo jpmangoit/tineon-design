@@ -36,9 +36,9 @@ export class OrganizerGroupTaskComponent implements OnInit {
             this.completed = [];
             if (this.organizerTask?.length > 0) {
                 this.organizerTask?.forEach((element) => {
-                    if (element && element['task_image'] && element['task_image'][0]?.['task_image']) {
-                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
-                    }
+                    // if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
+                    //     element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                    // }
                     if (element.group_id > 0) {
                         element.approvedCount = 0;
                         element.progressVal = 0;

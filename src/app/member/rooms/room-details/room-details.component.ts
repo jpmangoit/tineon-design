@@ -37,7 +37,7 @@ export class RoomDetailsComponent implements OnInit {
     setTheme: ThemeType;
     private activatedSub: Subscription;
     language: any;
-    thumbnail: string;
+    thumbnail: string; 
     memberid: number;
     displayError: boolean = false
     getclubInfo: ClubDetail;
@@ -123,8 +123,8 @@ export class RoomDetailsComponent implements OnInit {
                 this.updateRoomData = null;
                 this.roomDetails = resp;
 
-                if (this.roomDetails?.['room_image']?.[0]['room_image']) {
-                    this.roomDetails['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomDetails['room_image']?.[0]['room_image'].substring(20)));
+                if (this.roomDetails?.room_image[0]?.room_image) {
+                    this.roomDetails.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomDetails?.room_image[0]?.room_image.substring(20)));
                 }
                 this.memberid = this.roomDetails.user.member_id;
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)

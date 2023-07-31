@@ -5,6 +5,8 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LanguageService } from '../../../service/language.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 @Component({
     selector: 'app-organizer-task',
@@ -25,7 +27,9 @@ export class OrganizerTaskComponent implements OnInit,OnDestroy {
 
     constructor(
         private themes: ThemeService, private authService: AuthServiceService,private notificationService: NotificationService,
-        private lang: LanguageService
+        private lang: LanguageService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -45,6 +49,11 @@ export class OrganizerTaskComponent implements OnInit,OnDestroy {
                 (respData: any) => {
                     if (respData['isError'] == false) {
                         this.organizerTask = respData['result'];
+                        this.organizerTask?.forEach((element) => {
+                            if (element?.['task_image'] && element?.['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
+                                element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                            }
+                        })
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }

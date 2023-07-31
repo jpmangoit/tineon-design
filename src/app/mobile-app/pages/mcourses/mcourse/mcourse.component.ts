@@ -22,13 +22,13 @@ import { saveAs } from 'file-saver';
 declare var $: any
 
 @Component({
-  selector: 'app-mcourse',
-  templateUrl: './mcourse.component.html', 
-  styleUrls: ['./mcourse.component.css'],
-  providers: [DatePipe]
+    selector: 'app-mcourse',
+    templateUrl: './mcourse.component.html',
+    styleUrls: ['./mcourse.component.css'],
+    providers: [DatePipe]
 })
 
-export class McourseComponent implements OnInit,OnDestroy {
+export class McourseComponent implements OnInit, OnDestroy {
     language: any;
     allCourses: Courses[];
     internalInstructor: { user_id: number }[] = [];
@@ -37,7 +37,7 @@ export class McourseComponent implements OnInit,OnDestroy {
     displayCoursediv: boolean = true;
     displayInstructordiv: boolean = false;
     displayRoomdiv: boolean = false;
-    activeClass:string = 'courseActive';
+    activeClass: string = 'courseActive';
     courseByIdData: any;
     unapprovedParticipants: { email: string, firstname: string, id: number, image: string, lastname: string, username: string }[]
     approvedParticipants: { email: string, firstname: string, id: number, image: string, lastname: string, username: string }[]
@@ -93,10 +93,10 @@ export class McourseComponent implements OnInit,OnDestroy {
         private formbuilder: UntypedFormBuilder, private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder, private confirmDialogService: ConfirmDialogService,
         private datePipe: DatePipe, private router: Router,
-        private themes: ThemeService,private notificationService: NotificationService,
+        private themes: ThemeService, private notificationService: NotificationService,
         private lang: LanguageService, private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -205,320 +205,320 @@ export class McourseComponent implements OnInit,OnDestroy {
             let self = this;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'allCourses', null).subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.date = new Date(); // Today's date
-                        this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.date = new Date(); // Today's date
+                    this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
-                        respData && respData.result.forEach(element => {
-                            element.recurring_dates = JSON.parse(element.recurring_dates);
-                        });
-                        if (respData['isError'] == false) {
-                            this.allCourses = respData['result'];
-                            var element: any = null;
-                            for (var key in this.allCourses) {
-                                if (this.allCourses.hasOwnProperty(key)) {
-                                    element = this.allCourses[key];
-                                    var url: string[] = [];
-                                    for (const key in element) {
-                                        if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                            const value: string = element[key]
-                                            if (key == 'picture_video' && value != null) {
-                                                url = value.split('\"');
-                                            }
+                    respData && respData.result.forEach(element => {
+                        element.recurring_dates = JSON.parse(element.recurring_dates);
+                    });
+                    if (respData['isError'] == false) {
+                        this.allCourses = respData['result'];
+                        var element: any = null;
+                        for (var key in this.allCourses) {
+                            if (this.allCourses.hasOwnProperty(key)) {
+                                element = this.allCourses[key];
+                                var url: string[] = [];
+                                for (const key in element) {
+                                    if (Object.prototype.hasOwnProperty.call(element, key)) {
+                                        const value: string = element[key]
+                                        if (key == 'picture_video' && value != null) {
+                                            url = value.split('\"');
                                         }
                                     }
-                                    if (url && url.length > 0) {
-                                        let self = this;
-                                        url.forEach(el => {
-                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                element.picture_video = el;
+                                }
+                                if (url && url.length > 0) {
+                                    let self = this;
+                                    url.forEach(el => {
+                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                            element.picture_video = el;
+                                        }
+                                    });
+                                }
+                                else {
+                                    element['picture_video'] = '';
+                                }
+
+                                this.allCourses.forEach((element: any) => {
+                                    if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                        const base64String = element.course_image[0].course_image;
+                                        const base64Data = base64String.substring(20);
+                                        const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                        element.course_image[0].course_image = blobUrl;
+                                    }
+                                });
+                                this.allData[key] = element;
+                                if (element && element.recurrence != '' && element.recurrence != null) {
+                                    let recurrence: string = element.recurrence;
+                                    if (recurrence.includes('UNTIL') == false) {
+                                        recurrence = recurrence + ';UNTIL=' + nextYear;
+                                    }
+                                    recurrence = recurrence.replace("T000000Z;", "T200000Z;");
+                                    recurrence = recurrence.slice(0, -1);
+                                    var DTSTART = element.date_from.split('T')[0].replace(/-/gi, '') + "T000000Z";
+                                    recurrence = recurrence + ';DTSTART=' + DTSTART;
+                                    let rule: RRule = RRule.fromString(recurrence)
+                                    let rules: Date[] = rule.all();
+                                    if (rules && rules.length > 0) {
+                                        rules.forEach(function (val, index) {
+                                            let yourDate: Date = new Date(val)
+                                            let dt: string = yourDate.toISOString().split('T')[0];
+                                            let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
+                                            let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                            let rrEvents: any = {
+                                                "id": element.id,
+                                                "schedule": element.schedule,
+                                                "official_club_date": element.official_club_date,
+                                                "type": element.type,
+                                                "instructor_type": element.instructor_type,
+                                                "name": element.name,
+                                                "course_image": element.course_image[0]?.course_image,
+                                                "course_document": element.course_image[0]?.course_document,
+                                                "allowed_persons": element.allowed_persons,
+                                                "date_from": rrDate,
+                                                "date_to": rrDate,
+                                                "place": element.place,
+                                                "room": element.room,
+                                                "visibility": element.visibility,
+                                                "limitation_of_participants": element.limitation_of_participants,
+                                                "participants": element.participants,
+                                                "waiting_list": element.waiting_list,
+                                                "max_on_waiting_list": element.max_on_waiting_list,
+                                                "attachments": element.attachments,
+                                                "link_to_ticket_store": element.link_to_ticket_store,
+                                                "tags": element.tags,
+                                                "author": element.author,
+                                                "approved_status": element.approved_status,
+                                                "audience": element.audience,
+                                                "created_at": element.created_at,
+                                                "updated_at": element.created_at,
+                                                "coorganizer": element.coorganizer,
+                                                "invite_friends": element.invite_friends,
+                                                "description": element.description,
+                                                "show_guest_list": element.show_guest_list,
+                                                "chargeable": element.chargeable,
+                                                "price_per_participant": element.price_per_participant,
+                                                "create_invoice": element.create_invoice,
+                                                "start_time": element.start_time,
+                                                "end_time": element.end_time,
+                                                "group_id": element.group_id,
+                                                "recurrence": element.recurrence,
+                                                "CourseExternalInstructor": element.CourseExternalInstructor,
+                                                "courseUsers": element.courseUsers,
+                                                "RoomsDetails": element.RoomsDetails,
+                                                "CourseGroups": element.CourseGroups,
+                                                "CourseInternalInstructor": element.CourseInternalInstructor,
+                                                "team_id": element.team_id,
+                                                "date_repeat": element.date_repeat
+                                            }
+                                            if (dt == self.todays_date) {
+                                                self.currentCourse.push(rrEvents);
+                                                self.currentCourseList.push(rrEvents);
+
+                                            } else if (dt > self.todays_date) {
+                                                self.upcomingCourse.push(rrEvents);
+                                                self.upcomingCourseList.push(rrEvents);
+                                            }
+                                        })
+                                    }
+                                } else {
+
+                                    if (element && element.recurring_dates != '' && element.recurring_dates != null) {
+                                        const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
+                                        element.recurring_dates.forEach(dd => {
+                                            let yourDate1: Date = new Date(dd.date_from);
+                                            let dt1: string = yourDate1.toISOString().split('T')[0];
+                                            var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
+                                            var rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                            let rrEvents1: any = {
+                                                "id": element.id,
+                                                "schedule": element.schedule,
+                                                "official_club_date": element.official_club_date,
+                                                "type": element.type,
+                                                "instructor_type": element.instructor_type,
+                                                "name": element.name,
+                                                "course_image": element.course_image[0]?.course_image,
+                                                "course_document": element.course_image[0]?.course_document,
+                                                "allowed_persons": element.allowed_persons,
+                                                "date_from": rrDate1,
+                                                "date_to": rrDateEnd1,
+                                                "place": element.place,
+                                                "room": element.room,
+                                                "visibility": element.visibility,
+                                                "limitation_of_participants": element.limitation_of_participants,
+                                                "participants": element.participants,
+                                                "waiting_list": element.waiting_list,
+                                                "max_on_waiting_list": element.max_on_waiting_list,
+                                                "attachments": element.attachments,
+                                                "link_to_ticket_store": element.link_to_ticket_store,
+                                                "tags": element.tags,
+                                                "author": element.author,
+                                                "approved_status": element.approved_status,
+                                                "audience": element.audience,
+                                                "created_at": element.created_at,
+                                                "updated_at": element.created_at,
+                                                "coorganizer": element.coorganizer,
+                                                "invite_friends": element.invite_friends,
+                                                "description": element.description,
+                                                "show_guest_list": element.show_guest_list,
+                                                "chargeable": element.chargeable,
+                                                "price_per_participant": element.price_per_participant,
+                                                "create_invoice": element.create_invoice,
+                                                "start_time": element.start_time,
+                                                "end_time": element.end_time,
+                                                "group_id": element.group_id,
+                                                "recurrence": element.recurrence,
+                                                "CourseExternalInstructor": element.CourseExternalInstructor,
+                                                "courseUsers": element.courseUsers,
+                                                "RoomsDetails": element.RoomsDetails,
+                                                "CourseGroups": element.CourseGroups,
+                                                "CourseInternalInstructor": element.CourseInternalInstructor,
+                                                "team_id": element.team_id,
+                                                "date_repeat": element.date_repeat
+                                            }
+                                            if (dt1 == self.todays_date) {
+                                                self.currentCourse.push(rrEvents1);
+                                                self.currentCourseList.push(rrEvents1);
+
+                                            } else if (dt1 > self.todays_date) {
+                                                self.upcomingCourse.push(rrEvents1);
+                                                self.upcomingCourseList.push(rrEvents1);
+
+                                            }
+                                        });
+                                    } else {
+                                        const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
+                                        dates.forEach(dd => {
+                                            let yourDate1: Date = new Date(dd)
+                                            let dt1: string = yourDate1.toISOString().split('T')[0];
+                                            var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
+                                            var rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                            let rrEvents1: any = {
+                                                "id": element.id,
+                                                "schedule": element.schedule,
+                                                "official_club_date": element.official_club_date,
+                                                "type": element.type,
+                                                "instructor_type": element.instructor_type,
+                                                "name": element.name,
+                                                "course_image": element.course_image[0]?.course_image,
+                                                "course_document": element.course_image[0]?.course_document,
+                                                "allowed_persons": element.allowed_persons,
+                                                "date_from": rrDate1,
+                                                "date_to": rrDateEnd1,
+                                                "place": element.place,
+                                                "room": element.room,
+                                                "visibility": element.visibility,
+                                                "limitation_of_participants": element.limitation_of_participants,
+                                                "participants": element.participants,
+                                                "waiting_list": element.waiting_list,
+                                                "max_on_waiting_list": element.max_on_waiting_list,
+                                                "attachments": element.attachments,
+                                                "link_to_ticket_store": element.link_to_ticket_store,
+                                                "tags": element.tags,
+                                                "author": element.author,
+                                                "approved_status": element.approved_status,
+                                                "audience": element.audience,
+                                                "created_at": element.created_at,
+                                                "updated_at": element.created_at,
+                                                "coorganizer": element.coorganizer,
+                                                "invite_friends": element.invite_friends,
+                                                "description": element.description,
+                                                "show_guest_list": element.show_guest_list,
+                                                "chargeable": element.chargeable,
+                                                "price_per_participant": element.price_per_participant,
+                                                "create_invoice": element.create_invoice,
+                                                "start_time": element.start_time,
+                                                "end_time": element.end_time,
+                                                "group_id": element.group_id,
+                                                "recurrence": element.recurrence,
+                                                "CourseExternalInstructor": element.CourseExternalInstructor,
+                                                "courseUsers": element.courseUsers,
+                                                "RoomsDetails": element.RoomsDetails,
+                                                "CourseGroups": element.CourseGroups,
+                                                "CourseInternalInstructor": element.CourseInternalInstructor,
+                                                "team_id": element.team_id,
+                                                "date_repeat": element.date_repeat
+                                            }
+                                            if (dt1 == self.todays_date) {
+                                                self.currentCourse.push(rrEvents1);
+                                                self.currentCourseList.push(rrEvents1);
+
+                                            } else if (dt1 > self.todays_date) {
+                                                self.upcomingCourse.push(rrEvents1);
+                                                self.upcomingCourseList.push(rrEvents1);
+
                                             }
                                         });
                                     }
-                                    else {
-                                        element['picture_video'] = '';
-                                    }
-
-                                    this.allCourses.forEach((element: any) => {
-                                        if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
-                                            const base64String = element.course_image[0].course_image;
-                                            const base64Data = base64String.substring(20);
-                                            const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
-                                            element.course_image[0].course_image = blobUrl;
-                                        }
-                                    });
-                                    this.allData[key] = element;
-                                    if (element && element.recurrence != '' && element.recurrence != null) {
-                                        let recurrence: string = element.recurrence;
-                                        if (recurrence.includes('UNTIL') == false) {
-                                            recurrence = recurrence + ';UNTIL=' + nextYear;
-                                        }
-                                        recurrence = recurrence.replace("T000000Z;", "T200000Z;");
-                                        recurrence = recurrence.slice(0, -1);
-                                        var DTSTART = element.date_from.split('T')[0].replace(/-/gi, '') + "T000000Z";
-                                        recurrence = recurrence + ';DTSTART=' + DTSTART;
-                                        let rule: RRule = RRule.fromString(recurrence)
-                                        let rules: Date[] = rule.all();
-                                        if(rules && rules.length > 0){
-                                            rules.forEach(function (val, index) {
-                                                let yourDate: Date = new Date(val)
-                                                let dt: string = yourDate.toISOString().split('T')[0];
-                                                let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
-                                                let rrDateEnd:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents: any = {
-                                                    "id": element.id,
-                                                    "schedule": element.schedule,
-                                                    "official_club_date": element.official_club_date,
-                                                    "type": element.type,
-                                                    "instructor_type": element.instructor_type,
-                                                    "name": element.name,
-                                                    "course_image": element.course_image[0]?.course_image,
-                                                    "course_document": element.course_image[0]?.course_document,
-                                                    "allowed_persons": element.allowed_persons,
-                                                    "date_from": rrDate,
-                                                    "date_to": rrDate,
-                                                    "place": element.place,
-                                                    "room": element.room,
-                                                    "visibility": element.visibility,
-                                                    "limitation_of_participants": element.limitation_of_participants,
-                                                    "participants": element.participants,
-                                                    "waiting_list": element.waiting_list,
-                                                    "max_on_waiting_list": element.max_on_waiting_list,
-                                                    "attachments": element.attachments,
-                                                    "link_to_ticket_store": element.link_to_ticket_store,
-                                                    "tags": element.tags,
-                                                    "author": element.author,
-                                                    "approved_status": element.approved_status,
-                                                    "audience": element.audience,
-                                                    "created_at": element.created_at,
-                                                    "updated_at": element.created_at,
-                                                    "coorganizer": element.coorganizer,
-                                                    "invite_friends": element.invite_friends,
-                                                    "description": element.description,
-                                                    "show_guest_list": element.show_guest_list,
-                                                    "chargeable": element.chargeable,
-                                                    "price_per_participant": element.price_per_participant,
-                                                    "create_invoice": element.create_invoice,
-                                                    "start_time": element.start_time,
-                                                    "end_time": element.end_time,
-                                                    "group_id": element.group_id,
-                                                    "recurrence": element.recurrence,
-                                                    "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                    "courseUsers": element.courseUsers,
-                                                    "RoomsDetails": element.RoomsDetails,
-                                                    "CourseGroups": element.CourseGroups,
-                                                    "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                    "team_id": element.team_id,
-                                                    "date_repeat": element.date_repeat
-                                                }
-                                                if (dt == self.todays_date) {
-                                                    self.currentCourse.push(rrEvents);
-                                                    self.currentCourseList.push(rrEvents);
-
-                                                } else if (dt > self.todays_date) {
-                                                    self.upcomingCourse.push(rrEvents);
-                                                    self.upcomingCourseList.push(rrEvents);
-                                                }
-                                            })
-                                        }
-                                    } else {
-
-                                        if (element && element.recurring_dates != '' && element.recurring_dates != null) {
-                                            const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                            element.recurring_dates.forEach(dd => {
-                                                let yourDate1: Date = new Date(dd.date_from);
-                                                let dt1: string = yourDate1.toISOString().split('T')[0];
-                                                var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                var rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents1: any = {
-                                                    "id": element.id,
-                                                    "schedule": element.schedule,
-                                                    "official_club_date": element.official_club_date,
-                                                    "type": element.type,
-                                                    "instructor_type": element.instructor_type,
-                                                    "name": element.name,
-                                                    "course_image": element.course_image[0]?.course_image,
-                                                    "course_document": element.course_image[0]?.course_document,
-                                                    "allowed_persons": element.allowed_persons,
-                                                    "date_from": rrDate1,
-                                                    "date_to": rrDateEnd1,
-                                                    "place": element.place,
-                                                    "room": element.room,
-                                                    "visibility": element.visibility,
-                                                    "limitation_of_participants": element.limitation_of_participants,
-                                                    "participants": element.participants,
-                                                    "waiting_list": element.waiting_list,
-                                                    "max_on_waiting_list": element.max_on_waiting_list,
-                                                    "attachments": element.attachments,
-                                                    "link_to_ticket_store": element.link_to_ticket_store,
-                                                    "tags": element.tags,
-                                                    "author": element.author,
-                                                    "approved_status": element.approved_status,
-                                                    "audience": element.audience,
-                                                    "created_at": element.created_at,
-                                                    "updated_at": element.created_at,
-                                                    "coorganizer": element.coorganizer,
-                                                    "invite_friends": element.invite_friends,
-                                                    "description": element.description,
-                                                    "show_guest_list": element.show_guest_list,
-                                                    "chargeable": element.chargeable,
-                                                    "price_per_participant": element.price_per_participant,
-                                                    "create_invoice": element.create_invoice,
-                                                    "start_time": element.start_time,
-                                                    "end_time": element.end_time,
-                                                    "group_id": element.group_id,
-                                                    "recurrence": element.recurrence,
-                                                    "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                    "courseUsers": element.courseUsers,
-                                                    "RoomsDetails": element.RoomsDetails,
-                                                    "CourseGroups": element.CourseGroups,
-                                                    "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                    "team_id": element.team_id,
-                                                    "date_repeat": element.date_repeat
-                                                }
-                                                if (dt1 == self.todays_date) {
-                                                    self.currentCourse.push(rrEvents1);
-                                                    self.currentCourseList.push(rrEvents1);
-
-                                                } else if (dt1 > self.todays_date) {
-                                                    self.upcomingCourse.push(rrEvents1);
-                                                    self.upcomingCourseList.push(rrEvents1);
-
-                                                }
-                                            });
-                                        }else{
-                                            const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                            dates.forEach(dd => {
-                                                let yourDate1: Date = new Date(dd)
-                                                let dt1: string = yourDate1.toISOString().split('T')[0];
-                                                var rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                var rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let rrEvents1: any = {
-                                                    "id": element.id,
-                                                    "schedule": element.schedule,
-                                                    "official_club_date": element.official_club_date,
-                                                    "type": element.type,
-                                                    "instructor_type": element.instructor_type,
-                                                    "name": element.name,
-                                                    "course_image": element.course_image[0]?.course_image,
-                                                    "course_document": element.course_image[0]?.course_document,
-                                                    "allowed_persons": element.allowed_persons,
-                                                    "date_from": rrDate1,
-                                                    "date_to": rrDateEnd1,
-                                                    "place": element.place,
-                                                    "room": element.room,
-                                                    "visibility": element.visibility,
-                                                    "limitation_of_participants": element.limitation_of_participants,
-                                                    "participants": element.participants,
-                                                    "waiting_list": element.waiting_list,
-                                                    "max_on_waiting_list": element.max_on_waiting_list,
-                                                    "attachments": element.attachments,
-                                                    "link_to_ticket_store": element.link_to_ticket_store,
-                                                    "tags": element.tags,
-                                                    "author": element.author,
-                                                    "approved_status": element.approved_status,
-                                                    "audience": element.audience,
-                                                    "created_at": element.created_at,
-                                                    "updated_at": element.created_at,
-                                                    "coorganizer": element.coorganizer,
-                                                    "invite_friends": element.invite_friends,
-                                                    "description": element.description,
-                                                    "show_guest_list": element.show_guest_list,
-                                                    "chargeable": element.chargeable,
-                                                    "price_per_participant": element.price_per_participant,
-                                                    "create_invoice": element.create_invoice,
-                                                    "start_time": element.start_time,
-                                                    "end_time": element.end_time,
-                                                    "group_id": element.group_id,
-                                                    "recurrence": element.recurrence,
-                                                    "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                    "courseUsers": element.courseUsers,
-                                                    "RoomsDetails": element.RoomsDetails,
-                                                    "CourseGroups": element.CourseGroups,
-                                                    "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                    "team_id": element.team_id,
-                                                    "date_repeat": element.date_repeat
-                                                }
-                                                if (dt1 == self.todays_date) {
-                                                    self.currentCourse.push(rrEvents1);
-                                                    self.currentCourseList.push(rrEvents1);
-
-                                                } else if (dt1 > self.todays_date) {
-                                                    self.upcomingCourse.push(rrEvents1);
-                                                    self.upcomingCourseList.push(rrEvents1);
-
-                                                }
-                                            });
-                                        }
-                                    }
                                 }
                             }
-                            const sortByDate = (arr: Courses[]) => {
-                                const sorter = (a: Courses, b: Courses) => {
-                                    return new Date(a.date_from).getTime() - new Date(b.date_from).getTime();
-                                }
-                                arr.sort(sorter);
-                            };
-                            sortByDate(this.upcomingCourseList);
-
-                            this.currentCourseList.forEach(element => {
-                                let self = this;
-                                if (self.allUsers?.length > 0) {
-                                    self.allUsers.forEach(el => {
-                                        if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                            if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                                // element.CourseInternalInstructor[0].internalUsers.add_img = el;
-                                                if (el.member_id != null) {
-                                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
-                                                        .subscribe(
-                                                            (resppData: any) => {
-                                                                this.thumb = resppData;
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
-                                                            },
-                                                            (error:any) => {
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                            });
-                                                } else {
-                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                }
-                                            }
-                                        }
-                                    });
-                                }
-                            });
-                            this.upcomingCourseList.forEach(element => {
-                                if (self.allUsers?.length > 0) {
-                                    self.allUsers.forEach(el => {
-                                        if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                            if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                                // element.CourseInternalInstructor[0].internalUsers.add_img = el;
-                                                if (el.member_id != null) {
-                                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
-                                                        .subscribe(
-                                                            (resppData: any) => {
-                                                                this.thumb = resppData;
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
-                                                            },
-                                                            (error:any) => {
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                            });
-                                                } else {
-                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                }
-                                            }
-                                        }
-                                    });
-                                }
-                            });
-
-                            this.authService.setLoader(false);
-
-                        } else if (respData['code'] == 400) {
-                            this.notificationService.showError(respData['message'], null);
+                        }
+                        const sortByDate = (arr: Courses[]) => {
+                            const sorter = (a: Courses, b: Courses) => {
+                                return new Date(a.date_from).getTime() - new Date(b.date_from).getTime();
+                            }
+                            arr.sort(sorter);
                         };
-                    }
-                );
+                        sortByDate(this.upcomingCourseList);
+
+                        this.currentCourseList.forEach(element => {
+                            let self = this;
+                            if (self.allUsers?.length > 0) {
+                                self.allUsers.forEach(el => {
+                                    if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            // element.CourseInternalInstructor[0].internalUsers.add_img = el;
+                                            if (el.member_id != null) {
+                                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
+                                                    .subscribe(
+                                                        (resppData: any) => {
+                                                            this.thumb = resppData;
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
+                                                        },
+                                                        (error: any) => {
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        });
+                                            } else {
+                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        this.upcomingCourseList.forEach(element => {
+                            if (self.allUsers?.length > 0) {
+                                self.allUsers.forEach(el => {
+                                    if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            // element.CourseInternalInstructor[0].internalUsers.add_img = el;
+                                            if (el.member_id != null) {
+                                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
+                                                    .subscribe(
+                                                        (resppData: any) => {
+                                                            this.thumb = resppData;
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
+                                                        },
+                                                        (error: any) => {
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        });
+                                            } else {
+                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                        this.authService.setLoader(false);
+
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    };
+                }
+            );
         }
     }
 
@@ -539,46 +539,45 @@ export class McourseComponent implements OnInit,OnDestroy {
                     if (respData['isError'] == false) {
                         this.courseByIdData = respData['result'];
 
-                        this.courseByIdData  && this.courseByIdData.forEach(element => {
+                        this.courseByIdData && this.courseByIdData.forEach(element => {
                             element.recurring_dates = JSON.parse(element.recurring_dates);
-                                if (this.allUsers?.length > 0) {
-                                    this.allUsers.forEach(el => {
-                                        if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                            if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                                element.CourseInternalInstructor[0].internalUsers.add_img = el;
-                                                if (el.member_id != null) {
-                                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
-                                                        .subscribe(
-                                                            (resppData: any) => {
-                                                                this.thumb = resppData;
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
-                                                            },
-                                                            (error:any) => {
-                                                                element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                            });
-                                                } else {
+                            if (this.allUsers?.length > 0) {
+                                this.allUsers.forEach(el => {
+                                    if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                        if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            element.CourseInternalInstructor[0].internalUsers.add_img = el;
+                                            if (el.member_id != null) {
+                                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
+                                                    .subscribe(
+                                                        (resppData: any) => {
+                                                            this.thumb = resppData;
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
+                                                        },
+                                                        (error: any) => {
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        });
+                                            } else {
                                                 element.CourseInternalInstructor[0].internalUsers.add_img = null;
-                                                }
                                             }
                                         }
-                                    });
-                                }
+                                    }
+                                });
+                            }
                         });
 
                         if (this.courseByIdData[0]?.course_image[0]?.course_image != null) {
-                            if (this.courseByIdData[0]?.course_image[0]?.course_image){
+                            if (this.courseByIdData[0]?.course_image[0]?.course_image) {
                                 this.hasPicture = true;
                                 this.courseByIdData[0].course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseByIdData[0]?.course_image[0]?.course_image.substring(20)));
-                                this.eventImage =  this.courseByIdData[0]?.course_image[0]?.course_image
+                                this.eventImage = this.courseByIdData[0]?.course_image[0]?.course_image
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
-                        console.log(this.courseByIdData);
-                        
+
                         if (this.courseByIdData[0]?.document_url) {
-                            this.eventFile =  this.courseByIdData[0].document_url;
+                            this.eventFile = this.courseByIdData[0].document_url;
                         }
                         // if (this.courseByIdData[0].picture_video != "[]") {
                         //     let responseImg: string;
@@ -641,14 +640,14 @@ export class McourseComponent implements OnInit,OnDestroy {
             )
     }
 
-     /**
-    * Function is used to get users Details
-    * Date: 03 Feb 2023
-    * @author  MangoIt Solutions (R)
-    * @param   {TaskId}
-    * @return  {Array Of Object} users all detail
-    */
-     setUsers(taskid: number) {
+    /**
+   * Function is used to get users Details
+   * Date: 03 Feb 2023
+   * @author  MangoIt Solutions (R)
+   * @param   {TaskId}
+   * @return  {Array Of Object} users all detail
+   */
+    setUsers(taskid: number) {
         if (sessionStorage.getItem('token')) {
             this.taskOrganizerDetails = [];
             this.collaborators = [];
@@ -669,7 +668,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                     this.thumb = resppData;
                                                     val.image = this.thumb
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     val.image = null;
                                                 });
                                     } else {
@@ -724,7 +723,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         this.thumb = resppData;
                                                         val.users.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.users.image = null;
                                                     });
                                         }
@@ -741,27 +740,27 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         this.thumb = resppData;
                                                         val.users.image = this.thumb;
                                                     },
-                                                    (error:any) => {
+                                                    (error: any) => {
                                                         val.users.image = null;
                                                     });
                                         }
                                     });
                                 }
                             });
-                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
-                            this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants,'id'));
+                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
+                            this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
                         }
                     }
                 );
         }
     }
 
-     /**
-    * Function to get the participants of particular Course
-    * @author  MangoIt Solutions
-    * @param   {CourseId}
-    * @return  {Array Of Object} all the participants
-    */
+    /**
+   * Function to get the participants of particular Course
+   * @author  MangoIt Solutions
+   * @param   {CourseId}
+   * @return  {Array Of Object} all the participants
+   */
     getParticipantDetails(eventid: number) {
         this.unapprovedParticipants = []
         if (sessionStorage.getItem('token')) {
@@ -770,7 +769,7 @@ export class McourseComponent implements OnInit,OnDestroy {
             this.authService.memberSendRequest('get', 'unapprovedParticipants/course/' + eventid, null)
                 .subscribe(
                     (respData: any) => {
-                        if(respData && respData.length > 0){
+                        if (respData && respData.length > 0) {
                             this.unapprovedParticipants = respData;
                             Object(this.unapprovedParticipants).forEach((val, key) => {
                                 if (this.alluserInformation[val.id].member_id != null) {
@@ -780,7 +779,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                 this.thumb = resppData;
                                                 val.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 val.image = null;
                                             });
                                 } else {
@@ -789,8 +788,8 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 this.memImg.push(val);
                             });
                         }
-                        this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg,'id'));
-                        this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants,'id'));
+                        this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg, 'id'));
+                        this.unapprovedParticipants = Object.assign(this.authService.uniqueObjData(this.unapprovedParticipants, 'id'));
                         this.authService.setLoader(false);
                     }
                 );
@@ -832,7 +831,7 @@ export class McourseComponent implements OnInit,OnDestroy {
     }
 
     onExternalInstructorTypeDeSelect(item: { id: number, name: string }) {
-        if(this.externalInstructor && this.externalInstructor.length > 0){
+        if (this.externalInstructor && this.externalInstructor.length > 0) {
             this.externalInstructor.forEach((value, index) => {
                 if (value.instructor_id == item.id) {
                     this.externalInstructor.splice(index, 1);
@@ -846,7 +845,7 @@ export class McourseComponent implements OnInit,OnDestroy {
     }
 
     onRoomDeSelect(item: { id: number, name: string }) {
-        if(this.roomSelect && this.roomSelect.length > 0){
+        if (this.roomSelect && this.roomSelect.length > 0) {
             this.roomSelect.forEach((value, index) => {
                 if (value.room == item.id) {
                     this.roomSelect.splice(index, 1);
@@ -855,59 +854,59 @@ export class McourseComponent implements OnInit,OnDestroy {
         }
     }
 
-      /**
-     * Function to get Course Other Information
-     * @author  MangoIt Solutions (T)
-     * @param   {}
-     * @return  {Array Of Object} all the Users
-     */
-      getCourseOtherInfo() {
+    /**
+   * Function to get Course Other Information
+   * @author  MangoIt Solutions (T)
+   * @param   {}
+   * @return  {Array Of Object} all the Users
+   */
+    getCourseOtherInfo() {
         let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'courseCommonInfo/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false ) {
-                    if(respData?.result?.users?.length > 0){
-                        this.allUsers = respData.result.users;
-                        Object(respData.result.users).forEach((val, key) => {
-                            self.alluserInformation[val.id] = { member_id: val.member_id };
-                            self.internalInstructorList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
-                        });
-                    }
-                    if(respData?.result?.rooms?.length > 0){
-                        Object(respData.result.rooms).forEach((val, key) => {
-                            self.roomList.push({ 'id': val.id, 'name': val.name });
-                        });
-                        self.roomDropdownSettings = {
-                            singleSelection: false,
-                            idField: 'id',
-                            textField: 'name',
-                            selectAllText: 'Select All',
-                            enableCheckAll: false,
-                            unSelectAllText: 'UnSelect All',
-                            allowSearchFilter: false
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        if (respData?.result?.users?.length > 0) {
+                            this.allUsers = respData.result.users;
+                            Object(respData.result.users).forEach((val, key) => {
+                                self.alluserInformation[val.id] = { member_id: val.member_id };
+                                self.internalInstructorList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
+                            });
+                        }
+                        if (respData?.result?.rooms?.length > 0) {
+                            Object(respData.result.rooms).forEach((val, key) => {
+                                self.roomList.push({ 'id': val.id, 'name': val.name });
+                            });
+                            self.roomDropdownSettings = {
+                                singleSelection: false,
+                                idField: 'id',
+                                textField: 'name',
+                                selectAllText: 'Select All',
+                                enableCheckAll: false,
+                                unSelectAllText: 'UnSelect All',
+                                allowSearchFilter: false
+                            }
+                        }
+
+                        if (respData?.result?.instructors?.length > 0) {
+                            Object(respData.result.instructors).forEach((val, key) => {
+                                self.externalInstructorList.push({ 'id': val.id, 'name': val.first_name + ' ' + val.last_name });
+                            });
+                            self.externalDropdownSettings = {
+                                singleSelection: false,
+                                idField: 'id',
+                                textField: 'name',
+                                selectAllText: 'Select All',
+                                enableCheckAll: false,
+                                unSelectAllText: 'UnSelect All',
+                                allowSearchFilter: false,
+                            };
                         }
                     }
-
-                    if(respData?.result?.instructors?.length > 0){
-                        Object(respData.result.instructors).forEach((val, key) => {
-                            self.externalInstructorList.push({ 'id': val.id, 'name': val.first_name + ' ' + val.last_name });
-                        });
-                        self.externalDropdownSettings = {
-                            singleSelection: false,
-                            idField: 'id',
-                            textField: 'name',
-                            selectAllText: 'Select All',
-                            enableCheckAll: false,
-                            unSelectAllText: 'UnSelect All',
-                            allowSearchFilter: false,
-                        };
-                    }
                 }
-            }
-        );
+            );
     }
 
     onInternalInstructorSelect(item: { id: number, name: string }) {
@@ -915,7 +914,7 @@ export class McourseComponent implements OnInit,OnDestroy {
     }
 
     onInternalInstructorDeSelect(item: { id: number, name: string }) {
-        if(this.internalInstructor && this.internalInstructor.length > 0){
+        if (this.internalInstructor && this.internalInstructor.length > 0) {
             this.internalInstructor.forEach((value, index) => {
                 if (value.user_id == item.id)
                     this.internalInstructor.splice(index, 1);
@@ -936,12 +935,12 @@ export class McourseComponent implements OnInit,OnDestroy {
         this.internalInstructor = []
     }
 
-     /**
-    * Function to delete a course
-    * @author  MangoIt Solutions
-    * @param   {courseId}
-    * @return  Response Success or Error Message
-    */
+    /**
+   * Function to delete a course
+   * @author  MangoIt Solutions
+   * @param   {courseId}
+   * @return  Response Success or Error Message
+   */
 
     deleteCourse(id: number) {
         $('#view-course').modal('hide');
@@ -953,7 +952,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'],null);
+                            self.notificationService.showSuccess(respData['result']['message'], null);
                             setTimeout(function () {
                                 self.currentCourseList = [];
                                 self.upcomingCourseList = [];
@@ -981,14 +980,14 @@ export class McourseComponent implements OnInit,OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result'],null);
+                            self.notificationService.showSuccess(respData['result'], null);
                             setTimeout(function () {
                                 self.currentCourseList = [];
                                 self.upcomingCourseList = [];
                                 self.getAllCourses();
                             }, 4000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'],null);
+                            self.notificationService.showError(respData['message'], null);
                             setTimeout(function () {
                                 self.getAllCourses();
                             }, 4000);
@@ -1115,16 +1114,16 @@ export class McourseComponent implements OnInit,OnDestroy {
         if (this.getInTouchCourse.valid) {
             this.authService.setLoader(true)
             this.authService.memberSendRequest('post', 'instructor/sendmail', formData)
-            .subscribe(
-                (respData) => {
-                    this.authService.setLoader(false)
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                    }
-                },
-            );
+                .subscribe(
+                    (respData) => {
+                        this.authService.setLoader(false)
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
+                    },
+                );
         }
     }
 
@@ -1200,6 +1199,17 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 for (var key in this.allCourses) {
                                     if (this.allCourses.hasOwnProperty(key)) {
                                         element = this.allCourses[key];
+
+                                        this.allCourses.forEach((element: any) => {
+                                            if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                                const base64String = element.course_image[0].course_image;
+                                                const base64Data = base64String.substring(20);
+                                                const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                                element.course_image[0].course_image = blobUrl;
+                                                this.eventImage = element.course_image[0].course_image
+                                            }
+                                        });
+
                                         var url = [];
                                         for (const key in element) {
                                             if (Object.prototype.hasOwnProperty.call(element, key)) {
@@ -1231,13 +1241,13 @@ export class McourseComponent implements OnInit,OnDestroy {
 
                                             let rule: RRule = RRule.fromString(recurrence)
                                             let rules: Date[] = rule.all();
-                                            if(rules && rules.length > 0){
+                                            if (rules && rules.length > 0) {
                                                 rules.forEach(function (val, index) {
                                                     let yourDate: Date = new Date(val)
                                                     let dt: string = yourDate.toISOString().split('T')[0];
                                                     let rDate: string = dt + "T" + element.date_from.split("T")["1"];
                                                     let rrDate = rDate.split("T")["0"];
-                                                    let rrDateEnd:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                    let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                     let rrEvents: Courses = {
                                                         "id": element.id,
                                                         "schedule": element.schedule,
@@ -1245,7 +1255,9 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "picture_video": element.picture_video,
+                                                        // "picture_video": element.picture_video,
+                                                        "course_image": element.course_image[0]?.course_image,
+                                                        "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate,
                                                         "date_to": rrDateEnd,
@@ -1293,7 +1305,7 @@ export class McourseComponent implements OnInit,OnDestroy {
 
                                                     }
                                                     if ((self.allCourses.length == 0)) {
-                                                        self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                        self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                         setTimeout(() => {
                                                             self.reSet();
                                                         }, 3000);
@@ -1304,11 +1316,15 @@ export class McourseComponent implements OnInit,OnDestroy {
 
                                             if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                                 const dates = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
+                                                // console.log( element.recurring_dates);
+                                                // console.log(JSON.parse(element.recurring_dates) );
+                                                
+                                                element.recurring_dates = JSON.parse(element.recurring_dates);
                                                 element?.recurring_dates?.forEach(dd => {
-                                                    let yourDate1: Date = new Date(dd)
+                                                    let yourDate1: Date = new Date(dd.date_from)
                                                     let dt1: string = yourDate1.toISOString().split('T')[0];
                                                     let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                    let rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                    let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                     let rrEvents1: Courses = {
                                                         "id": element.id,
                                                         "schedule": element.schedule,
@@ -1316,7 +1332,9 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "picture_video": element.picture_video,
+                                                        // "picture_video": element.picture_video,
+                                                        "course_image": element.course_image[0]?.course_image,
+                                                        "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate1,
                                                         "date_to": rrDateEnd1,
@@ -1362,7 +1380,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         self.upcomingCourseList.push(rrEvents1);
                                                     }
                                                     if ((self.allCourses.length == 0)) {
-                                                        self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                        self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                         setTimeout(() => {
                                                             self.reSet();
                                                         }, 3000);
@@ -1374,7 +1392,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                     let yourDate1: Date = new Date(dd)
                                                     let dt1: string = yourDate1.toISOString().split('T')[0];
                                                     let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
-                                                    let rrDateEnd1:string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
+                                                    let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                                     let rrEvents1: Courses = {
                                                         "id": element.id,
                                                         "schedule": element.schedule,
@@ -1382,7 +1400,9 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "picture_video": element.picture_video,
+                                                        // "picture_video": element.picture_video,
+                                                        "course_image": element.course_image[0]?.course_image,
+                                                        "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate1,
                                                         "date_to": rrDateEnd1,
@@ -1428,7 +1448,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                         self.upcomingCourseList.push(rrEvents1);
                                                     }
                                                     if ((self.allCourses.length == 0)) {
-                                                        self.notificationService.showError(self.language.create_faq.search_not_found,null);
+                                                        self.notificationService.showError(self.language.create_faq.search_not_found, null);
                                                         setTimeout(() => {
                                                             self.reSet();
                                                         }, 3000);
@@ -1451,8 +1471,8 @@ export class McourseComponent implements OnInit,OnDestroy {
                                     let self = this;
                                     if (self.allUsers?.length > 0) {
                                         self.allUsers.forEach(el => {
-                                            if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                                if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                     // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                                     if (el.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
@@ -1461,11 +1481,11 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                                     this.thumb = resppData;
                                                                     element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
                                                                 },
-                                                                (error:any) => {
+                                                                (error: any) => {
                                                                     element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                                 });
                                                     } else {
-                                                    element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                     }
                                                 }
                                             }
@@ -1475,8 +1495,8 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 this.upcomingCourseList.forEach(element => {
                                     if (self.allUsers?.length > 0) {
                                         self.allUsers.forEach(el => {
-                                            if(element?.CourseInternalInstructor[0]?.internalUsers.id){
-                                                if (el.id ==   element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                            if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                     // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                                     if (el.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
@@ -1485,11 +1505,11 @@ export class McourseComponent implements OnInit,OnDestroy {
                                                                     this.thumb = resppData;
                                                                     element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
                                                                 },
-                                                                (error:any) => {
+                                                                (error: any) => {
                                                                     element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                                 });
                                                     } else {
-                                                    element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        element.CourseInternalInstructor[0].internalUsers.add_img = null;
                                                     }
                                                 }
                                             }
@@ -1500,7 +1520,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                                 this.authService.setLoader(false);
 
                             } else {
-                                this.notificationService.showError(this.language.create_faq.search_not_found,null);
+                                this.notificationService.showError(this.language.create_faq.search_not_found, null);
 
                                 setTimeout(() => {
                                     this.reSet();
@@ -1512,7 +1532,7 @@ export class McourseComponent implements OnInit,OnDestroy {
                     }
                 );
         } else {
-            this.notificationService.showError(this.language.instructor.text_for_search,null);
+            this.notificationService.showError(this.language.instructor.text_for_search, null);
             setTimeout(() => {
                 this.reSet();
             }, 3000);
@@ -1535,7 +1555,7 @@ export class McourseComponent implements OnInit,OnDestroy {
     checkFor(arrayOfObject: any) {
         if (arrayOfObject.some(obj => (obj.user_id === this.userDetails.userId && obj.approved_status === 0))) {
             return true;
-        } else  if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2))  { return false } else{
+        } else if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2)) { return false } else {
             return true
         }
     }
@@ -1543,49 +1563,49 @@ export class McourseComponent implements OnInit,OnDestroy {
     checkForWaiting(arrayOfObject: any) {
         if (arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 2)) {
             return true;
-        } else  { return false }
+        } else { return false }
     }
 
     // active class functions
-    onClick(check){
-         this.activeClass = check == 1 ? "courseActive" : check == 2? "instructorActive" : check == 3  ? "roomActive" : "courseActive";
-      }
+    onClick(check) {
+        this.activeClass = check == 1 ? "courseActive" : check == 2 ? "instructorActive" : check == 3 ? "roomActive" : "courseActive";
+    }
 
-          /**
-    * Function is used to download document
-    * @author  MangoIt Solutions
-    * @param   {path}
-    */
-          download(path: any) {
-            let data = {
-                name: path
-            }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/')[2]
-                this.authService.downloadDocument('post', endPoint, data).toPromise()
-                    .then((blob: any) => {
-                        saveAs(blob, filename);
-                        this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
+    /**
+* Function is used to download document
+* @author  MangoIt Solutions
+* @param   {path}
+*/
+    download(path: any) {
+        let data = {
+            name: path
         }
+        this.dowloading = true;
+        var endPoint = 'get-documentbyname';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
 
 
     ngOnDestroy(): void {

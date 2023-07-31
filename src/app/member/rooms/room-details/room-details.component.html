@@ -19,7 +19,7 @@
                                             <div class="detail-big-img" (click)="viewImage=true">
                                                 <!-- <img onContextMenu="return false;" [src]="roomDetails.image? roomDetails.image : '../../assets/img/no_image.png'" alt="" loading="lazy" > -->
                                                 <img onContextMenu="return false;" alt="" loading="lazy"
-                                                    [src]="roomDetails['room_image']?.[0]['room_image']? roomDetails['room_image']?.[0]['room_image'] : '../../assets/img/no_image.png'">
+                                                    [src]="roomDetails?.room_image[0]?.room_image ?  roomDetails?.room_image[0]?.room_image : '../../assets/img/no_image.png'">
                                             </div>
                                             <div class="dropdown action_group">
                                                 <button class="dropdown-toggle" type="button" (click)="onShow()">
@@ -168,7 +168,7 @@
                                 <div class="news_details" *ngIf="updateRoomData">
                                     <div class="row">
                                         <div class="news_image col-md-6">
-                                            <app-image-viewer *ngIf="updateRoomData.newImage"
+                                            <app-image-viewer *ngIf="updateRoomData.file"
                                                 [imageURL]="updateRoomData.newImage" [open]="viewImage"
                                                 (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
@@ -359,7 +359,7 @@
                                     <!-- <app-image-viewer *ngIf="roomDetails.image" [imageURL]="roomDetails.image" [open]="viewImage" (close)="viewImage = false"></app-image-viewer> -->
                                     <div class="detail-big-img" (click)="viewImage=true">
                                         <img onContextMenu="return false;" alt="" loading="lazy"
-                                            [src]="roomDetails['room_image']?.[0]['room_image']? roomDetails['room_image']?.[0]['room_image'] : '../../assets/img/no_image.png'">
+                                            [src]="roomDetails?.room_image[0]?.room_image ? roomDetails?.room_image[0]?.room_image : '../../assets/img/no_image.png'">
                                     </div>
                                     <div class="dropdown action_group">
                                         <button class="dropdown-toggle" type="button" (click)="onShow()">
