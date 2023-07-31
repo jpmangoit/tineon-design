@@ -154,7 +154,35 @@
                                             <mat-panel-description>
                                                 <p [innerHTML]=" (item['description'].length > 0 )? (item['description'] | slice:0:300)+'...':(item['description'])"></p>
 
-                                                <div class="attach_btn" *ngIf="item.image != null">
+                                                <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_image'] != ''">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                        viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-download">
+                                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                        <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                        <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                                    </svg>
+                                                    <a href="{{item['faq_image'][0]?.['faq_image']}}"
+                                                        [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </div>
+
+                                                <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_document'] != ''">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                        viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-download">
+                                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                        <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                        <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                                    </svg>
+                                                    <a href="{{item['faq_image'][0]?.['faq_document']}}"
+                                                        [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </div>
+
+                                                <!-- <div class="attach_btn" *ngIf="item.image != null">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                         viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -166,7 +194,7 @@
                                                     <a href="{{item.image}}">
                                                         {{language.create_event.download_attachment}}
                                                     </a>
-                                                </div>
+                                                </div> -->
                                             </mat-panel-description>
                                         </mat-expansion-panel>
                                     </mat-accordion>
@@ -214,7 +242,35 @@
                                             </mat-expansion-panel-header>
                                             <mat-panel-description>
                                                 <p [innerHTML]="item.description"></p>
-                                                <div class="attach_btn" *ngIf="item.image != null">
+
+                                                <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_image'] != ''">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                        viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-download">
+                                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                        <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                        <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                                    </svg>
+                                                    <a href="{{item['faq_image'][0]?.['faq_image']}}"
+                                                        [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </div>
+                                                <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_document'] != ''">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                        viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-download">
+                                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                        <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                        <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                                    </svg>
+                                                    <a href="{{item['faq_image'][0]?.['faq_document']}}"
+                                                        [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                        {{language.create_event.download_attachment}}
+                                                    </a>
+                                                </div>
+
+                                                <!-- <div class="attach_btn" *ngIf="item.image != null">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                         viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -226,7 +282,7 @@
                                                     <a href="{{item.image}}">
                                                         {{language.create_event.download_attachment}}
                                                     </a>
-                                                </div>
+                                                </div> -->
                                             </mat-panel-description>
                                         </mat-expansion-panel>
                                     </mat-accordion>
@@ -301,7 +357,36 @@
                                     </mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <p [innerHTML]="item.description"></p>
-                                        <div class="attach_btn" *ngIf="item.image != null">
+
+                                        <div class="attach_btn" *ngIf="srchitem['faq_image'].length > 0 && srchitem['faq_image'][0]?.['faq_image'] != ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" class="feather feather-download">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                            </svg>
+                                            <a href="{{srchitem['faq_image'][0]?.['faq_image']}}"
+                                                [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </div>
+
+                                        <div class="attach_btn" *ngIf="srchitem['faq_image'].length > 0 && srchitem['faq_image'][0]?.['faq_document'] != ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" class="feather feather-download">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" [ngStyle]="{'stroke':'#fff'}" />
+                                                <polyline points="7 10 12 15 17 10"  [ngStyle]="{'stroke':'#fff'}" />
+                                                <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
+                                            </svg>
+                                            <a href="{{srchitem['faq_image'][0]?.['faq_document']}}"
+                                                [ngStyle]="{'border-color':setTheme.button_bgcolor ,'color': '#fff'}">
+                                                {{language.create_event.download_attachment}}
+                                            </a>
+                                        </div>
+
+                                        <!-- <div class="attach_btn" *ngIf="item.image != null">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                 viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -313,7 +398,7 @@
                                             <a href="{{item.image}}">
                                                 {{language.create_event.download_attachment}}
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </mat-panel-description>
                                 </mat-expansion-panel>
                             </mat-accordion>
@@ -410,7 +495,7 @@
                                             <img onContextMenu="return false;" onContextMenu="return false;"
                                                 class="preview_img"
                                                 *ngIf="hasPicture == true  && (croppedImage == null || croppedImage == '')"
-                                                src="{{imageUrl}}">
+                                                [src]="imageUrl">
                                         </span>
                                         <div class="attach_btn preview_img">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
