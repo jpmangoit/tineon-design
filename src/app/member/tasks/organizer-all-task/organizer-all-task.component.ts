@@ -53,6 +53,8 @@ export class OrganizerAllTaskComponent implements OnInit {
                         if (respData['isError'] == false) {
 
                             if (respData['result']?.length > 0) {
+                                console.log(respData?.['result']);
+
                                 respData?.['result']?.forEach((element) => {
                                     if (element['task_image'] && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;

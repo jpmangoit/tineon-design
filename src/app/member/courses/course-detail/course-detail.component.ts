@@ -33,7 +33,7 @@ export class CourseDetailComponent implements OnInit {
     userId: any;
     private activatedSub: Subscription;
     responseMessage: any;
-    eventImage: string; 
+    eventImage: string;
     eventUpdateImage: string;
     eventFile: string;
     eventUpdateFile: string;
@@ -211,19 +211,20 @@ export class CourseDetailComponent implements OnInit {
                         //     this.hasPicture = false;
                         //     this.eventImage = '';
                         // }
+                        console.log(this.courseDetails);
                         if (this.courseDetails[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
                             if (this.courseDetails[0]?.course_image[0]?.course_image ) {
                                 this.courseDetails[0].course_image[0].course_image  = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0]?.course_image[0]?.course_image .substring(20)));
-                                this.eventImage = this.courseDetails[0]?.course_image[0]?.course_image 
+                                this.eventImage = this.courseDetails[0]?.course_image[0]?.course_image
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
 
-                        if (this.courseDetails[0]?.document_url) {
-                            this.eventFile = this.courseDetails[0].document_url;
+                        if (this.courseDetails[0]?.course_image[0]?.course_document) {
+                            this.eventFile = this.courseDetails[0].course_image[0]?.course_document;
                         }
 
                         // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
@@ -301,7 +302,7 @@ export class CourseDetailComponent implements OnInit {
                                     });
                                 }
                                 console.log(this.updateCourseData);
-                                
+
                                 if (this.updateCourseData?.baseImage[0]?.image) {
                                     this.hasUpdatePicture = true;
                                     if (this.updateCourseData?.baseImage[0]?.image) {
@@ -312,8 +313,8 @@ export class CourseDetailComponent implements OnInit {
                                     this.hasUpdatePicture = false;
                                     this.eventUpdateImage = '';
                                 }
-                                if (this.updateCourseData['updateDocumentUrl']) {
-                                    this.eventUpdateFile = this.updateCourseData['updateDocumentUrl'];
+                                if (this.updateCourseData?.baseImage[0]?.documentUrl) {
+                                    this.eventUpdateFile = this.updateCourseData?.baseImage[0]?.documentUrl;
                                 }
                                 // if (this.updateCourseData['imageUrl']) {
                                 //     if (this.updateCourseData['imageUrl'].length > 0) {
