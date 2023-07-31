@@ -131,6 +131,7 @@ export class OrganizerEventComponent implements OnInit {
                                 } else {
                                     element['picture_video'] = '';
                                 }
+
                                 this.allData[key] = element;
                                 if ((element) && element.recurrence != '' && element.recurrence != null && element.recurrence != 'null') {
                                     let recurrence: string = element.recurrence;
