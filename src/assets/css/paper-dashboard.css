@@ -10790,6 +10790,7 @@ li.nav-item.dropdown.add_dropdown
     border-radius: 8px;
     margin: 15px 0px 10px 0;
     color: #fff;
+    cursor: pointer;
 }
 
 

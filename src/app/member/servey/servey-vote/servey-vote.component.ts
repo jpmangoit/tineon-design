@@ -56,7 +56,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.userRole = this.userDetails.roles[0];
 		this.getVoteResult();
-		this.getVoteAnswer();
+		// this.getVoteAnswer();
 		this.surveyVoteForm = this.formBuilder.group({
 			user_id: [''],
 			team_id: [''],
@@ -116,6 +116,8 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 						}
 					});
 				}
+
+				this.getVoteAnswer();
 			}
 		)
 	}
