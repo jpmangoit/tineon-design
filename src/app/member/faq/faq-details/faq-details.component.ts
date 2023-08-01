@@ -21,6 +21,7 @@ import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -139,7 +140,9 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
     };
     faq_image: string = '';
     faq_document: string = '';
-
+    result: any;
+    documentData: any;
+    dowloading: boolean = false;
     constructor(
         private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder,
@@ -817,10 +820,51 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         /* show message */
     }
 
+    /**
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
+    downloadDoc(path: any) {
+        let data = {
+            name: path
+        }
+        this.dowloading = true;
+        var endPoint = 'download-faqs-document';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'delete-faqs-document/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
+
+    downloadImage(blobUrl: any) {
+        window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
+    }
+
     ngOnDestroy(): void {
         this.refreshPage.unsubscribe();
         this.activatedSub.unsubscribe();
         this.denyRefreshPage.unsubscribe();
         this.removeUpdate.unsubscribe()
     }
+    
 }

@@ -42,12 +42,12 @@
                                                     <line x1="12" y1="15" x2="12" y2="3" />
                                                 </svg>
                                                 <span *ngIf="faqsData['faq_image'][0]?.['faq_image'] != ''" >
-                                                    <a href="{{faqsData['faq_image'][0]?.['faq_image']}}" >
+                                                    <a href="javascript:void(0)" (click)="downloadImage(faqsData['faq_image'][0]?.['faq_image'])" >
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </span>
                                                 <span *ngIf="faqsData['faq_image'][0]?.['faq_document'] != ''">
-                                                    <a  href="{{faqsData['faq_image'][0]?.['faq_document']}}" >
+                                                    <a  href="javascript:void(0)" (click)="downloadDoc(faqsData['faq_image'][0]?.['faq_document'])">
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </span>
@@ -141,12 +141,12 @@
                                                     <line x1="12" y1="15" x2="12" y2="3" />
                                                 </svg>
                                                 <span *ngIf="updateFaqsData['baseImage'][0]?.['image'] != ''" >
-                                                    <a href="{{updateFaqsData['baseImage'][0]?.['image']}}" >
+                                                    <a  href="javascript:void(0)"  (click)="downloadImage(updateFaqsData['baseImage'][0]?.['image'])" >
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </span>
                                                 <span *ngIf="updateFaqsData['baseImage'][0]?.['documentUrl'] != ''">
-                                                    <a  href="{{updateFaqsData['baseImage'][0]?.['documentUrl']}}" >
+                                                    <a  href="javascript:void(0)" (click)="downloadDoc(updateFaqsData['baseImage'][0]?.['documentUrl'])">
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </span>
@@ -222,13 +222,13 @@
                                             <line x1="12" y1="15" x2="12" y2="3" />
                                         </svg>
                                         <span *ngIf="faqsData['faq_image'][0]?.['faq_image'] != ''" >
-                                            <a href="{{faqsData['faq_image'][0]?.['faq_image']}}" >
-                                                {{language.create_event.download_attachment}}
+                                            <a href="javascript:void(0)" (click)="downloadImage(faqsData['faq_image'][0]?.['faq_image'])" >
+                                                {{language.create_event.download_attachment}} 
                                             </a>
                                         </span>
                                         <span *ngIf="faqsData['faq_image'][0]?.['faq_document'] != ''">
-                                            <a  href="{{faqsData['faq_image'][0]?.['faq_document']}}" >
-                                                {{language.create_event.download_attachment}}
+                                            <a  href="javascript:void(0)" (click)="downloadDoc(faqsData['faq_image'][0]?.['faq_document'])">
+                                                {{language.create_event.download_attachment}} 6
                                             </a>
                                         </span>
                                     </div>
@@ -504,4 +504,12 @@
         </div>
     </div>
 </div>
-
+<div *ngIf="dowloading">
+    <div class="overlay download-overlay">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <div class="loading" data-loading-text="Downloading..."></div>
+            </div>
+        </div>
+    </div>
+</div>
