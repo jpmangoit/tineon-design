@@ -708,7 +708,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
             name: path
         }
         this.dowloading = true;
-        var endPoint = 'get-documentbyname';
+        var endPoint = 'download-document';
         if (data && data.name) {
             let filename = data.name.split('/')[2]
             this.authService.downloadDocument('post', endPoint, data).toPromise()
@@ -717,7 +717,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     this.dowloading = false;
                     setTimeout(() => {
-                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                        this.authService.sendRequest('post', 'delete-document/uploads', data).subscribe((result: any) => {
                             this.result = result;
                             this.authService.setLoader(false);
                             if (this.result.success == false) {
