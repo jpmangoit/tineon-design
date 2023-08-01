@@ -296,7 +296,7 @@ button.del-group {
 .application-ad {
     position: fixed;
     z-index: 1;
-    bottom: 90px;
+    bottom: 89px;
     background: #3A9CF5;
     width: 100%;
     border-top-right-radius: 20px;
