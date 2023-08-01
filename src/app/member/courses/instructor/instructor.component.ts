@@ -351,6 +351,11 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         this.totalInstructor = 0;
                         this.searchData = respData['result']['instructor'];
                         this.instructorData = respData['result']['instructor'];
+                        this.instructorData.forEach((element:any) =>{
+                            if(element['instructor_image'][0]?.['instructor_image']){
+                                element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
+                            }
+                        })
                         this.totalInstructor = respData['result'].pagination.rowCount;
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

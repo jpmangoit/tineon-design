@@ -9,6 +9,8 @@ import { UntypedFormGroup } from '@angular/forms';
 import { Survey, VoteAnswer, VoteSetting } from 'src/app/models/survey.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $:any;
 
 @Component({
@@ -34,7 +36,9 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     showFile: any;
 
     constructor(private authService: AuthServiceService, private themes: ThemeService,private notificationService: NotificationService,
-        private lang: LanguageService, private route: ActivatedRoute,) { }
+        private lang: LanguageService, private route: ActivatedRoute,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -45,7 +49,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        
+
         this.authService.setLoader(false);
         this.language = this.lang.getLanguaageFile();
         this.surveyId = this.route.snapshot.paramMap.get('surveyId');
@@ -59,7 +63,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     * Function to get survey and vote details by survey Id
     * @author  MangoIt Solutions (T)
     * @param   {}
-    * @return  {Array Of Object} 
+    * @return  {Array Of Object}
     */
 
     getVoteResult() {
@@ -72,14 +76,24 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
                 if(this.surveyVoteResult && this.surveyVoteResult['result'] && this.surveyVoteResult['result'].length > 0){
                     this.surveyData = this.surveyVoteResult['result'];
                     this.show_name = this.surveyData[0].additional_anonymous_voting;
-                    if (this.surveyData[0].image != null) {
-                        if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
-                            this.showImage = this.surveyData[0].image;
-                        } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
-                            this.showFile = this.surveyData[0].image;
-                            $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-                        }
+
+                    if (this.surveyData[0]?.surevyImage[0]?.survey_image) {
+                        this.surveyData[0].surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyData[0]?.surevyImage[0]?.survey_image.substring(20)));
+                        this.showImage = this.surveyData[0]?.surevyImage[0]?.survey_image
                     }
+
+                    if (this.surveyData[0]?.surevyImage[0]?.surevy_document) {
+                        this.showFile = this.surveyData[0]?.surevyImage[0]?.surevy_document;
+                        $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
+                    }
+                    // if (this.surveyData[0].image != null) {
+                    //     if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
+                    //         this.showImage = this.surveyData[0].image;
+                    //     } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
+                    //         this.showFile = this.surveyData[0].image;
+                    //         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
+                    //     }
+                    // }
                 }
 
                 if(this.surveyVoteResult && this.surveyVoteResult['answerCount'] && this.surveyVoteResult['answerCount'].length > 0){
@@ -99,7 +113,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     * Function to get survey vote answer by user Id
     * @author  MangoIt Solutions
     * @param   {survey Id, User Id}
-    * @return  {Array Of Object} 
+    * @return  {Array Of Object}
     */
     getVoteAnswer() {
         this.authService.setLoader(true);
@@ -116,24 +130,24 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     }
 
     /**
-    * Function is used to get how many user choose slected answer 
+    * Function is used to get how many user choose slected answer
     * @author  MangoIt Solutions
     * @param   {surevy Id, Answer Id}
-    * @return  {array object} 
+    * @return  {array object}
     */
     getAnswerResult(ans_id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'surveyResult/' + 'survey/' + this.surveyId + '/answerId/' + ans_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.vote_setting = respData['result']['result'];
-                        this.voteCount = this.vote_setting.length;
-                        this.currentDate = new Date();
-                    }
+        .subscribe(
+            (respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.vote_setting = respData['result']['result'];
+                    this.voteCount = this.vote_setting.length;
+                    this.currentDate = new Date();
                 }
-            )
+            }
+        )
     }
 
     showVote(vote: Survey) {

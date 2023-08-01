@@ -45,7 +45,7 @@ export class MorganizerComponent implements OnInit {
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService
     ) {
-        console.log(this.router.url);
+        // console.log(this.router.url);
         if(this.router.url == '/organizer'){
             this.displayEvent = true;
             this.onClick(1)

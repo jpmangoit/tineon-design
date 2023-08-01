@@ -183,6 +183,7 @@ declare var $: any;
             this.updateEmailForm.controls["template_type"].setValue(this.type);
         }
         if(this.emailDetails.template_logo[0]?.template_image){
+            
             console.log(this.emailDetails);
             this.updateEmailForm.controls["file"].setValue(this.emailDetails.template_logo[0]?.template_image);
             

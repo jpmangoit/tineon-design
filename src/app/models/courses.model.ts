@@ -28,7 +28,7 @@ export interface Courses {
   name: string
   official_club_date: Date
   participants: string
-  picture_video: string
+  // picture_video: string
   place: string
   price_per_participant: number
   recurrence: string
@@ -42,6 +42,8 @@ export interface Courses {
   updated_at: string
   visibility: number
   waiting_list: string
+  course_image: any
+  course_document:any
 }
 
 export interface CourseExternalInstructor{

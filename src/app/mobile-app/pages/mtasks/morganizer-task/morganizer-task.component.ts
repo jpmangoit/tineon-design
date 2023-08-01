@@ -132,8 +132,8 @@ export class MorganizerTaskComponent implements OnInit {
                         this.completed = [];
                         if (respData['isError'] == false) {
                             if(respData['result'] && respData['result'].length > 0){
-                                respData['result'].forEach((element) => {
-                                    if (element?.['task_image'][0]?.['task_image']) {
+                                respData['result'].forEach((element) => { 
+                                    if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                                     }
                                     element.approvedCount = 0
@@ -189,7 +189,7 @@ export class MorganizerTaskComponent implements OnInit {
                         if (respData['isError'] == false) {
                             if(respData['result'] && respData['result'].length > 0){
                                 respData['result'].forEach((element) => {
-                                    if (element?.['task_image'][0]?.['task_image']) {
+                                    if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                                     }
                                     if(element.group_id == 0 || element.group_id == null || element.group_id == ''){

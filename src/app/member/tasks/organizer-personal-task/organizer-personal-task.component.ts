@@ -31,15 +31,15 @@ export class OrganizerPersonalTaskComponent implements OnInit {
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         this.user_id = localStorage.getItem('user-id');
-        if (sessionStorage.getItem('token')) {
+        if (sessionStorage.getItem('token')) { 
             this.toDoTask = [];
             this.inProgress = [];
             this.completed = [];
-            if (this.organizerTask && this.organizerTask?.length > 0) {
+            if (this.organizerTask && this.organizerTask?.length > 0) {                
                 this.organizerTask?.forEach((element) => {
-                    if (element['task_image'] && element['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
-                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
-                    }
+                    // if (element['task_image'] && element['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
+                    //     element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                    // }
                     if (element.group_id == 0 || element.group_id == null || element.group_id == '') {
                         element.approvedCount = 0;
                         element.progressVal = 0;

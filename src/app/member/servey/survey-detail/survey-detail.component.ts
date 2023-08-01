@@ -83,6 +83,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
+            
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;

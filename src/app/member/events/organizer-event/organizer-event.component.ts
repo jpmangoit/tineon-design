@@ -107,6 +107,8 @@ export class OrganizerEventComponent implements OnInit {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                         var element: any = null;
+                        console.log(respData);
+
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
@@ -129,6 +131,7 @@ export class OrganizerEventComponent implements OnInit {
                                 } else {
                                     element['picture_video'] = '';
                                 }
+
                                 this.allData[key] = element;
                                 if ((element) && element.recurrence != '' && element.recurrence != null && element.recurrence != 'null') {
                                     let recurrence: string = element.recurrence;

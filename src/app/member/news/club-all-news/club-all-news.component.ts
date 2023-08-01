@@ -238,6 +238,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                         this.dashboardData = respData.news;
 
                         if (this.dashboardData && this.dashboardData.length > 0) {
+                            
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
@@ -270,7 +271,10 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
             } else if ((this.role != 'admin') && (this.role != 'guest')) {
                 let userId: string = localStorage.getItem('user-id');
 
-                this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+                this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
+                    (respData: any) => {
+                        console.log(respData);
+                        
                     this.authService.setLoader(false);
                     if (respData.news.length == 0) {
                         this.authService.setLoader(false);
@@ -279,8 +283,10 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                         this.dashboardData = respData.news;
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach(element => {
-                                if (element.imageUrls) {
-                                    element.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.imageUrls.substring(20))) as string;
+                                console.log(element);
+                                
+                                if (element?.news_image[0]?.news_image) {
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
 
                                 if (element.user.member_id != null) {
@@ -340,13 +346,19 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
+
+        if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls) {
-                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-                this.newImg = this.newsData.imageUrls;
+            
+            if (this.newsData?.news_image[0]?.news_image) {
+                this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20))) as string;
+                this.newImg = this.newsData?.news_image[0]?.news_image;
             }
+            // if (this.newsData.imageUrls) { 
+            //     this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
+            //     this.newImg = this.newsData.imageUrls;
+            // }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.setLoader(true);

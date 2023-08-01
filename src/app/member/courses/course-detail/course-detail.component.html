@@ -21,9 +21,6 @@
                                                         <div class="image-section">
                                                             <img class="preview_img" onContextMenu="return false;" alt="{{item.name}}" loading="lazy"
                                                              [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" >
-
-
-
                                                         </div>
                                                         <div class="overbar-section">
                                                             <div class="course-action dropdown action_group" *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">

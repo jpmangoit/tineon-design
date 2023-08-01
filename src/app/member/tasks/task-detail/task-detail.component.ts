@@ -178,10 +178,8 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedTaskData = null;
                                     this.updatedTaskData = JSON.parse(this.taskDetails['updated_record']);
-                                    console.log(this.updatedTaskData );
 
                                     if (this.updatedTaskData != null) {
-                                        console.log(this.updatedTaskData?.file);
 
                                         if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null){
                                             this.updatedTaskData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedTaskData.file.substring(20)));
