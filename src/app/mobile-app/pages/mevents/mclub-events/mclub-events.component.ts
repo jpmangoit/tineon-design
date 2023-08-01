@@ -10,6 +10,7 @@ import { EventsType } from 'src/app/models/events-type.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-mclub-events',
@@ -24,7 +25,7 @@ export class MclubEventsComponent implements OnInit {
     displayAll: boolean = true;
     displayToday: boolean = false;
     displayUpcoming: boolean = false;
-    displayEvents: boolean = false;
+    displayEvents: boolean = false; 
     displayTickets: boolean = false;
     language: any;
     setTheme: ThemeType;
@@ -89,7 +90,9 @@ export class MclubEventsComponent implements OnInit {
         private lang: LanguageService,
         private themes: ThemeService,
         private route: ActivatedRoute,
-        private commonFunctionService: CommonFunctionService) { }
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+    ) { }
 
 
     // active class functions
@@ -141,7 +144,7 @@ export class MclubEventsComponent implements OnInit {
             }
             this.authService.memberSendRequest('get', eventUrl, null)
                 .subscribe(
-                    (respData: any) => {
+                    (respData: any) => { 
                         this.authService.setLoader(false);
                         this.all_events = respData;
                         this.date = new Date(); // Today's date
@@ -150,6 +153,10 @@ export class MclubEventsComponent implements OnInit {
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
+                                if (element?.event_images[0]?.event_image) {
+                                    element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
+                                }
+
                                 var url: string[] = [];
                                 if (element.picture_video != null && element.picture_video != '') {
                                     if (element.picture_video) {
@@ -194,13 +201,15 @@ export class MclubEventsComponent implements OnInit {
                                             let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             // let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let rrEvents: EventsType = {
+                                            let rrEvents: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                // "picture_video": element.picture_video,
+                                                "event_image": element?.event_images[0]?.event_image,
+                                                "event_document": element?.event_images[0]?.event_document,
                                                 "date_from": rrDate,
                                                 "date_to": rrDateEnd,
                                                 "place": element.place,
@@ -266,13 +275,15 @@ export class MclubEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + dd.start_time + ':00.000Z'
                                             // let rrDateEnd1: string = dt1 + "T" + dd.end_time + ':00.000Z';
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                // "picture_video": element.picture_video,
+                                                "event_image": element?.event_images[0]?.event_image,
+                                                "event_document": element?.event_images[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,
@@ -337,13 +348,15 @@ export class MclubEventsComponent implements OnInit {
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
                                             let self = this;
-                                            let rrEvents1: EventsType = {
+                                            let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
                                                 "official_club_date": element.official_club_date,
                                                 "type": element.type,
                                                 "name": element.name,
-                                                "picture_video": element.picture_video,
+                                                // "picture_video": element.picture_video,
+                                                "event_image": element?.event_images[0]?.event_image,
+                                                "event_document": element?.event_images[0]?.event_document,
                                                 "date_from": rrDate1,
                                                 "date_to": rrDateEnd1,
                                                 "place": element.place,

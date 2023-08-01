@@ -193,7 +193,8 @@ export class MeventDetailComponent implements OnInit {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-
+                                console.log(this.eventDetails);
+                                
                                 if (this.eventDetails?.event_images[0]?.event_image != null) {
                                     this.showImage = true;
                                     if (this.eventDetails?.event_images[0]?.event_image) {

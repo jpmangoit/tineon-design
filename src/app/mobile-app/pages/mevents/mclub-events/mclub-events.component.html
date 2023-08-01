@@ -33,7 +33,7 @@
                         <div class="event-time-line"></div>
                         <div class="img-content">
                             <div class="event-image-des">
-                                <img onContextMenu="return false;" [src]="today.picture_video ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
+                                <img onContextMenu="return false;" [src]="today?.event_image ? today?.event_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                             </div>
                             <p
                             [innerHTML]="(today.description.length > 0 )? (today.description | slice:0:300)+'...':(today.description)">

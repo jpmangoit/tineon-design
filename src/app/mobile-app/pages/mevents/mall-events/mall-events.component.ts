@@ -51,7 +51,7 @@ export class MallEventsComponent implements OnInit {
     showCalendar = true;
     allCourses: any[];
     courseList: any[] = [];
-    bannerData:any;
+    bannerData: any;
     eventData: any;
     courseData: any;
     constructor(
@@ -74,7 +74,7 @@ export class MallEventsComponent implements OnInit {
             this.setTheme = resp;
         });
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
         this.language = this.lang.getLanguaageFile();
@@ -99,14 +99,14 @@ export class MallEventsComponent implements OnInit {
             let eventUrl: string;
             if (this.userRole == 'guest') {
                 eventUrl = 'openevents/';
-            } else { 
+            } else {
                 eventUrl = 'approvedEvents/user/' + userId;
             }
             this.authService.memberSendRequest('get', eventUrl, null)
                 .subscribe(
                     (respData: any) => {
                         this.eventData = respData;
-                        
+
                         this.authService.setLoader(false);
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
@@ -152,12 +152,12 @@ export class MallEventsComponent implements OnInit {
                                             let yourDate: Date = new Date(val)
                                             let dt: string = yourDate.toISOString().split('T')[0];
                                             let recurring_dates = JSON.parse(element.recurring_dates);
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
                                                 recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                 recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -208,6 +208,7 @@ export class MallEventsComponent implements OnInit {
                                             self.eventList.push(rrEvents);
                                             if (dt == self.todays_date) {
                                                 self.currentEvent.push(rrEvents);
+
                                                 self.currentEventList.push(rrEvents);
                                             } else if (dt > self.todays_date) {
                                                 self.upcomingEvent.push(rrEvents);
@@ -218,17 +219,17 @@ export class MallEventsComponent implements OnInit {
                                 } else {
                                     if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                         const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                        JSON.parse(element.recurring_dates).forEach((dd:any,index:any) => {
+                                        JSON.parse(element.recurring_dates).forEach((dd: any, index: any) => {
                                             let yourDate1: Date = new Date(dd.date_from);
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
 
                                             let recurring_dates = JSON.parse(element.recurring_dates);
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
                                                 recurring_time = this.commonFunctionService.formatTime(recurring_dates[index].start_time);
                                                 recurring_etime = this.commonFunctionService.formatTime(recurring_dates[index].end_time);
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -300,12 +301,12 @@ export class MallEventsComponent implements OnInit {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
                                             let recurring_dates = JSON.parse(element.recurring_dates);
-                                            var recurring_time:any
-                                            var recurring_etime:any
-                                            if(recurring_dates){
+                                            var recurring_time: any
+                                            var recurring_etime: any
+                                            if (recurring_dates) {
                                                 recurring_time = this.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                 recurring_etime = this.commonFunctionService.formatTime(recurring_dates[0].end_time);
-                                            }else{
+                                            } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
@@ -408,17 +409,25 @@ export class MallEventsComponent implements OnInit {
         //     Array.prototype.push.apply(this.eventList, this.courseList);
         // }
         if (this.eventList && this.eventList.length > 0) {
-            
+
             this.eventList.forEach((keys: any, vals: any) => {
                 let date_from: string = keys.date_from.replace('Z', '');
                 let date_to: string = keys.date_to.replace('Z', '');
                 this.calendarEvents[count] = {
-                    'title': keys.name, 'start': date_from, 'end': date_to, 'description': keys.description, 'event_id': keys.id,
-                    'type': keys.type, 'classNames': this.eventTypeList[keys.type].class, 'event_name': keys.name, 'event_image': keys.event_image, 'isCourse': keys.isCourse
+                    'title': keys.name,
+                    'start': date_from,
+                    'end': date_to,
+                    'description': keys.description,
+                    'event_id': keys.id,
+                    'type': keys.type,
+                    'classNames': this.eventTypeList[keys.type].class,
+                    'event_name': keys.name,
+                    'event_image': keys.event_image,
+                    'isCourse': keys.isCourse
                 };
                 count++;
             });
-            
+
         }
         this.calendarOptionsTimeGrid = {
             locale: this.selectLanguage,
@@ -464,8 +473,16 @@ export class MallEventsComponent implements OnInit {
                 if (res.dateStr >= this.datePipe.transform(keys.start, "yyyy-MM-dd") &&
                     res.dateStr <= this.datePipe.transform(keys.end, "yyyy-MM-dd")) {
                     this.clickedEventData[count] = {
-                        'title': '', 'start': keys.start, 'end': keys.end, 'description': keys.description, 'event_id': keys.event_id,
-                        'type': keys.type, 'picture_video': keys.type, 'display': 'background', 'event_name': keys.title,
+                        'title': '',
+                        'start': keys.start,
+                        'end': keys.end,
+                        'description': keys.description,
+                        'event_id': keys.event_id,
+                        'type': keys.type,
+                        'picture_video': keys.type,
+                        'display': 'background',
+                        'event_name': keys.title,
+                        'event_image': keys.event_image,
                     };
                     count++;
                 }
@@ -530,28 +547,34 @@ export class MallEventsComponent implements OnInit {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
-                                    var url: string[] = [];
-                                    for (const key in element) {
-                                        if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                            const value: string = element[key]
-                                            if (key == 'picture_video' && value != null) {
-                                                url = value.split('\"');
-                                            }
-                                        }
+
+                                    if (element?.course_image[0]?.course_image) {
+                                        element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                                     }
-                                    if (url && url.length > 0) {
-                                        let self = this;
-                                        url.forEach(el => {
-                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                element.picture_video = el;
-                                            }
-                                        });
-                                    }
-                                    else {
-                                        element['picture_video'] = '';
-                                    }
+
+                                    // var url: string[] = [];
+                                    // for (const key in element) {
+                                    //     if (Object.prototype.hasOwnProperty.call(element, key)) {
+                                    //         const value: string = element[key]
+                                    //         if (key == 'picture_video' && value != null) {
+                                    //             url = value.split('\"');
+                                    //         }
+                                    //     }
+                                    // }
+                                    // if (url && url.length > 0) {
+                                    //     let self = this;
+                                    //     url.forEach(el => {
+                                    //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                    //             element.picture_video = el;
+                                    //         }
+                                    //     });
+                                    // }
+                                    // else {
+                                    //     element['picture_video'] = '';
+                                    // }
                                     this.allData[key] = element;
                                     if (element && element.recurrence != '' && element.recurrence != null) {
+
                                         let recurrence: string = element.recurrence;
                                         if (recurrence.includes('UNTIL') == false) {
                                             recurrence = recurrence + ';UNTIL=' + nextYear;
@@ -575,7 +598,9 @@ export class MallEventsComponent implements OnInit {
                                                     "type": 4,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    // "picture_video": element.picture_video,
+                                                    "event_image": (element.course_image[0]?.course_image && element.course_image[0]?.course_image != undefined) ? element.course_image[0]?.course_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                    "event_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate,
                                                     "date_to": rrDateEnd,
@@ -614,10 +639,11 @@ export class MallEventsComponent implements OnInit {
                                                     "date_repeat": element.date_repeat,
                                                     "isCourse": true
                                                 }
-                                                if(self.userDetails.roles[0] == 'guest'  && element.show_guest_list == 'true'){
-                                                      self.eventList.push(rrEvents);
-                                                }else if(self.userDetails.roles[0] != 'guest'){
-                                                      self.eventList.push(rrEvents);
+                                                if (self.userDetails.roles[0] == 'guest' && element.show_guest_list == 'true') {
+                                                    self.eventList.push(rrEvents);
+
+                                                } else if (self.userDetails.roles[0] != 'guest') {
+                                                    self.eventList.push(rrEvents);
                                                 }
                                             })
                                         }
@@ -636,7 +662,8 @@ export class MallEventsComponent implements OnInit {
                                                     "type": 4,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "picture_video": element.picture_video,
+                                                    "event_image": (element.course_image[0]?.course_image && element.course_image[0]?.course_image != undefined) ? element.course_image[0]?.course_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                    "event_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate1,
                                                     "date_to": rrDateEnd1,
@@ -675,10 +702,10 @@ export class MallEventsComponent implements OnInit {
                                                     "date_repeat": element.date_repeat,
                                                     "isCourse": true
                                                 }
-                                                if(self.userDetails.roles[0] == 'guest'  && element.show_guest_list == 'true'){
+                                                if (self.userDetails.roles[0] == 'guest' && element.show_guest_list == 'true') {
                                                     self.eventList.push(rrEvents1);
-                                                }else if(self.userDetails.roles[0] != 'guest'){
-                                                        self.eventList.push(rrEvents1);
+                                                } else if (self.userDetails.roles[0] != 'guest') {
+                                                    self.eventList.push(rrEvents1);
                                                 }
                                                 // self.eventList.push(rrEvents1);
                                             });
@@ -697,7 +724,9 @@ export class MallEventsComponent implements OnInit {
                                                         "type": 4,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "picture_video": element.picture_video,
+                                                        // "picture_video": element.picture_video,
+                                                        "event_image": (element.course_image[0]?.course_image && element.course_image[0]?.course_image != undefined) ? element.course_image[0]?.course_image : '../../../../assets/img/new-design/dashboard/event-img.png',
+                                                        "event_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate1,
                                                         "date_to": rrDateEnd1,
@@ -736,10 +765,10 @@ export class MallEventsComponent implements OnInit {
                                                         "date_repeat": element.date_repeat,
                                                         "isCourse": true
                                                     }
-                                                    if(self.userDetails.roles[0] == 'guest'  && element.show_guest_list == 'true'){
+                                                    if (self.userDetails.roles[0] == 'guest' && element.show_guest_list == 'true') {
                                                         self.eventList.push(rrEvents1);
-                                                    }else if(self.userDetails.roles[0] != 'guest'){
-                                                            self.eventList.push(rrEvents1);
+                                                    } else if (self.userDetails.roles[0] != 'guest') {
+                                                        self.eventList.push(rrEvents1);
                                                     }
                                                     // self.eventList.push(rrEvents1);
                                                 });

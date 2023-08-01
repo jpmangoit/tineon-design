@@ -17,7 +17,7 @@ declare var $: any;
     selector: 'app-mall-news',
     templateUrl: './mall-news.component.html',
     styleUrls: ['./mall-news.component.css']
-})
+}) 
 export class MallNewsComponent implements OnInit {
 
     scroll: boolean = false;
@@ -118,6 +118,7 @@ export class MallNewsComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.dashboardData = respData.news;
+                            
                             this.dashboardData?.forEach(val => {
                                 if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -133,8 +134,8 @@ export class MallNewsComponent implements OnInit {
                                 } else {
                                     val.user.imagePro = null;
                                 }
-                                if (val?.['imageUrls']){
-                                    val['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val['imageUrls'].substring(20)));
+                                if (val?.news_image[0]?.news_image){
+                                    val.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.news_image[0]?.news_image.substring(20)));
                                 }
                             });
                         });
@@ -244,12 +245,12 @@ export class MallNewsComponent implements OnInit {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
+        if (this.newsData.news_image[0]?.news_image == '' || this.newsData.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls){
-                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-                this.newImg = this.newsData.imageUrls;
+            if (this.newsData.news_image[0]?.news_image){
+                this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.news_image[0]?.news_image.substring(20)));
+                this.newImg = this.newsData.news_image[0]?.news_image;
             }
         }
         this.memberid = this.newsData.user.member_id;
