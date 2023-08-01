@@ -26,7 +26,7 @@
 .document-item.ng-star-inserted .doc_box.toggle-main nav { position: absolute;}
 @media only screen and (max-width:1024px){
     .document-inner.list_document .doc_box.toggle-main a:first-child {
-        width: 75px !important;
+        /* width: 75px !important; */
         height: 75px !important;
         overflow: hidden;
     }

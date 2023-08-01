@@ -9750,8 +9750,13 @@ h3.count-dashboard {
         height: 312px;
     }
 
+    .news-widget a {
+        width: 100%;
+    }
+
     .club_widget .news-image {
-        height: 255px;
+        min-height: 255px;
+        width: 100%;
     }
 
     .card-body.news-group-card {
