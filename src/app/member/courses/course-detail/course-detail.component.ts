@@ -780,16 +780,16 @@ export class CourseDetailComponent implements OnInit {
     }
 
     /**
-* Function is used to download document
-* @author  MangoIt Solutions
-* @param   {path}
-*/
+    * Function is used to download document
+    * @author  MangoIt Solutions
+    * @param   {path}
+    */
     download(path: any) {
         let data = {
             name: path
         }
         this.dowloading = true;
-        var endPoint = 'get-documentbyname';
+        var endPoint = 'download-course-document';
         if (data && data.name) {
             let filename = data.name.split('/')[2]
             this.authService.downloadDocument('post', endPoint, data).toPromise()
@@ -798,7 +798,7 @@ export class CourseDetailComponent implements OnInit {
                     this.authService.setLoader(false);
                     this.dowloading = false;
                     setTimeout(() => {
-                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                        this.authService.sendRequest('post', 'delete-course-document/uploads', data).subscribe((result: any) => {
                             this.result = result;
                             this.authService.setLoader(false);
                             if (this.result.success == false) {
