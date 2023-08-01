@@ -31,7 +31,7 @@ export class MclubNewsComponent implements OnInit {
     displayPopup: boolean = false;
     responseMessage: string = null;
     userData: LoginDetails;
-    dashboardData: NewsType[];
+    dashboardData: NewsType[]; 
     guestNews: NewsType[] = [];
     newsData: NewsType;
     newsDetails: NewsType[] = [];
@@ -156,12 +156,12 @@ export class MclubNewsComponent implements OnInit {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        if (this.newsData.imageUrls == '' || this.newsData.imageUrls == null) {
+        if (this.newsData.news_image[0]?.news_image == '' || this.newsData.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.imageUrls) {
-                this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-                this.newImg = this.newsData.imageUrls;
+            if (this.newsData.news_image[0]?.news_image) {
+                this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.news_image[0]?.news_image.substring(20)));
+                this.newImg = this.newsData.news_image[0]?.news_image;
             }
         }
         this.memberid = this.newsData.user.member_id;

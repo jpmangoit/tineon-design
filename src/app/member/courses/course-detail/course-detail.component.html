@@ -393,7 +393,7 @@
                                 </div>
                             </div>
                         </mat-tab>
-
+ 
                         <mat-tab label="{{language.courses.update_course}}">
                             <div class="card-body">
                                 <div class="profile_details" *ngIf="updateCourseData">
@@ -985,6 +985,7 @@
                                         <span>{{language.create_event.download_attachment}}</span>
                                         <!-- <a  href="{{eventFile}}"><span>{{language.create_event.download_attachment}}</span> </a> -->
                                     </div>
+
                                     <div class="author-des">
                                         <span class="author-status"
                                             *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>

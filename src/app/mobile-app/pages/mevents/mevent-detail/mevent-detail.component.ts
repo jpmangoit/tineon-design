@@ -193,6 +193,7 @@ export class MeventDetailComponent implements OnInit {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
+                                console.log(this.eventDetails);
 
                                 if (this.eventDetails?.event_images[0]?.event_image != null) {
                                     this.showImage = true;
@@ -205,8 +206,10 @@ export class MeventDetailComponent implements OnInit {
                                     this.imageurl = '';
                                 }
 
-                                if (this.eventDetails?.document_url) {
-                                    this.docFile = this.eventDetails.document_url;
+                                console.log(this.eventDetails);
+
+                                if (this.eventDetails?.event_images[0]?.event_document) {
+                                    this.docFile = this.eventDetails?.event_images[0]?.event_document;
                                 }
 
                                 // if (this.eventDetails.picture_video != null) {
@@ -236,7 +239,7 @@ export class MeventDetailComponent implements OnInit {
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
 
                                         console.log(this.updateEventData);
-                                        
+
 
                                         if (this.updateEventData.image != null) {
                                             var url: string[] = this.updateEventData.image.split('\"');
@@ -730,12 +733,44 @@ export class MeventDetailComponent implements OnInit {
     * @author  MangoIt Solutions
     * @param   {path}
     */
+    //   download(path: any) {
+    //         let data = {
+    //             name: path
+    //         }
+    //         this.dowloading = true;
+    //         var endPoint = 'download-course-document';
+    //         if (data && data.name) {
+    //             let filename = data.name.split('/')[2]
+    //             this.authService.downloadDocument('post', endPoint, data).toPromise()
+    //                 .then((blob: any) => {
+    //                     saveAs(blob, filename);
+    //                     this.authService.setLoader(false); 
+    //                     this.dowloading = false;
+    //                     setTimeout(() => {
+    //                         this.authService.sendRequest('post', 'delete-course-document/uploads', data).subscribe((result: any) => {
+    //                             this.result = result;
+    //                             this.authService.setLoader(false);
+    //                             if (this.result.success == false) {
+    //                                 this.notificationService.showError(this.result['result']['message'], null);
+    //                             } else if (this.result.success == true) {
+    //                                 this.documentData = this.result['result']['message'];
+    //                             }
+    //                         })
+    //                     }, 7000);
+    //                 })
+    //                 .catch(err => {
+    //                     this.responseMessage = err;
+    //                 })
+    //         }
+    //     }
     download(path: any) {
+        console.log(path);
+        
         let data = {
             name: path
         }
         this.dowloading = true;
-        var endPoint = 'get-documentbyname';
+        var endPoint = 'download-document';
         if (data && data.name) {
             let filename = data.name.split('/')[2]
             this.authService.downloadDocument('post', endPoint, data).toPromise()
@@ -744,7 +779,7 @@ export class MeventDetailComponent implements OnInit {
                     this.authService.setLoader(false);
                     this.dowloading = false;
                     setTimeout(() => {
-                        this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
+                        this.authService.sendRequest('post', 'delete-document/uploads', data).subscribe((result: any) => {
                             this.result = result;
                             this.authService.setLoader(false);
                             if (this.result.success == false) {

@@ -211,7 +211,6 @@ export class CourseDetailComponent implements OnInit {
                         //     this.hasPicture = false;
                         //     this.eventImage = '';
                         // }
-                        console.log(this.courseDetails);
                         if (this.courseDetails[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
                             if (this.courseDetails[0]?.course_image[0]?.course_image ) {
@@ -281,7 +280,7 @@ export class CourseDetailComponent implements OnInit {
                                     this.updateCourseData['course_users'].forEach(element => {
                                         if (this.allUsers && this.allUsers.length > 0) {
                                             this.allUsers.forEach(el => {
-                                                if (el.id == element.user_id) {
+                                                if (el.id == element.user_id) { 
                                                     element.user = el;
                                                     if (element.user.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.user.member_id, null)
@@ -301,7 +300,6 @@ export class CourseDetailComponent implements OnInit {
                                         }
                                     });
                                 }
-                                console.log(this.updateCourseData);
 
                                 if (this.updateCourseData?.baseImage[0]?.image) {
                                     this.hasUpdatePicture = true;
@@ -780,7 +778,7 @@ export class CourseDetailComponent implements OnInit {
     }
 
     /**
-    * Function is used to download document
+    * Function is used to   document
     * @author  MangoIt Solutions
     * @param   {path}
     */
@@ -795,7 +793,7 @@ export class CourseDetailComponent implements OnInit {
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
                     saveAs(blob, filename);
-                    this.authService.setLoader(false);
+                    this.authService.setLoader(false); 
                     this.dowloading = false;
                     setTimeout(() => {
                         this.authService.sendRequest('post', 'delete-course-document/uploads', data).subscribe((result: any) => {
