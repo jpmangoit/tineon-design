@@ -80,7 +80,10 @@
                                                                 [ngStyle]="{'border-color':setTheme.button_bgcolor,'color':setTheme.button_bgcolor}">
                                                                 {{language.create_event.download_attachment}}
                                                             </a> -->
-                                                            <a href="{{showFile}}">
+                                                            <!-- <a href="{{showFile}}">
+                                                                {{language.create_event.download_attachment}}
+                                                            </a> -->
+                                                            <a  href="javascript:void(0)" (click)="downloadDoc(showFile)">
                                                                 {{language.create_event.download_attachment}}
                                                             </a>
                                                         </div>
@@ -589,6 +592,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="dowloading">
+    <div class="overlay download-overlay">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <div class="loading" data-loading-text="Downloading..."></div>
             </div>
         </div>
     </div>
