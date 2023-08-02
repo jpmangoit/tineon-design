@@ -49,8 +49,8 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     showUpdatedFile: any;
     thumb: string;
 
-    responseMessage:string = null;
-	result: any;
+    responseMessage: string = null;
+    result: any;
     documentData: any;
     dowloading: boolean = false;
     constructor(
@@ -88,7 +88,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
-            
+
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
@@ -115,6 +115,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
                     if (respData?.['result']?.length > 0) {
                         this.surveyData = respData['result'];
                         this.memberid = this.surveyData[0].user_name['member_id'];
+
                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
                             .subscribe(
                                 (respData: any) => {
@@ -148,13 +149,13 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
                             this.updateSurveyData = JSON.parse(this.surveyData[0]['updated_record']);
                             if (this.updateSurveyData != null) {
                                 this.updateSurveyData.survey_Answers = JSON.parse(this.updateSurveyData.survey_Answers);
-
                                 if (this.updateSurveyData?.baseImage) {
                                     if (this.updateSurveyData?.baseImage[0]?.image) {
                                         this.updateSurveyData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateSurveyData?.baseImage[0]?.image.substring(20))) as string;
                                         this.showUpdatedImage = this.updateSurveyData?.baseImage[0]?.image;
                                     } else if (this.updateSurveyData?.baseImage[0]?.documentUrl) {
                                         this.showUpdatedFile = this.updateSurveyData?.baseImage[0]?.documentUrl;
+
                                     }
 
                                 }

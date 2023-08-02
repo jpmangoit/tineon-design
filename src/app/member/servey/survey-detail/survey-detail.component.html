@@ -127,8 +127,7 @@
                                                                 class="author-id">{{language.dashboard.dashboardNewsAuthor}}
                                                                 {{item.user_name.firstname}}
                                                                 {{item.user_name.lastname}}</span>
-                                                            <span class="author-date">{{item.created_at | date: 'd. MMMM
-                                                                y'}}</span>
+                                                            <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span>
                                                             <span class="author-status"
                                                                 *ngIf="item.approved_status == 0">{{language.theme.status}}:-
                                                                 {{language.community_groups.wait_admin_approve}}</span>
@@ -250,7 +249,7 @@
                                                                 <line x1="12" y1="15" x2="12" y2="3"
                                                                     [ngStyle]="{'stroke':'#fff'}" />
                                                             </svg>
-                                                            <a href="{{showUpdatedFile}}">
+                                                            <a href="javascript:void(0)" (click)="downloadDoc(showUpdatedFile)">
                                                                 {{language.create_event.download_attachment}}
                                                             </a>
                                                         </div>
@@ -300,8 +299,7 @@
                                                                 {{language.dashboard.dashboardNewsAuthor}}
                                                                 {{item.user_name.firstname}} {{item.user_name.lastname}}
                                                             </span>
-                                                            <span class="author-date">{{item.created_at | date: 'd. MMMM
-                                                                y'}}</span><br />
+                                                            <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span><br />
                                                             <span class="author-status"
                                                                 *ngIf="item.approved_status == 0">{{language.theme.status}}:-
                                                                 {{language.community_groups.wait_admin_approve}}</span>
@@ -411,6 +409,7 @@
                                                 <div class="news_content_text" [innerHTML]="item.description">...<a
                                                         href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
                                             </div>
+
                                             <div *ngIf="showFile">
                                                 <div class="attach_btn preview_img">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -424,8 +423,7 @@
                                                         <line x1="12" y1="15" x2="12" y2="3"
                                                             [ngStyle]="{'stroke':'#fff'}" />
                                                     </svg>
-                                                    <a href="{{showFile}}"
-                                                        >
+                                                    <a  href="javascript:void(0)" (click)="downloadDoc(showFile)" >
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </div>
@@ -453,10 +451,8 @@
                                                 </div>
                                             </div>
                                             <div class="msg-text-wrap">
-                                                <p> {{language.Survey.active_form}} = {{item.surveyStartDate | date: 'd.
-                                                    MMMM yyyy'}}</p>
-                                                <p> {{language.Survey.active_until}} = {{item.surveyEndDate | date: 'd.
-                                                    MMMM yyyy'}}</p>
+                                                <p> {{language.Survey.active_form}} = {{item.surveyStartDate | date: 'd. MMMM yyyy'}}</p>
+                                                <p> {{language.Survey.active_until}} = {{item.surveyEndDate | date: 'd. MMMM yyyy'}}</p>
                                             </div>
                                             <div class="author-info">
                                                 <div class="author-img">
@@ -468,8 +464,7 @@
                                                     data-bs-target="#exampleModal" (click)="getMemId(item.user_id)">
                                                     <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}}
                                                         {{item.user_name.firstname}} {{item.user_name.lastname}}</span>
-                                                    <span class="author-date">{{item.created_at | date: 'd. MMMM
-                                                        y'}}</span><br />
+                                                    <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
                                                         *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                                     <span class="deny-reason"

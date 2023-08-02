@@ -11,7 +11,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './menu.component.html',
+    templateUrl: './menu.component.html', 
     styleUrls: ['./menu.component.css']
 })
 
@@ -36,6 +36,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     open_adminArea:boolean = false;
     open_tineonAdmin:boolean = false;
     open_owner:boolean = false;
+    logoUrl: string;
 
     constructor(
         private lang: LanguageService,
@@ -48,11 +49,17 @@ export class MenuComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
+            // console.log(this.setTheme.logo_url);
+            this.logoUrl = this.setTheme.logo_url;
+            // console.log(this.logoUrl);
+            
+            
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
-        });
+            console.log(this.setTheme);
 
+        });
         this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
             this.headline_word_option = resp;
         });

@@ -32,6 +32,8 @@ export interface ThemeType {
   cancel_button_bgcolor:string;
   cancel_button_text:string;
   cancel_button_ic_color:string;
+
+  
 }
 export interface ThemeData {
   logo_url:string,

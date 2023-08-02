@@ -337,7 +337,7 @@
                                                     <polyline points="7 10 12 15 17 10" [ngStyle]="{'stroke':'#fff'}" />
                                                     <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
                                                 </svg>
-                                                <a  href="{{showFile}}">
+                                                <a   href="javascript:void(0)" (click)="downloadDoc(showFile)">
                                                     {{language.create_event.download_attachment}}
                                                 </a>
                                             </div>

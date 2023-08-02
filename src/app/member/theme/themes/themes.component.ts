@@ -50,9 +50,11 @@ export class ThemesComponent implements OnInit {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
+            
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
+
         });
 
         this.language = this.lang.getLanguaageFile();
@@ -71,17 +73,22 @@ export class ThemesComponent implements OnInit {
                 } else if (respData['code'] == 400) {
                     this.authService.setLoader(false);
                 }
-            });
+            }); 
     }
 
     activate(themeId: number) {
         this.authService.setLoader(true);
         this.authService.sendRequest('put', 'activate-club-theme/' + themeId, null)
             .subscribe((respData: any) => {
+                
                 if (respData['isError'] == false) {
                     if (respData && respData.result && respData.result.clubTheme && respData.result.clubTheme.length > 0) {
                         this.theme_data = respData['result']['clubTheme'][0];
-                        this.themes.getClubTheme(this.theme_data);
+                        if (this.theme_data?.club_image[0]?.theme_url){
+                            this.theme_data.club_image[0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.theme_data?.club_image[0]?.theme_url.substring(20)));
+                        }
+                        
+                        this.themes.getClubTheme(this.theme_data); 
                     } else {
                         this.themes.getClubDefaultTheme(this.userDetails.team_id);
                     }
@@ -110,7 +117,7 @@ export class ThemesComponent implements OnInit {
                         this.totalThemes = this.themeData.length;
                     }
                 });
-        }
+        } 
     }
 
     pageChanged(event: number) {

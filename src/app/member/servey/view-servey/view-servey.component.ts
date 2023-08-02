@@ -21,7 +21,7 @@ declare var $:any;
 })
 export class ViewServeyComponent implements OnInit, OnDestroy {
     language: any;
-    userDetails: LoginDetails;
+    userDetails: LoginDetails; 
     userRole: string;
     surveyId: string;
     surveyData: Survey;

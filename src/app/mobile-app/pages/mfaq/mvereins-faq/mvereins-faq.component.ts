@@ -16,14 +16,16 @@ import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver'; 
+
 declare var $: any;
 
 @Component({
     selector: 'app-mvereins-faq',
-    templateUrl: './mvereins-faq.component.html',
+    templateUrl: './mvereins-faq.component.html', 
     styleUrls: ['./mvereins-faq.component.css']
 })
-export class MvereinsFaqComponent implements OnInit {
+export class MvereinsFaqComponent implements OnInit { 
     displayFaqdiv: boolean = true;
     displayFaqcategorydiv: boolean = false;
     activeClass: string = 'faqActive';
@@ -79,6 +81,11 @@ export class MvereinsFaqComponent implements OnInit {
     searchFilter:boolean = false;
     imgHeight: any;
     imgWidth: any;
+    dowloading: boolean = false;
+    result: any;
+    documentData: any;
+    responseMessage: string;
+
     editorConfig: AngularEditorConfig = {
         editable: true,
         spellcheck: true,
@@ -325,7 +332,7 @@ export class MvereinsFaqComponent implements OnInit {
             }
         }
         if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
-            this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            // this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
             this.hasPicture = false;
             this.hasDoc = true;
             this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
@@ -490,10 +497,19 @@ export class MvereinsFaqComponent implements OnInit {
                         $('#individualFAQ').hide();
                         $('#searchId').show();
                         this.searchData = respData;
+
+                        
                         this.searchFilter = true;
-                        if (this.searchData['faq_image'][0]?.['faq_image']) {
-                            this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                        }
+                        this.searchData.forEach((element:any) =>{
+                            if (element['faq_image'][0]?.['faq_image']) {
+                                element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                            }
+                        })
+                        console.log(this.searchData);
+
+                        // if (this.searchData['faq_image'][0]?.['faq_image']) {
+                        //     this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                        // }
                     }
                     if (respData['success'] == false) {
                         this.notificationService.showError(respData['message'], null);
@@ -668,6 +684,46 @@ export class MvereinsFaqComponent implements OnInit {
 
     loadImageFailed() {
         /* show message */
+    }
+
+      /**
+  * Function is used to download document
+  * @author  MangoIt Solutions
+  * @param   {path}
+  */
+      downloadDoc(path: any) {
+        let data = {
+            name: path
+        }
+        this.dowloading = true;
+        var endPoint = 'download-faqs-document';
+        if (data && data.name) {
+            let filename = data.name.split('/').reverse()[0];
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'delete-faqs-document/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
+
+    downloadImage(blobUrl: any) {
+        window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
     }
 
     ngOnDestroy(): void {

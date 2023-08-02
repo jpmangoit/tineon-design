@@ -9,6 +9,8 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { ClubTheme, LoginDetails } from 'src/app/models/login-details.model';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { interval } from 'rxjs';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 @Component({
     selector: 'app-login',
@@ -32,7 +34,9 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private lang: LanguageService,
         private cookieService: CookieService,
-        private themes: ThemeService
+        private themes: ThemeService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -106,10 +110,15 @@ export class LoginComponent implements OnInit {
                                 .subscribe(
                                     (respData: any) => {
                                         if (respData['isError'] == false) {
+                                            // console.log(respData.result);
+                                            
                                             if (respData.result.clubTheme.length > 0) {
                                                 this.theme_data = respData['result']['clubTheme'][0];
+                                                if (this.theme_data?.['club_image'][0]?.theme_url){
+                                                    this.theme_data['club_image'][0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.theme_data?.['club_image'][0]?.theme_url.substring(20)));
+                                                }
+                                                // console.log(this.theme_data);
                                                 this.themes.getClubTheme(this.theme_data);
-
                                             } else {
                                                 this.themes.getClubDefaultTheme(club_id);
                                             }

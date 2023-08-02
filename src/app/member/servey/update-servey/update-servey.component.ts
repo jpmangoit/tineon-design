@@ -18,6 +18,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -35,7 +36,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     groupTypeDropdownSettings: IDropdownSettings;
     surveyType: string;
     TypeDropdownList: { item_id: string, item_text: string }[];
-    groupTypeDropdownList: { id: number, name: string }[] = []; 
+    groupTypeDropdownList: { id: number, name: string }[] = [];
     selectedGroup: number[] = [];
     choiceData: { name: string, value: number, noti_id: any }[];
     teamId: number;
@@ -68,7 +69,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -111,6 +112,12 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     imgHeight: any;
     imgWidth: any;
     minDate: any;
+    dowloading: boolean = false;
+    result: any;
+    documentData: any;
+    responseMessage:string = null;
+
+
 
     constructor(private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder,
@@ -123,7 +130,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         private imageCompress: NgxImageCompressService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.authService.setLoader(false);
@@ -318,12 +325,11 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         } else {
             this.updateServeyForm.controls["additional_cast_vote"].setValue('');
         }
-        
+
         this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
 
         if (this.surveyDetails?.surevyImage[0]) {
-            if (this.surveyDetails?.surevyImage[0]?.survey_image)
-             {
+            if (this.surveyDetails?.surevyImage[0]?.survey_image) {
                 this.hasPicture = true;
                 this.originalImage = this.surveyDetails?.surevyImage[0]?.survey_image
                 this.surveyDetails.surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyDetails?.surevyImage[0]?.survey_image.substring(20))) as string;
@@ -331,9 +337,10 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
             } else if (this.surveyDetails?.surevyImage[0]?.surevy_document) {
                 this.hasPicture = false;
                 this.showFile = this.surveyDetails?.surevyImage[0]?.surevy_document;
+                
             }
         }
-        
+
 
         // this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
         // if (this.surveyDetails.image) {
@@ -408,7 +415,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         for (const key in this.updateServeyForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.updateServeyForm.value, key)) {
                 const element: any = this.updateServeyForm.value[key];
-                
+
                 if (key == 'surveyNotificationOption') {
                     formData.append('surveyNotificationOption', JSON.stringify(element))
                 }
@@ -451,13 +458,13 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     * Function is used to get end date
     * @author  MangoIt Solutions
     */
-        getEndDate() {
+    getEndDate() {
         this.updateServeyForm.get('surveyStartDate').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else {
+        } else {
             return this.updateServeyForm.controls['surveyStartDate'].value
         }
     }
@@ -616,14 +623,14 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -636,7 +643,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
@@ -659,6 +666,47 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     loadImageFailed() {
         /* show message */
     }
+
+    /**
+  * Function is used to download document
+  * @author  MangoIt Solutions
+  * @param   {path}
+  */
+    downloadDoc(path: any) {
+        let data = {
+            name: path
+        }
+        this.dowloading = true;
+        var endPoint = 'download-survey-document';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'delete-survey-document/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
+
+    downloadImage(blobUrl: any) {
+        window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
+    }
+
 
 
     ngOnDestroy(): void {
