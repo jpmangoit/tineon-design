@@ -46,7 +46,10 @@
                                                 <polyline points="7 10 12 15 17 10" [ngStyle]="{'stroke':'#fff'}" />
                                                 <line x1="12" y1="15" x2="12" y2="3" [ngStyle]="{'stroke':'#fff'}" />
                                             </svg>
-                                            <a  href="{{showFile}}" >
+                                            <!-- <a  href="{{showFile}}" >
+                                                {{language.create_event.download_attachment}}
+                                            </a> -->
+                                            <a  href="javascript:void(0)" (click)="downloadDoc(showFile)">
                                                 {{language.create_event.download_attachment}}
                                             </a>
                                         </div>
@@ -204,6 +207,15 @@
                         <h3 *ngIf="val.id">{{language.Survey.anonymous}}</h3>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="dowloading">
+    <div class="overlay download-overlay">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <div class="loading" data-loading-text="Downloading..."></div>
             </div>
         </div>
     </div>
