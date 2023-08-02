@@ -355,25 +355,25 @@ export class ClubAppointmentsComponent implements OnInit {
                     for (var key in this.allCourses) {
                         if (this.allCourses.hasOwnProperty(key)) {
                             element = this.allCourses[key];
-                            var url: string[] = [];
-                            for (const key in element) {
-                                if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                    const value: string = element[key]
-                                    if (key == 'picture_video' && value != null) {
-                                        url = value.split('\"');
-                                    }
-                                }
-                            }
-                            if (url && url.length > 0) {
-                                let self = this;
-                                url.forEach(el => {
-                                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                        element.picture_video = el;
-                                    }
-                                });
-                            } else {
-                                element['picture_video'] = '';
-                            }
+                            // var url: string[] = [];
+                            // for (const key in element) {
+                            //     if (Object.prototype.hasOwnProperty.call(element, key)) {
+                            //         const value: string = element[key]
+                            //         if (key == 'picture_video' && value != null) {
+                            //             url = value.split('\"');
+                            //         }
+                            //     }
+                            // }
+                            // if (url && url.length > 0) {
+                            //     let self = this;
+                            //     url.forEach(el => {
+                            //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                            //             element.picture_video = el;
+                            //         }
+                            //     });
+                            // } else {
+                            //     element['picture_video'] = '';
+                            // }
                             this.allData[key] = element;
                             if (element && element.recurrence && element.recurrence != '' && element.recurrence != null) {
                                 let recurrence: string = element.recurrence;
