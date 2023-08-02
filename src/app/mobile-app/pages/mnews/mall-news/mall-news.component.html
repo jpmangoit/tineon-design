@@ -28,15 +28,12 @@
 
                     <div class="news-image-area">
                         <!-- <img onContextMenu="return false;" [src]="data.news_image[0].news_image  != null ? data.news_image[0].news_image  : '../../assets/img/no_image.png'" alt="" loading="lazy"> -->
-
-
                         <img onContextMenu="return false;"
                         [src]="data && data?.['news_image'] &&
                          (data['news_image'][0]?.['news_image'] != null && data['news_image'][0]?.['news_image'] != '' )
                         ? data['news_image'][0]?.['news_image'] 
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
-
 
                     </div>
                     <div class="news-des-area">

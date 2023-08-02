@@ -57,7 +57,7 @@ export class EventsCalendarComponent implements OnInit {
     allCourses: any[];
     courseList: any[] = [];
     allData: any[] = [];
-    dateFilter = false;
+    dateFilter = false; 
     filterSelectedValue : any;
     selected = '0';
     currentUrl:string;

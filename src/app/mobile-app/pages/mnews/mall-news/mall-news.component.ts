@@ -18,7 +18,7 @@ declare var $: any;
     templateUrl: './mall-news.component.html',
     styleUrls: ['./mall-news.component.css']
 }) 
-export class MallNewsComponent implements OnInit {
+export class MallNewsComponent implements OnInit { 
 
     scroll: boolean = false;
     language: any;
@@ -144,10 +144,13 @@ export class MallNewsComponent implements OnInit {
                 this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                     .subscribe(
                         (respData: any) => {
+                            console.log(respData);
+
                             this.authService.setLoader(false);
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.guestNewsRecords = respData.pagination.rowCount;
                             this.dashboardData = respData.news;
+
                             if (this.dashboardData && this.dashboardData.length > 0) {
                                 this.dashboardData.forEach(element => {
                                     if (element.user.member_id != null) {
@@ -164,9 +167,10 @@ export class MallNewsComponent implements OnInit {
                                     } else {
                                         element.user.imagePro = '';
                                     }
-                                    if (element?.['imageUrls']){
-                                        element['imageUrls'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['imageUrls'].substring(20)));
+                                    if (element?.news_image[0]?.news_image){
+                                        element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                     }
+                                    
                                 });
                             }
                             this.guestNews = [];
