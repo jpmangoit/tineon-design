@@ -102,8 +102,6 @@ export class ThemesComponent implements OnInit {
                     if (respData['isError'] == false) {
                         this.themeData = respData['result']['clubTheme'];
                         this.themeData.forEach((element:any)=>{
-                            console.log(element);
-                            
                             if (element?.club_image[0]?.theme_url) {
                                 element.club_image[0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.club_image[0]?.theme_url .substring(20))) as string;
                             }

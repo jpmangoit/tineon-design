@@ -21,7 +21,7 @@ import {NgxImageCompressService} from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
-import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver'; 
 declare var $: any;
 
 @Component({
@@ -405,7 +405,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
             }
         }
         if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
-            this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            // this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
             this.hasPicture = false;
             this.hasDoc = true;
             this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];

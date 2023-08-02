@@ -18,6 +18,7 @@ import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver'; 
 declare var $: any;
 
 @Component({
@@ -88,6 +89,11 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
     isImage: boolean = false;
     imgHeight: any;
     imgWidth: any;
+    dowloading: boolean = false;
+    result: any;
+    documentData: any;
+
+
 
     editorConfig: AngularEditorConfig = {
         editable: true,
@@ -96,7 +102,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -247,10 +253,10 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 this.tenCategoryFAQ = true;
                 this.allCategoryFAQ = false;
                 this.faqDataByCat = respData;
-                this.faqDataByCat.forEach((element:any) => {
+                this.faqDataByCat.forEach((element: any) => {
                     if (element['faq_image'][0]?.['faq_image']) {
-                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                     }
+                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                    }
                 })
                 if (this.faqDataByCat && this.faqDataByCat.length == 10) {
                     this.showButton = true;
@@ -270,10 +276,9 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                     this.tenCategoryFAQ = false;
                     this.allCategoryFAQ = true;
                     this.categoryAllFaq = respData;
-                    console.log( this.categoryAllFaq);
-                    this.categoryAllFaq.forEach((element:any) => {
+                    this.categoryAllFaq.forEach((element: any) => {
                         if (element['faq_image'][0]?.['faq_image']) {
-                            element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                            element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                         }
                     })
                 }
@@ -346,17 +351,18 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 this.faq_image = this.faqDataById['faq_image'][0]?.['faq_image'];
                 this.hasDoc = false;
                 this.hasPicture = true;
-                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
+                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                this.imageUrl = this.faqDataById['faq_image'][0]['faq_image'];
+                
             }
         }
-        if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
-            this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
+        if (this.faqDataById['faq_image'][0]?.['faq_document'] != '') {
+            // this.imageUrl = this.faqDataById['faq_image'][0]?.['faq_document'];
             this.hasPicture = false;
             this.hasDoc = true;
-            this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            this.faq_document = this.faqDataById['faq_image'][0]?.['faq_document'];
+
         }
-        console.log(this.faqDataById);
 
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
@@ -435,15 +441,15 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-                    }else{
-                        if(this.faq_image ){
-                           formData.append('faq_image', this.faq_image);
-                        }else{
+                    } else {
+                        if (this.faq_image) {
+                            formData.append('faq_image', this.faq_image);
+                        } else {
                             formData.append('faq_image', '');
                         }
-                        if(this.faq_document){
-                           formData.append('faq_document', this.faq_document);
-                        }else{
+                        if (this.faq_document) {
+                            formData.append('faq_document', this.faq_document);
+                        } else {
                             formData.append('faq_document', '');
                         }
                     }
@@ -472,11 +478,11 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                         if (this.categorySelectedItem || this.faqDataById.category) {
-                            var faq_cat:any;
-                            if(this.categorySelectedItem){
+                            var faq_cat: any;
+                            if (this.categorySelectedItem) {
                                 faq_cat = this.categorySelectedItem
-                            }else if(this.faqDataById.category){
-                                faq_cat =  this.faqDataById.category
+                            } else if (this.faqDataById.category) {
+                                faq_cat = this.faqDataById.category
                             }
                             if (this.catListArray?.length > 0) {
                                 this.catListArray.forEach((val, key) => {
@@ -530,10 +536,13 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                         $('#individualFAQ').hide();
                         $('#searchId').show();
                         this.searchData = respData;
-                        if (this.searchData['faq_image'][0]?.['faq_image']) {
-                            this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                        }
-                        }
+                        
+                        this.searchData.forEach((element:any) =>{
+                            if (element['faq_image'][0]?.['faq_image']) {
+                                element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                            }
+                        })
+                    }
                     if (respData['success'] == false) {
                         this.notificationService.showError(respData['message'], null);
                     }
@@ -642,16 +651,18 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
+
+
 
     /**
    * Function is used to cropped and compress the uploaded image
@@ -662,7 +673,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
@@ -705,7 +716,48 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
         this.getFaqByCategory(catId);
     }
 
+    /**
+  * Function is used to download document
+  * @author  MangoIt Solutions
+  * @param   {path}
+  */
+    downloadDoc(path: any) {
+        let data = {
+            name: path
+        }
+        this.dowloading = true;
+        var endPoint = 'download-faqs-document';
+        if (data && data.name) {
+            let filename = data.name.split('/')[2]
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'delete-faqs-document/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
+
+    downloadImage(blobUrl: any) {
+        window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
+    }
+
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }
 }
+
