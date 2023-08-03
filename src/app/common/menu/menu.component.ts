@@ -7,11 +7,12 @@ import { ThemeType } from '../../models/theme-type.model'
 import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
 import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './menu.component.html', 
+    templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.css']
 })
 
@@ -23,25 +24,27 @@ export class MenuComponent implements OnInit, OnDestroy {
     participateAccess: ParticipateAccess;
     authorizationAccess: AuthorizationAccess;
     clubData: ClubDetail;
-    setTheme: ThemeType;
+    setTheme: any;
     isActive: string = "dashboard";
     userRoleInfo: string;
     isUpcomingCourse: boolean = true;
     private activatedSub: Subscription;
     headline_word_option: number = 0;
     private activatedHeadline: Subscription;
-    open_clubTool:boolean = false;
-    open_setUp:boolean = false;
-    open_more:boolean = false;
-    open_adminArea:boolean = false;
-    open_tineonAdmin:boolean = false;
-    open_owner:boolean = false;
+    open_clubTool: boolean = false;
+    open_setUp: boolean = false;
+    open_more: boolean = false;
+    open_adminArea: boolean = false;
+    open_tineonAdmin: boolean = false;
+    open_owner: boolean = false;
     logoUrl: string;
 
     constructor(
         private lang: LanguageService,
         private themes: ThemeService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+
     ) { }
 
     ngOnInit(): void {
@@ -49,18 +52,35 @@ export class MenuComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
-            // console.log(this.setTheme.logo_url);
-            this.logoUrl = this.setTheme.logo_url;
-            // console.log(this.logoUrl);
-            
-            
+            // if (this.setTheme.logo_url.includes('.png')) {
+            // } else {
+            //     if (this.setTheme?.logo_url) {
+            //         this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+            //     }
+            // }
+            if (!this.isImageUrl(this.setTheme.logo_url)) {
+                if (this.setTheme?.logo_url) {
+                    this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+                }
+            }
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
-            console.log(this.setTheme);
+            // if (this.setTheme?.logo_url) {
+            //     this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+            // }
+            if (!this.isImageUrl(this.setTheme.logo_url)) {
+                if (this.setTheme?.logo_url) {
+                    this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+                }
+            }
+
 
         });
-        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
+
+
+
+        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp: any) => {
             this.headline_word_option = resp;
         });
 
@@ -74,6 +94,12 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
         this.getClubData();
+    }
+
+    // Function to check if the URL is an image URL with specified extensions
+    isImageUrl(url: string): boolean {
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'];
+        return imageExtensions.some(extension => url.toLowerCase().endsWith(extension));
     }
 
     public ngInit() {
@@ -154,7 +180,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
     isValue: number = 0;
     toggle(num: number) {
-         this.isValue = num;
+        this.isValue = num;
     }
 
     ngOnDestroy(): void {

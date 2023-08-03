@@ -110,14 +110,12 @@ export class LoginComponent implements OnInit {
                                 .subscribe(
                                     (respData: any) => {
                                         if (respData['isError'] == false) {
-                                            // console.log(respData.result);
                                             
                                             if (respData.result.clubTheme.length > 0) {
                                                 this.theme_data = respData['result']['clubTheme'][0];
-                                                if (this.theme_data?.['club_image'][0]?.theme_url){
-                                                    this.theme_data['club_image'][0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.theme_data?.['club_image'][0]?.theme_url.substring(20)));
-                                                }
-                                                // console.log(this.theme_data);
+                                                // if (this.theme_data?.['club_image'][0]?.theme_url){
+                                                //     this.theme_data['club_image'][0].theme_url = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.theme_data?.['club_image'][0]?.theme_url.substring(20)));
+                                                // }
                                                 this.themes.getClubTheme(this.theme_data);
                                             } else {
                                                 this.themes.getClubDefaultTheme(club_id);

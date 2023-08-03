@@ -1135,7 +1135,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
     goBack() {
         $('#view-course').modal('hide');
-    }
+    } 
 
     /**
      * Returns True or False.
@@ -1317,9 +1317,13 @@ export class CourseComponent implements OnInit, OnDestroy {
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
             let self = this;
             this.authService.setLoader(true);
+            console.log(this.getInstructorForm.value);
+            
             this.authService.memberSendRequest('post', 'allCourses', this.getInstructorForm.value)
                 .subscribe(
                     (respData: any) => {
+                        console.log(respData);
+                        
                         this.authService.setLoader(false);
                         this.currentCourseList = [];
                         this.upcomingCourseList = [];
@@ -1342,28 +1346,27 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     this.eventImage = element.course_image[0].course_image
                                                 }
                                             });
-                                            console.log( this.allCourses);
                                             
-                                            var url = [];
-                                            for (const key in element) {
-                                                if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                                    const value = element[key]
-                                                    if (key == 'picture_video' && value != null) {
-                                                        url = value.split('\"');
-                                                    }
-                                                }
-                                            }
-                                            if (url && url.length > 0) {
-                                                // let imgArray: any = [];
-                                                let self = this;
-                                                url.forEach(el => {
-                                                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                        element.picture_video = el;
-                                                    }
-                                                });
-                                            } else {
-                                                element['picture_video'] = '';
-                                            }
+                                            // var url = [];
+                                            // for (const key in element) {
+                                            //     if (Object.prototype.hasOwnProperty.call(element, key)) {
+                                            //         const value = element[key]
+                                            //         if (key == 'picture_video' && value != null) {
+                                            //             url = value.split('\"');
+                                            //         }
+                                            //     }
+                                            // }
+                                            // if (url && url.length > 0) {
+                                            //     // let imgArray: any = [];
+                                            //     let self = this;
+                                            //     url.forEach(el => {
+                                            //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                            //             element.picture_video = el;
+                                            //         }
+                                            //     });
+                                            // } else {
+                                            //     element['picture_video'] = '';
+                                            // }
                                             this.allData[key] = element;
                                             if (element && element.recurrence != '' && element.recurrence != null) {
                                                 let recurrence = element.recurrence;
@@ -1430,7 +1433,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "date_repeat": element.date_repeat
                                                         }
                                                         if (dt == self.todays_date) {
-                                                            self.currentCourse.push(rrEvents);
+                                                            self.currentCourse.push(rrEvents);46
                                                             self.currentCourseList.push(rrEvents);
 
                                                         } else if (dt > self.todays_date) {

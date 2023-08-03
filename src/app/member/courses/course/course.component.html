@@ -101,10 +101,9 @@
                                                                     (onDeSelect)="onRoomDeSelect($event)">
                                                                 </ng-multiselect-dropdown>
                                                                 <div class="profile_sub_btn event_sub_btn">
-                                                                    <button type="submit" class="save_btn"
-                                                                        >
-                                                                            <i class="nc-icon nc-zoom-split"></i>&nbsp;&nbsp;
-                                                                            <span [ngStyle]="">{{language.create_faq.search}}</span>
+                                                                    <button type="submit" class="save_btn">
+                                                                        <i class="nc-icon nc-zoom-split"></i>&nbsp;&nbsp;
+                                                                        <span [ngStyle]="">{{language.create_faq.search}}</span>
                                                                     </button>
                                                                     <button type="button" (click)="reSet()" class="Cancel_btn"
                                                                         [ngStyle]="">
@@ -133,6 +132,7 @@
                             <div class="course-content">
                                 <!-- course-item start -->
                                 <ng-container *ngFor="let item of currentCourseList ">
+
                                     <div class="course-item" *ngIf="checkType(item)">
                                         <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
                                             <img onContextMenu="return false;"  alt="{{item.name}}" loading="lazy"
@@ -238,7 +238,7 @@
                                         </div>
                                     </div>
                                 </ng-container>
-                                <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="currentCourseList && currentCourseList .length == 0 ">
+                                <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="currentCourseList && currentCourseList .length == 0">
                                     <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.courses.no_course_found}}" loading="lazy"><br> -->
                                     <span>{{language.courses.no_course_found}}</span>
                                 </div>
