@@ -262,6 +262,8 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                         }
                         this.getProfileImages(this.faqsData);
                         this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
+                        console.log(this.updateFaqsData );
+                        
                         if (this.updateFaqsData != null && this.updateFaqsData?.['baseImage'][0]?.['image']) {
                             this.updateFaqsData['baseImage'][0]['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateFaqsData['baseImage'][0]?.['image'].substring(20)))as string;
                         }

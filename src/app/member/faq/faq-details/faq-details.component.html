@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="news_content_text" [innerHTML]="faqsData.description">...<a
                                                     href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
-
+                                            
                                             <div class="attach_btn"
                                                 *ngIf="(faqsData['faq_image'].length > 0) && (faqsData['faq_image'][0]?.['faq_image'] != '' || faqsData['faq_image'][0]?.['faq_document'] != '')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -93,8 +93,7 @@
                                                     data-bs-target="#exampleModal" (click)="getMemId(faqsData.author)">
                                                     <span class="author-id">{{language.dashboard.dashboardNewsAuthor}}:-
                                                         {{faqsData.user.firstname}} {{faqsData.user.lastname}}</span>
-                                                    <span class="author-date">{{faqsData.created_at | date: 'd. MMMM
-                                                        y'}}</span><br />
+                                                    <span class="author-date">{{faqsData.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
                                                         *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                                     <span class="author-status"
@@ -304,7 +303,6 @@
                                     </div>
                                     <div class="news_content_text" [innerHTML]="faqsData.description">...<a
                                             href="#">{{language.dashboard.dashboardNewsContent}}</a></div>
-
 
                                     <div class="attach_btn"
                                         *ngIf="(faqsData['faq_image'].length > 0) && (faqsData['faq_image'][0]?.['faq_image'] != '' || faqsData['faq_image'][0]?.['faq_document'] != '')">
@@ -589,8 +587,8 @@
                                                 *ngIf="hasPicture == true  && (croppedImage == null || croppedImage == '') && !isImage && imageUrl != undefined"
                                                 [src]="imageUrl">
                                         </span>
-
-                                        <div class="attach_btn preview_img" *ngIf="imageUrl || faq_document">
+                                     
+                                        <!-- <div class="attach_btn preview_img" *ngIf="imageUrl || faq_document">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                 viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -611,7 +609,7 @@
                                                     {{language.create_event.download_attachment}}
                                                 </a>
                                             </span>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="card-body" id="imageCrope">
@@ -644,7 +642,10 @@
                         </div>
                     </div>
                     <div class="profile_sub_btn event_sub_btn ">
-                        <button type="submit" class="save_btn">{{language.create_faq.save_and_update}}</button>
+                        <button type="submit" class="save_btn"
+                        [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                        'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                        'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.create_faq.save_and_update}}</button>
                     </div>
                 </form>
             </div>

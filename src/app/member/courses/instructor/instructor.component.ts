@@ -317,7 +317,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.instructorData = respData['result']['instructor'];
-                    console.log(this.instructorData);
                     this.instructorData.forEach((element:any) =>{
                         if(element['instructor_image'][0]?.['instructor_image']){
                             element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
@@ -446,8 +445,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.instructorById = respData['result'];
-                    console.log(this.instructorById);
-
                     this.memberid = this.instructorById.user.member_id;
                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
                         .subscribe(
@@ -663,7 +660,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
         if (this.fileToReturn) {
             this.editInstructorForm.value['add_img'] = this.fileToReturn;
         } else {
-            console.log(this.instruct_img);
             this.editInstructorForm.value['add_img'] = this.instruct_img;
         }
         var formData: FormData = new FormData();

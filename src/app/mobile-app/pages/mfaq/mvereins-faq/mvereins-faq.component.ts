@@ -449,7 +449,10 @@ export class MvereinsFaqComponent implements OnInit {
                             $('#exModal').modal('hide');
                             this.getFaqByCategory(this.faqId);
                             this.fileToReturn = null;
-                            const url: string[] = ["/vereins-faq-detail/"+this.faqId];
+                            console.log(this.faqId);
+                            console.log(this.editId);
+                            
+                            const url: string[] = ["/vereins-faq-detail/"+this.editId];
                             this.router.navigate(url);
                         }, 2000);
                     } else if (respData['code'] == 400) {

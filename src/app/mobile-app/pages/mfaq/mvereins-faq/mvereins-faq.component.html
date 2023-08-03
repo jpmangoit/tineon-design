@@ -295,7 +295,6 @@
                                             </mat-expansion-panel-header>
                                             <mat-panel-description>
                                                 <p [innerHTML]="item.description"></p>
-
                                                 <div class="attach_btn"
                                                     *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_image'] != ''">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -315,6 +314,7 @@
                                                         {{language.create_event.download_attachment}}
                                                     </a>
                                                 </div>
+
                                                 <div class="attach_btn"
                                                     *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_document'] != ''">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -421,7 +421,6 @@
                                     </mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <p [innerHTML]="item.description"></p>
-                                        
                                         <div class="attach_btn"
                                             *ngIf="item && item?.['faq_image'] && item?.['faq_image']?.length > 0 &&
                                              item?.['faq_image'][0]?.['faq_image'] != ''">
@@ -571,7 +570,8 @@
                                                 *ngIf="hasPicture == true  && (croppedImage == null || croppedImage == '')"
                                                 [src]="imageUrl">
                                         </span>
-                                        <div class="attach_btn preview_img">
+
+                                        <!-- <div class="attach_btn preview_img">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                 viewBox="0 0 24 24" fill="none" stroke="#E12217"
                                                 [ngStyle]="{'stroke':setTheme.button_bgcolor}" stroke-width="2"
@@ -581,11 +581,6 @@
                                                 <polyline points="7 10 12 15 17 10" />
                                                 <line x1="12" y1="15" x2="12" y2="3" />
                                             </svg>
-
-                                            <!-- <a href="{{imageUrl}}"
-                                                [ngStyle]="{'border-color':setTheme.button_bgcolor,'color':setTheme.button_bgcolor}">{{language.create_event.download_attachment}}
-                                            </a> -->
-
                                             <span *ngIf="imageUrl && imageUrl != ''">
                                                 <a href="javascript:void(0)" (click)="downloadImage(imageUrl)">
                                                     {{language.create_event.download_attachment}}
@@ -596,7 +591,7 @@
                                                     {{language.create_event.download_attachment}}
                                                 </a>
                                             </span>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="card-body" id="imageCrope">
@@ -629,7 +624,10 @@
                         </div>
                     </div>
                     <div class="profile_sub_btn event_sub_btn ">
-                        <button type="submit" class="save_btn">{{language.create_faq.save_and_update}}</button>
+                        <button type="submit" class="save_btn"
+                        [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                        'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                        'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.create_faq.save_and_update}}</button>
                     </div>
                 </form>
             </div>

@@ -332,7 +332,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
         this.dowloading = true;
         var endPoint = 'download-survey-document';
         if (data && data.name) {
-            let filename = data.name.split('/')[2]
+            let filename = data.name.split('/').reverse()[0];
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
                     saveAs(blob, filename);
