@@ -166,7 +166,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         }
         this.authService.memberSendRequest('post', 'bannerClick/', data)
             .subscribe((respData: any) => {
-                console.log(respData);
+                // console.log(respData);
             })
     }
 
@@ -225,7 +225,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.groupsYouManageData = [];
         this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null).subscribe((respData: any) => {
             this.groupsYouManageData = respData.reverse();
-            console.log(this.groupsYouManageData);
 
             this.groupsYouManageData.forEach((element:any) => {
                 if (element.group_images[0]?.['group_image']) {
