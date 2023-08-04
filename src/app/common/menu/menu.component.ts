@@ -52,30 +52,41 @@ export class MenuComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
-            // if (this.setTheme.logo_url.includes('.png')) {
-            // } else {
+            console.log(this.setTheme);
+            
+            if (this.setTheme.logo_url.includes('.png')) {
+                // console.log(this.setTheme.logo_url);
+                
+            } else {
+                if (this.setTheme?.logo_url) {
+                    this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+                }
+            }
+            // if (!this.isImageUrl(this.setTheme.logo_url)) {
             //     if (this.setTheme?.logo_url) {
             //         this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
             //     }
             // }
-            if (!this.isImageUrl(this.setTheme.logo_url)) {
-                if (this.setTheme?.logo_url) {
-                    this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
-                }
-            }
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
-            // if (this.setTheme?.logo_url) {
-            //     this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
-            // }
-            if (!this.isImageUrl(this.setTheme.logo_url)) {
+            console.log(this.setTheme);
+
+            if (this.setTheme.logo_url.includes('.png')) {
+                // console.log(this.setTheme.logo_url);
+                
+            } else {
                 if (this.setTheme?.logo_url) {
                     this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
                 }
             }
 
 
+            // if (!this.isImageUrl(this.setTheme.logo_url)) {
+            //     if (this.setTheme?.logo_url) {
+            //         this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
+            //     }
+            // }
         });
 
 

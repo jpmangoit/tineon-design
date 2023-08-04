@@ -31,7 +31,7 @@ export class ThemesComponent implements OnInit {
     limitPerPage: { value: string }[] = [
         { value: '10' },
         { value: '20' },
-        { value: '30' },
+        { value: '30' }, 
         { value: '40' },
         { value: '50' }
     ];
