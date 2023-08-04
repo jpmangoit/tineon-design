@@ -255,7 +255,10 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
                 this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
 
-                if(this.roomData?.room_image[0]?.room_image){
+                if(this.roomData.room_image.length == 0){
+                    this.imageUrl = '../../../assets/img/no_image.png'
+                    
+                }else if(this.roomData?.room_image[0]?.room_image){
                     this.hasPicture = true;
                     this.roomForm.controls['image'].setValue(this.roomData?.room_image[0]?.room_image);
                     this.originalImg = this.roomData?.room_image[0]?.room_image;

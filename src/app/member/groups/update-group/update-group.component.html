@@ -110,9 +110,13 @@
                                                     <label *ngIf="errorImage.isError" class="text-danger"> {{ errorImage.errorMessage }} </label>
                                                     <div class="loader_image" *ngIf="isImage"></div>
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
+
                                                     <img onContextMenu="return false;" class="preview_img"  *ngIf="((showImage == null || showImage == '') && (croppedImage == null || croppedImage == '')) && !isImage" src="assets/img/event_upload.png">
+
                                                     <img onContextMenu="return false;" id="preview_img"  *ngIf="showImage && (croppedImage == null || croppedImage == '') && !isImage" [src]="showImage">
                                                 </span>
+
+
                                                 <div *ngIf="(updateGroupForm.controls.add_image.touched || submitted) && (updateGroupForm.controls.add_image.errors?.required )"
                                                     class="text-danger">
                                                     <div *ngIf="updateGroupForm.controls.add_image.errors.required">
