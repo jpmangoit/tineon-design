@@ -487,8 +487,6 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
                             let changeTheme: ThemeType = respData['result']['clubTheme'];
-                            console.log(changeTheme);
-
                             // if (changeTheme?.['theme_url']){
                             //     changeTheme['theme_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(changeTheme?.['theme_url'].substring(20)));
                             // }

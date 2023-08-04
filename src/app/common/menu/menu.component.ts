@@ -52,8 +52,6 @@ export class MenuComponent implements OnInit, OnDestroy {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
-            console.log(this.setTheme);
-            
             if (this.setTheme.logo_url.includes('.png')) {
                 // console.log(this.setTheme.logo_url);
                 
@@ -70,8 +68,6 @@ export class MenuComponent implements OnInit, OnDestroy {
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
-            console.log(this.setTheme);
-
             if (this.setTheme.logo_url.includes('.png')) {
                 // console.log(this.setTheme.logo_url);
                 
