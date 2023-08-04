@@ -29,7 +29,8 @@
                                                         *ngIf="croppedImage" [src]="croppedImage" alt="" loading="lazy">
                                                     <img onContextMenu="return false;" class="preview_img"
                                                         *ngIf="(thumbnail == '' || thumbnail == null) && (croppedImage == null || croppedImage == '')&& !isImage"
-                                                        src="../../../../assets/img/event_upload.png">
+                                                        src="'../../../../../../assets/img/no_image.png">
+                                                        <!-- src="'../../../assets/img/no_image.png'"> -->
                                                     <img onContextMenu="return false;" class="preview_img"
                                                         *ngIf="(thumbnail && (thumbnail != ''|| thumbnail != null))  && (croppedImage == null || croppedImage == '')&& !isImage"
                                                         [src]="thumbnail">

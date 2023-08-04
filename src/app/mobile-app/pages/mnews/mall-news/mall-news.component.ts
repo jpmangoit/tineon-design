@@ -144,8 +144,6 @@ export class MallNewsComponent implements OnInit {
                 this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                     .subscribe(
                         (respData: any) => {
-                            console.log(respData);
-
                             this.authService.setLoader(false);
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.guestNewsRecords = respData.pagination.rowCount;

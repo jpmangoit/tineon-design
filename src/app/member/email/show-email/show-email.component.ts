@@ -69,8 +69,6 @@ export class ShowEmailComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 this.emailData = respData;
                 this.emailData.forEach((element: any) => {
-                    console.log(element);
-                    
                     if ( element?.template_logo[0]?.template_image) {
                         element.template_logo[0].template_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.template_logo[0]?.template_image.substring(20)));
                     }

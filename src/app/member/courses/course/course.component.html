@@ -502,8 +502,11 @@
                         <div class="ins-image img-fluid">
                             <div class="ins_img_inner">
                                 <label class="preview_txt" style="display: none;"></label>
-                                <img class="preview_img" onContextMenu="return false;" [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" alt="{{item.name}}" loading="lazy">
-
+                                <img class="preview_img" onContextMenu="return false;" *ngIf="hasPicture == true"
+                                [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" loading="lazy">
+                                <img class="preview_img" onContextMenu="return false;" *ngIf="hasPicture == false"
+                                [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"  loading="lazy">
+                                <!-- <img src= "../../../../assets/img/no_image.png"> -->
                                 <div class="avail_detail">
                                     <div class="event_pricing FREE">
                                         <span>{{language.courses.availability}}</span>

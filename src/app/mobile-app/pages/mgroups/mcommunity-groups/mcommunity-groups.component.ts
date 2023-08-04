@@ -202,7 +202,6 @@ export class McommunityGroupsComponent implements OnInit {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getGroupsYouManage/' + userId, null).subscribe((respData: any) => {
             this.groupsYouManageData = respData.reverse();
-            console.log(this.groupsYouManageData);
             this.groupsYouManageData.forEach((element:any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));

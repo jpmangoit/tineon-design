@@ -258,8 +258,6 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                         element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                     }
                 })
-                console.log(this.faqDataByCat);
-                
                 if (this.faqDataByCat && this.faqDataByCat.length == 10) {
                     this.showButton = true;
                 } else {

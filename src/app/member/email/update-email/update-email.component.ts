@@ -182,17 +182,15 @@ declare var $: any;
             }
             this.updateEmailForm.controls["template_type"].setValue(this.type);
         }
-        if(this.emailDetails.template_logo[0]?.template_image){
-            
-            console.log(this.emailDetails);
-            this.updateEmailForm.controls["file"].setValue(this.emailDetails.template_logo[0]?.template_image);
-            
-            this.emailDetails.template_logo[0].template_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.emailDetails.template_logo[0]?.template_image.substring(20)));
+        if(this.emailDetails.template_logo.length == 0){
+            this.imageUrl = '../../../../assets/img/no_image.png';
 
+        } else if(this.emailDetails.template_logo[0]?.template_image){
+            this.updateEmailForm.controls["file"].setValue(this.emailDetails.template_logo[0]?.template_image);
+            this.emailDetails.template_logo[0].template_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.emailDetails.template_logo[0]?.template_image.substring(20)));
             this.imageUrl = this.emailDetails.template_logo[0]?.template_image;
             
         }
-        console.log(this.emailDetails);
 
         
         // if (this.emailDetails.logo) {

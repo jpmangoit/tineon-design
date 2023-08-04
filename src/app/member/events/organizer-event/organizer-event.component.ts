@@ -107,8 +107,6 @@ export class OrganizerEventComponent implements OnInit {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                         var element: any = null;
-                        console.log(respData);
-
                         for (var key in respData) {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];

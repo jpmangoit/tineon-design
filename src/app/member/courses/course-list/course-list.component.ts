@@ -96,10 +96,6 @@ export class CourseListComponent implements OnInit {
                             element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                         }
                     })
-                    // console.log(this.dataSource.filteredData?.course_image[0]?.course_image );
-                    
-
-                    
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;

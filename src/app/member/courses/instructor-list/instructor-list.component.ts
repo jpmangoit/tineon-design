@@ -72,7 +72,6 @@ export class InstructorListComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    console.log(respData.instructors);
                     respData?.instructors?.forEach((element:any) =>{
                         if(element['instructor_image'][0]?.['instructor_image']){
                             element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;

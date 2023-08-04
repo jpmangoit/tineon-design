@@ -337,8 +337,6 @@ export class MvereinsFaqComponent implements OnInit {
             this.hasDoc = true;
             this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
         }
-        console.log(this.faqDataById);
-
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
         //     (this.faqDataById.image.endsWith(".gif")) || (this.faqDataById.image.endsWith(".svg")) || (this.faqDataById.image.endsWith(".webp")) ||
@@ -449,9 +447,6 @@ export class MvereinsFaqComponent implements OnInit {
                             $('#exModal').modal('hide');
                             this.getFaqByCategory(this.faqId);
                             this.fileToReturn = null;
-                            console.log(this.faqId);
-                            console.log(this.editId);
-                            
                             const url: string[] = ["/vereins-faq-detail/"+this.editId];
                             this.router.navigate(url);
                         }, 2000);
@@ -508,8 +503,6 @@ export class MvereinsFaqComponent implements OnInit {
                                 element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                             }
                         })
-                        console.log(this.searchData);
-
                         // if (this.searchData['faq_image'][0]?.['faq_image']) {
                         //     this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
                         // }

@@ -95,8 +95,6 @@ export class BannerDetailComponent implements OnInit {
         this.authService.memberSendRequest('get', 'getBannerbyId/' + id, null)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerDetail = respData['result']

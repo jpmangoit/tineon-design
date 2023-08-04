@@ -259,7 +259,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         let news: NewsType = allNews['result'];
         this.newsData = news;
         
-        console.log(this.newsData);
         if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {

@@ -234,31 +234,35 @@ export class CourseComponent implements OnInit, OnDestroy {
                                             const base64Data = base64String.substring(20);
                                             const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
                                             element.course_image[0].course_image = blobUrl;
-                                            this.eventImage = element.course_image[0].course_image
+                                            // if (element.course_image?.length == 0) {
+                                            //     this.eventImage = '../../../assets/img/no_image.png'
+                                            // } else {
+                                                this.eventImage = element.course_image[0].course_image
+                                            // }
                                         }
                                     });
 
-                                    var url: string[] = [];
-                                    if (element) {
-                                        for (const key in element) {
-                                            if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                                const value: string = element[key]
-                                                if (key == 'picture_video' && value != null) {
-                                                    url = value.split('\"');
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (url && url.length > 0) {
-                                        let self = this;
-                                        url.forEach(el => {
-                                            if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                element.picture_video = el;
-                                            }
-                                        });
-                                    } else {
-                                        element['picture_video'] = '';
-                                    }
+                                    // var url: string[] = [];
+                                    // if (element) {
+                                    //     for (const key in element) {
+                                    //         if (Object.prototype.hasOwnProperty.call(element, key)) {
+                                    //             const value: string = element[key]
+                                    //             if (key == 'picture_video' && value != null) {
+                                    //                 url = value.split('\"');
+                                    //             }
+                                    //         }
+                                    //     }
+                                    // }
+                                    // if (url && url.length > 0) {
+                                    //     let self = this;
+                                    //     url.forEach(el => {
+                                    //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                    //             element.picture_video = el;
+                                    //         }
+                                    //     });
+                                    // } else {
+                                    //     element['picture_video'] = '';
+                                    // }
                                     this.allData[key] = element;
                                     if (element && element.recurrence != '' && element.recurrence != null) {
                                         let recurrence: string = element.recurrence;
@@ -304,7 +308,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                     "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate,
@@ -390,7 +394,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     "type": element.type,
                                                     "instructor_type": element.instructor_type,
                                                     "name": element.name,
-                                                    "course_image": element.course_image[0]?.course_image,
+                                                    "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                     "course_document": element.course_image[0]?.course_document,
                                                     "allowed_persons": element.allowed_persons,
                                                     "date_from": rrDate1,
@@ -473,7 +477,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        "course_image": element.course_image[0]?.course_image,
+                                                        "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                         "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
                                                         "date_from": rrDate1,
@@ -584,6 +588,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.authService.setLoader(false);
+                        
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     };
@@ -647,7 +652,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         } else {
                             this.hasPicture = false;
-                            this.eventImage = '';
+                            this.eventImage = '../../../assets/img/no_image.png';
                         }
 
                         if (this.courseByIdData[0]?.document_url) {
@@ -1135,7 +1140,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
     goBack() {
         $('#view-course').modal('hide');
-    } 
+    }
 
     /**
      * Returns True or False.
@@ -1317,13 +1322,9 @@ export class CourseComponent implements OnInit, OnDestroy {
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
             let self = this;
             this.authService.setLoader(true);
-            console.log(this.getInstructorForm.value);
-            
             this.authService.memberSendRequest('post', 'allCourses', this.getInstructorForm.value)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-                        
                         this.authService.setLoader(false);
                         this.currentCourseList = [];
                         this.upcomingCourseList = [];
@@ -1346,7 +1347,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     this.eventImage = element.course_image[0].course_image
                                                 }
                                             });
-                                            
+
                                             // var url = [];
                                             // for (const key in element) {
                                             //     if (Object.prototype.hasOwnProperty.call(element, key)) {
@@ -1393,7 +1394,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "instructor_type": element.instructor_type,
                                                             "name": element.name,
                                                             // "picture_video": element.picture_video,
-                                                            "course_image": element.course_image[0]?.course_image,
+                                                            "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                             "course_document": element.course_image[0]?.course_document,
                                                             "allowed_persons": element.allowed_persons,
                                                             "date_from": rrDate,
@@ -1433,7 +1434,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "date_repeat": element.date_repeat
                                                         }
                                                         if (dt == self.todays_date) {
-                                                            self.currentCourse.push(rrEvents);46
+                                                            self.currentCourse.push(rrEvents); 46
                                                             self.currentCourseList.push(rrEvents);
 
                                                         } else if (dt > self.todays_date) {
@@ -1461,7 +1462,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "type": element.type,
                                                             "instructor_type": element.instructor_type,
                                                             "name": element.name,
-                                                            "course_image": element.course_image[0]?.course_image,
+                                                            "course_image":(element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                             "course_document": element.course_image[0]?.course_document,
                                                             "allowed_persons": element.allowed_persons,
                                                             "date_from": rrDate1,
@@ -1527,7 +1528,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                                 "type": element.type,
                                                                 "instructor_type": element.instructor_type,
                                                                 "name": element.name,
-                                                                "course_image": element.course_image[0]?.course_image,
+                                                                "course_image":(element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                                 "course_document": element.course_image[0]?.course_document,
                                                                 "allowed_persons": element.allowed_persons,
                                                                 "date_from": rrDate1,
@@ -1584,7 +1585,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                                         }
                                     }
-                                    
+
 
                                 }
                                 const sortByDate = (arr: any) => {

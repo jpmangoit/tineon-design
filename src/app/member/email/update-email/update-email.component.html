@@ -91,9 +91,7 @@
                                                         {{ errorImage.errorMessage }}
                                                     </label>
                                                     <div class="loader_image" *ngIf="isImage"></div>       
-                                                    
-                                                    
-                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="((imageUrl == null) && (croppedImage == null || croppedImage == '')) && !isImage"  src="assets/img/event_upload.png">
+                                                    <img onContextMenu="return false;" class="preview_img" *ngIf="((imageUrl == null) && (croppedImage == null || croppedImage == '')) && !isImage "  src="assets/img/event_upload.png">
 
                                                     <img onContextMenu="return false;" class="preview_img" *ngIf="croppedImage" [src]="croppedImage">
 

@@ -106,11 +106,7 @@ export class McommunityComponent implements OnInit,OnDestroy {
 
     // active class functions
     onClick(check) {
-        console.log(check);
-
         this.activeClass = check == 1 ? "chatActive" : check == 2 ? "messageActive" : check == 3 ? "groupActive" : "chatActive";
-        console.log(this.activeClass);
-
     }
 
     ngOnDestroy(){

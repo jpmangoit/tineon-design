@@ -273,8 +273,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
 
                 this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
                     (respData: any) => {
-                        console.log(respData);
-                        
                     this.authService.setLoader(false);
                     if (respData.news.length == 0) {
                         this.authService.setLoader(false);
@@ -283,8 +281,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                         this.dashboardData = respData.news;
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach(element => {
-                                console.log(element);
-                                
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }

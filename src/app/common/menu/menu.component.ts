@@ -53,44 +53,25 @@ export class MenuComponent implements OnInit, OnDestroy {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
             if (this.setTheme.logo_url.includes('.png')) {
-                // console.log(this.setTheme.logo_url);
-                
             } else {
                 if (this.setTheme?.logo_url) {
                     this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
                 }
             }
-            // if (!this.isImageUrl(this.setTheme.logo_url)) {
-            //     if (this.setTheme?.logo_url) {
-            //         this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
-            //     }
-            // }
         }
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
             if (this.setTheme.logo_url.includes('.png')) {
-                // console.log(this.setTheme.logo_url);
-                
+                this.setTheme['logo_url']  = this.setTheme['logo_url'];
             } else {
                 if (this.setTheme?.logo_url) {
                     this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
                 }
             }
-
-
-            // if (!this.isImageUrl(this.setTheme.logo_url)) {
-            //     if (this.setTheme?.logo_url) {
-            //         this.setTheme['logo_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.setTheme?.logo_url.substring(20)));
-            //     }
-            // }
         });
-
-
-
         this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp: any) => {
             this.headline_word_option = resp;
         });
-
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));

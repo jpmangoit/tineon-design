@@ -66,20 +66,14 @@ export class BannerListComponent implements OnInit {
         this.authService.memberSendRequest('get', 'allBanners/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerLists = respData['result']['banner'];
-                        console.log(this.bannerLists);
-
                         this.bannerLists.forEach((element: any) => { 
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
                             // element['image'] = JSON.parse(element.image);
-                            // console.log(element);
-
                             if (element?.banner_image[0]?.banner_image ) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.banner_image?.[0].banner_image.substring(20))) as string;
                             }
