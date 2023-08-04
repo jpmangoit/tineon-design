@@ -272,6 +272,7 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
+console.log(allNews);
 
         if (this.newsData?.news_image[0]?.news_image){
             this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));

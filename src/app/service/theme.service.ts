@@ -14,12 +14,17 @@ export class ThemeService {
     constructor() { }
 
     getClubTheme(theme_data: ThemeType) {
+        console.log(theme_data);
+        
         let imgUrl = ''
+        
         if(theme_data && theme_data['club_image'] && theme_data?.['club_image'][0]?.theme_url){
             imgUrl = theme_data['club_image'][0]?.theme_url
+        } else if(theme_data && theme_data['club_image'].length == 0){
+            imgUrl = '../../../assets/img/no_image.png'
         } else{
             imgUrl = theme_data?.['theme_url']
-        }
+        } 
         
         localStorage.setItem('club_theme', '');
         this.club_theme_obj = {
@@ -70,6 +75,8 @@ export class ThemeService {
         } else {
             this.club_theme_obj["logo_text_color"] = '';
         } 
+        console.log(this.club_theme_obj);
+
         localStorage.setItem('club_theme', JSON.stringify(this.club_theme_obj));
         this.club_theme.next(this.club_theme_obj);
     }

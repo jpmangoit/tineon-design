@@ -152,7 +152,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     calendarRooms: any[] = [];
     roomsByIdData: any
     matchDateError: any = { isError: false, errorMessage: '' };
-    event_allDates: Date[]=[];
+    event_allDates: Date[] = [];
     todays_date: string;
     date: Date;
     allRoomCalndr: any[];
@@ -169,7 +169,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -216,7 +216,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -283,7 +283,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         });
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -452,7 +452,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 }),
             ]),
             task: this.formBuilder.array([]),
-            roomBookingDates:  new UntypedFormControl(''),
+            roomBookingDates: new UntypedFormControl(''),
         });
     }
 
@@ -478,7 +478,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     end_time: ['', Validators.required],
                 });
                 this.eventDate.push(newAvailableTimes);
-                if(this.eventForm.controls['eventDate'].value.length > 1){
+                if (this.eventForm.controls['eventDate'].value.length > 1) {
                     this.recurrenceDropdownField = false;
                     this.recurrenceString = '';
                     this.checkRecc = false;
@@ -716,11 +716,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
         if (this.eventDetails?.event_images[0]?.event_image != null) {
             this.hasPicture = true;
-            if (this.eventDetails?.event_images[0]?.event_image){
+            if (this.eventDetails?.event_images[0]?.event_image) {
                 this.imageUrl = this.eventDetails?.event_images[0]?.event_image;
 
                 this.eventDetails.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails?.event_images[0]?.event_image.substring(20)));
-                this.eventImage =  this.eventDetails?.event_images[0]?.event_image;
+                this.eventImage = this.eventDetails?.event_images[0]?.event_image;
             }
         } else {
             this.hasPicture = false;
@@ -740,8 +740,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         // }
 
 
-        if (this.eventDetails?.event_images[0]?.event_document ) {
-            this.eventFile =  this.eventDetails?.event_images[0]?.event_document;
+        if (this.eventDetails?.event_images[0]?.event_document) {
+            this.eventFile = this.eventDetails?.event_images[0]?.event_document;
             this.fileUrl = this.eventDetails?.event_images[0]?.event_document;
         }
 
@@ -838,7 +838,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 this.checkRecc = true;
             }
         } else {
-            if(JSON.parse(this.eventDetails.recurring_dates).length == 1){
+            if (JSON.parse(this.eventDetails.recurring_dates).length == 1) {
                 this.typereccurenc.push({ item_id: 0, item_text: this.language.new_create_event.does_not_repeat });
                 this.checkRecc = true;
             }
@@ -851,14 +851,14 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         if ((this.eventDetails.room == null)) {
             this.eventDetails.room = null;
 
-        } else if (this.roomDropdownList?.length > 0){
-                this.roomDropdownList.forEach((value: any, key: number) => {
-                    if (value.id == this.eventDetails.room) {
-                        this.roomSelected = value.id
-                        this.exitsRoom.push(value);
-                        this.roomsById(this.roomSelected)
-                    }
-                });
+        } else if (this.roomDropdownList?.length > 0) {
+            this.roomDropdownList.forEach((value: any, key: number) => {
+                if (value.id == this.eventDetails.room) {
+                    this.roomSelected = value.id
+                    this.exitsRoom.push(value);
+                    this.roomsById(this.roomSelected)
+                }
+            });
             setTimeout(() => {
                 if (this.romData?.length > 0) {
                     this.romData.forEach(element => {
@@ -943,9 +943,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.eventForm.controls["participants"].setValue(this.eventDetails.participants);
             this.eventForm.controls["visibility"].setValue(visibility);
             this.eventForm.controls["room"].setValue(this.exitsRoom);
-            if(this.eventDetails.allowed_persons != 'null'){
+            if (this.eventDetails.allowed_persons != 'null') {
                 this.eventForm.controls["allowed_persons"].setValue(this.eventDetails.allowed_persons);
-            }else{
+            } else {
                 this.eventForm.controls['allowed_persons'].setValue(null);
                 this.eventForm.get('allowed_persons').clearValidators();
                 this.eventForm.get('allowed_persons').updateValueAndValidity();
@@ -972,7 +972,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.eventDate.removeAt(0);
             if (JSON.parse(this.eventDetails.recurring_dates)) {
                 JSON.parse(this.eventDetails.recurring_dates).forEach((key, value) => {
-                    if(key.start_time.includes(':00') && key.end_time.includes(':00')){
+                    if (key.start_time.includes(':00') && key.end_time.includes(':00')) {
                         key.start_time = key.start_time.slice(0, 5)
                         key.end_time = key.end_time.slice(0, 5)
                     }
@@ -1087,58 +1087,58 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.mustMatchs = this.eventForm.value.allowed_persons;
             this.endRepeatDate()
             this.endRepeat()
-            if(this.isCustom == true && this.naturalNumber == true){
+            if (this.isCustom == true && this.naturalNumber == true) {
                 this.customReccDateError = { isError: true, errorMessage: this.language.create_event.select_custom_recc };
-            }else{
+            } else {
                 this.customReccDateError = { isError: false, errorMessage: '' };
             }
 
             if (this.selectedRoom != null && this.mustMatchs != null) {
-                if(this.event_allDates.length > 0){
+                if (this.event_allDates.length > 0) {
                     if ((new Date(this.eventForm.value['date_from']) >= new Date(this.roomsByIdData.active_from.split('T')[0])) &&
-                    (new Date(this.eventForm.value['date_to']) <= new Date(this.roomsByIdData.active_to.split('T')[0]))) {
-                        var roomsData:any[]=[];
-                        var event_recuu:any = '';
-                        var event_startTime:any;
-                        var event_endTime :any;
+                        (new Date(this.eventForm.value['date_to']) <= new Date(this.roomsByIdData.active_to.split('T')[0]))) {
+                        var roomsData: any[] = [];
+                        var event_recuu: any = '';
+                        var event_startTime: any;
+                        var event_endTime: any;
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-                        this.calendarRooms.forEach((elem:any) =>{
-                            if(this.eventId == elem.id && elem.type != 'course'){
-                                this.allRoomCalndr[1]['avail'].forEach((el:any) =>{
-                                    if(elem.date_start == el.date_start){
+                        this.calendarRooms.forEach((elem: any) => {
+                            if (this.eventId == elem.id && elem.type != 'course') {
+                                this.allRoomCalndr[1]['avail'].forEach((el: any) => {
+                                    if (elem.date_start == el.date_start) {
                                         roomsData.push(el);
                                     }
                                 })
-                            }else{
+                            } else {
                                 roomsData.push(elem);
                             }
                         })
                         roomsData.sort((a: any, b: any) => Number(new Date(a.date_start)) - Number(new Date(b.date_start)));
-                        if(this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)){
+                        if (this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)) {
                             event_recuu = this.recurrenceString;
-                        }else if(this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)){
+                        } else if (this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)) {
                             event_recuu = this.finalCustomRecurrence;
                         }
-                        if(event_recuu && (event_recuu != ' ' || event_recuu != null)){   //if the recurrence
+                        if (event_recuu && (event_recuu != ' ' || event_recuu != null)) {   //if the recurrence
                             event_startTime = this.eventForm.value['start_time'];
                             event_endTime = this.eventForm.value['end_time'];
-                            this.checkRoomAvailability(event_startTime,event_endTime,this.event_allDates,roomsData,this.eventForm.value.eventDate);
+                            this.checkRoomAvailability(event_startTime, event_endTime, this.event_allDates, roomsData, this.eventForm.value.eventDate);
 
-                        }else if(this.eventForm.value.eventDate.length > 1){  /// if the multiple dates
-                            this.checkRoomAvailability(event_startTime,event_endTime,this.event_allDates,roomsData,this.eventForm.value.eventDate);
+                        } else if (this.eventForm.value.eventDate.length > 1) {  /// if the multiple dates
+                            this.checkRoomAvailability(event_startTime, event_endTime, this.event_allDates, roomsData, this.eventForm.value.eventDate);
 
-                        }else{                                                  // no recurrence & no multiple dates
+                        } else {                                                  // no recurrence & no multiple dates
                             event_startTime = this.eventForm.value['start_time'];
                             event_endTime = this.eventForm.value['end_time'];
-                            this.checkRoomAvailability(event_startTime,event_endTime,this.event_allDates,roomsData,this.eventForm.value.eventDate);
+                            this.checkRoomAvailability(event_startTime, event_endTime, this.event_allDates, roomsData, this.eventForm.value.eventDate);
                         }
                     } else {
                         this.notificationService.showError(this.language.create_event.not_room, null);
                         this.matchDateError = { isError: true, errorMessage: this.language.create_event.not_room };
                     }
-                }else{
-                    this.eventDetails.roomBookingDates.forEach(function(v){ delete v.event_id });
+                } else {
+                    this.eventDetails.roomBookingDates.forEach(function (v) { delete v.event_id });
                     this.eventForm.controls['roomBookingDates'].setValue(this.eventForm.controls['eventDate'].value);
                 }
             }
@@ -1179,7 +1179,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
         }
         if ((this.eventForm.valid) && (!this.errorTime.isError) && (!this.errorDate.isError) && (!this.errorImage.isError)
-        && (!this.errorDateTask.isError) && (!this.matchDateError.isError) && (!this.customReccDateError.isError)){
+            && (!this.errorDateTask.isError) && (!this.matchDateError.isError) && (!this.customReccDateError.isError)) {
             this.eventForm.controls["type"].setValue(this.eventForm.value.type[0].item_id);
             var date_from: string = this.eventForm.controls["date_from"].value;
             var start_time: string = this.eventForm.controls["start_time"].value;
@@ -1216,8 +1216,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             formData.append('event_document', this.fileUrl);
                             // this.fileAndimage.push(this.fileUrl);
                         }
-                    }else if (key == 'file' && (this.picVid1 == null || this.picVid1 == undefined)
-                             && (this.fileUrl == null || this.fileUrl == '' || this.fileUrl == undefined)) {
+                    } else if (key == 'file' && (this.picVid1 == null || this.picVid1 == undefined)
+                        && (this.fileUrl == null || this.fileUrl == '' || this.fileUrl == undefined)) {
                         formData.append('event_document', '')
                     }
 
@@ -1231,7 +1231,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             formData.append("room", this.roomSelected);
                         } else if (this.exitsRoom.length > 0) {
                             formData.append("room", this.exitsRoom);
-                        }else{
+                        } else {
                             formData.append("room", 'null');
                         }
                     }
@@ -1349,7 +1349,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         formData.append('task', JSON.stringify(element));
                     } else {
                         if ((key != 'file') && (key != 'users') && (key != 'participant') && (key != 'chargeable') && (key != 'recurrence') &&
-                        (key != 'roomBookingDates') && (key != 'room')  && (key != 'customRecurrence') && (key != 'eventDate') && (key != 'task')) {
+                            (key != 'roomBookingDates') && (key != 'room') && (key != 'customRecurrence') && (key != 'eventDate') && (key != 'task')) {
                             formData.append(key, element);
                         }
                     }
@@ -1357,24 +1357,24 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             }
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'event/' + this.eventId, formData)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.eventSubmitted = false;
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'], null);
-                        var self = this;
-                        setTimeout(function () {
-                            self._router.navigate(['event-detail/' + respData['result']['event']['id']]);
-                        }, 2000);
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                        this.setVisibilityOnError(this.visibility);
-                        this.setTypeOnError(this.eventForm.controls["type"].value);
-                        this.eventForm.controls['date_to'].setValue(date_to);
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.eventSubmitted = false;
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            var self = this;
+                            setTimeout(function () {
+                                self._router.navigate(['event-detail/' + respData['result']['event']['id']]);
+                            }, 2000);
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                            this.setVisibilityOnError(this.visibility);
+                            this.setTypeOnError(this.eventForm.controls["type"].value);
+                            this.eventForm.controls['date_to'].setValue(date_to);
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -1382,32 +1382,32 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * Function is used to set visibility when error is coming
     * @author  MangoIt Solutions
     */
-    setVisibilityOnError(id:number) {
+    setVisibilityOnError(id: number) {
         let visibility_data = [];
-        if(id == 1){
-            visibility_data.push( { item_id: 1, item_text: this.language.create_event.public });
-        }else if(id == 2){
-            visibility_data.push( { item_id: 2, item_text: this.language.create_event.private });
-        }else if(id == 3){
-            visibility_data.push( { item_id: 3, item_text: this.language.create_event.group });
-        }else if(id == 4){
-            visibility_data.push( { item_id:4, item_text: this.language.create_event.club });
+        if (id == 1) {
+            visibility_data.push({ item_id: 1, item_text: this.language.create_event.public });
+        } else if (id == 2) {
+            visibility_data.push({ item_id: 2, item_text: this.language.create_event.private });
+        } else if (id == 3) {
+            visibility_data.push({ item_id: 3, item_text: this.language.create_event.group });
+        } else if (id == 4) {
+            visibility_data.push({ item_id: 4, item_text: this.language.create_event.club });
         }
         this.eventForm.controls["visibility"].setValue(visibility_data);
     }
 
-    setTypeOnError(id:number) {
+    setTypeOnError(id: number) {
         let visibility_data = [];
-        if(id == 1){
-            visibility_data.push( { item_id: 1, item_text: this.language.create_event.club_event });
-        }else if(id == 2){
-            visibility_data.push( { item_id: 2, item_text: this.language.create_event.group_event });
-        }else if(id == 3){
-            visibility_data.push( { item_id: 3, item_text: this.language.create_event.functionaries_event });
-        }else if(id == 4){
-            visibility_data.push( { item_id:4, item_text: this.language.create_event.courses });
-        }else if(id == 5){
-            visibility_data.push( { item_id:4, item_text: this.language.create_event.seminar });
+        if (id == 1) {
+            visibility_data.push({ item_id: 1, item_text: this.language.create_event.club_event });
+        } else if (id == 2) {
+            visibility_data.push({ item_id: 2, item_text: this.language.create_event.group_event });
+        } else if (id == 3) {
+            visibility_data.push({ item_id: 3, item_text: this.language.create_event.functionaries_event });
+        } else if (id == 4) {
+            visibility_data.push({ item_id: 4, item_text: this.language.create_event.courses });
+        } else if (id == 5) {
+            visibility_data.push({ item_id: 4, item_text: this.language.create_event.seminar });
         }
         this.eventForm.controls["type"].setValue(visibility_data);
     }
@@ -1419,53 +1419,53 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @param   {startTime,endTime,course all dates,rooms dates}
     * @return  {Array Of Object} if conditions is correct then room booking dates else error
     */
-    checkRoomAvailability(event_startTime:any,event_endTime:any,event_allDates:any,roomsData:any,eventForm_eventDate:any){
-        var count:number = 0;
-        var finalEventData:any[]=[]
-        var eventRecu:any[] = [];
-        var event_dates_length:any;
-        if(eventForm_eventDate?.length > 1){
+    checkRoomAvailability(event_startTime: any, event_endTime: any, event_allDates: any, roomsData: any, eventForm_eventDate: any) {
+        var count: number = 0;
+        var finalEventData: any[] = []
+        var eventRecu: any[] = [];
+        var event_dates_length: any;
+        if (eventForm_eventDate?.length > 1) {
             event_dates_length = eventForm_eventDate.length;
-            eventForm_eventDate.forEach((elem:any,index:any) =>{
+            eventForm_eventDate.forEach((elem: any, index: any) => {
                 elem.start_time = this.commonFunctionService.formatTime(elem.start_time);
-                elem.end_time = this.commonFunctionService.formatTime( elem.end_time);
-                roomsData.forEach((element:any,idn:any) => {
-                    if((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
-                    (elem.start_time  >= element.start.split('T')[1]) &&
-                    (elem.end_time  <= element.end.split('T')[1])&&
-                    (element.classNames != 'room-booked' )){
+                elem.end_time = this.commonFunctionService.formatTime(elem.end_time);
+                roomsData.forEach((element: any, idn: any) => {
+                    if ((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
+                        (elem.start_time >= element.start.split('T')[1]) &&
+                        (elem.end_time <= element.end.split('T')[1]) &&
+                        (element.classNames != 'room-booked')) {
                         finalEventData.push(elem);
-                        count ++;
+                        count++;
                     }
                 })
             })
-        }else if(event_allDates){
+        } else if (event_allDates) {
             event_dates_length = event_allDates.length;
-            event_allDates.forEach((elem:any,index:any) =>{
-                roomsData.forEach((element:any,idn:any) => {
+            event_allDates.forEach((elem: any, index: any) => {
+                roomsData.forEach((element: any, idn: any) => {
                     event_startTime = this.commonFunctionService.formatTime(event_startTime);
                     event_endTime = this.commonFunctionService.formatTime(event_endTime);
-                    if((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd')) &&
-                    (event_startTime >= element.start.split('T')[1]) &&
-                     (event_endTime <= element.end.split('T')[1])  &&
-                     (element.classNames != 'room-booked' )){
+                    if ((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd')) &&
+                        (event_startTime >= element.start.split('T')[1]) &&
+                        (event_endTime <= element.end.split('T')[1]) &&
+                        (element.classNames != 'room-booked')) {
                         finalEventData.push(elem);
-                        count ++;
+                        count++;
                     }
                 });
             });
         }
         finalEventData = this.authService.uniqueData(finalEventData);
-        if(count >= event_dates_length){
+        if (count >= event_dates_length) {
             this.matchDateError = { isError: false, errorMessage: '' };
             if (this.mustMatchs > this.selectedRoom.no_of_persons) {
                 this.errorMatch = { isError: true, errorMessage: this.language.courses.room_error, };
             } else {
                 this.errorMatch = { isError: false, errorMessage: '' };
-                if(event_startTime && event_endTime){
-                    finalEventData.forEach((element:any,index:any) =>{
-                         event_startTime = this.commonFunctionService.formatTime( event_startTime);
-                         event_endTime = this.commonFunctionService.formatTime( event_endTime);
+                if (event_startTime && event_endTime) {
+                    finalEventData.forEach((element: any, index: any) => {
+                        event_startTime = this.commonFunctionService.formatTime(event_startTime);
+                        event_endTime = this.commonFunctionService.formatTime(event_endTime);
                         let el_date = (element?.date_from) ? element.date_from : element;
                         eventRecu[index] = {
                             date_from: this.datePipe.transform(new Date(el_date), 'YYYY-MM-dd'),
@@ -1474,11 +1474,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         };
                     });
                     this.eventForm.controls['roomBookingDates'].setValue(eventRecu);
-                }else{
+                } else {
                     this.eventForm.controls['roomBookingDates'].setValue(this.eventForm.value.eventDate);
                 }
             }
-        }else{
+        } else {
             this.notificationService.showError(this.language.create_event.room_not_avail, null);
             this.matchDateError = { isError: true, errorMessage: this.language.create_event.room_not_avail };
         }
@@ -1509,7 +1509,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         }
     }
 
-    onRecurrenceDeSelect(){
+    onRecurrenceDeSelect() {
         this.recurrenceSelected = null;
         this.eventForm.controls["date_to"].setValue('');
     }
@@ -1579,7 +1579,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 this.endDateRepeat = true;
                 this.onRecurrence();
             }
-        }else {
+        } else {
             this.eventForm.controls["date_repeat"].setValue('');
             this.endDateRepeat = false;
             this.getEventsAllDates();
@@ -1613,15 +1613,15 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
      * @author  MangoIt Solutions
      */
     onRecurrence() {
-        if(this.recurrenceSelected != 5){
+        if (this.recurrenceSelected != 5) {
             this.recurrenceString = '';
             let monthDates: any = [];
-            if(this.eventForm?.controls?.['eventDate']?.value?.length > 0){
+            if (this.eventForm?.controls?.['eventDate']?.value?.length > 0) {
                 this.eventForm.controls['eventDate'].value.sort().forEach(element => {
                     monthDates.push(new Date(element.date_from).getDate())
                 });
             }
-            if(this.eventForm.controls['eventDate'].value.length <= 1){
+            if (this.eventForm.controls['eventDate'].value.length <= 1) {
                 if (this.eventForm?.controls?.recurrence?.value != "") {
                     if (this.eventForm.controls.recurrence.value[0].item_id != 5 && this.eventForm.controls.date_repeat.value != '') {
                         if (this.eventForm.controls.recurrence.value[0].item_id == 0) {
@@ -1636,7 +1636,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             let re: string = recc.slice(0, 25).replace(":", "=");
                             let reccu: string = recc.slice(25);
                             this.recurrenceString = reccu + ';' + re;
-                            this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                            this.event_allDates = RRule.fromString(this.recurrenceString).all();
                         } else if (this.eventForm.controls.recurrence.value[0].item_id == 2) {
                             let rule = new RRule({
                                 "freq": RRule.WEEKLY,
@@ -1647,7 +1647,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             let re: string = recc.slice(0, 25).replace(":", "=");
                             let reccu: string = recc.slice(25);
                             this.recurrenceString = reccu + ';' + re;
-                            this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                            this.event_allDates = RRule.fromString(this.recurrenceString).all();
                         } else if (this.eventForm.controls.recurrence.value[0].item_id == 3) {
                             let rule = new RRule({
                                 "freq": RRule.MONTHLY,
@@ -1659,7 +1659,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             let re: string = recc.slice(0, 25).replace(":", "=");
                             let reccu: string = recc.slice(25);
                             this.recurrenceString = reccu + ';' + re;
-                            this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                            this.event_allDates = RRule.fromString(this.recurrenceString).all();
                         } else if (this.eventForm.controls.recurrence.value[0].item_id == 4) {
                             let rule = new RRule({
                                 "freq": RRule.YEARLY,
@@ -1671,7 +1671,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             let re: string = recc.slice(0, 25).replace(":", "=");
                             let reccu: string = recc.slice(25);
                             this.recurrenceString = reccu + ';' + re;
-                            this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                            this.event_allDates = RRule.fromString(this.recurrenceString).all();
                         }
                     }
                 } else if (this.typerecc == 'DAILY') {
@@ -1685,7 +1685,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                    this.event_allDates = RRule.fromString(this.recurrenceString).all();
                 } else if (this.typerecc == 'WEEKLY') {
                     let rule = new RRule({
                         "freq": RRule.WEEKLY,
@@ -1696,7 +1696,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                    this.event_allDates = RRule.fromString(this.recurrenceString).all();
                 } else if (this.typerecc == 'MONTHLY') {
                     let rule = new RRule({
                         "freq": RRule.MONTHLY,
@@ -1708,7 +1708,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                    this.event_allDates = RRule.fromString(this.recurrenceString).all();
                 } else if (this.typerecc == 'YEARLY') {
                     let rule = new RRule({
                         "freq": RRule.YEARLY,
@@ -1720,32 +1720,32 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(this.recurrenceString).all();
+                    this.event_allDates = RRule.fromString(this.recurrenceString).all();
                 } else {
                     this.recurrenceString = '';
                     this.getEventsAllDates();
                 }
             }
-        }else{
-            this. setCustomRecurrence();
+        } else {
+            this.setCustomRecurrence();
         }
     }
 
     setCustomRecurrence() {
-        if(this.recurrenceSelected == 5){
-        if(this.eventForm.controls["date_to"].value){
-            this.eventForm.controls["date_repeat"].setValue(this.eventForm.controls["date_to"].value);
-        }else{
-            this.eventForm.controls["date_to"].setValue(this.eventForm.controls["date_from"].value);
-            this.eventForm.controls["date_repeat"].setValue(this.eventForm.controls["date_to"].value);
-        }
-        let monthDates: any = []
+        if (this.recurrenceSelected == 5) {
+            if (this.eventForm.controls["date_to"].value) {
+                this.eventForm.controls["date_repeat"].setValue(this.eventForm.controls["date_to"].value);
+            } else {
+                this.eventForm.controls["date_to"].setValue(this.eventForm.controls["date_from"].value);
+                this.eventForm.controls["date_repeat"].setValue(this.eventForm.controls["date_to"].value);
+            }
+            let monthDates: any = []
             if (this.eventForm.controls['eventDate'].value) {
                 this.eventForm.controls['eventDate'].value.sort().forEach(element => {
                     monthDates.push(new Date(element.date_from).getDate())
                 });
             }
-            if(this.eventForm.controls['eventDate'].value.length <= 1){
+            if (this.eventForm.controls['eventDate'].value.length <= 1) {
                 let recurrenceData: string = '';
                 if (this.customRecurrenceTypeSelected != null) {
                     if (this.customRecurrenceTypeSelected == 1) {
@@ -1764,7 +1764,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         let re: string = recc.slice(0, 25).replace(":", "=");
                         let reccu: string = recc.slice(25);
                         recurrenceData = reccu + ';' + re;
-                        this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                        this.event_allDates = RRule.fromString(recurrenceData).all();
                     } else if (this.customRecurrenceTypeSelected == 2) {
                         var self = this;
                         recurrenceData = '';
@@ -1805,7 +1805,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         let re: string = recc.slice(0, 25).replace(":", "=");
                         let reccu: string = recc.slice(25);
                         recurrenceData = reccu + ';' + re;
-                        this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                        this.event_allDates = RRule.fromString(recurrenceData).all();
 
                     } else if (this.customRecurrenceTypeSelected == 3) {
                         recurrenceData = '';
@@ -1824,7 +1824,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         let re: string = recc.slice(0, 25).replace(":", "=");
                         let reccu: string = recc.slice(25);
                         recurrenceData = reccu + ';' + re;
-                        this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                        this.event_allDates = RRule.fromString(recurrenceData).all();
                     } else if (this.customRecurrenceTypeSelected == 4) {
                         recurrenceData = '';
                         let numberWeek: number = $('.custom_recurrence_yearly').val();
@@ -1842,7 +1842,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         let re: string = recc.slice(0, 25).replace(":", "=");
                         let reccu: string = recc.slice(25);
                         recurrenceData = reccu + ';' + re;
-                        this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                        this.event_allDates = RRule.fromString(recurrenceData).all();
                     }
                 } else if (this.typerecc == 'DAILY') {
                     //daily
@@ -1860,7 +1860,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     recurrenceData = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                    this.event_allDates = RRule.fromString(recurrenceData).all();
                 } else if (this.typerecc == 'WEEKLY') {
                     var self = this;
                     recurrenceData = '';
@@ -1896,7 +1896,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     recurrenceData = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                    this.event_allDates = RRule.fromString(recurrenceData).all();
                 } else if (this.typerecc == 'MONTHLY') {
                     recurrenceData = '';
                     let numberWeek: string = this.interval
@@ -1914,7 +1914,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     recurrenceData = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                    this.event_allDates = RRule.fromString(recurrenceData).all();
                 } else if (this.typerecc == 'YEARLY') {
                     recurrenceData = '';
                     let numberWeek: string = this.interval;
@@ -1932,34 +1932,34 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     let re: string = recc.slice(0, 25).replace(":", "=");
                     let reccu: string = recc.slice(25);
                     recurrenceData = reccu + ';' + re;
-                    this.event_allDates  = 	 RRule.fromString(recurrenceData).all();
+                    this.event_allDates = RRule.fromString(recurrenceData).all();
                 }
                 this.finalCustomRecurrence = recurrenceData;
             }
         }
     }
 
-    customReccModalClose(){
+    customReccModalClose() {
         $('#showPopup').trigger('click');
         this.closeModal();
     }
 
-    getEventsAllDates(){
-        var alldates:any[] = [];
+    getEventsAllDates() {
+        var alldates: any[] = [];
         this.event_allDates = [];
-        if(this.recurrenceSelected == 0){
+        if (this.recurrenceSelected == 0) {
             this.eventForm.controls["date_to"].setValue(this.eventForm.value['date_from']);
         }
-        if(this.eventForm.controls.eventDate.value.length > 1){
-            var cour_dates:any[] = [];
+        if (this.eventForm.controls.eventDate.value.length > 1) {
+            var cour_dates: any[] = [];
             alldates = this.eventForm.controls.eventDate.value;
             alldates.forEach(element => {
                 cour_dates.push(new Date(element.date_from));
             });
-            this.event_allDates =  this.authService.uniqueData(cour_dates);
-        }else{
+            this.event_allDates = this.authService.uniqueData(cour_dates);
+        } else {
             this.eventForm.controls["date_repeat"].setValue(this.eventForm.controls["date_to"].value);
-            alldates = this.commonFunctionService.getDates(new Date(this.eventForm.controls.date_from.value),new Date(this.eventForm.controls.date_to.value))
+            alldates = this.commonFunctionService.getDates(new Date(this.eventForm.controls.date_from.value), new Date(this.eventForm.controls.date_to.value))
             this.event_allDates = alldates;
         }
     }
@@ -1974,18 +1974,18 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         }
     }
 
-        /**
-     * Function to checked the box if price is there
-     * @param event
-     */
-        eventCheck(event: Event) {
-            if (event.target['checked']) {
-                this.eventPriceDisplay = true;
-            } else {
+    /**
+ * Function to checked the box if price is there
+ * @param event
+ */
+    eventCheck(event: Event) {
+        if (event.target['checked']) {
+            this.eventPriceDisplay = true;
+        } else {
 
-                this.eventPriceDisplay = false;
-            }
+            this.eventPriceDisplay = false;
         }
+    }
 
     /**
      * Function is used to check numver
@@ -2009,7 +2009,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     */
     errorMatch: any = { isError: false, errorMessage: '' };
     onRoomSelect(item: { id: number; name: string }) {
-    this.matchDateError = { isError: false, errorMessage: '' };
+        this.matchDateError = { isError: false, errorMessage: '' };
         this.roomsById(item.id);
         this.roomSelected = item.id;
         if (this.romData?.length > 0) {
@@ -2053,15 +2053,15 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
      */
     roomsById(id: number) {
         this.commonFunctionService.roomsById(id)
-        .then((resp: any) => {
-            this.roomsByIdData = resp;
-            setTimeout(() => {
-                this.getRoomCalendar(this.roomsByIdData);
-            }, 500);
+            .then((resp: any) => {
+                this.roomsByIdData = resp;
+                setTimeout(() => {
+                    this.getRoomCalendar(this.roomsByIdData);
+                }, 500);
             })
-        .catch((erro: any) => {
-            this.notificationService.showError(erro, null);
-        });
+            .catch((erro: any) => {
+                this.notificationService.showError(erro, null);
+            });
     }
 
     /**
@@ -2090,7 +2090,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 minute: '2-digit',
                 hour12: false
             },
-            firstDay:1,
+            firstDay: 1,
             weekends: true,
             editable: false,
             selectable: false,
@@ -2117,8 +2117,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     }
 
     handleEventClick(arg) {
-        if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-            this.viewDetails(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetails(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
         };
     }
 
@@ -2133,7 +2133,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @param   {id , date}
     * @return  {}
     */
-    viewDetails(id: any, date: any ,type:any) {
+    viewDetails(id: any, date: any, type: any) {
         if (type == 'course') {
             const url = '/course-detail/' + id;
             const queryParams = { date: new Date(date).toISOString().split('T')[0] };
@@ -2293,7 +2293,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
     dateSubmit() {
         if ((this.eventForm.controls['eventDate'].value[0] && this.eventForm.controls['eventDate'].value[0]?.date_from != '')) {
-            if(this.eventForm.controls['eventDate'].value.length == 1){
+            if (this.eventForm.controls['eventDate'].value.length == 1) {
                 this.recurrenceDropdownField = true;
                 this.checkRecc = true;
             }
@@ -2342,7 +2342,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     compareTwoTimes(i: any) {
         if ((this.eventForm.controls['eventDate'].value[i] && this.eventForm.controls['eventDate'].value[i]?.start_time != '') && (this.eventForm.controls['eventDate'].value[i] && this.eventForm.controls['eventDate'].value[i]?.end_time != '')) {
             if ((this.eventForm.controls['eventDate'].value[i]?.start_time >= this.eventForm.controls['eventDate'].value[i]?.end_time)
-            ){
+            ) {
                 this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, index: i };
             } else {
                 this.errorTime = { isError: false, errorMessage: '', index: '' };
@@ -2370,41 +2370,41 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         });
     }
 
-        /**
-    * Function is used to download document
-    * @author  MangoIt Solutions
-    * @param   {path}
-    */
-        download(path: any) {
-            let data = {
-                name: path
-            }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
-            if (data && data.name) {
-                let filename = data.name.split('/').reverse()[0];
-                this.authService.downloadDocument('post', endPoint, data).toPromise()
-                    .then((blob: any) => {
-                        saveAs(blob, filename);
-                        this.authService.setLoader(false);
-                        this.dowloading = false;
-                        setTimeout(() => {
-                            this.authService.sendRequest('post', 'document-delete/uploads', data).subscribe((result: any) => {
-                                this.result = result;
-                                this.authService.setLoader(false);
-                                if (this.result.success == false) {
-                                    this.notificationService.showError(this.result['result']['message'], null);
-                                } else if (this.result.success == true) {
-                                    this.documentData = this.result['result']['message'];
-                                }
-                            })
-                        }, 7000);
-                    })
-                    .catch(err => {
-                        this.responseMessage = err;
-                    })
-            }
+    /**
+* Function is used to download document
+* @author  MangoIt Solutions
+* @param   {path}
+*/
+    download(path: any) {
+        let data = {
+            name: path
         }
+        this.dowloading = true;
+        var endPoint = 'download-document';
+        if (data && data.name) {
+            let filename = data.name.split('/').reverse()[0];
+            this.authService.downloadDocument('post', endPoint, data).toPromise()
+                .then((blob: any) => {
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
+                    this.dowloading = false;
+                    setTimeout(() => {
+                        this.authService.sendRequest('post', 'delete-document/uploads', data).subscribe((result: any) => {
+                            this.result = result;
+                            this.authService.setLoader(false);
+                            if (this.result.success == false) {
+                                this.notificationService.showError(this.result['result']['message'], null);
+                            } else if (this.result.success == true) {
+                                this.documentData = this.result['result']['message'];
+                            }
+                        })
+                    }, 7000);
+                })
+                .catch(err => {
+                    this.responseMessage = err;
+                })
+        }
+    }
 
     /**
     * Function is used to validate file type is image and upload images
@@ -2445,14 +2445,14 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
 
     }
@@ -2466,7 +2466,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
@@ -2742,20 +2742,20 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @return  success message
     */
     taskDateValidate(date: any) {
-        var date_from:any;
-        var date_to :any;
-        if(this.eventForm?.value?.eventDate?.length == 1 && this.eventForm.controls?.date_to?.value != ""){
+        var date_from: any;
+        var date_to: any;
+        if (this.eventForm?.value?.eventDate?.length == 1 && this.eventForm.controls?.date_to?.value != "") {
             if (this.eventForm.controls.date_from.value <= date.target.value && this.eventForm.controls.date_to.value >= date.target.value) {
-                    this.errorDateTask = { isError: false, errorMessage: '' };
+                this.errorDateTask = { isError: false, errorMessage: '' };
             } else {
-                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
+                this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
             }
-        }else{
-            this.eventForm?.value?.eventDate?.forEach((element:any,index:any) =>{
-                if(index == 0){
+        } else {
+            this.eventForm?.value?.eventDate?.forEach((element: any, index: any) => {
+                if (index == 0) {
                     date_from = element.date_from;
                 }
-                if(this.eventForm?.value?.eventDate.length - 1 === index){
+                if (this.eventForm?.value?.eventDate.length - 1 === index) {
                     date_to = element.date_from
                 }
                 if (date_from <= date.target.value && date_to >= date.target.value) {
