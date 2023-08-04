@@ -757,7 +757,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails.chargeable) {
             this.eventPriceDisplay = true;
         }
-        console.log(this.courseDetails);
 
         if (this.courseDetails.course_image[0]?.course_image && this.courseDetails.course_image[0]?.course_image != "[]") {
             this.hasPicture = true;
@@ -771,7 +770,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         if (this.courseDetails?.course_image[0]?.course_document) {
                 this.eventFile =  this.courseDetails?.course_image[0]?.course_document;
                 this.fileUrl = this.courseDetails?.course_image[0]?.course_document
-                console.log(this.fileUrl);
         }
 
         // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
@@ -2993,8 +2991,9 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             let data = {
                 name: path
             }
-            this.dowloading = true;
-            var endPoint = 'get-documentbyname';
+            this.dowloading = true; 
+            // var endPoint = 'get-documentbyname';
+            var endPoint = 'download-course-document';
             if (data && data.name) {
                 let filename = data.name.split('/').reverse()[0];
                this.authService.downloadDocument('post', endPoint, data).toPromise()
