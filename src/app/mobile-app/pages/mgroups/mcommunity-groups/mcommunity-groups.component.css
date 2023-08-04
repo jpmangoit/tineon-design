@@ -296,7 +296,7 @@ button.del-group {
 .application-ad {
     position: fixed;
     z-index: 1;
-    bottom: 89px;
+    bottom: 88px;
     background: #3A9CF5;
     width: 100%;
     border-top-right-radius: 20px;
@@ -507,7 +507,7 @@ span.get-btn {
         margin-bottom: 15px;
     }
     .news-image.no_image {
-        height: 155px !important;
+        height: auto !important;
         max-height: inherit !important;
         min-height: inherit !important;
     }
