@@ -21,7 +21,7 @@ declare var $: any;
     styleUrls: ['./club-all-news.component.css']
 })
 
-export class ClubAllNewsComponent implements OnInit, OnDestroy {
+export class ClubAllNewsComponent implements OnInit, OnDestroy { 
     language: any;
     role: string = '';
     responseMessage: string = null;

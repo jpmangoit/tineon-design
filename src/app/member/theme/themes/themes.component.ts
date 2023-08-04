@@ -23,7 +23,7 @@ export class ThemesComponent implements OnInit {
     setTheme: ThemeType;
     themeData: ThemeData[];
     theme_data: ThemeData;
-    private activatedSub: Subscription;
+    private activatedSub: Subscription; 
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
     totalRecord: number = 0;

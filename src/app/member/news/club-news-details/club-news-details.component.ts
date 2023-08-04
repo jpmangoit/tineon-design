@@ -24,24 +24,24 @@ declare var $: any;
     styleUrls: ['./club-news-details.component.css'],
 })
 
-export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
-    language:any;
-    userDetails:LoginDetails;
-    newsData:NewsType;
-    updateNewsData:any;
+export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
+    language: any;
+    userDetails: LoginDetails;
+    newsData: NewsType;
+    updateNewsData: any;
     viewImage: boolean = false;
-    displayError:boolean = false
+    displayError: boolean = false
     getclubInfo: ClubDetail;
     profile_data: ProfileDetails;
-    thumbnail:string;
+    thumbnail: string;
     memberid: number;
     birthdateStatus: boolean;
     memberStartDateStatus: Date;
     setTheme: ThemeType;
     private activatedSub: Subscription;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
     responseMessage: any;
     sliderOptions: OwlOptions = {
         loop: true,
@@ -67,7 +67,7 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
             }
         },
         nav: false,
-        autoplay:true
+        autoplay: true
     }
     bannerData: any;
     mobBannerData: any;
@@ -89,40 +89,40 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
         private sanitizer: DomSanitizer
 
     ) {
-        this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         });
-        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         });
-        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         })
-     }
+    }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-            this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.route.params.subscribe(params => {
-            const newsid:number = params['newsid'];
+            const newsid: number = params['newsid'];
             this.getNewsDetails(newsid);
         });
 
-        if (this.allowAdvertisment  == 0 ){
+        if (this.allowAdvertisment == 0) {
             if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                 this.getMobileNewsDetailBanners();
             } else {
@@ -131,86 +131,86 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
         }
     }
 
-      /**
-    * Function for get All the Banners
-    * @author  MangoIt Solutions(M)
-    * @param   {}
-    * @return  {all the records of Banners} array of object
-    */
-    getDesktopNewsDetailBanners(){
+    /**
+  * Function for get All the Banners
+  * @author  MangoIt Solutions(M)
+  * @param   {}
+  * @return  {all the records of Banners} array of object
+  */
+    getDesktopNewsDetailBanners() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForNewsDetails_Desktop/', null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner']
-                    this.bannerData.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        // element['image'] = JSON.parse(element.image);
-                        if (element.banner_image[0]?.banner_image) {
-                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                        }
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.bannerData = respData['result']['banner']
+                        this.bannerData.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                            }
 
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
-                        }
-                    })
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
+                            }
+                        })
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
                 }
-            }
-        )
+            )
     }
 
-      /**
-    * Function for get All the Banners
-    * @author  MangoIt Solutions(M)
-    * @param   {}
-    * @return  {all the records of Banners} array of object
-    */
-    getMobileNewsDetailBanners(){
+    /**
+  * Function for get All the Banners
+  * @author  MangoIt Solutions(M)
+  * @param   {}
+  * @return  {all the records of Banners} array of object
+  */
+    getMobileNewsDetailBanners() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForNewsDetailsMobileApp/', null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.mobBannerData = respData['result']['banner']
-                    this.mobBannerData.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        // element['image'] = JSON.parse(element.image);
-                        if (element.banner_image[0]?.banner_image) {
-                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                        }
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
-                        }
-                    })
-                    this.timeOut1();
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.mobBannerData = respData['result']['banner']
+                        this.mobBannerData.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                            }
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
+                            }
+                        })
+                        this.timeOut1();
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
                 }
-            }
-        )
+            )
     }
 
     timeOut1() {
         let count = 0;
         setInterval(() => {
-          if (count === this.mobBannerData.length) {
-            count = 0;
-          }
-          this.adsTineon = this.mobBannerData[count];
-          count++;
+            if (count === this.mobBannerData.length) {
+                count = 0;
+            }
+            this.adsTineon = this.mobBannerData[count];
+            count++;
         }, 3000);
     }
 
@@ -221,23 +221,23 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     * @param   {BannerId}
     * @return  {Object}
     */
-    onClickBanner(bannerId:number){
-        let displayMode:number
+    onClickBanner(bannerId: number) {
+        let displayMode: number
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            displayMode = 1 ;
-        }else{
+            displayMode = 1;
+        } else {
             //desktop
-            displayMode = 0 ;
+            displayMode = 0;
         }
         let data = {
             banner_id: bannerId,
-            user_id : this.userDetails.userId,
-            display_mode : displayMode
+            user_id: this.userDetails.userId,
+            display_mode: displayMode
         }
-        this.authService.memberSendRequest('post','bannerClick/',data)
-        .subscribe((respData:any) =>{
-        })
+        this.authService.memberSendRequest('post', 'bannerClick/', data)
+            .subscribe((respData: any) => {
+            })
     }
 
     /**
@@ -272,29 +272,27 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-
-        if (this.newsData?.news_image[0]?.news_image){
+        if (this.newsData?.news_image[0]?.news_image) {
             this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
         }
 
         this.memberid = this.newsData.user.member_id;
-            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.thumbnail = respData;
-                    },
-                    (error:any) => {
-                        this.thumbnail = null;
-                    });
+        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.memberid, null)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.thumbnail = respData;
+                },
+                (error: any) => {
+                    this.thumbnail = null;
+                });
         if (this.newsData['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
             this.updateNewsData = JSON.parse(news.updated_record);
 
-            if (this.updateNewsData?.newImage){
+            if (this.updateNewsData?.newImage) {
                 this.updateNewsData.newImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateNewsData?.newImage.substring(20)));
             }
-            console.log(this.updateNewsData );
-            
+
         }
     }
 
@@ -343,7 +341,7 @@ export class ClubNewsDetailsComponent implements OnInit,OnDestroy {
     * Function is used to redirect on update news page
     * @author  MangoIt Solutions
     */
-    updateNews(newsId:number) {
+    updateNews(newsId: number) {
         const url: string[] = ["/update-news/" + newsId];
         this.router.navigate(url);
     }

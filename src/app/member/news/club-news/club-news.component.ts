@@ -263,7 +263,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-
             if (this.newsData?.news_image[0]?.news_image) {
                 this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
                 this.newImg = this.newsData?.news_image[0]?.news_image;

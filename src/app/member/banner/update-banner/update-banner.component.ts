@@ -208,8 +208,6 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     * @return  {}
     */
     setBannerData(bannerInfo: any) {
-        console.log(bannerInfo);
-
         var date_to: string[];
         var date_from: string[];
         this.updateBannerForm.controls['bannerName'].setValue(bannerInfo.bannerName);
@@ -232,18 +230,18 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         this.checkedInvoice = bannerInfo['invoice'];
         this.updateBannerForm.controls['invoice'].setValue(this.checkedInvoice);
 
-        if (bannerInfo.banner_image[0].banner_image != null) {
+        if (bannerInfo.banner_image[0]?.banner_image != null) {
             this.hasPicture = true;
-            // this.updateBannerForm.controls['image'].setValue(JSON.parse(bannerInfo.banner_image[0].banner_image));
-            // this.showBannerImage = JSON.parse(bannerInfo.banner_image[0].banner_image);
             if (bannerInfo.banner_image[0].banner_image) {
-                // bannerInfo.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo.banner_image[0].banner_image.substring(20))) as string;
-                // this.showBannerImage = bannerInfo.banner_image[0].banner_image
                 this.showBannerImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(bannerInfo.banner_image[0].banner_image.substring(20))) as string;
                 this.updateBannerForm.controls['image'].setValue(this.showBannerImage);
 
             }
 
+        }else if(bannerInfo.banner_image.length == 0){
+            this.hasPicture = true;
+            this.showBannerImage = '../../../assets/img/no_image.png'
+             
         }
 
         if (bannerInfo['category']) {
@@ -309,7 +307,6 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
             this.updateBannerForm.controls["image"].setValue(this.fileToReturn);
         } else {
             // this.updateBannerForm.controls["image"].setValue(JSON.parse(this.bannerDetail[0].image));
-            // this.updateBannerForm.controls["image"].setValue(this.showBannerImage);
             this.updateBannerForm.controls["image"].setValue(this.bannerDetail.banner_image[0].banner_image);
         }
         this.updateBannerForm.value.author = this.userData.userId;

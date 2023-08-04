@@ -193,7 +193,6 @@ export class MeventDetailComponent implements OnInit {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                console.log(this.eventDetails);
 
                                 if (this.eventDetails?.event_images[0]?.event_image != null) {
                                     this.showImage = true;
@@ -205,8 +204,6 @@ export class MeventDetailComponent implements OnInit {
                                     this.showImage = false;
                                     this.imageurl = '';
                                 }
-
-                                console.log(this.eventDetails);
 
                                 if (this.eventDetails?.event_images[0]?.event_document) {
                                     this.docFile = this.eventDetails?.event_images[0]?.event_document;
@@ -237,9 +234,6 @@ export class MeventDetailComponent implements OnInit {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
-
-                                        console.log(this.updateEventData);
-
 
                                         if (this.updateEventData.image != null) {
                                             var url: string[] = this.updateEventData.image.split('\"');
@@ -764,15 +758,14 @@ export class MeventDetailComponent implements OnInit {
     //         }
     //     }
     download(path: any) {
-        console.log(path);
-        
+
         let data = {
             name: path
         }
         this.dowloading = true;
         var endPoint = 'download-document';
         if (data && data.name) {
-            let filename = data.name.split('/')[2]
+            let filename = data.name.split('/').reverse()[0];
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
                     saveAs(blob, filename);

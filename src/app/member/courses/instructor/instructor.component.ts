@@ -40,7 +40,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     imgErrorMsg: boolean;
     responseMessage: string = '';
     responseMessage1: string = '';
-    searchForm: UntypedFormGroup;
+    searchForm: UntypedFormGroup; 
     searchSubmit: boolean = false;
     responseMessage2: string;
     file: File;
@@ -455,8 +455,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                             (error:any) => {
                                 this.thumbnail = null;
                             });
-
-                    if (this.instructorById.instructor_image[0]['instructor_image'] == '' || this.instructorById.instructor_image[0]['instructor_image'] == null) {
+            
+                    if (this.instructorById.instructor_image.length == 0 || 
+                        (this.instructorById.instructor_image[0]['instructor_image'] == '' || this.instructorById.instructor_image[0]['instructor_image'] == null)) {
                         this.imageShow = '../../assets/img/no_image.png';
                     } else {
                         if (this.instructorById.instructor_image[0]?.['instructor_image']){
