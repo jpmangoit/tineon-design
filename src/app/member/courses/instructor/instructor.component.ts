@@ -40,7 +40,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     imgErrorMsg: boolean;
     responseMessage: string = '';
     responseMessage1: string = '';
-    searchForm: UntypedFormGroup;
+    searchForm: UntypedFormGroup; 
     searchSubmit: boolean = false;
     responseMessage2: string;
     file: File;

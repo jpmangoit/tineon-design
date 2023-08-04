@@ -1316,9 +1316,7 @@ export class McourseComponent implements OnInit, OnDestroy {
 
                                             if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                                 const dates = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                                // console.log( element.recurring_dates);
-                                                // console.log(JSON.parse(element.recurring_dates) );
-                                                
+                                           
                                                 element.recurring_dates = JSON.parse(element.recurring_dates);
                                                 element?.recurring_dates?.forEach(dd => {
                                                     let yourDate1: Date = new Date(dd.date_from)
@@ -1583,7 +1581,7 @@ export class McourseComponent implements OnInit, OnDestroy {
         this.dowloading = true;
         var endPoint = 'get-documentbyname';
         if (data && data.name) {
-            let filename = data.name.split('/')[2]
+            let filename = data.name.split('/').reverse()[0];
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
                     saveAs(blob, filename);
