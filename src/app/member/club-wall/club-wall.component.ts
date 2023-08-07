@@ -17,7 +17,7 @@ declare var $: any;
 })
 
 export class ClubWallComponent implements OnInit, OnDestroy {
-    language: any;
+    language: any; 
     userDetails: LoginDetails;
     userAccess: UserAccess;
     createAccess: CreateAccess;

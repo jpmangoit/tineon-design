@@ -6,6 +6,8 @@ import { LanguageService } from '../../../service/language.service';
 import { ParticipateAccess,UserAccess } from 'src/app/models/user-access.model';
 import { appSetting } from 'src/app/app-settings';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -36,7 +38,9 @@ export class CrmNewsComponent implements OnInit {
     constructor(
         private authService: AuthServiceService,
         private lang: LanguageService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
@@ -66,6 +70,14 @@ export class CrmNewsComponent implements OnInit {
                     if (respData.isError == false) {
                         this.authService.setLoader(false);
                         this.dashboardData = respData.result.news[0];
+                        console.log( this.dashboardData );
+                        
+                        this.dashboardData.forEach((element: any) => {
+                            if (element?.news_image) {
+                                element.news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.news_image.substring(20)));
+                            }
+                        });
+                        
                         this.totalDashboardData = respData.result.news[1]['pagination']['rowCount'];
                     } else if (respData.isError == true) {
                         this.notificationService.showError(respData.result,null);
@@ -89,6 +101,11 @@ export class CrmNewsComponent implements OnInit {
                 (respData: CrmNews) => {
                     this.authService.setLoader(false);
                     this.newsData = respData.result.news;
+                    console.log(this.newsData);
+                    
+                    if (this.newsData[0]?.news_image) {
+                        this.newsData[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData[0]?.news_image.substring(20)));
+                    }
                     $('#exModal').modal('show');
                 }
             );

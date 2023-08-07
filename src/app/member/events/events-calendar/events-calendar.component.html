@@ -3,8 +3,8 @@
         <div></div>
         <div class="date-bar">
             <h2>{{todays_date | date: 'EEEE, d. MMMM'}}
-                <a (click)="previousClick()" class="previous round"><span>&#8249;</span></a>
-                <a (click)="nextClick()" class="next round"><span>&#8250;</span></a>
+                <a (click)="previousClick()" class="previous round" *ngIf="todays_date"><span>&#8249;</span></a>
+                <a (click)="nextClick()" class="next round" *ngIf="todays_date"><span>&#8250;</span></a>
             </h2>
             <div class="filter-events" *ngIf="filterOpt">
                 <mat-form-field appearance="fill">

@@ -29,7 +29,7 @@ export const MY_DATE_FORMATS = {
   styleUrls: ['./events-calendar.component.css'],
   providers: [ { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },DatePipe]
 })
-
+ 
 export class EventsCalendarComponent implements OnInit {
     language: any;
     setTheme: ThemeType;
@@ -149,21 +149,21 @@ export class EventsCalendarComponent implements OnInit {
                         for (var key in this.all_events) {
                             if (this.all_events.hasOwnProperty(key)) {
                                 element = this.all_events[key];
-                                var url: string[] = [];
-                                if (element?.picture_video != null && element?.picture_video != '') {
-                                    if (element.picture_video) {
-                                        url = element.picture_video.split('"');
-                                        if (url && url.length > 0) {
-                                            url.forEach((el) => {
-                                                if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                    element.picture_video = el;
-                                                }
-                                            });
-                                        } else {
-                                            element.picture_video = '';
-                                        } 
-                                    }
-                                }
+                                // var url: string[] = [];
+                                // if (element?.picture_video != null && element?.picture_video != '') {
+                                //     if (element.picture_video) {
+                                //         url = element.picture_video.split('"');
+                                //         if (url && url.length > 0) {
+                                //             url.forEach((el) => {
+                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                //                     element.picture_video = el;
+                                //                 }
+                                //             });
+                                //         } else {
+                                //             element.picture_video = '';
+                                //         } 
+                                //     }
+                                // }
                                 if (element?.recurrence && element?.recurrence != '' && element?.recurrence != null) {
                                     let recurrence: string = element.recurrence;
                                     if (recurrence.includes('UNTIL') == false) {
