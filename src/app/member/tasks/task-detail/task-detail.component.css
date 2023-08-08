@@ -371,3 +371,9 @@ span.deny-reason {
 .page-action-right button.delete-btn {
     background: #fb5f5f !important;
 }
+
+@media(max-width:1400px) {
+    .group_title h5 {
+        margin-left:  0 !important;
+    }
+}

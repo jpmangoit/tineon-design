@@ -179,12 +179,13 @@ span.participant_status span {
     background: green;
     color: #1d202f;
     font-weight: 500;
-    width: 130px;
+    width: 160px;
     text-align: center;
 }
 .schedule_list ul:nth-child(odd) li:first-child {
     background-color: #eaaa86 !important;
     color: #fff;
+    width: 100px;
 }
 .schedule_list ul li:nth-child(even) {
     background-color: #ffefed;
@@ -970,6 +971,14 @@ margin-top: 14px;
     line-height: 22px;
     background-color: #ffffff;
     padding: 60px 40px;
+}
+
+@media(max-width : 1366px) {
+    .course-price{
+        position: relative;
+    }
+
+    .course-price input { top:0;}
 }
 
 @media only screen and (max-width: 1260px) {
