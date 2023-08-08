@@ -25,12 +25,11 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="author-info">
-
-                                <div class="parti_name" *ngIf="data?.picture == null || data?.picture == ''">
+                                <div class="parti_name" *ngIf="data?.author_image == null || data?.author_image == ''">
                                     <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" style="width: 100px;"  alt="" loading="lazy">
                                 </div>
-                                <div class="author-img" *ngIf="data?.picture != ''">
-                                    <img onContextMenu="return false;" [src]="data?.picture" style="width: 100px;" alt="" loading="lazy">
+                                <div class="author-img" *ngIf="data?.author_image != ''">
+                                    <img onContextMenu="return false;" [src]="data?.author_image" style="width: 100px;" alt="" loading="lazy">
                                 </div>
                                 <div class="author-des">
                                     <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
@@ -113,11 +112,12 @@
                                                         </div>
                                                         <div class="news_content_text" [innerHTML]="newsData[0].content"></div>
                                                         <div class="author-info">
-                                                            <div class="parti_name" *ngIf="newsData[0]?.profile_picture == null || newsData[0]?.profile_picture == ''">
+                                                            
+                                                            <div class="parti_name" *ngIf="newsData[0]?.author_image == null || newsData[0]?.author_image == ''">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div>
-                                                            <div class="author-img" *ngIf="newsData[0]?.profile_picture != ''">
-                                                                <img onContextMenu="return false;" [src]="newsData[0]?.profile_picture" style="width: 100px;" alt="" loading="lazy">
+                                                            <div class="author-img" *ngIf="newsData[0]?.author_image != ''">
+                                                                <img onContextMenu="return false;" [src]="newsData[0]?.author_image" style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-des">
                                                                 <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>

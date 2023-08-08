@@ -23,7 +23,7 @@ declare var $: any;
     styleUrls: ['./create-faq.component.css']
 })
 
-export class CreateFaqComponent implements OnInit ,OnDestroy{
+export class CreateFaqComponent implements OnInit ,OnDestroy{ 
     FAQForm: UntypedFormGroup;
     FAQSubmit: boolean = false;
     language:any;
@@ -365,7 +365,6 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
     cropperReady() {
         /* cropper ready */
         this.isImage = false;
-
     }
 
     loadImageFailed() {

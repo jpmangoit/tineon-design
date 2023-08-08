@@ -76,6 +76,9 @@ export class CrmNewsComponent implements OnInit {
                             if (element?.news_image) {
                                 element.news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.news_image.substring(20)));
                             }
+                            if(element?.author_image){
+                                element.author_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.author_image.substring(20)));
+                            }
                         });
                         
                         this.totalDashboardData = respData.result.news[1]['pagination']['rowCount'];
@@ -105,6 +108,9 @@ export class CrmNewsComponent implements OnInit {
                     
                     if (this.newsData[0]?.news_image) {
                         this.newsData[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData[0]?.news_image.substring(20)));
+                    }
+                    if (this.newsData[0]?.author_image){
+                        this.newsData[0].author_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData[0]?.author_image.substring(20)));
                     }
                     $('#exModal').modal('show');
                 }

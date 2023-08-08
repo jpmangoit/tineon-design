@@ -49,7 +49,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            {class: 'gellix', name: 'Gellix'}, 
         ],
         toolbarHiddenButtons: [
             [
