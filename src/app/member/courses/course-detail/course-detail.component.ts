@@ -792,7 +792,7 @@ export class CourseDetailComponent implements OnInit {
             let filename = data.name.split('/').reverse()[0];
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
-                    saveAs(blob, filename);
+                    saveAs(blob, filename); 
                     this.authService.setLoader(false); 
                     this.dowloading = false;
                     setTimeout(() => {

@@ -19,65 +19,65 @@ import { error } from 'console';
 declare var $: any;
 
 @Component({
-	selector: 'app-task-detail',
-	templateUrl: './task-detail.component.html',
-	styleUrls: ['./task-detail.component.css']
+    selector: 'app-task-detail',
+    templateUrl: './task-detail.component.html',
+    styleUrls: ['./task-detail.component.css']
 })
 
-export class TaskDetailComponent implements OnInit,OnDestroy {
-	language:any;
-	displayError: boolean;
-	userDetails: LoginDetails;
-  	setTheme: ThemeType;
-	taskDetails: TaskType[] = [];
-	getclubInfo:ClubDetail;
-	birthdateStatus: boolean;
-	collaboratorDetails: TaskCollaboratorDetails[] = [];
-	profile_data: ProfileDetails;
-	memberStartDateStatus: Date;
-	thumbnail:SafeUrl;
-	thumb: SafeUrl;
-    organizerDetails: any[]=[];
-    collaborators:any[]=[];
+export class TaskDetailComponent implements OnInit, OnDestroy {
+    language: any;
+    displayError: boolean;
+    userDetails: LoginDetails;
+    setTheme: ThemeType;
+    taskDetails: TaskType[] = [];
+    getclubInfo: ClubDetail;
+    birthdateStatus: boolean;
+    collaboratorDetails: TaskCollaboratorDetails[] = [];
+    profile_data: ProfileDetails;
+    memberStartDateStatus: Date;
+    thumbnail: SafeUrl;
+    thumb: SafeUrl;
+    organizerDetails: any[] = [];
+    collaborators: any[] = [];
     count: number = 0;
     updatedTaskData: any;
-    UpdatedcollaboratorDetails: any[]=[];
-    updatedOrganizerDetails: any[]=[];
-    updatedCollaborators: any[]=[];
+    UpdatedcollaboratorDetails: any[] = [];
+    updatedOrganizerDetails: any[] = [];
+    updatedCollaborators: any[] = [];
     task_id: number;
-    subtaskCompleteStatus: number=0;
+    subtaskCompleteStatus: number = 0;
     private activatedSub: Subscription;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
     allUsers: any;
-    taskId:number;
-	constructor(
-		private authService: AuthServiceService,
-		private router: Router,
-		private route: ActivatedRoute,
+    taskId: number;
+    constructor(
+        private authService: AuthServiceService,
+        private router: Router,
+        private route: ActivatedRoute,
         private themes: ThemeService,
         private updateConfirmDialogService: UpdateConfirmDialogService,
-		private _location: Location,
-		private confirmDialogService: ConfirmDialogService,
-		private lang: LanguageService,
+        private _location: Location,
+        private confirmDialogService: ConfirmDialogService,
+        private lang: LanguageService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
 
-	) {
-        this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
+    ) {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
@@ -136,7 +136,9 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
-                                if (this.taskDetails?.['task_image'][0]?.['task_image']){
+                                console.log(this.taskDetails);
+
+                                if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
                                 if (this.taskDetails) {
@@ -157,7 +159,7 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                                                         (resppData: any) => {
                                                                             elem.user.image = resppData
                                                                         },
-                                                                        (error:any) => {
+                                                                        (error: any) => {
                                                                             elem.user.image = null;
                                                                         }
                                                                     );
@@ -177,11 +179,12 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                     this.updatedCollaborators = [];
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedTaskData = null;
-                                    this.updatedTaskData = JSON.parse(this.taskDetails['updated_record']);
-
+                                    if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") { 
+                                        this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']); 
+                                    }
                                     if (this.updatedTaskData != null) {
 
-                                        if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null){
+                                        if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {
                                             this.updatedTaskData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedTaskData.file.substring(20)));
                                         }
 
@@ -203,7 +206,7 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                                                                         this.thumb = resppData;
                                                                                         elem.user.image = this.thumb
                                                                                     },
-                                                                                    (error:any) => {
+                                                                                    (error: any) => {
                                                                                         elem.user.image = null;
                                                                                     });
                                                                         } else {
@@ -234,7 +237,7 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                                                                         this.thumb = resppData;
                                                                                         elem.user.image = this.thumb
                                                                                     },
-                                                                                    (error:any) => {
+                                                                                    (error: any) => {
                                                                                         elem.user.image = null;
                                                                                     });
                                                                         } else {
@@ -260,8 +263,8 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
                                                 }
                                             })
                                         }
-                                        this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails,'id'));
-                                        this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators,'id'));
+                                        this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails, 'id'));
+                                        this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators, 'id'));
                                     }
                                 }
                             }
@@ -273,56 +276,56 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
         }
     }
 
-        /**
-    * Function to get the details of the organizer of the task
-    * @author  MangoIt Solutions
-    * @param   {groupId, Group Name}
-    * @return  {}
-    */
-	getOrganizerDetails(taskid:number) {
-		if (sessionStorage.getItem('token')) {
+    /**
+* Function to get the details of the organizer of the task
+* @author  MangoIt Solutions
+* @param   {groupId, Group Name}
+* @return  {}
+*/
+    getOrganizerDetails(taskid: number) {
+        if (sessionStorage.getItem('token')) {
             this.organizerDetails = [];
             this.collaborators = [];
             this.collaboratorDetails = []
-			this.authService.setLoader(true);
-			this.authService.memberSendRequest('get', 'getTaskCollaborator/task/' + taskid, null)
-			.subscribe(
-				(respData: any) => {
-					this.authService.setLoader(false);
-                    if(respData && respData.length > 0){
-                        this.collaboratorDetails = respData;
-                        var org_id = 0;
-                        Object(this.collaboratorDetails).forEach((val, key) => {
-                            if(val.user && val.user.length > 0){
-                                val.user.forEach(element => {
-                                    if (element.member_id != null) {
-                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
-                                        .subscribe((resppData: any) => {
-                                            this.thumb = resppData;
-                                            val.image = this.thumb
-                                        },
-                                        (error:any) => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'getTaskCollaborator/task/' + taskid, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData && respData.length > 0) {
+                            this.collaboratorDetails = respData;
+                            var org_id = 0;
+                            Object(this.collaboratorDetails).forEach((val, key) => {
+                                if (val.user && val.user.length > 0) {
+                                    val.user.forEach(element => {
+                                        if (element.member_id != null) {
+                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.member_id, null)
+                                                .subscribe((resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    val.image = this.thumb
+                                                },
+                                                    (error: any) => {
+                                                        val.image = null;
+                                                    });
+                                        } else {
                                             val.image = null;
-                                        });
-                                    } else {
-                                        val.image = null;
-                                    }
-                                });
-                            }
-                            if(val.user_id == this.taskDetails['organizer_id']){
-                                this.organizerDetails.push(val)
-                                org_id = 1;
-                            }else{
-                                this.collaborators.push(val);
-                            }
-                        });
-                        this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
-                        this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators,'id'));
+                                        }
+                                    });
+                                }
+                                if (val.user_id == this.taskDetails['organizer_id']) {
+                                    this.organizerDetails.push(val)
+                                    org_id = 1;
+                                } else {
+                                    this.collaborators.push(val);
+                                }
+                            });
+                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
+                            this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
+                        }
                     }
-				}
-			);
-		}
-	}
+                );
+        }
+    }
 
     /**
     * Function to approve task by Admin
@@ -597,23 +600,23 @@ export class TaskDetailComponent implements OnInit,OnDestroy {
         $('#styled-checkbox-' + this.task_id).prop('checked', false);
     }
 
-	showToggle: boolean = false;
-	onShow() {
-		let el:HTMLCollectionOf<Element> = document.getElementsByClassName("bunch_drop");
-		if (!this.showToggle) {
-			this.showToggle = true;
-			el[0].className = "bunch_drop show";
-		}else {
-			this.showToggle = false;
-			el[0].className = "bunch_drop";
-		}
-	}
+    showToggle: boolean = false;
+    onShow() {
+        let el: HTMLCollectionOf<Element> = document.getElementsByClassName("bunch_drop");
+        if (!this.showToggle) {
+            this.showToggle = true;
+            el[0].className = "bunch_drop show";
+        } else {
+            this.showToggle = false;
+            el[0].className = "bunch_drop";
+        }
+    }
 
     goBack() {
         this.router.navigate(['/organizer/organizer-task']);
-	}
+    }
 
-	ngOnDestroy(): void {
+    ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
         this.refreshPage.unsubscribe();
         this.denyRefreshPage.unsubscribe();

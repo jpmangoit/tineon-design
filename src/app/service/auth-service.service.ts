@@ -263,9 +263,8 @@ export class AuthServiceService {
             let endPointUrl: string;
             endPointUrl = `${baseUrl}` + endPoint + ``;
             return this.http.post(endPointUrl, data,
-                { headers: myHeaders, responseType: "blob" }).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
+                { headers: myHeaders, responseType: "blob" }).
+                pipe( map(this.handleData),catchError(this.handleError));
         }
     }
 
