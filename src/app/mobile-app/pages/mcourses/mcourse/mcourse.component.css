@@ -1093,7 +1093,7 @@ button.filter-btn svg path {
 @media (max-width: 767px) {
     .instructor-image img {
         height: 100%;
-        object-fit: cover; 
+        object-fit: cover;
     }
     .event-time,
     .event-title span {
@@ -1102,7 +1102,7 @@ button.filter-btn svg path {
 
     .course-price span:first-child {
         margin-right: 5px;
-        padding-right: 5px; 
+        padding-right: 5px;
     }
 
     .all-participant-card .card-body{
@@ -1194,6 +1194,16 @@ transform: scale(1.5)
     border: none !important;
 padding: 0 !important;
 }
+.tab-button button {
+    height: 32px;
+    border-radius: 16px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.tab-button{
+    background: #ffffff;
+}
+
 }
 @media (max-width: 460px) {
 }

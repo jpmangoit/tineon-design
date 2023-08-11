@@ -8275,7 +8275,7 @@ span.info_detail {
     border-radius: 15px;
     font-size: 17px;
     font-family: "Gellix", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     height: 51px;
 }
 
@@ -8503,6 +8503,16 @@ div#showSubtask input::placeholder {
         padding: 14px 15px;
     }
 }
+@media (max-width: 767px){
+    .event_field label,
+    .news-dropdown label,
+     .guest-option label {
+        font-size: 14px;
+        color: #171F24;
+        font-weight: 400;
+}
+}
+
 .news-dropdown .multiselect-dropdown .dropdown-btn .selected-item {
     background: #4fb96d !important;
     border: 1px solid #4fb96d !important;
@@ -11811,10 +11821,11 @@ button.btn-close svg {
         width: 100% !important;
     }
     span.info_detail {
-  font-size: 13px;
+  font-size: 12px;
   padding: 13px 13px;
   border: none;
   background: #fcfcfc;
+  color: #AEAEAE;
 }
     .check_field {
         width: 50%;
@@ -11857,7 +11868,7 @@ button.btn-close svg {
         padding: 18px 15px 0 15px !important;
     }
     .page-action-right button {
-        height: 38px !important;
+        height: 32px !important;
         border-radius: 10px;
         padding: 0 10px 0 10px !important;
         font-size: 11px !important;
@@ -11869,6 +11880,20 @@ button.btn-close svg {
     .content.profile_section .profile_navigation {
         padding: 0 !important;
     }
+    .event_box{
+        padding: 0;
+    }
+    .event_box_right h6 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 255px;
+    }
+
+.event-box-inner {
+    align-items: center !important;
+}
+
 
     .two-img {
   display: flex;
@@ -12116,10 +12141,11 @@ body .profile_sub_btn.event_sub_btn {
     .mb-title {
         font-family: 'Gellix', sans-serif;
         font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
+        font-weight: 500;
+        font-size: 16px;
         line-height: 22px;
-        color: #68759f;
+        color: #030319 !important;
+
     }
 }
 .group_detail_img.news_image_container {
@@ -12179,7 +12205,7 @@ ul.bunch_drop.show {
 
 .modal.fade.change_pass_section.faq_edit.all_news.show .modal-dialog {
   max-width: 850px !important;
- 
+
 }
 
 body .schedule.ng-star-inserted {
@@ -12310,10 +12336,6 @@ body .course_des_main {
   max-height: 56px !important;
 }
 
-
-
-
-
  ::ng-deep  .detail-big-img img {
         max-width: none !important;
         width: auto !important;
@@ -12412,7 +12434,21 @@ body .news-listing  .news-items {
 
 }
 
-
+.user-content {
+    color: #AEAEAE;
+    font-size: 12px;
+}
+span.user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3C3B41;
+}
+.page-heading h1 {
+    font-size: 16px !important;
+    color: #030319;
+    font-weight: 500;
+    text-transform: capitalize;
+}
 
 span.news-date {
     margin-top: -3px;
@@ -12423,7 +12459,7 @@ span.news-date {
 }
 
 body .tab-button {
-    background: #fff ;
+background: #fff ;
 display: flex;
 padding: 4px;
 border-radius: 20px;
@@ -12434,7 +12470,7 @@ justify-content: space-around;
 }
 
 .tab-button button {
-  height: 32px;
+height: 32px;
 border-radius: 10px;
 box-shadow: none;
 font-family: 'Gellix', sans-serif;
@@ -12444,8 +12480,8 @@ font-size: 14px;
 color: #353535 !important;
 min-width: 33.3%;
 background: #EBF0FF;
-line-height: 42px;
-font-size: 12px !important;
+line-height: 37px;
+font-size: 14px !important;
 
 
 }
@@ -12468,6 +12504,22 @@ height: 56px !important;
  background: rgb(233,54,8);
  background: linear-gradient(90deg, rgba(233,54,8,1) 0%, rgba(231,96,61,1) 100%) !important;
 }
+
+.mobile-red span.mat-button-wrapper path {
+    fill: #E93608;
+}
+
+.mobile-green span.mat-button-wrapper path {
+    fill: rgb(71 188 151);
+}
+
+.mobile-red .back-button button path {
+    fill: #E93608;
+}
+.mobile-green .back-button button path {
+    fill: rgb(71 188 151);
+}
+
 
 .tab-button button.active {
   background-color: #fff;

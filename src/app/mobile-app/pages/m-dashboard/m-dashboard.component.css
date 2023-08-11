@@ -5,10 +5,10 @@
 /* profile card css*/
 
 .profile-area-mobile,.dashboard-slider {
-    padding: 0 15px; 
+    padding: 0 15px;
 }
 
-.profile-image {   
+.profile-image {
    width: 133px;
 height: 133px;
 overflow: hidden;
@@ -108,7 +108,7 @@ justify-content: center;
     font-weight: 600;
     color: #353535;
     padding: 0px;
-    
+
 }
 .profile-qr-box .profile-card-description  ul  li:after {
     margin: 0 5px;
@@ -228,7 +228,7 @@ justify-content: center;
   text-align: center;
   font-size: 28px;
   font-weight: 700;
-  margin-bottom: 25px; 
+  margin-bottom: 25px;
 }
 
 span.profile-menu-ic {
@@ -282,7 +282,7 @@ span.profile-menu-ic {
 }
 
 .profile-card-info {
-    background: transparent url(../../../../assets/img/mobile-img/dashboard/Shape.png); 
+    background: transparent url(../../../../assets/img/mobile-img/dashboard/Shape.png);
     border-radius: 10px;
     padding: 37px 24px 19px;
     display: flex;
@@ -367,7 +367,7 @@ span.profile-label-content {
 .profile-card-details img {
     width: auto;
     margin-right: 15px;
-    
+
 }
 
 .collapse-btn-card {
@@ -472,7 +472,7 @@ padding: 5px;
     border-radius: 16px;
     font-size: 14px;
     font-family: "Gellix", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     margin-right: 0;
     width: 100%;
     height: 32px;
@@ -509,14 +509,14 @@ nav.scroll-navigation {
 ul.tabs__items li a.active {
    background: rgb(233,54,8);
    background: linear-gradient(90deg, rgba(233,54,8,1) 0%, rgba(231,96,61,1) 100%);
-   
+
     color: #fff !important;
 }
 
 ::ng-deep body.mobile-green ul.tabs__items li a.active {
    background: rgb(32,174,128);
    background: linear-gradient(90deg, rgb(32, 174, 128) 0%, rgba(32, 174, 128, 0.8) 100%) !important;
-   
+
     color: #fff !important;
 }
 
@@ -534,7 +534,7 @@ ul.tabs__items li a.active {
 .news-badge {
     font-size: 9px;
     font-weight: 700;
-    background: #FFBE00;
+    background: #FBC52D;
     display: inline-block;
     padding: 0 10px;
     border-radius: 7px;
@@ -583,7 +583,7 @@ span.news-date {
     margin-bottom: 0;
 }
 .news-des-area p {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     font-family: "Gellix", sans-serif;
     margin-bottom: 5px;
@@ -605,19 +605,19 @@ span.news-date {
     height: 100%;
 }
 
-.news-des-area { 
+.news-des-area {
     width: 70%;
 }
 
 /* .news-items div.news-des-area {
   width: calc(100% - 75px);
-  
+
 } */
 
 
 .news-listing .news-items div {
   width: 100%;
-  
+
 }
 /* .news-items div.news-des-area {
     width: calc(100% - 105px);
@@ -680,7 +680,7 @@ line-height: 53px;
   border-radius: 20px;
   padding: 10px;
   margin-bottom: 15px;
-  
+
 }
 
 
@@ -704,7 +704,7 @@ line-height: 53px;
 }
 
 .news-des-area p span {
- 
+
   display: -webkit-box;
   -webkit-box-orient: vertical;
   white-space: normal;
@@ -724,7 +724,7 @@ line-height: 53px;
 .news-read-more a {
     color: #E7345D;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 ::ng-deep body.mobile-green .news-read-more a {
