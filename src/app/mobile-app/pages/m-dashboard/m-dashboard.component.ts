@@ -34,7 +34,7 @@ export class MDashboardComponent implements OnInit {
     displayGroups: boolean = false;
     language: any;
     userDetails: LoginDetails;
-    setTheme: ThemeType;
+    setTheme: ThemeType; 
     private activatedSub: Subscription;
     clubNewsCount: number = 0;
     communityCount: number = 0;
@@ -177,7 +177,7 @@ export class MDashboardComponent implements OnInit {
         private notificationService: NotificationService,
         private datePipe: DatePipe,
         private confirmDialogService: ConfirmDialogService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
     ) { }
 
     ngOnInit(): void {
@@ -191,6 +191,11 @@ export class MDashboardComponent implements OnInit {
         this.language = this.lang.getLanguaageFile();
         this.userId = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        if (this.userDetails['qrcode_url']) {
+            this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
+        }
+
+        
         this.userRole = this.userDetails.roles[0];
         this.authService.memberSendRequest('get', 'numberOfPostEventsMessage/user/' + this.userId, null)
             .subscribe(
@@ -365,6 +370,10 @@ export class MDashboardComponent implements OnInit {
             this.currentEvent = [];
             this.upcomingEvent = [];
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+            if (this.userDetails['qrcode_url']) {
+                this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
+            }
+            
             this.userRole = this.userDetails.roles[0];
             this.authService.setLoader(true);
             let eventUrl: string;
@@ -732,6 +741,7 @@ export class MDashboardComponent implements OnInit {
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.userInfo = respData;
+                    
                 });
         }
     }

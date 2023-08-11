@@ -328,7 +328,6 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         }
 
         this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
-        console.log(this.surveyDetails);
         
 
         if (this.surveyDetails?.surevyImage[0]) {
@@ -337,7 +336,6 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
                 this.originalImage = this.surveyDetails?.surevyImage[0]?.survey_image
                 this.surveyDetails.surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyDetails?.surevyImage[0]?.survey_image.substring(20))) as string;
                 this.showImage = this.surveyDetails?.surevyImage[0]?.survey_image;
-                console.log(this.showImage);
                 
             } else if (this.surveyDetails?.surevyImage[0]?.surevy_document) {
                 this.hasPicture = false;
