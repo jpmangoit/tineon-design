@@ -289,21 +289,13 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
 
         if (this.surveyDetails['surveyNotificationOption']) {
             this.surveynotify = JSON.parse(this.surveyDetails['surveyNotificationOption']);
-            console.log(this.surveynotify);
-            console.log(this.surveyDetails);
-            
             // this.surveynotify = JSON.parse(this.surveynotify)
             let self = this;
             if (self.choiceData?.length > 0) {
                 self.choiceData.forEach((element: any, index: any) => {
                     
                     if (self.surveynotify?.length > 0) {
-                        console.log(self.surveynotify);
-                        console.log(element.value);
-                        
-                        
                         let noti_id: number = self.surveynotify.find((o: any) => o === element.value);
-                        
                         if (noti_id) {
                             const formArray: UntypedFormArray = this.updateServeyForm.get('surveyNotificationOption') as UntypedFormArray;
                             formArray.push(new UntypedFormControl(noti_id));
@@ -336,6 +328,8 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         }
 
         this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
+        console.log(this.surveyDetails);
+        
 
         if (this.surveyDetails?.surevyImage[0]) {
             if (this.surveyDetails?.surevyImage[0]?.survey_image) {

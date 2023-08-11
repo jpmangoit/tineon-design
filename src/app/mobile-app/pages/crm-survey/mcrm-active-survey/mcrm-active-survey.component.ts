@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/service/language.service';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service'
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -23,7 +24,7 @@ export class McrmActiveSurveyComponent implements OnInit {
     itemPerPage: number = 8;
     totalRecord: number = 0;
     totalActiveSurvey: number = 0;
-    limitPerPage: { value: string }[] = [
+    limitPerPage: { value: string }[] = [ 
         { value: '10' },
         { value: '20' },
         { value: '30' },
@@ -43,7 +44,8 @@ export class McrmActiveSurveyComponent implements OnInit {
         private notificationService: NotificationService,
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
     ) { }
 
     ngOnInit(): void {
@@ -84,6 +86,11 @@ export class McrmActiveSurveyComponent implements OnInit {
                             element.progress = this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
                         });
                         this.activeSurvey = respData['result']['survey'];
+                        this.activeSurvey.forEach((element:any) =>{
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20))) as string;
+                            } 
+                        }) 
                         this.totalActiveSurvey = respData.result['pagination']['rowCount'];
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
