@@ -235,23 +235,32 @@ export class MeventDetailComponent implements OnInit {
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
 
-                                        if (this.updateEventData.image != null) {
-                                            var url: string[] = this.updateEventData.image.split('\"');
-                                            let self = this;
-                                            self.updateFileArray = [];
-                                            if (url && url.length > 0) {
-                                                url.forEach(element => {
-                                                    self.showUpdateImage = true;
-                                                    if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                                        self.showUpdateImage = true;
-                                                        self.updateFileArray.push(element);
-                                                        self.updateImageurl = self.updateFileArray[0];
-                                                    } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                                        self.docFile = element;
-                                                    }
-                                                });
-                                            }
+                                        // if (this.updateEventData.image != null) {
+                                        //     var url: string[] = this.updateEventData.image.split('\"');
+                                        //     let self = this;
+                                        //     self.updateFileArray = [];
+                                        //     if (url && url.length > 0) {
+                                        //         url.forEach(element => {
+                                        //             self.showUpdateImage = true;
+                                        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
+                                        //                 self.showUpdateImage = true;
+                                        //                 self.updateFileArray.push(element);
+                                        //                 self.updateImageurl = self.updateFileArray[0];
+                                        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
+                                        //                 self.docFile = element;
+                                        //             }
+                                        //         });
+                                        //     }
+                                        // }
+
+                                        if (this.updateEventData?.baseImage[0]?.image) {
+                                            this.showUpdateImage = true;
+                                            this.updateEventData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.baseImage[0].image.substring(20)));
+                                            this.updateImageurl = this.updateEventData.baseImage[0].image
+
                                         }
+                                        
+
                                         if (this.updateEventData && this.updateEventData.users.length > 0) {
                                             // this.updateEventData.date_from = this.eventDate ? this.eventDate + 'T' + this.updateEventData.date_from.split(' ')[1] : this.updateEventData.date_from
                                             this.updateEventData.users.forEach(element => {

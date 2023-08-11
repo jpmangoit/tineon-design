@@ -43,7 +43,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     getclubInfo: ProfileDetails;
     thumbnail: string;
     alluserInformation: { member_id: number }[] = [];
-    thumb: SafeUrl;
+    thumb: SafeUrl; 
     docFile: string;
     fileArray: string[] = [];
     updateFileArray: string[] = [];

@@ -67,6 +67,7 @@ export class OrganizerAllTaskComponent implements OnInit {
 
                                     let cudate: Date = new Date();
                                     element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
+                                    
                                     if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
                                         element.remain = this.language.Survey.day_left;
                                     } else {
