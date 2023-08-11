@@ -175,7 +175,7 @@ border-radius: 14px;
     color: #fff;
     text-transform: uppercase;
     position: relative;
-top: -1px;
+    top: -1px;
 }
 .author-des span {
     font-size: 12px;
@@ -271,10 +271,23 @@ top: -1px;
     margin: 10px 0px 0 0;
     border: 1px solid #5293f4;
 }
+@media(max-width: 767px){
+    span.news-date {
+        font-size: 11px;
+        color: #8E8E93;
+        font-weight: 500;
+        }
+}
+
 @media (max-width: 460px) {
     .news-image-area {
         width: 40%;
         height: 100px;
+    }
+    .news-badge {
+        font-size: 9px;
+        font-weight: 700;
+        background: #FBC52D;
     }
 }
 button.red_more_btn {

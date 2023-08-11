@@ -1,10 +1,10 @@
 
 .profile_title_mobile {
-    font-size: 20px;
-    color: #555555;
+    font-size: 16px;
+    color:#030319;
     margin: 30px 0px 30px 0px;
     font-family: "Gellix", sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .title-btn-group.rp_sec {
@@ -39,7 +39,7 @@ button.btn-close {
 }
 h5.modal-title {
     font-size: 20px;
-    
+
     margin-bottom: 0px;
 }
 .modal-header{
@@ -48,7 +48,7 @@ h5.modal-title {
 .pass_fields label {
     display: inline-block;
     width: 100%;
-    
+
     font-size: 14px;
     color: #1D202F;
 }
@@ -121,7 +121,7 @@ button.btn.btn-secondary.change_btn {
 }
 
 body .profile_title {
- 
+
   margin: 20px 0;}
 
 .two-img {
@@ -189,6 +189,24 @@ body .profile_title {
 @media only screen and (max-width: 767px){
 	.profile_details {
     text-align: left;
+}
+.info_detail.profile-img label {
+    font-size: 12px;
+    color: #AEAEAE;
+    font-weight: 400;
+  }
+::ng-deep .mobile-red .switch_toggle input[type="checkbox"]:checked + label {
+    background: #D7DDE1 !important;
+}
+::ng-deep .mobile-red .switch_toggle input[type="checkbox"]:checked + label:after{
+    background: #e93608;
+}
+
+::ng-deep .mobile-green .switch_toggle input[type="checkbox"]:checked + label {
+  background: #D7DDE1 !important;
+}
+::ng-deep .mobile-green .switch_toggle input[type="checkbox"]:checked + label:after{
+  background: #20AE80;
 }
 }
 
