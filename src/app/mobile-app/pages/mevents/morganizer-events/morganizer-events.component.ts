@@ -166,21 +166,21 @@ export class MorganizerEventsComponent implements OnInit {
                                     element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                                 }
 
-                                var url: string[] = [];
-                                if (element.picture_video != null && element.picture_video != '') {
-                                    if (element.picture_video) {
-                                        url = element.picture_video.split('"');
-                                        if (url && url.length > 0) {
-                                            url.forEach((el) => {
-                                                if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                    element.picture_video = el;
-                                                }
-                                            });
-                                        } else {
-                                            element.picture_video = '';
-                                        }
-                                    }
-                                }
+                                // var url: string[] = [];
+                                // if (element.picture_video != null && element.picture_video != '') {
+                                //     if (element.picture_video) {
+                                //         url = element.picture_video.split('"');
+                                //         if (url && url.length > 0) {
+                                //             url.forEach((el) => {
+                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                //                     element.picture_video = el;
+                                //                 }
+                                //             });
+                                //         } else {
+                                //             element.picture_video = '';
+                                //         }
+                                //     }
+                                // }
 
                                 if (element && element.recurrence != '' && element.recurrence != null) {
                                     let recurrence: string = element.recurrence;
