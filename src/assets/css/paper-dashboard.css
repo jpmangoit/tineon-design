@@ -12554,6 +12554,12 @@ body .news-read-more a {
 }
 
 }
+@media(max-width: 767px) {
+
+    body .page-action-right {
+      width: auto !important;
+    }
+}
 
 @media(max-width:410px) {
     body .page-heading {
