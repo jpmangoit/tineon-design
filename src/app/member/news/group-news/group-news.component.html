@@ -17,15 +17,6 @@
                             <span class="club-badge"></span>
                         </div>
                         <div class="club-widget-description">
-                            <div class="club-box-outer">
-                                <div class="club-category" *ngIf="data.group"
-                                    routerLink="/group-detail/{{data.group.id}}">
-                                    {{ data.group.name }}
-                                </div>
-                                <span class="club-schedule">
-                                    {{data.news.publication_date_from| date : "dd. MMMM.yyyy"}} 
-                                </span>
-                            </div>
 
                             <div class="club-widget-des-inner">
                                 <div class="club-left-area" data-bs-toggle="modal" data-bs-target="#exModal1"
@@ -34,9 +25,19 @@
                                         <img onContextMenu="return false;"
                                             [src]="data.news?.news_image[0]?.news_image ? data.news?.news_image[0]?.news_image : '../../assets/img/no_image.png'"
                                             alt="{{ data.news?.title }}" loading="lazy">
-                                    </div>   
+                                    </div>
                                 </div>
                                 <div class="club-right-area">
+                                    <div class="club-box-outer">
+                                        <div class="club-category" *ngIf="data.group"
+                                            routerLink="/group-detail/{{data.group.id}}">
+                                            {{ data.group.name }}
+                                        </div>
+                                        <span class="club-schedule">
+                                            {{data.news.publication_date_from| date : "dd. MMMM.yyyy"}}
+                                        </span>
+                                    </div>
+
                                     <h5 [innerHTML]="data.news.title" data-bs-toggle="modal" data-bs-target="#exModal1"
                                         (click)="getNewsDetails(data.news.id)"></h5>
                                 </div>
@@ -101,7 +102,7 @@
                                                                     loading="lazy" />
 
 
-                                                                    
+
                                                                 <div class="dropdown action_group cm"
                                                                     *ngIf="newsData.author == userData.userId || userData.isAdmin">
                                                                     <button class="dropdown-toggle" type="button"
