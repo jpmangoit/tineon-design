@@ -137,7 +137,6 @@ export class OrganizerEventComponent implements OnInit {
 
                                     if ((element) && element.recurrence != '' && element.recurrence != null && element.recurrence != 'null' ) {
                                         let recurrence: string = element.recurrence;
-
                                         if (recurrence.includes('UNTIL') == false) {
                                             recurrence = recurrence + ';UNTIL=' + nextYear;
                                         }
@@ -168,7 +167,6 @@ export class OrganizerEventComponent implements OnInit {
                                                 }
                                                 // let recurring_time = (recurring_dates) ? recurring_dates[0].start_time + ':00.000Z' : element.date_from.split("T")["1"];
                                                 // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time + ':00.000Z' : element.date_to.split("T")["1"];
-
                                                 let rrDate: string = dt + "T" + recurring_time;
                                                 let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                                 let rrEvents: any = {
@@ -504,7 +502,6 @@ export class OrganizerEventComponent implements OnInit {
                                                     // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time + ':00.000Z' : element.date_to.split("T")["1"];
                                                     let rrDate: string = dt + "T" + recurring_time;
                                                     let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
-
                                                     let rrEvents: any = {
                                                         "id": element.id,
                                                         "type": '4',
@@ -791,7 +788,7 @@ export class OrganizerEventComponent implements OnInit {
                     count++;
             });
         }
-        console.log(this.calendarEvents);
+        // console.log(this.calendarEvents);
         this.calendarOptionsTimeGrid = {
             locale: this.selectLanguage,
             events: this.calendarEvents,
