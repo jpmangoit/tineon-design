@@ -262,8 +262,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                                     if (element.show_guest_list == 'true') {
                                         this.guestNews.push(element);
                                     }
-                                    console.log(this.guestNews);
-                                    
                                     this.guestNewsRecords = respData.pagination.rowCount;
                                 }
                             });

@@ -8,6 +8,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { Survey } from 'src/app/models/survey.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service'
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var $: any;
 })
 
 export class CrmActiveSurveyComponent implements OnInit, OnDestroy {
-    language: any;
+    language: any; 
     setTheme: ThemeType;
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
@@ -41,7 +42,8 @@ export class CrmActiveSurveyComponent implements OnInit, OnDestroy {
         private themes: ThemeService,
         private lang: LanguageService,
         private notificationService: NotificationService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -81,6 +83,11 @@ export class CrmActiveSurveyComponent implements OnInit, OnDestroy {
                             element.progress =  this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
                         });
                         this.activeSurvey = respData['result']['survey'];
+                        this.activeSurvey.forEach((element:any) =>{
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
+                            }
+                        })
                         this.totalActiveSurvey = respData.result['pagination']['rowCount'];
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

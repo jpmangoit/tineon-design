@@ -67,7 +67,6 @@ export class GlobalSearchComponent implements OnInit {
 
                         if (this.searchResult?.length > 0) {
                             this.searchResult.forEach(element => {
-                                console.log(element);
                                 
                                 if (element?.event) {
                                     element.event.forEach(elem => {
@@ -114,7 +113,6 @@ export class GlobalSearchComponent implements OnInit {
                                 }  
                                 if (element?.instructor) {
                                     element.instructor.forEach(elem => {
-                                        console.log(elem);  
                                         if (elem.instructor_image[0]?.instructor_image) {
                                             elem.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.instructor_image[0]?.instructor_image.substring(20)));
                                         }

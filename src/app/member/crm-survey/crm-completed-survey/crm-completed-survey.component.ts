@@ -7,6 +7,8 @@ import { Survey } from 'src/app/models/survey.model';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/service/theme.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -35,7 +37,14 @@ export class CrmCompletedSurveyComponent implements OnInit {
     ];
     private activatedSub: Subscription;
 
-    constructor(private authService: AuthServiceService, private notificationService: NotificationService, private themes: ThemeService, private lang: LanguageService) { }
+    constructor(
+        private authService: AuthServiceService,
+        private notificationService: NotificationService,
+        private themes: ThemeService,
+        private lang: LanguageService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -84,6 +93,11 @@ export class CrmCompletedSurveyComponent implements OnInit {
                             }
                         });
                         this.Completed = respData['result']['survey'];
+                        this.Completed.forEach((element: any) => {
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
+                            }
+                        })
                         this.totalCompletedSurvey = respData.result['pagination']['rowCount'];
                     }
                 }

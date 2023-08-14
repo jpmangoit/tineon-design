@@ -15,7 +15,6 @@ import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { error } from 'console';
 declare var $: any;
 
 @Component({
