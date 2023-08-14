@@ -958,7 +958,7 @@ span.club-badge {
     line-height: 18px;
     margin: -2px 0 10px;
     cursor: pointer;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;

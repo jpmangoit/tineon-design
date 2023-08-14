@@ -86,7 +86,7 @@ span.news-category {
     color: #192838;
     margin-top: 10px;
     margin-bottom: 0px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .news-content p {
