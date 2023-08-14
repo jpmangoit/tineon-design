@@ -15,7 +15,7 @@
                         <ng-container *ngFor='let data of dashboardData; let i=index'>
                             <div class="news-item large-item" *ngIf="i < 1">
                                 <div class="news-item-image" data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
-                                    <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                 </div>
                                 <div class="news-item-content"> 
                                     <div class="news-top-content">
@@ -62,7 +62,7 @@
                                                     <a [href]="item.redirectLink"  target="_blank" (click)="onClickBanner(item.id)">
                                                         <div class="news-item-image" [ngClass]="item.image == null ? 'no_image' : ''">
                                                             <img onContextMenu="return false;"
-                                                                [src]="item.image != null ? item.image: '../../../../assets/img/new-design/dashboard/news-lg-img.png'"
+                                                                [src]="item.image != null ? item.image: '../../../../assets/img/no_image.png'"
                                                                 alt="" loading="lazy">
                                                         </div>
                                                         <div class="news-item-content">
@@ -108,8 +108,8 @@
                                 <ng-container *ngFor='let data of dashboardData; let i=index'>
                                     <div class="multi-item-single" *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                         <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                                            <!-- <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls: '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="" loading="lazy"> -->
-                                            <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="" loading="lazy">
+                                            <!-- <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls: '../../../../assets/img/no_image.png'" alt="" loading="lazy"> -->
+                                            <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                         </div>
                                         <div class="news-item-content">
                                             <div class="news-top-content">
@@ -153,7 +153,7 @@
                                     <div class="multi-item-single" *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                         <div class="news-item-image"
                                             [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                                            <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls: '../../../../assets/img/new-design/dashboard/news-lg-img.png'" alt="" loading="lazy">
+                                            <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls: '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                         </div>
                                         <div class="news-item-content">
                                             <div class="news-top-content">
