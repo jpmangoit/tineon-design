@@ -36,7 +36,7 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.event">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.picture_video ? data.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="{{data.name}}" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data.event_images[0]?.event_image ? data.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.header.event}}</span>
@@ -66,7 +66,7 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.news">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls : '../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data.news_image[0]?.news_image != null ? data.news_image[0]?.news_image : '../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.create_news.title}}</span>
@@ -96,7 +96,7 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.courses">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.picture_video ? data.picture_video : '../../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data.course_image[0]?.course_image ? data.course_image[0]?.course_image : '../../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.courses.courses}}</span>
@@ -126,7 +126,8 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.room">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.image != '' ? data.image : '../../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
+
+                                    <img onContextMenu="return false;" [src]="data.room_image[0].room_image != '' ? data.room_image[0].room_image : '../../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.create_event.room_number}}</span>
@@ -157,7 +158,7 @@
                             <div class="news-widget">
                                 <div class="news-image">
                                     <img onContextMenu="return false;"
-                                    [src]="data.image != null ? data.image : '../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
+                                    [src]="data.group_images[0]?.group_image != null ? data.group_images[0]?.group_image : '../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.create_event.group}}</span>
@@ -188,7 +189,7 @@
                             <div class="news-widget">
                                 <div class="news-image">
                                     <img onContextMenu="return false;"
-                                     [src]="(data.image != null && data.image != '') ? data.image : '../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
+                                     [src]="(data.surevyImage[0]?.survey_image != null && data.surevyImage[0]?.survey_image != '') ? data.surevyImage[0]?.survey_image : '../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <h5><strong>{{data.title}}</strong></h5>
@@ -217,7 +218,7 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.task">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.image != null ? data.image : '../../../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data.task_image[0]?.task_image != null ? data.task_image[0]?.task_image : '../../../../assets/img/no_image.png'" alt="{{data.title}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.header.task}}</span>
@@ -247,7 +248,7 @@
                         <div class="organizer-event-grid" *ngFor="let data of item.instructor">
                             <div class="news-widget">
                                 <div class="news-image">
-                                    <img onContextMenu="return false;" [src]="data.add_img ? data.add_img : '../../../../assets/img/no_image.png'" alt="{{data.first_name}} {{data.last_name}}" loading="lazy">
+                                    <img onContextMenu="return false;" [src]="data.instructor_image[0]?.instructor_image  ? data.instructor_image[0]?.instructor_image  : '../../../../assets/img/no_image.png'" alt="{{data.first_name}} {{data.last_name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <span class="event-cat">{{language.room.instructor}}</span>
@@ -278,7 +279,7 @@
                             <div class="news-widget">
                                 <div class="news-image">
                                     <img onContextMenu="return false;"
-                                     [src]="(data.image != null && data.image != '') ? data.image : '../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
+                                     [src]="(data.faq_image[0]?.faq_image != null && data.faq_image[0]?.faq_image != '') ? data.faq_image[0]?.faq_image : '../../../assets/img/no_image.png'" alt="{{data.name}}" loading="lazy">
                                 </div>
                                 <div class="news-content">
                                     <h5> <strong>{{data.title}}</strong></h5>
