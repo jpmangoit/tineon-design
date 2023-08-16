@@ -4563,6 +4563,9 @@ button.navbar-toggler.open {
 
 .card .card-header:not([data-background-color]) {
     background-color: transparent;
+    border-bottom: 1px solid #EFF2FD !important;
+    padding-bottom: 7px !important;
+    margin-bottom: 0 !important;
 }
 
 .card .card-header .card-title {
