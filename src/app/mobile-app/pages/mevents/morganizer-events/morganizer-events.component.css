@@ -106,7 +106,7 @@ ul.tabs__items li a.active {
 }
 
 ::ng-deep body .event_box {
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.11) !important;
+  box-shadow: 0px 2px 48px 0px rgba(0, 0, 0, 0.04)!important;
   margin-bottom: 18px;
   padding: 0px;
 }
@@ -191,7 +191,8 @@ span.event-cat {
 .event-listing .event_box_right h6 {
     margin-top: 3px;
     font-size: 13px;
-    min-height: 40px;
+    min-height: auto;
+    width: 100%;
 }
 .event-listing span.event_month {
     padding-top: 0;
@@ -256,10 +257,14 @@ align-items: center;
     fill:#999
 }
 
+.event_box .event-action {
+   display: none;
+}
+
 .event_box_left {
-  width: 120px;
+  width: 95px;
   height: 100px;
-  margin-right: 15px;
+  margin-right: 0px;
   display: flex;
   align-items: center;
   border-radius: 10px 0px 0px 10px;
@@ -417,6 +422,11 @@ align-items: center;
         font-weight: 600;
         line-height: normal;
         letter-spacing: 1px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
     }
     .event-summery > span > span {
         color: #AEAEAE;
@@ -431,6 +441,7 @@ align-items: center;
         width: 100%;
       }
       .event_box_right {
-        width: 64%;
+       width: calc(100% - 95px);
+        padding: 0 12px;
     }
 }

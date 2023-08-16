@@ -215,6 +215,14 @@ span.author-date {
     padding: 0;
     border: 0;
 }
+ 
+
+
+::ng-deep body .card-header h5 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 14px;
+}
 .news-section-inner {
     display: flex;
     flex-wrap: nowrap;
@@ -227,6 +235,35 @@ span.author-date {
     position: relative;
     display: flex;
     justify-content: center;
+}
+
+.new-action {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.new-action a.green {
+  background: #41AE4C;
+  width: 79px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 15px 0 0;
+}
+.new-action a.red {
+  width: 79px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 0px 0 0;
+  background: #FB5F5F;
 }
 
 
@@ -373,7 +410,7 @@ span.news-date {
     display: flex;
     align-items: center;
     font-size: 11px;
-    color: #BDBDBD;
+    color: #BDBDBD; 
     font-weight: 700;
 }
 span.news-date img {
@@ -381,7 +418,7 @@ span.news-date img {
 }
 .club_widget .card-body {
     padding: 0;
-    margin-top: 21px;
+    margin-top: 10px;
 }
 .news-item.multi-item {
     width: 60%;
@@ -396,8 +433,8 @@ span.news-date img {
     cursor: pointer;
     border-radius: 15px;
     background: #F2F2F5;
-    box-shadow: 0 4px 4px #00000040;
     margin: 10px auto;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .multi-item-single .news-item-image,.multi-item-car-single .news-item-image {
