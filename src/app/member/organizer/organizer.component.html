@@ -98,8 +98,8 @@
             </div>
         </div>
     </div>
-    <!-- <app-organizer-event *ngIf="displayEvents == true && participateAccess.event == 'Yes'"></app-organizer-event> -->
-    <app-events-calendar *ngIf="displayEvents == true && participateAccess.event == 'Yes'"></app-events-calendar>
+    <app-organizer-event *ngIf="displayEvents == true && participateAccess.event == 'Yes'"></app-organizer-event>
+    <!-- <app-events-calendar *ngIf="displayEvents == true && participateAccess.event == 'Yes'"></app-events-calendar> -->
 
     <app-organizer-task *ngIf="displayTasks == true && participateAccess.task == 'Yes'"></app-organizer-task>
     <app-organizer-document [tabId]="doc_type" *ngIf="displayDocs == true && participateAccess.document == 'Yes'"></app-organizer-document>

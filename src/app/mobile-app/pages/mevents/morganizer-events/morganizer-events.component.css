@@ -135,7 +135,7 @@ overflow: hidden;
     white-space: normal;
     overflow: hidden;
     max-height: calc(2 * 2rem);
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 2;  
 }
 span.event-cat {
     padding-left: 0 !important;
@@ -406,9 +406,17 @@ align-items: center;
         height: auto;
     }
     .event_box_right h6 a {
-        color: #332F30;
+        /* color: #332F30;
         font-weight: 600;
+        font-size: 14px; */
+
+        color: #332F30;
+        font-family: Gellix;
         font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 1px;
     }
     .event-summery > span > span {
         color: #AEAEAE;
