@@ -18,7 +18,7 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { saveAs } from 'file-saver';
 declare var $: any;
 
-@Component({
+@Component({ 
     selector: 'app-event-detail',
     templateUrl: './event-detail.component.html',
     styleUrls: ['./event-detail.component.css']
