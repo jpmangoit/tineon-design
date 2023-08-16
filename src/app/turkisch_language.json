@@ -520,7 +520,9 @@
         "salesPartnerNews": "Satış Ortağı Haberleri",
         "news_type": "Tip",
         "group_news":"Grup haberleri",
-        "chairman": "Yönetim Kurulu"
+        "chairman": "Yönetim Kurulu",
+        "news_highlight": "News Highlight"
+
     },
     "create_group": {
         "title": "Grup oluştur",

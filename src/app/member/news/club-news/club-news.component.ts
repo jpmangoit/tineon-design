@@ -23,7 +23,7 @@ declare var $: any;
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
-
+ 
     language: any;
     role: string = '';
     thumbnail: string;
@@ -198,6 +198,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         this.dashboardData = respData;
+                        console.log(this.dashboardData );
+                        
                         
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element:any, index) => {

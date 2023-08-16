@@ -15,7 +15,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService} from "ngx-image-compress"; 
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -183,7 +183,8 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             visible_dropdown: ['', Validators.required],
             group_dropdown: [''],
             category_dropdown: [''],
-            show_guest: ['']
+            show_guest: [''],
+            isHighlighted: ['']
         });
     }
 
@@ -223,6 +224,8 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     setNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
+        console.log(this.newsData);
+        
 
         var type: { "id": string, "name": string }[];
         if (this.newsData.audience != null && this.newsData.audience == 2) {
@@ -269,6 +272,12 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         } else if (this.newsData.show_guest_list == 'true') {
             this.updateNewsForm.controls['show_guest'].setValue(this.newsData.show_guest_list);
         }
+
+        if (this.newsData.is_highlighted == 'false') {
+            this.updateNewsForm.controls['isHighlighted'].setValue('');
+        } else if (this.newsData.is_highlighted == 'true') {
+            this.updateNewsForm.controls['isHighlighted'].setValue(this.newsData.is_highlighted);
+        }
     }
 
     /**
@@ -286,6 +295,8 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             var tags:any = null;
             var attachment:any = null;
             var show_guest:boolean = this.updateNewsForm.get('show_guest').value;
+            var isHighlighted: boolean = this.updateNewsForm.get('isHighlighted').value;
+            
             var formData: any = new FormData();
             if(this.fileToReturn){
                 formData.append("file", this.updateNewsForm.get('add_image').value);
@@ -315,6 +326,13 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             else {
                 formData.append("show_guest_list", false);
             }
+
+            if (isHighlighted) {
+                formData.append("highlighted", isHighlighted.toString());
+            } else {
+                formData.append("highlighted", false);
+            }
+            
             formData.append("publication_date_to", new Date().toISOString());
             formData.append("publication_date_from", new Date().toISOString());
             this.authService.setLoader(true);

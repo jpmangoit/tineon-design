@@ -527,7 +527,8 @@
         "salesPartnerNews": "Vertriebspartner News",
         "news_type": "Typ",
         "group_news":"Gruppen",
-        "chairman": "Vorstand"
+        "chairman": "Vorstand",
+        "news_highlight": "News Highlight"
     },
     "create_group": {
         "title": "Gruppe erstellen",

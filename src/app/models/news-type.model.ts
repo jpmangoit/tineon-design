@@ -16,6 +16,7 @@ export interface NewsType {
   publication_date_from:string
   publication_date_to:string
   show_guest_list: string
+  is_highlighted: string
   tags: string
   team_id: number
   text: string
