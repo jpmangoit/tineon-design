@@ -354,7 +354,9 @@
         "show_guest": "Показать гостей",
         "add_picture": "Добавить фотографию (Дополнительно)",
         "cancel": "Отмена",
-        "save": "Создать"
+        "save": "Создать",
+        "news_highlight": "News Highlight"
+
     },
     "create_group": {
         "title": "Создать группу",

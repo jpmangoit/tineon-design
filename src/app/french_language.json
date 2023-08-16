@@ -525,7 +525,9 @@
         "salesPartnerNews":"Actualités des partenaires commerciaux",
         "news_type": "Taper",
         "group_news":"Actualités du groupe",
-        "chairman": "Conseil d'administration"
+        "chairman": "Conseil d'administration",
+        "news_highlight": "News Highlight"
+
     },
     "create_group":{
         "title":"Créer un groupe",

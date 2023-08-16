@@ -390,7 +390,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                     rules.forEach(function (val, index) {
                                         let yourDate: Date = new Date(val)
                                         let dt: string = yourDate.toISOString().split('T')[0];
-                                        let recurring_dates = element.recurring_dates;
+                                        let recurring_dates = JSON.parse(element.recurring_dates);
                                         var recurring_time: any
                                         var recurring_etime: any
                                         if (recurring_dates) {
@@ -463,10 +463,10 @@ export class ClubAppointmentsComponent implements OnInit {
                             } else {
                                 if (element && element.recurring_dates && element.recurring_dates != '' && element.recurring_dates != null) {
                                     const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to));
-                                    element.recurring_dates.forEach((dd: any, index: any) => {
+                                    JSON.parse(element.recurring_dates).forEach((dd: any, index: any) => {
                                         let yourDate1: Date = new Date(dd.date_from);
                                         let dt1: string = yourDate1.toISOString().split('T')[0];
-                                        let recurring_dates = element.recurring_dates;
+                                        let recurring_dates = JSON.parse(element.recurring_dates);
                                         var recurring_time: any
                                         var recurring_etime: any
                                         if (recurring_dates) {
@@ -541,7 +541,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                         dates.forEach(dd => {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
-                                            let recurring_dates = element.recurring_dates;
+                                            let recurring_dates = JSON.parse(element.recurring_dates);
                                             var recurring_time: any
                                             var recurring_etime: any
                                             if (recurring_dates) {

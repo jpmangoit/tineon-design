@@ -147,8 +147,43 @@
                                                     </div>
                                                 </div>
                                             </label>
-
                                         </div>
+
+
+                                        <div class="guest-option" *ngIf="!userDetails.isMember_light_admin">
+                                            <label class="guest_label">
+                                                <span>{{language.create_news.news_highlight}}</span>&nbsp;
+                                                <div class="switch_toggle">
+                                                    <input type="checkbox" id="switch_highlight" formControlName="isHighlighted"
+                                                        [ngClass]="{ 'is-invalid': submitted && createNewsForm.controls.isHighlighted.errors }" />
+                                                    <label for="switch_highlight">{{language.create_news.news_highlight}}</label>
+                                                    <div *ngIf="(createNewsForm.controls.isHighlighted.touched || submitted) && createNewsForm.controls.isHighlighted.errors?.required"
+                                                        class="text-danger">
+                                                        <div *ngIf="createNewsForm.controls.isHighlighted.errors.required">
+                                                            {{language.error_message.common_required}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <!-- <div class="guest-option" *ngIf="!userDetails.isMember_light_admin">
+                                            <label class="guest_label">
+                                                <span>{{language.create_news.news_highlight}}</span>&nbsp;
+                                                <div class="switch_toggle">
+                                                    <input type="checkbox" id="switch_highlight" formControlName="isHighlighted"
+                                                        [ngClass]="{ 'is-invalid': submitted && createNewsForm.controls.isHighlighted.errors }" />
+                                                    <label for="switch_highlight ">{{language.create_news.news_highlight}}</label>
+                                                    <div *ngIf="(createNewsForm.controls.isHighlighted.touched || submitted) && createNewsForm.controls.isHighlighted.errors?.required"
+                                                        class="text-danger">
+                                                        <div *ngIf="createNewsForm.controls.isHighlighted.errors.required">
+                                                            {{language.error_message.common_required}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>  -->
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="event_field">
