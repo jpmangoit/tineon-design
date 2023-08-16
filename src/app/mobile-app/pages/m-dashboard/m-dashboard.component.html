@@ -395,7 +395,8 @@
                 <!-- all event section widget end -->
                 <div class="all-event-calendar" *ngIf="displayEvents == true">
                     <ng-container *ngIf="!userDetails.isMember_light && !userDetails.isMember_light_admin">
-                        <app-mall-events></app-mall-events>
+                        <!-- <app-mall-events></app-mall-events> -->
+                        <app-morganizer-events></app-morganizer-events>
                     </ng-container>
                     <ng-container *ngIf="userDetails.isMember_light || userDetails.isMember_light_admin">
                         <div class="event-content-area">

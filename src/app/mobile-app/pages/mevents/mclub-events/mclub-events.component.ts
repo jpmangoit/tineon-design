@@ -25,7 +25,7 @@ export class MclubEventsComponent implements OnInit {
     displayAll: boolean = true;
     displayToday: boolean = false;
     displayUpcoming: boolean = false;
-    displayEvents: boolean = false; 
+    displayEvents: boolean = false;
     displayTickets: boolean = false;
     language: any;
     setTheme: ThemeType;
@@ -144,7 +144,7 @@ export class MclubEventsComponent implements OnInit {
             }
             this.authService.memberSendRequest('get', eventUrl, null)
                 .subscribe(
-                    (respData: any) => { 
+                    (respData: any) => {
                         this.authService.setLoader(false);
                         this.all_events = respData;
                         this.date = new Date(); // Today's date

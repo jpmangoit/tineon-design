@@ -49,6 +49,7 @@ export class MorganizerEventsComponent implements OnInit {
     visibilityDropdownList: { item_id: number, item_text: string }[] = [];
     userAccess: UserAccess;
     extensions: any;
+    showActionBtn: boolean = false;
 
     All() {
         this.displayAll = true;
@@ -120,11 +121,17 @@ export class MorganizerEventsComponent implements OnInit {
         this.extensions = appSetting.extensions;
         this.createAccess = this.userAccess[userRole].create;
         let currentUrl: string = this.router.url;
+        console.log(currentUrl);
+
+        currentUrl == '/organizer' ?  this.showActionBtn = true:  this.showActionBtn = false;
+
         if (currentUrl == '/clubwall/club-events') {
             this.calendarBtn = true;
         } else {
             this.calendarBtn = false;
         }
+
+
         if (sessionStorage.getItem('token')) {
             this.language = this.lang.getLanguaageFile();
             this.eventTypeList[1] = { name: this.language.create_event.club_event, class: "club-event-color" };
@@ -268,7 +275,7 @@ export class MorganizerEventsComponent implements OnInit {
                                                 self.upcomingEvent.push(rrEvents);
                                                 self.upcomingEventList.push(rrEvents);
                                             }
-                                            
+
                                         })
                                     }
                                 } else {
