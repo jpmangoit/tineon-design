@@ -18,7 +18,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-profile-edit',
-    templateUrl: './profile-edit.component.html',
+    templateUrl: './profile-edit.component.html', 
     styleUrls: ['./profile-edit.component.css'],
     providers: [DatePipe],
 })
