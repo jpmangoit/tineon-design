@@ -8,11 +8,13 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 @Component({
-  selector: 'app-mcrm-completed-survey',
-  templateUrl: './mcrm-completed-survey.component.html',
-  styleUrls: ['./mcrm-completed-survey.component.css']
+    selector: 'app-mcrm-completed-survey',
+    templateUrl: './mcrm-completed-survey.component.html',
+    styleUrls: ['./mcrm-completed-survey.component.css']
 })
 export class McrmCompletedSurveyComponent implements OnInit {
     language: any;
@@ -35,8 +37,15 @@ export class McrmCompletedSurveyComponent implements OnInit {
     private activatedSub: Subscription;
     alluserInformation: { member_id: number }[] = [];
 
-    constructor(private authService: AuthServiceService, private themes: ThemeService,private notificationService: NotificationService,
-        private lang: LanguageService, private confirmDialogService: ConfirmDialogService) { }
+    constructor(
+        private authService: AuthServiceService,
+        private themes: ThemeService,
+        private notificationService: NotificationService,
+        private lang: LanguageService,
+        private confirmDialogService: ConfirmDialogService,
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -85,6 +94,12 @@ export class McrmCompletedSurveyComponent implements OnInit {
                             }
                         });
                         this.Completed = respData['result']['survey'];
+                        this.Completed.forEach((element:any) =>{
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20))) as string;
+                            } 
+                        }) 
+
                         this.totalCompletedSurvey = respData.result['pagination']['rowCount'];
                     }
                 }
@@ -129,18 +144,18 @@ export class McrmCompletedSurveyComponent implements OnInit {
         this.getCompletedData()
     }
 
-        /**
-     * Function to check Allow to correct after the vote is given
-     * @param arrayOfObject
-     * @returns {boolean}
-     */
-        checkType(arrayOfObject: object) {
-            if (arrayOfObject['additional_cast_vote'] == 'true') {
-                return false;
-            } else if (arrayOfObject['additional_cast_vote'] == 'false') {
-                return false;
-            }
+    /**
+ * Function to check Allow to correct after the vote is given
+ * @param arrayOfObject
+ * @returns {boolean}
+ */
+    checkType(arrayOfObject: object) {
+        if (arrayOfObject['additional_cast_vote'] == 'true') {
+            return false;
+        } else if (arrayOfObject['additional_cast_vote'] == 'false') {
+            return false;
         }
+    }
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();

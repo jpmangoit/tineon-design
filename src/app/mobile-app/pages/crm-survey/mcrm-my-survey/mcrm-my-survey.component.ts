@@ -8,6 +8,7 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -45,7 +46,8 @@ export class McrmMySurveyComponent implements OnInit {
         private notificationService: NotificationService,
         private lang: LanguageService, 
         private themes: ThemeService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer,
         ) { }
 
     ngOnInit(): void {
@@ -90,6 +92,11 @@ export class McrmMySurveyComponent implements OnInit {
                             }
                         });
                         this.myVotes = respData['result']['survey'];
+                        this.myVotes.forEach((element:any) =>{
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20))) as string;
+                            } 
+                        }) 
                         this.totalMyVotes = respData.result['pagination']['rowCount'];
                     }
                 }

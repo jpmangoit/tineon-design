@@ -7,7 +7,7 @@
         </svg>
         <h1>{{language.header.event}}</h1> -->
     </div>
-    <div class="page-action-right" *ngIf="createAccess.event == 'Yes'">
+    <div class="page-action-right" *ngIf="createAccess.event == 'Yes' && showActionBtn">
         <button class="disabled" routerLink="/create-event">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
@@ -72,7 +72,7 @@
 <!-- tab area end -->
 <div class="app-content-area" *ngIf="displayAll == true">
     <div class="event-listing">
-       
+
         <div class="active_list upcoming-list">
             <!-- <div class="event_list_title">{{language.club_events.upcoming}}</div> -->
             <div class="event-content-area">
@@ -87,10 +87,10 @@
                             <div class="images">
                                 <!-- <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                 <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
-                            </div>   
+                            </div>
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>                             
+                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>
                             <div class="event-summery">
                                 <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>
@@ -136,10 +136,10 @@
                             <div class="images">
                                 <!-- <img onContextMenu="return false;" [src]="today.picture_video != null ? today.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                 <img onContextMenu="return false;" [src]="today.event_image && today.event_image != undefined ? today?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
-                            </div>                           
+                            </div>
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(today.id,today.date_from)">{{today.name}}</a></h6>                             
+                            <h6><a (click)="eventDetails(today.id,today.date_from)">{{today.name}}</a></h6>
                             <div class="event-summery">
                                 <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>
@@ -185,10 +185,10 @@
                             <div class="images">
                                 <!-- <img onContextMenu="return false;" [src]="upcoming.picture_video != null ? upcoming.picture_video : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                 <img onContextMenu="return false;" [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy">
-                            </div>                           
+                            </div>
                         </div>
                         <div class="event_box_right">
-                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>                             
+                            <h6><a (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a></h6>
                             <div class="event-summery">
                                 <span class="event_date"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" fill="#6563ff"/></svg>

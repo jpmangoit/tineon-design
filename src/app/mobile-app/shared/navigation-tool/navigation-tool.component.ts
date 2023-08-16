@@ -13,7 +13,7 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'app-navigation-tool',
-    templateUrl: './navigation-tool.component.html',
+    templateUrl: './navigation-tool.component.html', 
     styleUrls: ['./navigation-tool.component.css']
 })
 
@@ -113,6 +113,12 @@ export class NavigationToolComponent implements OnInit {
                         if (respData.isError == false) {
                             this.authService.setLoader(false);
                             this.advertisement = respData.result.advertisement;
+                            this.advertisement.forEach((element:any) => {
+                                if (element?.advertisement_image) {
+                                    element.advertisement_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.advertisement_image.substring(20)));
+                                }
+                                
+                            });
                             this.timeOut();
                         }
                     }

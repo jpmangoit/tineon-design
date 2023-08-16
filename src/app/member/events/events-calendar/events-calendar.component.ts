@@ -29,7 +29,7 @@ export const MY_DATE_FORMATS = {
   styleUrls: ['./events-calendar.component.css'],
   providers: [ { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },DatePipe]
 })
- 
+
 export class EventsCalendarComponent implements OnInit {
     language: any;
     setTheme: ThemeType;
@@ -57,7 +57,7 @@ export class EventsCalendarComponent implements OnInit {
     allCourses: any[];
     courseList: any[] = [];
     allData: any[] = [];
-    dateFilter = false; 
+    dateFilter = false;
     filterSelectedValue : any;
     selected = '0';
     currentUrl:string;
@@ -65,7 +65,7 @@ export class EventsCalendarComponent implements OnInit {
     headline_word_option: number = 0;
     minDate: Date;
     maxDate: Date;
-    
+
     constructor(
         private authService: AuthServiceService,
         private datePipe: DatePipe,
@@ -80,7 +80,7 @@ export class EventsCalendarComponent implements OnInit {
         const currentYear = new Date().getFullYear();
         this.minDate = new Date(currentYear - 1, 0, 1);
         this.maxDate = new Date(currentYear + 1, 11, 2);
-        
+
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -161,7 +161,7 @@ export class EventsCalendarComponent implements OnInit {
                                 //             });
                                 //         } else {
                                 //             element.picture_video = '';
-                                //         } 
+                                //         }
                                 //     }
                                 // }
                                 if (element?.recurrence && element?.recurrence != '' && element?.recurrence != null) {
@@ -329,26 +329,26 @@ export class EventsCalendarComponent implements OnInit {
                                     if (this.allCourses.hasOwnProperty(key)) {
                                         element = this.allCourses[key];
                                         var url: string[] = [];
-                                        if(element){
-                                            for (const key in element) {
-                                                if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                                    const value: string = element[key]
-                                                    if (key == 'picture_video' && value != null) {
-                                                        url = value.split('\"');
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        if (url && url.length > 0) {
-                                            let self = this;
-                                            url.forEach(el => {
-                                                if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                    element.picture_video = el;
-                                                }
-                                            });
-                                        } else {
-                                            element['picture_video'] = '';
-                                        }
+                                        // if(element){
+                                        //     for (const key in element) {
+                                        //         if (Object.prototype.hasOwnProperty.call(element, key)) {
+                                        //             const value: string = element[key]
+                                        //             if (key == 'picture_video' && value != null) {
+                                        //                 url = value.split('\"');
+                                        //             }
+                                        //         }
+                                        //     }
+                                        // }
+                                        // if (url && url.length > 0) {
+                                        //     let self = this;
+                                        //     url.forEach(el => {
+                                        //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                        //             element.picture_video = el;
+                                        //         }
+                                        //     });
+                                        // } else {
+                                        //     element['picture_video'] = '';
+                                        // }
                                         this.allData[key] = element;
                                         if (element && element.recurrence != '' && element.recurrence != null) {
                                             let recurrence: string = element.recurrence;

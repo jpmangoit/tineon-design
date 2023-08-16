@@ -49,6 +49,7 @@ export class MorganizerEventsComponent implements OnInit {
     visibilityDropdownList: { item_id: number, item_text: string }[] = [];
     userAccess: UserAccess;
     extensions: any;
+    showActionBtn: boolean = false;
 
     All() {
         this.displayAll = true;
@@ -120,11 +121,17 @@ export class MorganizerEventsComponent implements OnInit {
         this.extensions = appSetting.extensions;
         this.createAccess = this.userAccess[userRole].create;
         let currentUrl: string = this.router.url;
+        console.log(currentUrl);
+
+        currentUrl == '/organizer' ?  this.showActionBtn = true:  this.showActionBtn = false;
+
         if (currentUrl == '/clubwall/club-events') {
             this.calendarBtn = true;
         } else {
             this.calendarBtn = false;
         }
+
+
         if (sessionStorage.getItem('token')) {
             this.language = this.lang.getLanguaageFile();
             this.eventTypeList[1] = { name: this.language.create_event.club_event, class: "club-event-color" };
@@ -166,21 +173,21 @@ export class MorganizerEventsComponent implements OnInit {
                                     element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                                 }
 
-                                var url: string[] = [];
-                                if (element.picture_video != null && element.picture_video != '') {
-                                    if (element.picture_video) {
-                                        url = element.picture_video.split('"');
-                                        if (url && url.length > 0) {
-                                            url.forEach((el) => {
-                                                if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                                    element.picture_video = el;
-                                                }
-                                            });
-                                        } else {
-                                            element.picture_video = '';
-                                        }
-                                    }
-                                }
+                                // var url: string[] = [];
+                                // if (element.picture_video != null && element.picture_video != '') {
+                                //     if (element.picture_video) {
+                                //         url = element.picture_video.split('"');
+                                //         if (url && url.length > 0) {
+                                //             url.forEach((el) => {
+                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                                //                     element.picture_video = el;
+                                //                 }
+                                //             });
+                                //         } else {
+                                //             element.picture_video = '';
+                                //         }
+                                //     }
+                                // }
 
                                 if (element && element.recurrence != '' && element.recurrence != null) {
                                     let recurrence: string = element.recurrence;
@@ -268,7 +275,7 @@ export class MorganizerEventsComponent implements OnInit {
                                                 self.upcomingEvent.push(rrEvents);
                                                 self.upcomingEventList.push(rrEvents);
                                             }
-                                            
+
                                         })
                                     }
                                 } else {

@@ -19,7 +19,7 @@ export class McrmSurveyComponent implements OnInit {
     userAccess: UserAccess;
     userDetails: LoginDetails;
     userRole: string;
-    Activesurvey() {
+    Activesurvey() { 
         this.displaySurvey = true;
         this.displayVotes = false;
         this.displayComvotes = false;

@@ -33,7 +33,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         { value: '8' },
         { value: '16' },
         { value: '24' },
-        { value: '32' },
+        { value: '32' }, 
         { value: '40' }
     ];
     thumbnails: string[] = [];

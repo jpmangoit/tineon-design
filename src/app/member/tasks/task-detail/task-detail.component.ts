@@ -15,7 +15,6 @@ import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { error } from 'console';
 declare var $: any;
 
 @Component({
@@ -136,7 +135,6 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
-                                console.log(this.taskDetails);
 
                                 if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));

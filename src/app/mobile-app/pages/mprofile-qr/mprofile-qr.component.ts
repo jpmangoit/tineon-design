@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -17,7 +18,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class MprofileQrComponent implements OnInit {
     userRespData: string;
-    thumbnail: string;
+    thumbnail: string; 
     userDetails: LoginDetails;
     responseMessage: string = '';
     language: any;
@@ -26,10 +27,19 @@ export class MprofileQrComponent implements OnInit {
         public authService: AuthServiceService,
         private sanitizer: DomSanitizer,
         private router: Router,
-        private datePipe: DatePipe,private notificationService: NotificationService, private confirmDialogService: ConfirmDialogService,) { }
+        private datePipe: DatePipe,
+        private notificationService: NotificationService, 
+        private confirmDialogService: ConfirmDialogService,
+        private commonFunctionService: CommonFunctionService,
+
+        ) { }
 
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        if (this.userDetails['qrcode_url']) {
+            this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
+        }
+        
         this.language = this.lang.getLanguaageFile();
         this.getUserImage();
         this.getProfileData()

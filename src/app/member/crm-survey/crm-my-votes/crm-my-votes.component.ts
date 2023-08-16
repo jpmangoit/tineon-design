@@ -8,15 +8,16 @@ import { Survey } from 'src/app/models/survey.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
     selector: 'app-crm-my-votes',
     templateUrl: './crm-my-votes.component.html',
     styleUrls: ['./crm-my-votes.component.css']
-})
+}) 
 
-export class CrmMyVotesComponent implements OnInit, OnDestroy {
+export class CrmMyVotesComponent implements OnInit, OnDestroy { 
     language: any;
     setTheme: ThemeType;
     currentPageNmuber: number = 1;
@@ -43,7 +44,8 @@ export class CrmMyVotesComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
-        private commonFunctionService: CommonFunctionService
+        private commonFunctionService: CommonFunctionService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -92,6 +94,13 @@ export class CrmMyVotesComponent implements OnInit, OnDestroy {
                             element.progress = this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
                         });
                         this.myVotes = respData['result']['survey'];
+                        this.myVotes.forEach((element:any) =>{
+                            if (element?.picture) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
+                            }
+                        })
+                        
+
                         this.totalMyVotes = respData.result['pagination']['rowCount'];
                     }
                 }

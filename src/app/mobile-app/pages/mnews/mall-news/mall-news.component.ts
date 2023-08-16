@@ -23,7 +23,7 @@ export class MallNewsComponent implements OnInit {
     scroll: boolean = false;
     language: any;
     role: string = '';
-    responseMessage: string = null;
+    responseMessage: string = null; 
 
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
