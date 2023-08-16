@@ -15,12 +15,16 @@ body.login-page {
     margin-bottom: 30px;
 }
 
+
+
 .inner-title h2 {
     width: 100%;
     text-align: center;
     font-size: 2rem;
     font-family: 'Gellix', sans-serif;
 }
+
+
 
 .inner-title p {
     width: 100%;
@@ -72,6 +76,13 @@ body.login-page {
 
 .container {
     max-width: 1100px;
+}
+
+
+/* New Css for new design */ 
+
+::ng-deep html body .club_widget .card {
+  padding: 30px 28px !important;
 }
 
 @media(max-width:1500px) {

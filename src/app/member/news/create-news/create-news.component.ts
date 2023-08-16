@@ -38,7 +38,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
     file: File;
     fileToReturn: File;
     responseMessage: string = null;
-    visiblity: { id: number, name: string }[] = [];
+    visiblity: { id: number, name: string }[] = []; 
     groupSelectedItem: number[] = [];
     groupVisiblity: number;
     teamId: number;

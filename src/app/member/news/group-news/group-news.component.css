@@ -21,6 +21,7 @@ Style css start
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 6px;
 }
 
 .page-title i {
@@ -1210,9 +1211,9 @@ span.club-schedule {
     font-weight: 700;
     /* color: #aabdd9; */
     color: #BDBDBD;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 /* span.club-badge {
     width: 18px;
@@ -1258,8 +1259,8 @@ span.club-schedule {
     margin-left: 8px;
 } */
 .club-w-image {
-    width: 100px;
-    height: 100px;
+    width: 128px;
+    height: 91px;
     overflow: hidden;
     object-fit: cover;
     border-radius: 10px;
@@ -1279,9 +1280,59 @@ span.club-schedule {
 } */
 .club-left-area {
     margin-right: 0px;
-    width: 30%;
+    width: 128px;
     display: inline-block;
 }
+
+.right-group-inner-left {
+    display: flex;
+align-items: center;
+color: #BDBDBD;
+}
+
+.right-group-inner-left span div {
+    font-size: 8px;
+font-weight: 700;
+line-height: 9px;
+}
+
+.right-group-bottom {
+  border-top: 1px solid #BDBDBD;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-group-inner-right {
+  display: flex;
+  align-items: center;
+  color: #5293F4;
+font-size: 8px;
+font-weight: 500;
+}
+
+.right-group-inner-left span div.small-text {
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 8px;
+}
+
+.right-group-inner-left span.img {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 5px;
+}
+.right-group-inner-left span.img img {
+  width: 100%;
+  transform: scale(1.8);
+}
+
+
+
 .club-right-area h5 {
     color: #292929;
     font-size: 12px;
@@ -1359,10 +1410,11 @@ span.club-schedule {
 }
 .card.club-widget-appointment .card-header {
     padding: 0 !important;
+    margin-bottom: 21px !important;
 }
 .club-right-area {
-    width: 100%;
-    display: inline-block;
+    width: calc(100% - 142px);
+display: inline-block;
 }
 .news_detail_inner .card {
     box-shadow: none;
