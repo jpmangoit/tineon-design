@@ -198,8 +198,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         this.dashboardData = respData;
-                        console.log(this.dashboardData );
-                        
                         
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach((element:any, index) => {
@@ -239,6 +237,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @return  {Object}
     */
     getNewsDetails(newsid: number) {
+        $('#exModal').modal('hide');
         this.newImg = '';
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);

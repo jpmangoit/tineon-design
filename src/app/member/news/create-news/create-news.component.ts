@@ -293,13 +293,10 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
             formData.append("publication_date_to", new Date().toISOString());
             formData.append("publication_date_from", new Date().toISOString());
             
-            console.log(this.createNewsForm.value);
             
             this.authService.memberSendRequest('post', 'createNews', formData)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-                    
                     this.authService.setLoader(false);
                     this.submitted = false;
                     if (respData['isError'] == false) {

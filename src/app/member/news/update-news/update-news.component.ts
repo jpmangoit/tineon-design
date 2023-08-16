@@ -224,8 +224,6 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     setNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        console.log(this.newsData);
-        
 
         var type: { "id": string, "name": string }[];
         if (this.newsData.audience != null && this.newsData.audience == 2) {
