@@ -291,7 +291,8 @@ const mobile_routes: Routes = [
                 path: 'clubwall', component: MclubwallComponent, children: [
                     { path: 'club-news', component: MclubNewsComponent },
                     { path: 'club-dates', component: MclubDatesComponent },
-                    { path: 'club-events',component:MclubEventsComponent}
+                    { path: 'club-events',component:MorganizerDocumentsComponent}
+                    // { path: 'club-events',component:MclubEventsComponent}
                 ]
             },
             {
