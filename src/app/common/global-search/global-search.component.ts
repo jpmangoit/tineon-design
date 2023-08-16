@@ -67,7 +67,7 @@ export class GlobalSearchComponent implements OnInit {
 
                         if (this.searchResult?.length > 0) {
                             this.searchResult.forEach(element => {
-                                
+
                                 if (element?.event) {
                                     element.event.forEach(elem => {
                                         if (elem.event_images[0]?.event_image) {
@@ -87,7 +87,7 @@ export class GlobalSearchComponent implements OnInit {
                                         if (elem.surevyImage[0]?.survey_image) {
                                             elem.surevyImage[0].survey_image= this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.surevyImage[0]?.survey_image.substring(20)));
                                         }
-                                        
+
                                     });
                                 }
                                 if (element?.faq) {
@@ -103,35 +103,35 @@ export class GlobalSearchComponent implements OnInit {
                                             elem.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.news_image[0]?.news_image.substring(20)));
                                         }
                                     });
-                                }  
+                                }
                                 if (element?.groups) {
                                     element.groups.forEach(elem => {
                                         if (elem.group_images[0]?.group_image) {
                                             elem.group_images[0].group_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.group_images[0].group_image.substring(20)));
                                         }
                                     });
-                                }  
+                                }
                                 if (element?.instructor) {
                                     element.instructor.forEach(elem => {
                                         if (elem.instructor_image[0]?.instructor_image) {
                                             elem.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.instructor_image[0]?.instructor_image.substring(20)));
                                         }
                                     });
-                                } 
+                                }
                                 if (element?.task) {
-                                    element.task.forEach(elem => { 
+                                    element.task.forEach(elem => {
                                         if (elem.task_image[0]?.task_image) {
                                             elem.task_image[0].task_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.task_image[0]?.task_image.substring(20)));
                                         }
                                     });
-                                } 
+                                }
                                 if (element?.room) {
-                                    element.room.forEach(elem => { 
+                                    element.room.forEach(elem => {
                                         if (elem.room_image[0]?.room_image) {
                                             elem.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.room_image[0]?.room_image.substring(20)));
                                         }
                                     });
-                                } 
+                                }
                             });
                         }
                     } else if (respData['code'] == 400) {

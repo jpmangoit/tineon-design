@@ -169,9 +169,8 @@ export class InstructorDetailsComponent implements OnInit {
                             this.instructorDetails.user.thumbnail = null;
                         });
                 }else{
-                    this.instructorDetails.user.thumbnail = null;
+                    this.instructorDetails['user']['thumbnail'] = null;
                 }
-
                 if (this.instructorDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                     if (this.instructorDetails.updated_record && this.instructorDetails.updated_record != null) {
                         this.updateInstructorData = JSON.parse(this.instructorDetails.updated_record);
