@@ -12561,6 +12561,14 @@ body .news-read-more a {
     body .page-action-right {
       width: auto !important;
     }
+
+    .add_event_main.event_main {
+        background: #F8F8F8;
+    }
+
+    .group_detail_main {
+        background: #F8F8F8;
+    }
 }
 
 @media(max-width:410px) {
