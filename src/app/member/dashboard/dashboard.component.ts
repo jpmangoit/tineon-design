@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     userDetails: LoginDetails;
     userAccess: UserAccess;
     createAccess: CreateAccess;
-    participateAccess: ParticipateAccess; 
+    participateAccess: ParticipateAccess;
     authorizationAccess: AuthorizationAccess;
     clubNewsCount: number = 0;
     communityCount: number = 0;
@@ -142,8 +142,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                         if ( element?.event_images[0]?.event_image) {
                             element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.event_images[0]?.event_image.substring(20)));
                         }
-                    });  
-                } 
+                    });
+                }
             );
         this.authService.memberSendRequest('post', 'allCourses', null)
             .subscribe(
@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                         if (element?.course_image[0]?.course_image) {
                             element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                         }
-                    });  
+                    });
                 }
             );
         this.getUserImage();
@@ -235,12 +235,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('post', 'refresh-token', data)
             .subscribe(
                 (respData: any) => {
+                    console.log(respData);
+
                     if (respData['isError'] == false) {
                         sessionStorage.setItem('token', respData['result']['access_token']);
                         localStorage.setItem('token', respData['result']['access_token']);
                         sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
                         localStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                    } else if (respData['code'] == 400 || respData['code'] == 404) {
+                    } else if (respData['isError'] == true || respData['code'] == 400 || respData['code'] == 404) {
                         // this.authService.setLoader(false);
                     };
                 },

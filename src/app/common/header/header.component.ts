@@ -111,18 +111,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.showNotifications = [];
         this.showNotificationsss = this.notificationService.getNotifications();
 
-        // setTimeout(() => {
-        //     var uniqueArray: any;
-        //     uniqueArray = this.showNotificationsss.sort((a: any, b: any) => Number(new Date(a.created_at)) - Number(new Date(b.created_at))).reverse();
-        //     if (uniqueArray.length > 0) {
-        //         this.showNotifications = uniqueArray.filter((thing, index) => {
-        //             const _thing = JSON.stringify(thing);
-        //             return index === uniqueArray.findIndex(obj => {
-        //                 return JSON.stringify(obj) === _thing;
-        //             });
-        //         });
-        //     }
-        // }, 3000);
+        setTimeout(() => {
+            var uniqueArray: any;
+            uniqueArray = this.showNotificationsss.sort((a: any, b: any) => Number(new Date(a.created_at)) - Number(new Date(b.created_at))).reverse();
+            if (uniqueArray.length > 0) {
+                this.showNotifications = uniqueArray.filter((thing, index) => {
+                    const _thing = JSON.stringify(thing);
+                    return index === uniqueArray.findIndex(obj => {
+                        return JSON.stringify(obj) === _thing;
+                    });
+                });
+            }
+        }, 3000);
         this.displayFlag = localStorage.getItem('language');
         this.language = this.lang.getLanguaageFile();
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
@@ -134,20 +134,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
-        // clearInterval(this.getNotificationInterval);
-        // this.getNotificationInterval = window.setInterval(() => {
-        //     this.showNotificationsss = this.notificationService.getNotifications();
-        //     setTimeout(() => {
-        //         this.showNotifications = this.showNotificationsss.sort((a: any, b: any) => Number(new Date(a.created_at)) - Number(new Date(b.created_at))).reverse()
-        //         this.showNotifications = this.showNotifications.filter((thing, index) => {
-        //             const _thing = JSON.stringify(thing);
-        //             return index === this.showNotifications.findIndex(obj => {
-        //                 return JSON.stringify(obj) === _thing;
-        //             });
-        //         });
-        //     }, 10000);
-        //     this.chats();
-        // }, 30000);
+        clearInterval(this.getNotificationInterval);
+        this.getNotificationInterval = window.setInterval(() => {
+            this.showNotificationsss = this.notificationService.getNotifications();
+            setTimeout(() => {
+                this.showNotifications = this.showNotificationsss.sort((a: any, b: any) => Number(new Date(a.created_at)) - Number(new Date(b.created_at))).reverse()
+                this.showNotifications = this.showNotifications.filter((thing, index) => {
+                    const _thing = JSON.stringify(thing);
+                    return index === this.showNotifications.findIndex(obj => {
+                        return JSON.stringify(obj) === _thing;
+                    });
+                });
+            }, 10000);
+            this.chats();
+        }, 30000);
         this.globalSearchForm = this.formbuilder.group({
             searchOption: ['', [Validators.required]],
         });

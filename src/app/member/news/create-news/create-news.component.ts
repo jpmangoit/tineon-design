@@ -11,7 +11,7 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { CommunityGroup } from 'src/app/models/community-group.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
+import { ThemeType } from 'src/app/models/theme-type.model'; 
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { NgxImageCompressService } from "ngx-image-compress";
@@ -38,7 +38,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
     file: File;
     fileToReturn: File;
     responseMessage: string = null;
-    visiblity: { id: number, name: string }[] = [];
+    visiblity: { id: number, name: string }[] = []; 
     groupSelectedItem: number[] = [];
     groupVisiblity: number;
     teamId: number;
@@ -120,6 +120,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
 
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        
         this.teamId = this.userDetails.team_id;
         this.getGroup();
 
@@ -164,7 +165,8 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
             add_image: ['', Validators.required],
             visible_dropdown: ['', Validators.required],
             group_dropdown: [''],
-            show_guest: ['']
+            show_guest: [''],
+            isHighlighted: ['']
         });
     }
 
@@ -254,6 +256,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
             var tags: any = null;
             var attachment: any = null;
             var show_guest: boolean = this.createNewsForm.get('show_guest').value;
+            var isHighlighted: boolean = this.createNewsForm.get('isHighlighted').value;
             if (this.userDetails.roles[0] == 'admin') {
                 approved_statud = 1;
             }
@@ -279,9 +282,18 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
                 formData.append("show_guest_list", show_guest.toString());
             } else {
                 formData.append("show_guest_list", false);
+            } 
+
+            if (isHighlighted) {
+                formData.append("highlighted", isHighlighted.toString());
+            } else {
+                formData.append("highlighted", false);
             }
+
             formData.append("publication_date_to", new Date().toISOString());
             formData.append("publication_date_from", new Date().toISOString());
+            
+            
             this.authService.memberSendRequest('post', 'createNews', formData)
             .subscribe(
                 (respData: any) => {

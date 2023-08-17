@@ -522,7 +522,9 @@
         "salesPartnerNews":"Noticias de socios comerciales",
         "news_type": "Tipo",
         "group_news":"Noticias del grupo",
-        "chairman": "Junta Directiva"
+        "chairman": "Junta Directiva",
+        "news_highlight": "News Highlight"
+
     },
     "create_group": {
         "title": "Crear grupo",
