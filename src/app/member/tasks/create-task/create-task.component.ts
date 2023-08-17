@@ -20,7 +20,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-create-task',
-    templateUrl: './create-task.component.html',
+    templateUrl: './create-task.component.html', 
     styleUrls: ['./create-task.component.css'],
     providers: [DatePipe],
 })

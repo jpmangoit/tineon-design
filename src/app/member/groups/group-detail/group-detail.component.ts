@@ -26,7 +26,7 @@ declare var $: any;
 
 export class GroupDetailComponent implements OnInit {
 	language:any;
-	currentPageNmuber: number = 1;
+	currentPageNmuber: number = 1; 
 	itemPerPage: number = 8;
 	newsTotalRecords: number = 0;
 	limitPerPage:{value:string}[] = [
