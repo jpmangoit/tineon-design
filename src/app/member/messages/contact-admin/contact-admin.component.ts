@@ -47,6 +47,8 @@ export class ContactAdminComponent implements OnInit,OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
+		console.log(this.setTheme);
+		
 		this.language = this.lang.getLanguaageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		let userRole:string = this.userDetails.roles[0];

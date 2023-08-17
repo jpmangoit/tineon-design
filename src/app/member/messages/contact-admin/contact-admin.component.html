@@ -32,26 +32,31 @@
                                 </div>
                             </div>
                             <!-- profile details data End -->
+                            <div class="message_upload">
+                                <input type="file" (change)="uploadFile($event)" id="add_image">
+
+                                <span class="message_upload_overlay">
+                                    <div class="upload_label">
+                                        <img  onContextMenu="return false;" src="assets/img/attach.svg" alt="" loading="lazy">
+                                        <div class="up_text">
+                                            {{language.create_message.add_file}}<br><span>({{language.create_message.max}}20Mb)</span>
+                                        </div>
+                                        <!-- <div class="error alert alert-danger" *ngIf="responseMessage1"> {{responseMessage1}}</div> -->
+                                    </div>
+                                </span>
+                            </div>
                             <div class="profile_sub_btn message_sub_btn">
                                 <button type="submit" class="save_btn"
                                     [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
                                         'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
                                         'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">
-                                        <span [ngStyle]="{'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.create_message.send}}</span>
+                                        <span [ngStyle]="{'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">
+                                            {{language.create_message.send}}</span>
                                 </button>
-                                <div class="message_upload">
-                                    <input type="file" (change)="uploadFile($event)" id="add_image">
-                                    <span class="message_upload_overlay">
-                                        <div class="upload_label">
-                                            <img  onContextMenu="return false;" src="assets/img/attach.svg" alt="" loading="lazy">
-                                            <div class="up_text">
-                                                {{language.create_message.add_file}}<br><span>({{language.create_message.max}}20Mb)</span>
-                                            </div>
-                                            <!-- <div class="error alert alert-danger" *ngIf="responseMessage1"> {{responseMessage1}}</div> -->
-                                        </div>
-                                    </span>
-                                </div>
+                             
                             </div>
+
+
                         </div>
                     </form>
                 </div>
