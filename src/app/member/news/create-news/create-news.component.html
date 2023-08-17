@@ -131,6 +131,9 @@
                                                     {{language.error_message.common_required}}
                                                 </div>
                                             </div>
+                                            <div *ngIf="createNewsForm.controls.content.errors?.minlength">
+                                                {{language.error_message.min_length}}
+                                            </div>                                           
                                         </div>
                                         <div class="guest-option" *ngIf="!userDetails.isMember_light_admin">
                                             <label class="guest_label">
