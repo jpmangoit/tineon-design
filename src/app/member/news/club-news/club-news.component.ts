@@ -23,7 +23,7 @@ declare var $: any;
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
-
+ 
     language: any;
     role: string = '';
     thumbnail: string;
@@ -237,6 +237,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @return  {Object}
     */
     getNewsDetails(newsid: number) {
+        $('#exModal').modal('hide');
         this.newImg = '';
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);

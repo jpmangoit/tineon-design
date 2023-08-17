@@ -38,6 +38,9 @@
     },
     "profile": {
         "request_approval": " Your current Request is wating for the Approval"
+    },
+    "create_news":{
+        "news_highlight": "News Highlight"
     }
 }
 

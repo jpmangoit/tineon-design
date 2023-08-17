@@ -13,7 +13,7 @@
         "o_clock":"O'clock",
 
         "name": "Name",
-        "club_name": "Club Name",
+        "club_name": "Club Name", 
         "email": "E-mail",
         "association_purpose": "Association purpose",
         "number_of_members": "Membership count",
@@ -533,7 +533,9 @@
         "salesPartnerNews": "Sales Partner News",
         "news_type": "Type",
         "group_news":"Group",
-        "chairman": "Chairman"
+        "chairman": "Chairman",
+        "news_highlight": "News Highlight"
+
     },
     "create_group": {
         "title": "Create Group",
