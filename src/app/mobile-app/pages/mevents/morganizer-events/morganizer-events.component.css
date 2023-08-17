@@ -122,6 +122,7 @@ overflow: hidden;
 .event-summery {
     display: flex;
     flex-wrap: nowrap;
+    margin-bottom: 8px;
 }
 
 .event-summery span {
@@ -255,9 +256,7 @@ align-items: center;
   width: 18px;
 }
 
-.event-bottom > span svg path {
-    fill:#999
-}
+
 
 .event_box .event-action {
    display: none;
@@ -431,13 +430,13 @@ align-items: center;
         width: 100%;
     }
     .event-summery > span > span {
-        color: #AEAEAE;
+        color: #999;
         font-weight: 400;
     }
     .event-bottom > span {
         color: #999;
         font-weight: 400;
-        color: #AEAEAE;
+        color: #999;
       }
       .scroll-navigation .tabs__items {
         width: 100%;
