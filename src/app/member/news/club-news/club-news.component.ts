@@ -23,7 +23,7 @@ declare var $: any;
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
- 
+
     language: any;
     role: string = '';
     thumbnail: string;
@@ -71,7 +71,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             }
         },
         nav: false,
-        autoplay:true
+        autoplay: true
     };
 
     constructor(
@@ -86,7 +86,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        // this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -132,7 +131,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            this.bannerData = respData['result']['banner'] 
+                            this.bannerData = respData['result']['banner']
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
@@ -196,11 +195,13 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        // this.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         this.dashboardData = respData;
-                        
                         if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach((element:any, index) => {
+                            this.dashboardData.forEach((element: any, index) => {
+                                // if(element['is_highlighted']){
+                                //     element['is_highlighted'] = JSON.parse(element.is_highlighted) // Convert to boolean
+                                // }
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                 }
@@ -244,6 +245,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'get-news-by-id/' + newsid, null)
                 .subscribe(
                     (respData: any) => {
+                        this.authService.setLoader(false);
+
                         this.getFirstNews(respData);
                     }
                 );
@@ -256,10 +259,9 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Object}
     */
-        getFirstNews(allNews: NewsType) {
+    getFirstNews(allNews: NewsType) {
         let news: NewsType = allNews['result'];
         this.newsData = news;
-        
         if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {

@@ -79,8 +79,23 @@ export class GroupNewsComponent implements OnInit {
                             if (groupNewsItem?.news?.news_image[0]?.news_image) {
                                 groupNewsItem.news.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem?.news?.news_image[0]?.news_image.substring(20))) as string;
                             }
+                            if (groupNewsItem?.news?.user.member_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + groupNewsItem?.news?.user.member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+
+                                            let thumb = resppData;
+                                            groupNewsItem.news.user.image = thumb;
+                                        },
+                                        (error: any) => {
+                                            groupNewsItem.news.user.image = null;
+                                        })
+                            } else {
+                                groupNewsItem.user.image = '';
+                            }
                         });
                         this.dataLoaded.emit();
+
                         this.authService.setLoader(false);
                         // if (this.role == 'guest') {
                         //     this.guestGroupNews = [];
@@ -112,6 +127,7 @@ export class GroupNewsComponent implements OnInit {
             this.authService.memberSendRequest('get', 'get-news-by-id/' + newsid, null)
                 .subscribe(
                     (respData: any) => {
+                        this.authService.setLoader(false);
                         this.getFirstNews(respData);
                     }
                 );

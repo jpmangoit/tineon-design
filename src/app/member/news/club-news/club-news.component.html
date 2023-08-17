@@ -16,19 +16,10 @@
                         <span>{{language.group_news.no_news}}</span>
                     </div>
                     <ng-container *ngFor='let data of dashboardData; let i=index'>
-                        <!-- <h2>{{data.is_highlighted}}</h2> -->
-                        <div class="news-item large-item" [ngClass]="{'highlighted-news': data.is_highlighted}"
-                            *ngIf="i < 1">
-
-
-                            <!-- <div class="news-item-image" data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
-
-                                    <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
-                                    
-                                </div> -->
+                        <div class="news-item large-item"
+                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1">
 
                             <div class="news-item-image">
-
                                 <img onContextMenu="return false;"
                                     [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
                                     alt="" loading="lazy" data-bs-toggle="modal" data-bs-target="#exModal"
@@ -44,25 +35,7 @@
                                         (click)="deleteNews(data.id)">
                                         {{language.club_news.Delete}}</a>
                                 </div>
-
                             </div>
-
-
-                            <!-- <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                                    <img onContextMenu="return false;" 
-                                        [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
-                                    <div class="new-action">
-                                        <a  class="green"  *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))" (click)="updateNews(data.id)">
-                                            {{language.club_news.Edit}}</a>
-
-                                        <a  class="red"
-                                        *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"  (click)="deleteNews(data.id)">
-                                        {{language.club_news.Delete}}</a>
-                                    </div>
-                                </div> -->
-
-
-
 
                             <div class="news-item-content">
                                 <div class="news-top-content">
@@ -79,12 +52,12 @@
                                         {{data.created_at | date: 'd. MMMM y'}}
                                     </span>
                                 </div>
-                                <div class="news-description">
-                                    <h5 data-bs-toggle="modal" data-bs-target="#exModal"
-                                        (click)="getNewsDetails(data.id)">{{data.title}}</h5>
+                                <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
+                                    (click)="getNewsDetails(data.id)">
+                                    <h5>{{data.title}}</h5>
                                     <div class="news-summery">
                                         <p
-                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:500)+'...':(data.text)">
+                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:800)+'...':(data.text)">
                                         </p>
                                     </div>
                                 </div>
@@ -171,13 +144,15 @@
                                 </owl-carousel-o>
                             </div>
                             <ng-container *ngFor='let data of dashboardData; let i=index'>
-                                <div class="multi-item-single" [ngClass]="{'highlighted-news': data.is_highlighted}"
+                                <div class="multi-item-single"
+                                    [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
                                     *ngIf="i >= 1 && i <= newsDisplay">
+
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
-                                        <!-- <img onContextMenu="return false;" [src]="data.imageUrls != null ? data.imageUrls: '../../../../assets/img/no_image.png'" alt="" loading="lazy"> -->
                                         <img onContextMenu="return false;"
                                             [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
-                                            alt="" loading="lazy">
+                                            alt="" loading="lazy" data-bs-toggle="modal" data-bs-target="#exModal"
+                                            (click)="getNewsDetails(data.id)">
                                         <div class="new-action">
                                             <a class="green"
                                                 *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"
@@ -190,6 +165,7 @@
                                                 {{language.club_news.Delete}}</a>
                                         </div>
                                     </div>
+
                                     <div class="news-item-content">
                                         <div class="news-top-content">
                                             <span *ngIf="data.audience == '0'"
@@ -205,12 +181,16 @@
                                                 {{data.created_at | date: 'd. MMMM y'}}
                                             </span>
                                         </div>
-                                        <div class="news-description">
+                                        <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
+                                            (click)="getNewsDetails(data.id)">
                                             <h5>{{data.title}}</h5>
-                                            <p
-                                                [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:200)+'...':(data.text)">
-                                            </p>
+                                            <div class="news-summery">
+                                                <p
+                                                    [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:50)+'...':(data.text)">
+                                                </p>
+                                            </div>
                                         </div>
+
                                         <div class="news-footer">
                                             <div class="news-author">
                                                 <img onContextMenu="return false;"
@@ -328,7 +308,20 @@
                                                 <div class="news_image_container" (click)="viewImage = true">
                                                     <img class="image_news" onContextMenu="return false;"
                                                         [src]="newImg">
-                                                    <div class="dropdown action_group cm" *ngIf="(role !='guest')">
+
+                                                    <div class="new-action" *ngIf="(role !='guest')">
+                                                        <a class="green"
+                                                            *ngIf="((newsData.user.id == userData['userId']) || (role == 'admin'))"
+                                                            (click)="updateNews(newsData.id)">
+                                                            {{language.club_news.Edit}}</a>
+
+                                                        <a class="red"
+                                                            *ngIf="((newsData.user.id == userData['userId']) || (role == 'admin'))"
+                                                            (click)="deleteNews(newsData.id)">
+                                                            {{language.club_news.Delete}}</a>
+                                                    </div>
+
+                                                    <!-- <div class="dropdown action_group cm" *ngIf="(role !='guest')">
                                                         <button class="dropdown-toggle" type="button" (click)="onShow()"
                                                             *ngIf="((newsData.user.id == userData['userId']) || (role == 'admin'))">
                                                             <i class="fa fa-pencil"></i>
@@ -347,7 +340,7 @@
                                                             </li>
 
                                                         </ul>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                             <!--Remove the tag-->
@@ -368,23 +361,21 @@
                                                         {{language.dashboard.dashboardNewsAuthor}}
                                                         {{newsData?.user?.firstname}} {{newsData?.user?.lastname}}
                                                     </span>
-                                                    <span class="author-date">{{newsData.created_at | date: 'd. MMMM
-                                                        y'}}</span>
+                                                    <span class="author-date">{{newsData.created_at | date: 'd. MMMM y'}}</span>
                                                     <span class="author-status"
                                                         *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                                     <span class="author-status"
                                                         *ngIf="newsData.approved_status == 0 && newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id"
-                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != 0 || newsData.deny_by_id != null)">
+                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
                                                         {{language.dashboard.denyBy}}:-
-                                                        {{newsData.denybyuser.firstname}}
-                                                        {{newsData.denybyuser.lastname}}
+                                                        {{newsData.denybyuser?.firstname}}
+                                                        {{newsData.denybyuser?.lastname}}
                                                     </span>
                                                     <span class="deny-reason"
-                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != 0 || newsData.deny_by_id != null)">
+                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
                                                         {{language.dashboard.denyReason}}:- {{newsData.deny_reason}}
                                                     </span>
-
                                                 </div>
                                             </div>
                                         </div>
