@@ -12,7 +12,7 @@
 }
 .scroll-navigation .tabs__items {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin: 15px 0;
     padding: 0;
     list-style-type: none;
@@ -37,7 +37,7 @@
     font-family: "Gellix", sans-serif;
     font-weight: 600;
     margin-right: 18px;
-    border: 1px solid #eee;
+    border: 1px solid #EAEBEC;
 }
 .mobile-nav ul li a:hover {
     background: rgb(202 210 235 / 30%);
@@ -82,6 +82,8 @@ ul.tabs__items li a.active {
     }
     .scroll-navigation .tabs__items li{
         margin: 0 5px;
+        width: 30%;
+max-width: 126px;
     }
 }
 
@@ -120,6 +122,7 @@ overflow: hidden;
 .event-summery {
     display: flex;
     flex-wrap: nowrap;
+    margin-bottom: 8px;
 }
 
 .event-summery span {
@@ -253,9 +256,7 @@ align-items: center;
   width: 18px;
 }
 
-.event-bottom > span svg path {
-    fill:#999
-}
+
 
 .event_box .event-action {
    display: none;
@@ -429,13 +430,13 @@ align-items: center;
         width: 100%;
     }
     .event-summery > span > span {
-        color: #AEAEAE;
+        color: #999;
         font-weight: 400;
     }
     .event-bottom > span {
         color: #999;
         font-weight: 400;
-        color: #AEAEAE;
+        color: #999;
       }
       .scroll-navigation .tabs__items {
         width: 100%;

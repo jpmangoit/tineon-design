@@ -2,6 +2,16 @@
     <div class="add_event_main event_main">
         <div class="page-action">
             <div class="page-heading">
+                <span><svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.3071 6L8.58426 12L14.3071 18" stroke="#E93608" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> </span>
+                <span>
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.3372 20.1666C16.3998 20.1666 20.5039 16.0626 20.5039 11C20.5039 5.93737 16.3998 1.83331 11.3372 1.83331C6.27459 1.83331 2.17053 5.93737 2.17053 11C2.17053 16.0626 6.27459 20.1666 11.3372 20.1666Z" fill="#E93608" stroke="#E93608" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.3372 14.6667V11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.3372 7.33331H11.3463" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                </span>
                 <h1>{{language.header.event_details}}</h1>
             </div>
         </div>
@@ -434,16 +444,7 @@
                                         </svg>&nbsp;<span [ngStyle]="{'color':'#ffffff'}">{{language.create_event.DenyEvent}}</span>
                                     </button>
                                 </div>
-                                <div class="col-md-12 author-des">
-                                    <span class="author-status" *ngIf="eventDetails.approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
-                                    <span class="author-status" *ngIf="eventDetails.approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
-                                    <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1">
-                                        {{language.dashboard.denyBy}}:- {{eventDetails.denybyuser.firstname}} {{eventDetails.denybyuser.lastname}}
-                                    </span>
-                                    <span class="deny-reason" *ngIf="eventDetails.deny_by_id >= 1">
-                                        {{language.dashboard.denyReason}}:- {{eventDetails.deny_reason}}
-                                    </span>
-                                </div>
+                               
                                 <div class="col-md-12">
                                     <div class="group_detail_main">
                                         <div class="group_img_sec">

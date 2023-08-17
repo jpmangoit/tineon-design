@@ -44,8 +44,8 @@ div#profileSpinner {
 .group-box-img {
     width: 100%;
     padding: 15px;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.05);
     border-radius: 10px;
+    box-shadow: 0px 2px 48px 0px rgba(0, 0, 0, 0.04);
 }
 
 .title-box h5 {
@@ -495,7 +495,7 @@ justify-content: flex-end;
 }
 
 .title-box .title {
-  width: 80%;
+  width: 70%;
   display: flex;
 flex-wrap: wrap;
 align-items: center;
@@ -503,7 +503,7 @@ gap: 0 15px;
 }
 
 .title-box .title + div {
-    width: 20%;
+    width: 30%;
 }
 
 .title-box .title span {
@@ -512,7 +512,7 @@ gap: 0 15px;
     font-size: 12px;
     align-items: center;
     gap: 5px;
-    color: #AEAEAE;
+    color: #999;
     font-weight: 400;
 }
 .title-box .title span svg {
@@ -671,8 +671,8 @@ justify-content: flex-start;
 }
 
 .course-price span:first-child {
-    margin-right: 5px;
-    padding-right: 5px;
+    margin-right: 0px;
+    padding-right: 0px;
 }
 
 .event-top-description svg {
@@ -873,6 +873,19 @@ span.deny-reason {
     text-transform: uppercase;
     margin: 0;
     padding-left: 0px;
+}
+
+::ng-deep .mobile-green .page-heading span:first-child svg path{
+   stroke:#20AE80 !important;
+}
+
+::ng-deep .mobile-green .page-heading span:first-child + span svg path {
+   fill:#20AE80;
+   
+}
+
+::ng-deep .mobile-green .page-heading span:first-child + span svg path:first-child {
+   stroke:#20AE80 !important;
 }
 
 @media (max-width:767px){
