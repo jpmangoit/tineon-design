@@ -43,9 +43,9 @@ div#profileSpinner {
 
 .group-box-img {
     width: 100%;
-    padding: 15px;
+    padding: 15px 15px 10px;
     border-radius: 10px;
-    box-shadow: 0px 2px 48px 0px rgba(0, 0, 0, 0.04);
+    box-shadow:  0px 4px 10px 0px rgba(0, 0, 0, 0.104);
 }
 
 .title-box h5 {
@@ -576,9 +576,10 @@ gap: 0 15px;
 }
 
 .card-body.top-box .author-img {
-  width: 40px !important;
-  height: 40px !important;
-  flex: 0 0 40px;
+ width: 30px !important;
+height: 30px !important;
+flex: 0 0 30px;
+border: 1px solid #fff;
 }
 
 .card-body.top-box .widget-app-content {
@@ -604,12 +605,14 @@ justify-content: flex-start;
 }
 .card-body.top-box .widget-app-content > div {
   display: none;
-  width: 22px;
+  width: 16px;
 }
 
 .card-body.top-box.ng-star-inserted {
   width: 100%;
   display: inline-block;
+  margin-top: 13px;
+  border-top: 1px solid #F2F1F5;
 }
 
 .btn-yellow {
@@ -626,7 +629,9 @@ justify-content: flex-start;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 4px;
+  padding-bottom: 0;
+  padding-top: 6px;
+  border: none;
 }
 
 .card-body.top-box.ng-star-inserted .widget-app-content span {
@@ -660,14 +665,14 @@ justify-content: flex-start;
 
 .organ-div {
   padding: 15px;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 11px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   width: 100%;
-  margin-top: 17px;
+  margin-top: 19px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .course-price span:first-child {
@@ -905,7 +910,7 @@ span.deny-reason {
         height: auto;
     }
     .page-heading {
-        margin-bottom: 0;
+        margin-bottom: 23px;
         margin-top: 0;
         padding-top: 25px;
     }
