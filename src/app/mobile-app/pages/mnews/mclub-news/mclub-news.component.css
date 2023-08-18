@@ -168,6 +168,12 @@ border-radius: 14px;
     display: none;
 }
 
+.show_more_btn {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .news-badge {
     font-size: 9px;
     font-weight: 600;
@@ -282,6 +288,10 @@ border-radius: 14px;
         color: #8E8E93;
         font-weight: 500;
         }
+
+   body .modal-backdrop {
+     background-color: #F8F8F8;
+   }    
 }
 
 @media (max-width: 460px) {
@@ -296,5 +306,5 @@ border-radius: 14px;
     }
 }
 button.red_more_btn {
-    margin-left: 87px !important;
+    margin-left: 0px !important;
 }
