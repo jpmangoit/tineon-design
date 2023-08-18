@@ -362,12 +362,12 @@ ul.bunch_drop.show {
 }
 .dropdown.action_group button {
     border: none;
-    font-size: 24px;
+    font-size: 14px;
     border-radius: 5px !important;
     background: #E5E9F2;
-    height: 32px;
-    /* color: #fff; */
+    height: 24px;
     box-shadow: 0px 1px 4px -1px #ccc;
+    margin: 5px;
 }
 
 .dropdown.action_group{
