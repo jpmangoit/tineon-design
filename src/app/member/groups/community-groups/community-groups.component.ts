@@ -21,7 +21,7 @@ declare var $: any;
     styleUrls: ['./community-groups.component.css'],
 })
 
-export class CommunityGroupsComponent implements OnInit, OnDestroy { 
+export class CommunityGroupsComponent implements OnInit, OnDestroy {
     language: any;
     groupData: CommunityGroup[] = [];
     groupJoinData: CommunityGroup[];
@@ -90,13 +90,14 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         });
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        if (this.allowAdvertisment  == 0 ){
+        if (this.allowAdvertisment == 0) {
             this.getDesktopAllGroupBanner();
         }
         this.user_Id = localStorage.getItem('user-id');
 
         this.language = this.lang.getLanguaageFile();
         this.teamAllGroups();
+        this.allGroups();
         this.joinAllGroups();
         this.groupsYouManage();
 
@@ -108,7 +109,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         }, 2000);
     }
 
-    /**
+    /** 
      * Function for get All the Banners
      * @author  MangoIt Solutions(M)
      * @param   {}
@@ -177,22 +178,52 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
      * @return  {Array of Object} all the groups
      */
     teamAllGroups() {
-        this.authService.setLoader(true);
-        this.groupData = [];
+        // this.authService.setLoader(true);
+        // this.groupData = [];
         this.authService.memberSendRequest('get', 'getGroupsNotParticipantPagination/user/' + this.user_Id + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
-                this.groupData = respData['result']['group'];
-                // console.log(this.groupData);
-                
-                this.groupData.forEach((element:any) => {
-                    if (element.group_images[0]?.['group_image']) {
-                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
-                    }
-                })
-                this.totalgroupData = respData['result']['pagination']['rowCount'];
-                this.authService.setLoader(false);
+                // console.log( respData['result']['group'] );
+                // this.groupData = respData['result']['group'];
+
+                // this.groupData.forEach((element: any) => {
+                //     if (element.group_images[0]?.['group_image']) {
+                //         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                //     }
+                // })
+                // this.totalgroupData = respData['result']['pagination']['rowCount'];
+                // this.authService.setLoader(false);
             });
     }
+
+    allGroups() {
+        this.authService.setLoader(true);
+        this.groupData = [];
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+            console.log(respData);
+            this.groupData = respData['groups'];
+            this.groupData.forEach((element: any) => {
+                if (element.group_images[0]?.['group_image']) {
+                    element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                }
+            })
+            this.totalgroupData = respData['pagination']['rowCount'];
+            this.authService.setLoader(false);
+        })
+
+    }
+
+
+    shouldDisplayButton(element: any): boolean {
+        // const user_id = localStorage.getItem('user_id');
+        // console.log(element);
+        // console.log(this.user_Id );
+        
+        const participant = element.participants.find((p: any) => p.user_id === this.user_Id && p.approved_status === 0);
+        console.log();
+        
+        return !!participant;
+    }
+
 
     /**
     * Function to get all the joined groups of clubs
@@ -207,8 +238,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
                 // console.log(this.groupJoinData);
-                
-                this.groupJoinData.forEach((element:any) => {
+
+                this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
@@ -229,7 +260,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.groupsYouManageData = [];
         this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null).subscribe((respData: any) => {
             this.groupsYouManageData = respData.reverse();
-            this.groupsYouManageData.forEach((element:any) => {
+            this.groupsYouManageData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
@@ -282,7 +313,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            self.teamAllGroups();
+                            // self.teamAllGroups();
+                            self.allGroups();
                             self.joinAllGroups();
                         }, 3000);
                     });
@@ -299,18 +331,19 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     */
     leaveGroup(groupId: number) {
         let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup,function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.user_Id + '/group_id/' + groupId, null)
-                    .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
-                        setTimeout(() => {
-                            self.teamAllGroups();
-                            self.joinAllGroups();
-                        }, 3000);
-                    });
-            },
+        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.user_Id + '/group_id/' + groupId, null)
+                .subscribe((respData: any) => {
+                    self.authService.setLoader(false);
+                    self.notificationService.showSuccess(respData['result']['message'], null);
+                    setTimeout(() => {
+                        // self.teamAllGroups();
+                        self.allGroups();
+                        self.joinAllGroups();
+                    }, 3000);
+                });
+        },
             function () { }
         );
     }
@@ -332,7 +365,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         self.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
                             self.joinAllGroups();
-                            self. groupsYouManage()
+                            self.groupsYouManage()
                         }, 2000);
                     }
                 )
@@ -341,12 +374,14 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     }
 
     /**
-   * Function is used to change the page of pagination
-   * @author  MangoIt Solutions(M)
-   */
+    * Function is used to change the page of pagination
+    * @author  MangoIt Solutions(M)
+    */
     pageChanged(event: number) {
         this.currentPageNmuber = event;
-        this.teamAllGroups();
+        // this.teamAllGroups();
+        this.allGroups();
+
     }
 
     /**
@@ -361,7 +396,9 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                 this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
-                this.teamAllGroups();
+                // this.teamAllGroups();
+                this.allGroups();
+
             }
         }
     }
@@ -375,7 +412,9 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
             limit = this.itemPerPage;
         }
         this.itemPerPage = limit;
-        this.teamAllGroups();
+        // this.teamAllGroups();
+        this.allGroups();
+
     }
 
     ngOnDestroy(): void {

@@ -95,6 +95,15 @@
         "community_subtext_chat": "Messages / Chats",
         "organizer_subtext_tasks": "Tasks / Events",
 
+        "club_wall_subtext_new_desk": "News",
+        "club_wall_subtext_news_desk": "Beiträge",
+
+        "community_subtext_msg_desk": "Nachrichten",
+        "community_subtext_chat_desk": "Chats",
+
+        "organizer_subtext_new_desk": "Aufgaben",
+        "organizer_subtext_tasks_desk": "Events",
+
         "club_wall_subtext_new_mob": "News",
         "club_wall_subtext_news_mob": "Beiträge",
 
