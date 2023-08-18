@@ -12437,8 +12437,8 @@ body .news-listing  .news-items {
 }
 
 .user-content {
-    color: #AEAEAE;
-    font-size: 12px;
+  color: #999;
+  font-size: 14px;
 }
 span.user-name {
     font-size: 14px;
@@ -12500,11 +12500,13 @@ height: 56px !important;
 .mobile-green .tab-button button.active {
   background: rgb(32,174,128);
   background: linear-gradient(90deg, rgb(32, 174, 128) 0%, rgba(32, 174, 128, 0.8) 100%) !important;
+  border-color:#20AE80;
 }
 
 .mobile-red .tab-button button.active {
  background: rgb(233,54,8);
  background: linear-gradient(90deg, rgba(233,54,8,1) 0%, rgba(231,96,61,1) 100%) !important;
+ border-color:#E93608;
 }
 
 .mobile-red span.mat-button-wrapper path {
