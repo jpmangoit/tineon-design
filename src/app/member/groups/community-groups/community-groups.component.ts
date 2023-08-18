@@ -199,29 +199,48 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupData = [];
         this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
-            console.log(respData);
+            // console.log(respData);
             this.groupData = respData['groups'];
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
+
+                console.log(element);
+                element.participants.forEach((element:any) => {
+                        if(element.user_Id  == parseInt(this.user_Id)){
+                            if(!(element.created_by == parseInt(this.user_Id))){
+                                if(element.approved_status == 0){
+                                    //join button
+                                }else if(element.approved_status == 1){
+                                    //Leave button
+                                }
+                            }
+                        }else{
+                            // Join button
+                        }
+                        
+                });
+                
+                // Condition for displaying the button
+                // const user_id = localStorage.getItem('user-id');
+                // const participant = element.participants.find((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 0 && !parseInt(user_id));
+                // element.displayJoinButton = !!participant;
+                // element.displayLeaveButton = !participant;
+               // Check the conditions for displaying the buttons
+                // const user_id = localStorage.getItem('user-id');
+                // const created_by_id = element.created_by;
+                // const isParticipant = element.participants.some((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 0);
+                // const isCreator = parseInt(user_id) === created_by_id;
+                // element.displayJoinButton = !!isParticipant ;
+                // element.displayLeaveButton = isParticipant && !isCreator && element.participants.some((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 1);
             })
+            console.log(this.groupData);
+
             this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         })
 
-    }
-
-
-    shouldDisplayButton(element: any): boolean {
-        // const user_id = localStorage.getItem('user_id');
-        // console.log(element);
-        // console.log(this.user_Id );
-        
-        const participant = element.participants.find((p: any) => p.user_id === this.user_Id && p.approved_status === 0);
-        console.log();
-        
-        return !!participant;
     }
 
 
