@@ -161,8 +161,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
 
         this.createNewsForm = this.formBuilder.group({
             title: ['', [Validators.required, this.noWhitespace]],
-            content: ['', [Validators.required, Validators.minLength(1000)]],
-            //content: ['', Validators.required],
+            content: ['', Validators.required],
             add_image: ['', Validators.required],
             visible_dropdown: ['', Validators.required],
             group_dropdown: [''],
