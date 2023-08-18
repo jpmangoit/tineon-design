@@ -24,7 +24,7 @@ declare var $: any;
 
 export class CreateGroupComponent implements OnInit ,OnDestroy{
     language:any;
-    submitted:boolean = false;
+    submitted:boolean = false; 
     userDetails:LoginDetails;
     createGroupForm: UntypedFormGroup;
     showParticipants:boolean = false;
@@ -245,6 +245,7 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                     if (key == 'add_image') {
                         formData.append('file', element);
                     }
+
                     if (key == 'participants') {
                         var userArr: { user_id: string, approved_status: number, keycloak_id:string }[] = [];
                         if(element && element.length > 0){
@@ -276,6 +277,7 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                     }
                 }
             }
+            
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'createGroup', formData)
             .subscribe(

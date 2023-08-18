@@ -32,7 +32,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
     visiblityDropdownSettings:IDropdownSettings;
     dropdownSettings:IDropdownSettings;
     groupDropdownSettings:IDropdownSettings;
-    userDetails: LoginDetails;
+    userDetails: LoginDetails; 
     imageChangedEvent: Event = null;
     croppedImage: string = '';
     file: File;
