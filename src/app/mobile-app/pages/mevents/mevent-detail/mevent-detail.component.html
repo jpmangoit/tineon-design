@@ -12,7 +12,7 @@
                         <path d="M11.3372 7.33331H11.3463" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg> 
                 </span>
-                <h1>{{language.header.event_details}}</h1>
+                <h1>{{language.header.event_details}}</h1> 
             </div>
         </div>
         <div class="event-detail-main">
@@ -179,7 +179,7 @@
                                                                     type="checkbox" style="opacity: 1;"
                                                                     type="checkbox" checked="checked" disabled="disabled">
 
-                                                                <h5 *ngIf="eventDetails.eventTask.status != 2" class="" style="margin-left: 35px;">
+                                                                <h5 *ngIf="eventDetails.eventTask.status != 2" class="" >
                                                                     {{eventDetails.eventTask.title}}
                                                                 </h5>
                                                                 <h5 *ngIf="eventDetails.eventTask.status == 2" class="">{{eventDetails.eventTask.title}}</h5>
@@ -381,7 +381,7 @@
                                                         <div class="event-title">
                                                             <div class="sub-title">
                                                                 <input class="check-style" type="checkbox" style="opacity: 1;" disabled="disabled">
-                                                                <h5 *ngIf="updatedTask.status != 2" class="" style="margin-left: 35px;">{{updatedTask.title}}</h5>
+                                                                <h5 *ngIf="updatedTask.status != 2" class="" >{{updatedTask.title}}</h5> 
                                                                 <h5 *ngIf="updatedTask.status == 2" class=""> {{updatedTask.title}}</h5>
                                                             </div>
                                                             <span>
@@ -585,7 +585,7 @@
                                                             type="checkbox" style="opacity: 1;"
                                                             type="checkbox" checked="checked" disabled="disabled">
 
-                                                        <h5 *ngIf="eventDetails.eventTask.status != 2" class="" style="margin-left: 35px;">
+                                                        <h5 *ngIf="eventDetails.eventTask.status != 2" class="" >
                                                             {{eventDetails.eventTask.title}}
                                                         </h5>
                                                         <h5 *ngIf="eventDetails.eventTask.status == 2" class="">{{eventDetails.eventTask.title}}</h5>
