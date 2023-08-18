@@ -11519,7 +11519,7 @@ button.mat-menu-item {
 }
 .modal-content {
     border-radius: 20px;
-    border: none;
+    border: 1px solid #353535;
 }
 .modal-header h1,
 .modal-header h3 {
@@ -11705,8 +11705,8 @@ span.author-date {
     text-transform: uppercase;
 }
 button.btn-close svg {
-    width: 16px;
-    height: 16px;
+   width: 24px;
+height: 24px
 }
 .modal-read-more.profile_sub_btn button {
     color: #508eec;
@@ -12480,12 +12480,31 @@ border: none !important;
 font-weight: 400;
 font-size: 14px;
 color: #353535 !important;
-min-width: 33.3%;
+min-width: calc(33.3% -  10px);
 background: #EBF0FF;
 line-height: 37px;
 font-size: 14px !important;
+position: relative;
+margin: 0 5px;
 
 
+}
+
+
+.tab-button button:after {
+  width: 2px;
+  height: 18px;
+  background: #EAEBEC;
+  display: inline-block;
+  content: "";
+  border-radius: 5px;
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.tab-button button:last-child::after {
+  background: none;
 }
 
 .tab-button button {
@@ -12571,6 +12590,11 @@ body .news-read-more a {
     .group_detail_main {
         background: #F8F8F8;
     }
+
+    body .modal-backdrop {
+        background: #fff;
+    }
+    
 }
 
 @media(max-width:410px) {
