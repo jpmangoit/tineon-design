@@ -344,7 +344,7 @@ align-items: center;
         font-size: 14px;
     }
 
-    body .page-heading {
+    ::ng-deep body .page-heading {
         display: none !important;
     }
 
@@ -447,20 +447,6 @@ align-items: center;
        width: calc(100% - 122px);
         padding: 0 12px;
     }
-
-    .event-bottom > div {
-  display: flex;
-  gap: 5px;
-  max-width: 50%;
-}
-.event-bottom div span:last-child {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.event-bottom > div:first-child {
-  max-width: 70%;
-}
 
     
 
