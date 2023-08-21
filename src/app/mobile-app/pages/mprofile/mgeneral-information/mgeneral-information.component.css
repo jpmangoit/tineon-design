@@ -2,7 +2,7 @@
 .profile_title_mobile {
     font-size: 16px;
     color:#030319;
-    margin: 30px 0px 30px 0px;
+    margin: 15px 0px 15px 0px;
     font-family: "Gellix", sans-serif;
     font-weight: 500;
 }
@@ -89,8 +89,19 @@ button.btn.btn-secondary.change_btn {
 }
 
 .mobile-back-main {
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 15px;
+  padding: 15px 0;
+}
+
+.mobile-back-main > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+::ng-deep body.mobile-red .back-button button path {
+    fill:none !important
 }
 
 .switch_toggle input[type="checkbox"]:checked + label {
@@ -101,8 +112,39 @@ button.btn.btn-secondary.change_btn {
   right: 3px;
 }
 
+::ng-deep body .profile_field > span {
+    background: #fff;
+    border-radius: 10px;
+    height: 55px;
+}
+
 .mb-title.proile-icon svg path {
   fill: #e9380b;
+}
+
+::ng-deep .mobile-green  .mobile-back-main  .back-button button svg path,
+::ng-deep .mobile-green  .mobile-back-main  .empty-area svg path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
+.two-img {
+    padding: 0 15px;
+}
+.two-img .col-md-6 {
+    max-width: 60%;
+    flex: 0 0 60%;
+padding-right: 0 !important;
+}
+
+.profile_content .card {
+    padding: 5px  15px !important;
+}
+
+.two-img .col-md-6:first-child {
+    max-width: 40%;
+    flex: 0 0 40%;
+    padding: 0px;
 }
 
 ::ng-deep .mobile-green .mb-title.proile-icon svg path {
@@ -155,9 +197,9 @@ body .profile_title {
 .switch_toggle label {
     cursor: pointer;
     text-indent: -9999px;
-    width: 70px;
-    height: 30px;
-    background: grey;
+    width: 38px;
+    height: 23px;
+    background: #D7DDE1;
     display: block;
     border-radius: 100px;
     position: relative;
@@ -166,10 +208,10 @@ body .profile_title {
 .switch_toggle label:after {
     content: "";
     position: absolute;
-    top: 3px;
+    top: 2px;
     left: 3px;
-    width: 24px;
-    height: 24px;
+    width: 19px;
+    height: 19px;
     background: #fff;
     border-radius: 90px;
     transition: 0.3s;
@@ -337,8 +379,9 @@ span.profile-menu-ic {
 }
 .profile_content .card {
     box-shadow: none;
-    border-radius: 20px;
+    border-radius: 0px;
     padding:5px 25px;
+    background: #F8F8F8;
 }
 @media only screen and (max-width:1024px){
     .page-action {
@@ -355,7 +398,11 @@ span.profile-menu-ic {
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    background: #fff;
-    box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 5%);
+    background: #F8F8F8;
+    
     width: 100%;
+}
+
+.profile_main {
+    margin-top: 0 !important;
 }

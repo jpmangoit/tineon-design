@@ -222,6 +222,7 @@ button.btn.btn-secondary.change_btn {
 .profile_navigation ul li {
   width: 100%;
   margin-bottom: 18px !important;
+
 }
 
 ::ng-deep .mobile-green .profile_navigation li svg path,
@@ -236,6 +237,7 @@ button.btn.btn-secondary.change_btn {
     color: #030319 !important;
     font-weight: 500;
     justify-content: space-between;
+    border:none !important;
 }
 
 ::ng-deep body .profile_navigation ul li a div {

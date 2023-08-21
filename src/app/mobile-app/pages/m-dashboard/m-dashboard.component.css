@@ -1,6 +1,9 @@
 .app-page-content {
     padding: 15px 0px;
 }
+.all-event-calendar{
+    padding: 15px;
+}
 
 /* profile card css*/
 
@@ -442,7 +445,7 @@ span.profile-label-content {
 .scroll-navigation .tabs__items {
    display: flex;
 justify-content: space-around;
-margin: 15px 0;
+margin: 15px 0 23px;
 padding: 0;
 list-style-type: none;
 width: 100%;
@@ -452,6 +455,7 @@ box-shadow: 0px 5px 10px 0px #EAF0F699;
 border-radius: 20px;
 margin-top: 25px;
 padding: 5px;
+background: #fff;
 }
 
 .scroll-navigation .tabs__items li {
@@ -497,6 +501,11 @@ padding: 5px;
 nav.scroll-navigation {
     display: flex;
     align-items: center;
+    background: none;
+}
+
+.all-event-calendar {
+  padding: 0 15px;
 }
 
 .profile-area-mobile + .tabs-content-section .card-toggle {

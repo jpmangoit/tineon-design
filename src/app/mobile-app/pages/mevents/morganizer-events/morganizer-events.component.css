@@ -13,9 +13,13 @@
 .scroll-navigation .tabs__items {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    margin: 0px 0;
     padding: 0;
     list-style-type: none;
+}
+
+::ng-deep .page-action-left {
+    margin-bottom: 8px  !important;
 }
 
 .scroll-navigation .tabs__items li {
@@ -447,6 +451,21 @@ align-items: center;
        width: calc(100% - 122px);
         padding: 0 12px;
     }
+
+    .event-bottom > div {
+  display: flex;
+  gap: 5px;
+  max-width: 50%;
+  align-items: center;
+}
+.event-bottom div span:last-child {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.event-bottom > div:first-child {
+  max-width: 70%;
+}
 
     
 
