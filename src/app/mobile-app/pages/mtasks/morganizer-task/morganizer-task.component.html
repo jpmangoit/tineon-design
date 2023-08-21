@@ -21,7 +21,16 @@
 <!-- tab area start -->
 <div class="tabs-content-section">
     <div class="horizontal-tabs">
-        <nav class="scroll-navigation">
+        <mat-form-field  appearance="fill">
+            <mat-label></mat-label>
+            <mat-select matNativeControl [(value)]="selected" (selectionChange)="taskFilter($event.value)">
+                <mat-option value="1">{{language.organizer_task.all_task}}</mat-option>
+                <mat-option value="2">{{language.organizer_task.personal_task}}</mat-option>
+                <mat-option value="3">{{language.organizer_task.group_task}}</mat-option>
+                <mat-option value="4">{{language.organizer_task.created_task}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        <!-- <nav class="scroll-navigation">
             <ul class="tabs__items">
                 <li><a (click)="All()" (click)="onClick('1')"
                         [ngClass]="{'active': activeClass==='all'}">{{language.organizer_task.all_task}}</a></li>
@@ -35,7 +44,7 @@
                         [ngClass]="{'active': activeClass==='createdActive'}">{{language.organizer_task.created_task}}</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </div>
 </div>
 <!-- tab area end -->
@@ -50,9 +59,9 @@
                         <img onContextMenu="return false;"
                             [src]="task && task?.['task_image'] &&
                              (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                            ? task['task_image'][0]?.['task_image'] 
+                            ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
-                            alt="" loading="lazy"> 
+                            alt="" loading="lazy">
                     </div>
                     <div class="task-category">
                         <span *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
@@ -112,7 +121,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -174,7 +183,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -238,7 +247,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -301,7 +310,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -363,7 +372,7 @@
                         <img onContextMenu="return false;"
                             [src]="task && task?.['task_image'] &&
                              (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                            ? task['task_image'][0]?.['task_image'] 
+                            ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
                             alt="" loading="lazy">
                     </div>
@@ -428,7 +437,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -491,7 +500,7 @@
                         <img onContextMenu="return false;"
                             [src]="task && task?.['task_image'] &&
                              (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                            ? task['task_image'][0]?.['task_image'] 
+                            ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
                             alt="" loading="lazy">
                     </div>
@@ -555,7 +564,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -620,7 +629,7 @@
                         <img onContextMenu="return false;"
                         [src]="task && task?.['task_image'] &&
                          (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                        ? task['task_image'][0]?.['task_image'] 
+                        ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
                     </div>
@@ -683,7 +692,7 @@
                         <img onContextMenu="return false;"
                             [src]="task && task?.['task_image'] &&
                              (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                            ? task['task_image'][0]?.['task_image'] 
+                            ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
                             alt="" loading="lazy">
                     </div>
@@ -746,7 +755,7 @@
                         <img onContextMenu="return false;"
                             [src]="task && task?.['task_image'] &&
                              (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                            ? task['task_image'][0]?.['task_image'] 
+                            ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
                             alt="" loading="lazy">
                     </div>

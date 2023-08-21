@@ -15,10 +15,12 @@ declare var $: any;
     styleUrls: ['./mclubwall.component.css']
 })
 export class MclubwallComponent implements OnInit {
-    displayNews: boolean = true;
+    displayNews: boolean = false;
     displayDates: boolean = false;
     displayEvents: boolean = false;
-    activeClass: string = 'newsActive';
+
+    activeClass: string = '';
+    // activeClass: string = 'newsActive';
     language: any;
     userDetails: LoginDetails;
     userAccess: UserAccess;
@@ -40,12 +42,15 @@ export class MclubwallComponent implements OnInit {
         });
         var getParamFromUrl = this.router.url.split("/")['2'];
         if (getParamFromUrl == 'club-events') {
+            this.onClick(3)
             this.displayEvents = true;
 
         } else if (getParamFromUrl == 'club-dates') {
+            this.onClick(2)
             this.displayDates = true;
 
         } else {
+            this.onClick(1)
             this.displayNews = true;
         }
     }

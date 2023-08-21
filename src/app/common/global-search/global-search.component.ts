@@ -58,8 +58,6 @@ export class GlobalSearchComponent implements OnInit {
     getSearchData() {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            console.log(this.searchData);
-
             let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
             this.authService.memberSendRequest('get', 'globalSearch/' + this.searchData + '/' + userData.team_id, null)
                 .subscribe((respData: any) => {

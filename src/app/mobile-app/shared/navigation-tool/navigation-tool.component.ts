@@ -13,7 +13,7 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'app-navigation-tool',
-    templateUrl: './navigation-tool.component.html', 
+    templateUrl: './navigation-tool.component.html',
     styleUrls: ['./navigation-tool.component.css']
 })
 
@@ -117,7 +117,7 @@ export class NavigationToolComponent implements OnInit {
                                 if (element?.advertisement_image) {
                                     element.advertisement_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.advertisement_image.substring(20)));
                                 }
-                                
+
                             });
                             this.timeOut();
                         }
@@ -152,7 +152,6 @@ export class NavigationToolComponent implements OnInit {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.bannerData = respData['result']['banner']
-
                     this.bannerData.forEach((element: any) => {
                         element['category'] = JSON.parse(element.category);
                         element['placement'] = JSON.parse(element.placement);
@@ -182,7 +181,6 @@ export class NavigationToolComponent implements OnInit {
                 count = 0;
             }
             this.adsTineon = this.bannerData[count];
-
             count++;
         }, 3000);
     }
@@ -210,6 +208,8 @@ export class NavigationToolComponent implements OnInit {
         }
         this.authService.memberSendRequest('post','bannerClick/',data)
         .subscribe((respData:any) =>{
+            console.log(respData);
+
         })
     }
 
