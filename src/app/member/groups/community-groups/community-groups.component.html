@@ -59,6 +59,11 @@
                                             </ng-template>
                                         </owl-carousel-o>
                                     </div>
+
+
+
+
+
                                     <div class="community-group-column"
                                         *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
                                         <!-- <div class="community-group-column" *ngFor='let data of groupData'> -->
@@ -91,14 +96,36 @@
                                                         </svg>&nbsp;&nbsp;{{data.newsGroup.length | shortNumber}}+
                                                         {{language.community_groups.posts_for_u}}</span>
                                                 </div>
-                                                <button type="button"
+                                                <!-- <button type="button"
                                                     *ngIf='data.participants.length == 0 && data.created_by != user_Id'
                                                     [ngStyle]="{'border-color':'#6E63EE','background-color':'#6E63EE','color':button_ic_color}"
                                                     (click)="joinGroup(data.id)">+{{language.community_groups.join_group}}
-                                                </button>
+                                                </button> -->
+                                                    <button type="button" *ngIf="data.displayJoinButton"
+                                                        [ngStyle]="{'border-color':'#F9DB24','background-color':'#F9DB24','color':button_ic_color}"
+                                                        (click)="joinGroup(data.id)">+{{language.community_groups.join_group}}
+                                                    </button>
+                                                    <button type="button" *ngIf="data.displayLeaveButton"
+                                                        (click)="leaveGroup(data.id)"
+                                                        [ngStyle]="{'border-color':'#9E9E9E','background-color':'#9E9E9E','color':button_ic_color}">
+                                                        -{{language.community_groups.leave_group}}
+                                                    </button>
+
                                                 <button type="button" class="waiting-group"
                                                     *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.wait_admin_approve}}
                                                 </button>
+                                                <div class="new-action" *ngIf="data.created_by == user_Id">
+                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                        class="edit-action"
+                                                        [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
+                                                        {{language.community_groups.Edit_group}}
+                                                    </button>
+
+                                                    <button type="button" (click)="deleteGroup(data.id)"
+                                                        [ngStyle]="{'border-color':'#FB5F5F','background-color':'#FB5F5F','color':button_ic_color}">
+                                                        {{language.community_groups.delete_group}}
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -222,13 +249,14 @@
                                                 </button> -->
 
                                                 <div class="new-action" *ngIf="data.created_by == user_Id">
-                                                    <button type="button" routerLink="/update-group/{{data.id}}" class="edit-action"
-                                                        [ngStyle]="{'border-color':'#6E63EE','background-color':'#008000','color':button_ic_color} ">
+                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                        class="edit-action"
+                                                        [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
                                                         {{language.community_groups.Edit_group}}
                                                     </button>
 
                                                     <button type="button" (click)="deleteGroup(data.id)"
-                                                        [ngStyle]="{'border-color':'#6E63EE','background-color':'#ff0000','color':button_ic_color}">
+                                                        [ngStyle]="{'border-color':'#FB5F5F','background-color':'#FB5F5F','color':button_ic_color}">
                                                         {{language.community_groups.delete_group}}
                                                     </button>
                                                 </div>
@@ -274,12 +302,12 @@
                             </div>
                             <div class="new-action" *ngIf="data.created_by == user_Id">
                                 <button type="button" routerLink="/update-group/{{data.id}}"
-                                    [ngStyle]="{'border-color':'#008000','background-color':'#008000','color':button_ic_color}">
+                                    [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color}">
                                     {{language.community_groups.Edit_group}}
                                 </button>
 
                                 <button type="button" (click)="deleteGroup(data.id)"
-                                    [ngStyle]="{'border-color':'#ff0000','background-color':'#ff0000','color':button_ic_color}">
+                                    [ngStyle]="{'border-color':'#FB5F5F','background-color':'#FB5F5F','color':button_ic_color}">
                                     {{language.community_groups.delete_group}}
                                 </button>
                             </div>

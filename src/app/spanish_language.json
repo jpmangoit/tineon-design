@@ -96,7 +96,16 @@
         "community_subtext_msg_mob": "Nachrichten",
         "community_subtext_chat_mob": "Chats",
         "organizer_subtext_new_mob": "Aufgaben",
-        "organizer_subtext_tasks_mob": "Events"
+        "organizer_subtext_tasks_mob": "Events",
+
+        "club_wall_subtext_new_desk": "News",
+        "club_wall_subtext_news_desk": "Beiträge",
+
+        "community_subtext_msg_desk": "Nachrichten",
+        "community_subtext_chat_desk": "Chats",
+
+        "organizer_subtext_new_desk": "Aufgaben",
+        "organizer_subtext_tasks_desk": "Events"
     },
     "club_wall": {
         "title": "Club-Pared",
