@@ -30,7 +30,7 @@
                     <span class="profile-count" *ngIf="clubNewsCount == 0 || clubNewsCount == null">0</span>
                     <!-- <span class="profile-label-content">{{language.dashboard.club_wall_subtext_new}}&nbsp;{{ language.dashboard.club_wall_subtext_news}}</span> -->
                     <!-- <span class="profile-club-content">{{language.dashboard.club_wall}}</span> -->
-                    <span class="profile-club-content">{{language.dashboard.club_wall_subtext_new_mob}}<br>{{language.dashboard.club_wall_subtext_news_mob}}</span>
+                    <span class="profile-club-content">{{language.dashboard.club_wall_subtext_new_mob}}<br>{{language.dashboard.club_wall_subtext_news_mob}}</span> 
                 </div>
                 <div class="profile-card-details" [routerLink]="[!userDetails.isMember_light && !userDetails.isMember_light_admin ? '/community': '']" >
                     <span class="profile-count" *ngIf="communityCount">{{communityCount}}</span>

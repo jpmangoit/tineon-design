@@ -26,7 +26,15 @@
          "more": "More"
     },
     "dashboard":{
-        "Coming_soon": "Coming Soon"
+        "Coming_soon": "Coming Soon",
+        "club_wall_subtext_new_desk": "News",
+        "club_wall_subtext_news_desk": "Beiträge",
+
+        "community_subtext_msg_desk": "Nachrichten",
+        "community_subtext_chat_desk": "Chats",
+
+        "organizer_subtext_new_desk": "Aufgaben",
+        "organizer_subtext_tasks_desk": "Events"
     },
     "club_document": {
         "all": "All",
