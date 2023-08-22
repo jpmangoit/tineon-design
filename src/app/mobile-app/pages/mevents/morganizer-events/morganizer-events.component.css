@@ -33,7 +33,7 @@
 }
 .scroll-navigation .tabs__items li a {
     display: block;
-    padding: 6px 20px;
+    padding: 6px 30px;
    color: #717171;
     cursor: pointer;
     border-radius: 25px;
@@ -85,9 +85,10 @@ ul.tabs__items li a.active {
         margin-right: 0;
     }
     .scroll-navigation .tabs__items li{
-        margin: 0 5px;
-        width: 30%;
+       margin: 0 5px;
+width: auto !important;
 max-width: 126px;
+display: inherit;
     }
 }
 
@@ -331,9 +332,6 @@ align-items: center;
     color: #41ba93;
 }
 
-:ng-deep body .app-content-area  {
-    padding: 0 15px !important;
-}
 
 .page-action-right button svg {
     margin-right: 5px;
@@ -346,8 +344,14 @@ align-items: center;
     justify-content: right;
 }
 
+.tabs-content-section {
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+}
+
 ::ng-deep .page-action-right {
-  margin-bottom: 16px !important;
+  margin-bottom: 20px !important;
 }
 
 @media (max-width: 767px) {
@@ -409,6 +413,7 @@ align-items: center;
     .page-action {
         flex-flow: row nowrap !important;
         display: flex;
+        justify-content: flex-end;
     }
 
     .event-image-des {
@@ -418,7 +423,7 @@ align-items: center;
         border: none;
         padding: 0px;
         object-fit: cover;
-    }
+    } 
 
     .event-image-des img {
 
@@ -466,13 +471,19 @@ align-items: center;
   max-width: 50%;
   align-items: center;
 }
-.event-bottom div span:last-child {
+.event-bottom div:first-child span:last-child {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: #999;
 }
 .event-bottom > div:first-child {
   max-width: 70%;
+}
+
+.event-bottom div span {
+    color: #999;
+    font-size: 12px !important;
 }
 
 

@@ -225,8 +225,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
-
-                console.log(element);
                 element.participants.forEach((element:any) => {
                         if(element.user_Id  == parseInt(this.user_Id)){
                             if(!(element.created_by == parseInt(this.user_Id))){
@@ -255,7 +253,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                 // element.displayJoinButton = !!isParticipant ;
                 // element.displayLeaveButton = isParticipant && !isCreator && element.participants.some((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 1);
             })
-            console.log(this.groupData);
 
             this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);

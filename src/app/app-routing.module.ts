@@ -253,8 +253,9 @@ const desktop_routes: Routes = [
             { path: 'theme-option', component: ThemeOptionComponent },
             { path: 'coming_soon', component: ComingSoonComponent },
             { path: 'event-calendar', component: EventsCalendarComponent },
-            { path: 'news-list', component: NewsListComponent, data: { title: 'Club News List' } },
-            { path: 'event-list', component: EventListComponent, data: { title: 'Event List' } },
+
+            { path: 'all-list', component: NewsListComponent, data: { title: 'Club News List' } },
+            { path: 'list/event-list', component: EventListComponent, data: { title: 'Event List' } },
             { path: 'course-list', component: CourseListComponent, data: { title: 'Course List' } },
             { path: 'room-list', component: RoomListComponent, data: { title: 'Room List' } },
             { path: 'instructor-list', component: InstructorListComponent, data: { title: 'Instructor List' } },
@@ -262,6 +263,7 @@ const desktop_routes: Routes = [
             { path: 'task-list', component: TaskListComponent, data: { title: 'Task List' } },
             { path: 'group-list', component: GroupListComponent, data: { title: 'Group List' } },
             { path: 'faqs-list', component: FaqsListComponent, data: { title: 'Faq List' } },
+
             { path: 'headline-wording', component: HeadlineWordingComponent, data: { title: 'Headline Wording' } },
             { path: 'mobile-themes', component: MobileThemeComponent, data: { title: 'Mobile Themes' } },
             { path: 'app-store', component: AppStoreComponent, data: { title: 'App Store' } },

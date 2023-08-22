@@ -45,7 +45,7 @@ export class GroupDetailComponent implements OnInit {
     birthdateStatus: boolean;
     userDetails: LoginDetails
     getclubInfo: ClubDetail;
-    thumb: string;
+    thumb: string; 
     thumbnail: string;
     setTheme: ThemeType;
     groupDetails: CommunityGroup[];

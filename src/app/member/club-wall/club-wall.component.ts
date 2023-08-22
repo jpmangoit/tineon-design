@@ -80,7 +80,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     * Function is used to display news tab
     * @author  MangoIt Solutions
     */
-    onNews() {
+    onNews() { 
         // this.authService.setLoader(true);
         this.displayNews = true;
         this.displayDates = false;

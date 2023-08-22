@@ -5,7 +5,7 @@ html body .profile-area-mobile .qr-info-main.profile-qr-box .profile-image span 
 
 .app-page-content {
     padding: 15px 0px;
-    background: #EFF2FD;
+    background: #F8F8F8;
 }
 /* profile card css
  */
@@ -21,11 +21,31 @@ html body .profile-area-mobile .qr-info-main.profile-qr-box .profile-image span 
     padding: 0 15px;
 }
 
+::ng-deep .mobile-green  .mobile-back-main  .back-button button svg path,
+::ng-deep .mobile-green  .mobile-back-main  .empty-area svg path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
+::ng-deep .mobile-green .back-button button path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+.responsive-header {
+ 
+  padding: 15px;
+  background: #F8F8F8;
+  width: 100%;
+}
+
 .profile-image {   
     width: 133px;
     height: 133px;
     overflow: hidden;
     margin: 0 auto 10px;
+}
+::ng-deep body.mobile-red .back-button button path {
+    fill:none !important
 }
 
 

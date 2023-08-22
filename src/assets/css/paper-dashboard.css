@@ -517,6 +517,10 @@ body {
     .container {
         padding: 20px 30px;
     }
+
+  ::ng-deep body .tab-button button{
+        padding: 0 !important;
+    }
 }
 
 /* Portrait */
@@ -8088,7 +8092,7 @@ a.info_detail {
     display: inline-block;
     width: 100%;
     font-size: 17px;
-    color: #68759f;
+    color: #313131;
     margin-bottom: 15px;
     font-family: "Gellix", sans-serif;
     font-weight: 700;
@@ -8099,24 +8103,24 @@ span.info_detail a {
     text-shadow: none;
 }
 .profile_field input {
-    /* color: #cbd2eb; */
-    color: #444;
-    display: inline-block;
-    width: 100%;
-    border: 2px solid #e9eeff;
-    padding: 13px 30px;
-    border-radius: 15px;
-    font-size: 17px;
-    font-family: "Gellix", sans-serif;
-    font-weight: 600;
-    height: 51px;
+  display: inline-block;
+  width: 100%;
+  border: none;
+  padding: 13px 30px;
+    padding-left: 30px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-family: "Gellix", sans-serif;
+  font-weight: 400;
+  height: 55px;
+  background: #fff;
+  color: #313131;
 }
-
 .profile_field input::placeholder {
-    color: #cbd2eb;
-    font-size: 17px;
-    font-family: "Gellix", sans-serif;
-    font-weight: 600;
+  color: #666;
+  font-size: 12px;
+  font-family: "Gellix", sans-serif;
+  font-weight: 400px;
 }
 
 .profile_field input:focus {
@@ -8237,10 +8241,10 @@ span.info_detail a {
         text-align: center;
     }
 
-    .profile_sub_btn .Cancel_btn,
-    .profile_sub_btn .save_btn {
-        width: auto;
-    }
+    .profile_sub_btn .Cancel_btn, .profile_sub_btn .save_btn {
+  width: auto;
+  display: flex;
+} 
 }
 @media (max-width: 1024px) {
     .content.profile_section .profile-sidebar {
@@ -8437,13 +8441,13 @@ div#showSubtask input {
     width: 100%;
     height: 50px;
     background: #fff;
-    border: 2px solid #e9eeff;
+    border: 1px solid #e9eeff;
     border-radius: 13px;
     padding: 15px;
-    color: #444;
+    color: #313131;
     font-family: "Gellix", sans-serif;
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 400;
     padding: 14px 30px;
 }
 
@@ -8453,7 +8457,7 @@ div#showSubtask input {
 
 .event_field input::placeholder,
 div#showSubtask input::placeholder {
-    color: #cbd2eb;
+    color: #AEAEAE; 
 }
 
 .dropdown-list li.filter-textbox input {
@@ -11873,7 +11877,7 @@ height: 24px
         height: 32px !important;
         border-radius: 10px;
         padding: 0 10px 0 10px !important;
-        font-size: 11px !important;
+        font-size: 10px !important;
     }
     .page-action-right button svg {
         margin-right: 0 !important;
@@ -11915,7 +11919,7 @@ height: 24px
 }
 
 .profile_field svg {
-  margin-right: 10px;
+  margin-right: 10px; 
 }
 
     span.author-id {
@@ -11927,13 +11931,16 @@ height: 24px
 }
 
 .profile_field > span {
-  background: #fcfcfc;
+  background: #fff;
   width: 100%;
   display: flex;
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 3px 13px;
   align-items: center;
-  height: 51px;
+  height: 55px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #313131;
 }
 .profile_field > span input {
   /*! width: auto; */
@@ -11985,7 +11992,8 @@ body .guest-radio-option > div { margin-bottom: 10px;}
 }
 
 body .profile_sub_btn.event_sub_btn {
-  margin-top: 15px;
+  margin-top: 15px; 
+  display: flex;
 }
 }
 .load-container {

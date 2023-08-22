@@ -30,6 +30,10 @@
     background: #F8F8F8;
 }
 
+.mobile-nav ul li ul li .menu_accordion svg {
+   transform: scale(0.8);
+}
+
 .mobile-nav  ul {
     padding: 0;
     margin: 0;

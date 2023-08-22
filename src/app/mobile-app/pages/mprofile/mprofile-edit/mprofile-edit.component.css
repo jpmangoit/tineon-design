@@ -15,7 +15,7 @@
     text-indent: -9999px;
     width: 38px; 
     height: 23px;
-    background: #D7DDE1;
+    background: #D7DDE1 !important;
     display: block;
     border-radius: 100px;
     position: relative;
@@ -24,14 +24,15 @@
 .switch_toggle label:after {
     content: "";
     position: absolute;
-    top: 3px;
+    top: 2px;
     left: 3px;
-    width: 24px;
-    height: 24px;
+    width: 19px;
+    height: 19px;
     background: #fff;
     border-radius: 90px;
     transition: 0.3s;
 }
+
 
 .profile_details.profile-edit .profile_field input {
   padding-left: 45px;
@@ -53,6 +54,15 @@
     transform: translateX(0);
 }
 
+::ng-deep .mobile-red .switch_toggle input:checked + label:after {
+    background: #E93608;
+}
+
+::ng-deep .mobile-green .switch_toggle input:checked +  label:after {
+    background: #20AE80;
+}
+
+
 .switch_toggle label:active:after {
     width: 130px;
 }
@@ -66,7 +76,7 @@ label.guest_label span {
 }
 .guest-option {
     /* margin-top: -17px; */
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 }
 .pro_upload_group span.upload_ol {
     max-width: 213px;
@@ -423,7 +433,7 @@ span.profile-menu-ic {
   border: none;
   padding: 13px 30px;
     padding-left: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
   font-size: 12px;
   font-family: "Gellix", sans-serif;
   font-weight: 400;
