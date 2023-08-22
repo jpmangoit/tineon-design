@@ -223,6 +223,14 @@
                                                             </div>
                                                         </div>
                                                         <!--Remove the tag-->
+                                                        <div class="news-top-content">
+                                                            <span *ngIf="newsData.audience == '0'"
+                                                                class="news-badge">{{language.create_news.title}}</span>
+                                                            <span *ngIf="newsData.audience == '2'"
+                                                                class="news-badge-group">{{language.create_news.group_news}}</span>
+                                                            <span *ngIf="newsData.audience == '3'"
+                                                                class="news-badge-chairman">{{language.create_news.chairman}}</span>
+                                                        </div>
                                                         <div class="news_heading">
                                                             <h2>
                                                                 {{ newsData.title }}
@@ -242,11 +250,11 @@
                                                             <div class="author-des">
                                                                 <span class="author-id">
                                                                     {{language.dashboard.dashboardNewsAuthor}}
-                                                                    {{newsData.user.firstname
-                                                                    }} {{newsData.user.lastname}}
                                                                 </span>
-                                                                <span class="author-date">{{newsData.created_at | date:
-                                                                    'd. MMMM y'}}</span>
+                                                                <span class="author-id">
+                                                                    {{newsData.user.firstname }} {{newsData.user.lastname}}
+                                                                </span>
+                                                                <span class="author-date">{{newsData.created_at | date:'d. MMMM y'}}</span>
 
                                                                 <!-- <span class="author-status"
                                                                     *ngIf="newsData.approved_status == 0">{{language.theme.status

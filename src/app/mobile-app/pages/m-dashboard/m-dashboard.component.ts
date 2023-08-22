@@ -667,8 +667,6 @@ export class MDashboardComponent implements OnInit {
         this.authService.memberSendRequest('get', 'mv/web/get-groups-by-user-id/' + this.userId, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
-                console.log(this.groupJoinData);
-
                 this.groupJoinData.forEach((element:any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));

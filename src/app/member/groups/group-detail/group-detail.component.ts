@@ -169,6 +169,8 @@ export class GroupDetailComponent implements OnInit {
         $('.tab-pane').removeClass('active');
         $('.nav-link').removeClass('active');
         if (id == 1) {
+            this.getGroupNews(this.groupId);
+
             this.displayNews = true;
             this.displayTasks = false;
             this.displayEvents = false;
@@ -178,6 +180,7 @@ export class GroupDetailComponent implements OnInit {
             $('#tabs-1').addClass('active');
             $('.news_ic').addClass('active');
         } else if (id == 2) {
+            this.getGroupTasks(this.groupId);
             this.displayTasks = true;
             this.displayNews = false;
             this.displayEvents = false;
@@ -187,6 +190,7 @@ export class GroupDetailComponent implements OnInit {
             $('#tabs-2').addClass('active');
             $('.tasks_ic').addClass('active');
         } else {
+            this.getGroupEvents(this.groupId);
             this.displayEvents = true;
             this.displayNews = false;
             this.displayTasks = false;
@@ -376,9 +380,6 @@ export class GroupDetailComponent implements OnInit {
                                 if (val.user_id.toString() == this.userId && val.approved_status == 1) {
                                     this.groupAction = 1;
                                     this.getGroupNews(groupid);
-                                    this.getGroupTasks(groupid);
-                                    this.getGroupEvents(groupid);
-
                                 }
                                 if (this.groupDetails['approved_status'] == 1) {
                                     if (val.user_id == this.userId) {
@@ -475,17 +476,19 @@ export class GroupDetailComponent implements OnInit {
     getGroupNews(groupid: number) {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
+            // /api/groupNews/groupId/:id/:page/:pageSize
+            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        this.newsTotalRecords = respData.length;
-                        this.groupNewsDetails = respData;
+                        this.groupNewsDetails = respData.groupNews;
                         this.groupNewsDetails.forEach((element: any) => {
                             if (element?.['news_image'][0]?.['news_image']) {
                                 element['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['news_image'][0]?.['news_image'].substring(20)));
                             }
                         });
+                        this.newsTotalRecords = respData.pagination.rowCount;
+
                         this.getProfileImages(this.groupNewsDetails);
                     }
                 );
@@ -502,7 +505,8 @@ export class GroupDetailComponent implements OnInit {
     getUpdatedGroupNews(groupid: number) {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
+            // this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
+            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
@@ -536,7 +540,7 @@ export class GroupDetailComponent implements OnInit {
                                 val['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['task_image'][0]?.['task_image'].substring(20)));
                             }
                             if (this.alluserInformation[val?.userstask?.id]?.member_id != null) {
-                                
+
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.userstask?.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -874,9 +878,10 @@ export class GroupDetailComponent implements OnInit {
  */
     pageChanged(event: number) {
         this.currentPageNmuber = event;
+        this.getGroupNews(this.groupId);
+        this.getUpdatedGroupNews(this.groupId);
         this.getGroupTasks(this.groupId);
         this.getGroupEvents(this.groupId);
-
     }
 
     /**
@@ -888,10 +893,10 @@ export class GroupDetailComponent implements OnInit {
             eve = this.currentPageNmuber;
         }
         this.currentPageNmuber = eve;
+        this.getGroupNews(this.groupId);
+        this.getUpdatedGroupNews(this.groupId);
         this.getGroupTasks(this.groupId);
         this.getGroupEvents(this.groupId);
-
-
     }
 
     /**
@@ -903,6 +908,8 @@ export class GroupDetailComponent implements OnInit {
             limit = this.itemPerPage;
         }
         this.itemPerPage = limit;
+        this.getGroupNews(this.groupId);
+        this.getUpdatedGroupNews(this.groupId);
         this.getGroupTasks(this.groupId);
         this.getGroupEvents(this.groupId);
 
@@ -910,6 +917,14 @@ export class GroupDetailComponent implements OnInit {
 
     getNewsDetails(news_id: number) {
         this.router.navigate(['clubnews-detail/' + news_id]);
+    }
+
+    getTasksDetails(task_id: number) {
+        this.router.navigate(['task-detail/' + task_id]);
+    }
+
+    getEventsDetails(event_id: number) {
+        this.router.navigate(['event-detail/' + event_id]);
     }
 
     toggleDisplay() {

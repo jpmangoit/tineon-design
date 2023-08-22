@@ -45,12 +45,12 @@
                                         class="news-badge-group">{{language.create_news.group_news}}</span>
                                     <span *ngIf="data.audience == '3'"
                                         class="news-badge-chairman">{{language.create_news.chairman}}</span>
-                                    <span class="news-date">
+                                    <!-- <span class="news-date">
                                         <img onContextMenu="return false;"
                                             src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt=""
                                             loading="lazy">&nbsp;
                                         {{data.created_at | date: 'd. MMMM y'}}
-                                    </span>
+                                    </span> -->
                                 </div>
                                 <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
                                     (click)="getNewsDetails(data.id)">
@@ -153,6 +153,7 @@
                                             [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
                                             alt="" loading="lazy" data-bs-toggle="modal" data-bs-target="#exModal"
                                             (click)="getNewsDetails(data.id)">
+
                                         <div class="new-action">
                                             <a class="green"
                                                 *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"
@@ -174,12 +175,12 @@
                                                 class="news-badge-group">{{language.create_news.group_news}}</span>
                                             <span *ngIf="data.audience == '3'"
                                                 class="news-badge-chairman">{{language.create_news.chairman}}</span>
-                                            <span class="news-date">
+                                            <!-- <span class="news-date">
                                                 <img onContextMenu="return false;"
                                                     src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
                                                     alt="" loading="lazy">&nbsp;
                                                 {{data.created_at | date: 'd. MMMM y'}}
-                                            </span>
+                                            </span> -->
                                         </div>
                                         <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
                                             (click)="getNewsDetails(data.id)">
@@ -344,16 +345,26 @@
                                                 </div>
                                             </div>
                                             <!--Remove the tag-->
-                                            <div class="news-top-content">
-                                                <span 
+                                            <!-- <div class="news-top-content">
+                                                <span
                                                     class="news-badge">{{language.create_news.title}}</span>
+                                            </div> -->
+                                            <div class="news-top-content">
+                                                <span *ngIf="newsData.audience == '0'"
+                                                    class="news-badge">{{language.create_news.title}}</span>
+                                                <span *ngIf="newsData.audience == '2'"
+                                                    class="news-badge-group">{{language.create_news.group_news}}</span>
+                                                <span *ngIf="newsData.audience == '3'"
+                                                    class="news-badge-chairman">{{language.create_news.chairman}}</span>
                                             </div>
+
                                             <div class="news_heading">
                                                 <h2>{{newsData.title}}</h2>
                                             </div>
                                             <div class="news_content_text" [innerHTML]="newsData.text">...<a
                                                     href="#">{{language.dashboard.dashboardNewsContent}}</a>
                                             </div>
+                                            <hr>
                                             <div class="author-info">
                                                 <div class="author-img">
                                                     <img onContextMenu="return false;"
@@ -363,21 +374,24 @@
                                                 <div class="author-des">
                                                     <span class="author-id">
                                                         {{language.dashboard.dashboardNewsAuthor}}
+                                                    </span>
+                                                    <span class="author-id">
                                                         {{newsData?.user?.firstname}} {{newsData?.user?.lastname}}
                                                     </span>
                                                     <span class="author-date">{{newsData.created_at | date: 'd. MMMM y'}}</span>
-                                                    <span class="author-status"
-                                                        *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
-                                                    <span class="author-status"
-                                                        *ngIf="newsData.approved_status == 0 && newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
-                                                    <span class="author-id"
-                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
+
+                                                    <span class="author-status" *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">
+                                                        {{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}
+                                                    </span>
+                                                    <span class="author-status" *ngIf="newsData.approved_status == 0 && newsData.deny_by_id">
+                                                        {{language.theme.status}}:-{{language.community_groups.admin_deny}}
+                                                    </span>
+                                                    <span class="author-id"  *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
                                                         {{language.dashboard.denyBy}}:-
                                                         {{newsData.denybyuser?.firstname}}
                                                         {{newsData.denybyuser?.lastname}}
                                                     </span>
-                                                    <span class="deny-reason"
-                                                        *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
+                                                    <span class="deny-reason" *ngIf="newsData.approved_status == 0 && (newsData.deny_by_id != null)">
                                                         {{language.dashboard.denyReason}}:- {{newsData.deny_reason}}
                                                     </span>
                                                 </div>
