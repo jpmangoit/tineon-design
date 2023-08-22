@@ -88,7 +88,7 @@ span.news-date {
 display: flex;
 align-items: center;
 font-size: 11px;
-color: #8E8E93;
+color: #999;
 font-weight: 600;
 }
 
@@ -318,7 +318,7 @@ color: #8E8E93;
 @media(max-width: 767px){
     span.news-date {
         font-size: 11px;
-        color: #8E8E93;
+        color: #999;
         font-weight: 500;
         }
 

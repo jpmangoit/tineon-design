@@ -35,7 +35,7 @@
     position: absolute;
     z-index: -1;
     bottom: 26px;
-    background: #3A9CF5;
+    
     width: 100%;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -45,6 +45,12 @@
     align-items: center;
     justify-content: space-between;
 
+}
+::ng-deep .mobile-green .application-ad {
+background: #20AE80;
+}
+::ng-deep .mobile-red .application-ad {
+ background: #E93608 ;
 }
 .add-inner {
     display: flex;
@@ -122,17 +128,13 @@ span.get-btn {
     align-items: center;
 }
 
-::ng-deep .mobile-red .application-ad {
-    background-color: #E93608 !important;
-}
- 
-::ng-deep .mobile-green .application-ad {
-    background-color: #20AE80 !important;
+.mobile-red .application-ad.last-ad {
+    background: #E93608;
+    bottom: 35px;
 }
 
- 
-.application-ad.last-ad {
-    /* background: #f7a137; */
+.mobile-green .application-ad.last-ad {
+    background: #20AE80;
     bottom: 35px;
 }
 .application-ad a {
