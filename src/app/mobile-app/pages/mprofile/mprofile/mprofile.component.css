@@ -197,6 +197,7 @@ button.btn.btn-secondary.change_btn {
     margin-bottom: 0px !important;
     font-weight: 800;
     font-size: 28px;
+    font-style: normal;
 }
 .profile-section-content {
     display: flex;
@@ -238,6 +239,7 @@ button.btn.btn-secondary.change_btn {
     font-weight: 500;
     justify-content: space-between;
     border:none !important;
+    font-style: normal;
 }
 
 ::ng-deep body .profile_navigation ul li a div {
