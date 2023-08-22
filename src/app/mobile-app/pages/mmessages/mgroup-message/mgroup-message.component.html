@@ -6,7 +6,19 @@
                     <div class="tab-pane active">
                         <ng-container>
                             <div class="feature_tab">
-                                <mat-form-field appearance="fill">
+                                <mat-form-field  appearance="fill">
+                                    <mat-label>{{language.create_task.select_placeholder}}</mat-label>
+                                    <mat-select matNativeControl [(value)]="selected" (selectionChange)="onSelect($event.value)">
+                                        <mat-option value="1">{{this.language.community_messages.inbox}}</mat-option>
+                                        <mat-option value="2">{{this.language.community_messages.starred}}</mat-option>
+                                        <mat-option value="3">{{this.language.community_messages.sent}}</mat-option>
+                                        <mat-option value="4">{{this.language.community_messages.drafts}}</mat-option>
+                                        <mat-option value="5">{{this.language.community_messages.allmail}}</mat-option>
+                                        <mat-option value="6">{{this.language.community_messages.trash }}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <!-- <mat-form-field appearance="fill">
                                     <mat-label>{{language.create_task.select_placeholder}}</mat-label>
                                     <mat-select>
                                         <mat-option *ngFor="let selections of select" [value]="selections.value"
@@ -14,7 +26,7 @@
                                             {{selections.viewValue}}
                                         </mat-option>
                                     </mat-select>
-                                </mat-form-field>
+                                </mat-form-field> -->
                             </div>
                             <ng-container *ngIf="groupInbox">
 

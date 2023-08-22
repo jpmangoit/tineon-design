@@ -58,9 +58,10 @@ export class MclubMessageComponent implements OnInit {
 	thumb: string;
 	clubMessage: ClubMessagesType[];
 	private activatedSub: Subscription;
+    selected = '1';
 
     isClublList: boolean = true;
-    select: { value: string; viewValue: any; }[];
+    // select: { value: string; viewValue: any; }[];
 	constructor(
 		private lang: LanguageService,
 		private authService: AuthServiceService,
@@ -122,14 +123,15 @@ export class MclubMessageComponent implements OnInit {
             }
         )
 
-        this.select = [
-            { value: '1', viewValue: this.language.community_messages.inbox },
-            { value: '2', viewValue: this.language.community_messages.starred },
-            { value: '3', viewValue: this.language.community_messages.sent },
-            { value: '4', viewValue: this.language.community_messages.drafts },
-            { value: '5', viewValue: this.language.community_messages.allmail },
-            { value: '6', viewValue: this.language.community_messages.trash },
-        ];
+        // this.select = [
+        //     { value: '1', viewValue: this.language.community_messages.inbox },
+        //     { value: '2', viewValue: this.language.community_messages.starred },
+        //     { value: '3', viewValue: this.language.community_messages.sent },
+        //     { value: '4', viewValue: this.language.community_messages.drafts },
+        //     { value: '5', viewValue: this.language.community_messages.allmail },
+        //     { value: '6', viewValue: this.language.community_messages.trash },
+        // ];
+        this.onSelect('1')
 	}
 
     onSelect(value) {
