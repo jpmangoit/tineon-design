@@ -13,9 +13,9 @@
 .switch_toggle label {
     cursor: pointer;
     text-indent: -9999px;
-    width: 70px;
-    height: 30px;
-    background: grey;
+    width: 38px; 
+    height: 23px;
+    background: #D7DDE1;
     display: block;
     border-radius: 100px;
     position: relative;
@@ -39,8 +39,8 @@
 
 .profile_details.profile-edit .profile_field label {
   position: absolute;
-  left: 30px;
-  top: 18px;
+  left: 16px;
+  top: 15px;
   width: auto;
 }
 
@@ -404,6 +404,33 @@ span.profile-menu-ic {
     float: left;
 }
 
+.profile_field svg {
+ 
+  width: 20px;
+}
+
+
+
+::ng-deep body .profile_field {
+    position: relative;
+}
+
+.profile_field input {
+  
+  color: #313131;
+  display: inline-block;
+  width: 100%;
+  border: none;
+  padding: 13px 30px;
+    padding-left: 30px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-family: "Gellix", sans-serif;
+  font-weight: 400;
+  height: 55px;
+  background: #fff;
+}
+
 ::ng-deep body .print_btn_group a {
   border: none ;
   width: auto;
@@ -416,7 +443,7 @@ span.profile-menu-ic {
     float: left;
 }
 .upload_btn_action {
-    left: 20px;
+    left: 13px;
     position: absolute;
     width: 213px;
     border-radius: 8px;
