@@ -949,6 +949,9 @@
                                                                     </div>
                                                                 </div>
                                                             </ng-container>
+                                                            <div class="empty-data-image" *ngIf=" !groupNewsDetails || groupNewsDetails?.length == 0">
+                                                                <span>{{language.community_groups.no_news}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- TAB-1 ENDS -->
@@ -1010,7 +1013,7 @@
                                                                             <div class="author-info">
                                                                                 <div class="">
                                                                                     <div class="author-img"
-                                                                                    *ngIf="data?.userstask?.imagePro == null || data?.userstask?.imagePro == ''">
+                                                                                        *ngIf="data?.userstask?.imagePro == null || data?.userstask?.imagePro == ''">
                                                                                         <img [src]="'assets/img/defaultProfile.jpeg'"
                                                                                             onContextMenu="return false;"
                                                                                             alt="{{data?.userstask?.firstname}}"
@@ -1036,7 +1039,8 @@
                                                                                             | date: 'd. MMMM y'}}</span>
                                                                                     </div>
                                                                                     <div class="group_rm">
-                                                                                        <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                                                        <a
+                                                                                            routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
                                                                                                 <img onContextMenu="return false;"
                                                                                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
                                                                                                     alt=""
@@ -1050,6 +1054,9 @@
                                                                     </div>
                                                                 </div>
                                                             </ng-container>
+                                                            <div class="empty-data-image" *ngIf=" !groupTasksDetails || groupTasksDetails?.length == 0">
+                                                                <span>{{language.organizer_task.no_task}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- TAB-2 ENDS -->
@@ -1152,6 +1159,9 @@
                                                                     </div>
                                                                 </div>
                                                             </ng-container>
+                                                            <div class="empty-data-image" *ngIf=" !groupEventsDetails || groupEventsDetails?.length == 0">
+                                                                <span>{{language.club_events.no_events}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- TAB-3 ENDS -->

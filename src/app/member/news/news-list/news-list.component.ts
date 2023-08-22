@@ -8,6 +8,11 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
+import { appSetting } from 'src/app/app-settings';
+import { ThemeType } from 'src/app/models/theme-type.model';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-news-list',
     templateUrl: './news-list.component.html',
@@ -20,7 +25,7 @@ export class NewsListComponent implements OnInit {
     displayedColumns: string[] = [
         'title',
         'headline',
-        'imageUrls',        
+        'imageUrls',
         'created_at',
         'author',
         'View',
@@ -28,12 +33,27 @@ export class NewsListComponent implements OnInit {
     columnsToDisplay: string[] = this.displayedColumns.slice();
     dataSource !: MatTableDataSource<any>;
     result: any;
-    @ViewChild(MatPaginator) matpaginator!: MatPaginator; 
+    @ViewChild(MatPaginator) matpaginator!: MatPaginator;
     @ViewChild(MatSort) matsort!: MatSort;
     totalRows: number = 0;
     pageSize: number = 10;
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
+    participateAccess: ParticipateAccess;
+    userDetails: LoginDetails;
+    userRole: string;
+    userAccess: UserAccess;
+    displayNews: boolean = true;
+    displayEvents: boolean = false;
+    displayCourses: boolean = false;
+    displayRooms: boolean = false;
+    displaySurvey: boolean = false;
+    displayTasks: boolean = false;
+    displayGroup: boolean = false;
+    displayFaq: boolean = false;
+    setTheme: ThemeType;
+    private activatedSub: Subscription;
+
 
     constructor(
         private authService: AuthServiceService,
@@ -41,14 +61,132 @@ export class NewsListComponent implements OnInit {
         private themes: ThemeService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,
-
-    ) { }
+        private _router: Router
+    ) { 
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            this.setTheme = theme;
+        }
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
+        });
+    }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.getUserAllNews("");
+        this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        this.userRole = this.userDetails.roles[0];
+        this.userAccess = appSetting.role;
+        this.participateAccess = this.userAccess[this.userRole].participate;
+        // console.log(this.participateAccess);
     }
+
+    /**
+* Function is used to display news tab
+* @author  MangoIt Solutions
+*/
+    onNews() {
+        // this.authService.setLoader(true);
+        this.displayNews = true;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    /**
+    * Function is used to display event tab
+    * @author  MangoIt Solutions
+    */
+    onEvents() {
+        this.displayNews = false;
+        this.displayEvents = true;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    /**
+    * Function is used to display dates tab
+    * @author  MangoIt Solutions
+    */
+    onCourses() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = true;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+
+    }
+
+    onRoom() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = true;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    onSurvey() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = true
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    onTasks() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = true
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    onGroup() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = true;
+        this.displayFaq = false
+    }
+
+    onFaq() {
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = true
+    }
+
+
+
 
     /**
   * Function for get All the login user news
@@ -60,10 +198,10 @@ export class NewsListComponent implements OnInit {
         var pageNo = this.currentPage + 1
         this.authService.setLoader(true);
         var endPoint: string;
-       
+
         if (search && search.target.value != '') {
             endPoint = 'getOwnerNews/' + pageNo + '/' + this.pageSize + '?search=' + search.target.value;
-        }else{
+        } else {
             endPoint = 'getOwnerNews/' + pageNo + '/' + this.pageSize;
         }
         this.authService.memberSendRequest('get', endPoint, null)
@@ -72,11 +210,11 @@ export class NewsListComponent implements OnInit {
                     this.authService.setLoader(false);
                     this.dataSource = new MatTableDataSource(respData.news);
 
-                    this.dataSource?.filteredData.forEach((element:any) =>{
+                    this.dataSource?.filteredData.forEach((element: any) => {
                         if (element?.news_image[0]?.news_image) {
                             element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                         }
-                    })                    
+                    })
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;
@@ -110,13 +248,13 @@ export class NewsListComponent implements OnInit {
         this.getUserAllNews("");
     }
 
-     /**
-     * Function for apply Filter
-     * @author  MangoIt Solutions(T)
-     */
+    /**
+    * Function for apply Filter
+    * @author  MangoIt Solutions(T)
+    */
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-     
+
 }
