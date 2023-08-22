@@ -272,7 +272,6 @@ export class McommunityGroupsComponent implements OnInit {
     groupsYouManage() {
         let userId: string = localStorage.getItem('user-id');
         this.authService.setLoader(true);
-        // this.authService.memberSendRequest('get', 'getGroupsYouManage/' + userId, null)
         this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
         .subscribe((respData: any) => {
             this.groupsYouManageData = respData['groups'].reverse();

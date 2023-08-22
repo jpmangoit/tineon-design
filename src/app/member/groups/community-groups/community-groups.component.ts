@@ -294,7 +294,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     groupsYouManage() {
         this.authService.setLoader(true);
         this.groupsYouManageData = [];
-        // this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null)
         this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
         .subscribe((respData: any) => {
             this.groupsYouManageData = respData['groups'].reverse();

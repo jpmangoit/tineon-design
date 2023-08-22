@@ -43,6 +43,38 @@ button.btn-close {
     width: auto;
 }
 
+.mobile-back-main {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px;
+  align-items: center;
+  gap: 15px;
+}
+
+::ng-deep .mobile-green .back-button button path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
+.responsive-header {
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0 0;
+    background: #F8F8F8;
+   
+    width: 100%;
+}
+::ng-deep body.mobile-red .back-button button path {
+    fill:none !important
+}
+
+.profile_content .card {
+    box-shadow: none;
+    border-radius: 20px;
+    padding:10px 25px;
+    background: #F8F8F8;
+}
+
 .profile_details .profile-edit .profile_field input {
     padding-left: 45px;
 }
@@ -232,7 +264,7 @@ span.profile-menu-ic {
 .profile_content .card {
     box-shadow: none;
     border-radius: 20px;
-    padding:35px 25px;
+    padding:15px;
 }
 .profile_main_head .print_btn_group {
     margin: 0;
@@ -244,14 +276,7 @@ span.profile-menu-ic {
 .profile_details {
     display: inline-block;
 }
-.responsive-header {
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    background: #fff;
-    box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 5%);
-    width: 100%;
-}
+
 @media only screen and (max-width:1024px){
     .page-action {
         display: none !important;

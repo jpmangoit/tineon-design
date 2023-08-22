@@ -158,12 +158,8 @@ export class MpersonalMessageComponent implements OnInit {
     }
 
     onSelectMsgType(value) {
-        console.log(value);
-
         this.isPersonalList = true;
         if (value == 1) {
-            console.log(value);
-
             this.personalMessages();
 
         } else if (value == 2) {

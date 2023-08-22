@@ -17,13 +17,13 @@ declare var $: any;
     selector: 'app-mall-news',
     templateUrl: './mall-news.component.html',
     styleUrls: ['./mall-news.component.css']
-}) 
-export class MallNewsComponent implements OnInit { 
+})
+export class MallNewsComponent implements OnInit {
 
     scroll: boolean = false;
     language: any;
     role: string = '';
-    responseMessage: string = null; 
+    responseMessage: string = null;
 
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
@@ -118,7 +118,7 @@ export class MallNewsComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.dashboardData = respData.news;
-                            
+
                             this.dashboardData?.forEach(val => {
                                 if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -168,7 +168,7 @@ export class MallNewsComponent implements OnInit {
                                     if (element?.news_image[0]?.news_image){
                                         element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                     }
-                                    
+
                                 });
                             }
                             this.guestNews = [];
@@ -190,7 +190,7 @@ export class MallNewsComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.dashboardData = respData;
                             this.newsTotalRecords = this.dashboardData.length;
-                            if (this.dashboardData && this.dashboardData.length > 0) { 
+                            if (this.dashboardData && this.dashboardData.length > 0) {
                                 this.dashboardData.forEach((element, index) => {
                                     if (element.user.member_id != null) {
                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
