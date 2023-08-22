@@ -19,52 +19,56 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
-	selector: 'app-group-detail',
-	templateUrl: './group-detail.component.html',
-	styleUrls: ['./group-detail.component.css']
+    selector: 'app-group-detail',
+    templateUrl: './group-detail.component.html',
+    styleUrls: ['./group-detail.component.css']
 })
 
 export class GroupDetailComponent implements OnInit {
-	language:any;
-	currentPageNmuber: number = 1; 
-	itemPerPage: number = 8;
-	newsTotalRecords: number = 0;
-	limitPerPage:{value:string}[] = [
-    { value: '8' },
-		{ value: '16' },
-		{ value: '24' },
-		{ value: '32' },
-		{ value: '40' }
-	];
-	displayError: boolean;
-	userId:any;
-	profile_data:ProfileDetails;
-	memberStartDateStatus: Date;
-	birthdateStatus:boolean;
-	userDetails:LoginDetails
-	getclubInfo:ClubDetail;
-	thumb: string;
-	thumbnail: string;
+    language: any;
+    currentPageNmuber: number = 1;
+    itemPerPage: number = 8;
+    newsTotalRecords: number = 0;
+    tasksTotalRecords: number = 0;
+    eventsTotalRecords: number = 0;
+    limitPerPage: { value: string }[] = [
+        { value: '8' },
+        { value: '16' },
+        { value: '24' },
+        { value: '32' },
+        { value: '40' }
+    ];
+    displayError: boolean;
+    userId: any;
+    profile_data: ProfileDetails;
+    memberStartDateStatus: Date;
+    birthdateStatus: boolean;
+    userDetails: LoginDetails
+    getclubInfo: ClubDetail;
+    thumb: string;
+    thumbnail: string;
     setTheme: ThemeType;
     groupDetails: CommunityGroup[];
-	alluserInformation:{member_id: number}[] = [];
+    alluserInformation: { member_id: number }[] = [];
     private activatedSub: Subscription;
-    groupNewsDetails:any;
-	groupAction:number = 0;
+    groupNewsDetails: any;
+    groupTasksDetails: any;
+    groupEventsDetails: any;
+    groupAction: number = 0;
     updatedGroupData: any;
     updatedGroupAction: number;
-    updatedGroupNewsDetails:any;
+    updatedGroupNewsDetails: any;
     updatedNewsTotalRecords: number;
     organizerDetails: any[] = [];
-    groupParticipnts:any[] = [];
-    updatedOrganizerDetails: any[]=[];
-    updatedGroupParticipnts: any[]=[];
+    groupParticipnts: any[] = [];
+    updatedOrganizerDetails: any[] = [];
+    updatedGroupParticipnts: any[] = [];
     invited: boolean = false;
     notInvited: boolean = false;
-    private refreshPage:Subscription;
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
-    isShow:boolean = false;
+    private refreshPage: Subscription;
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
+    isShow: boolean = false;
     sliderOptions: OwlOptions = {
         loop: true,
         mouseDrag: true,
@@ -73,7 +77,7 @@ export class GroupDetailComponent implements OnInit {
         dots: true,
         navSpeed: 700,
         navText: ['', ''],
-        margin:24,
+        margin: 24,
         responsive: {
             0: {
                 items: 1
@@ -89,73 +93,111 @@ export class GroupDetailComponent implements OnInit {
             }
         },
         nav: false,
-        autoplay:true
+        autoplay: true
     }
     bannerData: any;
     mobBannerData: any;
     adsTineon: any;
-    allUser: any[]=[];
+    allUser: any[] = [];
     allowAdvertisment: any;
-    groupId:any;
+    groupId: any;
     imageURL: SafeUrl;
+    displayNews: boolean = true;
+    displayTasks: boolean;
+    displayEvents: boolean;
 
-	constructor(
-		private authService: AuthServiceService,
-		private router: Router,
-		private route: ActivatedRoute,
+
+    constructor(
+        private authService: AuthServiceService,
+        private router: Router,
+        private route: ActivatedRoute,
         private themes: ThemeService,
-		private confirmDialogService: ConfirmDialogService,
-		private lang: LanguageService,
+        private confirmDialogService: ConfirmDialogService,
+        private lang: LanguageService,
         private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-	) {
-        this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
+    ) {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         })
     }
 
-	ngOnInit(): void {
-		if (localStorage.getItem('club_theme') != null) {
-            let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+    ngOnInit(): void {
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
-		}
-		this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
-		    this.setTheme = resp;
-		});
+        }
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
+        });
 
-		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-		this.language = this.lang.getLanguaageFile();
-		this.userId = localStorage.getItem('user-id');
-		this.getAllUserInfo();
-		this.route.params.subscribe(params => {
-			const groupid:number = params['groupid'];
+        this.language = this.lang.getLanguaageFile();
+        this.userId = localStorage.getItem('user-id');
+        this.getAllUserInfo();
+        this.route.params.subscribe(params => {
+            const groupid: number = params['groupid'];
             this.groupId = groupid;
-		});
+        });
 
-        if (this.allowAdvertisment  == 0 ){
+        if (this.allowAdvertisment == 0) {
             if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                 this.getMobileGroupsDetailBanners()
-            }else{
+            } else {
                 this.getDesktopGroupsDetailBanners()
             }
         }
-	}
+    }
+
+    onTabChange(id: number) {
+        $('.tab-pane').removeClass('active');
+        $('.nav-link').removeClass('active');
+        if (id == 1) {
+            this.displayNews = true;
+            this.displayTasks = false;
+            this.displayEvents = false;
+            $('#tabs-1').show();
+            $('#tabs-2').hide();
+            $('#tabs-3').hide();
+            $('#tabs-1').addClass('active');
+            $('.news_ic').addClass('active');
+        } else if (id == 2) {
+            this.displayTasks = true;
+            this.displayNews = false;
+            this.displayEvents = false;
+            $('#tabs-1').hide();
+            $('#tabs-2').show();
+            $('#tabs-3').hide();
+            $('#tabs-2').addClass('active');
+            $('.tasks_ic').addClass('active');
+        } else {
+            this.displayEvents = true;
+            this.displayNews = false;
+            this.displayTasks = false;
+            $('#tabs-1').hide();
+            $('#tabs-2').hide();
+            $('#tabs-3').show();
+            $('#tabs-3').addClass('active');
+            $('.events_ic').addClass('active');
+
+        }
+    }
 
     /**
     * Function is used for getting all the Desktop Notifications for Banner
@@ -163,107 +205,107 @@ export class GroupDetailComponent implements OnInit {
     * @param   {}
     * @return  {Object}
     */
-    getDesktopGroupsDetailBanners(){
+    getDesktopGroupsDetailBanners() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForGroupDetails_Desktop/', null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner']
-                    this.bannerData.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        // element['image'] = JSON.parse(element.image);
-                        if (element.banner_image[0]?.banner_image) {
-                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                        }
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
-                        }
-                    })
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.bannerData = respData['result']['banner']
+                        this.bannerData.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                            }
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
+                            }
+                        })
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
                 }
-            }
-        )
+            )
     }
 
-      /**
-    * Function is used for getting all the Mobile Notifications for Banner
-    * @author  MangoIt Solutions(M)
-    * @param   {}
-    * @return  {Object}
-    */
-    getMobileGroupsDetailBanners(){
+    /**
+  * Function is used for getting all the Mobile Notifications for Banner
+  * @author  MangoIt Solutions(M)
+  * @param   {}
+  * @return  {Object}
+  */
+    getMobileGroupsDetailBanners() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForGroupDetailsMobileApp/', null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.mobBannerData = respData['result']['banner']
-                    this.mobBannerData.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        // element['image'] = JSON.parse(element.image);
-                        if (element.banner_image[0]?.banner_image) {
-                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                        }
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
-                        }
-                    })
-                    this.timeOut1();
-                }else  if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.mobBannerData = respData['result']['banner']
+                        this.mobBannerData.forEach((element: any) => {
+                            element['category'] = JSON.parse(element.category);
+                            element['placement'] = JSON.parse(element.placement);
+                            element['display'] = JSON.parse(element.display);
+                            // element['image'] = JSON.parse(element.image);
+                            if (element.banner_image[0]?.banner_image) {
+                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                            }
+                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                element['redirectLink'] = element.redirectLink;
+                            } else {
+                                element['redirectLink'] = '//' + element.redirectLink;
+                            }
+                        })
+                        this.timeOut1();
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
                 }
-            }
-        )
+            )
     }
 
     timeOut1() {
         let count = 0;
         setInterval(() => {
-          if (count === this.mobBannerData.length) {
-            count = 0;
-          }
-          this.adsTineon = this.mobBannerData[count];
-          count++;
+            if (count === this.mobBannerData.length) {
+                count = 0;
+            }
+            this.adsTineon = this.mobBannerData[count];
+            count++;
         }, 3000);
     }
 
 
-      /**
-    * Function is used to add click count for a the particular mobile or desktop Banner
-    * @author  MangoIt Solutions(M)
-    * @param   {BannerId}
-    * @return  {Object}
-    */
-    onClickBanner(bannerId:number){
-        let displayMode:number
+    /**
+  * Function is used to add click count for a the particular mobile or desktop Banner
+  * @author  MangoIt Solutions(M)
+  * @param   {BannerId}
+  * @return  {Object}
+  */
+    onClickBanner(bannerId: number) {
+        let displayMode: number
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            displayMode = 1 ;
-        }else{
+            displayMode = 1;
+        } else {
             //desktop
-            displayMode = 0 ;
+            displayMode = 0;
         }
         let data = {
             banner_id: bannerId,
-            user_id : this.userId,
-            display_mode : displayMode
+            user_id: this.userId,
+            display_mode: displayMode
         }
-        this.authService.memberSendRequest('post','bannerClick/',data)
-        .subscribe((respData:any) =>{
-            //console.log(respData);
-        })
+        this.authService.memberSendRequest('post', 'bannerClick/', data)
+            .subscribe((respData: any) => {
+                //console.log(respData);
+            })
     }
 
     /**
@@ -272,20 +314,20 @@ export class GroupDetailComponent implements OnInit {
    * @param   {}
    * @return  {Array Of Object} all the Users
    */
-	getAllUserInfo() {
-		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-		.subscribe(
-			(respData: any) => {
-                if(respData && respData.length > 0){
-                    this.allUser = respData;
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
-			        this.getGroupDetails(this.groupId);
+    getAllUserInfo() {
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        this.allUser = respData;
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                        this.getGroupDetails(this.groupId);
+                    }
                 }
-			}
-		);
-	}
+            );
+    }
 
     /**
    * Function to used get the records of the particular group
@@ -306,9 +348,10 @@ export class GroupDetailComponent implements OnInit {
                         this.groupDetails = respData[0];
                         this.groupAction = 0;
                         let count = 0;
-                        if (this.groupDetails?.['group_images'][0]?.['group_image']){
+                        if (this.groupDetails?.['group_images'][0]?.['group_image']) {
                             this.groupDetails['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupDetails?.['group_images'][0]?.['group_image'].substring(20)));
                         }
+
                         if (this.groupDetails && this.groupDetails['participants']) {
                             Object(this.groupDetails['participants']).forEach((val, key) => {
                                 if (this.alluserInformation?.[val.user_id]?.member_id != null) {
@@ -318,7 +361,7 @@ export class GroupDetailComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 val.imagePro = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 val.imagePro = null;
                                             }
                                         );
@@ -333,6 +376,9 @@ export class GroupDetailComponent implements OnInit {
                                 if (val.user_id.toString() == this.userId && val.approved_status == 1) {
                                     this.groupAction = 1;
                                     this.getGroupNews(groupid);
+                                    this.getGroupTasks(groupid);
+                                    this.getGroupEvents(groupid);
+
                                 }
                                 if (this.groupDetails['approved_status'] == 1) {
                                     if (val.user_id == this.userId) {
@@ -357,11 +403,11 @@ export class GroupDetailComponent implements OnInit {
                                 }
                             });
 
-                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails,'id'));
-                            this.groupParticipnts = Object.assign(this.authService.uniqueObjData(this.groupParticipnts,'id'));
+                            this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
+                            this.groupParticipnts = Object.assign(this.authService.uniqueObjData(this.groupParticipnts, 'id'));
                             if (this.groupDetails['created_by'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                 this.updatedGroupData = JSON.parse(this.groupDetails['updated_record']);
-                                if (this.updatedGroupData?.file){
+                                if (this.updatedGroupData?.file) {
                                     this.updatedGroupData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedGroupData?.file.substring(20)));
                                 }
                                 if (this.updatedGroupData != null) {
@@ -370,26 +416,26 @@ export class GroupDetailComponent implements OnInit {
                                     this.updatedGroupData['participants'] = JSON.parse(this.updatedGroupData['participants']);
                                     if (this.updatedGroupData['participants'] && this.updatedGroupData['participants'].length > 0) {
                                         Object(this.updatedGroupData['participants']).forEach((val, key) => {
-                                                        if (this.allUser?.length > 0) {
-                                                            this.allUser.forEach(el => {
-                                                                if (el.id == val.user_id) {
-                                                                    val.user = el;
-                                                                    if (val.user.member_id != null) {
-                                                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + val.user.member_id, null)
-                                                                            .subscribe(
-                                                                                (resppData: any) => {
-                                                                                    this.thumb = resppData;
-                                                                                    val.user.image = this.thumb
-                                                                                },
-                                                                                (error:any) => {
-                                                                                    val.user.image = null;
-                                                                                });
-                                                                    } else {
+                                            if (this.allUser?.length > 0) {
+                                                this.allUser.forEach(el => {
+                                                    if (el.id == val.user_id) {
+                                                        val.user = el;
+                                                        if (val.user.member_id != null) {
+                                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + val.user.member_id, null)
+                                                                .subscribe(
+                                                                    (resppData: any) => {
+                                                                        this.thumb = resppData;
+                                                                        val.user.image = this.thumb
+                                                                    },
+                                                                    (error: any) => {
                                                                         val.user.image = null;
-                                                                    }
-                                                                }
-                                                            });
+                                                                    });
+                                                        } else {
+                                                            val.user.image = null;
                                                         }
+                                                    }
+                                                });
+                                            }
                                             if (val.user_id == this.updatedGroupData['created_by']) {
                                                 this.updatedOrganizerDetails.push(val)
                                             } else {
@@ -409,7 +455,7 @@ export class GroupDetailComponent implements OnInit {
                                     }
                                     this.updatedGroupData['participantsCount'] = this.updatedGroupData['participants'].length;
                                 }
-                                this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails,'id'));
+                                this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails, 'id'));
                                 // this.updatedGroupParticipnts = Object.assign(this.authService.uniqueObjData(this.updatedGroupParticipnts,'id'));
                             }
                         } else {
@@ -426,42 +472,119 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {Array Of Object}
    */
-	getGroupNews(groupid:number) {
-		if (sessionStorage.getItem('token')) {
-			this.authService.setLoader(true);
-			this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
-			.subscribe(
-				(respData: any) => {
-					this.authService.setLoader(false);
-					this.newsTotalRecords = respData.length;
-					this.groupNewsDetails = respData;
-                    this.getProfileImages(this.groupNewsDetails);
-				}
-			);
-		}
-	}
-
-       /**
-   * Function to get group news of particular updated group
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {Array Of Object}
-   */
-    getUpdatedGroupNews(groupid:number){
+    getGroupNews(groupid: number) {
         if (sessionStorage.getItem('token')) {
-			this.authService.setLoader(true);
-			this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
-			.subscribe(
-				(respData: any) => {
-					this.authService.setLoader(false);
-					this.updatedNewsTotalRecords = respData.length;
-					this.updatedGroupNewsDetails = respData;
-                    this.getProfileImages(this.updatedGroupNewsDetails);
-                }
-			);
-		}
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.newsTotalRecords = respData.length;
+                        this.groupNewsDetails = respData;
+                        this.groupNewsDetails.forEach((element: any) => {
+                            if (element?.['news_image'][0]?.['news_image']) {
+                                element['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['news_image'][0]?.['news_image'].substring(20)));
+                            }
+                        });
+                        this.getProfileImages(this.groupNewsDetails);
+                    }
+                );
+        }
+    }
+
+
+    /**
+    * Function to get group news of particular updated group
+    * @author  MangoIt Solutions
+    * @param   {GroupId}
+    * @return  {Array Of Object}
+    */
+    getUpdatedGroupNews(groupid: number) {
+        if (sessionStorage.getItem('token')) {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'groupNews/groupId/' + groupid, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.updatedNewsTotalRecords = respData.length;
+                        this.updatedGroupNewsDetails = respData;
+                        this.getProfileImages(this.updatedGroupNewsDetails);
+                    }
+                );
+        }
 
     }
+
+    /**
+    * Function to get group tasks of particular group
+    * @author  MangoIt Solutions
+    * @param   {GroupId}
+    * @return  {Array Of Object}
+    */
+    getGroupTasks(groupid: number) {
+        if (sessionStorage.getItem('token')) {
+            this.authService.setLoader(true);
+            // /api/getGroupTask/ByGroudId/:group_id/:page/:pageSize
+            this.authService.memberSendRequest('get', 'getGroupTask/ByGroudId/' + groupid + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.groupTasksDetails = respData?.groupTask;
+
+                        this.groupTasksDetails.forEach(val => {
+                            if (val?.['task_image'][0]?.['task_image']) {
+                                val['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['task_image'][0]?.['task_image'].substring(20)));
+                            }
+                            if (this.alluserInformation[val?.userstask?.id]?.member_id != null) {
+                                
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.userstask?.id].member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            val.userstask.imagePro = resppData;
+
+                                        },
+                                        (error: any) => {
+                                            val.userstask.imagePro = null;
+                                        }
+                                    );
+                            } else {
+                                val.userstask.imagePro = null;
+                            }
+                        });
+                        this.tasksTotalRecords = respData.pagination.rowCount;
+                        // this.getProfileImages(this.groupTasksDetails);
+                    }
+                );
+        }
+    }
+
+    /**
+    * Function to get group events of particular group
+    * @author  MangoIt Solutions
+    * @param   {GroupId}
+    * @return  {Array Of Object}
+    */
+    getGroupEvents(groupid: number) {
+        if (sessionStorage.getItem('token')) {
+            this.authService.setLoader(true);
+            // /api/getGroupsEvents/ByGroudId/:group_id/:page/:pageSize
+            this.authService.memberSendRequest('get', 'getGroupsEvents/ByGroudId/' + groupid + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.groupEventsDetails = respData?.groupEvents;
+                        this.groupEventsDetails.forEach((element: any) => {
+                            if (element?.['event_images'][0]?.['event_image']) {
+                                element['event_images'][0]['event_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['event_images'][0]?.['event_image'].substring(20)));
+                            }
+                        });
+                        this.eventsTotalRecords = respData.pagination.rowCount;
+                        this.getProfileImages(this.groupEventsDetails);
+                    }
+                );
+        }
+    }
+
 
     /**
    * Function to get profile images
@@ -469,25 +592,29 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {Array Of Object}
    */
-    getProfileImages(usersAllData:any){
+    getProfileImages(usersAllData: any) {
+
         usersAllData?.forEach(val => {
             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
                     .subscribe(
                         (resppData: any) => {
                             val.user.imagePro = resppData;
+
                         },
-                        (error:any) => {
+                        (error: any) => {
                             val.user.imagePro = null;
                         }
                     );
-            } else {
+            }
+            else {
                 val.user.imagePro = null;
             }
-            if (val?.['news_image'][0]?.['news_image']){
-                val['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['news_image'][0]?.['news_image'].substring(20)));
-            }
+            // if (val?.['news_image'][0]?.['news_image']) {
+            //     val['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['news_image'][0]?.['news_image'].substring(20)));
+            // }
         });
+
         return usersAllData;
     }
 
@@ -497,10 +624,10 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {}
    */
-    approvedGroup(groupId:number) {
+    approvedGroup(groupId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_group, function () {
-            self.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId+'/'+ self.userId, null)
+            self.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId + '/' + self.userId, null)
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
@@ -510,19 +637,19 @@ export class GroupDetailComponent implements OnInit {
         })
     }
 
-        /**
-   * Function is used to accept the group
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-    unapproveGroup(groupId:number) {
+    /**
+* Function is used to accept the group
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {}
+*/
+    unapproveGroup(groupId: number) {
         let self = this;
         this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
-            let reason  = $("#message-text").val();
+            let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id":self.userId
+                "deny_by_id": self.userId
             };
             self.authService.memberSendRequest('put', 'adminDenyGroup/group_id/' + groupId, postData)
                 .subscribe(
@@ -534,16 +661,16 @@ export class GroupDetailComponent implements OnInit {
         })
     }
 
-           /**
-   * Function is used to accept the updated group
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-    acceptUpdatedGroup(groupId:number){
+    /**
+* Function is used to accept the updated group
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {}
+*/
+    acceptUpdatedGroup(groupId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId +'/'+ self.userId, null)
+            self.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId + '/' + self.userId, null)
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
@@ -560,21 +687,21 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {}
    */
-    deleteGroup(groupId:number) {
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
-			.subscribe(
-				(respData: any) => {
-					self.authService.setLoader(false);
-                    self.notificationService.showSuccess(respData.result.message,null);
-					self.router.navigate(['community/groups-joined']);
-				}
-			)
-		}, function () {
-		})
-	}
+    deleteGroup(groupId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData.result.message, null);
+                        self.router.navigate(['community/groups-joined']);
+                    }
+                )
+        }, function () {
+        })
+    }
 
     /**
    * Function is used to delete the updated group
@@ -582,32 +709,32 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {}
    */
-	deleteUpdateGroup(groupId:number){
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('get', 'get-reset-updatedGroupDetails/group_id/' + groupId, null)
-			.subscribe(
-				(respData: any) => {
-					self.authService.setLoader(false);
-					self.router.navigate(['group-detail/' + groupId]);
-                    self.getGroupDetails(groupId)
-				}
-			)
-		}, function () {
-		},'deleteUpdate')
-	}
+    deleteUpdateGroup(groupId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('get', 'get-reset-updatedGroupDetails/group_id/' + groupId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.router.navigate(['group-detail/' + groupId]);
+                        self.getGroupDetails(groupId)
+                    }
+                )
+        }, function () {
+        }, 'deleteUpdate')
+    }
 
-          /**
-   * Function is used to accept the group by a participant
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-    acceptGroup(groupId:number) {   //notification
+    /**
+* Function is used to accept the group by a participant
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {}
+*/
+    acceptGroup(groupId: number) {   //notification
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, function () {
-            let postData:object = {
+            let postData: object = {
                 "participants": {
                     "group_id": groupId,
                     "user_id": self.userId,
@@ -630,74 +757,74 @@ export class GroupDetailComponent implements OnInit {
    * @param   {GroupId}
    * @return  {}
    */
-    rejectGroup(groupId:number) {
+    rejectGroup(groupId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
             self.authService.memberSendRequest('delete', 'denyGroup/user/' + self.userId + '/group_id/' + groupId, null)
-            .subscribe(
-                (respData: any) => {
-                    self.ngOnInit();
-                }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.ngOnInit();
+                    }
+                )
         }, function () {
         })
     }
 
-        /**
-   * Function is used to join the group by a participant
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-	joinGroup(groupId:number) {
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.community_groups.join_group_popup, function () {
-			let postData:object = {
-				"participants": {
-					"group_id": groupId,
-					"user_id": self.userId,
-					"approved_status": 2
-				}
-			};
-			self.authService.setLoader(false);
-			self.authService.memberSendRequest('post', 'joinGroup/user_id/' + self.userId + '/group_id/' + groupId, postData)
-				.subscribe(
-					(respData: any) => {
-						self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'],null);
-						setTimeout(() => {
-							self.ngOnInit();
-						}, 3000);
+    /**
+* Function is used to join the group by a participant
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {}
+*/
+    joinGroup(groupId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.community_groups.join_group_popup, function () {
+            let postData: object = {
+                "participants": {
+                    "group_id": groupId,
+                    "user_id": self.userId,
+                    "approved_status": 2
+                }
+            };
+            self.authService.setLoader(false);
+            self.authService.memberSendRequest('post', 'joinGroup/user_id/' + self.userId + '/group_id/' + groupId, postData)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        setTimeout(() => {
+                            self.ngOnInit();
+                        }, 3000);
 
-					}
-				)
-		}, function () {
-		})
-	}
+                    }
+                )
+        }, function () {
+        })
+    }
 
-          /**
-   * Function is used to leave the group by a participant
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-    leaveGroup(groupId:number) {
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup, function () {
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.userId + '/group_id/' + groupId, null)
-				.subscribe(
-					(respData: any) => {
-						self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'],null);
-						setTimeout(() => {
-							self.ngOnInit();
-						}, 3000);
-					}
-				)
-		}, function () {
-		})
-	}
+    /**
+* Function is used to leave the group by a participant
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {}
+*/
+    leaveGroup(groupId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.userId + '/group_id/' + groupId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        setTimeout(() => {
+                            self.ngOnInit();
+                        }, 3000);
+                    }
+                )
+        }, function () {
+        })
+    }
 
     /**
      * Function for the get particular users profile Information
@@ -705,11 +832,11 @@ export class GroupDetailComponent implements OnInit {
      * @param {user id}
      * @returns {Object} Details of the User
      */
-    getMemId(id:number) {
+    getMemId(id: number) {
         this.thumbnail = '';
         $("#profileSpinner").show();
         this.commonFunctionService.getMemberId(id)
-        .then((resp:any)=>{
+            .then((resp: any) => {
                 this.getclubInfo = resp.getclubInfo;
                 this.birthdateStatus = resp.birthdateStatus;
                 this.profile_data = resp.profile_data
@@ -717,10 +844,10 @@ export class GroupDetailComponent implements OnInit {
                 this.thumbnail = resp.thumbnail
                 this.displayError = resp.displayError
                 $("#profileSpinner").hide();
-        })
-        .catch((err:any) => {
-            console.log(err);
-        })
+            })
+            .catch((err: any) => {
+                console.log(err);
+            })
     }
 
     showToggle: boolean = false;
@@ -741,37 +868,47 @@ export class GroupDetailComponent implements OnInit {
         this.router.navigate(['/community/groups']);
     }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
-	pageChanged(event:number) {
-		this.currentPageNmuber = event;
-	}
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
+    pageChanged(event: number) {
+        this.currentPageNmuber = event;
+        this.getGroupTasks(this.groupId);
+        this.getGroupEvents(this.groupId);
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
-	goToPg(eve: number) {
-		if (isNaN(eve)) {
-			eve = this.currentPageNmuber;
-		}
-		this.currentPageNmuber = eve;
-	}
+    }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
-	setItemPerPage(limit: number) {
-		if (isNaN(limit)) {
-			limit = this.itemPerPage;
-		}
-		this.itemPerPage = limit;
-	}
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
+    goToPg(eve: number) {
+        if (isNaN(eve)) {
+            eve = this.currentPageNmuber;
+        }
+        this.currentPageNmuber = eve;
+        this.getGroupTasks(this.groupId);
+        this.getGroupEvents(this.groupId);
 
-    getNewsDetails(news_id:number){
+
+    }
+
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
+    setItemPerPage(limit: number) {
+        if (isNaN(limit)) {
+            limit = this.itemPerPage;
+        }
+        this.itemPerPage = limit;
+        this.getGroupTasks(this.groupId);
+        this.getGroupEvents(this.groupId);
+
+    }
+
+    getNewsDetails(news_id: number) {
         this.router.navigate(['clubnews-detail/' + news_id]);
     }
 
@@ -779,7 +916,7 @@ export class GroupDetailComponent implements OnInit {
         this.isShow = !this.isShow;
     }
 
-	ngOnDestroy(): void {
+    ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
         this.refreshPage.unsubscribe();
         this.denyRefreshPage.unsubscribe();
