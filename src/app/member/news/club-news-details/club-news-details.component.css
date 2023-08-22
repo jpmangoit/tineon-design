@@ -1183,8 +1183,16 @@ span.get-btn {
     align-items: center;
 }
 
+::ng-deep .mobile-red .application-ad {
+    background-color: #E93608 !important;
+}
+ 
+::ng-deep .mobile-green .application-ad {
+    background-color: #20AE80 !important;
+}
+
 .application-ad.last-ad {
-    background: #f7a137;
+    /* background: #f7a137; */
     bottom: 35px;
 }
 .application-ad a {
@@ -1195,88 +1203,6 @@ span.get-btn {
     padding: 40px 26px 11px 26px;
 }
 
-.add-inner {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 10px 26px 11px 26px;
-    width: 100%;
-}
-.ad-left {
-    width: 70%;
-}
-.ad-right {
-    width: 40%;
-}
-.ad-left span {
-    font-size: 16px;
-    font-family: "Gellix", sans-serif;
-    color: #fff;
-    font-weight: 600;
-}
-span.get-btn {
-    font-size: 9px;
-    font-weight: 600;
-    background: #ffdd64;
-    display: inline-block;
-    padding: 2px 5px;
-    border-radius: 25px;
-    color: #4d7fae;
-    text-transform: uppercase;
-    width: auto !important;
-}
-span.get-btn a {
-    font-family: "Gellix", sans-serif;
-    font-size: 10px;
-    padding: 0px 8px;
-    display: inline-block;
-}
-span.get-btn {
-    margin-top: 10px;
-}
-.ad-right span {
-    height: auto;
-    text-align: center;
-}
-.ad-right span img {
-    width: 100px;
-    border-radius: 15px;
-}
-.ad-right span a {
-    line-height: 12px;
-    color: #b98e2efa;
-}
-.ad-left img {
-    margin-bottom: 5px;
-    margin-top: 10px;
-}
-.close-icon button {
-    background: transparent;
-    padding: 0;
-    border: none;
-}
-.close-icon {
-    position: absolute;
-    top: 9px;
-    right: 17px;
-}
-.ad-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.application-ad.last-ad {
-    background: #f7a137;
-    bottom: 35px;
-}
-.application-ad a {
-    display: inline-block;
-    width: 100%;
-}
-.application-ad.last-ad .add-inner {
-    padding: 40px 26px 11px 26px;
-}
 @keyframes zoom-in-zoom-out {
     0% {
         transform: scale(1, 1);
