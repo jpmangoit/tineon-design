@@ -34,7 +34,7 @@ export class MDashboardComponent implements OnInit {
     displayGroups: boolean = false;
     language: any;
     userDetails: LoginDetails;
-    setTheme: ThemeType; 
+    setTheme: ThemeType;
     private activatedSub: Subscription;
     clubNewsCount: number = 0;
     communityCount: number = 0;
@@ -195,7 +195,7 @@ export class MDashboardComponent implements OnInit {
             this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
         }
 
-        
+
         this.userRole = this.userDetails.roles[0];
         this.authService.memberSendRequest('get', 'numberOfPostEventsMessage/user/' + this.userId, null)
             .subscribe(
@@ -373,7 +373,7 @@ export class MDashboardComponent implements OnInit {
             if (this.userDetails['qrcode_url']) {
                 this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
             }
-            
+
             this.userRole = this.userDetails.roles[0];
             this.authService.setLoader(true);
             let eventUrl: string;
@@ -667,6 +667,8 @@ export class MDashboardComponent implements OnInit {
         this.authService.memberSendRequest('get', 'mv/web/get-groups-by-user-id/' + this.userId, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
+                console.log(this.groupJoinData);
+
                 this.groupJoinData.forEach((element:any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
@@ -741,7 +743,7 @@ export class MDashboardComponent implements OnInit {
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.userInfo = respData;
-                    
+
                 });
         }
     }

@@ -63,7 +63,9 @@ export class MpersonalMessageComponent implements OnInit {
 
 
     isPersonalList: boolean = true;
-    select: { value: string; viewValue: any; }[];
+    selected = '1';
+    // select: { value: string; viewValue: any; }[];
+
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
@@ -88,14 +90,14 @@ export class MpersonalMessageComponent implements OnInit {
         this.extensions = appSetting.extensions;
         this.imageType = appSetting.imageType;
 
-        this.select = [
-            { value: '1', viewValue: this.language.community_messages.inbox },
-            { value: '2', viewValue: this.language.community_messages.starred },
-            { value: '3', viewValue: this.language.community_messages.sent },
-            { value: '4', viewValue: this.language.community_messages.drafts },
-            { value: '5', viewValue: this.language.community_messages.allmail },
-            { value: '6', viewValue: this.language.community_messages.trash },
-        ];
+        // this.select = [
+        //     { value: '1', viewValue: this.language.community_messages.inbox },
+        //     { value: '2', viewValue: this.language.community_messages.starred },
+        //     { value: '3', viewValue: this.language.community_messages.sent },
+        //     { value: '4', viewValue: this.language.community_messages.drafts },
+        //     { value: '5', viewValue: this.language.community_messages.allmail },
+        //     { value: '6', viewValue: this.language.community_messages.trash },
+        // ];
 
         this.replyMsgForm = this.formBuilder.group({
             content: ['', Validators.required],
@@ -152,11 +154,16 @@ export class MpersonalMessageComponent implements OnInit {
                     };
                 })
         this.getPersonalMessage();
+        this.onSelectMsgType('1')
     }
 
-    onSelect(value) {
+    onSelectMsgType(value) {
+        console.log(value);
+
         this.isPersonalList = true;
         if (value == 1) {
+            console.log(value);
+
             this.personalMessages();
 
         } else if (value == 2) {

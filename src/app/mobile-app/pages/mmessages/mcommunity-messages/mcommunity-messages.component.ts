@@ -15,6 +15,7 @@ export class McommunityMessagesComponent implements OnInit {
     displayGroups: boolean = false;
     language: any;
     headline_word_option: number = 0;
+    selected = '1';
 
     constructor(
         private lang: LanguageService,
@@ -23,7 +24,19 @@ export class McommunityMessagesComponent implements OnInit {
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
+        this.messageFilter('1')
     }
+
+    messageFilter(id:any){
+        if(id == 1){
+            this.peronalMsg()
+        }else if(id == 2){
+            this.clubMsg()
+        }else if(id == 3){
+            this.groupMsg()
+        }
+    }
+
 
     peronalMsg() {
         this.displayPersonalMsg = true;
