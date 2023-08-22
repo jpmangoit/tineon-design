@@ -788,7 +788,6 @@ export class OrganizerEventComponent implements OnInit {
                     count++;
             });
         }
-        // console.log(this.calendarEvents);
         this.calendarOptionsTimeGrid = {
             locale: this.selectLanguage,
             events: this.calendarEvents,
