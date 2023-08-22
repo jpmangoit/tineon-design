@@ -343,8 +343,14 @@ align-items: center;
     justify-content: right;
 }
 
+.tabs-content-section {
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+}
+
 ::ng-deep .page-action-right {
-  margin-bottom: 16px !important;
+  margin-bottom: 20px !important;
 }
 
 @media (max-width: 767px) {
@@ -406,6 +412,7 @@ align-items: center;
     .page-action {
         flex-flow: row nowrap !important;
         display: flex;
+        justify-content: flex-end;
     }
 
     .event-image-des {
@@ -415,7 +422,7 @@ align-items: center;
         border: none;
         padding: 0px;
         object-fit: cover;
-    }
+    } 
 
     .event-image-des img {
 
@@ -467,6 +474,7 @@ align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: #999;
 }
 .event-bottom > div:first-child {
   max-width: 70%;
