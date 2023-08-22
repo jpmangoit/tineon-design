@@ -33,7 +33,7 @@
 }
 .scroll-navigation .tabs__items li a {
     display: block;
-    padding: 6px 20px;
+    padding: 6px 30px;
    color: #717171;
     cursor: pointer;
     border-radius: 25px;
@@ -85,9 +85,10 @@ ul.tabs__items li a.active {
         margin-right: 0;
     }
     .scroll-navigation .tabs__items li{
-        margin: 0 5px;
-        width: 30%;
+       margin: 0 5px;
+width: auto !important;
 max-width: 126px;
+display: inherit;
     }
 }
 
@@ -470,7 +471,7 @@ align-items: center;
   max-width: 50%;
   align-items: center;
 }
-.event-bottom div span:last-child {
+.event-bottom div:first-child span:last-child {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -478,6 +479,11 @@ align-items: center;
 }
 .event-bottom > div:first-child {
   max-width: 70%;
+}
+
+.event-bottom div span {
+    color: #999;
+    font-size: 12px !important;
 }
 
 
