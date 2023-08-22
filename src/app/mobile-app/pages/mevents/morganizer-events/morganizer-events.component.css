@@ -331,9 +331,6 @@ align-items: center;
     color: #41ba93;
 }
 
-:ng-deep body .app-content-area  {
-    padding: 0 15px !important;
-}
 
 .page-action-right button svg {
     margin-right: 5px;

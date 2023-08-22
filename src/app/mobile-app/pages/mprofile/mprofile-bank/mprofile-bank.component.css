@@ -239,6 +239,7 @@ span.profile-menu-ic {
     box-shadow: none;
     border-radius: 20px;
     padding:10px 25px;
+    background: #F8F8F8;
 }
 .profile_main_head .print_btn_group {
     margin: 0;
@@ -253,11 +254,15 @@ span.profile-menu-ic {
 .responsive-header {
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
-    background: #fff;
-    box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 5%);
+   
+    background: #F8F8F8;
+   
     width: 100%;
 }
+::ng-deep body.mobile-red .back-button button path {
+    fill:none !important
+}
+
 @media only screen and (max-width:1024px){
     .page-action {
         display: none !important;
