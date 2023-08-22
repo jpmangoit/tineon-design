@@ -253,11 +253,10 @@ span.profile-menu-ic {
 }
 .responsive-header {
     align-items: center;
-    justify-content: space-between;
-   
-    background: #F8F8F8;
-   
+    justify-content: space-between;   
+    background: #F8F8F8;   
     width: 100%;
+    padding: 15px;
 }
 ::ng-deep body.mobile-red .back-button button path {
     fill:none !important
@@ -265,17 +264,38 @@ span.profile-menu-ic {
 
 .mobile-back-main {
   display: flex;
-  justify-content: flex-start;
-  padding: 15px;
+  /* justify-content: flex-start; */
+  padding: 15px 0;
   align-items: center;
   gap: 15px;
 }
-
-::ng-deep .mobile-green .back-button button path {
-    fill: none !important;
-    stroke: #20AE80 !important;
+ 
+.mobile-back-main > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
+.mb-title.proile-icon svg path {
+    fill: #e9380b;
+  }
+  
+::ng-deep .mobile-green  .mobile-back-main  .back-button button svg path,
+ ::ng-deep .mobile-green  .mobile-back-main  .empty-area svg path {
+        fill: none !important;
+        stroke: #20AE80 !important;
+}
+::ng-deep .mobile-green .mb-title.proile-icon svg path {
+    fill: #20AE80 !important ;
+  }
+
+.mb-title.proile-icon svg {
+  margin-right: 15px;
+}
+
+/* .mb-title.proile-icon {
+  color: #444;
+} */
 @media only screen and (max-width:1024px){
     .page-action {
         display: none !important;

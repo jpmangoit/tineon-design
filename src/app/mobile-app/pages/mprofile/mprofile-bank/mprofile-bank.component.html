@@ -1,14 +1,36 @@
 <div class="content create-component">
     <div class="responsive-header">
         <div class="mobile-back-main">
-            <div class="back-button">
-                <button type="button" routerLink="/profile">
-                    <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M14.3072 6L8.58429 12L14.3072 18" stroke="#E93608" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></button>
+            <div>
+                <div class="back-button">
+                    <button type="button" routerLink="/profile">
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.3072 6L8.58429 12L14.3072 18" stroke="#E93608" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mb-title proile-icon">
+                    <svg  width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.4243 1.49821L3.11959 8.10877C2.74933 8.40351 2.95773 8.99997 3.43099 8.99997H20.5802C21.0522 8.99997 21.2614 8.40608 20.8935 8.1103L12.6737 1.50127C12.3092 1.20819 11.7903 1.20692 11.4243 1.49821Z" fill="none" stroke="none" stroke-width="1.5"/>
+                        <path d="M7 12H5C4.72386 12 4.5 12.1567 4.5 12.35V18.65C4.5 18.8433 4.72386 19 5 19H7C7.27614 19 7.5 18.8433 7.5 18.65V12.35C7.5 12.1567 7.27614 12 7 12Z" fill="none" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 12H17C16.7239 12 16.5 12.0979 16.5 12.2187V18.7812C16.5 18.902 16.7239 19 17 19H19C19.2761 19 19.5 18.902 19.5 18.7812V12.2187C19.5 12.0979 19.2761 12 19 12Z" fill="none" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 12H11C10.7239 12 10.5 12.0559 10.5 12.125V18.875C10.5 18.944 10.7239 19 11 19H13C13.2761 19 13.5 18.944 13.5 18.875V12.125C13.5 12.0559 13.2761 12 13 12Z" fill="none" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 21H22C22 22.1045 21.1046 23 20 23H4C2.89543 23 2 22.1045 2 21Z" fill="none"/>
+                        <circle cx="12" cy="6.5" r="1.5" fill="none"/>
+                        </svg>{{language.profile_bank.title}}</div>
+            </div>            
+            <div class="empty-area">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 3L20 7L16 11" stroke="#E93608" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20 7H4" stroke="#E93608" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M8 21L4 17L8 13" stroke="#E93608" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 17H20" stroke="#E93608" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
             </div>
-            <div class="mb-title">{{language.profile_bank.title}}</div>
-            <div class="empty-area">&nbsp;</div>
         </div>
     </div>
 
@@ -22,7 +44,7 @@
                          </div>
                         <!-- profile header start -->
                         <div class="profile_main_head">
-                            <div class="profile_title">{{language.profile_bank.title}}</div>
+                            <!-- <div class="profile_title">{{language.profile_bank.title}}</div> -->
                             <div class="print_btn_group">
                                 <div class="title-btn-group rp_sec">
                                     <a (click)="inEdit()"><img onContextMenu="return false;" src="assets/img/Edit.svg" alt="" loading="lazy"></a>
