@@ -37,6 +37,7 @@ export class McommunityGroupsComponent implements OnInit {
     isShow: boolean = false;
     userData: any;
     allowAdvertisment: any;
+
     currentPageNmuber: number = 1;
     itemPerPage: number = 8;
     totalgroupData: number = 0;
@@ -46,6 +47,17 @@ export class McommunityGroupsComponent implements OnInit {
         { value: '24' },
         { value: '32' },
     ];
+
+    currentPageNmuberOne: number = 1;
+    itemPerPageOne: number = 8;
+    totalJoinedGroupData: number = 0;
+    limitPerPageOne: { value: string }[] = [
+        { value: '8' },
+        { value: '16' },
+        { value: '24' },
+        { value: '32' },
+    ];
+    selected = '0';
 
     constructor(
         private authService: AuthServiceService,
@@ -76,7 +88,8 @@ export class McommunityGroupsComponent implements OnInit {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             this.getTineonBanners();
         }
-        this.teamAllGroups();
+        // this.teamAllGroups();
+        this.allGroups();
         this.joinAllGroups();
         this.groupsYouManage();
     }
@@ -181,18 +194,67 @@ export class McommunityGroupsComponent implements OnInit {
             });
     }
 
+        /**
+     * Function to get all the groups of clubs
+     * @author  MangoIt Solutions
+     * @param   {}
+     * @return  {Array of Object} all the groups
+     */
+    allGroups() {
+        this.authService.setLoader(true);
+        this.groupData = [];
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+            this.groupData = respData['groups'];
+            this.groupData.forEach((element: any) => {
+                if (element.group_images[0]?.['group_image']) {
+                    element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                }
+                element.displayJoinButton = true;
+                element.displayLeaveButton = false;
+                element.displayWaitApprovalButton = false;
+                element.participants.forEach((elem:any) => {
+                    if(elem.user_id  == parseInt(this.user_Id)){
+                        if(!(element.created_by == parseInt(this.user_Id)) && !this.userData.isAdmin){
+                            if(elem.approved_status == 0){
+                                element.displayJoinButton = true;
+                                element.displayLeaveButton = false;
+                                element.displayWaitApprovalButton = false;
+                            }else if(elem.approved_status == 1){
+                                element.displayLeaveButton = true;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = false;
+                            }else if(elem.approved_status == 2){
+                                element.displayLeaveButton = false;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = true;
+                            }
+                        }
+                    }else if(element.created_by == parseInt(this.user_Id)){
+                        element.displayJoinButton = false;
+                        element.displayLeaveButton = false;
+                        element.displayWaitApprovalButton = false;
+                    }
+                });
+            })
+            this.totalgroupData = respData['pagination']['rowCount'];
+            this.authService.setLoader(false);
+        })
+    }
+
+
     joinAllGroups() {
         let userId: string = localStorage.getItem('user-id');
         this.authService.setLoader(true);
-        this.authService
-            .memberSendRequest('get', 'web/get-groups-by-user-id/' + userId, null)
+        // this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + userId, null)
+        this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.user_Id + '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
             .subscribe((respData: any) => {
-                this.groupJoinData = respData.reverse();
+                this.groupJoinData = respData['groups'].reverse();
                 this.groupJoinData.forEach((element:any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
                 })
+                this.totalJoinedGroupData =  respData['pagination']['rowCount'];
                 this.authService.setLoader(false);
             });
     }
@@ -211,7 +273,45 @@ export class McommunityGroupsComponent implements OnInit {
         });
     }
 
+    onGroup() {
+        this.displayGroups = true;
+        this.displayManagegroup = false;
+        this.displayJoinGroup = false;
+    }
+
+    onManagegroups() {
+        this.displayGroups = false;
+        this.displayManagegroup = true;
+        this.displayJoinGroup = false;
+    }
+
+    onJoinGroups() {
+        this.displayGroups = false;
+        this.displayManagegroup = false;
+        this.displayJoinGroup = true;
+    }
+
+
+       /**
+     * Function to select the types of Group
+     */
+       groupFilter(filterValue:any) {
+        if(filterValue == 0){
+            //all group
+            this.onGroup()
+        }else if(filterValue == 1){
+            // groups you manage
+            this.onManagegroups()
+        }else{
+            // group you have joined
+            // this.onGroups(2)
+            this.onJoinGroups()
+        }
+
+    }
+
     onGroups(id: number) {
+        this.displayManagegroup = false;
         $('.tab-pane').removeClass('active');
         $('.nav-link').removeClass('active');
         if (id == 1) {
@@ -223,9 +323,8 @@ export class McommunityGroupsComponent implements OnInit {
             $('#tabs-1').addClass('active');
             $('.group_ic').addClass('active');
         } else {
+            this.displayGroup = true;
             this.displayJoinGroup = true;
-            this.displayGroup = false;
-
             $('#tabs-1').hide();
             $('#tabs-2').show();
             $('#tabs-2').addClass('active');
@@ -254,7 +353,8 @@ export class McommunityGroupsComponent implements OnInit {
                         self.notificationService.showSuccess(self.responseMessage, null);
                         setTimeout(() => {
                             // self.responseMessage = '';
-                            self.teamAllGroups();
+                            // self.teamAllGroups();
+                            self.allGroups();
                             self.joinAllGroups();
                         }, 3000);
                     });
@@ -277,7 +377,8 @@ export class McommunityGroupsComponent implements OnInit {
                         self.notificationService.showSuccess(self.responseMessage, null);
                         setTimeout(() => {
                             // self.responseMessage = '';
-                            self.teamAllGroups();
+                            self.allGroups();
+                            // self.teamAllGroups();
                             self.joinAllGroups();
                         }, 3000);
                     });
@@ -306,15 +407,7 @@ export class McommunityGroupsComponent implements OnInit {
         })
     }
 
-    onGroup() {
-        this.displayGroups = true;
-        this.displayManagegroup = false;
-    }
 
-    onManagegroups() {
-        this.displayGroups = false;
-        this.displayManagegroup = true;
-    }
 
     // active class functions
     onClick(check) {
@@ -327,7 +420,8 @@ export class McommunityGroupsComponent implements OnInit {
     */
     pageChanged(event: number) {
         this.currentPageNmuber = event;
-        this.teamAllGroups();
+        this.allGroups();
+        // this.teamAllGroups();
     }
 
     /**
@@ -342,7 +436,8 @@ export class McommunityGroupsComponent implements OnInit {
                 this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
-                this.teamAllGroups();
+                // this.teamAllGroups();
+                this.allGroups();
             }
         }
     }
@@ -356,7 +451,8 @@ export class McommunityGroupsComponent implements OnInit {
             limit = this.itemPerPage;
         }
         this.itemPerPage = limit;
-        this.teamAllGroups();
+        // this.teamAllGroups();
+        this.allGroups();
     }
 
 

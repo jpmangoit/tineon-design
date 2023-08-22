@@ -121,9 +121,13 @@ export class MorganizerEventsComponent implements OnInit {
         this.extensions = appSetting.extensions;
         this.createAccess = this.userAccess[userRole].create;
         let currentUrl: string = this.router.url;
-        console.log(currentUrl);
-
-        currentUrl == '/organizer' ?  this.showActionBtn = true:  this.showActionBtn = false;
+        // currentUrl == (('/organizer') || ('/clubwall/club-events')) ?  this.showActionBtn = true:  this.showActionBtn = false;
+        // if(currentUrl == ('/organizer') || ('/clubwall/club-events')){
+        if(currentUrl.includes('/organizer') || currentUrl.includes('/clubwall/club-events')){
+            this.showActionBtn = true
+        } else{
+            this.showActionBtn = false;
+        }
 
         if (currentUrl == '/clubwall/club-events') {
             this.calendarBtn = true;

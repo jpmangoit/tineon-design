@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.authService.setLoader(true);
         if (localStorage.getItem('token') != null) {
-            interval(25 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
+            interval(15 * 60 * 1000).pipe(take(1))   // it will run after every 25 minute
                 .subscribe(() => {
                     this.refreshTokens();
                 });

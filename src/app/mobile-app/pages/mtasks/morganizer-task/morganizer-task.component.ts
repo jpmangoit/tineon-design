@@ -53,6 +53,7 @@ export class MorganizerTaskComponent implements OnInit {
     createAccess: CreateAccess;
     setTheme: ThemeType
     private activatedSub: Subscription;
+    selected = '1';
 
     All() {
         this.displayAll = true;
@@ -113,7 +114,21 @@ export class MorganizerTaskComponent implements OnInit {
         this.createAccess = this.userAccess[userRole].create;
         this.getAllTask();
         this.getTask();
+        this.taskFilter('1');
     }
+
+    taskFilter(id:any){
+        if(id == 1){
+            this.All()
+        }else if(id == 2){
+            this.personalTask()
+        }else if(id == 3){
+            this.groupTask()
+        }else{
+            this.createdTask()
+        }
+    }
+
 
     getAllTask() {
         if (sessionStorage.getItem('token')) {
@@ -132,7 +147,7 @@ export class MorganizerTaskComponent implements OnInit {
                         this.completed = [];
                         if (respData['isError'] == false) {
                             if(respData['result'] && respData['result'].length > 0){
-                                respData['result'].forEach((element) => { 
+                                respData['result'].forEach((element) => {
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                                     }
