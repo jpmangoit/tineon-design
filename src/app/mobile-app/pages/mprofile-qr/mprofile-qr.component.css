@@ -21,6 +21,16 @@ html body .profile-area-mobile .qr-info-main.profile-qr-box .profile-image span 
     padding: 0 15px;
 }
 
+::ng-deep .mobile-green  .mobile-back-main  .back-button button svg path,
+::ng-deep .mobile-green  .mobile-back-main  .empty-area svg path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
+::ng-deep .mobile-green .back-button button path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
 .responsive-header {
  
   padding: 15px;

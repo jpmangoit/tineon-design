@@ -263,6 +263,19 @@ span.profile-menu-ic {
     fill:none !important
 }
 
+.mobile-back-main {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px;
+  align-items: center;
+  gap: 15px;
+}
+
+::ng-deep .mobile-green .back-button button path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
 @media only screen and (max-width:1024px){
     .page-action {
         display: none !important;

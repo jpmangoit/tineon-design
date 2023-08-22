@@ -43,6 +43,19 @@ button.btn-close {
     width: auto;
 }
 
+.mobile-back-main {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px;
+  align-items: center;
+  gap: 15px;
+}
+
+::ng-deep .mobile-green .back-button button path {
+    fill: none !important;
+    stroke: #20AE80 !important;
+}
+
 .responsive-header {
     align-items: center;
     justify-content: space-between;
