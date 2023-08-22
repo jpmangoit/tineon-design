@@ -342,6 +342,10 @@ align-items: center;
     justify-content: right;
 }
 
+::ng-deep .page-action-right {
+  margin-bottom: 16px !important;
+}
+
 @media (max-width: 767px) {
     .event-time,
     .event-title span {
@@ -466,6 +470,10 @@ align-items: center;
 .event-bottom > div:first-child {
   max-width: 70%;
 }
+
+
+
+
 
     
 
