@@ -880,6 +880,32 @@ span.deny-reason {
     padding-left: 0px;
 }
 
+::ng-deep html body .page-heading {
+    display: flex !important;
+}
+
+.detail-two-icon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.title-box > div > span {
+  color: #999;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.title-box {
+}
+.title-box > div > span svg path {
+  fill: #999;
+  font-size: 11px;
+}
+.title-box > div > span svg {
+  width: 12px;
+}
+
 ::ng-deep .mobile-green .page-heading span:first-child svg path{
    stroke:#20AE80 !important;
 }

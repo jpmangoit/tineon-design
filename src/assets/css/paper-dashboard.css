@@ -11827,7 +11827,7 @@ height: 24px
   padding: 13px 13px;
   border: none;
   background: #fcfcfc;
-  color: #AEAEAE;
+  color: #313131; 
 }
     .check_field {
         width: 50%;
@@ -12127,7 +12127,7 @@ body .profile_sub_btn.event_sub_btn {
         top: 0;
         z-index: 999;
         width: 100%;
-        background: #fff;
+        background: #F8F8F8;
     }
     .mobile-back-main {
         display: flex;
@@ -12432,7 +12432,7 @@ body .news-listing  .news-items {
 
 ::ng-deep body span.news-date{
 
-  color: #8E8E93 !important;
+  color: #999 !important;
 
 }
 
@@ -12593,6 +12593,22 @@ body .news-read-more a {
 
     body .modal-backdrop {
         background: #fff;
+    }
+
+    body button.red_more_btn {
+        background: transparent;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-family: 'Gellix', sans-serif;
+        font-size: 11px;
+        color: #fff;
+padding: 3px 15px;
+border-radius: 25px;
+margin: 10px 0px 0 0;
+  margin-left: 0px;
+margin-left: 0px;
+border: 1px solid #FBC52D;
+background: #FBC52D;
     }
     
 }
