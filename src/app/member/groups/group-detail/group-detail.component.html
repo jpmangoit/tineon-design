@@ -990,7 +990,7 @@
                                                                 <div class="all-news-column"
                                                                     *ngFor='let data of groupTasksDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: tasksTotalRecords }'>
                                                                     <div class="news-widget"
-                                                                        (click)="getNewsDetails(data.id)">
+                                                                        (click)="getTasksDetails(data.id)">
                                                                         <div class="news-image"
                                                                             [ngClass]="data['task_image'][0]?.['task_image'] == null ? 'no_image' : ''">
                                                                             <img onContextMenu="return false;"
@@ -1091,7 +1091,7 @@
                                                                 <div class="all-news-column"
                                                                     *ngFor='let data of groupEventsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: eventsTotalRecords }'>
                                                                     <div class="news-widget"
-                                                                        (click)="getNewsDetails(data.id)">
+                                                                        (click)="getEventsDetails(data.id)">
                                                                         <div class="news-image"
                                                                             [ngClass]="data['event_images'][0]?.['event_image'] == null ? 'no_image' : ''">
                                                                             <img onContextMenu="return false;"
