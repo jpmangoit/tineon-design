@@ -517,6 +517,10 @@ body {
     .container {
         padding: 20px 30px;
     }
+
+  ::ng-deep body .tab-button button{
+        padding: 0 !important;
+    }
 }
 
 /* Portrait */
@@ -11873,7 +11877,7 @@ height: 24px
         height: 32px !important;
         border-radius: 10px;
         padding: 0 10px 0 10px !important;
-        font-size: 11px !important;
+        font-size: 10px !important;
     }
     .page-action-right button svg {
         margin-right: 0 !important;
