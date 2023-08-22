@@ -57,6 +57,16 @@ export class McommunityGroupsComponent implements OnInit {
         { value: '24' },
         { value: '32' },
     ];
+
+    currentPageNmuberTwo: number = 1;
+    itemPerPageTwo: number = 8;
+    totalManagaeGroupData: number = 0;
+    limitPerPageTwo: { value: string }[] = [
+        { value: '8' },
+        { value: '16' },
+        { value: '24' },
+        { value: '32' },
+    ];
     selected = '0';
 
     constructor(
@@ -262,13 +272,16 @@ export class McommunityGroupsComponent implements OnInit {
     groupsYouManage() {
         let userId: string = localStorage.getItem('user-id');
         this.authService.setLoader(true);
-        this.authService.memberSendRequest('get', 'getGroupsYouManage/' + userId, null).subscribe((respData: any) => {
-            this.groupsYouManageData = respData.reverse();
+        // this.authService.memberSendRequest('get', 'getGroupsYouManage/' + userId, null)
+        this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
+        .subscribe((respData: any) => {
+            this.groupsYouManageData = respData['groups'].reverse();
             this.groupsYouManageData.forEach((element:any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
             })
+            this.totalManagaeGroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         });
     }

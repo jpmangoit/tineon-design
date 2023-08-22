@@ -1,23 +1,34 @@
 <div class="app-page-content">
     <div class="tabs-content-section">
         <div class="horizontal-tabs">
-            <nav class="scroll-navigation">
-                <ul class="tabs__items">
-                    <li><a (click)="peronalMsg()" (click)="onClick('1')"
-                            [ngClass]="{'active': activeClass==='personal'}">{{language.community_messages.personal_messages}}</a>
-                    </li>
-                    <li>
-                        <a (click)="clubMsg()" (click)="onClick('2')" [ngClass]="{'active': activeClass==='club'}">
-                            <!-- {{language.community_messages.club_messages}} -->
-                            <span *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</span>
-                            <span *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</span>
-                        </a>
-                    </li>
-                    <li><a (click)="groupMsg()" (click)="onClick('3')"
-                            [ngClass]="{'active': activeClass==='group'}">{{language.community_messages.group_messages}}</a>
-                    </li>
-                </ul>
-            </nav>
+
+            <mat-form-field  appearance="fill">
+                <mat-label></mat-label>
+                <mat-select matNativeControl [(value)]="selected" (selectionChange)="messageFilter($event.value)">
+                    <mat-option value="1">{{language.community_messages.personal_messages}}</mat-option>
+                    <mat-option value="2" *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</mat-option>
+                    <mat-option value="2" *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</mat-option>
+                    <mat-option value="3">{{language.community_messages.group_messages}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+                <!-- <nav class="scroll-navigation">
+                    <ul class="tabs__items">
+                        <li><a (click)="peronalMsg()" (click)="onClick('1')"
+                                [ngClass]="{'active': activeClass==='personal'}">{{language.community_messages.personal_messages}}</a>
+                        </li>
+                        <li>
+                            <a (click)="clubMsg()" (click)="onClick('2')"
+                                [ngClass]="{'active': activeClass==='club'}">
+                                <span *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</span>
+                                <span *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</span>
+                            </a>
+                        </li>
+                        <li><a (click)="groupMsg()" (click)="onClick('3')"
+                                [ngClass]="{'active': activeClass==='group'}">{{language.community_messages.group_messages}}</a>
+                        </li>
+                    </ul>
+                </nav> -->
         </div>
     </div>
     <div class="tabs-content-listing">
