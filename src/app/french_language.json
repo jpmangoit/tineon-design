@@ -409,6 +409,7 @@
         "title":"Tâches",
         "all_task":"Toutes les tâches",
         "no_task_available":"Aucune tâche disponible",
+        "no_task": "No Tasks Found",
         "medium":"Moyen",
         "high":"élevé",
         "low":"Faible",

@@ -8,7 +8,7 @@
                     </svg>
                     <h1>{{language.menu.club_wall}}</h1>
                 </div> -->
-                <div class="page-action-left">
+                <div class="page-action-left"> 
                     <div class="tab-button">
                         <button type="button" routerLink="./club-news" *ngIf="participateAccess.news == 'Yes'" (click)="onNews()"
                             [ngStyle]="displayNews == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
@@ -32,7 +32,8 @@
                             <span>{{language.club_wall.club_events}}</span>
                         </button>
                     </div>
-                </div>
+                </div> 
+                
                 <div class="page-action-right" *ngIf="createAccess.news == 'Yes' || createAccess.event == 'Yes'">
                     <!-- <button *ngIf="createAccess.news == 'Yes'" type="button" class="disabled"  routerLink="/create-news"
                         [ngStyle]="{'border-color':setTheme.default_status == true ? setTheme.button_y_bgcolor : setTheme.button_bgcolor,

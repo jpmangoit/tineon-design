@@ -418,6 +418,7 @@
         "title": "Tasks",
         "all_task": "All Tasks",
         "no_task_available": "No Task Available",
+        "no_task": "No Tasks Found",
         "medium": "Medium",
         "high": "High",
         "low": "Low",

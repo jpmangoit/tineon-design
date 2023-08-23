@@ -278,6 +278,7 @@
         "title": "Задачи",
         "all_task": "Все задачи",
         "no_task_available": "Нет доступных задач",
+        "no_task": "No Tasks Found",
         "medium": "Средний",
         "high": "Высокий",
         "low": "Низкий",

@@ -49,6 +49,9 @@
     },
     "create_news":{
         "news_highlight": "News Highlight"
+    },
+    "organizer_task":{
+        "no_task": "No Tasks Found"
     }
 }
 

@@ -409,6 +409,7 @@
         "title": "görevler",
         "all_task": "Tüm görevler",
         "no_task_available": "Kullanılabilir görev yok",
+        "no_task": "No Tasks Found",
         "medium": "orta",
         "high": "Yüksek",
         "low": "Küçük miktar",
