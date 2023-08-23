@@ -58,9 +58,14 @@
             <div class="chat-user-info">
                 <div class="chat-user-thumb" *ngIf="selectedChat && selectedChat.image">
                     <img onContextMenu="return false;"
-                        [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
-                    <div class="parti_name" *ngIf="selectedChat.image == null || selectedChat.image == ''">
+                        [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/no_image.png'" alt=""
+                        loading="lazy">
+                    <!-- <div class="parti_name" *ngIf="selectedChat.image == null || selectedChat.image == ''">
                         {{selectedChat?.name.charAt(0)}}
+                    </div> -->
+                    <div class="author-img" ngIf="selectedChat.image == null || selectedChat.image == ''">
+                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                            style="width: 100px;" alt="" loading="lazy">
                     </div>
                 </div>
                 <div class="chat-user-information" *ngIf="selectedChat && selectedChat.type == 'group'">
@@ -141,10 +146,15 @@
             <div class="form-input-area">
                 <div class="user-chat-thumb" *ngIf="userDetails.image != null && userDetails.image != ''">
                     <img onContextMenu="return false;"
-                        [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
+                        [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'" alt=""
+                        loading="lazy">
                 </div>
-                <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
+                <!-- <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
                     {{userDetails?.firstName.charAt(0)}}
+                </div> -->
+                <div class="author-img" *ngIf="userDetails.image == null || userDetails.image == ''">
+                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                        alt="" loading="lazy">
                 </div>
                 <div class="user-chat-input">
                     <input type="text" formControlName="message" name="message"
@@ -190,9 +200,14 @@
                     <!-- single user header start -->
                     <div class="single-user-header">
                         <img onContextMenu="return false;" *ngIf="userDetails.image != null && userDetails.image != ''"
-                            [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
-                        <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
+                            [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'" alt=""
+                            loading="lazy">
+                        <!-- <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
                             {{userDetails?.firstName.charAt(0)}}
+                        </div> -->
+                        <div class="author-img" *ngIf="userDetails.image == null || userDetails.image == ''">
+                            <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                                style="width: 100px;" alt="" loading="lazy">
                         </div>
                         <h2> {{userDetails?.firstName}} {{userDetails?.lastName}}</h2>
                         <div class="user-status">
@@ -212,7 +227,8 @@
                         </div>
                         <div class="media-image-list">
                             <div class="media-image" *ngFor='let media of selectedChatMedia'>
-                                <div class="media-img"><img onContextMenu="return false;" [src]="media.message" alt="" loading="lazy">
+                                <div class="media-img"><img onContextMenu="return false;" [src]="media.message" alt=""
+                                        loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -227,9 +243,14 @@
                                     <img onContextMenu="return false;"
                                         *ngIf="commonGroup.image != null && commonGroup.image != ''"
                                         [src]="commonGroup.image" alt="" loading="lazy">
-                                    <div class="parti_name"
+                                    <!-- <div class="parti_name"
                                         *ngIf="commonGroup.image == null || commonGroup.image == ''">
                                         {{commonGroup?.name.charAt(0)}}
+                                    </div> -->
+                                    <div class="author-img"
+                                        *ngIf="commonGroup.image == null || commonGroup.image == ''">
+                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                                            style="width: 100px;" alt="" loading="lazy">
                                     </div>
                                 </div>
                                 <div class="c-content">
@@ -280,25 +301,27 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="selectedImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+<div class="modal fade" id="selectedImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" (click)="unselectImage()" class="close" data-dismiss="modal"
-                    aria-label="Close">
+                <button type="button" (click)="unselectImage()" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="image-view">
-                            <img onContextMenu="return false;"  class="preview_img" src="">
-                            <label class="preview_txt" style="display: none;"></label>
+                    <img onContextMenu="return false;" class="preview_img" src="">
+                    <label class="preview_txt" style="display: none;"></label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="unselectImage()">{{language.create_event.cancel}}</button>
-                <button type="submit" class="btn btn-primary" (click)="messageProcess()">{{language.profile.submit}}</button>
-              </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="unselectImage()">{{language.create_event.cancel}}</button>
+                <button type="submit" class="btn btn-primary"
+                    (click)="messageProcess()">{{language.profile.submit}}</button>
+            </div>
         </div>
     </div>
 </div>

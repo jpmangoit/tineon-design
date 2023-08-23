@@ -156,8 +156,11 @@
                                             <div class="widget-appointment widget"   *ngFor="let organizer of organizerDetails ; let i = index">
                                                 <div class="widget-app-content" data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="getMemId(organizer.id)">
                                                     <div class="app-left-content" *ngIf="organizer && organizer.groupusers && organizer.groupusers.length > 0">
-                                                        <div class="parti_name" *ngIf="organizer.image == null || organizer.image == ''">
+                                                        <!-- <div class="parti_name" *ngIf="organizer.image == null || organizer.image == ''">
                                                             {{organizer.groupusers[0]?.firstname.charAt(0)}}{{organizer.groupusers[0]?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img" *ngIf="organizer.image == null || organizer.image == ''">
+                                                            <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.image != null"><img onContextMenu="return false;" [src]="organizer.image" style="width: 100px;" alt="" loading="lazy"></div>
                                                         <div class="user-content">
@@ -181,8 +184,11 @@
                                                         <div class="widget-app-content"
                                                             *ngFor="let participant of participantSelectedToShow">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"  *ngIf="participant.image == null || participant.image == ''">
+                                                                <!-- <div class="parti_name"  *ngIf="participant.image == null || participant.image == ''">
                                                                     {{participant.user_name.split(" ")[0].charAt(0)}}{{participant.user_name.split(" ")[1].charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"  *ngIf="participant.image == null || participant.image == ''">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"*ngIf="participant.image != null">
                                                                     <img onContextMenu="return false;" [src]="participant.image"style="width: 100px;" alt="" loading="lazy">

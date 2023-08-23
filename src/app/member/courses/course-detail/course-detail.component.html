@@ -19,25 +19,33 @@
                                                     <h5>asaas</h5>
                                                     <div class="course-detail-image">
                                                         <div class="image-section">
-                                                            <img class="preview_img" onContextMenu="return false;" alt="{{item.name}}" loading="lazy"
-                                                             [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'" >
+                                                            <img class="preview_img" onContextMenu="return false;"
+                                                                alt="{{item.name}}" loading="lazy"
+                                                                [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'">
                                                         </div>
                                                         <div class="overbar-section">
-                                                            <div class="course-action dropdown action_group" *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
-                                                                <button class="dropdown-toggle" type="button" (click)="onShow()"><i class="fa fa-pencil"></i> </button>
-                                                                <ul class="dropdown-menu bunch_drop" aria-labelledby="dropdownMenuLink">
-                                                                    <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                            <div class="course-action dropdown action_group"
+                                                                *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                                <button class="dropdown-toggle" type="button"
+                                                                    (click)="onShow()"><i class="fa fa-pencil"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu bunch_drop"
+                                                                    aria-labelledby="dropdownMenuLink">
+                                                                    <li
+                                                                        *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
                                                                         <a class="dropdown-item"
                                                                             (click)="updateCourse(item.id)">{{language.organizer.Edit}}
                                                                         </a>
                                                                     </li>
-                                                                    <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                                    <li
+                                                                        *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
                                                                         <a class="dropdown-item"
                                                                             (click)="deleteCourse(item.id)">{{language.organizer.Delete}}
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="dropdown-item" (click)="goBack()">{{language.organizer.Back}}</a>
+                                                                        <a class="dropdown-item"
+                                                                            (click)="goBack()">{{language.organizer.Back}}</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -46,59 +54,87 @@
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../assets/img/calender.svg" onContextMenu="return false;" alt="calender" loading="lazy" />
+                                                                                <img src="../../../assets/img/calender.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="calender" loading="lazy" />
                                                                             </span>
-                                                                            <span>{{item.date_from | date: "d. MMMM y" }}</span>
+                                                                            <span>{{item.date_from | date: "d. MMMM y"
+                                                                                }}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../../assets/img/dayicon.svg" onContextMenu="return false;" alt="euro" loading="lazy" />
+                                                                                <img src="../../../../assets/img/dayicon.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="euro" loading="lazy" />
                                                                             </span>
                                                                             <span>
-                                                                                {{ item?.recurring_dates? ( (item?.recurring_dates[0].date_from | date: 'EEEE') ) : (item.date_from | date: 'EEEE') }}
+                                                                                {{ item?.recurring_dates? (
+                                                                                (item?.recurring_dates[0].date_from |
+                                                                                date: 'EEEE') ) : (item.date_from |
+                                                                                date: 'EEEE') }}
                                                                             </span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                                                                    <path d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="20" height="21"
+                                                                                    viewBox="0 0 20 21" fill="none">
+                                                                                    <path
+                                                                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
                                                                                         fill="#fff" />
                                                                                 </svg>
                                                                             </span>
                                                                             <span>
-                                                                                {{ item?.recurring_dates? ( (item?.recurring_dates[0].start_time + ' - ' + item?.recurring_dates[0].end_time ) ) :
-                                                                                ( (item.start_time) + ' - ' + (item.end_time) )}}   {{language.login.o_clock}}
+                                                                                {{ item?.recurring_dates? (
+                                                                                (item?.recurring_dates[0].start_time + '
+                                                                                - ' + item?.recurring_dates[0].end_time
+                                                                                ) ) :
+                                                                                ( (item.start_time) + ' - ' +
+                                                                                (item.end_time) )}}
+                                                                                {{language.login.o_clock}}
                                                                             </span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
                                                                         <span class="img-icon">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 17 20" fill="none">
-                                                                            <path d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="20" height="21"
+                                                                                viewBox="0 0 17 20" fill="none">
+                                                                                <path
+                                                                                    d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
                                                                                     fill="#fff"></path>
                                                                             </svg>
                                                                         </span>
                                                                         <span class="location-box">
-                                                                            <span *ngIf="item?.roomData?.name">{{item.roomData.name}}&nbsp;/&nbsp;</span>{{item.place}}
-                                                                       </span>
+                                                                            <span
+                                                                                *ngIf="item?.roomData?.name">{{item.roomData.name}}&nbsp;/&nbsp;</span>{{item.place}}
+                                                                        </span>
                                                                     </li>
                                                                     <li>
                                                                         <div class="course-price">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../../assets/img/euro.svg" onContextMenu="return false;" alt="dollor" loading="lazy" /></span>
-                                                                            <span *ngIf=" item.price_per_participant != null ">{{item.price_per_participant}}</span>
-                                                                            <span *ngIf="item.price_per_participant == null">{{language.organizer.free}}</span>
+                                                                                <img src="../../../../assets/img/euro.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="dollor"
+                                                                                    loading="lazy" /></span>
+                                                                            <span
+                                                                                *ngIf=" item.price_per_participant != null ">{{item.price_per_participant}}</span>
+                                                                            <span
+                                                                                *ngIf="item.price_per_participant == null">{{language.organizer.free}}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li class="duration">
                                                                         <span class="img-icon">
-                                                                            <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo" loading="lazy" />
+                                                                            <img src="../../../assets/img/duration.svg"
+                                                                                onContextMenu="return false;" alt="logo"
+                                                                                loading="lazy" />
                                                                         </span>
-                                                                        <span class="avail_count" *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
+                                                                        <span class="avail_count"
+                                                                            *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
                                                                         <span> {{item.allowed_persons}}</span>
                                                                     </li>
                                                                     <!-- <li class="duration">
@@ -240,7 +276,8 @@
                                                 </div> -->
                                                 <!-- Task Details Participants  -->
                                                 <div class="all-participant-card">
-                                                    <div class="card-header " *ngIf="(collaborators && collaborators.length)">
+                                                    <div class="card-header "
+                                                        *ngIf="(collaborators && collaborators.length)">
                                                         <h5 class="card-title">{{language.organizer.collaborators}}</h5>
                                                     </div>
                                                     <div class="card-body" *ngIf="collaborators">
@@ -248,9 +285,15 @@
                                                             *ngFor="let participant of collaborators">
                                                             <div class="widget-app-content">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant.image == null || participant.image == ''">
                                                                         {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant.image == null || participant.image == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.image != null">
@@ -260,7 +303,8 @@
                                                                     </div>
                                                                     <div class="user-content">
                                                                         <span class="user-name">
-                                                                            {{participant.user[0]?.firstname}} {{participant.user[0]?.lastname}}</span>
+                                                                            {{participant.user[0]?.firstname}}
+                                                                            {{participant.user[0]?.lastname}}</span>
                                                                         <span
                                                                             class="participant_email">{{participant?.user[0]?.email}}</span>
                                                                     </div>
@@ -273,12 +317,20 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="ins-courses"> <h5>{{language.courses.organizer}}</h5>
+                                            <div class="ins-courses">
+                                                <h5>{{language.courses.organizer}}</h5>
                                                 <div class="widget-app-content" *ngIf="organizerDetails">
-                                                    <div class="app-left-content"  *ngFor="let organizer of organizerDetails">
-                                                        <div class="parti_name"
+                                                    <div class="app-left-content"
+                                                        *ngFor="let organizer of organizerDetails">
+                                                        <!-- <div class="parti_name"
                                                             *ngIf="organizer.users.image == null || organizer.users.image == ''">
                                                             {{organizer.users?.firstname.charAt(0)}}{{organizer.users?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.users.image != null">
                                                             <img [src]="organizer.users.image"
@@ -286,101 +338,164 @@
                                                                 alt="{{organizer?.users?.firstname}}" loading="lazy">
                                                         </div>
                                                         <div class="user-content">
-                                                            <span
-                                                                class="user-name">{{organizer.users.firstname}} {{organizer.users.lastname}}</span>
+                                                            <span class="user-name">{{organizer.users.firstname}}
+                                                                {{organizer.users.lastname}}</span>
                                                             <span
                                                                 class="participant_email">{{organizer.users.email}}</span>
 
                                                         </div>
 
                                                     </div>
-                                                    <div class="app-right-content"><span class="participant_status"><span
-                                                        class="status_badge approved"></span>{{language.organizer.approved}}</span></div>
+                                                    <div class="app-right-content"><span
+                                                            class="participant_status"><span
+                                                                class="status_badge approved"></span>{{language.organizer.approved}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="ins-courses" *ngIf="(memImg && memImg.length > 0) || (approvedParticipants && approvedParticipants.length > 0)">
+                                            <div class="ins-courses"
+                                                *ngIf="(memImg && memImg.length > 0) || (approvedParticipants && approvedParticipants.length > 0)">
                                                 <h5>{{language.courses.participants}}</h5>
                                                 <div class="app_widget_sc">
                                                     <div class="widget-app-content" *ngFor="let participant of memImg">
                                                         <div class="app-left-content">
-                                                            <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
+                                                            <!-- <div class="parti_name"
+                                                                *ngIf="participant.image == null || participant.image == ''">
                                                                 {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
+                                                            </div> -->
+                                                            <div class="author-img"
+                                                                *ngIf="participant.image == null || participant.image == ''">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                    style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img" *ngIf="participant.image != null">
                                                                 <img [src]="participant.image" style="width: 100px;"
-                                                                    onContextMenu="return false;" alt="{{participant?.firstname}}" loading="lazy">
+                                                                    onContextMenu="return false;"
+                                                                    alt="{{participant?.firstname}}" loading="lazy">
                                                             </div>
                                                             <div class="user-content">
-                                                                <span class="user-name">{{participant.firstname}} {{participant.lastname}}</span>
-                                                                <span class="participant_email">{{participant.email}}</span>
+                                                                <span class="user-name">{{participant.firstname}}
+                                                                    {{participant.lastname}}</span>
+                                                                <span
+                                                                    class="participant_email">{{participant.email}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="participant_status"> <span class="status_badge pending"></span>
+                                                            <span class="participant_status"> <span
+                                                                    class="status_badge pending"></span>
                                                                 {{language.organizer.pending}}
-                                                             </span>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div class="widget-app-content" *ngFor="let approved of approvedParticipants">
-                                                        <div class="app-left-content" *ngIf="approved.approved_status != 2">
+                                                    <div class="widget-app-content"
+                                                        *ngFor="let approved of approvedParticipants">
+                                                        <div class="app-left-content"
+                                                            *ngIf="approved.approved_status != 2">
 
-                                                            <div class="parti_name" *ngIf="approved.users.image == null || approved.users.image == ''">
+                                                            <!-- <div class="parti_name"
+                                                                *ngIf="approved.users.image == null || approved.users.image == ''">
                                                                 {{approved.users?.firstname.charAt(0)}}{{approved.users?.lastname.charAt(0)}}
+                                                            </div> -->
+                                                            <div class="author-img"
+                                                                *ngIf="approved.users.image == null || approved.users.image == ''">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                    style="width: 100px;" alt="" loading="lazy">
                                                             </div>
 
-                                                            <div class="author-img" *ngIf="approved.users.image != null">
-                                                                <img [src]="approved.users.image" style="width: 100px;"  onContextMenu="return false;"
+                                                            <div class="author-img"
+                                                                *ngIf="approved.users.image != null">
+                                                                <img [src]="approved.users.image" style="width: 100px;"
+                                                                    onContextMenu="return false;"
                                                                     alt="{{approved?.users?.firstname}}" loading="lazy">
                                                             </div>
                                                             <div class="user-content">
-                                                                <span class="user-name">{{approved.users.firstname}} {{approved.users.lastname}}</span>
-                                                                <span  class="participant_email">{{approved.users.email}}</span>
+                                                                <span class="user-name">{{approved.users.firstname}}
+                                                                    {{approved.users.lastname}}</span>
+                                                                <span
+                                                                    class="participant_email">{{approved.users.email}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="participant_status" *ngIf="approved?.approved_status == 1">
-                                                                <span class="status_badge approved"></span>{{language.organizer.approved}}
+                                                            <span class="participant_status"
+                                                                *ngIf="approved?.approved_status == 1">
+                                                                <span
+                                                                    class="status_badge approved"></span>{{language.organizer.approved}}
                                                             </span>
-                                                            <span class="participant_status" *ngIf="approved?.approved_status == 3">
-                                                                <span class="status_badge denied"></span>{{language.create_event.denied}}
+                                                            <span class="participant_status"
+                                                                *ngIf="approved?.approved_status == 3">
+                                                                <span
+                                                                    class="status_badge denied"></span>{{language.create_event.denied}}
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- all instructor start -->
-                                            <div class="ins-courses" *ngIf="item.CourseExternalInstructor.length> 0 || item.CourseInternalInstructor.length> 0">
+                                            <div class="ins-courses"
+                                                *ngIf="item.CourseExternalInstructor.length> 0 || item.CourseInternalInstructor.length> 0">
                                                 <h5>{{language.courses.all_instructor}}</h5>
                                                 <div class="app_widget_sc">
                                                     <div class="widget-app-item">
                                                         <div *ngIf="item.CourseExternalInstructor.length> 0">
 
-                                                            <div class="widget-app-content" *ngFor="let val of item.CourseExternalInstructor;let i=index">
-                                                                <div class="parti_name" *ngIf="val.externalIns?.add_img == null || val.externalIns?.add_img == ''">
-                                                                    {{val.externalIns?.first_name.charAt(0)}} {{val.externalIns?.last_name.charAt(0)}}
+                                                            <div class="widget-app-content"
+                                                                *ngFor="let val of item.CourseExternalInstructor;let i=index">
+                                                                <!-- <div class="parti_name"
+                                                                    *ngIf="val.externalIns?.add_img == null || val.externalIns?.add_img == ''">
+                                                                    {{val.externalIns?.first_name.charAt(0)}}
+                                                                    {{val.externalIns?.last_name.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="val.externalIns?.add_img == null || val.externalIns?.add_img == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
-                                                                <div class="author-img" *ngIf="val?.externalIns?.add_img != null">
-                                                                    <img [src]="val.externalIns.add_img" style="width: 100px;"
-                                                                        onContextMenu="return false;" alt="{{val?.externalIns?.first_name}}" loading="lazy">
+                                                                <div class="author-img"
+                                                                    *ngIf="val?.externalIns?.add_img != null">
+                                                                    <img [src]="val.externalIns.add_img"
+                                                                        style="width: 100px;"
+                                                                        onContextMenu="return false;"
+                                                                        alt="{{val?.externalIns?.first_name}}"
+                                                                        loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <span class="user-name">{{val?.externalIns?.first_name}} {{val?.externalIns?.last_name}}</span>
-                                                                    <span  class="participant_email">{{val?.externalIns?.emaill}}</span>
+                                                                    <span
+                                                                        class="user-name">{{val?.externalIns?.first_name}}
+                                                                        {{val?.externalIns?.last_name}}</span>
+                                                                    <span
+                                                                        class="participant_email">{{val?.externalIns?.emaill}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div *ngIf="item.CourseInternalInstructor.length> 0">
-                                                            <div class="widget-app-content" *ngFor="let val of item.CourseInternalInstructor;let i=index">
-                                                                <div class="parti_name" *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                            <div class="widget-app-content"
+                                                                *ngFor="let val of item.CourseInternalInstructor;let i=index">
+                                                                <!-- <div class="parti_name"
+                                                                    *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
                                                                     {{val?.internalUsers?.firstname.charAt(0)}}{{val?.internalUsers?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
-                                                                <div class="author-img" *ngIf="val?.internalUsers?.add_img != null">
-                                                                    <img [src]="val?.internalUsers?.add_img" style="width: 100px;" onContextMenu="return false;"
-                                                                        alt="{{val?.internalUsers?.first_name}}" loading="lazy">
+                                                                <div class="author-img"
+                                                                    *ngIf="val?.internalUsers?.add_img != null">
+                                                                    <img [src]="val?.internalUsers?.add_img"
+                                                                        style="width: 100px;"
+                                                                        onContextMenu="return false;"
+                                                                        alt="{{val?.internalUsers?.first_name}}"
+                                                                        loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <span  class="user-name">{{val.internalUsers.firstname}} {{val.internalUsers.lastname}}</span>
-                                                                    <span  class="participant_email">{{val.internalUsers.email}}</span>
+                                                                    <span
+                                                                        class="user-name">{{val.internalUsers.firstname}}
+                                                                        {{val.internalUsers.lastname}}</span>
+                                                                    <span
+                                                                        class="participant_email">{{val.internalUsers.email}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -393,7 +508,7 @@
                                 </div>
                             </div>
                         </mat-tab>
- 
+
                         <mat-tab label="{{language.courses.update_course}}">
                             <div class="card-body">
                                 <div class="profile_details" *ngIf="updateCourseData">
@@ -403,8 +518,9 @@
                                                 <div class="ins_img_inner">
                                                     <div class="course-detail-image">
                                                         <div class="image-section">
-                                                            <img class="preview_img" onContextMenu="return false;" [src]="hasUpdatePicture == true ? eventUpdateImage : '../../../../assets/img/no_image.png'"
-                                                            alt="{{item.name}}" loading="lazy">
+                                                            <img class="preview_img" onContextMenu="return false;"
+                                                                [src]="hasUpdatePicture == true ? eventUpdateImage : '../../../../assets/img/no_image.png'"
+                                                                alt="{{item.name}}" loading="lazy">
                                                             <div class="avail_detail">
                                                                 <!-- <div class="event_pricing FREE">
                                                                     <span>{{language.courses.availability}}</span>
@@ -415,22 +531,31 @@
                                                             </div>
                                                         </div>
                                                         <div class="overbar-section">
-                                                            <div class="course-action dropdown action_group" *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
-                                                                <button class="dropdown-toggle" type="button" (click)="onShow()"> <i class="fa fa-pencil"></i> </button>
+                                                            <div class="course-action dropdown action_group"
+                                                                *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                                <button class="dropdown-toggle" type="button"
+                                                                    (click)="onShow()"> <i class="fa fa-pencil"></i>
+                                                                </button>
                                                                 <ul class="dropdown-menu bunch_drop"
                                                                     aria-labelledby="dropdownMenuLink">
-                                                                    <li *ngIf="userDetails.isAdmin && updateCourseData.author != userDetails.userId && (item.deny_by_id == null || item.update_approved_status == 0)">
+                                                                    <li
+                                                                        *ngIf="userDetails.isAdmin && updateCourseData.author != userDetails.userId && (item.deny_by_id == null || item.update_approved_status == 0)">
                                                                         <a class="dropdown-item"
                                                                             (click)="approvedUpdateCourses(item.id)">{{language.courses.PublishCourse}}</a>
                                                                     </li>
-                                                                    <li  *ngIf="userDetails.isAdmin && updateCourseData.author != userDetails.userId && (item.deny_by_id == null || item.update_approved_status == 0)">
-                                                                        <a class="dropdown-item" (click)="unapprovedCourse(item.id)">{{language.courses.DenyCourse}}</a>
+                                                                    <li
+                                                                        *ngIf="userDetails.isAdmin && updateCourseData.author != userDetails.userId && (item.deny_by_id == null || item.update_approved_status == 0)">
+                                                                        <a class="dropdown-item"
+                                                                            (click)="unapprovedCourse(item.id)">{{language.courses.DenyCourse}}</a>
                                                                     </li>
                                                                     <li *ngIf="(item.author == userDetails.userId)">
-                                                                        <a class="dropdown-item"  (click)="deleteUpdateCourse(item.id)">{{language.courses.ResetUpdateCourse}}</a>
+                                                                        <a class="dropdown-item"
+                                                                            (click)="deleteUpdateCourse(item.id)">{{language.courses.ResetUpdateCourse}}</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="dropdown-item" (click)="goBack()">{{language.organizer.Back}}</a></li>
+                                                                        <a class="dropdown-item"
+                                                                            (click)="goBack()">{{language.organizer.Back}}</a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <div class="overimage-bar">
@@ -438,32 +563,50 @@
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../assets/img/calender.svg" onContextMenu="return false;" alt="calender" loading="lazy" />
+                                                                                <img src="../../../assets/img/calender.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="calender" loading="lazy" />
                                                                             </span>
-                                                                            <span>{{updateCourseData.date_from | date: "d. MMMM y" }}</span>
+                                                                            <span>{{updateCourseData.date_from | date:
+                                                                                "d. MMMM y" }}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../../assets/img/dayicon.svg" onContextMenu="return false;" alt="euro" loading="lazy" />
+                                                                                <img src="../../../../assets/img/dayicon.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="euro" loading="lazy" />
                                                                             </span>
                                                                             <span>
-                                                                                {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].date_from | date: 'EEEE') ) : (updateCourseData.date_from | date: 'EEEE') }}
+                                                                                {{ updateCourseData?.recurring_dates? (
+                                                                                (updateCourseData?.recurring_dates[0].date_from
+                                                                                | date: 'EEEE') ) :
+                                                                                (updateCourseData.date_from | date:
+                                                                                'EEEE') }}
                                                                             </span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="event-time">
                                                                             <span class="img-icon">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                                                                    <path d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="20" height="21"
+                                                                                    viewBox="0 0 20 21" fill="none">
+                                                                                    <path
+                                                                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
                                                                                         fill="#fff" />
                                                                                 </svg>
                                                                             </span>
                                                                             <span>
-                                                                                {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].start_time + ' - ' + updateCourseData?.recurring_dates[0].end_time ) ) :
-                                                                            ( (updateCourseData.start_time) + ' - ' + (updateCourseData.end_time) )}}   {{language.login.o_clock}}
+                                                                                {{ updateCourseData?.recurring_dates? (
+                                                                                (updateCourseData?.recurring_dates[0].start_time
+                                                                                + ' - ' +
+                                                                                updateCourseData?.recurring_dates[0].end_time
+                                                                                ) ) :
+                                                                                ( (updateCourseData.start_time) + ' - '
+                                                                                + (updateCourseData.end_time) )}}
+                                                                                {{language.login.o_clock}}
                                                                             </span>
                                                                             <!-- {{ updateCourseData?.recurring_dates? ( (updateCourseData?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +updateCourseData?.recurring_dates[0].start_time ) ) :
                                                                             (updateCourseData.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
@@ -471,32 +614,45 @@
                                                                     </li>
                                                                     <li>
                                                                         <span class="img-icon">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 17 20" fill="none">
-                                                                            <path d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="20" height="21"
+                                                                                viewBox="0 0 17 20" fill="none">
+                                                                                <path
+                                                                                    d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
                                                                                     fill="#fff"></path>
                                                                             </svg>
                                                                         </span>
                                                                         <span class="location-box">
-                                                                            <span *ngIf="updateCourseData?.roomData?.name">{{updateCourseData.roomData.name}}&nbsp;/&nbsp;</span>
+                                                                            <span
+                                                                                *ngIf="updateCourseData?.roomData?.name">{{updateCourseData.roomData.name}}&nbsp;/&nbsp;</span>
                                                                             {{updateCourseData.place}}
-                                                                       </span>
+                                                                        </span>
                                                                     </li>
                                                                     <li>
                                                                         <div class="course-price">
                                                                             <span class="img-icon">
-                                                                                <img src="../../../../assets/img/euro.svg" onContextMenu="return false;" alt="dollor" loading="lazy" /></span>
-                                                                            <span *ngIf=" updateCourseData?.price_per_participant != 'null'">{{updateCourseData.price_per_participant}}</span>
-                                                                            <span *ngIf="updateCourseData?.price_per_participant == 'null'">{{language.organizer.free}}</span>
+                                                                                <img src="../../../../assets/img/euro.svg"
+                                                                                    onContextMenu="return false;"
+                                                                                    alt="dollor"
+                                                                                    loading="lazy" /></span>
+                                                                            <span
+                                                                                *ngIf=" updateCourseData?.price_per_participant != 'null'">{{updateCourseData.price_per_participant}}</span>
+                                                                            <span
+                                                                                *ngIf="updateCourseData?.price_per_participant == 'null'">{{language.organizer.free}}</span>
                                                                         </div>
                                                                     </li>
 
 
                                                                     <li class="duration">
                                                                         <span class="img-icon">
-                                                                            <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo" loading="lazy" />
+                                                                            <img src="../../../assets/img/duration.svg"
+                                                                                onContextMenu="return false;" alt="logo"
+                                                                                loading="lazy" />
                                                                         </span>
-                                                                        <span class="avail_count" *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
-                                                                        <span> {{updateCourseData.allowed_persons}}</span>
+                                                                        <span class="avail_count"
+                                                                            *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
+                                                                        <span>
+                                                                            {{updateCourseData.allowed_persons}}</span>
                                                                     </li>
 
                                                                     <!-- <li class="duration">
@@ -553,7 +709,8 @@
                                                     </div>
                                                 </ng-template>
                                             </div> -->
-                                            <div class="attach_btn" *ngIf="eventUpdateFile" (click)="download(eventFile)">
+                                            <div class="attach_btn" *ngIf="eventUpdateFile"
+                                                (click)="download(eventFile)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                     viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
                                                     stroke-linecap="round" stroke-linejoin="round"
@@ -642,9 +799,15 @@
                                                             <div class="widget-app-content"
                                                                 *ngIf="participant.user_id != this.updateCourseData?.task[0]?.['organizer_id']">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                         {{participant.user?.firstname.charAt(0)}}{{participant.user?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.user && participant.user.image && participant.user.image != null">
@@ -654,7 +817,8 @@
                                                                     </div>
                                                                     <div class="user-content">
                                                                         <span class="user-name">
-                                                                            {{participant.user?.firstname}} {{participant.user?.lastname}}</span>
+                                                                            {{participant.user?.firstname}}
+                                                                            {{participant.user?.lastname}}</span>
                                                                         <span
                                                                             class="participant_email">{{participant?.user?.email}}</span>
                                                                     </div>
@@ -667,7 +831,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="page-action-right" *ngIf="item.deny_by_id == null">
-                                                <button *ngIf="userDetails.isAdmin  && item.author != userDetails.userId"
+                                                <button
+                                                    *ngIf="userDetails.isAdmin  && item.author != userDetails.userId"
                                                     type="button" (click)="approvedUpdateCourses(item.id)">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18"
                                                         viewBox="0 0 20 18" fill="none">
@@ -698,36 +863,55 @@
                                                     </svg>&nbsp;<span>{{language.courses.ResetUpdateCourse}}</span>
                                                 </button>
                                             </div>
-                                            <div class="ins-courses">  <h5>{{language.courses.organizer}}</h5>
+                                            <div class="ins-courses">
+                                                <h5>{{language.courses.organizer}}</h5>
                                                 <div class="widget-app-content" *ngIf="organizerDetails">
-                                                    <div class="app-left-content" *ngFor="let organizer of organizerDetails">
-                                                        <div class="parti_name" *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                                    <div class="app-left-content"
+                                                        *ngFor="let organizer of organizerDetails">
+                                                        <!-- <div class="parti_name"
+                                                            *ngIf="organizer.users.image == null || organizer.users.image == ''">
                                                             {{organizer.users?.firstname.charAt(0)}}{{organizer.users?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.users.image != null">
-                                                            <img [src]="organizer.users.image" onContextMenu="return false;" alt="{{organizer?.users?.firstname}}" loading="lazy">
+                                                            <img [src]="organizer.users.image"
+                                                                onContextMenu="return false;"
+                                                                alt="{{organizer?.users?.firstname}}" loading="lazy">
                                                         </div>
                                                         <div class="user-content">
-                                                            <span
-                                                                class="user-name">{{organizer.users.firstname}} {{organizer.users.lastname}}</span>
+                                                            <span class="user-name">{{organizer.users.firstname}}
+                                                                {{organizer.users.lastname}}</span>
                                                             <span
                                                                 class="participant_email">{{organizer.users.email}}</span>
 
                                                         </div>
                                                     </div>
                                                     <div class="app-right-content"><span class="participant_status">
-                                                                <span
-                                                                    class="status_badge approved"></span>{{language.organizer.approved}}</span></div>
+                                                            <span
+                                                                class="status_badge approved"></span>{{language.organizer.approved}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="ins-courses">
                                                 <h5>{{language.courses.participants}}</h5>
                                                 <div class="app_widget_sc">
-                                                    <div class="widget-app-content"  *ngFor="let participant of updateCourseData.course_users">
+                                                    <div class="widget-app-content"
+                                                        *ngFor="let participant of updateCourseData.course_users">
                                                         <div class="app-left-content">
-                                                            <div class="parti_name"
+                                                            <!-- <div class="parti_name"
                                                                 *ngIf="participant.user && participant.user.image && participant.user.image == null ">
                                                                 {{participant.user?.firstname.charAt(0)}}{{participant.user?.lastname.charAt(0)}}
+                                                            </div> -->
+                                                            <div class="author-img"
+                                                                *ngIf="participant.user && participant.user.image && participant.user.image == null ">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                    style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img"
                                                                 *ngIf="participant.user && participant.user.image && participant.user.image != null">
@@ -737,28 +921,37 @@
                                                                     loading="lazy">
                                                             </div>
                                                             <div class="user-content" *ngIf="participant.user">
-                                                                <span class="user-name"> {{participant.user.firstname}} {{participant.user.lastname}}</span>
-                                                                <span class="participant_email">{{participant.user.email}}</span>
+                                                                <span class="user-name"> {{participant.user.firstname}}
+                                                                    {{participant.user.lastname}}</span>
+                                                                <span
+                                                                    class="participant_email">{{participant.user.email}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
                                                             <span class="participant_status">
-                                                             </span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- all instructor start -->
-                                            <div class="ins-courses"  *ngIf="updateCourseData.externalInstructor.length > 0 || updateCourseData.internalInstructor.length > 0">
+                                            <div class="ins-courses"
+                                                *ngIf="updateCourseData.externalInstructor.length > 0 || updateCourseData.internalInstructor.length > 0">
                                                 <h5>{{language.courses.all_instructor}}</h5>
                                                 <div class="app_widget_sc">
                                                     <div class="widget-app-item">
                                                         <div *ngIf="updateCourseData.externalInstructor.length > 0">
                                                             <div class="widget-app-content"
                                                                 *ngFor="let val of updateCourseData.externalInstructor;let i=index">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="val.add_img == null || val.add_img == ''">
                                                                     {{val.first_name.charAt(0)}}{{val.last_name.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="val.add_img == null || val.add_img == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img" *ngIf="val.add_img != null">
                                                                     <img [src]="val.add_img" style="width: 100px;"
@@ -766,30 +959,44 @@
                                                                         alt="{{val?.first_name}}" loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <span class="user-name">{{val.first_name}} {{val.last_name}}</span>
-                                                                    <span  class="participant_email">{{val.emaill}}</span>
+                                                                    <span class="user-name">{{val.first_name}}
+                                                                        {{val.last_name}}</span>
+                                                                    <span
+                                                                        class="participant_email">{{val.emaill}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div *ngIf="updateCourseData.internalInstructor.length> 0">
-                                                            <div class="widget-app-content"  *ngFor="let val of updateCourseData.internalInstructor;let i=index">
+                                                            <div class="widget-app-content"
+                                                                *ngFor="let val of updateCourseData.internalInstructor;let i=index">
 
-                                                                <div class="parti_name" *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                                <!-- <div class="parti_name"
+                                                                    *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
                                                                     <div *ngIf="(val?.internalUsers)">
                                                                         {{val?.internalUsers?.firstname.charAt(0)}}{{val?.internalUsers?.lastname.charAt(0)}}
                                                                     </div>
                                                                     <div *ngIf="!(val.internalUsers)">
                                                                         {{val.firstname.charAt(0)}}{{val.lastname.charAt(0)}}
                                                                     </div>
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
-
-                                                                <div class="author-img" *ngIf="val?.internalUsers?.add_img != null">
-                                                                    <img [src]="val?.internalUsers?.add_img" style="width: 100px;" onContextMenu="return false;"
-                                                                        alt="{{val?.internalUsers?.first_name}}" loading="lazy">
+                                                                <div class="author-img"
+                                                                    *ngIf="val?.internalUsers?.add_img != null">
+                                                                    <img [src]="val?.internalUsers?.add_img"
+                                                                        style="width: 100px;"
+                                                                        onContextMenu="return false;"
+                                                                        alt="{{val?.internalUsers?.first_name}}"
+                                                                        loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <span class="user-name">{{val.firstname}} {{val.lastname}}</span>
-                                                                    <span  class="participant_email">{{val.email}}</span>
+                                                                    <span class="user-name">{{val.firstname}}
+                                                                        {{val.lastname}}</span>
+                                                                    <span class="participant_email">{{val.email}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -811,26 +1018,40 @@
                                         <div class="ins_img_inner">
                                             <div class="course-detail-image">
                                                 <div class="image-section">
-                                                    <img class="preview_img" onContextMenu="return false;" [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"
+                                                    <img class="preview_img" onContextMenu="return false;"
+                                                        [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"
                                                         alt="{{item.name}}" loading="lazy">
                                                 </div>
                                                 <div class="overbar-section">
-                                                    <div class="course-action dropdown action_group" *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin ||(userDetails.roles[0] == 'admin')">
-                                                        <button class="dropdown-toggle" type="button" (click)="onShow()"> <i class="fa fa-pencil"></i></button>
-                                                        <ul class="dropdown-menu bunch_drop" aria-labelledby="dropdownMenuLink">
-                                                            <li *ngIf="item.approved_status == 0 && userDetails.isAdmin && ( item.deny_by_id == '' || item.deny_by_id == null )">
-                                                                <a class="dropdown-item" (click)="approvedCourses(item.id)">{{language.courses.PublishCourse}}</a>
+                                                    <div class="course-action dropdown action_group"
+                                                        *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin ||(userDetails.roles[0] == 'admin')">
+                                                        <button class="dropdown-toggle" type="button"
+                                                            (click)="onShow()"> <i class="fa fa-pencil"></i></button>
+                                                        <ul class="dropdown-menu bunch_drop"
+                                                            aria-labelledby="dropdownMenuLink">
+                                                            <li
+                                                                *ngIf="item.approved_status == 0 && userDetails.isAdmin && ( item.deny_by_id == '' || item.deny_by_id == null )">
+                                                                <a class="dropdown-item"
+                                                                    (click)="approvedCourses(item.id)">{{language.courses.PublishCourse}}</a>
                                                             </li>
-                                                            <li *ngIf="item.approved_status == 0 && userDetails.isAdmin && ( item.deny_by_id == '' || item.deny_by_id == null )">
-                                                                <a class="dropdown-item" (click)="unapprovedCourse(item.id)">{{language.courses.DenyCourse}}</a>
+                                                            <li
+                                                                *ngIf="item.approved_status == 0 && userDetails.isAdmin && ( item.deny_by_id == '' || item.deny_by_id == null )">
+                                                                <a class="dropdown-item"
+                                                                    (click)="unapprovedCourse(item.id)">{{language.courses.DenyCourse}}</a>
                                                             </li>
-                                                            <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
-                                                                <a class="dropdown-item" (click)="updateCourse(item.id)">{{language.organizer.Edit}}</a>
+                                                            <li
+                                                                *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                                <a class="dropdown-item"
+                                                                    (click)="updateCourse(item.id)">{{language.organizer.Edit}}</a>
                                                             </li>
-                                                            <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
-                                                                <a class="dropdown-item" (click)="deleteCourse(item.id)">{{language.organizer.Delete}}</a>
+                                                            <li
+                                                                *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                                                <a class="dropdown-item"
+                                                                    (click)="deleteCourse(item.id)">{{language.organizer.Delete}}</a>
                                                             </li>
-                                                            <li><a class="dropdown-item" (click)="goBack()">{{language.organizer.Back}}</a></li>
+                                                            <li><a class="dropdown-item"
+                                                                    (click)="goBack()">{{language.organizer.Back}}</a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                     <div class="overimage-bar">
@@ -838,7 +1059,9 @@
                                                             <li>
                                                                 <div class="event-time">
                                                                     <span class="img-icon">
-                                                                        <img src="../../../assets/img/calender.svg" onContextMenu="return false;" alt="calender" loading="lazy" />
+                                                                        <img src="../../../assets/img/calender.svg"
+                                                                            onContextMenu="return false;" alt="calender"
+                                                                            loading="lazy" />
                                                                     </span>
                                                                     <span>
                                                                         {{item.date_from | date: "d. MMMM y" }}
@@ -849,7 +1072,9 @@
                                                             <li>
                                                                 <div class="event-time">
                                                                     <span class="img-icon">
-                                                                        <img src="../../../../assets/img/dayicon.svg" onContextMenu="return false;" alt="euro" loading="lazy" />
+                                                                        <img src="../../../../assets/img/dayicon.svg"
+                                                                            onContextMenu="return false;" alt="euro"
+                                                                            loading="lazy" />
                                                                     </span>
                                                                     <!-- {{ item?.recurring_dates? ( (item?.recurring_dates[0].date_from | date: 'EEEE') ) : (item.date_from | date: 'EEEE') }} -->
                                                                     <span>{{(item.date_from | date: 'EEEE') }}</span>
@@ -858,14 +1083,20 @@
                                                             <li>
                                                                 <div class="event-time">
                                                                     <span class="img-icon">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                                                            <path d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="20" height="21" viewBox="0 0 20 21"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
                                                                                 fill="#fff" />
                                                                         </svg>
                                                                     </span>
                                                                     <span>
-                                                                        {{ item?.recurring_dates? ( (item?.recurring_dates[0].start_time + ' - ' + item?.recurring_dates[0].end_time ) ) :
-                                                                        ( (item.start_time) + ' - ' + (item.end_time) )}}   {{language.login.o_clock}}
+                                                                        {{ item?.recurring_dates? (
+                                                                        (item?.recurring_dates[0].start_time + ' - ' +
+                                                                        item?.recurring_dates[0].end_time ) ) :
+                                                                        ( (item.start_time) + ' - ' + (item.end_time)
+                                                                        )}} {{language.login.o_clock}}
                                                                     </span>
                                                                     <!-- {{ item?.recurring_dates? ( (item?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +item?.recurring_dates[0].start_time ) ) :
                                                                                 (item.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
@@ -874,35 +1105,45 @@
 
                                                             <li>
                                                                 <span class="img-icon">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 17 20" fill="none">
-                                                                    <path d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" viewBox="0 0 17 20" fill="none">
+                                                                        <path
+                                                                            d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
                                                                             fill="#fff"></path>
                                                                     </svg>
                                                                 </span>
                                                                 <!-- <span *ngIf="item?.room != 'null'"> /</span> -->
                                                                 <span class="location-box">
-                                                                     <span *ngIf="item?.roomData?.name">{{item.roomData.name}}&nbsp;/&nbsp;</span>
-                                                                     {{item.place}}
+                                                                    <span
+                                                                        *ngIf="item?.roomData?.name">{{item.roomData.name}}&nbsp;/&nbsp;</span>
+                                                                    {{item.place}}
                                                                 </span>
                                                             </li>
                                                             <li>
                                                                 <div class="course-price">
                                                                     <span class="img-icon">
                                                                         <!-- <img src="../../../assets/img/dollor.svg" onContextMenu="return false;" alt="dollor" loading="lazy" /></span> -->
-                                                                        <img src="../../../../assets/img/euro.svg" onContextMenu="return false;" alt="dollor" loading="lazy" /></span>
-                                                                    <span *ngIf=" item.price_per_participant != null ">{{item.price_per_participant}}</span>
-                                                                    <span *ngIf="item.price_per_participant == null">{{language.organizer.free}}</span>
+                                                                        <img src="../../../../assets/img/euro.svg"
+                                                                            onContextMenu="return false;" alt="dollor"
+                                                                            loading="lazy" /></span>
+                                                                    <span
+                                                                        *ngIf=" item.price_per_participant != null ">{{item.price_per_participant}}</span>
+                                                                    <span
+                                                                        *ngIf="item.price_per_participant == null">{{language.organizer.free}}</span>
                                                                 </div>
                                                             </li>
                                                             <li class="duration">
                                                                 <span class="img-icon">
-                                                                    <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo" loading="lazy" />
+                                                                    <img src="../../../assets/img/duration.svg"
+                                                                        onContextMenu="return false;" alt="logo"
+                                                                        loading="lazy" />
                                                                 </span>
-                                                                <span class="avail_count" *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
+                                                                <span class="avail_count"
+                                                                    *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
                                                                 <span> {{item.allowed_persons}}</span>
                                                             </li>
 
-                                                             <!-- <li class="duration">
+                                                            <!-- <li class="duration">
                                                                 <span class="img-icon">
                                                                     <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo" loading="lazy" />
                                                                     </span>
@@ -1039,9 +1280,15 @@
                                                         data-bs-target="#exampleModal"
                                                         (click)="getMemId(participant.user[0]?.id)">
                                                         <div class="app-left-content">
-                                                            <div class="parti_name"
+                                                            <!-- <div class="parti_name"
                                                                 *ngIf="participant.image == null || participant.image == ''">
                                                                 {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
+                                                            </div> -->
+                                                            <div class="author-img"
+                                                                *ngIf="participant.image == null || participant.image == ''">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                    style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img" *ngIf="participant.image != null">
                                                                 <img onContextMenu="return false;"
@@ -1050,7 +1297,8 @@
                                                             </div>
                                                             <div class="user-content">
                                                                 <span class="user-name">
-                                                                    {{participant.user[0]?.firstname}} {{participant.user[0]?.lastname}}</span>
+                                                                    {{participant.user[0]?.firstname}}
+                                                                    {{participant.user[0]?.lastname}}</span>
                                                                 <span
                                                                     class="participant_email">{{participant?.user[0]?.email}}</span>
                                                             </div>
@@ -1088,115 +1336,180 @@
                                     <div class="ins-courses">
                                         <h5>{{language.courses.organizer}}</h5>
                                         <div class="card-body" *ngIf="organizerDetails">
-                                            <div class="widget-appointment widget" *ngFor="let organizer of organizerDetails">
+                                            <div class="widget-appointment widget"
+                                                *ngFor="let organizer of organizerDetails">
                                                 <div class="widget-app-content" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" (click)="getMemId(organizer.users.id)">
+                                                    data-bs-target="#exampleModal"
+                                                    (click)="getMemId(organizer.users.id)">
                                                     <div class="app-left-content">
-                                                        <div class="parti_name" *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                                        <!-- <div class="parti_name"
+                                                            *ngIf="organizer.users.image == null || organizer.users.image == ''">
                                                             {{organizer.users?.firstname.charAt(0)}}{{organizer.users?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.users.image != null">
                                                             <img [src]="organizer.users.image"
-                                                                onContextMenu="return false;" alt="{{organizer?.users?.firstname}}" loading="lazy">
+                                                                onContextMenu="return false;"
+                                                                alt="{{organizer?.users?.firstname}}" loading="lazy">
                                                         </div>
                                                         <div class="user-content">
-                                                            <span class="user-name">{{organizer.users.firstname}} {{organizer.users.lastname}}</span>
+                                                            <span class="user-name">{{organizer.users.firstname}}
+                                                                {{organizer.users.lastname}}</span>
                                                             <span
                                                                 class="participant_email">{{organizer.users.email}}</span>
 
                                                         </div>
                                                     </div>
                                                     <div class="app-right-content"><span class="participant_status">
-                                                                <span
-                                                                    class="status_badge approved"></span>{{language.organizer.approved}}</span></div>
+                                                            <span
+                                                                class="status_badge approved"></span>{{language.organizer.approved}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ins-courses" *ngIf="(memImg && memImg.length > 0) || (approvedParticipants && approvedParticipants.length > 0)">
+                                    <div class="ins-courses"
+                                        *ngIf="(memImg && memImg.length > 0) || (approvedParticipants && approvedParticipants.length > 0)">
                                         <h5>{{language.courses.participants}}</h5>
                                         <div class="app_widget_sc">
                                             <!-- pending -->
                                             <div class="widget-app-content" *ngFor="let participant of memImg">
-                                                <div class="app-left-content" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
-                                                    <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
+                                                <div class="app-left-content" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
+                                                    <!-- <div class="parti_name"
+                                                        *ngIf="participant.image == null || participant.image == ''">
                                                         {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
+                                                    </div> -->
+                                                    <div class="author-img"
+                                                        *ngIf="participant.image == null || participant.image == ''">
+                                                        <img onContextMenu="return false;"
+                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                            style="width: 100px;" alt="" loading="lazy">
                                                     </div>
                                                     <div class="author-img" *ngIf="participant.image != null">
-                                                        <img [src]="participant.image" style="width: 100px;" onContextMenu="return false;"
+                                                        <img [src]="participant.image" style="width: 100px;"
+                                                            onContextMenu="return false;"
                                                             alt="{{participant?.firstname}}" loading="lazy">
                                                     </div>
                                                     <div class="user-content">
-                                                        <span class="user-name">{{participant.firstname}} {{participant.lastname}}</span>
+                                                        <span class="user-name">{{participant.firstname}}
+                                                            {{participant.lastname}}</span>
                                                         <span class="participant_email">{{participant.email}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="app-right-content">
                                                     <span class="participant_status">
-                                                        <span class="status_badge pending"></span> {{language.organizer.pending}}
+                                                        <span class="status_badge pending"></span>
+                                                        {{language.organizer.pending}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <!-- approve & deny -->
-                                            <div class="widget-app-content" *ngFor="let approved of approvedParticipants">
-                                                <div class="app-left-content" *ngIf="approved.approved_status != 2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            <div class="widget-app-content"
+                                                *ngFor="let approved of approvedParticipants">
+                                                <div class="app-left-content" *ngIf="approved.approved_status != 2"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                     (click)="getMemId(approved.users.id)">
 
-                                                    <div class="parti_name" *ngIf="approved.users.image == null || approved.users.image == ''">
+                                                    <!-- <div class="parti_name"
+                                                        *ngIf="approved.users.image == null || approved.users.image == ''">
                                                         {{approved.users?.firstname.charAt(0)}}{{approved.users?.lastname.charAt(0)}}
+                                                    </div> -->
+                                                    <div class="author-img"
+                                                        *ngIf="approved.users.image == null || approved.users.image == ''">
+                                                        <img onContextMenu="return false;"
+                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                            style="width: 100px;" alt="" loading="lazy">
                                                     </div>
 
                                                     <div class="author-img" *ngIf="approved.users.image != null">
-                                                        <img [src]="approved.users.image" style="width: 100px;" onContextMenu="return false;" alt="{{approved?.users?.firstname}}" loading="lazy">
+                                                        <img [src]="approved.users.image" style="width: 100px;"
+                                                            onContextMenu="return false;"
+                                                            alt="{{approved?.users?.firstname}}" loading="lazy">
                                                     </div>
                                                     <div class="user-content">
-                                                        <span class="user-name">{{approved.users.firstname}} {{approved.users.lastname}}</span>
+                                                        <span class="user-name">{{approved.users.firstname}}
+                                                            {{approved.users.lastname}}</span>
                                                         <span class="participant_email">{{approved.users.email}}</span>
                                                     </div>
                                                 </div>
-                                                 <div class="app-right-content">
-                                                    <span class="participant_status" *ngIf="approved.approved_status == 1">
-                                                            <span class="status_badge approved"></span>{{language.organizer.approved}}
+                                                <div class="app-right-content">
+                                                    <span class="participant_status"
+                                                        *ngIf="approved.approved_status == 1">
+                                                        <span
+                                                            class="status_badge approved"></span>{{language.organizer.approved}}
                                                     </span>
-                                                    <span class="participant_status" *ngIf="approved.approved_status == 3">
-                                                        <span class="status_badge denied"></span>{{language.create_event.denied}}
+                                                    <span class="participant_status"
+                                                        *ngIf="approved.approved_status == 3">
+                                                        <span
+                                                            class="status_badge denied"></span>{{language.create_event.denied}}
                                                     </span>
-                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- all instructor start -->
-                                    <div class="ins-courses" *ngIf="item.CourseExternalInstructor.length> 0 || item.CourseInternalInstructor.length > 0">
+                                    <div class="ins-courses"
+                                        *ngIf="item.CourseExternalInstructor.length> 0 || item.CourseInternalInstructor.length > 0">
                                         <h5>{{language.courses.all_instructor}}</h5>
                                         <div class="app_widget_sc">
                                             <div class="widget-app-item">
                                                 <div *ngIf="item.CourseExternalInstructor.length > 0">
-                                                    <div class="widget-app-content" *ngFor="let val of item.CourseExternalInstructor;let i=index">
-                                                        <div class="parti_name" *ngIf="val?.externalIns?.add_img == null || val?.externalIns?.add_img == ''">
+                                                    <div class="widget-app-content"
+                                                        *ngFor="let val of item.CourseExternalInstructor;let i=index">
+                                                        <!-- <div class="parti_name"
+                                                            *ngIf="val?.externalIns?.add_img == null || val?.externalIns?.add_img == ''">
                                                             {{val.externalIns?.first_name.charAt(0)}}{{val.externalIns?.last_name.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="val?.externalIns?.add_img == null || val?.externalIns?.add_img == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
-                                                        <div class="author-img" *ngIf="val?.externalIns?.add_img != null">
+                                                        <div class="author-img"
+                                                            *ngIf="val?.externalIns?.add_img != null">
                                                             <img [src]="val?.externalIns?.add_img" style="width: 100px;"
-                                                                onContextMenu="return false;" alt="{{val?.externalIns?.first_name}}" loading="lazy">
+                                                                onContextMenu="return false;"
+                                                                alt="{{val?.externalIns?.first_name}}" loading="lazy">
                                                         </div>
                                                         <div class="user-content">
-                                                            <span class="user-name">{{val?.externalIns?.first_name}} {{val?.externalIns?.last_name}}</span>
-                                                            <span  class="participant_email">{{val?.externalIns?.emaill}}</span>
+                                                            <span class="user-name">{{val?.externalIns?.first_name}}
+                                                                {{val?.externalIns?.last_name}}</span>
+                                                            <span
+                                                                class="participant_email">{{val?.externalIns?.emaill}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div *ngIf="item.CourseInternalInstructor.length > 0">
-                                                    <div class="widget-app-content"  *ngFor="let val of item.CourseInternalInstructor;let i=index">
-                                                        <div class="parti_name" *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                    <div class="widget-app-content"
+                                                        *ngFor="let val of item.CourseInternalInstructor;let i=index">
+                                                        <!-- <div class="parti_name"
+                                                            *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
                                                             {{val?.internalUsers?.firstname.charAt(0)}}{{val?.internalUsers?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
-                                                        <div class="author-img" *ngIf="val?.internalUsers?.add_img != null">
-                                                            <img [src]="val?.internalUsers?.add_img" style="width: 100px;" onContextMenu="return false;"
+                                                        <div class="author-img"
+                                                            *ngIf="val?.internalUsers?.add_img != null">
+                                                            <img [src]="val?.internalUsers?.add_img"
+                                                                style="width: 100px;" onContextMenu="return false;"
                                                                 alt="{{val?.internalUsers?.first_name}}" loading="lazy">
                                                         </div>
                                                         <div class="user-content">
-                                                            <span class="user-name">{{val?.internalUsers.firstname}} {{val?.internalUsers.lastname}}</span>
-                                                            <span  class="participant_email">{{val?.internalUsers.email}}</span>
+                                                            <span class="user-name">{{val?.internalUsers.firstname}}
+                                                                {{val?.internalUsers.lastname}}</span>
+                                                            <span
+                                                                class="participant_email">{{val?.internalUsers.email}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1289,7 +1602,8 @@
                                     <div class="profile_field info_field" style="margin-bottom: 20px;">
                                         <span class="info_label">{{language.profile.membership_date}}</span>
                                         <span class="info_detail"
-                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM y'}}</span>
+                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM
+                                            y'}}</span>
                                     </div>
                                 </div>
                             </div>

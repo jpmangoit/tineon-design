@@ -209,8 +209,11 @@
                                      <div class="box-news-top">
                                         <div>
                                             <!-- <img  oncontextmenu="return false;" src="../../../../assets/img/new-design/club-logo.png" alt="brand-logo" loading="lazy"> -->
-                                            <div class="parti_name" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                                            <!-- <div class="parti_name" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
                                                 {{data?.user?.firstname.charAt(0)}} {{data?.user?.lastname.charAt(0)}}
+                                            </div> -->
+                                            <div class="author-img" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                                                <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                             </div>
                                             <div class="author-img" *ngIf="data?.user?.imagePro != null">
                                                 <img [src]="data?.user?.imagePro" onContextMenu="return false;" alt="{{data?.user?.firstname}}" loading="lazy">

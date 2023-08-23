@@ -219,7 +219,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupData = [];
         this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
-            // console.log(respData);
             this.groupData = respData['groups'];
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
@@ -272,7 +271,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
-                // console.log(this.groupJoinData);
 
                 this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {

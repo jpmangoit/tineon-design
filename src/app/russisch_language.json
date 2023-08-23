@@ -57,7 +57,9 @@
         "crm_newss": "CRM News",
         "dfb_newss": "dfb News",
         "crm_news": "Sales partner News",
-        "dfb_news": "Tineon News"
+        "dfb_news": "Tineon News",
+        "congratulate": "Congratulate"
+
     },
     "club_wall": {
         "title": "Стена ассоциации",
@@ -455,7 +457,9 @@
         "anniversaries_birthday": "Юбилеи и дни рождения",
         "no_anniversaries_birthday": "Юбилеи и дни рождения не найдены",
 
-        "years_old": "лет"
+        "years_old": "лет",
+        "birthday": "Birthday",
+        "anniversary": "Anniversary"
     },
     "confirmation_message": {
         "accept_group": "Вы уверены, что хотите принять эту группу?",

@@ -10,11 +10,21 @@
         <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
                 <div class="app-left-content">
-                    <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;" alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy"></div>
+                    <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
+                            alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy"></div>
                     <div class="user-content">
+                        <span class="birthday-badge">{{language.club.birthday}}</span>
                         <Span class="user-name">{{data.firstname}} {{data.lastname}}</Span>
                         <span class="user-status">
-                            <img src="assets/img/birth_ic.svg" onContextMenu="return false;" loading="lazy">&nbsp;{{data.bd_notification | date:'d MMMM, y'}}</span>
+                            <img src="assets/img/birth_ic.svg" onContextMenu="return false;"
+                                loading="lazy">&nbsp;{{data.bd_notification | date:'d MMMM, y'}}</span>
+                       
+                    </div>
+                    <div>
+                        <a>{{language.dashboard.congratulate}}<span><img
+                            onContextMenu="return false;"
+                            src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
+                            alt="" loading="lazy"></span></a>
                     </div>
                 </div>
                 <div class="app-right-content" *ngIf="ageDiff">
@@ -26,10 +36,20 @@
             <div class="widget-app-content">
                 <div class="app-left-content">
                     <div class="user-img">
-                        <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;" alt="{{data?.user?.firstname}} {{data?.user?.lastname}}"  loading="lazy"></div>
+                        <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
+                            alt="{{data?.user?.firstname}} {{data?.user?.lastname}}" loading="lazy">
+                    </div>
                     <div class="user-content">
+                        <span class="jubilee-badge">{{language.club.anniversary}}</span>
                         <Span class="user-name">{{data.user.firstname}} {{data.user.lastname}}</Span>
-                        <span class="user-status"><i class="nc-icon nc-air-baloon"></i>&nbsp;{{data.user.created_at | date: 'd. MMMM y'}}</span>
+                        <span class="user-status"><i class="nc-icon nc-air-baloon"></i>&nbsp;{{data.user.created_at |
+                            date: 'd. MMMM y'}}</span>
+                    </div>
+                    <div>
+                        <a>{{language.dashboard.congratualte}}<span><img
+                            onContextMenu="return false;"
+                            src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
+                            alt="" loading="lazy"></span></a>
                     </div>
                 </div>
                 <div class="app-right-content">

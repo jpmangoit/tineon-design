@@ -16,11 +16,10 @@
                                             <div class="group_detail_main">
                                                 <div class="group_detail_content" *ngIf="taskDetails">
                                                     <div class="detail-big-img">
-                                                        <img onContextMenu="return false;"
-                                                        [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != ''
+                                                        <img onContextMenu="return false;" [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != ''
                                                                 ?  taskDetails['task_image']?.[0]?.['task_image']
-                                                                : '../../../../assets/img/no_image.png'"
-                                                        alt="" loading="lazy">
+                                                                : '../../../../assets/img/no_image.png'" alt=""
+                                                            loading="lazy">
                                                         <div class="dropdown action_group">
                                                             <button class="dropdown-toggle" type="button"
                                                                 (click)="onShow()">
@@ -119,9 +118,16 @@
                                                                             data-bs-target="#exampleModal"
                                                                             (click)="getMemId(subcollab.user_id, subcollab?.user?.member_id)">
                                                                             <div class="app-left-content">
-                                                                                <div class="parti_name"
+                                                                                <!-- <div class="parti_name"
                                                                                     *ngIf="subcollab?.user?.image == null || subcollab?.user?.image == ''">
                                                                                     {{subcollab.user?.firstname.charAt(0)}}{{subcollab.user?.lastname.charAt(0)}}
+                                                                                </div> -->
+                                                                                <div class="author-img"
+                                                                                    *ngIf="subcollab?.user?.image == null || subcollab?.user?.image == ''">
+                                                                                    <img onContextMenu="return false;"
+                                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                                        style="width: 100px;" alt=""
+                                                                                        loading="lazy">
                                                                                 </div>
                                                                                 <div class="author-img"
                                                                                     *ngIf="subcollab?.user?.image != null">
@@ -159,9 +165,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.user_id,organizer?.user[0]?.member_id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.image == null || organizer.image == ''">
                                                                     {{organizer.user[0]?.firstname.charAt(0)}}{{organizer.user[0]?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.image == null || organizer.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img" *ngIf="organizer.image != null">
                                                                     <img onContextMenu="return false;"
@@ -192,9 +204,15 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(collaborator.user_id ,collaborator?.user[0]?.member_id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="collaborator && collaborator.image == null">
                                                                         {{collaborator.user[0]?.firstname.charAt(0)}}{{collaborator.user[0]?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="collaborator && collaborator.image == null">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="collaborator.image != null">
@@ -230,11 +248,10 @@
                                             <div class="group_detail_main">
                                                 <div class="group_detail_content" *ngIf="updatedTaskData">
                                                     <div class="detail-big-img">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="(updatedTaskData.file != 'undefined' && updatedTaskData.file != null && updatedTaskData.file != '')
+                                                        <img onContextMenu="return false;" [src]="(updatedTaskData.file != 'undefined' && updatedTaskData.file != null && updatedTaskData.file != '')
                                                                     ? updatedTaskData.file
-                                                                    : '../../../../assets/img/no_image.png'"
-                                                            alt="" loading="lazy">
+                                                                    : '../../../../assets/img/no_image.png'" alt=""
+                                                            loading="lazy">
                                                         <div class="dropdown action_group">
                                                             <button class="dropdown-toggle" type="button"
                                                                 (click)="onShow()">
@@ -311,9 +328,16 @@
                                                                             data-bs-target="#exampleModal"
                                                                             (click)="getMemId(subcollab.user_id,subcollab?.user?.member_id)">
                                                                             <div class="app-left-content">
-                                                                                <div class="parti_name"
+                                                                                <!-- <div class="parti_name"
                                                                                     *ngIf="subcollab && subcollab.user && subcollab.user.image && subcollab.user.image == null">
                                                                                     {{subcollab.user?.firstname.charAt(0)}}{{subcollab.user?.lastname.charAt(0)}}
+                                                                                </div> -->
+                                                                                <div class="author-img"
+                                                                                    *ngIf="subcollab && subcollab.user && subcollab.user.image && subcollab.user.image == null">
+                                                                                    <img onContextMenu="return false;"
+                                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                                        style="width: 100px;" alt=""
+                                                                                        loading="lazy">
                                                                                 </div>
                                                                                 <div class="author-img"
                                                                                     *ngIf="subcollab && subcollab.user && subcollab.user.image && subcollab.user.image != null">
@@ -406,9 +430,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.user_id, organizer?.user?.member_id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.user && (organizer.user.image == null || organizer.user.image == '')">
                                                                     {{organizer.user?.firstname.charAt(0)}}{{organizer.user?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.user && (organizer.user.image == null || organizer.user.image == '')">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="organizer.user && organizer.user.image && organizer.user.image != null">
@@ -439,9 +469,15 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(collaborator.user_id, collaborator?.user?.member_id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="collaborator && collaborator.user && collaborator.user.image == null">
                                                                         {{collaborator.user?.firstname.charAt(0)}}{{collaborator.user?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="collaborator && collaborator.user && collaborator.user.image == null">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="collaborator && collaborator.user && collaborator.user.image != null">
@@ -476,11 +512,9 @@
                                     <div class="group_detail_main">
                                         <div class="group_detail_content">
                                             <div class="detail-big-img">
-                                                <img onContextMenu="return false;"
-                                                [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != ''
+                                                <img onContextMenu="return false;" [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != ''
                                                         ?  taskDetails['task_image']?.[0]?.['task_image']
-                                                        : '../../../../assets/img/no_image.png'"
-                                                alt="" loading="lazy">
+                                                        : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                                                 <!-- <img onContextMenu="return false;"
                                                     [src]="((taskDetails['task_image'][0]?.['task_image'] != null) && (taskDetails['task_image'][0]?.['task_image'] != '')) ?
                                                                                 (taskDetails['task_image'][0]?.['task_image']) : '../../../../assets/img/no_image.png'"
@@ -589,9 +623,15 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(subcollab.user_id, subcollab?.user?.member_id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="subcollab?.user?.image == null || subcollab?.user?.image == ''">
                                                                         {{subcollab.user?.firstname.charAt(0)}}{{subcollab.user?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="subcollab?.user?.image == null || subcollab?.user?.image == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="subcollab?.user?.image != null">
@@ -665,9 +705,15 @@
                                                     data-bs-target="#exampleModal"
                                                     (click)="getMemId(organizer.user_id, organizer?.user[0]?.member_id)">
                                                     <div class="app-left-content">
-                                                        <div class="parti_name"
+                                                        <!-- <div class="parti_name"
                                                             *ngIf="organizer.image == null || organizer.image == ''">
                                                             {{organizer.user[0]?.firstname.charAt(0)}}{{organizer.user[0]?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="organizer.image == null || organizer.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.image != null"><img
                                                                 onContextMenu="return false;" [src]="organizer.image"
@@ -694,9 +740,15 @@
                                                         data-bs-target="#exampleModal"
                                                         (click)="getMemId(collaborator.user_id, collaborator?.user[0]?.member_id)">
                                                         <div class="app-left-content">
-                                                            <div class="parti_name"
+                                                            <!-- <div class="parti_name"
                                                                 *ngIf="collaborator && collaborator.image == null">
                                                                 {{collaborator.user[0]?.firstname.charAt(0)}}{{collaborator.user[0]?.lastname.charAt(0)}}
+                                                            </div> -->
+                                                            <div class="author-img"
+                                                                *ngIf="collaborator && collaborator.image == null">
+                                                                <img onContextMenu="return false;"
+                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                    style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img" *ngIf="collaborator.image != null">
                                                                 <img onContextMenu="return false;"

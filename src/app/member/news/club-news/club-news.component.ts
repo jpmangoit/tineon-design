@@ -26,12 +26,12 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
 
     language: any;
     role: string = '';
-    thumbnail: string;
+    thumbnail: string; 
     num: number = 4;
     num1: number = 3;
     memberid: number;
     displayError: boolean = false;
-    displayPopup: boolean = false;
+    displayPopup: boolean = false; 
     responseMessage: string = null;
     userData: LoginDetails;
     dashboardData: NewsType[];

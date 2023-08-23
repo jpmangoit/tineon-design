@@ -105,7 +105,9 @@
         "community_subtext_chat_desk": "Chats",
 
         "organizer_subtext_new_desk": "Aufgaben",
-        "organizer_subtext_tasks_desk": "Events"
+        "organizer_subtext_tasks_desk": "Events",
+        "congratulate": "Congratulate"
+
     },
     "club_wall":{
         "title":"Club-Mur",
@@ -648,7 +650,9 @@
         "ticket":"BILLET",
 
         "club_Appointments_stand": "Rendez-vous des clubs",
-        "club_Appointments_untern": "Rendez-vous d'entreprise"
+        "club_Appointments_untern": "Rendez-vous d'entreprise",
+        "birthday": "Birthday",
+        "anniversary": "Anniversary"
     },
     "confirmation_message":{
         "accept_group":"Êtes-vous sûr de vouloir accepter ce groupe ?",
