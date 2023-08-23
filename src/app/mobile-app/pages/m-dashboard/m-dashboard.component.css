@@ -418,6 +418,10 @@ span.profile-label-content {
     display: none;
 }
 
+.group-content-listing .news-items  {
+   background: #EBEBEB;
+}
+
 @media (max-width: 400px) {
    ::ng-deep body .profile-card-info {
   margin-left: 0 !important;
