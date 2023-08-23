@@ -147,9 +147,12 @@
                                                         <div class="widget-app-content"
                                                             *ngFor="let touser of receipientUsers">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name">
+                                                                <!-- <div class="parti_name">
                                                                     {{touser.groupusers[0].firstname.charAt(0)}}
                                                                     {{touser.groupusers[0].lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
                                                                     <span

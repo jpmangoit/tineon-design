@@ -21,7 +21,7 @@
                                                             <img onContextMenu="return false;"
                                                                 [src]="showImage ? imageurl: '../../../assets/img/no_image.png'"
                                                                 alt="" loading="lazy" />
-                                                                <!-- <img onContextMenu="return false;" alt="" loading="lazy"
+                                                            <!-- <img onContextMenu="return false;" alt="" loading="lazy"
                                                                 [src]="eventDetails.event_images[0].event_image ? eventDetails.event_images[0].event_image : '../../assets/img/no_image.png'"> -->
 
                                                         </div>
@@ -57,7 +57,8 @@
                                                                                     onContextMenu="return false;"
                                                                                     alt="calender"
                                                                                     loading="lazy" /></span>
-                                                                            <span>{{eventDetails.date_from| date: "d.MMMM y"}}</span>
+                                                                            <span>{{eventDetails.date_from| date:
+                                                                                "d.MMMM y"}}</span>
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -194,7 +195,7 @@
                                                 </div>
                                                 <div class="all-participant-card">
                                                     <div class="card-header"
-                                                        *ngIf="(collaborators && collaborators.length)"> 
+                                                        *ngIf="(collaborators && collaborators.length)">
                                                         <h5 class="card-title">{{language.organizer.collaborators}}</h5>
                                                     </div>
                                                     <div class="card-body" *ngIf="collaborators">
@@ -204,10 +205,16 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(participant.id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant.image == null || participant.image == ''">
                                                                         {{participant.user[0]?.firstname.charAt(0)}}
                                                                         {{participant.user[0]?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant.image == null || participant.image == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.image != null">
@@ -267,9 +274,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.image == null || organizer.image == ''">
                                                                     {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.image == null || organizer.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img" *ngIf="organizer.image != null">
                                                                     <img onContextMenu="return false;"
@@ -306,9 +319,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(participant.users.id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="participant.users.image == null || participant.users.image == ''">
                                                                     {{participant.users?.firstname.charAt(0)}}{{participant.users?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="participant.users.image != null">
@@ -346,9 +365,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(participant.id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="participant && participant.image && participant.image == null || participant.image == ''">
                                                                     {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="participant && participant.image && participant.image == null || participant.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="participant && participant.image && participant.image != null">
@@ -575,10 +600,16 @@
                                                                 *ngIf="participant.user_id != this.updateEventData?.task[0]?.['organizer_id']"
                                                                 (click)="getMemId(participant.user_id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                         {{participant.user?.firstname.charAt(0)}}
                                                                         {{participant.user?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.user && participant.user.image && participant.user.image != null">
@@ -649,9 +680,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.image == null || organizer.image == ''">
                                                                     {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.image == null || organizer.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img" *ngIf="organizer.image != null">
                                                                     <img onContextMenu="return false;"
@@ -681,9 +718,15 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(participant.users.id)">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                         {{participant.user?.firstname.charAt(0)}}{{participant.user?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.user && participant.user.image && participant.user.image != null">
@@ -745,7 +788,7 @@
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a> 
+                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
@@ -935,9 +978,15 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(participant.user_id)">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="participant.image == null || participant.image == ''">
                                                                     {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="participant.image == null || participant.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="participant.image != null">
@@ -996,9 +1045,15 @@
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal" (click)="getMemId(organizer.id)">
                                                     <div class="app-left-content">
-                                                        <div class="parti_name"
+                                                        <!-- <div class="parti_name"
                                                             *ngIf="organizer.image == null || organizer.image == ''">
                                                             {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="organizer.image == null || organizer.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="organizer.image != null">
                                                             <img [src]="organizer.image" style="width: 100px;">
@@ -1031,9 +1086,15 @@
                                                     data-bs-target="#exampleModal"
                                                     (click)="getMemId(participant.users.id)">
                                                     <div class="app-left-content">
-                                                        <div class="parti_name"
+                                                        <!-- <div class="parti_name"
                                                             *ngIf="participant.users.image == null || participant.users.image == ''">
                                                             {{participant.users?.firstname.charAt(0)}}{{participant.users?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="participant.users.image != null">
                                                             <img onContextMenu="return false;"
@@ -1067,9 +1128,15 @@
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
                                                     <div class="app-left-content">
-                                                        <div class="parti_name"
+                                                        <!-- <div class="parti_name"
                                                             *ngIf="participant.image == null || participant.image == ''">
                                                             {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="participant.image == null || participant.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="participant.image != null">
                                                             <img [src]="participant.image" style="width: 100px;">
@@ -1166,7 +1233,8 @@
                                     <div class="profile_field info_field" style="margin-bottom: 20px;">
                                         <span class="info_label">{{language.profile.membership_date}}</span>
                                         <span class="info_detail"
-                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM y'}}</span>
+                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM
+                                            y'}}</span>
                                     </div>
                                 </div>
                             </div>

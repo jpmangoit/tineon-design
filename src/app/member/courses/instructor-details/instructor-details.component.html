@@ -136,8 +136,11 @@
                                                 </div>
                                             </div>
                                             <div class="author-info">
-                                                <div class="parti_name" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
+                                                <!-- <div class="parti_name" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
                                                     {{instructorDetails?.user?.firstname.charAt(0)}}{{instructorDetails?.user?.lastname.charAt(0)}}
+                                                </div> -->
+                                                <div class="author-img" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
+                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                 </div>
                                                 <div  class="author-img" *ngIf="instructorDetails?.user?.thumbnail != null">
                                                     <img onContextMenu="return false;"   [src]="instructorDetails?.user?.thumbnail" style="width: 100px;" alt="" loading="lazy">
@@ -309,8 +312,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="author-info">
-                                                        <div class="parti_name" *ngIf="updateInstructorData?.user?.imagePro == null || updateInstructorData?.user?.imagePro == ''" >
+                                                        <!-- <div class="parti_name" *ngIf="updateInstructorData?.user?.imagePro == null || updateInstructorData?.user?.imagePro == ''" >
                                                             {{updateInstructorData?.user?.firstname.charAt(0)}}{{updateInstructorData?.user?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img" *ngIf="updateInstructorData?.user?.imagePro == null || updateInstructorData?.user?.imagePro == ''" >
+                                                            <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                         </div>
                                                         <div  class="author-img" *ngIf="updateInstructorData?.user?.imagePro != null">
                                                             <img onContextMenu="return false;"   [src]="updateInstructorData?.user?.imagePro" style="width: 100px;" alt="" loading="lazy">
@@ -471,8 +477,11 @@
                                             </div>
                                         </div>
                                         <div class="author-info">
-                                            <div class="parti_name" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
+                                            <!-- <div class="parti_name" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
                                                 {{instructorDetails?.user?.firstname.charAt(0)}}{{instructorDetails?.user?.lastname.charAt(0)}}
+                                            </div> -->
+                                            <div class="author-img" *ngIf="instructorDetails?.user?.thumbnail == null || instructorDetails?.user?.thumbnail == ''" >
+                                                <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                             </div>
                                             <div  class="author-img" *ngIf="instructorDetails?.user?.thumbnail != null">
                                                 <img onContextMenu="return false;"   [src]="instructorDetails?.user?.thumbnail" style="width: 100px;" alt="" loading="lazy">

@@ -80,7 +80,6 @@ export class NewsListComponent implements OnInit {
         this.userRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
         this.participateAccess = this.userAccess[this.userRole].participate;
-        // console.log(this.participateAccess);
     }
 
     /**

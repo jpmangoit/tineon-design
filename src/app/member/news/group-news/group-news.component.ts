@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
-    selector: 'app-group-news',
+    selector: 'app-group-news', 
     templateUrl: './group-news.component.html',
     styleUrls: ['./group-news.component.css']
 })

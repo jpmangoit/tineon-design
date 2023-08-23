@@ -8807,6 +8807,19 @@ width: 100%;
     color: #677180;
 }
 
+.modal-body  .news_content_text p  {
+    line-height: 20px; 
+}
+
+.modal-body  .news_content_text span {
+    color: #8E8E93;
+
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; 
+}
+
 .news_content .author-info {
     padding: 10px 0px;
     border-radius: 12px;

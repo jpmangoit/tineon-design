@@ -43,6 +43,10 @@ button.btn-close {
     width: auto;
 }
 
+.mb-title.proile-icon svg {
+  margin-right: 15px;
+}
+
 .mobile-back-main {
   display: flex;
   justify-content: flex-start;

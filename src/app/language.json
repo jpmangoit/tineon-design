@@ -34,7 +34,9 @@
         "community_subtext_chat_desk": "Chats",
 
         "organizer_subtext_new_desk": "Aufgaben",
-        "organizer_subtext_tasks_desk": "Events"
+        "organizer_subtext_tasks_desk": "Events",
+        "congratulate": "Congratulate"
+
     },
     "club_document": {
         "all": "All",
@@ -52,6 +54,10 @@
     },
     "organizer_task":{
         "no_task": "No Tasks Found"
+    },
+    "club": {
+        "birthday": "Birthday",
+        "anniversary": "Anniversary"
     }
 }
 

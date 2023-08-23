@@ -16,8 +16,8 @@
                                             <div class="group_detail_main">
                                                 <div class="group_img_sec">
                                                     <!-- <div class="detail-big-img">
-                                                        <img onContextMenu="return false;"  [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
-                                                    </div> -->
+                                                                <img onContextMenu="return false;"  [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                            </div> -->
                                                     <div class="detail-big-img">
                                                         <img onContextMenu="return false;"
                                                             [src]=" (groupDetails?.['group_images'][0]?.['group_image'] != null) ? (groupDetails?.['group_images'][0]?.['group_image']) : '../../../../assets/img/no_image.png'"
@@ -89,9 +89,15 @@
                                                             (click)="getMemId(organizer.user_id)">
                                                             <div class="app-left-content"
                                                                 *ngIf="organizer && organizer.groupusers && organizer.groupusers.length > 0">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.imagePro == null || organizer.imagePro == ''">
                                                                     {{organizer.groupusers[0]?.firstname.charAt(0)}}{{organizer.groupusers[0]?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.imagePro == null || organizer.imagePro == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="organizer.imagePro != null"><img
@@ -133,9 +139,15 @@
 
                                                                 <ng-container
                                                                     *ngIf="participant.approved_status == 1 || participant.approved_status == 0">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant.imagePro == null || participant.imagePro == ''">
                                                                         {{participant.groupusers[0]?.firstname.charAt(0)}}{{participant.groupusers[0]?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant.imagePro == null || participant.imagePro == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.imagePro != null">
@@ -241,7 +253,7 @@
                                                         <ng-container *ngIf="groupNewsDetails?.length > 0">
                                                             <div class="all-news-column"
                                                                 *ngFor="let news of groupNewsDetails | paginate: {
-                                                                itemsPerPage: itemPerPage, currentPage: currentPageNmuber, totalItems: newsTotalRecords }">
+                                                                        itemsPerPage: itemPerPage, currentPage: currentPageNmuber, totalItems: newsTotalRecords }">
                                                                 <div class="news-widget"
                                                                     (click)="getNewsDetails(news.id)">
                                                                     <div class="news-image">
@@ -264,9 +276,16 @@
                                                                         <div class="author-info">
                                                                             <div class="">
                                                                                 <!-- <img onContextMenu="return false;" [src]="data.user.image != null ? data.user.image : 'assets/img/defaultProfile.jpeg'" alt="{{data.user.firstname}}" loading="lazy"> -->
-                                                                                <div class="parti_name"
+                                                                                <!-- <div class="parti_name"
                                                                                     *ngIf="news?.user?.imagePro == null || news?.user?.imagePro == ''">
                                                                                     {{news?.user?.firstname.charAt(0)}}{{news?.user?.lastname.charAt(0)}}
+                                                                                </div> -->
+                                                                                <div class="author-img"
+                                                                                    *ngIf="news?.user?.imagePro == null || news?.user?.imagePro == ''">
+                                                                                    <img onContextMenu="return false;"
+                                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                                        style="width: 100px;" alt=""
+                                                                                        loading="lazy">
                                                                                 </div>
                                                                                 <div class="author-img"
                                                                                     *ngIf="news?.user?.imagePro != null">
@@ -293,8 +312,8 @@
                                                                             </div>
                                                                         </div>
                                                                         <!-- <div class="group_rm">
-                                                                            <a>{{language.community_groups.read_more}}</a>
-                                                                        </div> -->
+                                                                                    <a>{{language.community_groups.read_more}}</a>
+                                                                                </div> -->
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -429,9 +448,15 @@
                                                             (click)="getMemId(organizer.user_id)">
                                                             <div class="app-left-content"
                                                                 *ngIf="organizer && organizer.user">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="organizer.user.image == null || organizer.user.image == ''">
                                                                     {{organizer.user.firstname.charAt(0)}}{{organizer.user.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="organizer.user.image == null || organizer.user.image == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf=" organizer.user.image != null">
@@ -466,9 +491,15 @@
                                                                 *ngIf="participant && participant.user">
                                                                 <ng-container
                                                                     *ngIf="participant.approved_status == 1 || participant.approved_status == 0">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="participant.user.image == null || participant.user.image == ''">
                                                                         {{participant.user.firstname.charAt(0)}}{{participant.user.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="participant.user.image == null || participant.user.image == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="participant.user.image != null">
@@ -527,7 +558,7 @@
                                                     <div class="row">
                                                         <div class="all-news-column col-lg-3 col-md-6 col-sm-6"
                                                             *ngFor="let news of updatedGroupNewsDetails | paginate: {
-                                                            itemsPerPage: itemPerPage, currentPage: currentPageNmuber, totalItems: newsTotalRecords }">
+                                                                    itemsPerPage: itemPerPage, currentPage: currentPageNmuber, totalItems: newsTotalRecords }">
                                                             <div class="news-widget">
                                                                 <div class="news-image">
                                                                     <a routerLink="/clubnews-detail/{{news.id}}">
@@ -549,9 +580,16 @@
                                                                     <div class="author-info">
                                                                         <div class="">
                                                                             <!-- <img onContextMenu="return false;" [src]="news.user.image != null ? news.user.image : 'assets/img/defaultProfile.jpeg'" alt="{{news.user.firstname}}" loading="lazy"> -->
-                                                                            <div class="parti_name"
+                                                                            <!-- <div class="parti_name"
                                                                                 *ngIf="news?.user?.imagePro == null || news?.user?.imagePro == ''">
                                                                                 {{news?.user?.firstname.charAt(0)}}{{news?.user?.lastname.charAt(0)}}
+                                                                            </div> -->
+                                                                            <div class="author-img"
+                                                                                *ngIf="news?.user?.imagePro == null || news?.user?.imagePro == ''">
+                                                                                <img onContextMenu="return false;"
+                                                                                    [src]="'assets/img/defaultProfile.jpeg'"
+                                                                                    style="width: 100px;" alt=""
+                                                                                    loading="lazy">
                                                                             </div>
                                                                             <div class="author-img"
                                                                                 *ngIf="news?.user?.imagePro != null">
@@ -578,8 +616,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- <div class="group_rm">
-                                                                        <a routerLink="/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
-                                                                    </div> -->
+                                                                                <a routerLink="/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
+                                                                            </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -593,6 +631,7 @@
                             </div>
                         </mat-tab>
                     </mat-tab-group>
+
                     <div class="card-body" *ngIf="!updatedGroupData">
                         <div class="profile_details" *ngIf="groupDetails">
                             <div class="row">
@@ -708,9 +747,15 @@
                                                                 (click)="getMemId(organizer.user_id)">
                                                                 <div class="app-left-content"
                                                                     *ngIf="organizer && organizer.groupusers && organizer.groupusers.length > 0">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="organizer.imagePro == null || organizer.imagePro == ''">
                                                                         {{organizer.groupusers[0]?.firstname.charAt(0)}}{{organizer.groupusers[0]?.lastname.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"
+                                                                        *ngIf="organizer.imagePro == null || organizer.imagePro == ''">
+                                                                        <img onContextMenu="return false;"
+                                                                            [src]="'assets/img/defaultProfile.jpeg'"
+                                                                            style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="author-img"
                                                                         *ngIf="organizer.imagePro != null">
@@ -749,9 +794,15 @@
                                                             *ngIf="participant?.groupusers?.length > 0">
                                                             <ng-container
                                                                 *ngIf="participant.approved_status == 1 || participant.approved_status == 0">
-                                                                <div class="parti_name"
+                                                                <!-- <div class="parti_name"
                                                                     *ngIf="participant.imagePro == null || participant.imagePro == ''">
                                                                     {{participant.groupusers[0]?.firstname.charAt(0)}}{{participant.groupusers[0]?.lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img"
+                                                                    *ngIf="participant.imagePro == null || participant.imagePro == ''">
+                                                                    <img onContextMenu="return false;"
+                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                        style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="author-img"
                                                                     *ngIf="participant.imagePro != null">
@@ -790,10 +841,10 @@
                                 </div>
                                 <div class="col-md-12 group_grid_main">
                                     <div class="card">
-                                        <div class="card-header"
+                                        <!-- <div class="card-header"
                                             *ngIf="groupNewsDetails && groupNewsDetails.length > 0">
                                             <h5 class="card-title">{{language.community_groups.group_news}}</h5>
-                                        </div>
+                                        </div> -->
                                         <div class="paginationHead full_width" *ngIf="newsTotalRecords > 8">
                                             <div class="pagintHeadLeft"> <pagination-controls
                                                     (pageChange)="pageChanged($event);"
@@ -843,330 +894,6 @@
                                                     </owl-carousel-o>
                                                 </div> -->
 
-                                                <div class="tab-content">
-                                                    <!-- TAB-1 STARTS -->
-                                                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                                        <div class="chat-navigation">
-                                                            <ul class="nav nav-tabs" role="tablist">
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link news_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(1)"
-                                                                        [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">
-                                                                        {{language.header.news}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link tasks_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(2)"
-                                                                        [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer_task.title}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link events_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(3)"
-                                                                        [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer.events}}
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <!-- Tab panes -->
-                                                        </div>
-                                                        <div class="card-body ">
-                                                            <ng-container *ngIf="groupNewsDetails?.length > 0">
-                                                                <!-- <div class="card-header">
-                                                                        <h5 class="card-title">{{language.community_groups.group_news}}</h5>
-                                                                    </div> -->
-                                                                <div class="all-news-column"
-                                                                    *ngFor='let data of groupNewsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords }'>
-                                                                    <div class="news-widget"
-                                                                        (click)="getNewsDetails(data.id)">
-                                                                        <div class="news-image"
-                                                                            [ngClass]="data['news_image'][0]?.['news_image'] == null ? 'no_image' : ''">
-                                                                            <img onContextMenu="return false;"
-                                                                                alt="{{data.title}}" loading="lazy"
-                                                                                [src]="(data['news_image'][0]?.['news_image'] != null) ? (data['news_image'][0]?.['news_image']) : '../../assets/img/no_image.png'">
-                                                                        </div>
-                                                                        <div class="news-content">
-                                                                            <h5 class="news-content-heading"
-                                                                                [innerHTML]="data.title"></h5>
-                                                                            <p class="news-content-text"
-                                                                                [innerHTML]="data.text">...<a
-                                                                                    href="#">{{language.dashboard.dashboardNewsContent}}</a>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="card-footer ">
-                                                                            <hr>
-                                                                            <div class="author-info">
-                                                                                <div class="">
-                                                                                    <!-- <img onContextMenu="return false;" [src]="data.user.image != null ? data.user.image : 'assets/img/defaultProfile.jpeg'" alt="{{data.user.firstname}}" loading="lazy"> -->
-                                                                                    <!-- <div class="parti_name"
-                                                                                        *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
-                                                                                        {{data?.user?.firstname.charAt(0)}}{{data?.user?.lastname.charAt(0)}}
-                                                                                    </div> -->
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
-                                                                                        <img [src]="'assets/img/defaultProfile.jpeg'"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.user?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.user?.imagePro != null">
-                                                                                        <img [src]="data?.user?.imagePro"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.user?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="author-des">
-                                                                                    <div>
-                                                                                        <span
-                                                                                            class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
-                                                                                        <span
-                                                                                            class="author-id">{{data.user.firstname}}
-                                                                                            {{data.user.lastname}}</span>
-                                                                                        <span
-                                                                                            class="author-date">{{data.created_at
-                                                                                            | date: 'd. MMMM y'}}</span>
-                                                                                    </div>
-                                                                                    <div class="group_rm">
-                                                                                        <!-- <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}
-                                                                                                                                        </a> -->
-                                                                                        <a
-                                                                                            routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
-                                                                                                <img onContextMenu="return false;"
-                                                                                                    src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
-                                                                                                    alt=""
-                                                                                                    loading="lazy">
-                                                                                            </span>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </ng-container>
-                                                            <div class="empty-data-image" *ngIf=" !groupNewsDetails || groupNewsDetails?.length == 0">
-                                                                <span>{{language.community_groups.no_news}}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- TAB-1 ENDS -->
-
-                                                    <!-- TAB-2 STARTS -->
-                                                    <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                                        <div class="chat-navigation">
-                                                            <ul class="nav nav-tabs" role="tablist">
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link news_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(1)"
-                                                                        [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">
-                                                                        {{language.header.news}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link tasks_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(2)"
-                                                                        [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer_task.title}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link events_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(3)"
-                                                                        [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer.events}}
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <!-- Tab panes -->
-                                                        </div>
-                                                        <div class="card-body ">
-                                                            <ng-container *ngIf="groupTasksDetails?.length > 0">
-                                                                <!-- <div class="card-header">
-                                                                        <h5 class="card-title">{{language.community_groups.group_news}}</h5>
-                                                                    </div> -->
-                                                                <div class="all-news-column"
-                                                                    *ngFor='let data of groupTasksDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: tasksTotalRecords }'>
-                                                                    <div class="news-widget"
-                                                                        (click)="getTasksDetails(data.id)">
-                                                                        <div class="news-image"
-                                                                            [ngClass]="data['task_image'][0]?.['task_image'] == null ? 'no_image' : ''">
-                                                                            <img onContextMenu="return false;"
-                                                                                alt="{{data.title}}" loading="lazy"
-                                                                                [src]="(data['task_image'][0]?.['task_image'] != null) ? (data['task_image'][0]?.['task_image']) : '../../assets/img/no_image.png'">
-                                                                        </div>
-                                                                        <div class="news-content">
-                                                                            <h5 class="news-content-heading"
-                                                                                [innerHTML]="data.title"></h5>
-                                                                            <p class="news-content-text"
-                                                                                [innerHTML]="data.description">...<a
-                                                                                    href="#">{{language.dashboard.dashboardNewsContent}}</a>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="card-footer ">
-                                                                            <hr>
-                                                                            <div class="author-info">
-                                                                                <div class="">
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.userstask?.imagePro == null || data?.userstask?.imagePro == ''">
-                                                                                        <img [src]="'assets/img/defaultProfile.jpeg'"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.userstask?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.userstask?.imagePro != null">
-                                                                                        <img [src]="data?.userstask?.imagePro"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.userstask?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="author-des">
-                                                                                    <div>
-                                                                                        <span
-                                                                                            class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
-                                                                                        <span
-                                                                                            class="author-id">{{data.userstask.firstname}}
-                                                                                            {{data.userstask.lastname}}</span>
-                                                                                        <span
-                                                                                            class="author-date">{{data.created_at
-                                                                                            | date: 'd. MMMM y'}}</span>
-                                                                                    </div>
-                                                                                    <div class="group_rm">
-                                                                                        <a
-                                                                                            routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
-                                                                                                <img onContextMenu="return false;"
-                                                                                                    src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
-                                                                                                    alt=""
-                                                                                                    loading="lazy">
-                                                                                            </span>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </ng-container>
-                                                            <div class="empty-data-image" *ngIf=" !groupTasksDetails || groupTasksDetails?.length == 0">
-                                                                <span>{{language.organizer_task.no_task}}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- TAB-2 ENDS -->
-
-                                                    <!-- TAB-3 STARTS -->
-                                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                                        <div class="chat-navigation">
-                                                            <ul class="nav nav-tabs" role="tablist">
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link news_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(1)"
-                                                                        [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">
-                                                                        {{language.header.news}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link tasks_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(2)"
-                                                                        [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer_task.title}}
-                                                                    </a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link events_ic" data-toggle="tab"
-                                                                        (click)="onTabChange(3)"
-                                                                        [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                                                        role="tab">{{language.organizer.events}}
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <!-- Tab panes -->
-                                                        </div>
-                                                        <div class="card-body ">
-                                                            <ng-container *ngIf="groupEventsDetails?.length > 0">
-                                                                <!-- <div class="card-header">
-                                                                        <h5 class="card-title">{{language.community_groups.group_news}}</h5>
-                                                                    </div> -->
-                                                                <div class="all-news-column"
-                                                                    *ngFor='let data of groupEventsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: eventsTotalRecords }'>
-                                                                    <div class="news-widget"
-                                                                        (click)="getEventsDetails(data.id)">
-                                                                        <div class="news-image"
-                                                                            [ngClass]="data['event_images'][0]?.['event_image'] == null ? 'no_image' : ''">
-                                                                            <img onContextMenu="return false;"
-                                                                                alt="{{data.title}}" loading="lazy"
-                                                                                [src]="(data['event_images'][0]?.['event_image'] != null) ? (data['event_images'][0]?.['event_image']) : '../../assets/img/no_image.png'">
-                                                                        </div>
-                                                                        <div class="news-content">
-                                                                            <h5 class="news-content-heading"
-                                                                                [innerHTML]="data.name"></h5>
-                                                                            <p class="news-content-text"
-                                                                                [innerHTML]="data.description">...<a
-                                                                                    href="#">{{language.dashboard.dashboardNewsContent}}</a>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="card-footer ">
-                                                                            <hr>
-                                                                            <div class="author-info">
-                                                                                <div class="">
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
-                                                                                        <img [src]="'assets/img/defaultProfile.jpeg'"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.user?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                    <div class="author-img"
-                                                                                        *ngIf="data?.user?.imagePro != null">
-                                                                                        <img [src]="data?.user?.imagePro"
-                                                                                            onContextMenu="return false;"
-                                                                                            alt="{{data?.user?.firstname}}"
-                                                                                            loading="lazy">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="author-des">
-                                                                                    <div>
-                                                                                        <span
-                                                                                            class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
-                                                                                        <span
-                                                                                            class="author-id">{{data.user.firstname}}
-                                                                                            {{data.user.lastname}}</span>
-                                                                                        <span
-                                                                                            class="author-date">{{data.created_at
-                                                                                            | date: 'd. MMMM y'}}</span>
-                                                                                    </div>
-                                                                                    <div class="group_rm">
-                                                                                        <a
-                                                                                            routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
-                                                                                                <img onContextMenu="return false;"
-                                                                                                    src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
-                                                                                                    alt=""
-                                                                                                    loading="lazy">
-                                                                                            </span>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </ng-container>
-                                                            <div class="empty-data-image" *ngIf=" !groupEventsDetails || groupEventsDetails?.length == 0">
-                                                                <span>{{language.club_events.no_events}}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- TAB-3 ENDS -->
-
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1178,9 +905,294 @@
                         <!-- <img onContextMenu="return false;"  src="assets/img/no_record_img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
                         <span>{{language.community_groups.no_groups}}</span>
                     </div>
+                    <div class="tab-content">
+                        <!-- TAB-1 STARTS -->
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="chat-navigation">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" *ngIf="groupDetails?.groupNewsCount != 0">
+                                        <a class="nav-link news_ic" data-toggle="tab" (click)="onTabChange(1)"
+                                            [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">
+                                            {{language.header.news}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupTaskCount != 0">
+                                        <a class="nav-link tasks_ic" data-toggle="tab" (click)="onTabChange(2)"
+                                            [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer_task.title}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupEventCount != 0">
+                                        <a class="nav-link events_ic" data-toggle="tab" (click)="onTabChange(3)"
+                                            [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer.events}}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                            </div>
+                            <div class="card-body ">
+                                <ng-container *ngIf="groupNewsDetails?.length > 0">
+                                    <!-- <div class="card-header">
+                                            <h5 class="card-title">{{language.community_groups.group_news}}</h5>
+                                        </div> -->
+                                    <div class="all-news-column"
+                                        *ngFor='let data of groupNewsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords }'>
+                                        <div class="news-widget" (click)="getNewsDetails(data.id)">
+                                            <div class="news-image"
+                                                [ngClass]="data['news_image'][0]?.['news_image'] == null ? 'no_image' : ''">
+                                                <img onContextMenu="return false;" alt="{{data.title}}" loading="lazy"
+                                                    [src]="(data['news_image'][0]?.['news_image'] != null) ? (data['news_image'][0]?.['news_image']) : '../../assets/img/no_image.png'">
+                                            </div>
+                                            <div class="news-content">
+                                                <h5 class="news-content-heading" [innerHTML]="data.title"></h5>
+                                                <p class="news-content-text" [innerHTML]="data.text">...<a
+                                                        href="#">{{language.dashboard.dashboardNewsContent}}</a>
+                                                </p>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <hr>
+                                                <div class="author-info">
+                                                    <div class="">
+                                                        <!-- <img onContextMenu="return false;" [src]="data.user.image != null ? data.user.image : 'assets/img/defaultProfile.jpeg'" alt="{{data.user.firstname}}" loading="lazy"> -->
+                                                        <!-- <div class="parti_name"
+                                                            *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                                                            {{data?.user?.firstname.charAt(0)}}{{data?.user?.lastname.charAt(0)}}
+                                                        </div> -->
+                                                        <div class="author-img"
+                                                            *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                                                            <img [src]="'assets/img/defaultProfile.jpeg'"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.user?.firstname}}" loading="lazy">
+                                                        </div>
+                                                        <div class="author-img" *ngIf="data?.user?.imagePro != null">
+                                                            <img [src]="data?.user?.imagePro"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.user?.firstname}}" loading="lazy">
+                                                        </div>
+                                                    </div>
+                                                    <div class="author-des">
+                                                        <div>
+                                                            <span
+                                                                class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
+                                                            <span class="author-id">{{data.user.firstname}}
+                                                                {{data.user.lastname}}</span>
+                                                            <span class="author-date">{{data.created_at
+                                                                | date: 'd. MMMM y'}}</span>
+                                                        </div>
+                                                        <div class="group_rm">
+                                                            <!-- <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}
+                                                                                                            </a> -->
+                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                                    <img onContextMenu="return false;"
+                                                                        src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
+                                                                        alt="" loading="lazy">
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <!-- <div class="empty-data-image"
+                                    *ngIf="groupDetails?.groupNewsCount == 0">
+                                    <span>{{language.community_groups.no_news}}</span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- TAB-1 ENDS -->
+                        <!-- TAB-2 STARTS -->
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="chat-navigation">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" *ngIf="groupDetails?.groupNewsCount != 0">
+                                        <a class="nav-link news_ic" data-toggle="tab" (click)="onTabChange(1)"
+                                            [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">
+                                            {{language.header.news}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupTaskCount != 0">
+                                        <a class="nav-link tasks_ic" data-toggle="tab" (click)="onTabChange(2)"
+                                            [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer_task.title}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupEventCount != 0">
+                                        <a class="nav-link events_ic" data-toggle="tab" (click)="onTabChange(3)"
+                                            [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer.events}}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                            </div>
+                            <div class="card-body " *ngIf="groupDetails?.groupTaskCount != 0">
+                                <ng-container *ngIf="groupTasksDetails?.length > 0">
+                                    <!-- <div class="card-header">
+                                            <h5 class="card-title">{{language.community_groups.group_news}}</h5>
+                                        </div> -->
+                                    <div class="all-news-column"
+                                        *ngFor='let data of groupTasksDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: tasksTotalRecords }'>
+                                        <div class="news-widget" (click)="getTasksDetails(data.id)">
+                                            <div class="news-image"
+                                                [ngClass]="data['task_image'][0]?.['task_image'] == null ? 'no_image' : ''">
+                                                <img onContextMenu="return false;" alt="{{data.title}}" loading="lazy"
+                                                    [src]="(data['task_image'][0]?.['task_image'] != null) ? (data['task_image'][0]?.['task_image']) : '../../assets/img/no_image.png'">
+                                            </div>
+                                            <div class="news-content">
+                                                <h5 class="news-content-heading" [innerHTML]="data.title"></h5>
+                                                <p class="news-content-text" [innerHTML]="data.description">...<a
+                                                        href="#">{{language.dashboard.dashboardNewsContent}}</a>
+                                                </p>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <hr>
+                                                <div class="author-info">
+                                                    <div class="">
+                                                        <div class="author-img"
+                                                            *ngIf="data?.userstask?.imagePro == null || data?.userstask?.imagePro == ''">
+                                                            <img [src]="'assets/img/defaultProfile.jpeg'"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.userstask?.firstname}}" loading="lazy">
+                                                        </div>
+                                                        <div class="author-img"
+                                                            *ngIf="data?.userstask?.imagePro != null">
+                                                            <img [src]="data?.userstask?.imagePro"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.userstask?.firstname}}" loading="lazy">
+                                                        </div>
+                                                    </div>
+                                                    <div class="author-des">
+                                                        <div>
+                                                            <span
+                                                                class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
+                                                            <span class="author-id">{{data.userstask.firstname}}
+                                                                {{data.userstask.lastname}}</span>
+                                                            <span class="author-date">{{data.created_at
+                                                                | date: 'd. MMMM y'}}</span>
+                                                        </div>
+                                                        <div class="group_rm">
+                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                                    <img onContextMenu="return false;"
+                                                                        src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
+                                                                        alt="" loading="lazy">
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <!-- <div class="empty-data-image"
+                                    *ngIf=" !groupTasksDetails || groupTasksDetails?.length == 0">
+                                    <span>{{language.organizer_task.no_task}}</span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- TAB-2 ENDS -->
+                        <!-- TAB-3 STARTS -->
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="chat-navigation">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" *ngIf="groupDetails?.groupNewsCount != 0">
+                                        <a class="nav-link news_ic" data-toggle="tab" (click)="onTabChange(1)"
+                                            [ngStyle]="displayNews== true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">
+                                            {{language.header.news}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupTaskCount != 0">
+                                        <a class="nav-link tasks_ic" data-toggle="tab" (click)="onTabChange(2)"
+                                            [ngStyle]="displayTasks == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer_task.title}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="groupDetails?.groupEventCount != 0">
+                                        <a class="nav-link events_ic" data-toggle="tab" (click)="onTabChange(3)"
+                                            [ngStyle]="displayEvents == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
+                                            role="tab">{{language.organizer.events}}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                            </div>
+                            <div class="card-body " *ngIf="groupDetails?.groupEventCount != 0">
+                                <ng-container *ngIf="groupEventsDetails?.length > 0">
+                                    <!-- <div class="card-header">
+                                            <h5 class="card-title">{{language.community_groups.group_news}}</h5>
+                                        </div> -->
+                                    <div class="all-news-column"
+                                        *ngFor='let data of groupEventsDetails | paginate: { itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: eventsTotalRecords }'>
+                                        <div class="news-widget" (click)="getEventsDetails(data.id)">
+                                            <div class="news-image"
+                                                [ngClass]="data['event_images'][0]?.['event_image'] == null ? 'no_image' : ''">
+                                                <img onContextMenu="return false;" alt="{{data.title}}" loading="lazy"
+                                                    [src]="(data['event_images'][0]?.['event_image'] != null) ? (data['event_images'][0]?.['event_image']) : '../../assets/img/no_image.png'">
+                                            </div>
+                                            <div class="news-content">
+                                                <h5 class="news-content-heading" [innerHTML]="data.name"></h5>
+                                                <p class="news-content-text" [innerHTML]="data.description">...<a
+                                                        href="#">{{language.dashboard.dashboardNewsContent}}</a>
+                                                </p>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <hr>
+                                                <div class="author-info">
+                                                    <div class="">
+                                                        <div class="author-img"
+                                                            *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                                                            <img [src]="'assets/img/defaultProfile.jpeg'"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.user?.firstname}}" loading="lazy">
+                                                        </div>
+                                                        <div class="author-img" *ngIf="data?.user?.imagePro != null">
+                                                            <img [src]="data?.user?.imagePro"
+                                                                onContextMenu="return false;"
+                                                                alt="{{data?.user?.firstname}}" loading="lazy">
+                                                        </div>
+                                                    </div>
+                                                    <div class="author-des">
+                                                        <div>
+                                                            <span
+                                                                class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
+                                                            <span class="author-id">{{data.user.firstname}}
+                                                                {{data.user.lastname}}</span>
+                                                            <span class="author-date">{{data.created_at
+                                                                | date: 'd. MMMM y'}}</span>
+                                                        </div>
+                                                        <div class="group_rm">
+                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                                    <img onContextMenu="return false;"
+                                                                        src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
+                                                                        alt="" loading="lazy">
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <!-- <div class="empty-data-image"
+                                    *ngIf=" !groupEventsDetails || groupEventsDetails?.length == 0">
+                                    <span>{{language.club_events.no_events}}</span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- TAB-3 ENDS -->
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 
 </div>

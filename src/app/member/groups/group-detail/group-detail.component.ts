@@ -45,10 +45,11 @@ export class GroupDetailComponent implements OnInit {
     birthdateStatus: boolean;
     userDetails: LoginDetails
     getclubInfo: ClubDetail;
-    thumb: string; 
+    thumb: string;
     thumbnail: string;
     setTheme: ThemeType;
-    groupDetails: CommunityGroup[];
+    // groupDetails: CommunityGroup[];
+    groupDetails: any;
     alluserInformation: { member_id: number }[] = [];
     private activatedSub: Subscription;
     groupNewsDetails: any;
@@ -103,8 +104,8 @@ export class GroupDetailComponent implements OnInit {
     groupId: any;
     imageURL: SafeUrl;
     displayNews: boolean = true;
-    displayTasks: boolean;
-    displayEvents: boolean;
+    displayTasks: boolean = false;
+    displayEvents: boolean = false;
 
 
     constructor(
@@ -170,7 +171,6 @@ export class GroupDetailComponent implements OnInit {
         $('.nav-link').removeClass('active');
         if (id == 1) {
             this.getGroupNews(this.groupId);
-
             this.displayNews = true;
             this.displayTasks = false;
             this.displayEvents = false;
@@ -199,7 +199,6 @@ export class GroupDetailComponent implements OnInit {
             $('#tabs-3').show();
             $('#tabs-3').addClass('active');
             $('.events_ic').addClass('active');
-
         }
     }
 
@@ -350,6 +349,19 @@ export class GroupDetailComponent implements OnInit {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.groupDetails = respData[0];
+                        // this.groupDetails.groupTaskCount = 0
+                        
+                        if(this.groupDetails?.groupEventCount != 0){
+                            this.onTabChange(3);
+                        }
+                        if(this.groupDetails?.groupTaskCount != 0){
+                            this.onTabChange(2);
+                        }
+
+                        if(this.groupDetails?.groupNewsCount != 0){
+                            this.onTabChange(1);
+                        } 
+                     
                         this.groupAction = 0;
                         let count = 0;
                         if (this.groupDetails?.['group_images'][0]?.['group_image']) {
@@ -379,7 +391,7 @@ export class GroupDetailComponent implements OnInit {
                                 }
                                 if (val.user_id.toString() == this.userId && val.approved_status == 1) {
                                     this.groupAction = 1;
-                                    this.getGroupNews(groupid);
+                                    // this.getGroupNews(groupid);
                                 }
                                 if (this.groupDetails['approved_status'] == 1) {
                                     if (val.user_id == this.userId) {
@@ -510,9 +522,12 @@ export class GroupDetailComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
-                        this.updatedNewsTotalRecords = respData.length;
+                        this.updatedNewsTotalRecords = respData.groupNews.length;
                         this.updatedGroupNewsDetails = respData;
-                        this.getProfileImages(this.updatedGroupNewsDetails);
+                        if (this.updatedNewsTotalRecords != 0) {
+                            this.getProfileImages(this.updatedGroupNewsDetails);
+                        }
+
                     }
                 );
         }
@@ -534,7 +549,6 @@ export class GroupDetailComponent implements OnInit {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.groupTasksDetails = respData?.groupTask;
-
                         this.groupTasksDetails.forEach(val => {
                             if (val?.['task_image'][0]?.['task_image']) {
                                 val['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['task_image'][0]?.['task_image'].substring(20)));
@@ -597,7 +611,6 @@ export class GroupDetailComponent implements OnInit {
    * @return  {Array Of Object}
    */
     getProfileImages(usersAllData: any) {
-
         usersAllData?.forEach(val => {
             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)

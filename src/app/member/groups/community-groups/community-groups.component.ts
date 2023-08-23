@@ -36,7 +36,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         loop: true,
         mouseDrag: true,
         touchDrag: true,
-        pullDrag: true,
+        pullDrag: true, 
         dots: true,
         navSpeed: 700,
         navText: ['', ''],
@@ -266,7 +266,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
             this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         })
-
     }
 
 

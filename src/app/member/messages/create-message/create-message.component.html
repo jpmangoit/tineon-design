@@ -153,8 +153,11 @@
                                                     <div class="widget-appointment widget" *ngIf="receipientUsers">
                                                         <div class="widget-app-content" *ngFor="let touser of receipientUsers">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name">
+                                                                <!-- <div class="parti_name">
                                                                     {{touser.groupusers[0].firstname.charAt(0)}} {{touser.groupusers[0].lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
                                                                     <span class="user-name">{{touser.groupusers[0].firstname}}
@@ -183,8 +186,11 @@
                                                             {{language.create_message.participantsto}}</h5>
                                                         <div class="widget-app-content" *ngFor="let touser of receiverUser">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name">
+                                                                <!-- <div class="parti_name">
                                                                     {{alluserInformation[touser].firstname.charAt(0)}} {{alluserInformation[touser].lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
                                                                     <span class="user-name">{{alluserInformation[touser].firstname}}
@@ -197,8 +203,11 @@
                                                             {{language.create_message.participantscc}}</h5>
                                                         <div class="widget-app-content" *ngFor="let touser of ccUser">
                                                             <div class="app-left-content">
-                                                                <div class="parti_name">
+                                                                <!-- <div class="parti_name">
                                                                     {{alluserInformation[touser].firstname.charAt(0)}} {{alluserInformation[touser].lastname.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="user-content">
                                                                     <span class="user-name">{{alluserInformation[touser].firstname}}

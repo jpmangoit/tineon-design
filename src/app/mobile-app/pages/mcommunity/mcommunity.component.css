@@ -1,6 +1,7 @@
 .app-content-area {
-    padding: 0;
-    background-color: #fff;
+  padding: 0;
+  background-color: #f5f5f5;
+  padding: 0 15px;
 }
 /* top tabs css start */
 /* .tab-button button {
@@ -37,6 +38,39 @@
 } */
 .app-action-toggle {
     padding: 0px 15px;
+}
+
+::ng-deep body  .mat-form-field-infix {
+  padding: .5em 0;
+  border-top: .84375em solid rgba(0,0,0,0);
+  background: #fff;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 20px !important;
+  border-radius: 5px;
+  border: none;
+}
+
+::ng-deep body.mat-select-arrow {
+   
+}
+
+::ng-deep  body .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+  transform: translateY(-0%);
+}
+
+::ng-deep body .mat-form-field-ripple {
+    display: none;
+}
+::ng-deep body .mat-form-field-appearance-fill .mat-form-field-underline::before {  display: none !important;}
+
+::ng-deep body .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: none !important;
+    padding: 0px;
+}
+
+::ng-deep body .community-group-main .mat-form-field {
+    width: 100% !important;
 }
 .page-action-left {
     display: block !important;

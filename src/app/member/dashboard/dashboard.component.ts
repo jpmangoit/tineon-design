@@ -237,8 +237,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('post', 'refresh-token', data)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-
                     if (respData['isError'] == false) {
                         sessionStorage.setItem('token', respData['result']['access_token']);
                         localStorage.setItem('token', respData['result']['access_token']);

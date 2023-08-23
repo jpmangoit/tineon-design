@@ -196,12 +196,15 @@
                                                         <div class="widget-appointment widget" *ngIf="participantSelectedToShow">
                                                             <div class="widget-app-content" *ngFor="let participant of participantSelectedToShow">
                                                                 <div class="app-left-content">
-                                                                    <div class="parti_name">
+                                                                    <!-- <div class="parti_name">
                                                                         {{participant.user_name.split(" ")[0].charAt(0)}} {{participant.user_name.split(" ")[1].charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img">
+                                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="user-content">
                                                                         <span class="user-name">{{participant.user_name.split("(")[0]}}</span>
-                                                                        <span class="participant_email">({{participant.user_name.split("(")[1]}}</span>
+                                                                        <span class="participant_email">{{participant.user_name.split("(")[1]}}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>

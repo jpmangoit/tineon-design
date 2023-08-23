@@ -276,6 +276,23 @@ span.profile-menu-ic {
     gap: 14px;
 }
 
+::ng-deep body .profile_main {
+  margin-top: 0 !important; 
+  display: inline-block;
+  width: 100%;
+}
+
+::ng-deep body .print_btn_group a {
+  border: none;
+  width: 25px;
+  height: 25px;}
+
+::ng-deep body .profile_main_head {
+  display: flex;
+  justify-content: flex-end !important;
+  margin-bottom: 10px;
+}
+
 .mb-title.proile-icon svg path {
     fill: #e9380b;
   }
