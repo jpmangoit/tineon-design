@@ -9,25 +9,22 @@
                         <div class="chat-navigation">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"
-                                        (click)="onGroups(1)"
-                                        [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                        role="tab">
+                                    <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"  (click)="onGroups(1)"
+                                    [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
                                         {{language.community_groups.groups}}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link per_ic" routerLink="groups-joined" data-toggle="tab"
-                                        (click)="onGroups(2)"
-                                        [ngStyle]="displayJoinGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                        role="tab">{{language.community_groups.groups_u_joined}}
+                                    <a class="nav-link per_ic" routerLink="groups-joined" data-toggle="tab" (click)="onGroups(2)"
+                                        [ngStyle]="displayJoinGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
+                                        {{language.community_groups.groups_u_joined}}
                                     </a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
                         </div>
-                        <div class="card-body ">
-                            <div class="all-group-widget">
+                        <div class="card-body " *ngIf="displayGroup">
+                            <div class="all-group-widget" >
                                 <!-- group-col start -->
                                 <div class="community-group-row">
                                     <div class="community-group-column"  *ngIf="bannerData?.length > 0 && allowAdvertisment == 0">
@@ -59,8 +56,7 @@
                                             </ng-template>
                                         </owl-carousel-o>
                                     </div>
-                                    <div class="community-group-column"
-                                    *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
+                                    <div class="community-group-column" *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
                                         <!-- *ngFor='let data of groupData'> -->
                                         <!-- <div class="community-group-column" *ngFor='let data of groupData'> -->
                                         <div class="news-widget com-g-widget">
@@ -124,7 +120,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="paginationHead full_width" *ngIf="groupData?.length > 0">
+                                <div class="paginationHead full_width" *ngIf="groupData?.length > 0 && displayGroup">
                                     <div class="pagintHeadLeft">
                                         <pagination-controls (pageChange)="pageChanged($event);"
                                             (pageBoundsCorrection)="pageChanged($event)" autoHide="true"
@@ -171,30 +167,26 @@
                         <div class="chat-navigation">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"
-                                        (click)="onGroups(1)"
-                                        [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                        role="tab">
+                                    <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"  (click)="onGroups(1)"
+                                        [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
                                         {{language.community_groups.groups}}
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link per_ic" routerLink="groups-joined" data-toggle="tab"
-                                        (click)="onGroups(2)"
-                                        [ngStyle]="displayJoinGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}"
-                                        role="tab">
+                                    <a class="nav-link per_ic" routerLink="groups-joined" data-toggle="tab" (click)="onGroups(2)"
+                                        [ngStyle]="displayJoinGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
                                         {{language.community_groups.groups_u_joined}}
                                     </a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
                         </div>
-                        <div class="card-body ">
-                            <div class="all-group-widget">
+                        <div class="card-body " *ngIf="displayJoinGroup">
+                            <div class="all-group-widget" >
                                <!-- group-col start -->
                                 <div class="community-group-row">
-                                    <div class="community-group-column" *ngFor='let data of groupJoinData'>
-                                    <!-- *ngFor='let data of groupJoinData | paginate:{itemsPerPage: itemPerPageOne,currentPage: currentPageNmuberOne, totalItems: totalJoinedGroupData}'> -->
+                                    <!-- <div class="community-group-column" *ngFor='let data of groupJoinData'> -->
+                                        <div class="community-group-column" *ngFor='let data of groupJoinData | paginate:{itemsPerPage: itemPerPageOne,currentPage: currentPageNmuberOne, totalItems: totalJoinedGroupData}'>
                                         <div class="news-widget com-g-widget">
                                             <div class="news-image"
                                                 [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
@@ -250,7 +242,7 @@
                                     </div>
                                 </div>
 
-                                <div class="paginationHead full_width" *ngIf="groupJoinData?.length > 0">
+                                <div class="paginationHead full_width" *ngIf="groupJoinData?.length > 0 && displayJoinGroup">
                                     <div class="pagintHeadLeft">
                                         <pagination-controls (pageChange)="pageChangedOne($event);" (pageBoundsCorrection)="pageChangedOne($event)" autoHide="true"
                                             previousLabel="{{language.pagination.previous}}" nextLabel="{{language.pagination.next}}">
@@ -276,7 +268,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="container" *ngIf="groupJoinData && groupJoinData.length == 0">
                                     <div class="empty-data-image">
                                         <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
@@ -286,6 +277,7 @@
                                 <!-- group-col End -->
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
