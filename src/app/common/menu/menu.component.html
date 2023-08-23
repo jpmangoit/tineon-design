@@ -564,7 +564,7 @@
                     </li> -->
                     <li [ngClass]="{ 'active' : isValue == 13 }" (click)="toggle(13)" class="parent-label"
                         *ngIf=" createAccess.news == 'Yes' || createAccess.event == 'Yes' || createAccess.course == 'Yes' || createAccess.instructor == 'Yes' || createAccess.survey == 'Yes' || createAccess.room == 'Yes'">
-                        <a id="hasSubItems" (click)="dropDown6()" class="com_ic toggleSubmenu6"
+                        <a id="hasSubItems" (click)="dropDown6()" class="com_ic toggleSubmenu6" [routerLinkActive]="['active']"   routerLink="/all-list"
                             [ngStyle]="{'color':setTheme.navigation_color}">
                             <p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"
@@ -578,7 +578,7 @@
                                         [ngStyle]="{'color':setTheme.icon_color}"></i></span>
                             </p>
                         </a>
-                        <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion"
+                        <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion"
                             *ngIf="open_owner">
                             <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/all-list"
@@ -592,10 +592,10 @@
                                                 style="padding:0px">{{language.club_wall.club_news}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.event == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/event-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -607,10 +607,10 @@
                                                 style="padding:0px">{{language.club_wall.club_events}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.course == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/course-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -622,10 +622,10 @@
                                                 style="padding:0px">{{language.header.course}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.room == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/room-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -637,10 +637,10 @@
                                                 style="padding:0px">{{language.room.rooms}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.instructor == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/instructor-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -652,10 +652,10 @@
                                                 style="padding:0px">{{language.courses.instructor}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.survey == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/survey-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -667,10 +667,10 @@
                                                 style="padding:0px">{{language.Survey.survey}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.survey == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/task-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -682,10 +682,10 @@
                                                 style="padding:0px">{{language.header.task}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.survey == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/group-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -697,10 +697,10 @@
                                                 style="padding:0px">{{language.header.group}}</span></span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- </ul> -->
                             <!-- <ul class="nav-second-level" id="collapseSubItems4" data-parent="#navAccordion" *ngIf="createAccess.survey == 'Yes'"> -->
-                            <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
+                            <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="createAccess.news == 'Yes'">
                                 <a class="nav-link" routerLink="/faqs-list"
                                     [ngStyle]="{'color':setTheme.navigation_color}">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="23" height="17"
@@ -713,7 +713,7 @@
                                     </p>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                 </ul>
                 <div class="footer-logo">
