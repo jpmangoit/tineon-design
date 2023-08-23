@@ -385,6 +385,11 @@ span.get-btn {
     background-color: #20AE80 !important;
 }
 
+
+::ng-deep .mat-select-arrow {
+    display: none;
+}
+
 .application-ad.last-ad {
     /* background: #f7a137; */
     bottom: 35px;
