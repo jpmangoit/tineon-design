@@ -329,12 +329,15 @@ color: #8E8E93;
    .news_detail_popup .news_heading h2 {
     font-size: 16px !important;
     margin-bottom: 12px !important;
+    font-weight: 600;
+    margin-top: 10px;
    
  }
 
  .author-id-name {
   font-size: 14px;
   color: #3C3B41;
+  font-weight: 500;
 }
 
  .author-id-title {
