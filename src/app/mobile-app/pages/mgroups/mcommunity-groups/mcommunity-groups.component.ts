@@ -18,7 +18,6 @@ declare var $: any;
     styleUrls: ['./mcommunity-groups.component.css']
 })
 export class McommunityGroupsComponent implements OnInit {
-
     language: any;
     groupData: CommunityGroup[];
     groupJoinData: CommunityGroup[];

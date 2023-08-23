@@ -92,6 +92,7 @@ ul.tabs__items li a.active {
 .community-group-row {
     display: flex;
     flex-flow: row wrap;
+    gap: 15px;
 }
 .community-group-column {
     max-width: 50%;
@@ -114,6 +115,15 @@ ul.tabs__items li a.active {
     display: flex;
     align-items: center;
 }
+
+.new-action {
+  gap: 5px;
+  display: flex;
+}
+
+.membar-count-area span  svg {
+    width: 8px;
+}
 .card-heading h5 {
     font-size: 15px;
     color: #414141;
@@ -130,11 +140,16 @@ button.mat-menu-item {
     font-family: 'Gellix', sans-serif;
     font-weight: 600;
     color: #A2ACCA;
-    padding:0px 25px 0px 20px;
+    padding:0px 25px 0px 20px; 
 }
 .manage_group_widget .card {
-    padding: 25px 25px;
+    padding: 0px;
     border-radius: 20px;
+    background: none;
+}
+
+.manage_group_widget .card .card-body {
+    padding: 0;
 }
 .card-body.manage_g_widget {
     padding: 0;
@@ -154,7 +169,17 @@ button.mat-menu-item {
 }
 .news-widget.com-g-widget button {
     background: #6e63ee;
-    padding:10px;
+    padding:0 5px;
+    height: 24px;
+font-size: 10px;
+width: auto;
+text-transform: none;
+font-weight: 600;
+border-radius: 8px;
+width: 100%;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
 }
 .community-group-title h5 {
     color: #555555;
@@ -163,17 +188,20 @@ button.mat-menu-item {
     font-family: 'Gellix', sans-serif;
     margin-bottom: 25px;
     margin-top: 25px;
-    padding: 0 15px;
+    padding: 0 15px; 
+    height: auto !important;
 }
 .community-group-row .news-content h5 {
     font-size: 12px;
     font-weight: 800;
     color: #353535;
     line-height: 15px;
-    margin-bottom: 0;
+    margin-bottom: 5px;
+    height: auto;
 }
 .membar-count-area {
     font-size: 8px;
+    font-weight: 700;
 }
 @media (min-width:600px) and (max-width:767px){
     .community-group-column {
@@ -207,7 +235,7 @@ button.mat-menu-item {
 }
 }
 .community-group-widget .card {
-    background: #fff;
+    background: none;
     box-shadow: none;
     padding: 0;
     border-radius: 20px;
@@ -358,6 +386,11 @@ span.get-btn {
     background-color: #20AE80 !important;
 }
 
+
+::ng-deep .mat-select-arrow {
+    display: none;
+}
+
 .application-ad.last-ad {
     /* background: #f7a137; */
     bottom: 35px;
@@ -391,9 +424,13 @@ span.get-btn {
 }
 @media only screen and (max-width: 767px){
     .community-group-column {
-        width: 50%;
-        max-width: 50%;
-        flex: 0 0 50%;
+        width: 48%;
+        max-width: 48%;
+        flex: 0 0 48%;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+
     }
     .card-body.manage_g_widget {
         min-height: inherit;
@@ -439,8 +476,16 @@ span.get-btn {
     }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 390px) {
     .paginationHead.full_width {
         padding: 0px;
+    }
+
+    .community-group-column {
+        width: 47%;
+        max-width: 47%;
+        flex: 0 0 47%;
+        
+
     }
 }
