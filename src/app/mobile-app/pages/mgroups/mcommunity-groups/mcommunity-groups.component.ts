@@ -256,7 +256,7 @@ export class McommunityGroupsComponent implements OnInit {
         let userId: string = localStorage.getItem('user-id');
         this.authService.setLoader(true);
         // this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + userId, null)
-        this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.user_Id + '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id + '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
                 this.groupJoinData.forEach((element:any) => {

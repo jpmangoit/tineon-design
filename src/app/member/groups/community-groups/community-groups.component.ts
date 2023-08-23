@@ -129,7 +129,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         }, 2000);
     }
 
-    /** 
+    /**
      * Function for get All the Banners
      * @author  MangoIt Solutions(M)
      * @param   {}
@@ -237,9 +237,9 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         }else{
                             // Join button
                         }
-                        
+
                 });
-                
+
                 // Condition for displaying the button
                 // const user_id = localStorage.getItem('user-id');
                 // const participant = element.participants.find((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 0 && !parseInt(user_id));
@@ -269,9 +269,9 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     joinAllGroups() {
         this.authService.setLoader(true);
         this.groupJoinData = [];
-        this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.user_Id, null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
             .subscribe((respData: any) => {
-                this.groupJoinData = respData.reverse();
+                this.groupJoinData = respData['groups'].reverse();
                 // console.log(this.groupJoinData);
 
                 this.groupJoinData.forEach((element: any) => {
