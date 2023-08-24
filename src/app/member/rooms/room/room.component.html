@@ -87,17 +87,24 @@
 					<div class="card-body club_all_news" >
 						<div class="room-main-grid">
 							<div class="room-grid-list" *ngFor="let item of allRooms  | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalRoomData}">
-								<div class="news-widget" data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)">
+								<div class="news-widget">
 									<div class="news-image">
-										<img onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
+										<img  data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)" onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
 										alt="" loading="lazy">
 										<!-- <img onContextMenu="return false;" src="{{item.room_image[0]?.room_image}}"  alt="" loading="lazy"> -->
+										<div class="new-action" *ngIf="item.author == userData.userId || userData.isAdmin">
+											<a class="green" (click)="updateRooms(item.id)">
+												{{language.club_news.Edit}}</a>
+		
+											<a class="red" (click)="deleteRoom(item.id)">
+												{{language.club_news.Delete}}</a>
+										</div> 
 									</div>
-									<div class="news-content">
+									<div class="news-content" data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)">
 										<span class="news-badge">{{item ['no_of_persons']}} {{language.room.person}}</span>
 										<h5 class="news-content-heading">{{item['name']}}</h5>
 									</div>
-									<div class="card-footer course_footer">
+									<div class="card-footer course_footer" data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)">
 										<p class="course-time" *ngFor="let val of item.room_availablity">
 											<span>
 												<i class="fa fa-calendar"></i>
@@ -108,6 +115,10 @@
                                                 {{val.time_from.split(":").slice(0,2).join(":")}} - {{val.time_to.split(":").slice(0,2).join(":")}}
                                             </span> 
 										</p>
+									</div>
+									<div class="news-read-more" data-bs-toggle="modal" data-bs-target="#view-rooms"  (click)="roomsById(item.id)">
+										<a>{{language.dashboard.dashboardNewsContent}}<span>
+											<img onContextMenu="return false;"src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt="" loading="lazy"></span></a>
 									</div>
 								</div>
 							</div>
@@ -171,7 +182,7 @@
 					<div class="col-md-6">
 						<div class="ins-image img-fluid">
 							<img onContextMenu="return false;" [src]="roomImg" alt="" loading="lazy">
-							<div class="course-action dropdown action_group" *ngIf="roomsByIdData.author == userData.userId || userData.isAdmin">
+							<!-- <div class="course-action dropdown action_group" *ngIf="roomsByIdData.author == userData.userId || userData.isAdmin">
 								<button class="dropdown-toggle" type="button" (click)="onShow()">
 									<i class="fa fa-pencil"></i>
 								</button>
@@ -181,7 +192,7 @@
 									<li><a class="dropdown-item"
 											(click)="deleteRoom(roomsByIdData.id)">{{language.room.Delete}}</a></li>
 								</ul>
-							</div>
+							</div> -->
 						</div>
 						<div class="author-info">
                             <div  class="author-img" >

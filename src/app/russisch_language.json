@@ -459,7 +459,9 @@
 
         "years_old": "лет",
         "birthday": "Birthday",
-        "anniversary": "Anniversary"
+        "anniversary": "Anniversary",
+        "years": "Years",
+        "years_in_club": "Years in the Club"
     },
     "confirmation_message": {
         "accept_group": "Вы уверены, что хотите принять эту группу?",
