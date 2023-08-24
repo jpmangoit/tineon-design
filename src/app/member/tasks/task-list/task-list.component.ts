@@ -54,7 +54,7 @@ export class TaskListComponent implements OnInit {
      * @return  {all the records of Task} array of object
      */
     getUserAllTask(search: any) {
-        var pageNo = this.currentPage + 1
+        var pageNo = this.currentPage + 1 
         this.authService.setLoader(true);
         var endPoint: string;
         if (search && search.target.value != '') {
