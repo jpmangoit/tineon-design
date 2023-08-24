@@ -1,6 +1,6 @@
 .chat-list-item {
     padding: 12px 0px;
-    border-bottom: 1px solid #EFF2FD;
+    /* border-bottom: 1px solid #EFF2FD; */
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
@@ -9,6 +9,17 @@
     margin-right: 18px;
     position: relative;
     width: 53px;
+}
+.chat-user-thumb::after {
+    content: "";
+    height: 15px;
+    width: 15px;
+    border: 2px solid #fff;
+    background: #56E965;
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
 }
 .chat-user-thumb img {
     width: 50px;
@@ -37,38 +48,48 @@ span.user-status-badge {
 }
 .chat-user-list-content {
     width: 81%;
+    border-bottom: 1px solid #EFF2FD;
+    padding-bottom: 10px;
 }
 .chat-user-name span.last-seen {
     font-size: 10px !important;
     color: #647895 !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
 }
 .chat-user-msg span {
     font-size: 12px;
-    color: #9EACC1;
+    color: #989EB2;
     font-family: 'Gellix', sans-serif;
     white-space: nowrap;
     overflow: hidden;
     width: 90%;
     text-overflow: ellipsis;
+    font-weight: 600;
 }
 .chat-user-msg span.message-count {
     width: 17px;
     height: 17px;
-    background: #6E63EE;
+    background: #E93608;
     display: flex;
     align-items: center;
-    line-height: 0;
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
     border-radius: 50%;
     justify-content: center;
+    font-size: 10px;
+    line-height: 1px;
 }
+
+::ng-deep body.mobile-green .chat-user-msg span.message-count {
+    background: #20AE80 !important;
+}
+
+
 .chat-user-name {
     margin-bottom: 5px;
 }
 .chat-list-inner {
-    padding: 0 15px;
+    padding: 0 0px;
 }
 .chat-user-name.header-text {
     display: inline;

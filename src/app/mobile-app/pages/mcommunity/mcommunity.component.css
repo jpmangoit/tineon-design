@@ -1,6 +1,6 @@
 .app-content-area {
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #fff;
   padding: 0 15px;
 }
 /* top tabs css start */
@@ -52,7 +52,7 @@
 }
 
 ::ng-deep body.mat-select-arrow {
-   
+
 }
 
 ::ng-deep  body .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
