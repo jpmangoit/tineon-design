@@ -706,6 +706,11 @@ span.news-date {
     font-size: 11px;
 }
 
+.group-content-listing .news-items div.news-des-area p ol,
+.group-content-listing .news-items div.news-des-area p ul {
+    padding: 0px;;
+}
+
 .news-content-list .news-items div  {
     margin: 0px;
 }
