@@ -235,6 +235,14 @@ transform: translateX(0px) translateY(-0px) !important;
   display: inline-block;
 }
 
+::ng-deep .mobile-green .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple)::after {
+  content: "";
+  background: url(../../../../../assets/img/right-icon-green.svg) no-repeat 0 0;
+  width: 19px;
+  height: 13px;
+  display: inline-block;
+}
+
 ::ng-deep .mat-option {
     padding: 0 20px 0 34px !important;
 }
