@@ -629,7 +629,7 @@ body {
         right: 0;
     }
 
-   
+
 }
 
 @media screen and (max-width: 575px) {
@@ -11067,7 +11067,7 @@ body .sidebar.sidebar-hr a.sidebar-expand:hover .nav-logo .club-name {
     margin-bottom: 15px !important;
     font-family: "Gellix", sans-serif;
     font-weight: 700;
-    color: #414141;
+    color: #353535;
     line-height: 22px;
 }
 .news_content_text {

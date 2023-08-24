@@ -100,7 +100,7 @@ span.user-status-badge {
     overflow-y: auto;
     overflow-x: hidden;
     height: 88vh;
-    background: #eff2fd;
+    background: #F8F8F8;
 }
 
 .chat-bubble.chat-white {
@@ -125,7 +125,7 @@ span.user-status-badge {
 
 .chat-conversation-bubble {
     width: 75%;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .chat-sendar .chat-conversation-bubble {
@@ -203,7 +203,6 @@ span.user-status-badge {
 }
 /* form area start */
 .user-chat-thumb {
-    background: #eef2ff;
     height: 56px;
     display: flex;
     align-items: center;
@@ -233,6 +232,7 @@ span.user-status-badge {
     width: 33px;
     height: 33px;
     object-fit: cover;
+    border-radius: 50%;
 }
 .capture-pic button {
     height: 56px;
@@ -240,7 +240,7 @@ span.user-status-badge {
     width: 58px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    background: #eef2ff;
+    background: #fff;
 }
 .chat-text-area input {
     width: 100%;
@@ -261,12 +261,24 @@ span.user-status-badge {
     justify-content: space-between;
     background: #fff;
     width: 90%;
+    border: 1px solid #e93608;
+    border-radius: 25px;
+}
+::ng-deep body.mobile-green .form-input-area {
+    border: 1px solid #20AE80 !important;
 }
 .user-chat-input input {
     width: 100%;
     height: 56px;
     border: none;
-    background: #eef2ff;
+}
+.user-chat-input input::placeholder {
+    font-weight: 600;
+    font-size: 16px;
+    color: #989EB2;
+}
+.user-chat-input input:focus-visible {
+   border: none;
 }
 .user-chat-input {
     width: 100%;
@@ -281,6 +293,13 @@ span.user-status-badge {
     border: none;
     background: transparent;
 }
+.chat-send-button button svg path {
+    fill: #e93608;
+}
+::ng-deep body.mobile-green .chat-send-button button svg path {
+    fill: #20AE80 !important;
+}
+
 .chat-send-button {
     width: 10%;
     text-align: right;
@@ -308,13 +327,16 @@ span.user-status-badge {
 .single-user-panel {
     width: 100%;
     padding: 20px;
-    border-left: 1px solid #eff2fd;
 }
 .single-user-header {
     text-align: center;
     font-family: "Gellix", sans-serif;
-    border-bottom: 1px solid #eff2fd;
-    padding-bottom: 17px;
+    background: #E93608;
+    border-radius: 28px;
+    padding: 28px;
+}
+::ng-deep body.mobile-green .single-user-header {
+    background: #20AE80 !important;
 }
 .single-user-header img {
     width: 124px;
@@ -324,10 +346,11 @@ span.user-status-badge {
 }
 
 .single-user-header h2 {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 800;
     margin-top: 10px;
     margin-bottom: 8px;
+    color: #fff;
 }
 span.user-status-text {
     color: #c3c3c3;
@@ -342,18 +365,24 @@ span.user-status-text {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
 }
 .media-heading h3,
 .media-heading span {
     margin: 15px 0px 20px;
     font-size: 16px;
-    color: #a2acca;
+    color:  #030319;
     font-weight: 600;
     font-family: "Gellix", sans-serif;
 }
+span.media-heading-right svg path {
+    fill: #030319;
+}
 .single-user-media {
     font-family: "Gellix", sans-serif;
-    padding-bottom: 25px;
+    padding-bottom: 0px;
     border-bottom: 1px solid #eff2fd;
 }
 span.media-heading-right {
@@ -370,7 +399,7 @@ span.media-heading-right {
     gap: 10px;
     flex-wrap: wrap;
     overflow-x: auto;
-    height: 137px;
+    height: 90px;
 }
 .media-image {
     max-width: 22%;
@@ -431,24 +460,39 @@ span.c-group-name {
     border-bottom: 1px solid #eff2fd;
 }
 .delete-chat-action button {
-    padding: 0;
-    font-weight: 600;
+    padding: 8px;
+    font-weight: 800;
     font-family: "Gellix", sans-serif;
-    color: #f46565;
+    color: #fff;
     display: flex;
     align-items: center;
-    background: transparent;
+    background: #e93608;
     border: none;
     box-shadow: none;
+    border-radius: 8px;
+    font-size: 11px;
 }
-::ng-deep mat-icon.close {
-    right: 15px;
+.delete-chat-action button svg path {
+    fill: #fff;
+}
+::ng-deep .drower-close mat-icon.close {
+    right: 5px;
     position: absolute;
-    top: 15px;
+    top: 2px;
+    opacity: inherit;
+}
+.drower-close {
+    padding: 5px;
 }
 .chat-reciever .chat-bubble.chat-blue img {
     border-radius: 20px 20px 1px 20px;
 }
 .chat-sendar .chat-bubble.chat-blue img {
     border-radius: 20px 20px 20px 1px;
+}
+.drower-close mat-icon.mat-icon.close svg path {
+    fill: #e93608;
+}
+::ng-deep body.mobile-green .drower-close mat-icon.mat-icon.close svg path {
+    fill:  #20AE80 !important;
 }
