@@ -93,7 +93,7 @@ span.badge-menu {
     margin: 12px 0px;
 }
 button.accept_btn:focus {
-    background: #ffc40a;
+  background: #ddf1e3;
 }
 button.deny_btn:focus {
     background: #848484;
@@ -110,7 +110,7 @@ button.accept_btn {
     font-size: 12px;
     background: #DDF1E3;
     border: transparent;
-    border-radius: 5px;
+    border-radius: 7px;
     color: #5FC97D;
     padding: 3px 8px;
     margin-right: 10px;
@@ -156,12 +156,12 @@ button.deny_btn {
     font-weight: 600;
 }
 .notification_message {
-    float: left;
-    width: 75%;
-    text-align: left;
-    word-break: break-word;
-    border-bottom: 1px solid #EBEBEB;
-    padding-bottom: 15px;
+   float: left;
+width: calc(100% - 83px);
+text-align: left;
+word-break: break-word;
+border-bottom: 1px solid #EBEBEB;
+padding-bottom: 15px;
 }
 .notification-drop-info {
     padding: 0;
@@ -246,7 +246,7 @@ button.deny_btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-bottom: 30px;
 }
 .notification-header button{

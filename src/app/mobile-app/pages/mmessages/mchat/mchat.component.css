@@ -6,6 +6,10 @@
     z-index: 777;
 }
 
+::ng-deep body .app-content-area {
+    background: #fff;
+}
+
 .chat-window-header {
     background: #fff;
     padding: 15px;
