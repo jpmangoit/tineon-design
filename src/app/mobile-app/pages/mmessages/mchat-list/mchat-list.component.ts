@@ -15,6 +15,8 @@ import { ChatUsers, UserMessages } from 'src/app/models/chat-type.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 declare var $: any;
 
@@ -76,6 +78,8 @@ export class MchatListComponent implements OnInit {
         private authService: AuthServiceService, private themes: ThemeService,
         private _router: Router,
         private route: ActivatedRoute,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) {
     }
 
@@ -178,6 +182,11 @@ export class MchatListComponent implements OnInit {
                             this.notificationService.showError(respData['result']['message'],null);
                         } else {
                             this.groups = respData;
+                            this.groups.forEach((element:any) => {
+                                if ( element?.['group_images'][0]?.group_image) {
+                                    element['group_images'][0].group_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.['group_images'][0].group_image.substring(20)));
+                                }
+                            })
                         }
                     }
                 );
@@ -198,9 +207,9 @@ export class MchatListComponent implements OnInit {
                     this.chatUserArr.forEach(element => {
                         if (element.type == 'group') {
                             if (this.groups && this.groups.length > 0) {
-                                grp = this.groups.find((o: any) => o.id == element.id)
+                                grp = this.groups.find((o: any) => o.id == element.id);
                                 element.name = grp ? grp.name : element.id
-                                element.image = grp.image ? grp.image : ''
+                                element.image = (grp.group_images[0]?.group_image) ? (grp.group_images[0]?.group_image) : ''
                                 element.lastMessage = JSON.parse(element.lastMessage)
                                 element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
                                 let cudate = new Date().toISOString().split('T')[0]

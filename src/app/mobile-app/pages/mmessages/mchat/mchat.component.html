@@ -57,16 +57,16 @@
             </div>
             <div class="chat-user-info">
                 <div class="chat-user-thumb" *ngIf="selectedChat && selectedChat.image">
-                    <img onContextMenu="return false;"
-                        [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/no_image.png'" alt=""
+                    <img onContextMenu="return false;" class="author-img"
+                        [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/defaultProfile.jpeg'" alt=""
                         loading="lazy">
                     <!-- <div class="parti_name" *ngIf="selectedChat.image == null || selectedChat.image == ''">
                         {{selectedChat?.name.charAt(0)}}
                     </div> -->
-                    <div class="author-img" ngIf="selectedChat.image == null || selectedChat.image == ''">
+                    <!-- <div class="author-img" ngIf="selectedChat.image == null || selectedChat.image == ''">
                         <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
                             style="width: 100px;" alt="" loading="lazy">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="chat-user-information" *ngIf="selectedChat && selectedChat.type == 'group'">
                     <div class="chat-user-name header-text">

@@ -109,6 +109,9 @@ export class MchatComponent implements OnInit {
                 (error:any) => {
                     this.userDetails.image = null;
                 });
+                console.log(this.userDetails);
+                console.log(this.userDetails.image);
+
         this.chatForm = new UntypedFormGroup({
             'message': new UntypedFormControl('', [Validators.required,
             Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)])
@@ -136,6 +139,8 @@ export class MchatComponent implements OnInit {
         if (this.selectedChat.count > 0) {
             this.readChat(this.selectedChat);
         }
+        console.log(this.selectedChat);
+
         let count: number = 0;
         if (chat.type == 'individual') {
             this.getCommonGroups(chat.id);
