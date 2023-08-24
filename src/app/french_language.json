@@ -652,7 +652,9 @@
         "club_Appointments_stand": "Rendez-vous des clubs",
         "club_Appointments_untern": "Rendez-vous d'entreprise",
         "birthday": "Birthday",
-        "anniversary": "Anniversary"
+        "anniversary": "Anniversary",
+        "years": "Years",
+        "years_in_club": "Years in the Club"
     },
     "confirmation_message":{
         "accept_group":"Êtes-vous sûr de vouloir accepter ce groupe ?",

@@ -103,7 +103,8 @@
                                                                     *ngIf="organizer.imagePro != null"><img
                                                                         onContextMenu="return false;"
                                                                         [src]="organizer.imagePro" style="width: 100px;"
-                                                                        alt="" loading="lazy"></div>
+                                                                        alt="" loading="lazy">
+                                                                </div>
                                                                 <div class="user-content">
                                                                     <span
                                                                         class="user-name">{{organizer.groupusers[0].firstname}}
@@ -984,7 +985,7 @@
                                                         <div class="group_rm">
                                                             <!-- <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}
                                                                                                             </a> -->
-                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                            <a (click)="getNewsDetails(data.id)">{{language.community_groups.read_more}}<span>
                                                                     <img onContextMenu="return false;"
                                                                         src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
                                                                         alt="" loading="lazy">
@@ -1076,7 +1077,7 @@
                                                                 | date: 'd. MMMM y'}}</span>
                                                         </div>
                                                         <div class="group_rm">
-                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                            <a (click)="getTasksDetails(data.id)">{{language.community_groups.read_more}}<span>
                                                                     <img onContextMenu="return false;"
                                                                         src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
                                                                         alt="" loading="lazy">
@@ -1167,7 +1168,7 @@
                                                                 | date: 'd. MMMM y'}}</span>
                                                         </div>
                                                         <div class="group_rm">
-                                                            <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}<span>
+                                                            <a (click)="getEventsDetails(data.id)">{{language.community_groups.read_more}}<span>
                                                                     <img onContextMenu="return false;"
                                                                         src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
                                                                         alt="" loading="lazy">
