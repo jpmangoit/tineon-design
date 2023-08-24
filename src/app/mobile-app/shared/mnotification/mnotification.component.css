@@ -64,7 +64,7 @@
     font-size: 14px !important;
     line-height: 14px;
     font-weight: 600;
-    color: #98a5c6;
+    color: #989EB2;
     margin-bottom: 5px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -86,7 +86,7 @@ span.badge-menu {
     border-radius: 25px;
 }
 .notification_divider {
-    height: 1px;
+    /* height: 1px; */
     background: #efefef;
     float: left;
     width: 100%;
@@ -160,6 +160,8 @@ button.deny_btn {
     width: 75%;
     text-align: left;
     word-break: break-word;
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 15px;
 }
 .notification-drop-info {
     padding: 0;
@@ -191,13 +193,13 @@ button.deny_btn {
     font-weight: 600;
 }
 .notification_message p span {
-    font-weight: 600;
+    font-weight: 700;
     color: #000;
 }
 .notification_message a {
     padding: 0 2px;
     color: #FB5F5F;
-    font-weight: 600;
+    font-weight: 700;
     font-family: 'Gellix', sans-serif;
 }
 .navbar .navbar-collapse .nav-item .notification_message a {

@@ -193,7 +193,7 @@ overflow: hidden;
 }
 .community-group-row .news-content h5 {
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 700;
     color: #353535;
     line-height: 15px;
     margin-bottom: 5px;
@@ -202,6 +202,7 @@ overflow: hidden;
 .membar-count-area {
     font-size: 8px;
     font-weight: 700;
+    color: #BDBDBD;
 }
 
 ::ng-deep .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
