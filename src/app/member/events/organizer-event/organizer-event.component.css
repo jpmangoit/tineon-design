@@ -10,6 +10,31 @@
         max-width: 50%;
     }
 }
+
+/* Example CSS, customize as needed */
+.slidable-event {
+    position: relative;
+  }
+
+  .event-slides {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow-x: hidden;
+  }
+
+  .event-slide {
+    padding: 2px;
+    margin-right: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+
 .row.eve_grid_main .news-image img {
     width: 100%;
     margin: auto;

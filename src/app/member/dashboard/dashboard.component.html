@@ -219,12 +219,11 @@
             </div>
             <div class="col-md-3 appointment_widget">
                 <span *ngIf="allowAdvertisment == 0">
-                    <app-club-appointments *ngIf="bannerData && eventData && courseData" [bannerData]="bannerData"
-                        [eventData]="eventData" [courseData]="courseData"></app-club-appointments>
+                    <app-club-appointments *ngIf="bannerData && eventData" [bannerData]="bannerData" [eventData]="eventData" ></app-club-appointments>
+
                 </span>
                 <span *ngIf="allowAdvertisment == 1">
-                    <app-club-appointments *ngIf="eventData && courseData" [bannerData]="bannerData"
-                        [eventData]="eventData" [courseData]="courseData"></app-club-appointments>
+                    <app-club-appointments *ngIf="eventData" [bannerData]="bannerData" [eventData]="eventData" ></app-club-appointments>
                 </span>
             </div>
         </ng-container>

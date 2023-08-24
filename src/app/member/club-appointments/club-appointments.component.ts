@@ -74,6 +74,7 @@ export class ClubAppointmentsComponent implements OnInit {
     checkBanner: boolean = false;
     allowAdvertisment: any;
     headline_word_option: number = 0;
+    allClubEvents: EventsType[] = [];
 
     constructor(
         private authService: AuthServiceService,
@@ -82,10 +83,10 @@ export class ClubAppointmentsComponent implements OnInit {
         private router: Router, private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) {
+
     }
 
     ngOnInit(): void {
-
         if (sessionStorage.getItem('token')) {
             this.language = this.lang.getLanguaageFile();
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -147,21 +148,6 @@ export class ClubAppointmentsComponent implements OnInit {
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-
-                        // if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
-                        //     if (element.picture_video) {
-                        //         url = element.picture_video.split('"');
-                        //         if (url && url.length > 0) {
-                        //             url.forEach((el) => {
-                        //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                        //                     element.picture_video = el;
-                        //                 }
-                        //             });
-                        //         } else {
-                        //             element.picture_video = '';
-                        //         }
-                        //     }
-                        // }
                         let self = this;
                         if (element && element.recurrence != '' && element.recurrence != null) {
                             let recurrence: string = element.recurrence;
@@ -219,7 +205,6 @@ export class ClubAppointmentsComponent implements OnInit {
 
                                 })
                             }
-
                         } else {
                             if (element && element.recurring_dates && element.recurring_dates != '' && element.recurring_dates != null) {
                                 JSON.parse(element.recurring_dates).forEach((dd: any, index: any) => {
@@ -629,6 +614,14 @@ export class ClubAppointmentsComponent implements OnInit {
     getCalendarData() {
         this.upcomingEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
         this.currentEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
+        let finalClubNews = [...this.currentEvent, ...this.upcomingEvent];
+        this.currentEvent = [];
+        this.upcomingEvent = []
+        finalClubNews.forEach((element: any, index: any) => {
+            if (index < 10) {
+                this.allClubEvents.push(element);
+            }
+        })
     }
 
     /**
