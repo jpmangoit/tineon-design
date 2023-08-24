@@ -652,7 +652,11 @@
         "club_Appointments_stand": "Vereins Termine",
         "club_Appointments_untern": "Unternehmens Termine",
         "birthday": "Geburtstag",
-        "anniversary": "Jubiläum"
+        "anniversary": "Jubiläum",
+        "years": "Jahre",
+        "years_in_club": "Jahre im Verein"
+
+
     },
     "confirmation_message": {
         "accept_group": "Möchten Sie diese Gruppe akzeptieren?",

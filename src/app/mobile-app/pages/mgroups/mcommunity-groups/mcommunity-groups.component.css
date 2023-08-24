@@ -106,8 +106,8 @@ ul.tabs__items li a.active {
 .membar-count-area {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    color: #AFAFAF;
+    font-size: 8px;
+    color: #BDBDBD;
     font-family: 'Gellix', sans-serif;
     flex-wrap: wrap;
 }

@@ -1,11 +1,9 @@
 <div class="chat-user-list" *ngIf="!chatData">
 	<div class="chat-list-inner">
 		<!-- chat item start -->
-		<div class="chat-list-item" *ngFor='let chat of chatUserArr' id="chat-{{chat.id}}"
-			(click)="clickChat(chat,$event)">
+		<div class="chat-list-item" *ngFor='let chat of chatUserArr' id="chat-{{chat.id}}" (click)="clickChat(chat,$event)">
 			<div class="chat-user-thumb" *ngIf="chat && chat.image">
-				<img onContextMenu="return false;"
-					[src]=" chat.image ?  chat.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
+				<img onContextMenu="return false;" [src]=" chat.image ?  chat.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
 			</div>
 			<!-- <div class="parti_name" *ngIf="chat.image == null || chat.image == ''">
 				{{chat?.name.charAt(0)}}
@@ -15,17 +13,18 @@
 			</div>
 			<div class="chat-user-list-content">
 				<div class="chat-user-name">
-					<span>{{chat.name}}</span> <span class="last-seen" *ngIf="chat.lastMsgDate && !chat.lastMsgTimming">
-						{{chat.lastMsgDate | date: ' dd. MMMM yyyy'}}</span>
+					<span>{{chat.name}}</span>
+                     <span class="last-seen" *ngIf="chat.lastMsgDate && !chat.lastMsgTimming">
+						{{chat.lastMsgDate | date: ' dd. MMMM yyyy'}}
+                    </span>
 					<!-- <span class="last-seen" *ngIf="chat.lastMsgTimming"> {{chat.lastMsgTimming | date: ' h:mm a'}}</span> -->
 					<span class="last-seen" *ngIf="chat.lastMsgTimming"> {{chat.lastMsgTimming | date: "HH:mm"}}</span>
 				</div>
 				<div class="chat-user-msg">
-					<span
-						*ngIf="chat.lastMessage && chat.lastMessage.messageType == 'text'">{{chat.lastMessage.message}}</span>
-					<span *ngIf="chat.lastMessage && chat.lastMessage.messageType == 'image'"><img
-							onContextMenu="return false;" style="width: 22px;"
-							src="../../../../assets/img/doc-icons/image_icon.png" alt="" loading="lazy"></span>
+					<span *ngIf="chat.lastMessage && chat.lastMessage.messageType == 'text'">{{chat.lastMessage.message}}</span>
+					<span *ngIf="chat.lastMessage && chat.lastMessage.messageType == 'image'">
+                        <img onContextMenu="return false;" style="width: 22px;" src="../../../../assets/img/doc-icons/image_icon.png" alt="" loading="lazy">
+                    </span>
 					<span class="message-count" *ngIf="chat.count">{{chat.count}}</span>
 				</div>
 			</div>

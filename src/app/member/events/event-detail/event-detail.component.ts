@@ -36,7 +36,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     approvedParticipants: { email: string, firstname: string, id: number, image: SafeUrl, lastname: string, username: string }[] = [];
     memImg: { email: string, firstname: string, id: number, image: SafeUrl, lastname: string, username: string }[] = [];
     member_id: number;
-    un_id: number;
+    un_id: number; 
     profile_data: ProfileDetails;
     memberStartDateStatus: Date;
     birthdateStatus: boolean;

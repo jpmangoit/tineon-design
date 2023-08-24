@@ -105,8 +105,6 @@ export class OrganizerEventComponent implements OnInit {
             this.authService.memberSendRequest('get', eventUrl, null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-
                         this.authService.setLoader(false);
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
@@ -768,12 +766,10 @@ export class OrganizerEventComponent implements OnInit {
         //     Array.prototype.push.apply(this.eventList, this.courseList);
         // }
         if (this.eventList && this.eventList.length > 0) {
-            console.log(this.eventList);
 
             this.eventList.forEach((keys: any, vals: any) => {
                 let date_from: string = keys.date_from.replace('Z', '');
                 let date_to: string = keys.date_to.replace('Z', '');
-                // console.log(keys);
                 if (keys.isCourse) {
                     // if (keys?.course_image) {
                     //     keys.course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(keys?.course_image.substring(20)));
@@ -799,7 +795,6 @@ export class OrganizerEventComponent implements OnInit {
                 count++;
             });
         }
-        console.log(this.calendarEvents);
 
         // // Define the eventRender function separately
         // function customEventRender(info) {
@@ -856,17 +851,11 @@ export class OrganizerEventComponent implements OnInit {
         ];
 
         const selectedEvent = events[1];   // Assume you're working with the second event (index 1, "Event B")
-
-        // console.log(createElement);
-        console.log(eventInfo.event._def.extendedProps.event_id);
-        console.log(eventInfo);
         // const eventEl = eventInfo.el;  // Get the DOM element representing the event
         const eventEl = eventInfo.event._def.ui.classNames;  // Get the DOM element representing the event
 
-        console.log(eventEl)
         // const eventsInSameDate = eventInfo.event._def.recurringDef?.dates; // Get the array of dates for events on the same date
         const eventsInSameDate = events.filter(event => event.start === selectedEvent.start);
-        console.log(eventsInSameDate);
 
         if (eventsInSameDate?.length > 1) {       // Check if there are multiple events on the same date
             eventEl.classList.add('slidable-event');   // Add a CSS class to the event element

@@ -14,7 +14,7 @@ import { CourseByExternalInstructor, Instructors } from 'src/app/models/instruct
 import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { appSetting } from 'src/app/app-settings';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -40,13 +40,13 @@ export class InstructorComponent implements OnInit, OnDestroy {
     imgErrorMsg: boolean;
     responseMessage: string = '';
     responseMessage1: string = '';
-    searchForm: UntypedFormGroup; 
+    searchForm: UntypedFormGroup;
     searchSubmit: boolean = false;
     responseMessage2: string;
     file: File;
     fileToReturn: File;
     imageName: string;
-    weekdayArray:  { name: any; id: number; }[];
+    weekdayArray: { name: any; id: number; }[];
     selectDay: string[] = [];
     imageChangedEvent: Event = null;
     croppedImage: string = '';
@@ -63,7 +63,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
     coursesTypeDropdownSettings: IDropdownSettings;
     weekdayDropdownSettings: IDropdownSettings;
     currentPageNmuber: number = 1;
+    // itemPerPage: number = 4;
     itemPerPage: number = 8;
+    totalPages: any
     limitPerPage: { value: string }[] = [
         { value: '8' },
         { value: '16' },
@@ -76,19 +78,19 @@ export class InstructorComponent implements OnInit, OnDestroy {
     instructorById: Instructors;
     CourseByExternalInstructorId: CourseByExternalInstructor[] = [];
     searchData: Instructors[];
-    userAccess: UserAccess ;
+    userAccess: UserAccess;
     createAccess: CreateAccess;
-    userRole:string;
-    thumbnail:string;
+    userRole: string;
+    thumbnail: string;
     memberid: any;
     isImage: boolean = false;
     imgHeight: any;
     imgWidth: any;
-    instructorCalendar:any;
+    instructorCalendar: any;
     calendarOptions: CalendarOptions;
     selectLanguage: string;
     minDate: any;
-    allExternlCalndr:any[];
+    allExternlCalndr: any[];
     allWeekDayArray: any[];
     allWeekDayArrayName: any[];
     instruct_img: any;
@@ -103,7 +105,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         private imageCompress: NgxImageCompressService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -120,7 +122,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
 
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -134,7 +136,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
             first_name: ['', [Validators.required]],
             last_name: ['', Validators.required],
             emaill: ['', [Validators.required, Validators.email]],
-            phone_no: [ '',  [  Validators.required,  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),  ], ],
+            phone_no: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),],],
             address: ['', Validators.required],
             courses_type: [''],
             add_img: [''],
@@ -150,8 +152,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
             qualifications: this.formbuilder.array([
                 this.formbuilder.control('', Validators.required),
             ]),
-            active_from :['', Validators.required],
-            active_to :['', Validators.required],
+            active_from: ['', Validators.required],
+            active_to: ['', Validators.required],
         });
 
         this.getInTouchInstructorForm = this.formbuilder.group({
@@ -180,23 +182,23 @@ export class InstructorComponent implements OnInit, OnDestroy {
         ];
 
         this.weekdayArray = [
-            { id: 1, name: this.language.new_create_event.monday},
-            { id: 2, name: this.language.new_create_event.tuesday},
-            { id: 3, name: this.language.new_create_event.wednesday},
-            { id: 4, name: this.language.new_create_event.thrusday},
-            { id: 5, name: this.language.new_create_event.friday},
-            { id: 6, name: this.language.new_create_event.saturday},
-            { id: 0, name: this.language.new_create_event.sunday},
+            { id: 1, name: this.language.new_create_event.monday },
+            { id: 2, name: this.language.new_create_event.tuesday },
+            { id: 3, name: this.language.new_create_event.wednesday },
+            { id: 4, name: this.language.new_create_event.thrusday },
+            { id: 5, name: this.language.new_create_event.friday },
+            { id: 6, name: this.language.new_create_event.saturday },
+            { id: 0, name: this.language.new_create_event.sunday },
         ];
 
         this.allWeekDayArrayName = [
-            { id: 0, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
-            { id: 1, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
-            { id: 2, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
-            { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
-            { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
-            { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}
+            { id: 0, name: ["Sonntag", "Sunday", "dimanche", "domenica", "Воскресенье", "domingo", "Pazar"] },
+            { id: 1, name: ["Montag", "Monday", "lundi", "lunedì", "понедельник", "lunes", "Pazartesi"] },
+            { id: 2, name: ["Dienstag", "Tuesday", "mardi", "martedì", "вторник", "martes", "Salı"] },
+            { id: 3, name: ["Mittwoch", "Wednesday", "mercredi", "mercoledì", "среда", "miércoles", "Çarşamba"] },
+            { id: 4, name: ["Donnerstag", "Thursday", "jeudi", "giovedì", "четверг", "jueves", "Perşembe"] },
+            { id: 5, name: ["Freitag", "Friday", "vendredi", "venerdì", "Пятница", "viernes", "Cuma"] },
+            { id: 6, name: ["Samstag", "Saturday", "samedi", "sabato", "Суббота", "sábado", "Cumartesi"] }
         ]
 
         this.weekdayDropdownSettings = {
@@ -270,7 +272,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.selectDay.push(item.id);
     }
 
-    onWeekdayItemDeSelect(item: string){
+    onWeekdayItemDeSelect(item: string) {
         this.selectDay = [];
     }
 
@@ -317,16 +319,35 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.instructorData = respData['result']['instructor'];
-                    this.instructorData.forEach((element:any) =>{
-                        if(element['instructor_image'][0]?.['instructor_image']){
-                            element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
+                    this.instructorData.forEach((element: any) => {
+                        if (element['instructor_image'][0]?.['instructor_image']) {
+                            element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20))) as string;
                         }
                     })
                     this.totalInstructor = respData['result'].pagination.rowCount;
+                    // this.totalPages = Math.ceil(this.instructorData.length / this.itemPerPage);
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
             });
+    }
+
+    goToPreviousPage() {
+        console.log('xxx');
+
+        this.currentPageNmuber--;
+    }
+
+    goToNextPage() {
+        console.log('yyy');
+
+        this.currentPageNmuber++;
+    }
+
+    getCurrentPageData() {
+        const startIndex = (this.currentPageNmuber - 1) * this.itemPerPage;
+        const endIndex = startIndex + this.itemPerPage;
+        return this.instructorData.slice(startIndex, endIndex);
     }
 
 
@@ -350,9 +371,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         this.totalInstructor = 0;
                         this.searchData = respData['result']['instructor'];
                         this.instructorData = respData['result']['instructor'];
-                        this.instructorData.forEach((element:any) =>{
-                            if(element['instructor_image'][0]?.['instructor_image']){
-                                element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20)))as string;
+                        this.instructorData.forEach((element: any) => {
+                            if (element['instructor_image'][0]?.['instructor_image']) {
+                                element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20))) as string;
                             }
                         })
                         this.totalInstructor = respData['result'].pagination.rowCount;
@@ -384,10 +405,12 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     pageChanged(event: number) {
+        console.log(event);
+
         this.currentPageNmuber = event;
-        if(this.searchData?.length > 0){
+        if (this.searchData?.length > 0) {
             this.onSearch();
-        }else{
+        } else {
             this.getAllInstructor();
         }
     }
@@ -405,9 +428,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
-                if(this.searchData?.length > 0){
+                if (this.searchData?.length > 0) {
                     this.onSearch();
-                }else{
+                } else {
                     this.getAllInstructor();
                 }
             }
@@ -423,9 +446,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
             limit = this.itemPerPage;
         }
         this.itemPerPage = limit;
-        if(this.searchData?.length > 0){
+        if (this.searchData?.length > 0) {
             this.onSearch();
-        }else{
+        } else {
             this.getAllInstructor();
         }
     }
@@ -436,7 +459,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Array Of Object}  Instructor details
     */
-    getInstructorById(id: number, type:any) {
+    getInstructorById(id: number, type: any) {
         this.croppedImage = '';
         this.imageShow = '';
         this.authService.setLoader(true);
@@ -452,15 +475,15 @@ export class InstructorComponent implements OnInit, OnDestroy {
                                 this.authService.setLoader(false);
                                 this.thumbnail = respData;
                             },
-                            (error:any) => {
+                            (error: any) => {
                                 this.thumbnail = null;
                             });
-            
-                    if (this.instructorById.instructor_image.length == 0 || 
+
+                    if (this.instructorById.instructor_image.length == 0 ||
                         (this.instructorById.instructor_image[0]['instructor_image'] == '' || this.instructorById.instructor_image[0]['instructor_image'] == null)) {
                         this.imageShow = '../../assets/img/no_image.png';
                     } else {
-                        if (this.instructorById.instructor_image[0]?.['instructor_image']){
+                        if (this.instructorById.instructor_image[0]?.['instructor_image']) {
                             this.instruct_img = this.instructorById.instructor_image[0]['instructor_image'];
                             this.instructorById.instructor_image[0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.instructorById.instructor_image[0]['instructor_image'].substring(20)));
                             this.imageShow = this.instructorById.instructor_image[0]['instructor_image'];
@@ -473,63 +496,63 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
-                if (type == "edit"){
+                if (type == "edit") {
                     this.setInstructorValue();
                 }
             });
     }
 
-    externalInstructorCalendar(instructorById:any){
-    //    this.instructorCalendar =  this.commonFunctionService.externalInstructorCalendar(instructorById);
+    externalInstructorCalendar(instructorById: any) {
+        //    this.instructorCalendar =  this.commonFunctionService.externalInstructorCalendar(instructorById);
         this.allExternlCalndr = this.commonFunctionService.externalInstructorCalendar(instructorById);
         this.instructorCalendar = this.allExternlCalndr[0].cal;
-       this.calendarOptions = {
-        plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
-        initialView: 'timeGridWeek',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: ''
-        },
-        slotDuration: '00:02:30', // length of time slots
-        allDaySlot: false, // display all-day events in a separate all-day slot
-        slotLabelFormat: {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-        },
-        firstDay:1,
-        weekends: true,
-        editable: false,
-        selectable: false,
-        selectMirror: false,
-        eventClick: this.handleEventClick.bind(this),
-        dateClick: this.handleDateClick.bind(this),
-        events: this.instructorCalendar,
-        locale: this.selectLanguage,
-        eventTextColor: 'black',
-        eventDisplay: 'list-item',
-        expandRows: true,
-        displayEventTime: true,
-        displayEventEnd: true,
-        height: 500,
-        dayMaxEventRows: 2,
-        eventOverlap: true,
-        eventTimeFormat: { // like '14:30:00'
-            hour: '2-digit',
-            minute: '2-digit',
-            meridiem: false,
-            hour12: false
-        }
-      };
-      this.authService.setLoader(false);
+        this.calendarOptions = {
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            slotDuration: '00:02:30', // length of time slots
+            allDaySlot: false, // display all-day events in a separate all-day slot
+            slotLabelFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            firstDay: 1,
+            weekends: true,
+            editable: false,
+            selectable: false,
+            selectMirror: false,
+            eventClick: this.handleEventClick.bind(this),
+            dateClick: this.handleDateClick.bind(this),
+            events: this.instructorCalendar,
+            locale: this.selectLanguage,
+            eventTextColor: 'black',
+            eventDisplay: 'list-item',
+            expandRows: true,
+            displayEventTime: true,
+            displayEventEnd: true,
+            height: 500,
+            dayMaxEventRows: 2,
+            eventOverlap: true,
+            eventTimeFormat: { // like '14:30:00'
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: false,
+                hour12: false
+            }
+        };
+        this.authService.setLoader(false);
 
     }
 
 
     handleEventClick(arg) {
-        if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-            this.viewDetails(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetails(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
         }
     }
 
@@ -537,14 +560,14 @@ export class InstructorComponent implements OnInit, OnDestroy {
         console.log(arg.date);
     }
 
-        /**
+    /**
     * Function to redirect the user with date parameter
     * Date: 14 Mar 2023
     * @author  MangoIt Solutions (R)
     * @param   {id , date}
     * @return  {}
     */
-    viewDetails(id: any, date: any ,type:any) {
+    viewDetails(id: any, date: any, type: any) {
         $('#view-rooms').modal('hide');
         if (type == 'course') {
             const url = '/course-detail/' + id;
@@ -570,13 +593,13 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     setInstructorValue() {
-        this.editInstructorForm.controls['author'].setValue( this.instructorById.author);
-        this.editInstructorForm.controls['approved_status'].setValue( this.instructorById.approved_status);
-        this.editInstructorForm.controls['first_name'].setValue( this.instructorById.first_name);
-        this.editInstructorForm.controls['last_name'].setValue(  this.instructorById.last_name   );
-        this.editInstructorForm.controls['emaill'].setValue(  this.instructorById.emaill );
-        this.editInstructorForm.controls['phone_no'].setValue( this.instructorById.phone_no  );
-        this.editInstructorForm.controls['address'].setValue( this.instructorById.address   );
+        this.editInstructorForm.controls['author'].setValue(this.instructorById.author);
+        this.editInstructorForm.controls['approved_status'].setValue(this.instructorById.approved_status);
+        this.editInstructorForm.controls['first_name'].setValue(this.instructorById.first_name);
+        this.editInstructorForm.controls['last_name'].setValue(this.instructorById.last_name);
+        this.editInstructorForm.controls['emaill'].setValue(this.instructorById.emaill);
+        this.editInstructorForm.controls['phone_no'].setValue(this.instructorById.phone_no);
+        this.editInstructorForm.controls['address'].setValue(this.instructorById.address);
 
         this.editInstructorForm.controls['add_img'].setValue(this.instruct_img);
 
@@ -589,7 +612,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.getInTouchInstructorForm.controls['first_name'].setValue(this.instructorById.first_name);
         this.getInTouchInstructorForm.controls['last_name'].setValue(this.instructorById.last_name);
 
-        if(this.instructorById?.course_external_instructor.length > 0){
+        if (this.instructorById?.course_external_instructor.length > 0) {
             this.getCourseDetails(this.instructorById.course_external_instructor);
         }
 
@@ -603,7 +626,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
             }
         }
         this.qualifications.removeAt(0);
-        if(this.instructorById && this.instructorById.qualification.length > 0){
+        if (this.instructorById && this.instructorById.qualification.length > 0) {
             this.instructorById.qualification.forEach((element) => {
                 this.qualifications.push(
                     this.formbuilder.control(element.qualification)
@@ -616,21 +639,21 @@ export class InstructorComponent implements OnInit, OnDestroy {
             this.weekdays.removeAt(i);
             if (
                 this.weekdays.value[i] && this.weekdays.value[i].day == null &&
-                this.weekdays.value[i].time_from == null &&this.weekdays.value[i].time_to == null
+                this.weekdays.value[i].time_from == null && this.weekdays.value[i].time_to == null
             ) {
                 this.weekdays.removeAt(i);
             }
         }
         this.weekdays.removeAt(0);
 
-        if(this.instructorById && this.instructorById.availablity.length > 0){
+        if (this.instructorById && this.instructorById.availablity.length > 0) {
             this.instructorById.availablity.forEach((key, value) => {
-                if( key.time_from.includes(':00') && key.time_to.includes(':00')){
+                if (key.time_from.includes(':00') && key.time_to.includes(':00')) {
                     key.time_from = key.time_from.slice(0, 5)
                     key.time_to = key.time_to.slice(0, 5)
                 }
                 let instructor_info = [];
-                instructor_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)]});
+                instructor_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)] });
                 const newAvailableTimes: UntypedFormGroup = this.formbuilder.group({
                     day: [instructor_info, Validators.required],
                     time_from: [key.time_from, Validators.required],
@@ -706,18 +729,18 @@ export class InstructorComponent implements OnInit, OnDestroy {
         if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateInstructor/' + this.editId, formData)
-            .subscribe((respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.notificationService.showSuccess(respData['result']['message'], null);
-                    setTimeout(function () {
-                        $('#edit_instructor').modal('hide');
-                        self.router.navigate(['/instructor-detail/' + self.editId]);
-                    }, 2000);
-                } else if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
-                }
-            });
+                .subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.notificationService.showSuccess(respData['result']['message'], null);
+                        setTimeout(function () {
+                            $('#edit_instructor').modal('hide');
+                            self.router.navigate(['/instructor-detail/' + self.editId]);
+                        }, 2000);
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
+                });
         }
     }
 
@@ -734,10 +757,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.editInstructorForm.get('active_from').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else{
-            return this. getToday()
+        } else {
+            return this.getToday()
         }
     }
 
@@ -834,7 +857,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {string} success message
     */
-    errorTime: { isError: boolean; errorMessage: string } = { isError: false, errorMessage: ''  };
+    errorTime: { isError: boolean; errorMessage: string } = { isError: false, errorMessage: '' };
     compareTwoTimes(item: number) {
         this.indax = item;
         this.errorTime = { isError: false, errorMessage: '' };
@@ -858,30 +881,30 @@ export class InstructorComponent implements OnInit, OnDestroy {
     }
 
 
-     /**
+    /**
     * Function is used to get Course details
     * @author  MangoIt Solutions
     * @param   {Course object}
     * @return  {array of object} return course object
     */
 
-    getCourseDetails(courseDetails: any){
+    getCourseDetails(courseDetails: any) {
         this.CourseByExternalInstructorId = [];
-        courseDetails && courseDetails.forEach((element,key) => {
+        courseDetails && courseDetails.forEach((element, key) => {
             var url: string[] = [];
             if (element.coursesExIns.picture_video) {
-                url = element.coursesExIns.picture_video.split( '"'  );
+                url = element.coursesExIns.picture_video.split('"');
                 if (url && url.length > 0) {
                     url.forEach((el) => {
-                        if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                            element.coursesExIns.picture_video =  el;
+                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                            element.coursesExIns.picture_video = el;
                         }
                     });
                 } else {
                     element.coursesExIns['picture_video'] = '';
                 }
             }
-            this.CourseByExternalInstructorId[key] =  element.coursesExIns;
+            this.CourseByExternalInstructorId[key] = element.coursesExIns;
         });
     }
 
@@ -933,40 +956,40 @@ export class InstructorComponent implements OnInit, OnDestroy {
             };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
-     /**
+    /**
     * Function is used to cropped and compress the uploaded image
     * @author  MangoIt Solutions
     * @param   {}
     * @return  {object} file object
     */
 
-	imageCropped(event: ImageCroppedEvent) {
+    imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
-            (compressedImage) => {
-                this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
-                this.editInstructorForm.patchValue({ add_img: this.fileToReturn });
-                this.editInstructorForm.get('add_img').updateValueAndValidity();
-                $('.preview_txt').show(this.fileToReturn.name);
-                $('.preview_txt').text(this.fileToReturn.name);
-            }
-        );
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
+                (compressedImage) => {
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.editInstructorForm.patchValue({ add_img: this.fileToReturn });
+                    this.editInstructorForm.get('add_img').updateValueAndValidity();
+                    $('.preview_txt').show(this.fileToReturn.name);
+                    $('.preview_txt').text(this.fileToReturn.name);
+                }
+            );
     }
 
-    imageLoaded() {}
+    imageLoaded() { }
 
     cropperReady() {
         /* cropper ready */
@@ -977,27 +1000,27 @@ export class InstructorComponent implements OnInit, OnDestroy {
         /* show message */
     }
 
-    getDayName(id:any){
+    getDayName(id: any) {
         if (!isNaN(id)) {
             return this.allWeekDayArray[id];
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return this.allWeekDayArray[obj.id];
-            }else{
+            } else {
                 return id;
             }
         }
     }
 
-    getDayId(id:any){
+    getDayId(id: any) {
         if (!isNaN(id)) {
             return id;
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return obj.id;
-            }else{
+            } else {
                 return id;
             }
         }
