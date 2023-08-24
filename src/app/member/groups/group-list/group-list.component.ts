@@ -39,7 +39,7 @@ export class GroupListComponent implements OnInit {
   constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
     private sanitizer: DomSanitizer) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.language = this.lang.getLanguaageFile();
     this.userData = JSON.parse(localStorage.getItem('user-data'));
     this.getUserAllGroup("");
