@@ -2,6 +2,7 @@
     position: absolute;
     width: 100%;
     top: 0px;
+    left: 0px;
     z-index: 777;
 }
 
@@ -69,6 +70,12 @@ span.user-status-badge {
 .chat-back {
     margin-right: 10px;
 }
+.chat-back button svg path {
+    fill: #E93608;
+}
+::ng-deep body.mobile-green .chat-back button svg path{
+    fill: #20AE80 !important;
+}
 
 .chat-back button {
     padding: 0;
@@ -99,19 +106,23 @@ span.user-status-badge {
 .chat-bubble.chat-white {
     background: #fff;
     border-radius: 20px 20px 20px 1px;
-    color: #9baccd;
+    color: #989EB2;
     text-align: left;
     font-family: "Gellix", sans-serif;
     padding: 15px;
 }
 .chat-bubble.chat-blue {
-    background: #6e63ee;
+    background: #E93608;
     border-radius: 20px 20px 1px 20px;
     color: #ffffff;
     text-align: left;
     font-family: "Gellix", sans-serif;
     padding: 15px;
 }
+::ng-deep body.mobile-green .chat-bubble.chat-blue{
+    background: #20AE80 !important;
+}
+
 .chat-conversation-bubble {
     width: 75%;
     margin-top: 15px;
@@ -127,6 +138,7 @@ span.user-status-badge {
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
+    /* color: #989EB2; */
 }
 
 .chat-bubble-info span {
@@ -147,14 +159,13 @@ span.user-status-badge {
     padding: 0 10px;
 }
 .chat-time-bubble span {
-    width: 80px;
-    background: #e2e7fc;
+    background: #989EB2;
     border-radius: 25px;
     font-weight: 600;
     font-family: "Gellix", sans-serif;
-    color: #b6c4f0;
+    color: #fff;
     font-size: 13px;
-    height: 24px;
+    padding: 2px 16px;
     display: flex;
     justify-content: center;
 }
@@ -434,4 +445,10 @@ span.c-group-name {
     right: 15px;
     position: absolute;
     top: 15px;
+}
+.chat-reciever .chat-bubble.chat-blue img {
+    border-radius: 20px 20px 1px 20px;
+}
+.chat-sendar .chat-bubble.chat-blue img {
+    border-radius: 20px 20px 20px 1px;
 }

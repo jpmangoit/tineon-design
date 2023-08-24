@@ -174,7 +174,7 @@ button.mat-menu-item {
 font-size: 10px;
 width: auto;
 text-transform: none;
-font-weight: 600;
+font-weight: 700;
 border-radius: 8px;
 width: 100%;
 white-space: nowrap;
@@ -203,6 +203,67 @@ overflow: hidden;
     font-size: 8px;
     font-weight: 700;
 }
+
+::ng-deep .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
+ margin-top: 35px;
+width: calc(100% - 30px);
+left: 15px !important;
+transform: translateX(0px) translateY(-0px) !important;
+   
+}
+
+::ng-deep .mat-select-value-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #999;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+::ng-deep .mat-option-text {
+  font-size: 14px !important;
+  font-weight: 700;
+  color: #999;
+}
+
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple)::after {
+  content: "";
+  background: url(../../../../../assets/img/right-icon.svg) no-repeat 0 0;
+  width: 19px;
+  height: 13px;
+  display: inline-block;
+}
+
+::ng-deep .mobile-green .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple)::after {
+  content: "";
+  background: url(../../../../../assets/img/right-icon-green.svg) no-repeat 0 0;
+  width: 19px;
+  height: 13px;
+  display: inline-block;
+}
+
+::ng-deep .mat-option {
+    padding: 0 20px 0 34px !important;
+}
+
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  background: #EAF0F6;
+}
+
+::ng-deep body .mat-form-field-infix {
+   padding: 0 20px 0 35px !important;
+}
+
+::ng-deep  .mat-select-panel {
+  min-width: 100% !important;
+  border-radius: 0 !important;
+}
+
+ ::ng-deep body .mat-form-field-appearance-fill .mat-form-field-label {
+      top: 31px !important;
+      left: 13px !important;
+    }
 @media (min-width:600px) and (max-width:767px){
     .community-group-column {
         max-width: 33.3%;
@@ -293,7 +354,7 @@ button.del-group {
 
 /* ad css start */
 .application-ad {
-    position: fixed;
+    /* position: fixed; */
     z-index: 1;
     bottom: 88px;
     background: #3A9CF5;
