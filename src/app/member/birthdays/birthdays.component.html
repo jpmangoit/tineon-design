@@ -2,6 +2,15 @@
     <div class="card-header ">
         <h5 class="card-title">{{language.club.anniversaries_birthday}}</h5>
     </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>{{language.courses.filter}}</mat-label>
+            <mat-select matNativeControl>
+                <!-- <mat-option  value="1" >{{language.club_document.asending}}</mat-option>
+                <mat-option  value="2" >{{language.club_document.descending}}</mat-option> -->
+            </mat-select>
+        </mat-form-field>
+    </div>
     <div class="card-body ">
         <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
             <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.club.no_anniversaries_birthday}}" loading="lazy"><br> -->
@@ -10,51 +19,67 @@
         <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
                 <div class="app-left-content">
-                    <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
-                            alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy"></div>
+                    <!-- <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
+                            alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy">
+                    </div> -->
+                    <div class="user-img" *ngIf="data.imagePro == null || data.imagePro == ''">
+                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                            style="width: 100px;" alt="" loading="lazy">
+                    </div>
+                    <div class="user-img" *ngIf="data.imagePro != null"><img onContextMenu="return false;"
+                            [src]="data.imagePro" style="width: 100px;" alt="" loading="lazy">
+                    </div>
                     <div class="user-content">
                         <span class="birthday-badge">{{language.club.birthday}}</span>
                         <Span class="user-name">{{data.firstname}} {{data.lastname}}</Span>
-                        <span class="user-status">
-                            <img src="assets/img/birth_ic.svg" onContextMenu="return false;"
-                                loading="lazy">&nbsp;{{data.bd_notification | date:'d MMMM, y'}}</span>
-                       
+                        <span class="user-status" *ngIf="ageDiff">
+                            <!-- <img src="assets/img/birth_ic.svg" onContextMenu="return false;" loading="lazy"> &nbsp; -->
+                            {{data.bd_notification | date: 'dd.MM.yy'}} | {{data.age}} {{language.club.years}}
+                        </span>
+
                     </div>
                     <div>
-                        <a>{{language.dashboard.congratulate}}<span><img
-                            onContextMenu="return false;"
-                            src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
-                            alt="" loading="lazy"></span></a>
+                        <a>{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                                    src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
+                                    loading="lazy"></span></a>
                     </div>
                 </div>
-                <div class="app-right-content" *ngIf="ageDiff">
+                <!-- <div class="app-right-content" *ngIf="ageDiff">
                     <span class="user-age">{{data.age}} {{language.club.years_old}}</span>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="widget-appointment widget" *ngFor='let data of jubileesData'>
-            <div class="widget-app-content">
+            <div class="widget-app-content"> 
                 <div class="app-left-content">
-                    <div class="user-img">
+                    <!-- <div class="user-img">
                         <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
                             alt="{{data?.user?.firstname}} {{data?.user?.lastname}}" loading="lazy">
+                    </div> -->
+                    <div class="user-img" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
+                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                            style="width: 100px;" alt="" loading="lazy">
+                    </div>
+                    <div class="user-img" *ngIf="data?.user?.imagePro != null"><img onContextMenu="return false;"
+                            [src]="data?.user?.imagePro" style="width: 100px;" alt="" loading="lazy">
                     </div>
                     <div class="user-content">
                         <span class="jubilee-badge">{{language.club.anniversary}}</span>
                         <Span class="user-name">{{data.user.firstname}} {{data.user.lastname}}</Span>
-                        <span class="user-status"><i class="nc-icon nc-air-baloon"></i>&nbsp;{{data.user.created_at |
-                            date: 'd. MMMM y'}}</span>
+                        <span class="user-status">
+                            <!-- <i class="nc-icon nc-air-baloon"></i>&nbsp; -->
+                            {{data.user.created_at |date: 'dd.MM.yy'}} | {{data.vjet}} {{language.club.years_in_club}}
+                        </span>
                     </div>
                     <div>
-                        <a>{{language.dashboard.congratualte}}<span><img
-                            onContextMenu="return false;"
-                            src="../../../../assets/img/new-design/dashboard/read-more-ic.svg"
-                            alt="" loading="lazy"></span></a>
+                        <a>{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                                    src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
+                                    loading="lazy"></span></a>
                     </div>
                 </div>
-                <div class="app-right-content">
+                <!-- <div class="app-right-content">
                     <span class="user-age">{{data.vjet}} {{language.club.years_old}}</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
