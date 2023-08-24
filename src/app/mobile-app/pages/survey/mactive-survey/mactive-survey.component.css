@@ -4,8 +4,9 @@
 .survey-items {
     padding: 20px;
     background: #fff;
-    border-radius: 20px;
+    border-radius: 15px;
     margin-bottom: 15px;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 .survey-dates {
     display: flex;
@@ -18,7 +19,7 @@ span.survey-dates-inner {
     font-weight: 600;
     font-size: 14px;
     line-height: 17px;
-    color: #647895;
+    color: #999999;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -53,7 +54,7 @@ span.survey-author-img {
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
-    color: #9eacc1;
+    color: #BDBDBD;
 }
 .timeline-label span:first-child {
     font-family: 'Gellix', sans-serif;
@@ -61,7 +62,7 @@ span.survey-author-img {
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
-    color: #98a5c6;
+    color: #BDBDBD;
     text-transform: uppercase;
 }
 .timeline-label span:last-child {
@@ -71,7 +72,7 @@ span.survey-author-img {
     font-size: 13px;
     line-height: 16px;
     text-align: right;
-    color: #647895;
+    color: #999999;
 }
 .timeline-label {
     margin-bottom: 10px;
@@ -94,7 +95,7 @@ button.mat-menu-item {
     background-color: #e8e5ff;
 }
 ::ng-deep .mat-progress-bar-fill::after {
-    background-color: #6e63ee;
+    background-color: #FBC52D !important;
 }
 @media only screen and (max-width: 576px) {
     .searchRefine {
