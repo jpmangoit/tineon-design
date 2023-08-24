@@ -116,6 +116,14 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
                         $('#push-notification').modal({ backdrop: 'static', });
                         $('#push-notification').modal('show');
                         this.newsData = respData.result.news;
+                        this.newsData.forEach((element:any) => {
+                            if ( element?.picture ) {
+                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.picture.substring(20)));
+                            }
+                            if ( element?.image) {
+                                element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.image.substring(20)));
+                            }
+                        })
                         var status = '0';
                         localStorage.setItem('loginStatus', status);
                     }, 600);

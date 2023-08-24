@@ -335,6 +335,9 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         const file: File = event.target['files'][0];
         const mimeType: string = file.type;
         this.imageSrc = file;
+        console.log(this.imageSrc);
+        $('.preview_txt').show();
+        $('.preview_txt').text('');
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
         var url: any;
@@ -346,6 +349,9 @@ export class CreateChatComponent implements OnInit, OnDestroy {
             imagee.onload = (e: any) => {
             }
         }
+        $('.message-upload-list').show();
+        $('.preview_txt1').show();
+        $('.preview_txt1').text(file.name);
     }
 
     /**
@@ -357,6 +363,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         if ((sessionStorage.getItem('token')) && (this.chatForm.valid)) {
 
             let reqData: object;
+            console.log(this.imageSrc);
+
             if (this.chatForm.controls['message'].value == '' || this.chatForm.controls['message'].value == null) {
                 reqData = {
                     file: this.imageSrc,
@@ -367,6 +375,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
             } else {
                 reqData = {
                     message: { 'message': this.chatForm.controls['message'].value },
+                    file: this.imageSrc,
                     friendUid: this.frndId,
                     currentUid: this.userDetails.userId,
                     roomId: this.roomId
@@ -377,6 +386,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
             for (const key in reqData) {
                 if (Object.prototype.hasOwnProperty.call(reqData, key)) {
                     const element: string = reqData[key];
+                    console.log(key);
+
                     if (key == 'file') {
                         formData.append('file', this.imageSrc);
                     } else if (key == 'message') {
@@ -389,6 +400,10 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     }
                 }
             }
+            formData.forEach((value:any,key:any) =>{
+                console.log(key,'----------',value);
+
+            })
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'store-messages-mysql', formData)
                 .subscribe(

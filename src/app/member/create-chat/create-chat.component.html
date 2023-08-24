@@ -121,7 +121,12 @@
                                             </div>
                                         </div>
                                         <div class="message_upload create_upload_event">
-                                            <input type="file" (change)="uploadFile($event)" id="add_image">
+                                            <div class="upload_picture">
+                                                <!-- <div class="message-upload-list" style="display: none;"> -->
+                                                    <!-- </div> -->
+                                                    <input type="file" (change)="uploadFile($event)" id="add_image">
+                                                    <label class="preview_txt1" style="display: none;"></label>
+                                            </div>
                                             <span class="message_upload_overlay">
                                                 <div class="upload_label">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
