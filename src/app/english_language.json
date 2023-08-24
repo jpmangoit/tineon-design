@@ -74,7 +74,6 @@
         "denyReason": "Deny reason",
         "dashboardNewsTitle": "Current Club-News",
 
-
         "dashboardNewsTitle_stand": "Current Club-News",
         "dashboardNewsTitle_untern": "Company news",
         "dashboardNewsContent_new": "Read More",
@@ -111,7 +110,9 @@
         "community_subtext_chat_mob": "Chats",
 
         "organizer_subtext_new_mob": "Aufgaben",
-        "organizer_subtext_tasks_mob": "Events"
+        "organizer_subtext_tasks_mob": "Events",
+
+        "congratulate": "Congratulate"
     },
     "club_wall": {
         "title": "Club-Wall",
@@ -657,7 +658,10 @@
         "ticket": "TICKET",
 
         "club_Appointments_stand": "Club Appointments",
-        "club_Appointments_untern": "Company appointments"
+        "club_Appointments_untern": "Company appointments",
+
+        "birthday": "Birthday",
+        "anniversary": "Anniversary"
     },
     "confirmation_message": {
         "accept_group": "Are you sure you want to accept this group?",

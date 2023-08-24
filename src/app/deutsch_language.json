@@ -106,7 +106,9 @@
         "community_subtext_chat_desk": "Chats",
 
         "organizer_subtext_new_desk": "Aufgaben",
-        "organizer_subtext_tasks_desk": "Events"
+        "organizer_subtext_tasks_desk": "Events",
+        "congratulate": "Congratulate"
+
     },
     "club_wall": {
         "title": "News",
@@ -648,7 +650,9 @@
         "club_Appointments": "Vereins Termine",
         "ticket": "TICKET",
         "club_Appointments_stand": "Vereins Termine",
-        "club_Appointments_untern": "Unternehmens Termine"
+        "club_Appointments_untern": "Unternehmens Termine",
+        "birthday": "Geburtstag",
+        "anniversary": "Jubiläum"
     },
     "confirmation_message": {
         "accept_group": "Möchten Sie diese Gruppe akzeptieren?",

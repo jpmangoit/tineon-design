@@ -81,10 +81,10 @@
                                                             <p [innerHTML]="(news.content.length > 0 )? (news.content| slice:0:50)+'...':(news.content)"> </p>
                                                         </div>
                                                         <div class="author-info">
-                                                            <!-- <div class="author-img">
+                                                            <!-- <div class="parti_name" *ngIf="news?.picture == null || news?.picture == ''">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div> -->
-                                                            <div class="parti_name" *ngIf="news?.picture == null || news?.picture == ''">
+                                                            <div class="author-img">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img" *ngIf="news?.picture != ''">
@@ -139,7 +139,10 @@
                                                     </div>
                                                     <p [innerHTML]="(item.description.length > 0 )? (item.description| slice:0:100)+'...':(item.description)"> </p>
                                                     <div class="author-info">
-                                                        <div class="parti_name" *ngIf="item?.picture == null || item?.picture == ''">
+                                                        <!-- <div class="parti_name" *ngIf="item?.picture == null || item?.picture == ''">
+                                                            <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
+                                                        </div> -->
+                                                        <div class="author-img" *ngIf="item?.picture == null || item?.picture == ''">
                                                             <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                         </div>
                                                         <div class="author-img" *ngIf="item?.picture != ''">

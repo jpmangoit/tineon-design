@@ -59,6 +59,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     }
     userDetails: LoginDetails;
     allowAdvertisment: any;
+
     currentPageNmuber: number = 1;
     itemPerPage: number = 8;
     totalgroupData: number = 0;
@@ -116,7 +117,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.user_Id = localStorage.getItem('user-id');
 
         this.language = this.lang.getLanguaageFile();
-        this.teamAllGroups();
+        // this.teamAllGroups();
         this.allGroups();
         this.joinAllGroups();
         this.groupsYouManage();
@@ -202,16 +203,15 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         // this.groupData = [];
         this.authService.memberSendRequest('get', 'getGroupsNotParticipantPagination/user/' + this.user_Id + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
-                // console.log( respData['result']['group'] );
-                // this.groupData = respData['result']['group'];
-
-                // this.groupData.forEach((element: any) => {
-                //     if (element.group_images[0]?.['group_image']) {
-                //         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
-                //     }
-                // })
-                // this.totalgroupData = respData['result']['pagination']['rowCount'];
-                // this.authService.setLoader(false);
+                console.log( respData['result']['group'] );
+                this.groupData = respData['result']['group'];
+                this.groupData.forEach((element: any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
+                this.totalgroupData = respData['result']['pagination']['rowCount'];
+                this.authService.setLoader(false);
             });
     }
 
@@ -219,41 +219,50 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupData = [];
         this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
-            // console.log(respData);
             this.groupData = respData['groups'];
+            console.log(respData);
+
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
-                element.participants.forEach((element:any) => {
-                        if(element.user_Id  == parseInt(this.user_Id)){
-                            if(!(element.created_by == parseInt(this.user_Id))){
-                                if(element.approved_status == 0){
-                                    //join button
-                                }else if(element.approved_status == 1){
-                                    //Leave button
+                element.displayJoinButton = true;
+                element.displayLeaveButton = false;
+                element.displayWaitApprovalButton = false;
+                    element.participants.forEach((elem:any) => {
+                        if(elem.user_id  == parseInt(this.user_Id)){
+                             if(!(element.created_by == parseInt(this.user_Id)) && !this.userDetails.isAdmin){
+                                if(elem.approved_status == 0){
+                                    element.displayJoinButton = true;
+                                    element.displayLeaveButton = false;
+                                    element.displayWaitApprovalButton = false;
+                                }else if(elem.approved_status == 1){
+                                    element.displayLeaveButton = true;
+                                    element.displayJoinButton = false;
+                                    element.displayWaitApprovalButton = false;
+                                }else if(elem.approved_status == 2){
+                                    element.displayLeaveButton = false;
+                                    element.displayJoinButton = false;
+                                    element.displayWaitApprovalButton = true;
+                                }
+                            }else if(this.userDetails.isAdmin){
+                                if(elem.approved_status == 0){
+                                    element.displayJoinButton = true;
+                                    element.displayLeaveButton = false;
+                                    element.displayWaitApprovalButton = false;
+                                }else if(elem.approved_status == 1){
+                                    element.displayLeaveButton = true;
+                                    element.displayJoinButton = false;
+                                    element.displayWaitApprovalButton = false;
                                 }
                             }
-                        }else{
-                            // Join button
+                        }else if(element.created_by == parseInt(this.user_Id)){
+                            element.displayJoinButton = false;
+                            element.displayLeaveButton = false;
+                            element.displayWaitApprovalButton = false;
                         }
-
-                });
-
-                // Condition for displaying the button
-                // const user_id = localStorage.getItem('user-id');
-                // const participant = element.participants.find((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 0 && !parseInt(user_id));
-                // element.displayJoinButton = !!participant;
-                // element.displayLeaveButton = !participant;
-               // Check the conditions for displaying the buttons
-                // const user_id = localStorage.getItem('user-id');
-                // const created_by_id = element.created_by;
-                // const isParticipant = element.participants.some((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 0);
-                // const isCreator = parseInt(user_id) === created_by_id;
-                // element.displayJoinButton = !!isParticipant ;
-                // element.displayLeaveButton = isParticipant && !isCreator && element.participants.some((p: any) => p.user_id === parseInt(user_id) && p.approved_status === 1);
+                    });
             })
-
             this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         })
@@ -269,17 +278,17 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     joinAllGroups() {
         this.authService.setLoader(true);
         this.groupJoinData = [];
-        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
             .subscribe((respData: any) => {
+                console.log(respData);
                 this.groupJoinData = respData['groups'].reverse();
-                // console.log(this.groupJoinData);
 
                 this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
                 })
-                // this.totalJoinedGroupData = this.groupJoinData.length;
+                this.totalJoinedGroupData = respData['pagination']['rowCount'];
                 this.authService.setLoader(false);
             });
     }
@@ -453,6 +462,45 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.allGroups();
 
     }
+
+    /**
+    * Function is used to change the page of pagination
+    * @author  MangoIt Solutions(M)
+    */
+        pageChangedOne(event: number) {
+            this.currentPageNmuberOne = event;
+            this.joinAllGroups();
+        }
+
+    /**
+    * Function is used to go to the page of pagination
+    * @author  MangoIt Solutions(M)
+    */
+        goToPgOne(eve: number) {
+            if (isNaN(eve)) {
+                eve = this.currentPageNmuberOne;
+            } else {
+                if (eve > Math.round(this.totalJoinedGroupData / this.itemPerPageOne)) {
+                    this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
+                } else {
+                    this.currentPageNmuberOne = eve;
+                    this.joinAllGroups();
+                }
+            }
+        }
+
+    /**
+    * Function is used to set the page of pagination
+    * @author  MangoIt Solutions(M)
+    */
+        setItemPerPageOne(limit: number) {
+            if (isNaN(limit)) {
+                limit = this.itemPerPageOne;
+            }
+            this.itemPerPageOne = limit;
+            this.joinAllGroups();
+        }
+
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();

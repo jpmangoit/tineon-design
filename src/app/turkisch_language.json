@@ -106,7 +106,9 @@
         "community_subtext_chat_desk": "Chats",
 
         "organizer_subtext_new_desk": "Aufgaben",
-        "organizer_subtext_tasks_desk": "Events"
+        "organizer_subtext_tasks_desk": "Events",
+        "congratulate": "Congratulate"
+
     },
     "club_wall": {
         "title": "Duvar Birliği",
@@ -643,7 +645,9 @@
         "club_Appointments": "Kulüp Randevuları",
         "ticket": "BİLET",
         "club_Appointments_stand":"kulüp randevuları",
-        "club_Appointments_untern":"şirket randevuları"
+        "club_Appointments_untern":"şirket randevuları",
+        "birthday": "Birthday",
+        "anniversary": "Anniversary"
     },
     "confirmation_message": {
         "accept_group": "Bu grubu kabul etmek istediğinizden emin misiniz?",

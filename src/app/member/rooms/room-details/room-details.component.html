@@ -75,8 +75,7 @@
                                                     <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}}
                                                         {{roomDetails.user.firstname}}
                                                         {{roomDetails.user.lastname}}</span>
-                                                    <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM
-                                                        y'}}</span><br />
+                                                    <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM y'}}</span><br />
                                                 </div>
                                             </div>
                                         </div>
@@ -224,10 +223,15 @@
                                                 </div>
                                             </div><br>
                                             <div class="author-info">
-                                                <div class="parti_name"
+                                                <!-- <div class="parti_name"
                                                     *ngIf="updateRoomData?.user?.imagePro == null || updateRoomData?.user?.imagePro == ''">
                                                     {{updateRoomData?.user?.firstname.charAt(0)}}{{updateRoomData?.user?.lastname.charAt(0)}}
+                                                </div> -->
+                                                <div class="author-img"
+                                                    *ngIf="updateRoomData?.user?.imagePro == null || updateRoomData?.user?.imagePro == ''">
+                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                 </div>
+
                                                 <div class="author-img" *ngIf="updateRoomData?.user?.imagePro != null">
                                                     <img onContextMenu="return false;"
                                                         [src]="updateRoomData?.user?.imagePro" style="width: 100px;"
@@ -239,8 +243,7 @@
                                                     <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}}
                                                         {{roomDetails.user.firstname}}
                                                         {{roomDetails.user.lastname}}</span>
-                                                    <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM
-                                                        y'}}</span><br />
+                                                    <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
                                                         *ngIf="roomDetails.update_approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                                     <span class="author-status"
@@ -421,7 +424,8 @@
                                             (click)="getMemId(roomDetails.author)">
                                             <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}}
                                                 {{roomDetails.user.firstname}} {{roomDetails.user.lastname}}</span>
-                                            <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM y'}}</span><br />
+                                            <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM
+                                                y'}}</span><br />
                                             <span class="author-status"
                                                 *ngIf="roomDetails.approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
                                             <span class="author-status"

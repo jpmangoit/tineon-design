@@ -7744,3 +7744,25 @@ span.user-status img {
         padding: 0;
     }
 }
+
+.birthday-badge {
+    font-size: 9px;
+    font-weight: 700;
+    background: #FFBE00;
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 25px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.jubilee-badge {
+    font-size: 9px;
+    font-weight: 600;
+    background: #E93606;
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 25px;
+    color: #fff;
+    text-transform: uppercase;
+}

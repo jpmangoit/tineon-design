@@ -130,9 +130,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         let eventUrl: string;
         if (userRole == 'guest') {
+            // eventUrl = 'openevents/';
             eventUrl = 'openevents/';
         } else {
-            eventUrl = 'approvedEvents/user/' + userId;
+            // eventUrl = 'approvedEvents/user/' + userId;
+            eventUrl = 'approvedClubEvents/user/' + userId;
         }
         this.authService.memberSendRequest('get', eventUrl, null)
             .subscribe(
@@ -145,17 +147,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
                     });
                 }
             );
-        this.authService.memberSendRequest('post', 'allCourses', null)
-            .subscribe(
-                (respData: any) => {
-                    this.courseData = respData['result'];
-                    this.courseData.forEach((element: any) => {
-                        if (element?.course_image[0]?.course_image) {
-                            element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
-                        }
-                    });
-                }
-            );
+        // this.authService.memberSendRequest('post', 'allCourses', null)
+        //     .subscribe(
+        //         (respData: any) => {
+        //             this.courseData = respData['result'];
+        //             this.courseData.forEach((element: any) => {
+        //                 if (element?.course_image[0]?.course_image) {
+        //                     element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
+        //                 }
+        //             });
+        //         }
+        //     );
         this.getUserImage();
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
@@ -235,8 +237,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('post', 'refresh-token', data)
             .subscribe(
                 (respData: any) => {
-                    console.log(respData);
-
                     if (respData['isError'] == false) {
                         sessionStorage.setItem('token', respData['result']['access_token']);
                         localStorage.setItem('token', respData['result']['access_token']);

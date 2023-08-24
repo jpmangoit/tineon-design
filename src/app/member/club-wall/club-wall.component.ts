@@ -20,11 +20,11 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     language: any; 
     userDetails: LoginDetails;
     userAccess: UserAccess;
-    createAccess: CreateAccess;
+    createAccess: CreateAccess; 
     participateAccess: ParticipateAccess;
     displayNews: boolean = false;
     displayDates: boolean = false;
-    displayEvents: boolean = false;
+    displayEvents: boolean = false; 
     setTheme: ThemeType;
     private activatedSub: Subscription;
     userRole: string;

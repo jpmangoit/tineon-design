@@ -12,6 +12,8 @@ import { CrmSurvey } from 'src/app/models/crm-survey.model';
 import { CrmNews } from 'src/app/models/crm-news.model';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 
 declare let $: any;
 @Component({
@@ -37,7 +39,9 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         private router: Router,
         private themes: ThemeService,
         private lang: LanguageService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
     ) {}
 
     ngOnInit(): void {
@@ -136,6 +140,11 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
                             $('#push-notification').modal({backdrop: 'static',});
                             $('#push-notification').modal('show');
                             this.surveyData = respData.result.survey;
+                            this.surveyData.forEach((element:any) =>{
+                                if ( element?.picture) {
+                                    element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.picture.substring(20)));
+                                }
+                            })
                             var status = '0';
                             localStorage.setItem('loginStatus', status);
                         }, 600);

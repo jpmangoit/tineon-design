@@ -75,8 +75,11 @@
                                                                     <img onContextMenu="return false;" alt="" loading="lazy"
                                                                         [src]=" chat.image ?  chat.image : '../../../assets/img/no_image.png'">
                                                                 </div>
-                                                                <div class="parti_name" *ngIf="chat.image == null || chat.image == ''">
+                                                                <!-- <div class="parti_name" *ngIf="chat.image == null || chat.image == ''">
                                                                     {{chat?.name.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img" *ngIf="chat.image == null || chat.image == ''">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                                 <div class="chat-user-list-content">
                                                                     <div class="chat-user-name">
@@ -122,9 +125,12 @@
                                                                         [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/no_image.png'">
                                                                 </div>
                                                                 <div class="chat-window-header">
-                                                                    <div class="parti_name"
+                                                                    <!-- <div class="parti_name"
                                                                         *ngIf="selectedChat.image == null || selectedChat.image == ''">
                                                                         {{selectedChat?.name.charAt(0)}}
+                                                                    </div> -->
+                                                                    <div class="author-img"  *ngIf="selectedChat.image == null || selectedChat.image == ''">
+                                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
                                                                     <div class="chat-user-name header-text" *ngIf="selectedChat && selectedChat.type == 'group'">
                                                                         <span *ngIf="selectedChat">{{selectedChat.name}}</span><br/>
@@ -222,8 +228,11 @@
                                                                     <img onContextMenu="return false;" alt="" loading="lazy"
                                                                         [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'">
                                                                 </div>
-                                                                <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
+                                                                <!-- <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
                                                                     {{userDetails?.firstName.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img" *ngIf="userDetails.image == null || userDetails.image == ''">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
 
                                                                 <input type="text" formControlName="message" name="message"
@@ -258,8 +267,11 @@
                                                 <div class="single-user-header">
                                                     <img onContextMenu="return false;" alt="" loading="lazy"  *ngIf="userDetails.image != null && userDetails.image != ''"
                                                         [src]=" userDetails.image ?  userDetails.image : '../../../assets/img/no_image.png'">
-                                                    <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
+                                                    <!-- <div class="parti_name" *ngIf="userDetails.image == null || userDetails.image == ''">
                                                         {{userDetails?.firstName.charAt(0)}}
+                                                    </div> -->
+                                                    <div class="author-img" *ngIf="userDetails.image == null || userDetails.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                     </div>
                                                     <h2> {{userDetails?.firstName}} {{userDetails?.lastName}}</h2>
                                                     <div class="user-status"> </div>
@@ -293,8 +305,11 @@
                                                             *ngFor='let commonGroup of selectdChatCommonGroup'>
                                                             <div class="c-group-img">
                                                                 <img onContextMenu="return false;" alt="" loading="lazy" *ngIf="commonGroup.image != null && commonGroup.image != ''" [src]="commonGroup.image">
-                                                                <div class="parti_name" *ngIf="commonGroup.image == null || commonGroup.image == ''">
+                                                                <!-- <div class="parti_name" *ngIf="commonGroup.image == null || commonGroup.image == ''">
                                                                     {{commonGroup?.name.charAt(0)}}
+                                                                </div> -->
+                                                                <div class="author-img" *ngIf="commonGroup.image == null || commonGroup.image == ''">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                             </div>
                                                             <div class="c-content">
