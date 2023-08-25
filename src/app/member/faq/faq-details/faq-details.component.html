@@ -101,7 +101,7 @@
                                                         {{faqsData.user.firstname}} {{faqsData.user.lastname}}</span>
                                                     <span class="author-date">{{faqsData.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
-                                                        *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status"
                                                         *ngIf="faqsData.approved_status == 0 && faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id"
@@ -253,11 +253,11 @@
                                                         {{faqsData.user.firstname}} {{faqsData.user.lastname}}</span>
                                                     <span class="author-date">{{faqsData.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
-                                                        *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status"
                                                         *ngIf="faqsData.approved_status == 0 && faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-status"
-                                                        *ngIf="faqsData.approved_status == 1  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="faqsData.approved_status == 1  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status"
                                                         *ngIf="faqsData.approved_status == 1 && faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id" *ngIf="faqsData.deny_by_id >= 1">
@@ -388,7 +388,7 @@
                                             <span class="author-date">{{faqsData.created_at | date: 'd. MMMM
                                                 y'}}</span><br />
                                             <span class="author-status"
-                                                *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                *ngIf="faqsData.approved_status == 0  && !faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="deny-reason"
                                                 *ngIf="faqsData.approved_status == 0 && faqsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id"

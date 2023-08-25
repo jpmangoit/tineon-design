@@ -22,7 +22,7 @@
                                                             alt="" loading="lazy"> -->
                                                         <div *ngIf="showImage">
                                                             <img  onContextMenu="return false;" [src]="showImage ? showImage : '../../../assets/img/no_image.png'"  alt="" loading="lazy">
-        
+
                                                         </div>
                                                         <div *ngIf="showFile">
                                                             <img  onContextMenu="return false;" src="../../../../assets/img/no_image.png"  alt="" loading="lazy">
@@ -130,7 +130,7 @@
                                                             <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span>
                                                             <span class="author-status"
                                                                 *ngIf="item.approved_status == 0">{{language.theme.status}}:-
-                                                                {{language.community_groups.wait_admin_approve}}</span>
+                                                                {{language.community_groups.waitingApproval}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,14 +188,14 @@
                                                             <img *ngIf="showUpdatedImage" onContextMenu="return false;"
                                                             [src]="showUpdatedImage"
                                                             alt="" loading="lazy">
-        
+
                                                         </div>
                                                         <div *ngIf="showUpdatedFile">
                                                             <img  onContextMenu="return false;" src="../../../../assets/img/no_image.png"  alt="" loading="lazy">
                                                         </div>
                                                         <div *ngIf="!showUpdatedImage && !showUpdatedFile">
                                                             <img  onContextMenu="return false;" src="../../../../assets/img/no_image.png"  alt="" loading="lazy">
-                                                        </div> 
+                                                        </div>
 
 
 
@@ -302,13 +302,13 @@
                                                             <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span><br />
                                                             <span class="author-status"
                                                                 *ngIf="item.approved_status == 0">{{language.theme.status}}:-
-                                                                {{language.community_groups.wait_admin_approve}}</span>
+                                                                {{language.community_groups.waitingApproval}}</span>
                                                             <span class="author-status"
-                                                                *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                                *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                             <span class="deny-reason"
                                                                 *ngIf="item.approved_status == 0 && item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                             <span class="author-status"
-                                                                *ngIf="item.approved_status == 1  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                                *ngIf="item.approved_status == 1  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                             <span class="deny-reason"
                                                                 *ngIf="item.approved_status == 1 && item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                             <span class="author-id" *ngIf="item.deny_by_id >= 1">
@@ -466,7 +466,7 @@
                                                         {{item.user_name.firstname}} {{item.user_name.lastname}}</span>
                                                     <span class="author-date">{{item.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
-                                                        *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="item.approved_status == 0  && !item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="deny-reason"
                                                         *ngIf="item.approved_status == 0 && item.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id" *ngIf="item.deny_by_id >= 1">
