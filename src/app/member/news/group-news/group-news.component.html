@@ -258,9 +258,9 @@
 
                                                                 <!-- <span class="author-status"
                                                                     *ngIf="newsData.approved_status == 0">{{language.theme.status
-                                                                    }}:-{{language.community_groups.wait_admin_approve}}-</span> -->
+                                                                    }}:-{{language.community_groups.waitingApproval}}-</span> -->
                                                                 <span class="author-status"
-                                                                    *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                                    *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
 
                                                                 <span class="author-status"
                                                                     *ngIf="newsData.approved_status == 0 && newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>

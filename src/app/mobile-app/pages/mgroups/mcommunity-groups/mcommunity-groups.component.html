@@ -9,7 +9,7 @@
                 </svg>
             </mat-label>
             <mat-select disableRipple matNativeControl [(value)]="selected" (selectionChange)="groupFilter($event.value)">
-                <mat-option value="0">{{language.community_groups.groups}}</mat-option>
+                <mat-option value="0">{{language.community_groups.all_groups}}</mat-option>
                 <mat-option value="1">{{language.community_groups.groups_u_manage}}</mat-option>
                 <mat-option value="2">{{language.community_groups.groups_u_joined}}</mat-option>
             </mat-select>
@@ -102,8 +102,8 @@
                                                 </button>
 
                                                 <button type="button" *ngIf='data.displayWaitApprovalButton' class="waiting-group">
-                                                    {{language.community_groups.wait_admin_approve}}
-                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.wait_admin_approve}} -->
+                                                    {{language.community_groups.waitingApproval}}
+                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.waitingApproval}} -->
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id  || userData.isAdmin == true">
                                                     <button type="button" routerLink="/update-group/{{data.id}}"
@@ -124,7 +124,7 @@
                                                 </button>
                                                 <button type="button" class="waiting-group"
                                                     *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'
-                                                    (click)="leaveGroup(data.id)">+{{language.community_groups.wait_admin_approve}}
+                                                    (click)="leaveGroup(data.id)">+{{language.community_groups.waitingApproval}}
                                                 </button> -->
                                             </div>
                                         </div>
@@ -312,7 +312,7 @@
                                         </button>
                                         <button type="button" class="waiting-group"
                                             *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'
-                                            (click)="leaveGroup(data.id)">+{{language.community_groups.wait_admin_approve}}
+                                            (click)="leaveGroup(data.id)">+{{language.community_groups.waitingApproval}}
                                         </button> -->
                                     </div>
                                 </div>
