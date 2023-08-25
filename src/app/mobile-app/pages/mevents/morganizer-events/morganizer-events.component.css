@@ -478,7 +478,8 @@ align-items: center;
   color: #999;
 }
 .event-bottom > div:first-child {
-  max-width: 70%;
+  max-width: 40%;
+width: 50%;
 }
 
 .event-bottom div span {
