@@ -47,6 +47,7 @@ export class NewsListComponent implements OnInit {
     displayEvents: boolean = false;
     displayCourses: boolean = false;
     displayRooms: boolean = false;
+    displayInstructors : boolean = false;
     displaySurvey: boolean = false;
     displayTasks: boolean = false;
     displayGroup: boolean = false;
@@ -92,6 +93,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = false;
@@ -107,6 +109,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = true;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = false;
@@ -122,6 +125,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = true;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = false;
@@ -134,6 +138,19 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = true;
+        this.displayInstructors = false;
+        this.displaySurvey = false
+        this.displayTasks = false
+        this.displayGroup = false;
+        this.displayFaq = false
+    }
+
+    onInstructor(){
+        this.displayNews = false;
+        this.displayEvents = false;
+        this.displayCourses = false;
+        this.displayRooms = false;
+        this.displayInstructors = true;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = false;
@@ -145,6 +162,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = true
         this.displayTasks = false
         this.displayGroup = false;
@@ -156,6 +174,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = true
         this.displayGroup = false;
@@ -167,6 +186,7 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = true;
@@ -178,13 +198,12 @@ export class NewsListComponent implements OnInit {
         this.displayEvents = false;
         this.displayCourses = false;
         this.displayRooms = false;
+        this.displayInstructors = false;
         this.displaySurvey = false
         this.displayTasks = false
         this.displayGroup = false;
         this.displayFaq = true
     }
-
-
 
 
     /**

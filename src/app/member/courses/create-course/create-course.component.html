@@ -149,7 +149,7 @@
                                             </div>
 
                                             <div *ngIf="matchInstrctDateError.isError == true" class="text-danger">{{ matchInstrctDateError.errorMessage }}</div>
-                                            <div class="col-md-12 calendar-box" *ngIf="calendarOptionsExternal != 'undefined'">
+                                            <div class="col-md-12 calendar-box" *ngIf="calendarOptionsExternal !== undefined">
                                                 <full-calendar *ngIf="instructorCalendar?.length > 0" [options]="calendarOptionsExternal"></full-calendar>
                                             </div>
                                         </div>
@@ -458,7 +458,7 @@
                                                         </ul>
                                                     </span>
                                                 </div>
-                                                <div class="col-md-12 calendar-box" *ngIf="calendarOptions != 'undefined'">
+                                                <div class="col-md-12 calendar-box"  *ngIf="calendarOptionsExternal !== undefined">
                                                     <full-calendar *ngIf="calendarRooms?.length > 0" [options]="calendarOptions"></full-calendar>
                                                 </div>
                                             </div>

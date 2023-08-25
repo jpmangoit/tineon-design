@@ -326,6 +326,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     })
                     this.totalInstructor = respData['result'].pagination.rowCount;
                     // this.totalPages = Math.ceil(this.instructorData.length / this.itemPerPage);
+                    this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
+
+
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
@@ -337,6 +340,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
      * @author  MangoIt Solutions
      * @return {object} returns {Search Filter Data} The new Instructor object.
      */
+    showNext = false;
     onSearch() {
         this.searchSubmit = true;
         let searchValue: string = this.searchForm.value.search;
@@ -352,12 +356,16 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         this.totalInstructor = 0;
                         this.searchData = respData['result']['instructor'];
                         this.instructorData = respData['result']['instructor'];
+                        console.log(this.searchData);
+
                         this.instructorData.forEach((element: any) => {
                             if (element['instructor_image'][0]?.['instructor_image']) {
                                 element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20))) as string;
                             }
                         })
                         this.totalInstructor = respData['result'].pagination.rowCount;
+                        this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
+
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
@@ -397,7 +405,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     // }
     pageChanged(event: number) {
         console.log(event);
-    
+
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;
@@ -405,14 +413,14 @@ export class InstructorComponent implements OnInit, OnDestroy {
             // Next button clicked
             this.currentPageNmuber++;
         }
-    
+
         if (this.searchData?.length > 0) {
             this.onSearch();
         } else {
             this.getAllInstructor();
-        }
-    }
-    
+        } 
+    } 
+
 
     /**
     * Function is used for pagination
