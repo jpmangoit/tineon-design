@@ -1,5 +1,5 @@
 .app-page-content{
-    background-color: #EFF2FD;
+    background-color: #F8F8F8;
     padding: 15px;
 }
 
@@ -15,39 +15,45 @@
     background: #fff;
     position: relative;
 }
-/* .survey-tabs button::after {
-    width: 1px;
-    height: 19px;
-    background: #ccc;
+.survey-tabs button::after {
+    width: 2px;
+    height: 18px;
+    background: #EAEBEC;
     display: inline-block;
     content: "";
+    border-radius: 5px;
     position: absolute;
-    top: 6px;
-    right: -11px;
+    right: -6px;
+    top: 50%;
+    transform: translate(0,-50%);
 }
-.survey-tabs button::after:nth-child(2) {
-    width: 0px;
-} */
+.survey-tabs button:last-child::after {
+    background: none;
+}
 
 .survey-tabs button.active {
     background: linear-gradient(90deg, rgba(233,54,8,1) 0%, rgba(231,96,61,1) 100%);
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.1);
     color: #fff;
     border-radius: 20px;
     font-weight: 500;
 }
 
-.survey-tabs {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-.survey-area {
-    padding: 5px;
-    background: #fff;
-    border-radius: 20px;
+::ng-deep body.mobile-green .survey-tabs button.active {
+    background: rgb(32,174,128);
+    background: linear-gradient(90deg, rgb(32, 174, 128) 0%, rgba(32, 174, 128, 0.8) 100%) !important;
+    border-color: #20AE80;
 }
 
+.survey-area .survey-tabs {
+    background: #fff;
+    display: flex;
+    padding: 4px;
+    border-radius: 20px;
+    align-items: center;
+    box-shadow: 0px 5px 10px 0px #EAF0F699;
+    border: none;
+    justify-content: space-around;
+}
 
 .survey-tabs button {
     margin-right: 15px;

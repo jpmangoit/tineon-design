@@ -476,9 +476,9 @@ span.c-group-name {
     fill: #fff;
 }
 ::ng-deep .drower-close mat-icon.close {
-    right: 5px;
+    right: 68px;
     position: absolute;
-    top: 2px;
+    top: 5px;
     opacity: inherit;
 }
 .drower-close {
