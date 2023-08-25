@@ -328,7 +328,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     // this.totalPages = Math.ceil(this.instructorData.length / this.itemPerPage);
                     this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
 
-
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
@@ -341,11 +340,12 @@ export class InstructorComponent implements OnInit, OnDestroy {
      * @return {object} returns {Search Filter Data} The new Instructor object.
      */
     showNext = false;
-    onSearch() {
+    onSearch(item:any) {
         this.searchSubmit = true;
         let searchValue: string = this.searchForm.value.search;
         if (searchValue) {
             this.searchSubmit = false;
+            this.currentPageNmuber = item;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'getInstructor/' + this.currentPageNmuber + '/' + this.itemPerPage, this.searchForm.value)
                 .subscribe((respData: any) => {
@@ -356,8 +356,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         this.totalInstructor = 0;
                         this.searchData = respData['result']['instructor'];
                         this.instructorData = respData['result']['instructor'];
-                        console.log(this.searchData);
-
                         this.instructorData.forEach((element: any) => {
                             if (element['instructor_image'][0]?.['instructor_image']) {
                                 element['instructor_image'][0]['instructor_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['instructor_image'][0]?.['instructor_image'].substring(20))) as string;
@@ -365,7 +363,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         })
                         this.totalInstructor = respData['result'].pagination.rowCount;
                         this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
-
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
@@ -404,22 +401,20 @@ export class InstructorComponent implements OnInit, OnDestroy {
     //     }
     // }
     pageChanged(event: number) {
-        console.log(event);
-
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;
         } else if (event === 1) {
             // Next button clicked
             this.currentPageNmuber++;
+            console.log(this.currentPageNmuber);
         }
-
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch(this.currentPageNmuber);
         } else {
             this.getAllInstructor();
-        } 
-    } 
+        }
+    }
 
 
     /**
@@ -436,7 +431,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
             } else {
                 this.currentPageNmuber = eve;
                 if (this.searchData?.length > 0) {
-                    this.onSearch();
+                    this.onSearch(this.currentPageNmuber );
                 } else {
                     this.getAllInstructor();
                 }
@@ -454,7 +449,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         }
         this.itemPerPage = limit;
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch('');
         } else {
             this.getAllInstructor();
         }

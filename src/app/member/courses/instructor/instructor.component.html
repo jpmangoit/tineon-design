@@ -41,7 +41,7 @@
             </div>
             <div class="search_area">
                 <div class="card">
-                    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <form [formGroup]="searchForm" (ngSubmit)="onSearch(1)">
                         <div class="input-group no-border">
                             <input type="text" class="form-control" formControlName="search"
                                 placeholder="{{language.header.search}}">
@@ -158,7 +158,7 @@
                         *ngIf="(instructorData && instructorData.length == 0) ">
                         <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;"
                             alt="{{language.instructor.no_instructor}}" loading="lazy"><br> -->
-                        <span>{{language.instructor.no_instructor}}</span> 
+                        <span>{{language.instructor.no_instructor}}</span>
                     </div>
                 </div>
             </div>
