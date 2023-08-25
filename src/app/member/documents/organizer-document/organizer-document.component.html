@@ -63,7 +63,7 @@
                        </svg>
                     </button>
 
-                <div *ngIf="selected_order">
+                <div *ngIf="selected_order"> 
                     <mat-form-field appearance="fill">
                         <mat-label>{{language.courses.filter}}</mat-label>
                         <mat-select matNativeControl [(value)]="selected_order" (selectionChange)="onSelectionChange($event)">

@@ -84,14 +84,15 @@
                                                             <!-- <div class="parti_name" *ngIf="news?.picture == null || news?.picture == ''">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div> -->
-                                                            <div class="author-img">
+                                                            <div class="author-img" *ngIf="news?.picture == null || news?.picture == ''">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-img" *ngIf="news?.picture != ''">
                                                                 <img onContextMenu="return false;" [src]="news?.picture" style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-des">
-                                                                <span class="author-id"> {{language.dashboard.dashboardNewsAuthor }} {{news.author}} </span>
+                                                                <span class="author-id"> {{language.dashboard.dashboardNewsAuthor }}</span>
+                                                                <span class="author-id"> {{news.author}} </span>
                                                                 <span class="author-date">  {{news.created | date:'d. MMMM y'}} </span>
                                                             </div>
                                                         </div>

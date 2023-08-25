@@ -35,7 +35,7 @@ export class GroupDetailComponent implements OnInit {
         { value: '8' },
         { value: '16' },
         { value: '24' },
-        { value: '32' },
+        { value: '32' }, 
         { value: '40' }
     ];
     displayError: boolean;
@@ -325,6 +325,7 @@ export class GroupDetailComponent implements OnInit {
                         this.allUser = respData;
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.id] = { member_id: val.member_id };
+                            
                         })
                         this.getGroupDetails(this.groupId);
                     }

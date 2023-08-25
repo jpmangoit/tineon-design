@@ -5,6 +5,11 @@
     align-items: center;
     flex-flow: row nowrap;
 }
+.chat-list-inner {
+    background: #fff;
+margin: 0 -15px;
+padding: 0 20px !important;
+}
 .chat-user-thumb {
     margin-right: 18px;
     position: relative;

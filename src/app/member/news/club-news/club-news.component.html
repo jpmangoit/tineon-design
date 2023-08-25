@@ -12,7 +12,7 @@
                 <div class="dash-news" (onLoad)="getAllNews()">
                     <div class="empty-data-image" *ngIf="dashboardData?.length == 0">
                         <img onContextMenu="return false;" src="assets/img/no-news-img.png"
-                            alt="{{language.group_news.no_news}}" loading="lazy"><br>
+                            alt="{{language.group_news.no_news}}" loading="lazy"><br> 
                         <span>{{language.group_news.no_news}}</span>
                     </div>
                     <ng-container *ngFor='let data of dashboardData; let i=index'>
@@ -34,7 +34,7 @@
                                     <a class="red" *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"
                                         (click)="deleteNews(data.id)">
                                         {{language.club_news.Delete}}</a>
-                                </div>
+                                </div> 
                             </div> 
 
                             <div class="news-item-content">
