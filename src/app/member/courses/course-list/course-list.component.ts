@@ -72,25 +72,24 @@ export class CourseListComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     var url: string[] = [];
-                    respData.courses && respData.courses.forEach(element => {
-                        if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
-                            if (element.picture_video) {
-                                url = element.picture_video.split('"');
-                                if (url && url.length > 0) {
-                                    url.forEach((el) => {
-                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                            element.picture_video = el;
-                                        }
-                                    });
-                                } else {
-                                    element['picture_video'] = '';
-                                }
-                            }
-                        }
-                    });
+                    // respData.courses && respData.courses.forEach(element => {
+                    //     if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
+                    //         if (element.picture_video) {
+                    //             url = element.picture_video.split('"');
+                    //             if (url && url.length > 0) {
+                    //                 url.forEach((el) => {
+                    //                     if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
+                    //                         element.picture_video = el;
+                    //                     }
+                    //                 });
+                    //             } else {
+                    //                 element['picture_video'] = '';
+                    //             }
+                    //         }
+                    //     }
+                    // });
 
                     this.dataSource = new MatTableDataSource(respData.courses);
-                    
                     this.dataSource.filteredData.forEach((element:any)=>{
                         if (element?.course_image[0]?.course_image){
                             element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));

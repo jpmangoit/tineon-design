@@ -200,6 +200,9 @@
                                         <ul>
                                             <li>{{userDetails.Club.name}}</li>
                                             <li>{{userDetails.roles[0]}}</li>
+                                            <!-- <li *ngIf="groupCount">{{groupCount}} {{language.community.groups}}</li> -->
+                                            <li *ngIf="groupCount">{{ groupCount + ' ' + language.community.groups  }}</li>
+                                            <li *ngIf="groupName">{{  groupName  }}</li>
                                         </ul>
                                     </div>
                                 </div>

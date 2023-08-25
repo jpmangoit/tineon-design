@@ -216,6 +216,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                     if (respData['isError'] == false) {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+
                         if (respData && respData['result']) {
                             respData.result.forEach(element => {
                                 element.recurring_dates = JSON.parse(element.recurring_dates);
@@ -223,24 +224,21 @@ export class CourseComponent implements OnInit, OnDestroy {
                         }
                         this.allCourses = respData['result'];
                         var element: any = null;
+                        console.log(this.allCourses);
+
                         if (this.allCourses) {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
 
-                                    this.allCourses.forEach((element: any) => {
-                                        if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
-                                            const base64String = element.course_image[0].course_image;
-                                            const base64Data = base64String.substring(20);
-                                            const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
-                                            element.course_image[0].course_image = blobUrl;
-                                            // if (element.course_image?.length == 0) {
-                                            //     this.eventImage = '../../../assets/img/no_image.png'
-                                            // } else {
-                                                this.eventImage = element.course_image[0].course_image
-                                            // }
-                                        }
-                                    });
+                                    if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                        const base64String = element.course_image[0].course_image;
+                                        const base64Data = base64String.substring(20);
+                                        const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                        element.course_image[0].course_image = blobUrl;
+                                        this.eventImage = element.course_image[0].course_image
+
+                                    }
 
                                     // var url: string[] = [];
                                     // if (element) {
@@ -588,7 +586,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.authService.setLoader(false);
-                        
+
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     };
@@ -1462,7 +1460,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "type": element.type,
                                                             "instructor_type": element.instructor_type,
                                                             "name": element.name,
-                                                            "course_image":(element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
+                                                            "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                             "course_document": element.course_image[0]?.course_document,
                                                             "allowed_persons": element.allowed_persons,
                                                             "date_from": rrDate1,
@@ -1528,7 +1526,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                                 "type": element.type,
                                                                 "instructor_type": element.instructor_type,
                                                                 "name": element.name,
-                                                                "course_image":(element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
+                                                                "course_image": (element.course_image[0]?.course_image) ? (element.course_image[0]?.course_image) : '../../../../assets/img/no_image.png',
                                                                 "course_document": element.course_image[0]?.course_document,
                                                                 "allowed_persons": element.allowed_persons,
                                                                 "date_from": rrDate1,
