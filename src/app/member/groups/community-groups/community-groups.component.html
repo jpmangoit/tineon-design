@@ -11,7 +11,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"  (click)="onGroups(1)"
                                     [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
-                                        {{language.community_groups.groups}}
+                                        {{language.community_groups.all_groups}}
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -101,8 +101,8 @@
                                                 </button>
 
                                                 <button type="button" *ngIf='data.displayWaitApprovalButton' class="waiting-group">
-                                                    {{language.community_groups.wait_admin_approve}}
-                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.wait_admin_approve}} -->
+                                                    {{language.community_groups.waitingApproval}}
+                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.waitingApproval}} -->
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id  || userDetails.isAdmin == true">
                                                     <button type="button" routerLink="/update-group/{{data.id}}"
@@ -169,7 +169,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link group_ic" routerLink="groups" data-toggle="tab"  (click)="onGroups(1)"
                                         [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}" role="tab">
-                                        {{language.community_groups.groups}}
+                                        {{language.community_groups.all_groups}}
                                     </a>
                                 </li>
                                 <li class="nav-item">

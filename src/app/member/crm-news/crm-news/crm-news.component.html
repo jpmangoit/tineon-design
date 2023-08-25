@@ -38,7 +38,7 @@
                                     <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
                                     <span class="author-id">{{data.author}} </span>
                                     <span class="author-date">{{data.created | date: 'd. MMMM y'}}</span>
-                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                     <span class="author-status" *ngIf="data.approved_status == 0 && data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                                         </div>
                                                         <div class="news_content_text" [innerHTML]="newsData[0].content"></div>
                                                         <div class="author-info">
-                                                            
+
                                                             <!-- <div class="parti_name" *ngIf="newsData[0]?.author_image == null || newsData[0]?.author_image == ''">
                                                                 <img onContextMenu="return false;" src="assets/img/defaultProfile.jpeg" alt="" loading="lazy">
                                                             </div> -->
@@ -129,7 +129,7 @@
                                                                 <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
                                                                 <span class="author-id"> {{newsData[0].author}} </span>
                                                                 <span class="author-date">{{newsData[0].created| date:'d. MMMM y'}}</span>
-                                                                <!-- <span class="author-status">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span> -->
+                                                                <!-- <span class="author-status">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span> -->
                                                             </div>
                                                         </div>
                                                     </div>

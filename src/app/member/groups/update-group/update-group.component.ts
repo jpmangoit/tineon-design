@@ -218,6 +218,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.groupData = respData[0];
+                    console.log(this.groupData);
+
                     if (this.groupData?.['participants']?.length > 0) {
                         this.groupData['participants'].forEach((val, key) => {
                             let participant_id: number = val.user_id;
@@ -256,6 +258,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                                         }
                                         if (val.user_id == this.groupData['created_by']) {
                                             this.organizerDetails.push(val);
+                                            console.log(this.organizerDetails);
+
                                         }
                                     }
                                 });

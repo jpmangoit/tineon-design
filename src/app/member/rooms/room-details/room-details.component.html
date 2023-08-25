@@ -245,7 +245,7 @@
                                                         {{roomDetails.user.lastname}}</span>
                                                     <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM y'}}</span><br />
                                                     <span class="author-status"
-                                                        *ngIf="roomDetails.update_approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="roomDetails.update_approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status"
                                                         *ngIf="roomDetails.update_approved_status == 0 && roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id" *ngIf="roomDetails.deny_by_id >= 1">
@@ -427,7 +427,7 @@
                                             <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM
                                                 y'}}</span><br />
                                             <span class="author-status"
-                                                *ngIf="roomDetails.approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                *ngIf="roomDetails.approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status"
                                                 *ngIf="roomDetails.approved_status == 0 && roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="roomDetails.deny_by_id >= 1">
@@ -493,7 +493,7 @@
                                         <div class="author-des" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMemId(roomDetails.author)">
                                             <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}} {{roomDetails.user.firstname}} {{roomDetails.user.lastname}}</span>
                                             <span class="author-date">{{roomDetails.created_at | date: 'd. MMMM y'}}</span><br/>
-                                            <span class="author-status" *ngIf="roomDetails.approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                            <span class="author-status" *ngIf="roomDetails.approved_status == 0  && !roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status" *ngIf="roomDetails.approved_status == 0 && roomDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="roomDetails.deny_by_id >= 1">
                                                 {{language.dashboard.denyBy}}:- {{roomDetails.denybyuser.firstname}} {{roomDetails.denybyuser.lastname}}

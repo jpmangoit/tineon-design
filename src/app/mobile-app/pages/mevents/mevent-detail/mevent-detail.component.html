@@ -10,9 +10,9 @@
                         <path d="M11.3372 20.1666C16.3998 20.1666 20.5039 16.0626 20.5039 11C20.5039 5.93737 16.3998 1.83331 11.3372 1.83331C6.27459 1.83331 2.17053 5.93737 2.17053 11C2.17053 16.0626 6.27459 20.1666 11.3372 20.1666Z" fill="#E93608" stroke="#E93608" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M11.3372 14.6667V11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M11.3372 7.33331H11.3463" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg> 
+                    </svg>
                 </span>
-                <h1>{{language.header.event_details}}</h1> 
+                <h1>{{language.header.event_details}}</h1>
             </div>
         </div>
         <div class="event-detail-main">
@@ -44,7 +44,7 @@
                                             </button>
                                         </div>
                                         <div class="col-md-12 author-des">
-                                            <span class="author-status" *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                            <span class="author-status" *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status" *ngIf="eventDetails.update_approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1"> {{language.dashboard.denyBy}}:- {{eventDetails.denybyuser.firstname}}  {{eventDetails.denybyuser.lastname}}</span>
                                             <span class="deny-reason" *ngIf="eventDetails.deny_by_id >= 1"> {{language.dashboard.denyReason}}:- {{eventDetails.deny_reason}} </span>
@@ -73,7 +73,7 @@
                                                         <div class="title-box">
                                                             <div class="title">
                                                                 <h5>{{eventDetails.name}}</h5>
-                                                                
+
                                                             </div>
                                                             <div>
                                                                 <div class="course-price">
@@ -264,7 +264,7 @@
                                             </button>
                                         </div>
                                         <div class="col-md-12 author-des">
-                                            <span class="author-status" *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                            <span class="author-status" *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status" *ngIf="eventDetails.update_approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1"> {{language.dashboard.denyBy}}:- {{eventDetails.denybyuser.firstname}}  {{eventDetails.denybyuser.lastname}}</span>
                                             <span class="deny-reason" *ngIf="eventDetails.deny_by_id >= 1"> {{language.dashboard.denyReason}}:- {{eventDetails.deny_reason}} </span>
@@ -297,7 +297,7 @@
                                                         <div class="title-box">
                                                             <div class="title">
                                                                 <h5>{{updateEventData.name}}</h5>
-                                                               
+
                                                             </div>
                                                             <div>
                                                                 <div class="course-price">
@@ -401,7 +401,7 @@
                                                         <div class="event-title">
                                                             <div class="sub-title">
                                                                 <input class="check-style" type="checkbox" style="opacity: 1;" disabled="disabled">
-                                                                <h5 *ngIf="updatedTask.status != 2" class="" >{{updatedTask.title}}</h5> 
+                                                                <h5 *ngIf="updatedTask.status != 2" class="" >{{updatedTask.title}}</h5>
                                                                 <h5 *ngIf="updatedTask.status == 2" class=""> {{updatedTask.title}}</h5>
                                                             </div>
                                                             <span>
@@ -467,7 +467,7 @@
                                         </svg>&nbsp;<span [ngStyle]="{'color':'#ffffff'}">{{language.create_event.DenyEvent}}</span>
                                     </button>
                                 </div>
-                               
+
                                 <div class="col-md-12">
                                     <div class="group_detail_main">
                                         <div class="group_img_sec">
@@ -499,7 +499,7 @@
                                                 <div class="title-box">
                                                     <div class="title">
                                                         <h5>{{eventDetails.name}}</h5>
-                                                      
+
                                                     </div>
                                                     <div>
                                                         <div class="course-price">
@@ -523,7 +523,7 @@
 <path d="M10.3875 0.556702V3.37113" stroke="#999999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M4.40021 0.556702V3.37113" stroke="#999999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M0.658081 6.18557H14.1296" stroke="#999999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> 
+</svg>
                                                             {{eventDetails?.date_from | date: "d. MMMM y" }}
                                                             {{ eventDetails?.recurring_dates? ( (eventDetails?.recurring_dates[0].start_time) ) : ( (eventDetails.start_time))}} {{language.login.o_clock}}
                                                         </span>

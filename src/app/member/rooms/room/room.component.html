@@ -89,16 +89,16 @@
 							<div class="room-grid-list" *ngFor="let item of allRooms  | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalRoomData}">
 								<div class="news-widget">
 									<div class="news-image">
-										<img  data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)" onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
+										<img  data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)" onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'"
 										alt="" loading="lazy">
 										<!-- <img onContextMenu="return false;" src="{{item.room_image[0]?.room_image}}"  alt="" loading="lazy"> -->
 										<div class="new-action" *ngIf="item.author == userData.userId || userData.isAdmin">
 											<a class="green" (click)="updateRooms(item.id)">
 												{{language.club_news.Edit}}</a>
-		
+
 											<a class="red" (click)="deleteRoom(item.id)">
 												{{language.club_news.Delete}}</a>
-										</div> 
+										</div>
 									</div>
 									<div class="news-content" data-bs-toggle="modal" data-bs-target="#view-rooms" (click)="roomsById(item.id)">
 										<span class="news-badge">{{item ['no_of_persons']}} {{language.room.person}}</span>
@@ -113,7 +113,7 @@
 											<span>
                                                 <i class="fa fa-clock-o"></i>
                                                 {{val.time_from.split(":").slice(0,2).join(":")}} - {{val.time_to.split(":").slice(0,2).join(":")}}
-                                            </span> 
+                                            </span>
 										</p>
 									</div>
 									<div class="news-read-more" data-bs-toggle="modal" data-bs-target="#view-rooms"  (click)="roomsById(item.id)">
@@ -205,7 +205,7 @@
 							<div class="author-des">
 								<span class="author-id"> {{language.dashboard.dashboardNewsAuthor}} {{roomsByIdData.user.firstname}} {{roomsByIdData.user.lastname}}</span>
 								<span class="author-date">{{roomsByIdData.created_at | date: 'd. MMMM y'}}</span><br/>
-								<span class="author-status" *ngIf="roomsByIdData.approved_status == 0  && !roomsByIdData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+								<span class="author-status" *ngIf="roomsByIdData.approved_status == 0  && !roomsByIdData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
 								<span class="author-status" *ngIf="roomsByIdData.approved_status == 0 && roomsByIdData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
 								<span class="author-id" *ngIf="roomsByIdData.deny_by_id >= 1">
 									{{language.dashboard.denyBy}}:- {{roomsByIdData.denybyuser.firstname}} {{roomsByIdData.denybyuser.lastname}}

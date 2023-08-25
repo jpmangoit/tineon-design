@@ -552,7 +552,7 @@
                                             </div>
                                             <div class="author-des">
                                                 <span class="author-status"
-                                                    *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                    *ngIf="eventDetails.update_approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                 <span class="author-status"
                                                     *ngIf="eventDetails.update_approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                 <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1">
@@ -923,7 +923,7 @@
 
                                         <div class="author-des">
                                             <span class="author-status"
-                                                *ngIf="eventDetails.approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                *ngIf="eventDetails.approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status"
                                                 *ngIf="eventDetails.approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1">

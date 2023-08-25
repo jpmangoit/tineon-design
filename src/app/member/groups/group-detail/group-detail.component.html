@@ -385,7 +385,7 @@
                                                 </div>
                                                 <div class="author-des">
                                                     <span class="author-status"
-                                                        *ngIf="groupDetails.update_approved_status == 0  && !groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                        *ngIf="groupDetails.update_approved_status == 0  && !groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status"
                                                         *ngIf="groupDetails.update_approved_status == 0 && groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id" *ngIf="groupDetails.deny_by_id >= 1">
@@ -690,7 +690,7 @@
                                         </div>
                                         <div class="author-des">
                                             <span class="author-status"
-                                                *ngIf="groupDetails.approved_status == 0  && !groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                *ngIf="groupDetails.approved_status == 0  && !groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                             <span class="author-status"
                                                 *ngIf="groupDetails.approved_status == 0 && groupDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                             <span class="author-id" *ngIf="groupDetails.deny_by_id >= 1">
