@@ -224,20 +224,16 @@ export class CourseComponent implements OnInit, OnDestroy {
                         }
                         this.allCourses = respData['result'];
                         var element: any = null;
-                        console.log(this.allCourses);
-
                         if (this.allCourses) {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
-
                                     if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
                                         const base64String = element.course_image[0].course_image;
                                         const base64Data = base64String.substring(20);
                                         const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
                                         element.course_image[0].course_image = blobUrl;
                                         this.eventImage = element.course_image[0].course_image
-
                                     }
 
                                     // var url: string[] = [];
@@ -1336,16 +1332,13 @@ export class CourseComponent implements OnInit, OnDestroy {
                                     for (var key in this.allCourses) {
                                         if (this.allCourses.hasOwnProperty(key)) {
                                             element = this.allCourses[key];
-                                            this.allCourses.forEach((element: any) => {
-                                                if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
-                                                    const base64String = element.course_image[0].course_image;
-                                                    const base64Data = base64String.substring(20);
-                                                    const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
-                                                    element.course_image[0].course_image = blobUrl;
-                                                    this.eventImage = element.course_image[0].course_image
-                                                }
-                                            });
-
+                                            if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
+                                                const base64String = element.course_image[0].course_image;
+                                                const base64Data = base64String.substring(20);
+                                                const blobUrl = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(base64Data)) as string;
+                                                element.course_image[0].course_image = blobUrl;
+                                                this.eventImage = element.course_image[0].course_image
+                                            }
                                             // var url = [];
                                             // for (const key in element) {
                                             //     if (Object.prototype.hasOwnProperty.call(element, key)) {

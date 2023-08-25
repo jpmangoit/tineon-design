@@ -88,7 +88,6 @@ export class CourseListComponent implements OnInit {
                     //         }
                     //     }
                     // });
-
                     this.dataSource = new MatTableDataSource(respData.courses);
                     this.dataSource.filteredData.forEach((element:any)=>{
                         if (element?.course_image[0]?.course_image){
