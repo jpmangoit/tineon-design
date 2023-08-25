@@ -63,8 +63,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
     coursesTypeDropdownSettings: IDropdownSettings;
     weekdayDropdownSettings: IDropdownSettings;
     currentPageNmuber: number = 1;
-    // itemPerPage: number = 4;
-    itemPerPage: number = 8;
+    itemPerPage: number = 4;
+    // itemPerPage: number = 8;
     totalPages: any
     limitPerPage: { value: string }[] = [
         { value: '8' },
@@ -332,25 +332,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
             });
     }
 
-    goToPreviousPage() {
-        console.log('xxx');
-
-        this.currentPageNmuber--;
-    }
-
-    goToNextPage() {
-        console.log('yyy');
-
-        this.currentPageNmuber++;
-    }
-
-    getCurrentPageData() {
-        const startIndex = (this.currentPageNmuber - 1) * this.itemPerPage;
-        const endIndex = startIndex + this.itemPerPage;
-        return this.instructorData.slice(startIndex, endIndex);
-    }
-
-
     /**
      * Returns object Data.
      * @author  MangoIt Solutions
@@ -404,16 +385,34 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * Function is used for pagination
     * @author  MangoIt Solutions
     */
+    // pageChanged(event: number) {
+    //     console.log(event);
+
+    //     this.currentPageNmuber = event;
+    //     if (this.searchData?.length > 0) {
+    //         this.onSearch();
+    //     } else {
+    //         this.getAllInstructor();
+    //     }
+    // }
     pageChanged(event: number) {
         console.log(event);
-
-        this.currentPageNmuber = event;
+    
+        if (event === -1) {
+            // Previous button clicked
+            this.currentPageNmuber--;
+        } else if (event === 1) {
+            // Next button clicked
+            this.currentPageNmuber++;
+        }
+    
         if (this.searchData?.length > 0) {
             this.onSearch();
         } else {
             this.getAllInstructor();
         }
     }
+    
 
     /**
     * Function is used for pagination
