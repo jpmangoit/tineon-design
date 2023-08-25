@@ -311,7 +311,7 @@ span.profile-menu-ic {
   font-weight: 500;
   width: 100%;
 display: inline-block;
-} 
+}
 
 .author-id-name {
   font-size: 14px;
@@ -338,7 +338,7 @@ span.author-id {
   width: 100%;
   font-family: "Gellix", sans-serif;
   font-size: 13px;
- 
+
   overflow: hidden;
   font-weight: 600;
   color: #68759f;
@@ -1108,7 +1108,7 @@ span.get-btn {
 ::ng-deep .mobile-red .application-ad {
     background-color: #E93608 !important;
 }
- 
+
 ::ng-deep .mobile-green .application-ad {
     background-color: #20AE80 !important;
 }
@@ -1290,6 +1290,9 @@ min-width: 81px;
         border-radius: 25px;
         color: #fff;
         text-transform: uppercase;
+    }
+    ::ng-deep .news-des-area p ol {
+        padding: 0;
     }
 }
 

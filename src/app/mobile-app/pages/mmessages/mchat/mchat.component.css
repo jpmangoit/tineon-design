@@ -500,3 +500,18 @@ span.c-group-name {
 ::ng-deep body.mobile-green .drower-close mat-icon.mat-icon.close svg path {
     fill:  #20AE80 !important;
 }
+.chat-user-thumb .author-img {
+    object-fit: cover;
+    height: 44px;
+}
+.chat-user-info .chat-user-thumb::after {
+    content: "";
+    height: 13px;
+    width: 13px;
+    border: 2px solid #fff;
+    background: #56E965;
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+}

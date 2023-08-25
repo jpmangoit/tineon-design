@@ -140,7 +140,7 @@ button.mat-menu-item {
     font-family: 'Gellix', sans-serif;
     font-weight: 600;
     color: #A2ACCA;
-    padding:0px 25px 0px 20px; 
+    padding:0px 25px 0px 20px;
 }
 .manage_group_widget .card {
     padding: 0px;
@@ -188,7 +188,7 @@ overflow: hidden;
     font-family: 'Gellix', sans-serif;
     margin-bottom: 25px;
     margin-top: 25px;
-    padding: 0 15px; 
+    padding: 0 15px;
     height: auto !important;
 }
 .community-group-row .news-content h5 {
@@ -210,7 +210,7 @@ overflow: hidden;
 width: calc(100% - 30px);
 left: 15px !important;
 transform: translateX(0px) translateY(-0px) !important;
-   
+
 }
 
 ::ng-deep .mat-select-value-text {
@@ -322,7 +322,7 @@ transform: translateX(0px) translateY(-0px) !important;
 .community-group-column {
     max-width: 25%;
     padding: 12px;
-    
+
     flex: 0 0 25%;
 }
 .community-group-widget .card .card-body {
@@ -443,7 +443,7 @@ span.get-btn {
 ::ng-deep .mobile-red .application-ad {
     background-color: #E93608 !important;
 }
- 
+
 ::ng-deep .mobile-green .application-ad {
     background-color: #20AE80 !important;
 }
@@ -547,7 +547,7 @@ span.get-btn {
         width: 47%;
         max-width: 47%;
         flex: 0 0 47%;
-        
+
 
     }
 }
