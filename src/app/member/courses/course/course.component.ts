@@ -224,13 +224,10 @@ export class CourseComponent implements OnInit, OnDestroy {
                         }
                         this.allCourses = respData['result'];
                         var element: any = null;
-                        console.log(this.allCourses);
-
                         if (this.allCourses) {
                             for (var key in this.allCourses) {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
-
                                     if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
                                         const base64String = element.course_image[0].course_image;
                                         const base64Data = base64String.substring(20);
