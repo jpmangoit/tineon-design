@@ -210,7 +210,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
                 })
-                this.totalgroupData = respData['result']['pagination']['rowCount'];
+                //this.totalgroupData = respData['result']['pagination']['rowCount'];
                 this.authService.setLoader(false);
             });
     }
@@ -264,7 +264,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         }
                     });
             })
-            this.totalgroupData = respData['pagination']['rowCount'];
+            //this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         })
     }
@@ -290,7 +290,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
                 })
-                this.totalJoinedGroupData = respData['pagination']['rowCount'];
+                //this.totalJoinedGroupData = respData['pagination']['rowCount'];
                 this.authService.setLoader(false);
             });
     }
