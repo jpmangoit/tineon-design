@@ -90,19 +90,18 @@ span.news-date {
     -webkit-line-clamp: 1;
 }
 .news-des-area p {
-  font-size: 16px;
-font-weight: 600;
-font-family: "Gellix", sans-serif;
-margin-bottom: 5px;
-line-height: 20px;
-color: #353535;
-display: -webkit-box;
--webkit-box-orient: vertical;
-white-space: normal;
-text-overflow: ellipsis;
-
--webkit-line-clamp: 2;
-overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Gellix", sans-serif;
+    margin-bottom: 5px;
+    line-height: 20px;
+    color: #353535;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 .news-image-area {
     width: 26%;
