@@ -172,6 +172,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                         }
                                     });
                                 }
+                                console.log(this.taskDetails);
+                                
                                 if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedCollaborators = [];

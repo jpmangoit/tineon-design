@@ -658,6 +658,7 @@
                                 <div class="col-md-6 all_participants">
                                     <div class="page-action-right"
                                         *ngIf="taskDetails.status == 2 && userDetails.isAdmin && ( taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )">
+                                        
                                         <button *ngIf="userDetails.isAdmin" (click)="adminApprovedTasks(taskDetails.id)"
                                             type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18"
@@ -669,8 +670,7 @@
                                                 [ngStyle]="{'color':'#ffffff'}">{{language.organizer_task.PublishTask}}</span>
                                         </button>
 
-                                        <button *ngIf="userDetails.isAdmin"
-                                            (click)="adminUnapprovedTasks(taskDetails.id)" type="button">
+                                        <button *ngIf="userDetails.isAdmin" (click)="adminUnapprovedTasks(taskDetails.id)" type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18"
                                                 viewBox="0 0 20 18" fill="none">
                                                 <path [ngStyle]="{'fill':setTheme.button_ic_color}"

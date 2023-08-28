@@ -15,7 +15,6 @@
                             fill="#D1D8EF" />
                     </svg>
 
-
                 </button>
                 <mat-menu #menu="matMenu">
                     <ng-container *ngIf="checkType(item.surveyResult,item); else notEqual">
@@ -42,6 +41,8 @@
             <span>{{item.user_name.firstname}}
                 {{item.user_name.lastname}}</span>
         </div>
+
+
         <div class="survey-timeline">
             <div class="timeline-label">
                 <span>{{language.Survey.remaining_time}}</span>
