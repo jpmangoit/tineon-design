@@ -44,7 +44,7 @@
 			<!-- <div class="error alert alert-danger" id="responseMessage" *ngIf="responseMessage">{{responseMessage}}</div> -->
 			<!-- <div class="error alert alert-danger" *ngIf="searchSubmit == true">{{language.instructor.text_for_search}}</div> -->
 			<div class="card search-card">
-				<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+				<form [formGroup]="searchForm" (ngSubmit)="onSearch(1)">
 					<div class="row filter-box">
 						<div class="col-md-3">
 							<div class="search_area">

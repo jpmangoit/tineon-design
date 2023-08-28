@@ -136,7 +136,6 @@
                             <div class="course-content">
                                 <!-- course-item start -->
                                 <ng-container *ngFor="let item of currentCourseList ">
-
                                     <div class="course-item" *ngIf="checkType(item)">
                                         <div class="course-image">
                                             <img data-bs-toggle="modal" data-bs-target="#view-course"
@@ -147,7 +146,6 @@
                                                 *ngIf="(item.author == userDetails.userId) || (userRole == 'admin')">
                                                 <a class="green" (click)="updateCourse(item.id)">
                                                     {{language.club_news.Edit}}</a>
-
                                                 <a class="red" (click)="deleteCourse(item.id)">
                                                     {{language.club_news.Delete}}</a>
                                             </div>
@@ -175,15 +173,15 @@
                                                             *ngFor="let val of item.CourseExternalInstructor;let i=index">
                                                             <ng-container *ngIf="i < 2">
                                                                 <div class="instructor-image"
-                                                                    *ngIf="((val?.externalIns) && (val?.externalIns?.add_img == null || val?.externalIns?.add_img == ''))">
+                                                                    *ngIf="((val?.externalIns?.instructor_image[0]?.instructor_image) && (val?.externalIns?.instructor_image[0]?.instructor_image == null || val?.externalIns?.instructor_image[0]?.instructor_image == ''))">
                                                                     <img src="../../../../assets/img/defaultProfile.jpeg"
                                                                         onContextMenu="return false;"
                                                                         alt="{{val?.externalIns?.first_name}}"
                                                                         loading="lazy">
                                                                 </div>
                                                                 <div class="instructor-image"
-                                                                    *ngIf="val?.externalIns?.add_img != null">
-                                                                    <img [src]="val?.externalIns?.add_img"
+                                                                    *ngIf="val?.externalIns?.instructor_image[0]?.instructor_image != null">
+                                                                    <img [src]="val?.externalIns?.instructor_image[0]?.instructor_image"
                                                                         onContextMenu="return false;"
                                                                         alt="{{val?.externalIns?.first_name}}"
                                                                         loading="lazy">
@@ -358,15 +356,15 @@
                                                             *ngFor="let val of item.CourseExternalInstructor;let i=index">
                                                             <ng-container *ngIf="i < 2">
                                                                 <div class="instructor-image"
-                                                                    *ngIf="((val.externalIns) && (val.externalIns.add_img == null || val.externalIns.add_img == ''))">
+                                                                    *ngIf="((val.externalIns) && (val?.externalIns?.instructor_image[0]?.instructor_image == null || val?.externalIns?.instructor_image[0]?.instructor_image == ''))">
                                                                     <img src="../../../../assets/img/defaultProfile.jpeg"
                                                                         onContextMenu="return false;"
                                                                         alt="{{val?.externalIns?.first_name}}"
                                                                         loading="lazy">
                                                                 </div>
                                                                 <div class="instructor-image"
-                                                                    *ngIf="val.externalIns.add_img != null">
-                                                                    <img [src]="val.externalIns.add_img"
+                                                                    *ngIf="val?.externalIns?.instructor_image[0]?.instructor_image != null">
+                                                                    <img [src]="val?.externalIns?.instructor_image[0]?.instructor_image"
                                                                         onContextMenu="return false;"
                                                                         alt="{{val?.externalIns?.first_name}}"
                                                                         loading="lazy">

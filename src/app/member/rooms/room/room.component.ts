@@ -100,7 +100,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.userRole = this.userData.roles[0];
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[this.userRole].create;
-        this.getAllRooms();
+        this.getAllRooms(1);
         this.searchForm = new UntypedFormGroup({
             name: new UntypedFormControl(''),
             persons: new UntypedFormControl('', Validators.pattern('^[0-9]*$')),
@@ -138,8 +138,9 @@ export class RoomComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {object array}
     */
-    getAllRooms() {
+    getAllRooms(item:any) {
         if (sessionStorage.getItem('token')) {
+        this.currentPageNmuber = item;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                 .subscribe((respData: Room) => {
@@ -161,7 +162,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         }
     }
 
-    onSearch() {
+    onSearch(item: any) {
         if (
             (this.searchForm.value.name == '' && this.searchForm.value.persons == '') ||
             (this.searchForm.value.name == '' && this.searchForm.value.persons == null) ||
@@ -172,6 +173,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         } else {
             this.searchSubmit = false;
             if (this.searchForm.valid) {
+                this.currentPageNmuber = item;
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, this.searchForm.value)
                     .subscribe((respData: Room) => {
@@ -210,7 +212,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.searchForm.controls['name'].setValue('');
         this.searchForm.controls['persons'].setValue('');
         this.searchData = [];
-        this.getAllRooms();
+        this.getAllRooms(1);
     }
 
     /**
@@ -236,9 +238,9 @@ export class RoomComponent implements OnInit, OnDestroy {
         }
 
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch(this.currentPageNmuber);
         } else {
-            this.getAllRooms();
+            this.getAllRooms(this.currentPageNmuber);
         }
     }
 
@@ -255,9 +257,9 @@ export class RoomComponent implements OnInit, OnDestroy {
             } else {
                 this.currentPageNmuber = eve;
                 if (this.searchData?.length > 0) {
-                    this.onSearch();
+                    this.onSearch(this.currentPageNmuber);
                 } else {
-                    this.getAllRooms();
+                    this.getAllRooms('');
                 }
             }
         }
@@ -273,9 +275,9 @@ export class RoomComponent implements OnInit, OnDestroy {
         }
         this.itemPerPage = limit;
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch('');
         } else {
-            this.getAllRooms();
+            this.getAllRooms('');
         }
     }
 

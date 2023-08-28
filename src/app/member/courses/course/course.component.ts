@@ -235,6 +235,13 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         element.course_image[0].course_image = blobUrl;
                                         this.eventImage = element.course_image[0].course_image
                                     }
+                                    if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
+                                        if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
+                                            element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
+                                        }
+                                    }
+                                    
+                                    // console.log(element);
 
                                     // var url: string[] = [];
                                     // if (element) {
@@ -350,6 +357,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     self.upcomingCourseList.push(rrEvents);
                                                 }
                                             });
+
                                         }
                                     } else {
                                         if (element && element.recurring_dates != '' && element.recurring_dates != null) {
@@ -435,6 +443,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     self.upcomingCourseList.push(rrEvents1);
 
                                                 }
+
                                             });
                                         } else {
                                             const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
@@ -518,6 +527,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         self.upcomingCourseList.push(rrEvents1);
                                                     }
                                                 });
+
                                             }
                                         }
                                     }
@@ -533,6 +543,11 @@ export class CourseComponent implements OnInit, OnDestroy {
                         sortByDate(this.upcomingCourseList);
 
                         this.currentCourseList.forEach(element => {
+                            // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
+                            //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
+                            //         element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
+                            //     }
+                            // }
                             let self = this;
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
@@ -558,6 +573,17 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.upcomingCourseList.forEach(element => {
+                            console.log(element);
+                            
+                            // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
+                            //     console.log(element?.CourseExternalInstructor[0]);
+
+                            //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
+                            //         console.log(element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]);
+                            //         // element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
+                            //     }
+                            // }
+
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
