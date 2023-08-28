@@ -6,9 +6,7 @@
     z-index: 777;
 }
 
-::ng-deep body .app-content-area {
-    background: #fff;
-}
+
 
 .chat-window-header {
     background: #fff;
@@ -29,6 +27,11 @@
 .chat-user-img {
     height: 45px;
     margin-right: 15px;
+}
+
+.chat-reciever .chat-bubble-info {
+  text-align: right;
+  justify-content: end;
 }
 
 .chat-user-img img {
@@ -480,9 +483,9 @@ span.c-group-name {
     fill: #fff;
 }
 ::ng-deep .drower-close mat-icon.close {
-    right: 68px;
+    right: 5px;
     position: absolute;
-    top: 5px;
+    top: 2px;
     opacity: inherit;
 }
 .drower-close {
@@ -499,19 +502,4 @@ span.c-group-name {
 }
 ::ng-deep body.mobile-green .drower-close mat-icon.mat-icon.close svg path {
     fill:  #20AE80 !important;
-}
-.chat-user-thumb .author-img {
-    object-fit: cover;
-    height: 44px;
-}
-.chat-user-info .chat-user-thumb::after {
-    content: "";
-    height: 13px;
-    width: 13px;
-    border: 2px solid #fff;
-    background: #56E965;
-    position: absolute;
-    border-radius: 50%;
-    top: 0;
-    right: 0;
 }
