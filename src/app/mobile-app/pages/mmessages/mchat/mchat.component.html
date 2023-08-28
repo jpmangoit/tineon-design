@@ -56,7 +56,7 @@
                     </svg></button>
             </div>
             <div class="chat-user-info">
-                <div class="chat-user-thumb" *ngIf="selectedChat && selectedChat.image">
+                <div class="chat-user-thumb">
                     <img onContextMenu="return false;" class="author-img"
                         [src]=" selectedChat.image ?  selectedChat.image : '../../../assets/img/defaultProfile.jpeg'" alt=""
                         loading="lazy">

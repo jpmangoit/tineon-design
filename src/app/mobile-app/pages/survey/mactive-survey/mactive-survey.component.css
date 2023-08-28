@@ -41,9 +41,9 @@ span.survey-author-img {
     border-radius: 50%;
 }
 
-.survey-author-img img {
+/* .survey-author-img img {
   max-width: none;
-}
+} */
 .survey-author {
     display: flex;
     align-items: center;

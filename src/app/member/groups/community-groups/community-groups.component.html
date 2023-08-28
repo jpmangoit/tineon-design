@@ -56,9 +56,9 @@
                                             </ng-template>
                                         </owl-carousel-o>
                                     </div>
-                                    <div class="community-group-column" *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
+                                    <!-- <div class="community-group-column" *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'> -->
                                         <!-- *ngFor='let data of groupData'> -->
-                                        <!-- <div class="community-group-column" *ngFor='let data of groupData'> -->
+                                    <div class="community-group-column" *ngFor='let data of groupData'>
                                         <div class="news-widget com-g-widget">
                                             <div class="news-image" [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
                                                 <img onContextMenu="return false;"
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="paginationHead full_width" *ngIf="groupData?.length > 0 && displayGroup">
+                                <!-- <div class="paginationHead full_width" *ngIf="groupData?.length > 0 && displayGroup">
                                     <div class="pagintHeadLeft">
                                         <pagination-controls (pageChange)="pageChanged($event);"
                                             (pageBoundsCorrection)="pageChanged($event)" autoHide="true"
@@ -149,7 +149,7 @@
                                             {{language.community_groups.groups}}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="container" *ngIf="groupData && groupData.length == 0">
                                     <div class="empty-data-image">
                                         <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
@@ -185,8 +185,8 @@
                             <div class="all-group-widget" >
                                <!-- group-col start -->
                                 <div class="community-group-row">
-                                    <!-- <div class="community-group-column" *ngFor='let data of groupJoinData'> -->
-                                        <div class="community-group-column" *ngFor='let data of groupJoinData | paginate:{itemsPerPage: itemPerPageOne,currentPage: currentPageNmuberOne, totalItems: totalJoinedGroupData}'>
+                                    <!-- <div class="community-group-column" *ngFor='let data of groupJoinData | paginate:{itemsPerPage: itemPerPageOne,currentPage: currentPageNmuberOne, totalItems: totalJoinedGroupData}'> -->
+                                    <div class="community-group-column" *ngFor='let data of groupJoinData'>                                       
                                         <div class="news-widget com-g-widget">
                                             <div class="news-image"
                                                 [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
@@ -242,7 +242,7 @@
                                     </div>
                                 </div>
 
-                                <div class="paginationHead full_width" *ngIf="groupJoinData?.length > 0 && displayJoinGroup">
+                                <!-- <div class="paginationHead full_width" *ngIf="groupJoinData?.length > 0 && displayJoinGroup">
                                     <div class="pagintHeadLeft">
                                         <pagination-controls (pageChange)="pageChangedOne($event);" (pageBoundsCorrection)="pageChangedOne($event)" autoHide="true"
                                             previousLabel="{{language.pagination.previous}}" nextLabel="{{language.pagination.next}}">
@@ -267,7 +267,7 @@
                                             {{language.community_groups.groups}}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="container" *ngIf="groupJoinData && groupJoinData.length == 0">
                                     <div class="empty-data-image">
                                         <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.community_groups.no_groups}}" loading="lazy"><br> -->
