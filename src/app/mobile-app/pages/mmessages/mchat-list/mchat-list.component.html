@@ -13,7 +13,7 @@
 			</div>
 			<div class="chat-user-list-content">
 				<div class="chat-user-name">
-					<span>{{chat.name}}</span>
+					<span>{{chat.name}} {{chat.lastName}}</span>
                      <span class="last-seen" *ngIf="chat.lastMsgDate && !chat.lastMsgTimming">
 						{{chat.lastMsgDate | date: ' dd. MMMM yyyy'}}
                     </span>
