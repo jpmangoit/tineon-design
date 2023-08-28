@@ -129,6 +129,10 @@ export class MorganizerTaskComponent implements OnInit {
         }
     }
 
+    taskProgressFilter(id:any){
+
+    }
+
 
     getAllTask() {
         if (sessionStorage.getItem('token')) {

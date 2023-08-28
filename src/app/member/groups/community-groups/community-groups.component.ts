@@ -218,7 +218,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     allGroups() {
         this.authService.setLoader(true);
         this.groupData = [];
-        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+        //this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
             this.groupData = respData['groups'];
             console.log(respData);
 
@@ -278,7 +279,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     joinAllGroups() {
         this.authService.setLoader(true);
         this.groupJoinData = [];
-        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
+        // this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/', null)
             .subscribe((respData: any) => {
                 console.log(respData);
                 this.groupJoinData = respData['groups'].reverse();
@@ -302,7 +304,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     groupsYouManage() {
         this.authService.setLoader(true);
         this.groupsYouManageData = [];
-        this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
+        //this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
+        this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id , null)
         .subscribe((respData: any) => {
             this.groupsYouManageData = respData['groups'].reverse();
             this.groupsYouManageData.forEach((element: any) => {
@@ -310,7 +313,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
             })
-            this.totalManagaeGroupData = respData['pagination']['rowCount'];
+            //this.totalManagaeGroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
         });
     }
