@@ -43,6 +43,7 @@ span.survey-author-img {
 
 .survey-author-img img {
   max-width: none;
+  width: 100%;
 }
 .survey-author {
     display: flex;

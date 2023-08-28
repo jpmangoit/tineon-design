@@ -629,6 +629,8 @@ body {
         right: 0;
     }
 
+    
+
 
 }
 
@@ -11071,8 +11073,10 @@ body .sidebar.sidebar-hr a.sidebar-expand:hover .nav-logo .club-name {
     line-height: 22px;
 }
 .news_content_text {
-    font-family: "Gellix", sans-serif;
-    font-weight: 500;
+  font-family: "Gellix", sans-serif;
+  font-weight: 500;
+  max-height: 280px;
+  overflow: auto;
 }
 /* user green color composition */
 .club-define button.red_more_btn {
