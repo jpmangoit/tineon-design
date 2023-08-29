@@ -143,7 +143,6 @@ export class MorganizerTaskComponent implements OnInit {
     }
 
     taskProgressFilter(id: any) {
-        console.log(id);
         if (id == 5) {
             this.displayToDo = true;
             this.displayInProgress = false;
@@ -196,7 +195,6 @@ export class MorganizerTaskComponent implements OnInit {
             this.authService.memberSendRequest('get', endpoint, null)
                 .subscribe(
                     (respData: any) => {
-                        // console.log(respData);
                         this.toDoTask = [];
                         this.inProgress = [];
                         this.completed = [];
@@ -208,7 +206,7 @@ export class MorganizerTaskComponent implements OnInit {
                                             .subscribe(
                                                 (resppData: any) => {
                                                     this.thumb = resppData;
-                                                    element.userImage = this.thumb;
+                                                    element.userstask.userImage = this.thumb;
                                                 },
                                                 (error: any) => {
                                                     element.userstask.userImage = null;
@@ -216,7 +214,6 @@ export class MorganizerTaskComponent implements OnInit {
                                     } else {
                                         element.userstask.userImage = null;
                                     }
-                                    // console.log(element);
 
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
@@ -281,7 +278,7 @@ export class MorganizerTaskComponent implements OnInit {
                                             .subscribe(
                                                 (resppData: any) => {
                                                     this.thumb = resppData;
-                                                    element.userImage = this.thumb;
+                                                    element.userstask.userImage = this.thumb;
                                                 },
                                                 (error: any) => {
                                                     element.userstask.userImage = null;
@@ -289,7 +286,6 @@ export class MorganizerTaskComponent implements OnInit {
                                     } else {
                                         element.userstask.userImage = null;
                                     }
-                                    // console.log(element);
 
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;

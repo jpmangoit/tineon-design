@@ -248,38 +248,38 @@ export class RoomComponent implements OnInit, OnDestroy {
  * Function is used for pagination
  * @author  MangoIt Solutions
  */
-    goToPg(eve: number) {
-        if (isNaN(eve)) {
-            eve = this.currentPageNmuber;
-        } else {
-            if (eve > Math.round(this.totalRoomData / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
-            } else {
-                this.currentPageNmuber = eve;
-                if (this.searchData?.length > 0) {
-                    this.onSearch(this.currentPageNmuber);
-                } else {
-                    this.getAllRooms('');
-                }
-            }
-        }
-    }
+    // goToPg(eve: number) {
+    //     if (isNaN(eve)) {
+    //         eve = this.currentPageNmuber;
+    //     } else {
+    //         if (eve > Math.round(this.totalRoomData / this.itemPerPage)) {
+    //             this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
+    //         } else {
+    //             this.currentPageNmuber = eve;
+    //             if (this.searchData?.length > 0) {
+    //                 this.onSearch(this.currentPageNmuber);
+    //             } else {
+    //                 this.getAllRooms('');
+    //             }
+    //         }
+    //     }
+    // }
 
     /**
  * Function is used for pagination
  * @author  MangoIt Solutions
  */
-    setItemPerPage(limit: number) {
-        if (isNaN(limit)) {
-            limit = this.itemPerPage;
-        }
-        this.itemPerPage = limit;
-        if (this.searchData?.length > 0) {
-            this.onSearch('');
-        } else {
-            this.getAllRooms('');
-        }
-    }
+    // setItemPerPage(limit: number) {
+    //     if (isNaN(limit)) {
+    //         limit = this.itemPerPage;
+    //     }
+    //     this.itemPerPage = limit;
+    //     if (this.searchData?.length > 0) {
+    //         this.onSearch('');
+    //     } else {
+    //         this.getAllRooms('');
+    //     }
+    // }
 
     /**
     * Function is used to get room by Id
