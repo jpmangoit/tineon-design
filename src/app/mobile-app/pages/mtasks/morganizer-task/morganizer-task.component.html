@@ -74,7 +74,6 @@
     <div class="task-listing">
         <div *ngIf="displayAll == true && displayToDo == true">
             <div class="task_list_title">{{language.organizer_task.toDoTask}}</div>
-
             <!-- task item start -->
             <ng-container *ngFor="let task of toDoTask; let i = index">
                 <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0">
@@ -118,8 +117,8 @@
                     <div class="task-title">
                         <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
                         <!-- <p
-                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
-                    </p> -->
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
@@ -140,7 +139,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -150,8 +149,6 @@
                 </div>
             </ng-container>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="toDoTask && toDoTask.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -164,13 +161,13 @@
                 <div class="task-item" *ngIf="inProgress && inProgress.length > 0">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
-                <img onContextMenu="return false;"
-                [src]="task && task?.['task_image'] &&
-                 (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                ? task['task_image'][0]?.['task_image']
-                : '../../../../assets/img/no_image.png'"
-                alt="" loading="lazy">
-            </div> -->
+                    <img onContextMenu="return false;"
+                    [src]="task && task?.['task_image'] &&
+                    (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                    ? task['task_image'][0]?.['task_image']
+                    : '../../../../assets/img/no_image.png'"
+                    alt="" loading="lazy">
+                    </div> -->
                         <div>
                             <Span class="survey-dates-inner">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -187,14 +184,14 @@
                             <span
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
-                    <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
                             width="5" height="19" viewBox="0 0 5 19" fill="none">
                             <path
                                 d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
                                 fill="#D1D8EF" />
-                        </svg></button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item
+                            </svg></button>
+                            <mat-menu #menu="matMenu">
+                            <button mat-menu-item
                             routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
 
                     </mat-menu>
@@ -204,8 +201,8 @@
                     <div class="task-title">
                         <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
                         <!-- <p
-                [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
-            </p> -->
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
@@ -225,7 +222,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -235,8 +232,6 @@
                 </div>
             </ng-container>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="inProgress && inProgress.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-        alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -306,7 +301,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -316,8 +311,6 @@
                 </div>
             </ng-container>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="completed && completed.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                    alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -395,7 +388,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -406,8 +399,6 @@
                 </div>
             </ng-container>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="perToDoTask && perToDoTask.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -480,7 +471,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -489,10 +480,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="perInProgress && perInProgress.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="perInProgress && perInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -505,13 +493,13 @@
                 <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
-                <img onContextMenu="return false;"
-                    [src]="task && task?.['task_image'] &&
-                     (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
-                    ? task['task_image'][0]?.['task_image']
-                    : '../../../../assets/img/no_image.png'"
-                    alt="" loading="lazy">
-            </div> -->
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                        (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                        </div> -->
                         <div>
                             <Span class="survey-dates-inner">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -527,24 +515,24 @@
                             <span
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
-                    <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
                             width="5" height="19" viewBox="0 0 5 19" fill="none">
                             <path
                                 d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
                                 fill="#D1D8EF" />
-                        </svg></button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                            </svg></button>
+                            <mat-menu #menu="matMenu">
+                            <button mat-menu-item routerLink="/task-detail/{{task.id}}">
                             {{language.Survey.view_detail}}</button>
-                    </mat-menu>
-                </div> -->
+                             </mat-menu>
+                             </div> -->
                         </div>
                     </div>
                     <div class="task-title">
                         <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
                         <!-- <p
-                [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
-            </p> -->
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
                     </div>
 
                     <div class="progress-task">
@@ -563,7 +551,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -574,8 +562,6 @@
             </ng-container>
             <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
                 *ngIf="perCompleted && perCompleted.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-        alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -652,7 +638,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -662,10 +648,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="groupToDoTask && groupToDoTask.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                    alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupToDoTask && groupToDoTask.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -738,7 +721,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -747,10 +730,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="groupInProgress && groupInProgress.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupInProgress && groupInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -821,7 +801,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -830,10 +810,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="groupCompleted && groupCompleted.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupCompleted && groupCompleted.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -911,7 +888,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -920,10 +897,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="createdToDoTask && createdToDoTask.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdToDoTask && createdToDoTask.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -996,7 +970,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -1005,10 +979,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="createdInProgress && createdInProgress.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdInProgress && createdInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -1078,7 +1049,7 @@
                     <div class="survey-author">
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
-                                [src]="task && task.userstask.userImage != null ? userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
                                 alt="" loading="lazy">
                         </span>
                         <span>{{task.userstask.firstname}}
@@ -1087,10 +1058,7 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
-                *ngIf="createdCompleted && createdCompleted.length == 0">
-                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                    alt="{{language.organizer_task.no_task_available}}" loading="lazy"><br> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdCompleted && createdCompleted.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
