@@ -392,7 +392,7 @@
         "all_participants": "Tutti i partecipanti",
         "price": "Prezzo",
         "free_course": "gratuita",
-        "free": "0",
+        "free": "free",
         "cancelled": "Annullato",
         "pending": "In attesa",
         "approved": "Approvato",
@@ -437,7 +437,9 @@
         "endDateError": "La data di fine dell'attività secondaria deve essere precedente alla data di fine dell'attività principale",
         "currentTask": "Attività corrente",
         "updatedTask": "Attività aggiornata",
-        "viewTask": "Visualizza l'attività"
+        "viewTask": "Visualizza l'attività",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document": {
         "title": "Documenti",

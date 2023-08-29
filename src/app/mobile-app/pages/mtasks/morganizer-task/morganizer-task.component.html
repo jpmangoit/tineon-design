@@ -132,6 +132,8 @@
                     </div>
 
                     <div class="survey-author">
+                        <h5>{{language.organizer_task.task_created_by}}</h5>
+
                         <span class="survey-author-img">
                             <img onContextMenu="return false;"
                                 [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
@@ -281,7 +283,8 @@
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{task.dayCount}} {{task.remain}}</span>
                         </div>
-                       <div class="timeline"> <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar></div>
+                        <div class="timeline"> <mat-progress-bar mode="determinate"
+                                [value]="task.progressVal"></mat-progress-bar></div>
                     </div>
                     <div class="survey-author">
                         <span class="survey-author-img">
@@ -455,7 +458,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="perInProgress && perInProgress.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="perInProgress && perInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -618,7 +622,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupToDoTask && groupToDoTask.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupToDoTask && groupToDoTask.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -695,7 +700,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupInProgress && groupInProgress.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupInProgress && groupInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -775,7 +781,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="groupCompleted && groupCompleted.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupCompleted && groupCompleted.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -857,7 +864,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdToDoTask && createdToDoTask.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdToDoTask && createdToDoTask.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -934,7 +942,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdInProgress && createdInProgress.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdInProgress && createdInProgress.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->
@@ -1013,7 +1022,8 @@
                     <!-- survey item end -->
                 </div>
             </ng-container>
-            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="createdCompleted && createdCompleted.length == 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdCompleted && createdCompleted.length == 0">
                 <span>{{language.organizer_task.no_task_available}}</span>
             </div>
             <!-- task item end -->

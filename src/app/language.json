@@ -53,7 +53,9 @@
         "news_highlight": "News Highlight"
     },
     "organizer_task":{
-        "no_task": "No Tasks Found"
+        "no_task": "No Tasks Found",
+        "task_created_by": "Task Created by:"
+
     },
     "club": {
         "birthday": "Birthday",

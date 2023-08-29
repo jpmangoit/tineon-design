@@ -290,7 +290,10 @@
         "group_task": "Групповые задачи",
         "uncomplete_subrask":"Незавершенная подзадача",
         "uncomplete_heading":"У этой задачи есть незавершенная подзадача. Пожалуйста, сначала завершите подзадачу",
-        "close_subtask":"Закрывать"
+        "close_subtask":"Закрывать",
+        "viewTask": "Visualizza l'attività",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document": {
         "title": "Документы",

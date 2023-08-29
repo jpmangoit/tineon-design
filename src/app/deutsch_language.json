@@ -396,7 +396,7 @@
         "all_participants": "Alle Teilnehmer",
         "price": "Preis",
         "free_course": "Kostenlos",
-        "free": "0",
+        "free": "frei",
         "cancelled": "Abgelehnt",
         "pending": "Ausstehend",
         "approved": "Angenommen",
@@ -441,7 +441,9 @@
         "endDateError": "Das Enddatum der Unteraufgabe muss vor dem Enddatum der Hauptaufgabe liegen",
         "currentTask": "Aktuelle Aufgabe",
         "updatedTask": "Aktualisierte Aufgabe",
-        "viewTask": "Aufgabe ansehen"
+        "viewTask": "Aufgabe ansehen",
+        "task_created_by": "Aufgabe erstellt von:"
+
     },
     "club_document": {
         "title": "Dokumente",
