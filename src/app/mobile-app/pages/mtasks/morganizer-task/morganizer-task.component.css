@@ -306,7 +306,11 @@ span.total-joiny {
     color: #8c8c8c;
 }
 
-
+span.created-lable {
+    display: block;
+    font-size: 11px !important;
+    color: #8E8E93;
+}
 
 ::ng-deep .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
  margin-top: 45px;
@@ -351,7 +355,7 @@ left: 15px !important;
 
 ::ng-deep body .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none !important;
-  padding: 0px;
+  padding: 0px !important;
 }
 
 ::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
