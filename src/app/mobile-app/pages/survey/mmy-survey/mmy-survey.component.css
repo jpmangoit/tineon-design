@@ -32,8 +32,8 @@ span.survey-dates-inner {
     color: #414141;
 }
 span.survey-author-img {
-    width: 27px;
-    height: 27px;
+    width: 38px;
+    height: 38px;
     overflow: hidden;
     display: inline-block;
     margin-right: 8px;
@@ -46,10 +46,10 @@ span.survey-author-img {
 .survey-author span {
     font-family: 'Gellix', sans-serif;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: #9eacc1;
+    color: #3C3B41;
 }
 .timeline-label span:first-child {
     font-family: 'Gellix', sans-serif;
