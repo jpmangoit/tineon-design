@@ -139,8 +139,12 @@ span.survey-author-img {
     overflow: hidden;
     display: inline-block;
     margin-right: 8px;
+    border-radius: 100%;
 }
-
+span.survey-author-img img {
+  width: 100%;
+  transform: scale(2);
+}
 .survey-author {
     display: flex;
     align-items: center;
@@ -197,7 +201,7 @@ span.survey-author-img {
     align-items: center;
     color: #999999;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
 }
 .timeline {
     margin-bottom: 10px;
@@ -218,7 +222,7 @@ button.mat-menu-item {
 }
 
 ::ng-deep .mat-progress-bar-fill::after {
-    background-color: #76b0ef;
+     background-color: #fbc52d
 }
 
 .task-category span {
