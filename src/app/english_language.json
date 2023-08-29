@@ -400,7 +400,7 @@
         "all_participants": "All Participants",
         "price": "Price",
         "free_course": "Free",
-        "free": "0",
+        "free": "free",
         "cancelled": "Cancelled",
         "pending": "Pending",
         "approved": "Approved",
@@ -446,7 +446,8 @@
         "currentTask": "Current Task",
         "updatedTask": "Updated task",
 
-        "viewTask":"View Task"
+        "viewTask":"View Task",
+        "task_created_by": "Task Created by:"
     },
     "club_document": {
         "title": "Documents",

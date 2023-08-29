@@ -391,7 +391,7 @@
         "all_participants": "Todos los participantes",
         "price": "Precio",
         "free_course": "libre",
-        "free": "0",
+        "free": "free",
         "cancelled": "Cancelado",
         "pending": "Pendiente",
         "approved": "Aprobado",
@@ -436,7 +436,9 @@
         "endDateError": "La fecha de finalización de la subtarea debe ser anterior a la fecha de finalización de la tarea principal",
         "currentTask": "Tarea actual",
         "updatedTask": "Tarea actualizada",
-        "viewTask":"Ver tarea"
+        "viewTask":"Ver tarea",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document": {
         "title": "Documentos",

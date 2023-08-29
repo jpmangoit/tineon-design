@@ -437,7 +437,9 @@
         "endDateError": "Alt görevin bitiş tarihi, ana görevin bitiş tarihinden önce olmalıdır",
         "currentTask": "Geçerli Görev",
         "updatedTask": "Güncellenmiş görev",
-        "viewTask":"Görevi Görüntüle"
+        "viewTask":"Görevi Görüntüle",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document": {
         "title": "Belgeler",
