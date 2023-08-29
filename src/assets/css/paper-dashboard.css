@@ -629,6 +629,7 @@ body {
         right: 0;
     }
 
+
     
 
 
@@ -12637,6 +12638,11 @@ margin-left: 0px;
 border: 1px solid #FBC52D;
 background: #FBC52D;
     }
+
+   body  .news_content_text {
+  
+  color: #8e8e93;
+}
 
 }
 

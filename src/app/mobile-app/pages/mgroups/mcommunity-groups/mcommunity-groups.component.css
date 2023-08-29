@@ -214,6 +214,11 @@ button.mat-menu-item {
     line-height: 15px;
     margin-bottom: 5px;
     height: auto;
+    white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+width: 100%;
+display: inline-block;
 }
 
 .membar-count-area {

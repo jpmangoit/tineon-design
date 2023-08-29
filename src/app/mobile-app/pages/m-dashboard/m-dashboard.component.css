@@ -103,6 +103,7 @@ margin-right: 7px;
   text-shadow: none;
   margin-top: -3px;
   line-height: 23px;
+  white-space: nowrap;
 }
 
 .profile-qr-box .profile-card-description  ul  li:first-child{
@@ -1304,6 +1305,34 @@ min-width: 81px;
     ::ng-deep .news-des-area p ol {
         padding: 0;
     }
+
+    .qr-label span:first-child {
+  width: 100px;
+  display: inline-block;
+}
+
+.qr-label span:last-child {
+    font-weight: 700;
+}
+}
+
+.profile-qr-box .profile-card-description ul li span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media(max-width:400px) {
+    .qr-info-main.profile-qr-box .profile-image {
+  width: 75px;
+  height: 75px;
+  margin-right: 10px;
+}
+
+.profile-card-info {
+
+  padding: 55px 24px 14px;
+}
 }
 
 
