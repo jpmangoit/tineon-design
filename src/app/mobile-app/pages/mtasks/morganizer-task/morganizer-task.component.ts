@@ -187,9 +187,11 @@ export class MorganizerTaskComponent implements OnInit {
         if (sessionStorage.getItem('token')) {
             var endpoint
             if (this.userDetails.roles[0] == 'admin') {
-                endpoint = 'getAllApprovedTasks'
+                endpoint = 'mobile/getAllApprovedTasks'
+                // endpoint = 'getAllApprovedTasks'
             } else {
-                endpoint = 'getAllApprovedTasks/user/' + this.user_id
+                endpoint = 'mobile/getAllApprovedTasks/user/' + this.user_id 
+                // endpoint = 'getAllApprovedTasks/user/' + this.user_id 
             }
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', endpoint, null)
@@ -239,9 +241,10 @@ export class MorganizerTaskComponent implements OnInit {
                                         this.toDoTask.push(element)
                                         this.toDoTask;
 
-                                    } else if (element.subtasks.some(obj => obj.status === 1)) {
+                                    } else if (element.status == 0 && element.subtasks.some(obj => obj.status === 1)) {
                                         this.inProgress.push(element)
                                         this.inProgress;
+
                                     } else if (element.status == 1) {
                                         this.completed.push(element)
                                         this.completed;
@@ -259,7 +262,8 @@ export class MorganizerTaskComponent implements OnInit {
     getTask() {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'getAllApprovedTasks/user/' + this.user_id, null)
+            // this.authService.memberSendRequest('get', 'getAllApprovedTasks/user/' + this.user_id, null)
+            this.authService.memberSendRequest('get', 'mobile/getAllApprovedTasks/user/' + this.user_id, null)
                 .subscribe(
                     (respData: any) => {
                         console.log(respData);
@@ -312,9 +316,11 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id == null || element.group_id == 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.perToDoTask.push(element)
                                             this.perToDoTask;
+                                            
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.perInProgress.push(element)
                                             this.perInProgress;
+                                            
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.status == 1)) {
                                             this.perCompleted.push(element)
                                             this.perCompleted;
@@ -338,9 +344,11 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id > 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.groupToDoTask.push(element)
                                             this.groupToDoTask;
+                                            
                                         } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.groupInProgress.push(element)
                                             this.groupInProgress;
+
                                         } else if ((element.group_id > 0) && (element.status == 1)) {
                                             this.groupCompleted.push(element)
                                             this.groupCompleted;
