@@ -60,10 +60,19 @@
 
                     <ng-container matColumnDef="View">
                         <th class="text-left" mat-header-cell *matHeaderCellDef>
-                            {{language.header.view}}
+                            <!-- {{language.header.view}} -->
                         </th>
                         <td class="odd table_action view" mat-cell *matCellDef="let row">
-                            <button class="btn btn-outline-secondary" routerLink="/task-detail/{{row.id}}">{{language.header.view}}</button>
+                            <!-- <button class="btn btn-outline-secondary" routerLink="/task-detail/{{row.id}}">{{language.header.view}}</button> -->
+                            <a>
+                                <i class="fa fa-eye" aria-hidden="true"   routerLink="/task-detail/{{row.id}}"></i>
+                            </a>&nbsp;&nbsp;
+                            <a>
+                                <i class="fa fa-pencil"  routerLink="/update-task/{{row.id}}"></i>
+                            </a>&nbsp;&nbsp;
+                            <a>
+                                <i class="fa fa-trash" aria-hidden="true"  (click)="deleteTask(row.id)"></i>
+                            </a>&nbsp;
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

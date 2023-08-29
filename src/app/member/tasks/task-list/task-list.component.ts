@@ -8,6 +8,10 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
+declare var $: any;
+
 
 @Component({
   selector: 'app-task-list',
@@ -20,7 +24,7 @@ export class TaskListComponent implements OnInit {
     language: any;
     isData: boolean = true;
     displayedColumns: string[] = [
-        'name',
+        'name', 
         'description',
         'picture_video',
         'author',
@@ -38,7 +42,10 @@ export class TaskListComponent implements OnInit {
 
 
   constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
-    private sanitizer: DomSanitizer
+        private notificationService: NotificationService,
+        private sanitizer: DomSanitizer,
+        private confirmDialogService: ConfirmDialogService,
+
 ) { }
 
   ngOnInit(): void {
@@ -94,6 +101,30 @@ export class TaskListComponent implements OnInit {
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
+
+     /**
+    * Function for delete the Task
+    * @author  MangoIt Solutions
+    * @param   {taskId}
+    * @return  {}
+    */
+     deleteTask(eventId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData.result.message, null);
+                        self.getUserAllTask("");
+                    }
+                )
+        }, function () {
+            $('.dropdown-toggle').trigger('click');
+        })
+    }
+
 
     /**
      * Function for pagination page changed

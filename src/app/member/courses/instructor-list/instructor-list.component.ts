@@ -8,6 +8,8 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
     selector: 'app-instructor-list',
@@ -18,7 +20,7 @@ export class InstructorListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true;
+    isData: boolean = true; 
     displayedColumns: string[] = [
         'first_name',
         'last_name',
@@ -37,13 +39,16 @@ export class InstructorListComponent implements OnInit {
     pageSize: number = 10;
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
+    responseMessage:any;
 
     constructor(
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
         private commonFunctionService: CommonFunctionService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService,
     ) { }
 
     ngOnInit(): void {
@@ -99,6 +104,34 @@ export class InstructorListComponent implements OnInit {
 
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
+     /**
+    * Function is used to delete Instructor by id
+    * @author MangoIt Solutions
+    * @param {id}
+    * @returns {Object} message
+    */
+     deleteInstructor(instructor_id: number) {
+        let self = this;
+        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_instructor, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteInstructor/' + instructor_id, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            self.responseMessage = respData['result']['message'];
+                            self.notificationService.showSuccess(self.responseMessage,null);
+                            self.getUserAllInstructor("")
+                        } else if (respData['code'] == 400) {
+                            self.responseMessage = respData['message'];
+                            self.notificationService.showError(self.responseMessage,null);
+                        }
+                    }
+                )
+        }, function () { }
+        )
     }
 
     /**

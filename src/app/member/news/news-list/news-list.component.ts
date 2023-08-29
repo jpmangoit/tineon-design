@@ -13,6 +13,7 @@ import { appSetting } from 'src/app/app-settings';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/service/notification.service';
 @Component({
     selector: 'app-news-list',
     templateUrl: './news-list.component.html',
@@ -47,7 +48,7 @@ export class NewsListComponent implements OnInit {
     displayEvents: boolean = false;
     displayCourses: boolean = false;
     displayRooms: boolean = false;
-    displayInstructors : boolean = false;
+    displayInstructors: boolean = false;
     displaySurvey: boolean = false;
     displayTasks: boolean = false;
     displayGroup: boolean = false;
@@ -62,8 +63,10 @@ export class NewsListComponent implements OnInit {
         private themes: ThemeService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,
-        private _router: Router
-    ) { 
+        private _router: Router,
+        private notificationService: NotificationService,
+
+    ) {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -145,7 +148,7 @@ export class NewsListComponent implements OnInit {
         this.displayFaq = false
     }
 
-    onInstructor(){
+    onInstructor() {
         this.displayNews = false;
         this.displayEvents = false;
         this.displayCourses = false;
@@ -241,6 +244,51 @@ export class NewsListComponent implements OnInit {
     }
 
     /**
+    * Function for apply Filter
+    * @author  MangoIt Solutions(T)
+    */
+    searchValue: string;
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.searchValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    /**
+   * Function is used to redirect on update news page
+   * @author  MangoIt Solutions
+   */
+    updateNews(newsId: number) {
+        const url: string[] = ["/update-news/" + newsId];
+        this._router.navigate(url);
+    }
+
+    /**
+  * Function is used to delete news by news Id
+  * @author  MangoIt Solutions
+  * @param   {newsId}
+  * @return  success/ error message
+  */
+    deleteNews(newsId: number) {
+        // console.log(this.searchValue);
+
+        let self = this;
+        this.commonFunctionService.deleteNews(newsId)
+            .then((resp: any) => {
+                self.notificationService.showSuccess(resp, null);
+                this.searchValue = '';
+                this.dataSource.filter = '';
+                this.getUserAllNews("");
+                // const url: string[] = ["/all-list"];
+                // self._router.navigate(url);
+
+            })
+            .catch((err: any) => {
+                self.notificationService.showError(err, null);
+            });
+    }
+
+    /**
      * Function for sort column date
      * @author  MangoIt Solutions(T)
      */
@@ -264,15 +312,6 @@ export class NewsListComponent implements OnInit {
         this.pageSize = event.pageSize;
         this.currentPage = event.pageIndex;
         this.getUserAllNews("");
-    }
-
-    /**
-    * Function for apply Filter
-    * @author  MangoIt Solutions(T)
-    */
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
 }

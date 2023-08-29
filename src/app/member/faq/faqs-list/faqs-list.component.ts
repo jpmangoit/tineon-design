@@ -8,6 +8,8 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-faqs-list',
@@ -17,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FaqsListComponent implements OnInit {
 
     userData: LoginDetails;
-    language: any;
+    language: any; 
     isData: boolean = true;
     displayedColumns: string[] = [
         'name',
@@ -35,9 +37,12 @@ export class FaqsListComponent implements OnInit {
     pageSize: number = 10;
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
+    responseMessage:any
 
   constructor(private authService: AuthServiceService, private lang: LanguageService,
-    private commonFunctionService: CommonFunctionService,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService,
+        private commonFunctionService: CommonFunctionService,
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -92,6 +97,23 @@ export class FaqsListComponent implements OnInit {
 
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
+    deleteFaqs(faqsId:number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteFaq/' +faqsId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.responseMessage = respData.result.message;
+                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.getUserAllFaqs("");
+                    }
+                )
+        }, function () {
+        })
     }
 
     /**

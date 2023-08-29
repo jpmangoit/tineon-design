@@ -8,6 +8,11 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
+import { Router } from '@angular/router';
+declare var $: any;
+
 
 @Component({
     selector: 'app-event-list',
@@ -41,6 +46,10 @@ export class EventListComponent implements OnInit {
         private themes: ThemeService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService,
+        private router: Router,
+
     ) { }
 
     ngOnInit(): void {
@@ -117,10 +126,48 @@ export class EventListComponent implements OnInit {
         });
     }
 
-
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
+
+
+    deleteEvents(eventId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'event/' + eventId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        self.getUserAllEvents("");
+                        // const url: string[] = ["/all-list"];
+                        // self.router.navigate(url);
+                    }
+                )
+        }, function () {
+            $('.dropdown-toggle').trigger('click');
+        })
+    }
+
+    // deleteNews(newsId: number) {
+    //     // console.log(this.searchValue);
+
+    //     let self = this;
+    //     this.commonFunctionService.deleteNews(newsId)
+    //         .then((resp: any) => {
+    //             self.notificationService.showSuccess(resp, null);
+    //             this.searchValue = '';
+    //             this.dataSource.filter = '';
+    //             this.getUserAllNews("");
+    //             // const url: string[] = ["/all-list"];
+    //             // self._router.navigate(url);
+
+    //         })
+    //         .catch((err: any) => {
+    //             self.notificationService.showError(err, null);
+    //         });
+    // }
 
     /**
      * Function for pagination page changed
