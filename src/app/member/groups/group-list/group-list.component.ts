@@ -8,6 +8,8 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-group-list',
@@ -17,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class GroupListComponent implements OnInit {
 
     userData: LoginDetails;
-    language: any;
+    language: any; 
     isData: boolean = true;
     displayedColumns: string[] = [
         'name',
@@ -37,6 +39,9 @@ export class GroupListComponent implements OnInit {
     pageSizeOptions: number[] = [10, 25, 50];
 
   constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
+    private notificationService: NotificationService,
+    private confirmDialogService: ConfirmDialogService,
+
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void { 
@@ -92,6 +97,29 @@ export class GroupListComponent implements OnInit {
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
+
+     /**
+   * Function is used to delete group
+   * @author  MangoIt Solutions
+   * @param   {GroupId}
+   * @return  {}
+   */
+     deleteGroup(groupId: number) {
+        let self = this;
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.notificationService.showSuccess(respData.result.message, null);
+                        self.getUserAllGroup("");
+                    }
+                )
+        }, function () {
+        })
+    }
+
 
     /**
      * Function for pagination page changed

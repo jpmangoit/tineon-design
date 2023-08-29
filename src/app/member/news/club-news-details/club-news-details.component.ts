@@ -344,7 +344,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     updateNews(newsId: number) {
         const url: string[] = ["/update-news/" + newsId];
         this.router.navigate(url);
-    }
+    } 
 
     /**
     * Function is used to aprove news by news Id

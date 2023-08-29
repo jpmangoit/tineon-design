@@ -8,6 +8,9 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { Router } from '@angular/router';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
     selector: 'app-room-list',
@@ -18,7 +21,7 @@ export class RoomListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true;
+    isData: boolean = true; 
     displayedColumns: string[] = [
         'title',
         'description',
@@ -37,6 +40,7 @@ export class RoomListComponent implements OnInit {
     pageSize: number = 10;
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
+    responseMessage:any;
 
     constructor(
         private authService: AuthServiceService,
@@ -44,7 +48,9 @@ export class RoomListComponent implements OnInit {
         private themes: ThemeService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,
-
+        private router: Router,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService
     ) { }
 
     ngOnInit(): void {
@@ -101,6 +107,26 @@ export class RoomListComponent implements OnInit {
 
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
+    updateRoom(room_id: number) {
+        this.router.navigate(['update-room/' + room_id])
+    }
+
+    deleteRoom(room_id: number) {
+        let self = this;
+        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
+            self.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.responseMessage = respData.result.message;
+                        self.notificationService.showSuccess(self.responseMessage, null);
+                        self.getUserAllRooms("");
+                        // self.router.navigate(['/room'])
+                    }
+                )
+        }, function () {
+        })
     }
 
     /**

@@ -73,7 +73,7 @@
 <div class="app-content-area" *ngIf="displayAll == true">
     <div class="task-listing">
         <div *ngIf="displayAll == true && displayToDo == true">
-            <div class="task_list_title">{{language.organizer_task.toDoTask}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of toDoTask; let i = index">
                 <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0">
@@ -150,7 +150,7 @@
         </div>
 
         <div *ngIf="displayAll == true && displayInProgress == true">
-            <div class="task_list_title">{{language.organizer_task.inProgress}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of inProgress; let i = index">
                 <div class="task-item" *ngIf="inProgress && inProgress.length > 0">
@@ -228,7 +228,7 @@
         </div>
 
         <div *ngIf="displayAll == true && displayCompleted == true">
-            <div class="task_list_title">{{language.organizer_task.completed}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of completed; let i = index">
                 <div class="task-item" *ngIf="completed && completed.length > 0">
@@ -307,7 +307,7 @@
 <div class="app-content-area" *ngIf="displayPersonal == true">
     <div class="task-listing">
         <div *ngIf="displayPersonal == true && displayToDo == true">
-            <div class="task_list_title">{{language.organizer_task.toDoTask}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perToDoTask; let i = index">
                 <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0">
@@ -385,7 +385,7 @@
         </div>
 
         <div *ngIf="displayPersonal == true && displayInProgress == true">
-            <div class="task_list_title">{{language.organizer_task.inProgress}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perInProgress; let i = index">
                 <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0">
@@ -462,7 +462,7 @@
         </div>
 
         <div *ngIf="displayPersonal == true && displayCompleted == true">
-            <div class="task_list_title">{{language.organizer_task.completed}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perCompleted; let i = index">
                 <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0">
@@ -547,7 +547,7 @@
 <div class="app-content-area" *ngIf="displayGroup == true">
     <div class="task-listing">
         <div *ngIf="displayGroup == true && displayToDo ==true">
-            <div class="task_list_title">{{language.organizer_task.toDoTask}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupToDoTask; let i = index">
                 <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0">
@@ -625,7 +625,7 @@
         </div>
 
         <div *ngIf="displayGroup == true && displayInProgress ==true">
-            <div class="task_list_title">{{language.organizer_task.inProgress}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupInProgress; let i = index">
                 <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0">
@@ -703,7 +703,7 @@
 
 
         <div *ngIf="displayGroup == true && displayCompleted ==true">
-            <div class="task_list_title">{{language.organizer_task.completed}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupCompleted; let i = index">
                 <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0">
@@ -787,7 +787,7 @@
     <div class="task-listing">
 
         <div *ngIf="displayCreated == true && displayToDo == true">
-            <div class="task_list_title">{{language.organizer_task.toDoTask}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdToDoTask; let i = index">
                 <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0">
@@ -864,7 +864,7 @@
         </div>
 
         <div *ngIf="displayCreated == true && displayInProgress == true">
-            <div class="task_list_title">{{language.organizer_task.inProgress}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdInProgress; let i = index">
                 <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0">
@@ -941,7 +941,7 @@
         </div>
 
         <div *ngIf="displayCreated == true && displayCompleted == true">
-            <div class="task_list_title">{{language.organizer_task.completed}}</div>
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdCompleted; let i = index">
                 <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0">
