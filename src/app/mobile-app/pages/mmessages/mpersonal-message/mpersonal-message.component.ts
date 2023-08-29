@@ -12,6 +12,7 @@ import { LanguageService } from 'src/app/service/language.service';
 import { appSetting } from 'src/app/app-settings';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DropdownService } from 'src/app/service/dropdown.service';
 declare var $: any;
 
 @Component({
@@ -64,6 +65,7 @@ export class MpersonalMessageComponent implements OnInit {
 
     isPersonalList: boolean = true;
     selected = '1';
+    selectedValue :any;
     // select: { value: string; viewValue: any; }[];
 
     constructor(
@@ -71,7 +73,8 @@ export class MpersonalMessageComponent implements OnInit {
         private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private dropdownService: DropdownService
     ) {
 
     }
@@ -90,14 +93,12 @@ export class MpersonalMessageComponent implements OnInit {
         this.extensions = appSetting.extensions;
         this.imageType = appSetting.imageType;
 
-        // this.select = [
-        //     { value: '1', viewValue: this.language.community_messages.inbox },
-        //     { value: '2', viewValue: this.language.community_messages.starred },
-        //     { value: '3', viewValue: this.language.community_messages.sent },
-        //     { value: '4', viewValue: this.language.community_messages.drafts },
-        //     { value: '5', viewValue: this.language.community_messages.allmail },
-        //     { value: '6', viewValue: this.language.community_messages.trash },
-        // ];
+        this.dropdownService.getDropdownValue().subscribe(value => {
+            this.selectedValue = value;
+            this.onSelectMsgType(this.selectedValue);
+            console.log('--personal---',this.selectedValue)
+            // Do something with the value
+          });
 
         this.replyMsgForm = this.formBuilder.group({
             content: ['', Validators.required],
