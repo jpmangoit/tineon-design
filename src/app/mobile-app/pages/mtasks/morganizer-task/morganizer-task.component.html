@@ -121,7 +121,7 @@
                         </p> -->
                     </div>
                     <div class="survey-timeline">
-                        <div class="timeline-label"> 
+                        <div class="timeline-label">
                             <span>{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{task.dayCount}} {{task.remain}}</span>
@@ -356,8 +356,8 @@
                     <div class="task-title">
                         <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
                         <!-- <p
-                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
-                    </p> -->
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
@@ -402,7 +402,7 @@
                         ? task['task_image'][0]?.['task_image']
                         : '../../../../assets/img/no_image.png'"
                         alt="" loading="lazy">
-                    </div> -->
+                        </div> -->
                         <div>
                             <Span class="survey-dates-inner">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -429,7 +429,7 @@
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
-                        </div> -->
+                            </div> -->
                         </div>
                     </div>
                     <div class="task-title">
@@ -517,7 +517,7 @@
                         </p> -->
                     </div>
 
-                    <div class="progress-task">
+                    <!-- <div class="progress-task">
                         <div class="progress-content">
                             <span>{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
@@ -529,6 +529,17 @@
                                 </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
                         </div>
                         <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
                     </div>
                     <div class="survey-author">
                         <span>{{language.organizer_task.task_created_by}}</span>
@@ -762,7 +773,7 @@
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
                     </div>
-                    <div class="progress-task">
+                    <!-- <div class="progress-task">
                         <div class="progress-content">
                             <span>{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
@@ -774,6 +785,17 @@
                                 </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
                         </div>
                         <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
                     </div>
                     <div class="survey-author">
                         <span>{{language.organizer_task.task_created_by}}</span>
@@ -1006,7 +1028,7 @@
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
-                    <div class="progress-task">
+                    <!-- <div class="progress-task">
                         <div class="progress-content">
                             <span>{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
@@ -1018,6 +1040,17 @@
                                 </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
                         </div>
                         <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
                     </div>
                     <div class="survey-author">
                         <span>{{language.organizer_task.task_created_by}}</span>
