@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/service/language.service';
-
+import { DropdownService } from 'src/app/service/dropdown.service';
 @Component({
     selector: 'app-mcommunity-messages',
     templateUrl: './mcommunity-messages.component.html',
@@ -16,9 +16,11 @@ export class McommunityMessagesComponent implements OnInit {
     language: any;
     headline_word_option: number = 0;
     selected = '1';
-
+    messageFilterVal : number = 1;
+    messageTypeVal : number = 1;
+    selectedType = '1';
     constructor(
-        private lang: LanguageService,
+        private lang: LanguageService,private dropdownService: DropdownService
     ) { }
 
     ngOnInit(): void {
@@ -28,6 +30,7 @@ export class McommunityMessagesComponent implements OnInit {
     }
 
     messageFilter(id:any){
+        this.messageFilterVal = id;
         if(id == 1){
             this.peronalMsg()
         }else if(id == 2){
@@ -35,6 +38,11 @@ export class McommunityMessagesComponent implements OnInit {
         }else if(id == 3){
             this.groupMsg()
         }
+    }
+
+    onSelectMsgType(value:any) {
+        this.messageTypeVal = value;
+        this.dropdownService.updateDropdownValue(value);
     }
 
 
@@ -55,6 +63,8 @@ export class McommunityMessagesComponent implements OnInit {
         this.displayClubMsg = false;
         this.displayGroupMsg = true;
     }
+
+    
 
     // active class functions
     onClick(check) {
