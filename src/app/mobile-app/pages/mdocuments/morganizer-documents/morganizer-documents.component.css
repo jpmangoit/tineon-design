@@ -46,6 +46,11 @@
     background: rgb(202 210 235 / 30%);
 }
 
+.doc_upload_btn {
+  position: relative;
+  margin-top: 15px;
+}
+
 .tabs-content-listing {
     margin-bottom: 100px;
 }

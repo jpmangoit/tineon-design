@@ -87,7 +87,7 @@ ul.tabs__items li a.active {
     .scroll-navigation .tabs__items li{
        margin: 0 5px;
 width: auto !important;
-max-width: 126px;
+max-width: 136px;
 display: inherit;
     }
 }
