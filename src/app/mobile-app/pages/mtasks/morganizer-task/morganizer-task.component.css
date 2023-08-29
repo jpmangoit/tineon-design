@@ -359,13 +359,12 @@ left: 15px !important;
 }
 
 ::ng-deep body .mat-form-field-infix {
-   padding: 0 20px 0 35px !important;
-   background: #fff;
-height: 40px;
-line-height: 40px;
-
-border-radius: 5px;
-border: none;
+    padding: 0 20px 0 35px !important;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    border: none;
 }
 
 ::ng-deep body .mat-form-field.mat-focused .mat-form-field-ripple { display: none  !important;}

@@ -217,7 +217,7 @@ border-radius: 7px;
 cursor: pointer;
 }
 
-::ng-deep .mat-form-field-label-wrapper { display: none !important;}
+/* ::ng-deep .mat-form-field-label-wrapper { display: none !important;} */
 
 .document-inner.list_document > div > ul li.activeClass{
   background: #ffbe00;
