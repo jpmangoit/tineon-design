@@ -8,7 +8,7 @@
   font-weight: normal;
   margin-bottom: 0;
   margin-top: 15px;
-  
+
   margin-bottom: 20px;
 }
 .main-card{
@@ -29,7 +29,7 @@
   color: #192838;
   margin-top: 0px;
   margin-bottom: 0px;
-  
+
   cursor: pointer;
 }
 .title-btn-group.right-btn-group img {
@@ -72,7 +72,7 @@ span.course-count {
   font-weight: normal;
   margin-bottom: 0 !important;
   margin-top: 0px;
-  
+
   margin-bottom: 20px;
 }
 .faq_edit .modal-header button{
@@ -109,7 +109,7 @@ span.course-count {
   margin-top: 0px;
   font-size: 20px;
   color: #192838;
-  
+
 }
 .ins-image.img-fluid img {
   width: 100%;
@@ -143,7 +143,7 @@ span.participant_status span {
   font-size: 14px;
   color: #1D202F;
   margin-bottom: 15px;
-  
+
 }
 .schedule_list ul {
   padding: 0;
@@ -198,7 +198,7 @@ div#get-in-touch-instructor {
   margin-top: 0px;
   font-size: 16px;
   color: #192838;
-  
+
 }
 .card-footer.course_footer {
   border-top: 0;
@@ -210,7 +210,7 @@ div#get-in-touch-instructor {
   padding: 20px;
 }
 .author-des span.author-id {
-  
+
   color: #151728;
 }
 .jc_button button {
@@ -333,4 +333,58 @@ a .input-group-text {
   border: 1px solid #FB5F5F;
   background: #FB5F5F;
   margin-right: 0;
+}
+
+
+.news_details h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #353535;
+}
+.news_content .news_image {
+    float: none !important;
+    width: 100% !important;
+}
+
+.news_image_container {
+    max-width: unset !important;
+}
+
+.news_heading h4 {
+    padding-top: 15px;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #353535 !important;
+}
+.author-img img {
+    object-fit: cover;
+}
+.author-des {
+    line-height: 1.2;
+    font-size: 12px;
+}
+.news_content .author-info {
+    padding: 12px 0px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    border-bottom: 1px solid #999999;
+    border-radius: 0;
+}
+button.close {
+    height: 25px;
+    width: 25px;
+    float: none;
+    border: 1px solid #E9E9E9;
+    border-radius: 50%;
+    color: #E93608;
+    box-shadow: 0px 1px 4px 0px #00000021;
+    box-shadow: 0px 1px 1px 0px #FFFFFF inset;
+    opacity: unset;
+}
+::ng-deep body.mobile-green button.close {
+    color: #20AE80;
+}
+
+.modal-content {
+    border: none;
 }
