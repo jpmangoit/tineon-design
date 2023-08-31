@@ -89,7 +89,6 @@ export class MgroupMessageComponent implements OnInit {
         this.dropdownService.getDropdownValue().subscribe(value => {
             this.selectedValue = value;
             this.onSelect(this.selectedValue);
-            console.log('--group---',this.selectedValue)
             // Do something with the value
           });
 

@@ -15,7 +15,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-mall-news',
-    templateUrl: './mall-news.component.html',
+    templateUrl: './mall-news.component.html', 
     styleUrls: ['./mall-news.component.css']
 })
 export class MallNewsComponent implements OnInit {

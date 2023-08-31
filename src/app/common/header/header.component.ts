@@ -53,29 +53,41 @@ export class HeaderComponent implements OnInit, OnDestroy {
     socket: Socket;
     chatUserArr: any;
     totalUnreadChats: any = 0;
-    userId:any;
+    userId: any;
     file: File;
     fileToReturn: File;
-    imageChangedEvent:Event = null;
-    image:File
-    imgName:string;
-    imgErrorMsg: boolean  = false;
+    imageChangedEvent: Event = null;
+    image: File
+    imgName: string;
+    imgErrorMsg: boolean = false;
     docErrorMsg: boolean = false;
     croppedImage: string = '';
     isImage: boolean = false;
     private activatedSub: Subscription;
     private activatedPro: Subscription;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
-    private activatedHeadline:Subscription
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
+    private activatedHeadline: Subscription
     headline_word_option: number = 0;
 
 
-    constructor(private _router: Router, private route: ActivatedRoute, private themes: ThemeService, private authService: AuthServiceService, private confirmDialogService: ConfirmDialogService,
-        private lang: LanguageService, private sanitizer: DomSanitizer,private tostrNotificationService: NotificationService, private notificationService: NotificationsService, private updateConfirmDialogService: UpdateConfirmDialogService,
-        private denyReasonService: DenyReasonConfirmDialogService, private formbuilder: UntypedFormBuilder,
-         private imageCompress: NgxImageCompressService,private commonFunctionService: CommonFunctionService) { }
+    constructor(
+        private _router: Router,
+        private route: ActivatedRoute,
+        private themes: ThemeService,
+        private authService: AuthServiceService,
+        private confirmDialogService: ConfirmDialogService,
+        private lang: LanguageService,
+        private sanitizer: DomSanitizer,
+        private tostrNotificationService: NotificationService,
+        private notificationService: NotificationsService,
+        private updateConfirmDialogService: UpdateConfirmDialogService,
+        private denyReasonService: DenyReasonConfirmDialogService,
+        private formbuilder: UntypedFormBuilder,
+        private imageCompress: NgxImageCompressService,
+        private commonFunctionService: CommonFunctionService,
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -83,28 +95,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.setTheme = theme;
         }
         this.activatedSub = this.themes.club_theme.subscribe(
-            (resp: ThemeType) => {this.setTheme = resp; }
+            (resp: ThemeType) => { this.setTheme = resp; }
         );
         this.activatedPro = this.themes.profile_imge.subscribe(
             (resp: string) => { this.getUserImage(); }
         );
 
-        this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         });
-        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         });
-        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
         })
-        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
+        this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp: any) => {
             this.headline_word_option = resp;
         });
 
@@ -172,18 +184,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
             this.authService.memberInfoRequest('get', 'member-photo?database_id=' + userData.database_id + '&club_id=' + userData.team_id + '&member_id=' + userData.member_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData['code'] == 400) {
-                        this.responseMessage = respData['message'].message;
-                        this.tostrNotificationService.showError(this.responseMessage,null);
-                    } else {
-                        this.userRespData = respData;
-                        this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(respData.changingThisBreaksApplicationSecurity) as string;
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData['code'] == 400) {
+                            this.responseMessage = respData['message'].message;
+                            this.tostrNotificationService.showError(this.responseMessage, null);
+                        } else {
+                            this.userRespData = respData;
+                            this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(respData.changingThisBreaksApplicationSecurity) as string;
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -200,7 +212,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         if (respData['isError'] == false) {
                             self.alreadyAcceptMsg = respData['result'];
-                            self.tostrNotificationService.showSuccess(self.alreadyAcceptMsg,null);
+                            self.tostrNotificationService.showSuccess(self.alreadyAcceptMsg, null);
                             self.ngOnInit();
                             self._router.navigate(["/course-detail/" + CourseId]);
                         }
@@ -818,7 +830,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     approvedUpdateFaqs(faqId: number) {
         let self = this;
         self.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqId + '/approvedby/' +self.userId, null)
+            self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqId + '/approvedby/' + self.userId, null)
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
@@ -936,13 +948,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     approvedUpdatedSurvey(survey_id: number) {
         let self = this;
         self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
-        self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + self.userId, null)
-            .subscribe(
-                (respData: any) => {
-                    self._router.navigate(["/survey-detail/" + survey_id]);
-                    self.ngOnInit();
-                }
-            )
+            self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + self.userId, null)
+                .subscribe(
+                    (respData: any) => {
+                        self._router.navigate(["/survey-detail/" + survey_id]);
+                        self.ngOnInit();
+                    }
+                )
         }, function () {
         })
     }
@@ -1269,11 +1281,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.responseMessage = respData;
-                    this.tostrNotificationService.showSuccess(this.responseMessage,null);
+                    this.tostrNotificationService.showSuccess(this.responseMessage, null);
 
                     if (respData['code'] == 400) {
                         this.responseMessage = respData['message'];
-                        this.tostrNotificationService.showError(this.responseMessage,null);
+                        this.tostrNotificationService.showError(this.responseMessage, null);
                     }
                 }
             );
@@ -1281,13 +1293,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     chats() {
         this.totalUnreadChats = 0;
-        if(!this.userDetails.isMember_light && !this.userDetails.isMember_light_admin){
+        if (!this.userDetails.isMember_light && !this.userDetails.isMember_light_admin) {
             this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
                 .subscribe(
                     (resp: any) => {
                         this.chatUserArr = resp;
                         let grp: any;
-                        if(this.chatUserArr && this.chatUserArr.length > 0){
+                        if (this.chatUserArr && this.chatUserArr.length > 0) {
                             this.chatUserArr.forEach(element => {
                                 this.totalUnreadChats += element.count
                             });
@@ -1297,13 +1309,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
-    uploadImage(){
+    uploadImage() {
         $('#profileImagepPopup').modal('show')
         $("#profileSpinnerHeader").hide();
 
     }
 
-    closeImagePopup(){
+    closeImagePopup() {
         this.croppedImage = '';
         this.imageChangedEvent = null;
         $('.preview_txt').hide();
@@ -1363,7 +1375,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
      * @return  {object} file object
      */
     imageCropped(event: ImageCroppedEvent) {
-        this.imageCompress.compressFile(event.base64,-1,50,50, 100, 100) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(event.base64, -1, 50, 50, 100, 100) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
                     this.croppedImage = compressedImage;
@@ -1397,35 +1409,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {object} user details
     */
-    changeImage(){
-        if(this.croppedImage){
+    changeImage() {
+        if (this.croppedImage) {
             $("#profileSpinnerHeader").show();
             let data = {
                 "image_file": this.croppedImage.split('base64,')[1]
             }
             let self = this;
             this.authService.memberSendRequest('post', 'change-profile-picture/', data).subscribe(
-            (respData: any) => {
-                this.memberPhotosuccess = respData;
-                if (this.memberPhotosuccess == 'OK') {
-                    this.themes.getProfilePicture(this.memberPhotosuccess);
-                    this.tostrNotificationService.showSuccess(this.language.profile.upload_profile,null);
-                    setTimeout(() => {
-                        this.croppedImage = '';
-                        $('#profileImagepPopup').modal('hide')
+                (respData: any) => {
+                    this.memberPhotosuccess = respData;
+                    if (this.memberPhotosuccess == 'OK') {
+                        this.themes.getProfilePicture(this.memberPhotosuccess);
+                        this.tostrNotificationService.showSuccess(this.language.profile.upload_profile, null);
+                        setTimeout(() => {
+                            this.croppedImage = '';
+                            $('#profileImagepPopup').modal('hide')
+                            $("#profileSpinnerHeader").hide();
+                            this.croppedImage = '';
+                            this.imageChangedEvent = null;
+                            $('.preview_txt').hide();
+                            $('.preview_txt').text('');
+                        }, 2000);
+                    } else if (respData['code'] == 400) {
                         $("#profileSpinnerHeader").hide();
-                        this.croppedImage = '';
-                        this.imageChangedEvent = null;
-                        $('.preview_txt').hide();
-                        $('.preview_txt').text('');
-                    }, 2000);
-                }else if (respData['code'] == 400) {
-                    $("#profileSpinnerHeader").hide();
-                    this.tostrNotificationService.showError(this.language.community_messages.code_error,null);
-                }
-            });
-        }else{
-            this.tostrNotificationService.showError(this.language.profile.upload_pic,null);
+                        this.tostrNotificationService.showError(this.language.community_messages.code_error, null);
+                    }
+                });
+        } else {
+            this.tostrNotificationService.showError(this.language.profile.upload_pic, null);
         }
     }
 
@@ -1462,9 +1474,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     logout() {
-        sessionStorage.clear();
-        localStorage.clear();
-        this._router.navigate(["/login"]);
+        this.authService.sendRequest('put', 'setLoginStatus/' + this.userDetails.userId, null).subscribe((resp) => {
+            console.log(resp);
+            if (resp['isError'] == false) {
+                sessionStorage.clear();
+                localStorage.clear();
+                this._router.navigate(["/login"]);
+            } else if (resp['code'] == 400) {
+                // this.notificationService.showError(resp['message'], null);
+
+            }
+        })
     }
 
     goToProfile() {

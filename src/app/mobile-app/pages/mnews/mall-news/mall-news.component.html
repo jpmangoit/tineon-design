@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">{{data?.user?.firstname}}  {{data?.user?.lastname}}</h3>
+                            <h3>{{data?.user?.firstname}}  {{data?.user?.lastname}}</h3>
                             <span class="news-date"><img onContextMenu="return false;"
                                 src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt="" loading="lazy">&nbsp;{{data.created_at | date: 'd. MMMM y'}}
                         </span>
@@ -34,7 +34,7 @@
                                     class="news-badge-chairman">{{language.create_news.chairman}}</span>
                     </div>
 
-                    <div class="news-image-area">
+                    <div class="news-image-area" >
                         <!-- <img onContextMenu="return false;" [src]="data.news_image[0].news_image  != null ? data.news_image[0].news_image  : '../../assets/img/no_image.png'" alt="" loading="lazy"> -->
                         <img onContextMenu="return false;"
                         [src]="data && data?.['news_image'] &&

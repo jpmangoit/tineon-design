@@ -21,9 +21,9 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
-    selector: 'app-mchat-list',
+    selector: 'app-mchat-list', 
     templateUrl: './mchat-list.component.html',
-    styleUrls: ['./mchat-list.component.css']
+    styleUrls: ['./mchat-list.component.css'] 
 })
 export class MchatListComponent implements OnInit {
     @Input() ischatData: any;
@@ -204,16 +204,16 @@ export class MchatListComponent implements OnInit {
                 this.chatUserArr = resp;
                 let grp: any;
                 if(this.chatUserArr && this.chatUserArr.length > 0){
-                    this.chatUserArr.forEach(element => {
-                        if (element.type == 'group') {
+                    this.chatUserArr.forEach(element => { 
+                        if (element.type == 'group') {                                                 
                             if (this.groups && this.groups.length > 0) {
                                 grp = this.groups.find((o: any) => o.id == element.id);
-                                element.name = grp ? grp.name : element.id
+                                  element.name = grp ? grp.name : element.id
                                 element.image = (grp.group_images[0]?.group_image) ? (grp.group_images[0]?.group_image) : ''
                                 element.lastMessage = JSON.parse(element.lastMessage)
-                                element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
+                                element.lastMsgTime = (element?.lastMessage?.timestamp) ? new Date(element.lastMessage.timestamp).toISOString() :  new Date().toISOString().split('T')[0];
                                 let cudate = new Date().toISOString().split('T')[0]
-                                let msgdate = element.lastMsgTime.split('T')[0]
+                                let msgdate = (element?.lastMsgTime) ? element.lastMsgTime.split('T')[0]: new Date().toISOString().split('T')[0];
                                 if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
                                     element.lastMsgTimming = element.lastMsgTime
                                 } else {

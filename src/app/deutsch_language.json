@@ -641,7 +641,8 @@
     },
     "genral_message": {
         "not_available_msg": "Diese Funktion ist für sie nicht verfügbar. Um es zu nutzen, aktualisieren Sie bitte ihren Plan oder kontaktieren Sie Admin. ",
-        "feature_locked": "Funktion gesperrt."
+        "feature_locked": "Funktion gesperrt.",
+        "loading" : "Loading..."
     },
     "club": {
         "club_appointments": "Aktuelle Vereins-Termine",

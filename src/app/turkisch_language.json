@@ -636,7 +636,8 @@
     },
     "genral_message": {
         "not_available_msg": "Bu özellik sizde mevcut değil. Kullanmak için lütfen planı yükseltin veya yönetici ile iletişime geçin.",
-        "feature_locked": "Özellik Kilitli"
+        "feature_locked": "Özellik Kilitli",
+        "loading" : "Loading..."
     },
     "club": {
         "club_appointments": "Güncel Kulüp Randevuları",
