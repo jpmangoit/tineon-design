@@ -166,6 +166,7 @@ button.btn.btn-secondary.change_btn {
 .profile-card-description ul {
     padding: 0;
     margin: 10px 0 0 0;
+    line-height: 24px;
 }
 .profile-card-description ul li {
     list-style: none;
@@ -198,6 +199,7 @@ button.btn.btn-secondary.change_btn {
     font-weight: 800;
     font-size: 28px;
     font-style: normal;
+    line-height: 41px;
 }
 .profile-section-content {
     display: flex;
@@ -214,6 +216,7 @@ button.btn.btn-secondary.change_btn {
 .profile_navigation ul {
      border-radius: 15px;
      border:none;
+     padding: 0 15px;
 }
 
 .profile_navigation ul li a {
