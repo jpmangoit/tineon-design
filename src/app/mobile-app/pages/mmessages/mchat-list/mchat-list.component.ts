@@ -202,19 +202,18 @@ export class MchatListComponent implements OnInit {
                     this.authService.setLoader(false);
                 }, 2000);
                 this.chatUserArr = resp;
-                
                 let grp: any;
                 if(this.chatUserArr && this.chatUserArr.length > 0){
-                    this.chatUserArr.forEach(element => {
-                        if (element.type == 'group') {
+                    this.chatUserArr.forEach(element => { 
+                        if (element.type == 'group') {                                                 
                             if (this.groups && this.groups.length > 0) {
                                 grp = this.groups.find((o: any) => o.id == element.id);
-                                element.name = grp ? grp.name : element.id
+                                  element.name = grp ? grp.name : element.id
                                 element.image = (grp.group_images[0]?.group_image) ? (grp.group_images[0]?.group_image) : ''
                                 element.lastMessage = JSON.parse(element.lastMessage)
-                                element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
+                                element.lastMsgTime = (element?.lastMessage?.timestamp) ? new Date(element.lastMessage.timestamp).toISOString() :  new Date().toISOString().split('T')[0];
                                 let cudate = new Date().toISOString().split('T')[0]
-                                let msgdate = element.lastMsgTime.split('T')[0]
+                                let msgdate = (element?.lastMsgTime) ? element.lastMsgTime.split('T')[0]: new Date().toISOString().split('T')[0];
                                 if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
                                     element.lastMsgTimming = element.lastMsgTime
                                 } else {
