@@ -102,7 +102,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
         translate: 'no',
         fonts: [
             {class: 'gellix', name: 'Gellix'},
-        ],
+        ], 
         toolbarHiddenButtons: [
             [
                 'link',

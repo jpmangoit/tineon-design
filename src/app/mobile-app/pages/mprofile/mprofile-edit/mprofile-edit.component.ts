@@ -174,7 +174,7 @@ export class MprofileEditComponent implements OnInit {
     * @author  MangoIt Solutions (R)
     */
     setValue() {
-
+        
         if(this.userData.changeRequest.member.status == 'pending'){
             this.registrationForm = this.formBuilder.group({
                 street: [this.userData.changeRequest.member.dataChanges.street, [Validators.required, this.noWhitespace]],
@@ -186,6 +186,7 @@ export class MprofileEditComponent implements OnInit {
                 email: [this.userData.email],
                 phone: [this.userData.changeRequest.member.dataChanges.phone, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
                 birthDate: [this.datePipe.transform(this.userData.changeRequest.member.dataChanges.birthDate,'yyyy-MM-dd')],
+
                 share: [this.userData.shareBirthday],
                 allowAdvertis:[''],
             });

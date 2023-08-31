@@ -205,11 +205,14 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.userDetails.userId, null)
             .subscribe(
                 (respData: any) => {
-                    this.chats();
+                    // this.chats();
                     if (respData['isError'] == true) {
                         this.notificationService.showError(respData['message'], null);
                     } else {
                         this.groups = respData;
+                        console.log(this.groups);
+                        this.chats();
+                        
                     }
                 }
             );
@@ -222,26 +225,37 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
             .subscribe(
                 (resp: any) => {
+                    
                     setTimeout(() => {
                         this.authService.setLoader(false);
                     }, 2000);
                     this.chatUserArr = resp
                     let grp: any;
+                    console.log(this.chatUserArr);
                     if(this.chatUserArr && this.chatUserArr.length > 0){
+                        
                         this.chatUserArr.forEach(element => {
+                            console.log(element);
+                            
                             if (element.type == 'group') {
                                 if (this.groups && this.groups.length > 0) {
                                     grp = this.groups.find((o: any) => o.id == element.id)
+                                    
                                     element.name = grp ? grp.name : element.id
                                     element.image = grp.image ? grp.image : ''
-                                    element.lastMessage = JSON.parse(element.lastMessage)
-                                    element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString();
-                                    let cudate = new Date().toISOString().split('T')[0]
-                                    let msgdate = element.lastMsgTime.split('T')[0]
-                                    if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
-                                        element.lastMsgTimming = element.lastMsgTime
-                                    } else {
-                                        element.lastMsgDate = msgdate
+                                    if(element.id != 4){
+
+                                        element.lastMessage = JSON.parse(element.lastMessage)
+                                        console.log( element.lastMessage);
+                                        
+                                        element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString();
+                                        let cudate = new Date().toISOString().split('T')[0]
+                                        let msgdate = element.lastMsgTime.split('T')[0]
+                                        if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
+                                            element.lastMsgTimming = element.lastMsgTime
+                                        } else {
+                                            element.lastMsgDate = msgdate
+                                        }
                                     }
                                 }
                             } else {
@@ -277,6 +291,8 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         }
                     }
                     this.filteredArray = [...this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()];
+                    // console.log( this.filteredArray );
+                    
                 }
             );
     }

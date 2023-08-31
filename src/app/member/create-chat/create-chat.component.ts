@@ -47,7 +47,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
     responseMessage: string = null;
     messageForm: UntypedFormGroup;
     chatForm: UntypedFormGroup;
-    groups: CommunityGroup[];
+    groups: any[];
     selectedVisiblity: string;
     visiblity: { id: string, name: string }[] = [];
     alluserInformation: { firstname: string, lastname: string, email: string }[] = [];
@@ -59,7 +59,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
     socket: Socket;
     frndId: number;
     imageSrc: File;
-    chatUserArr: UserDetails[] = [];
+    chatUserArr: any[] = [];
     setTheme: ThemeType;
     obj: { 'sender': string, 'room': string };
     private activatedSub: Subscription;
@@ -98,8 +98,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         this.chatForm = new UntypedFormGroup({
             'kind': new UntypedFormControl('', Validators.required),
             'currentUid': new UntypedFormControl(this.userDetails.userId),
-            'friendUid': new UntypedFormControl(''),
-            'groupId': new UntypedFormControl(''),
+            'friendUid': new UntypedFormControl('', Validators.required),
+            'groupId': new UntypedFormControl('', Validators.required),
             'message': new UntypedFormControl('', Validators.required)
         });
         this.visiblity = [
@@ -119,6 +119,53 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         };
     }
 
+
+    /**
+    * Function to get all the Groups
+    * @author  MangoIt Solutions
+    * @param   {}
+    * @return  {Array Of Object} all the Groups
+    */
+    getGroup() {
+        if (sessionStorage.getItem('token')) {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.userDetails.userId, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.groups = respData;
+                        console.log(this.groups);
+                        // this.chats();
+                    }
+                );
+        }
+    }
+
+    /**
+ * Function to get all the Club Users
+ * @author  MangoIt Solutions
+ * @param   {}
+ * @return  {Array Of Object} all the Users
+ */
+    getAllUserInfo() {
+        let self = this;
+        this.authService.setLoader(true);
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
+                            this.alluserDetails = respData;
+                        });    
+                        console.log(this.alluserDetails); 
+                        this.chats();
+                    }
+                }
+            );
+    }
+
     /**
      * Funtion to display all the chats
      * @author  MangoIt Solutions
@@ -132,36 +179,51 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                 (resp: any) => {
                     this.authService.setLoader(false);
                     this.chatUserArr = resp;
-                    this.userDropdownList = [];
-                    var userData: UserDetails[];
-                    if (this.chatUserArr.length > 0) {
-                        userData = this.alluserDetails.filter(entry1 => !this.chatUserArr.some(entry2 => entry1.id == entry2.id || entry1.id == this.userDetails.userId));
-                    } else {
-                        userData = this.alluserDetails.filter(o => o.id != this.userDetails.userId)
-                    }
-                    if (userData && userData.length > 0) {
-                        Object(userData).forEach((val, key) => {
-                            this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
-                            self.userDropdownSettings = {
-                                singleSelection: true,
-                                idField: 'id',
-                                textField: 'name',
-                                selectAllText: 'Select All',
-                                enableCheckAll: false,
-                                unSelectAllText: 'UnSelect All',
-                                allowSearchFilter: true,
-                                searchPlaceholderText: this.language.header.search,
-                                closeDropDownOnSelection: true
-                            };
-                        });
-                    }
+                    console.log(this.chatUserArr);
+                    // let chatgroupData = this.chatUserArr.filter(item => {
+                    //     console.log(item);
+                    //     return item.type == 'group'
+                        
+                    // } );
+
+                        this.userDropdownList = [];
+                        var userData: UserDetails[];
+                        if (this.chatUserArr.length > 0) {
+                            userData = this.alluserDetails.filter(entry1 => !this.chatUserArr.some(entry2 =>(entry2.type == "individual") && (entry1.id == entry2.id || entry1.id == this.userDetails.userId)));
+                        } else {
+                            userData = this.alluserDetails.filter(o => o.id != this.userDetails.userId)
+                        }
+                        console.log(userData);
+                        
+                        if (userData && userData.length > 0) {
+                            Object(userData).forEach((val, key) => {
+                                this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
+                                
+                                self.userDropdownSettings = {
+                                    singleSelection: true,
+                                    idField: 'id',
+                                    textField: 'name',
+                                    selectAllText: 'Select All',
+                                    enableCheckAll: false,
+                                    unSelectAllText: 'UnSelect All',
+                                    allowSearchFilter: true,
+                                    searchPlaceholderText: this.language.header.search,
+                                    closeDropDownOnSelection: true
+                                };
+                            });
+                            console.log(this.userDropdownList);
+                            
+                        }
                     let groupData: CommunityGroup[];
                     if (this.chatUserArr.length > 0) {
-                        groupData = this.groups.filter(entry1 => !this.chatUserArr.some(entry2 => entry1.id == entry2.id));
+                        console.log(this.chatUserArr);
+                        console.log(this.groups);
+                        groupData = this.groups.filter(entry1 => !this.chatUserArr.some(entry2 => (entry2.type == "group") && (entry1.id == entry2.id)));
+                        console.log(groupData);
                     } else {
                         groupData = this.groups;
                     }
-                    this.groups = groupData
+                    this.groups = groupData            
                     this.groupDropdownSettings = {
                         singleSelection: true,
                         idField: 'id',
@@ -177,14 +239,82 @@ export class CreateChatComponent implements OnInit, OnDestroy {
             );
     }
 
-    close() {
-        window.history.back();
+    /**
+    * Funtion to used for sending  and store messages
+    * @author  MangoIt Solution
+    */
+    messageProcess() {
+        this.chatFormSubmitted = true;
+
+        if ((sessionStorage.getItem('token')) && (this.chatForm.valid)) {
+
+            let reqData: object;
+
+            if (this.chatForm.controls['message'].value == '' || this.chatForm.controls['message'].value == null) {
+                reqData = {
+                    file: this.imageSrc,
+                    friendUid: this.frndId,
+                    currentUid: this.userDetails.userId,
+                    roomId: this.roomId
+                }
+            } else {
+                reqData = {
+                    message: { 'message': this.chatForm.controls['message'].value },
+                    file: this.imageSrc,
+                    friendUid: this.frndId,
+                    currentUid: this.userDetails.userId,
+                    roomId: this.roomId
+                }
+            }
+            let self = this;
+            var formData: FormData = new FormData();
+            for (const key in reqData) {
+                if (Object.prototype.hasOwnProperty.call(reqData, key)) {
+                    const element: string = reqData[key];
+
+                    if (key == 'file') {
+                        formData.append('file', this.imageSrc);
+                    } else if (key == 'message') {
+                        formData.append('message', JSON.stringify(element));
+                    }
+                    else {
+                        if ((key != 'file') && (key != 'message')) {
+                            formData.append(key, element);
+                        }
+                    }
+                }
+            }
+            formData.forEach((value: any, key: any) => {
+                console.log(key, '----------', value);
+
+            })
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('post', 'store-messages-mysql', formData)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            this.socket.emit('msgsent', formData, (error: any) => { });
+                            this.notificationService.showSuccess(respData['result'], null);
+                            this.imageSrc = null;
+                            this.chatForm.reset();
+                            this.chatFormSubmitted = false;
+                            var self = this;
+                            setTimeout(function () {
+                                self.router.navigate(['community']);
+                            }, 2000);
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
+                    }
+                );
+        }
     }
 
     /**
-     * Funtion is used to select visiblity
-     * @author  MangoIt Solutions
-     */
+   * Funtion is used to select visiblity
+   * @author  MangoIt Solutions
+   */
 
     onVisiblitySelect(item: { id: string, name: string }) {
         this.selectedVisiblity = item.id;
@@ -220,49 +350,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
     onVisiblityDeSelect(item: { id: string, name: string }) {
     }
 
-    /**
-    * Function to get all the Club Users
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {Array Of Object} all the Users
-    */
-    getAllUserInfo() {
-        let self = this;
-        this.authService.setLoader(true);
-        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData && respData.length > 0) {
-                        Object(respData).forEach((val, key) => {
-                            this.alluserInformation[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
-                            this.alluserDetails = respData;
-                        });
-                        this.chats();
-                    }
-                }
-            );
-    }
 
-    /**
-    * Function to get all the Groups
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {Array Of Object} all the Groups
-    */
-    getGroup() {
-        if (sessionStorage.getItem('token')) {
-            this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.userDetails.userId, null)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.groups = respData;
-                        this.chats();
-                    }
-                );
-        }
-    }
+
 
     /**
      * Funtion to used select friend
@@ -325,17 +414,30 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         }
     }
 
+
+    onFileChange(event: Event) {
+        for (var i = 0; i < event.target['files'].length; i++) {
+            this.files.push(event.target['files'][i]);
+        }
+    }
+
+
+    close() {
+        window.history.back();
+    }
+
+
+
     /**
-    * Funtion to used upload file
-    * @author  MangoIt Solution
-    */
+* Funtion to used upload file
+* @author  MangoIt Solution
+*/
     uploadFile(event: Event) {
         this.chatForm.controls['message'].clearValidators();
         this.chatForm.controls['message'].updateValueAndValidity();
         const file: File = event.target['files'][0];
         const mimeType: string = file.type;
         this.imageSrc = file;
-        console.log(this.imageSrc);
         $('.preview_txt').show();
         $('.preview_txt').text('');
         const reader: FileReader = new FileReader();
@@ -352,85 +454,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         $('.message-upload-list').show();
         $('.preview_txt1').show();
         $('.preview_txt1').text(file.name);
-    }
-
-    /**
-    * Funtion to used for sending  and store messages
-    * @author  MangoIt Solution
-    */
-    messageProcess() {
-        this.chatFormSubmitted = true;
-        if ((sessionStorage.getItem('token')) && (this.chatForm.valid)) {
-
-            let reqData: object;
-            console.log(this.imageSrc);
-
-            if (this.chatForm.controls['message'].value == '' || this.chatForm.controls['message'].value == null) {
-                reqData = {
-                    file: this.imageSrc,
-                    friendUid: this.frndId,
-                    currentUid: this.userDetails.userId,
-                    roomId: this.roomId
-                }
-            } else {
-                reqData = {
-                    message: { 'message': this.chatForm.controls['message'].value },
-                    file: this.imageSrc,
-                    friendUid: this.frndId,
-                    currentUid: this.userDetails.userId,
-                    roomId: this.roomId
-                }
-            }
-            let self = this;
-            var formData: FormData = new FormData();
-            for (const key in reqData) {
-                if (Object.prototype.hasOwnProperty.call(reqData, key)) {
-                    const element: string = reqData[key];
-                    console.log(key);
-
-                    if (key == 'file') {
-                        formData.append('file', this.imageSrc);
-                    } else if (key == 'message') {
-                        formData.append('message', JSON.stringify(element));
-                    }
-                    else {
-                        if ((key != 'file') && (key != 'message')) {
-                            formData.append(key, element);
-                        }
-                    }
-                }
-            }
-            formData.forEach((value:any,key:any) =>{
-                console.log(key,'----------',value);
-
-            })
-            this.authService.setLoader(true);
-            this.authService.memberSendRequest('post', 'store-messages-mysql', formData)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        if (respData['isError'] == false) {
-                            this.socket.emit('msgsent', formData, (error: any) => { });
-                            this.notificationService.showSuccess(respData['result'], null);
-                            this.imageSrc = null;
-                            this.chatForm.reset();
-                            this.chatFormSubmitted = false;
-                            var self = this;
-                            setTimeout(function () {
-                                self.router.navigate(['community']);
-                            }, 2000);
-                        } else if (respData['code'] == 400) {
-                            this.notificationService.showError(respData['message'], null);
-                        }
-                    }
-                );
-        }
-    }
-
-    onFileChange(event: Event) {
-        for (var i = 0; i < event.target['files'].length; i++) {
-            this.files.push(event.target['files'][i]);
-        }
     }
 
     onCancel() {
