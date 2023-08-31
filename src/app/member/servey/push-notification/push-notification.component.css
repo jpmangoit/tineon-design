@@ -381,7 +381,7 @@ button.close {
     box-shadow: 0px 1px 1px 0px #FFFFFF inset;
     opacity: unset;
 }
-body.mobile-green button.close {
+::ng-deep body.mobile-green button.close {
     color: #20AE80;
 }
 

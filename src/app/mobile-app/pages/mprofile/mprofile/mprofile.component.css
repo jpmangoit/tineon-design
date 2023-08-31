@@ -30,7 +30,7 @@ button.btn-close {
 }
 h5.modal-title {
     font-size: 20px;
-    
+
     margin-bottom: 0px;
 }
 .modal-header{
@@ -39,7 +39,7 @@ h5.modal-title {
 .pass_fields label {
     display: inline-block;
     width: 100%;
-    
+
     font-size: 14px;
     color: #1D202F;
 }
@@ -82,6 +82,7 @@ button.btn.btn-secondary.change_btn {
 }
 .profile_navigation ul li a span {
     padding-left: 10px;
+    padding-right: 12px;
 }
 .profile_navigation ul li a svg {
     width: 23px;
@@ -116,7 +117,7 @@ button.btn.btn-secondary.change_btn {
  .card.card-stats.profile-card {
     background: #E93608;
     border-radius: 28px;
-   
+
 }
 
 ::ng-deep .mobile-green .card.card-stats.profile-card {
