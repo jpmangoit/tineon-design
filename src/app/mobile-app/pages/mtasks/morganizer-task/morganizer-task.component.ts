@@ -197,8 +197,6 @@ export class MorganizerTaskComponent implements OnInit {
             this.authService.memberSendRequest('get', endpoint, null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-                        
                         this.toDoTask = [];
                         this.inProgress = [];
                         this.completed = [];
@@ -266,8 +264,6 @@ export class MorganizerTaskComponent implements OnInit {
             this.authService.memberSendRequest('get', 'mobile/getAllApprovedTasks/user/' + this.user_id, null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-                        
                         this.perToDoTask = [];
                         this.perInProgress = [];
                         this.perCompleted = [];

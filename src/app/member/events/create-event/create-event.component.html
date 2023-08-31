@@ -567,9 +567,6 @@
                                             </div>
                                         </div>
 
-
-                                        
-
                                         <div class="event_field" *ngIf="isTaskField">
                                             <div class="weekdays-section" formArrayName="task">
                                                 <div class="weekdays-main" *ngFor="let item of eventForm.controls.task['controls']; let i = index;" [formGroupName]="i">
