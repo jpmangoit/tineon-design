@@ -374,7 +374,7 @@
                                                 </ul>
                                             </span>
                                         </div>
-                                        <div class="col-md-12 calendar-box" *ngIf="calendarOptions != 'undefined'">
+                                        <div class="col-md-12 calendar-box" *ngIf="calendarOptions != undefined"> 
                                             <full-calendar *ngIf="calendarRooms?.length > 0" [options]="calendarOptions"></full-calendar>
                                         </div>
                                         <!-- <div class="event_field">
@@ -566,6 +566,9 @@
                                                 <div *ngIf="eventForm.controls.price_per_participant.errors?.pattern"> {{language.error_message.common_valid}}</div>
                                             </div>
                                         </div>
+
+
+                                        
 
                                         <div class="event_field" *ngIf="isTaskField">
                                             <div class="weekdays-section" formArrayName="task">

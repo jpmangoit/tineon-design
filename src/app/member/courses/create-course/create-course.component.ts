@@ -398,7 +398,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             instructor_external: new UntypedFormControl('', Validators.required),
             add_image: new UntypedFormControl('', Validators.required),
             add_docfile: new UntypedFormControl(''),
-            price_per_participant: new UntypedFormControl('', Validators.pattern('^[0-9]*$')),
+            price_per_participant: new UntypedFormControl('', Validators.pattern("^[0-9]+(\.[0-9]{1,2})?$")), 
             isTask: new UntypedFormControl('',),
             courseDate: this.formBuilder.array([
                 this.formBuilder.group({
