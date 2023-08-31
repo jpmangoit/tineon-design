@@ -96,7 +96,6 @@ export class MpersonalMessageComponent implements OnInit {
         this.dropdownService.getDropdownValue().subscribe(value => {
             this.selectedValue = value;
             this.onSelectMsgType(this.selectedValue);
-            console.log('--personal---',this.selectedValue)
             // Do something with the value
           });
 

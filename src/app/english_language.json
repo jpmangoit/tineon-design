@@ -647,7 +647,8 @@
     },
     "genral_message": {
         "not_available_msg": "This feature is not available with you. In order to use it please upgrade the plan or contact admin.",
-        "feature_locked": "Feature Locked"
+        "feature_locked": "Feature Locked",
+        "loading" : "Loading..."
     },
     "club": {
         "club_appointments": "Current Club-Appointments",

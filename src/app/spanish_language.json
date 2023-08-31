@@ -637,7 +637,8 @@
     },
     "genral_message": {
         "not_available_msg": "Esta función no está disponible para usted. Para usarla, actualice el plan o comuníquese con el administrador. ",
-        "feature_locked": "Función bloqueada"
+        "feature_locked": "Función bloqueada",
+        "loading" : "Loading..."
     },
     "club": {
         "club_appointments": "Citas actuales del club",

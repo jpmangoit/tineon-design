@@ -636,7 +636,8 @@
     },
     "genral_message": {
         "not_available_msg": "Questa funzione non è disponibile con te. Per utilizzarla aggiorna il piano o contatta l'amministratore. ",
-        "feature_locked": "Funzione bloccata"
+        "feature_locked": "Funzione bloccata",
+        "loading" : "Loading..."
     },
     "club": {
         "club_appointments": "Appuntamenti di club attuali",
