@@ -21,9 +21,9 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
-    selector: 'app-mchat-list',
+    selector: 'app-mchat-list', 
     templateUrl: './mchat-list.component.html',
-    styleUrls: ['./mchat-list.component.css']
+    styleUrls: ['./mchat-list.component.css'] 
 })
 export class MchatListComponent implements OnInit {
     @Input() ischatData: any;
@@ -202,6 +202,7 @@ export class MchatListComponent implements OnInit {
                     this.authService.setLoader(false);
                 }, 2000);
                 this.chatUserArr = resp;
+                
                 let grp: any;
                 if(this.chatUserArr && this.chatUserArr.length > 0){
                     this.chatUserArr.forEach(element => {

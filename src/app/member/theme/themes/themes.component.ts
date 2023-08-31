@@ -65,7 +65,7 @@ export class ThemesComponent implements OnInit {
 
     DefaultTheme() {
         this.authService.setLoader(true);
-        this.authService.sendRequest('put', 'setdefault-club-theme', null)
+        this.authService.sendRequest('put', 'setdefault-club-theme', null) 
             .subscribe((respData: any) => {
                 if (respData['isError'] == false) {
                     this.themes.getClubDefaultTheme(this.userDetails.team_id);

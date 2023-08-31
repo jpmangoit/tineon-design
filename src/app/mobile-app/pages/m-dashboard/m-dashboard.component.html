@@ -271,14 +271,13 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 data-bs-toggle="modal" data-bs-target="#exModal"
-                                                (click)="getNewsDetails(data.id)">
+                                            <h3>
                                                 {{data?.user?.firstname}} {{data?.user?.lastname}}
                                             </h3>
-                                            <span class="news-date">
+                                            <span class="news-date" >
                                                 <img onContextMenu="return false;"
                                                     src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
-                                                    alt="" loading="lazy">&nbsp;
+                                                    alt="" loading="lazy" >&nbsp;
                                                 {{data.created_at | date: 'd. MMMM y'}}
                                             </span>
                                         </div>
@@ -291,7 +290,7 @@
 
                                     </div>
                                     <div class="news-image-area">
-                                        <img onContextMenu="return false;"
+                                        <img onContextMenu="return false;" 
                                             [src]="data?.news_image[0]?.news_image != null ? data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
                                             alt="{{data.name}}" loading="lazy">
                                     </div>
@@ -341,13 +340,13 @@
                                         <!-- upcoming item start -->
                                         <div class="upcoming-item">
                                             <div class="news-items">
-                                                <div class="news-image-area" *ngIf="upcoming.event_image != undefined">
+                                                <div class="news-image-area" *ngIf="upcoming.event_image != undefined" (click)="eventDetails(upcoming.id,upcoming.date_from)">
                                                     <img onContextMenu="return false;"
                                                         [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'"
                                                         alt="" loading="lazy">
                                                     <!-- <img onContextMenu="return false;" [src]="upcoming?.event_images[0]?.event_image ? upcoming?.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                                 </div>
-                                                <div class="news-des-area">
+                                                <div class="news-des-area" (click)="eventDetails(upcoming.id,upcoming.date_from)">
                                                     <div class="news-top-content">
                                                         <span class="news-badge">{{language.organizer.events}}</span>
                                                     </div>
@@ -393,7 +392,7 @@
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
-                                        <div class="news-image-area">
+                                        <div class="news-image-area" routerLink="/group-detail/{{data.id}}">
                                             <img onContextMenu="return false;"
                                                 [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                 alt="" loading="lazy">
@@ -406,7 +405,7 @@
                                                 [innerHTML]=" data['description'].length > 0? (data[ 'description' ]| slice  : 0 : 100) + '...' : data[ 'description'] ">
                                             </p>
                                         </div>
-                                        <div class="news-des-area-right">
+                                        <div class="news-des-area-right" routerLink="/group-detail/{{data.id}}">
                                             <span *ngIf="data.totalMembers">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12"
                                                     viewBox="0 0 15 12" fill="none">
@@ -459,7 +458,7 @@
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
-                                        <div class="news-image-area">
+                                        <div class="news-image-area" routerLink="/group-detail/{{data.id}}">
                                             <img onContextMenu="return false;"
                                                 [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                 alt="" loading="lazy">
@@ -475,7 +474,7 @@
                                             </div>
                                             <p [innerHTML]="data.description"></p>
                                         </div>
-                                        <div class="news-des-area-right">
+                                        <div class="news-des-area-right" routerLink="/group-detail/{{data.id}}">
                                             <span *ngIf="data.totalMembers">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12"
                                                     viewBox="0 0 15 12" fill="none">

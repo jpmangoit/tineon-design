@@ -2,7 +2,7 @@
 	<div class="chat-list-inner">
 		<!-- chat item start -->
 		<div class="chat-list-item" *ngFor='let chat of chatUserArr' id="chat-{{chat.id}}" (click)="clickChat(chat,$event)">
-			<div class="chat-user-thumb" *ngIf="chat && chat.image">
+			<div class="chat-user-thumb" [ngClass]="{'status-badge-icon': chat && chat.login_status === 1}" *ngIf="chat && chat.image">
 				<img onContextMenu="return false;" [src]=" chat.image ?  chat.image : '../../../assets/img/no_image.png'" alt="" loading="lazy">
 			</div>
 			<!-- <div class="parti_name" *ngIf="chat.image == null || chat.image == ''">

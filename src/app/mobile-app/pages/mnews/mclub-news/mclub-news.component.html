@@ -9,7 +9,7 @@
                                 alt="" loading="lazy">
                     </div>
                     <div>
-                        <h3 data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
+                        <h3 >
                             {{data?.user?.firstname}}  {{data?.user?.lastname}}
                         </h3>
                         <span class="news-date">
@@ -19,7 +19,7 @@
                     </div>
                     <span class="news-badge">{{language.create_news.title}}</span>
                 </div>
-                <div class="news-item-image" data-bs-toggle="modal" data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
+                <div class="news-item-image" >
                     <img onContextMenu="return false;" [src]="data?.news_image[0]?.news_image != null ? data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'" alt="" loading="lazy">
                 </div>
                 <div class="news-item-content">

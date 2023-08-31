@@ -253,8 +253,16 @@ export class MprofileComponent implements OnInit {
     }
 
     logout() {
-        sessionStorage.clear();
-        localStorage.clear();
-        this._router.navigate(["/login"]);
+        this.authService.sendRequest('put', 'setLoginStatus/' + this.userData.userId, null).subscribe((resp) => {
+            console.log(resp);
+            if (resp['isError'] == false) {
+                sessionStorage.clear();
+                localStorage.clear();
+                this._router.navigate(["/login"]);
+            } else if (resp['code'] == 400) {
+                // this.notificationService.showError(resp['message'], null);
+
+            }
+        })
     }
 }

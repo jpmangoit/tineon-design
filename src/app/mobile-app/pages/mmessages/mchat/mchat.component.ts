@@ -17,8 +17,8 @@ import { LanguageService } from 'src/app/service/language.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NotificationService } from 'src/app/service/notification.service';
 declare var $: any;
-
-@Component({
+ 
+@Component({ 
     selector: 'app-mchat',
     templateUrl: './mchat.component.html',
     styleUrls: ['./mchat.component.css']
@@ -109,8 +109,6 @@ export class MchatComponent implements OnInit {
                 (error:any) => {
                     this.userDetails.image = null;
                 });
-                console.log(this.userDetails);
-                console.log(this.userDetails.image);
 
         this.chatForm = new UntypedFormGroup({
             'message': new UntypedFormControl('', [Validators.required,
@@ -139,7 +137,6 @@ export class MchatComponent implements OnInit {
         if (this.selectedChat.count > 0) {
             this.readChat(this.selectedChat);
         }
-        console.log(this.selectedChat);
 
         let count: number = 0;
         if (chat.type == 'individual') {

@@ -17,7 +17,7 @@ declare var $: any;
 @Component({
     selector: 'app-mall-events',
     templateUrl: './mall-events.component.html',
-    styleUrls: ['./mall-events.component.css'],
+    styleUrls: ['./mall-events.component.css'], 
     providers: [DatePipe]
 })
 

@@ -238,6 +238,16 @@ export class McommunityGroupsComponent implements OnInit {
                                 element.displayJoinButton = false;
                                 element.displayWaitApprovalButton = true;
                             }
+                        }else if(this.userData.isAdmin){
+                            if(elem.approved_status == 0){
+                                element.displayJoinButton = true;
+                                element.displayLeaveButton = false;
+                                element.displayWaitApprovalButton = false;
+                            }else if(elem.approved_status == 1 && element.created_by != (this.user_Id)){
+                                element.displayLeaveButton = true;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = false;
+                            }
                         }
                     }else if(element.created_by == parseInt(this.user_Id)){
                         element.displayJoinButton = false;
