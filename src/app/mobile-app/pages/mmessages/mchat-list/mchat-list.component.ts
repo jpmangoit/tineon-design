@@ -208,7 +208,7 @@ export class MchatListComponent implements OnInit {
                         if (element.type == 'group') {                                                 
                             if (this.groups && this.groups.length > 0) {
                                 grp = this.groups.find((o: any) => o.id == element.id);
-                                  element.name = grp ? grp.name : element.id
+                                element.name = grp ? grp.name : element.id
                                 element.image = (grp.group_images[0]?.group_image) ? (grp.group_images[0]?.group_image) : ''
                                 element.lastMessage = JSON.parse(element.lastMessage)
                                 element.lastMsgTime = (element?.lastMessage?.timestamp) ? new Date(element.lastMessage.timestamp).toISOString() :  new Date().toISOString().split('T')[0];
