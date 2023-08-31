@@ -513,3 +513,14 @@ span.c-group-name {
 ::ng-deep body.mobile-green .drower-close mat-icon.mat-icon.close svg path {
     fill:  #20AE80 !important;
 }
+
+
+.chat-user-info .chat-user-thumb img {
+    object-fit: cover;
+    width: 43px;
+    height: 43px;
+}
+.form-input-area .user-chat-thumb img {
+    height: 31px !important;
+    width: 31px !important;
+}
