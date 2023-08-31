@@ -1163,7 +1163,7 @@ span.get-btn {
 
     ::ng-deep body .news-image-area img {
         object-fit: cover;
-        max-height: 100px !important;
+        max-height: 100px !important; 
     }
 
     ::ng-deep body .news-content-list .news-image-area  img {
@@ -1173,6 +1173,7 @@ span.get-btn {
 
     .news-items div.news-des-area-right {
   width: 80px;
+  margin-top: 12px;
 }
 
 .news-des-area-right span svg {
@@ -1202,6 +1203,8 @@ span.get-btn {
   font-weight: 600;
   color: #999;
   line-height: 14px;
+  margin-bottom: 0;
+margin-top: 3px;
 }
 
 .news-des-area-right span {

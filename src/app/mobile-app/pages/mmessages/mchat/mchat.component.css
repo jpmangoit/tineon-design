@@ -12,7 +12,7 @@
     background: #fff;
     padding: 15px;
     display: flex !important;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
     position: sticky;
     top: 0;
@@ -28,6 +28,7 @@
     height: 45px;
     margin-right: 15px;
 }
+
 
 .chat-reciever .chat-bubble-info {
   text-align: right;
@@ -71,7 +72,8 @@ span.user-status-badge {
 
 .chat-header-left {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    width: 90%;
 }
 
 .chat-back {
@@ -93,12 +95,20 @@ span.user-status-badge {
 .chat-user-thumb {
     margin-right: 10px;
     position: relative;
-    width: 44px;
+    width: 50px;
+display: inline-block;
+vertical-align: middle;
 }
 
 .chat-user-info {
-    display: flex;
-    align-items: center;
+    width: 100%;
+display: inline-block;
+}
+
+.chat-user-information {
+  width: calc(100% - 70px);
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* conversation css start */

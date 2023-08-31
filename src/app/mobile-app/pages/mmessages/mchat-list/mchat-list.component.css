@@ -13,7 +13,7 @@ padding: 0 20px !important;
 .chat-user-thumb {
     margin-right: 18px;
     position: relative;
-    width: 53px;
+    width: 50px;
 }
 .status-badge-icon::after {
     content: "";
@@ -119,6 +119,12 @@ span.user-status-badge {
     border-radius: 50%;
     margin-right: 15px;
   }
+
+  ::ng-deep body .chat-user-list .author-img {
+
+  margin-right: 18px;
+
+}
 
 @media (max-width:360px){
     .chat-user-list-content {

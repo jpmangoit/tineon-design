@@ -83,7 +83,6 @@ export class MclubMessageComponent implements OnInit {
 		this.dropdownService.getDropdownValue().subscribe(value => {
             this.selectedValue = value;
             this.onSelect(this.selectedValue);
-			console.log('--club---',this.selectedValue)
             // Do something with the value
           });
 

@@ -97,7 +97,6 @@ export class McommunityGroupsComponent implements OnInit {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             this.getTineonBanners();
         }
-        // this.teamAllGroups();
         this.allGroups();
         this.joinAllGroups();
         this.groupsYouManage();
@@ -110,11 +109,9 @@ export class McommunityGroupsComponent implements OnInit {
   * @return  {all the records of Banners} array of object
   */
     getTineonBanners() {
-        this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForAllGroupMobileApp/', null)
             .subscribe(
                 (respData: any) => {
-                    this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerData = respData['result']['banner']
                         this.bannerData.forEach((element: any) => {
@@ -199,7 +196,7 @@ export class McommunityGroupsComponent implements OnInit {
                     }
                 })
                 //this.totalgroupData = respData['result']['pagination']['rowCount'];
-                this.authService.setLoader(false);
+                //this.authService.setLoader(false);
             });
     }
 
@@ -212,8 +209,7 @@ export class McommunityGroupsComponent implements OnInit {
     allGroups() {
         this.authService.setLoader(true);
         this.groupData = [];
-        //this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
-            this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
             this.groupData = respData['groups'];
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
@@ -255,8 +251,7 @@ export class McommunityGroupsComponent implements OnInit {
                         element.displayWaitApprovalButton = false;
                     }
                 });
-            })
-            //this.totalgroupData = respData['pagination']['rowCount'];
+            });
             this.authService.setLoader(false);
         })
     }
@@ -264,8 +259,6 @@ export class McommunityGroupsComponent implements OnInit {
 
     joinAllGroups() {
         let userId: string = localStorage.getItem('user-id');
-        this.authService.setLoader(true);
-        //this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id + '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
         this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/', null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
@@ -274,15 +267,12 @@ export class McommunityGroupsComponent implements OnInit {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
                 })
-                //this.totalJoinedGroupData =  respData['pagination']['rowCount'];
-                this.authService.setLoader(false);
             });
     }
 
     groupsYouManage() {
         let userId: string = localStorage.getItem('user-id');
-        this.authService.setLoader(true);
-        //this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
+        //this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id , null)
             .subscribe((respData: any) => {
             this.groupsYouManageData = respData['groups'].reverse();
@@ -291,8 +281,7 @@ export class McommunityGroupsComponent implements OnInit {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                 }
             })
-            //this.totalManagaeGroupData = respData['pagination']['rowCount'];
-            this.authService.setLoader(false);
+            //this.authService.setLoader(false);
         });
     }
 
@@ -376,7 +365,6 @@ export class McommunityGroupsComponent implements OnInit {
                         self.notificationService.showSuccess(self.responseMessage, null);
                         setTimeout(() => {
                             // self.responseMessage = '';
-                            // self.teamAllGroups();
                             self.allGroups();
                             self.joinAllGroups();
                         }, 3000);
@@ -401,7 +389,6 @@ export class McommunityGroupsComponent implements OnInit {
                         setTimeout(() => {
                             // self.responseMessage = '';
                             self.allGroups();
-                            // self.teamAllGroups();
                             self.joinAllGroups();
                         }, 3000);
                     });
@@ -444,7 +431,6 @@ export class McommunityGroupsComponent implements OnInit {
     pageChanged(event: number) {
         this.currentPageNmuber = event;
         this.allGroups();
-        // this.teamAllGroups();
     }
 
     /**
@@ -459,7 +445,6 @@ export class McommunityGroupsComponent implements OnInit {
                 this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
-                // this.teamAllGroups();
                 this.allGroups();
             }
         }
@@ -474,7 +459,6 @@ export class McommunityGroupsComponent implements OnInit {
             limit = this.itemPerPage;
         }
         this.itemPerPage = limit;
-        // this.teamAllGroups();
         this.allGroups();
     }
 

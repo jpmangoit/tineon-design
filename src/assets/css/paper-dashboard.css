@@ -12646,6 +12646,12 @@ background: #FBC52D;
 
 }
 
+::ng-deep input:focus,
+::ng-deep input:focus-visible {
+  outline: none !important;
+  
+}
+
 @media(max-width:410px) {
     body .page-heading {
      margin-bottom: 10px !important;

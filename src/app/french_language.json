@@ -640,7 +640,8 @@
     },
     "genral_message":{
         "not_available_msg": "Cette fonctionnalité n'est pas disponible chez vous. Pour l'utiliser, veuillez mettre à niveau le forfait ou contacter l'administrateur. ",
-        "feature_locked": "Fonction verrouillée"
+        "feature_locked": "Fonction verrouillée",
+        "loading" : "Loading..."
     },
     "club":{
         "club_appointments":"Nominations actuelles au club",
