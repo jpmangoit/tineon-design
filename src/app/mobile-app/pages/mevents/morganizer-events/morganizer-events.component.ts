@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'app-morganizer-events',
     templateUrl: './morganizer-events.component.html',
-    styleUrls: ['./morganizer-events.component.css'],
+    styleUrls: ['./morganizer-events.component.css'], 
     providers: [DatePipe]
 })
 
@@ -432,7 +432,6 @@ export class MorganizerEventsComponent implements OnInit {
                                             if (dt1 == self.todays_date) {
                                                 self.currentEvent.push(rrEvents1);
                                                 self.currentEventList.push(rrEvents1);
-
                                             } else if (dt1 > self.todays_date) {
                                                 self.upcomingEvent.push(rrEvents1);
                                                 self.upcomingEventList.push(rrEvents1);

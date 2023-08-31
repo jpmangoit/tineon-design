@@ -12,6 +12,7 @@ import { LanguageService } from 'src/app/service/language.service';
 import { appSetting } from 'src/app/app-settings';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DropdownService } from 'src/app/service/dropdown.service';
 declare var $: any;
 
 @Component({
@@ -61,12 +62,13 @@ export class MclubMessageComponent implements OnInit {
     selected = '1';
 
     isClublList: boolean = true;
+	selectedValue :any;
     // select: { value: string; viewValue: any; }[];
 	constructor(
 		private lang: LanguageService,
 		private authService: AuthServiceService,
 		public formBuilder: UntypedFormBuilder,private notificationService: NotificationService,
-		private confirmDialogService: ConfirmDialogService, private themes: ThemeService
+		private confirmDialogService: ConfirmDialogService, private themes: ThemeService, private dropdownService: DropdownService
 	) { }
 
 	ngOnInit(): void {
@@ -77,6 +79,14 @@ export class MclubMessageComponent implements OnInit {
 		this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
 			this.setTheme = resp;
 		});
+
+		this.dropdownService.getDropdownValue().subscribe(value => {
+            this.selectedValue = value;
+            this.onSelect(this.selectedValue);
+			console.log('--club---',this.selectedValue)
+            // Do something with the value
+          });
+
 		let self = this;
 		this.language = this.lang.getLanguaageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));

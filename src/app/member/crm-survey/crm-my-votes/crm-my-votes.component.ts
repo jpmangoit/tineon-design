@@ -79,28 +79,22 @@ export class CrmMyVotesComponent implements OnInit, OnDestroy {
                     if (respData['isError'] == false && respData['result']['survey'].length > 0) {
                         respData?.['result']?.['survey']?.forEach(element => {
                             let cudate = new Date()
-
                             var days = this.commonFunctionService.getDays(cudate, element.survey_end_date.split('T')[0]);
                             // element.dayCount = days;
-
                             if (cudate.toISOString().split('T')[0] <= element.survey_end_date.split('T')[0]) {
                                 element.dayCount = days;
                                 element.remain = this.language.Survey.day_left;
                             } else {
                                 element.completed = element.survey_end_date;
                             }
-
                             /* Progress Bar calculation */
                             element.progress = this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
-                        });
-                        this.myVotes = respData['result']['survey'];
-                        this.myVotes.forEach((element:any) =>{
                             if (element?.picture) {
                                 element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
                             }
-                        })
-                        
 
+                        });
+                        this.myVotes = respData['result']['survey'];
                         this.totalMyVotes = respData.result['pagination']['rowCount'];
                     }
                 }

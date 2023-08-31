@@ -22,7 +22,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     setTheme: ThemeType;
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
-    totalRecord: number = 0;
+    totalRecord: number = 0; 
     totalActiveSurvey: number = 0;
     limitPerPage: { value: string }[] = [
         { value: '10' },
@@ -103,6 +103,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
                  if (respData['isError'] == false) {
                     if(respData?.['result']?.['survey']?.length > 0){
                         respData['result']['survey'].forEach((element: any) => {
+                            
                             if (this.alluserInformation[element.user_name.id] != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user_name.id].member_id, null)
                                     .subscribe(
@@ -132,6 +133,8 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
                         });
                     }
                     this.activeSurvey = respData['result']['survey'];
+                    console.log(this.activeSurvey );
+                    
                     
                     this.totalActiveSurvey = respData['result'].pagination.rowCount;
                 }

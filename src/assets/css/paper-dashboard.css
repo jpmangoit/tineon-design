@@ -630,6 +630,9 @@ body {
     }
 
 
+    
+
+
 }
 
 @media screen and (max-width: 575px) {
@@ -11071,8 +11074,10 @@ body .sidebar.sidebar-hr a.sidebar-expand:hover .nav-logo .club-name {
     line-height: 22px;
 }
 .news_content_text {
-    font-family: "Gellix", sans-serif;
-    font-weight: 500;
+  font-family: "Gellix", sans-serif;
+  font-weight: 500;
+  max-height: 280px;
+  overflow: auto;
 }
 /* user green color composition */
 .club-define button.red_more_btn {
@@ -12479,9 +12484,9 @@ span.news-date {
     margin-top: -3px;
 }
 
-.box-news-top div img {
+/* .box-news-top div img {
     max-width: none;
-}
+} */
 
 body .tab-button {
 background: #fff ;
@@ -12634,6 +12639,17 @@ border: 1px solid #FBC52D;
 background: #FBC52D;
     }
 
+   body  .news_content_text {
+  
+  color: #8e8e93;
+}
+
+}
+
+::ng-deep input:focus,
+::ng-deep input:focus-visible {
+  outline: none !important;
+  
 }
 
 @media(max-width:410px) {

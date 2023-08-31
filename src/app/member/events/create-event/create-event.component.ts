@@ -349,7 +349,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             'participant': new UntypedFormControl(''),
             'show_guest_list': new UntypedFormControl(''),
             'chargeable': new UntypedFormControl(''),
-            'price_per_participant': new UntypedFormControl('', Validators.pattern("^[0-9]*$")),
+            'price_per_participant': new UntypedFormControl('', Validators.pattern("^[0-9]+(\.[0-9]{1,2})?$")),
             'description': new UntypedFormControl('', Validators.required),
             'users': new UntypedFormControl(''),
             'author': new UntypedFormControl(userId),

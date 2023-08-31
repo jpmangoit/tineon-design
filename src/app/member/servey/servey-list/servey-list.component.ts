@@ -6,6 +6,8 @@ import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-servey-list',
@@ -16,7 +18,7 @@ export class ServeyListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true;
+    isData: boolean = true; 
     displayedColumns: string[] = [
         'title',
         'description',
@@ -41,6 +43,10 @@ export class ServeyListComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private themes: ThemeService,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService,
+
+
     ) { }
 
     ngOnInit(): void {
@@ -90,6 +96,32 @@ export class ServeyListComponent implements OnInit {
 
     private _compare(a: number | string, b: number | string, isAsc: boolean) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
+     /**
+    * Function is used to delete survey BY admin
+    * @author  MangoIt Solutions
+    * @param   {survey_id,userId}
+    * @return  {staring}
+    */
+     surveyDelete(id: number) {
+        let self = this;
+        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_survey, function () {
+            self.authService.setLoader(true);
+            self.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            self.notificationService.showSuccess(respData['result']['message'], null);
+                            self.getUserAllSurvey("");
+                        } else if (respData['code'] == 400) {
+                            self.notificationService.showError(respData['message'], null);
+                        }
+                    }
+                )
+        }, function () { }
+        )
     }
 
     /**

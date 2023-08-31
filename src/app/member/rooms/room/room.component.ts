@@ -28,14 +28,14 @@ declare var $: any;
     templateUrl: './room.component.html',
     styleUrls: ['./room.component.css'],
     providers: [DatePipe],
-}) 
+})
 
 export class RoomComponent implements OnInit, OnDestroy {
     language: any;
     userData: LoginDetails;
     responseMessage: string;
     searchSubmit: boolean = false;
-    searchForm: UntypedFormGroup; 
+    searchForm: UntypedFormGroup;
     displayCourse: boolean;
     displayInstructor: boolean;
     displayRoom: boolean = true;
@@ -43,7 +43,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     roomImg: string;
     roomsByIdData: Room;
     allRooms: Room[] = [];
-    searchData: Room[]=[];
+    searchData: Room[] = [];
     private activatedSub: Subscription;
     userAccess: UserAccess;
     createAccess: CreateAccess;
@@ -51,16 +51,18 @@ export class RoomComponent implements OnInit, OnDestroy {
     thumbnail: any;
     memberid: any;
     currentPageNmuber: number = 1;
-    itemPerPage:number = 8;
+    // itemPerPage: number = 8;
+    itemPerPage: number = 4;
     totalRoomData: number = 0;
-    limitPerPage :{value: string}[] = [
+    totalPages: any
+    limitPerPage: { value: string }[] = [
         { value: '8' },
         { value: '16' },
         { value: '24' },
         { value: '32' },
         { value: '40' }
     ];
-    calendarRooms:any;
+    calendarRooms: any;
     calendarOptions: CalendarOptions;
     selectLanguage: string;
     allRoomCalndr: any[];
@@ -90,7 +92,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         });
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
 
@@ -98,7 +100,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.userRole = this.userData.roles[0];
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[this.userRole].create;
-        this.getAllRooms();
+        this.getAllRooms(1);
         this.searchForm = new UntypedFormGroup({
             name: new UntypedFormControl(''),
             persons: new UntypedFormControl('', Validators.pattern('^[0-9]*$')),
@@ -120,13 +122,13 @@ export class RoomComponent implements OnInit, OnDestroy {
         ];
 
         this.allWeekDayArrayName = [
-            { id: 0, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
-            { id: 1, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
-            { id: 2, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
-            { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
-            { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
-            { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}
+            { id: 0, name: ["Sonntag", "Sunday", "dimanche", "domenica", "Воскресенье", "domingo", "Pazar"] },
+            { id: 1, name: ["Montag", "Monday", "lundi", "lunedì", "понедельник", "lunes", "Pazartesi"] },
+            { id: 2, name: ["Dienstag", "Tuesday", "mardi", "martedì", "вторник", "martes", "Salı"] },
+            { id: 3, name: ["Mittwoch", "Wednesday", "mercredi", "mercoledì", "среда", "miércoles", "Çarşamba"] },
+            { id: 4, name: ["Donnerstag", "Thursday", "jeudi", "giovedì", "четверг", "jueves", "Perşembe"] },
+            { id: 5, name: ["Freitag", "Friday", "vendredi", "venerdì", "Пятница", "viernes", "Cuma"] },
+            { id: 6, name: ["Samstag", "Saturday", "samedi", "sabato", "Суббота", "sábado", "Cumartesi"] }
         ]
     }
 
@@ -136,58 +138,65 @@ export class RoomComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {object array}
     */
-    getAllRooms() {
+    getAllRooms(item:any) {
         if (sessionStorage.getItem('token')) {
+        this.currentPageNmuber = item;
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null) 
-            .subscribe((respData: Room) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.allRooms = respData['result']['room'];
-                    this.allRooms.forEach((element:any) =>{
-                        if(element?.room_image[0]?.room_image){
-                            element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
-                        }
-                    })
-                    this.totalRoomData = respData['result'].pagination.rowCount;
-                } else if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
-                }
-            });
+            this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+                .subscribe((respData: Room) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.allRooms = respData['result']['room'];
+                        this.allRooms.forEach((element: any) => {
+                            if (element?.room_image[0]?.room_image) {
+                                element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
+                            }
+                        })
+                        this.totalRoomData = respData['result'].pagination.rowCount;
+                        this.totalPages = Math.ceil(this.totalRoomData / this.itemPerPage);
+
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
+                });
         }
     }
 
-    onSearch() {
+    onSearch(item: any) {
         if (
             (this.searchForm.value.name == '' && this.searchForm.value.persons == '') ||
             (this.searchForm.value.name == '' && this.searchForm.value.persons == null) ||
-            (this.searchForm.value.name == null &&this.searchForm.value.persons == null)
+            (this.searchForm.value.name == null && this.searchForm.value.persons == null)
         ) {
             this.notificationService.showError(this.language.instructor.text_for_search, null);
             //this.searchSubmit = true;
         } else {
             this.searchSubmit = false;
             if (this.searchForm.valid) {
+                this.currentPageNmuber = item;
                 this.authService.setLoader(true);
-                this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage,this.searchForm.value)
-                .subscribe((respData: Room) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.searchData = null;
-                        this.allRooms = null;
-                        this.totalRoomData = 0;
-                        this.searchData = respData['result']['room'];
-                        this.allRooms = respData['result']['room'];
-                        this.allRooms.forEach((element:any) =>{
-                            if(element?.room_image[0]?.room_image){
-                                element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
-                            }
-                        })
-                        this.totalRoomData = respData['result'].pagination.rowCount;
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                    }
-                });
+                this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, this.searchForm.value)
+                    .subscribe((respData: Room) => {
+                        this.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            this.searchData = null;
+                            this.allRooms = null;
+                            this.totalRoomData = 0;
+                            this.searchData = respData['result']['room'];
+                            this.allRooms = respData['result']['room'];
+                            this.allRooms.forEach((element: any) => {
+                                if (element?.room_image[0]?.room_image) {
+                                    element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
+                                }
+                            })
+                            this.totalRoomData = respData['result'].pagination.rowCount;
+                            this.totalPages = Math.ceil(this.totalRoomData / this.itemPerPage);
+
+
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
+                    });
             }
         }
     }
@@ -203,58 +212,74 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.searchForm.controls['name'].setValue('');
         this.searchForm.controls['persons'].setValue('');
         this.searchData = [];
-        this.getAllRooms();
+        this.getAllRooms(1);
     }
 
-       /**
+    /**
     * Function is used for pagination
-    * @author  MangoIt Solutions
+     * @author  MangoIt Solutions
     */
+    // pageChanged(event: number) {
+    //     this.currentPageNmuber = event;
+    //     if (this.searchData?.length > 0) {
+    //         this.onSearch();
+    //     } else {
+    //         this.getAllRooms();
+    //     }
+    // }
+
     pageChanged(event: number) {
-        this.currentPageNmuber = event;
-        if(this.searchData?.length > 0){
-            this.onSearch();
-        }else{
-            this.getAllRooms();
+        if (event === -1) {
+            // Previous button clicked
+            this.currentPageNmuber--;
+        } else if (event === 1) {
+            // Next button clicked
+            this.currentPageNmuber++;
         }
-    }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
-    goToPg(eve: number) {
-        if (isNaN(eve)) {
-            eve = this.currentPageNmuber;
+        if (this.searchData?.length > 0) {
+            this.onSearch(this.currentPageNmuber);
         } else {
-            if (eve > Math.round(this.totalRoomData / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
-            } else {
-                this.currentPageNmuber = eve;
-                if(this.searchData?.length > 0){
-                    this.onSearch();
-                }else{
-                    this.getAllRooms();
-                }
-            }
+            this.getAllRooms(this.currentPageNmuber);
         }
     }
 
-       /**
-    * Function is used for pagination
-    * @author  MangoIt Solutions
-    */
-    setItemPerPage(limit: number) {
-        if (isNaN(limit)) {
-            limit = this.itemPerPage;
-        }
-        this.itemPerPage = limit;
-        if(this.searchData?.length > 0){
-            this.onSearch();
-        }else{
-            this.getAllRooms();
-        }
-    }
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
+    // goToPg(eve: number) {
+    //     if (isNaN(eve)) {
+    //         eve = this.currentPageNmuber;
+    //     } else {
+    //         if (eve > Math.round(this.totalRoomData / this.itemPerPage)) {
+    //             this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
+    //         } else {
+    //             this.currentPageNmuber = eve;
+    //             if (this.searchData?.length > 0) {
+    //                 this.onSearch(this.currentPageNmuber);
+    //             } else {
+    //                 this.getAllRooms('');
+    //             }
+    //         }
+    //     }
+    // }
+
+    /**
+ * Function is used for pagination
+ * @author  MangoIt Solutions
+ */
+    // setItemPerPage(limit: number) {
+    //     if (isNaN(limit)) {
+    //         limit = this.itemPerPage;
+    //     }
+    //     this.itemPerPage = limit;
+    //     if (this.searchData?.length > 0) {
+    //         this.onSearch('');
+    //     } else {
+    //         this.getAllRooms('');
+    //     }
+    // }
 
     /**
     * Function is used to get room by Id
@@ -265,42 +290,42 @@ export class RoomComponent implements OnInit, OnDestroy {
     roomsById(id: number) {
         this.roomImg = '';
         this.commonFunctionService.roomsById(id)
-        .then((resp: any) => {
-            this.roomsByIdData = resp;
-            this.memberid = this.roomsByIdData.user.member_id;
-            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
-                .subscribe((respData: any) => {
-                    this.thumbnail = respData;
-                },
-                (error:any) => {
-                    this.thumbnail = null;
-                });
-               
-            if(this.roomsByIdData?.room_image[0]?.room_image == undefined || this.roomsByIdData?.room_image[0]?.room_image == '' || this.roomsByIdData?.room_image[0]?.room_image == null || !this.roomsByIdData?.room_image[0]?.room_image){
-                this.roomImg = '../../assets/img/no_image.png';             
-            } else{
-                // this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
-                // this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
-                if(this.roomsByIdData?.room_image[0]?.room_image){
-                    this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
-                    this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
-                }
-            }
-            // if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
-            //     this.roomImg = '../../assets/img/no_image.png';
-            // } else {
-            //     this.roomsByIdData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['room_image']?.[0]['room_image'].substring(20)));
-            //     this.roomImg = this.roomsByIdData['room_image']?.[0]['room_image'];
-            // }
+            .then((resp: any) => {
+                this.roomsByIdData = resp;
+                this.memberid = this.roomsByIdData.user.member_id;
+                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
+                    .subscribe((respData: any) => {
+                        this.thumbnail = respData;
+                    },
+                        (error: any) => {
+                            this.thumbnail = null;
+                        });
 
-            setTimeout(() => {
-                this.getRoomCalendar(this.roomsByIdData);
-            }, 500);
+                if (this.roomsByIdData?.room_image[0]?.room_image == undefined || this.roomsByIdData?.room_image[0]?.room_image == '' || this.roomsByIdData?.room_image[0]?.room_image == null || !this.roomsByIdData?.room_image[0]?.room_image) {
+                    this.roomImg = '../../assets/img/no_image.png';
+                } else {
+                    // this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
+                    // this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
+                    if (this.roomsByIdData?.room_image[0]?.room_image) {
+                        this.roomsByIdData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData?.room_image[0]?.room_image.substring(20)));
+                        this.roomImg = this.roomsByIdData?.room_image[0]?.room_image;
+                    }
+                }
+                // if (this.roomsByIdData['room_image']?.[0]['room_image'] == '' || this.roomsByIdData['room_image']?.[0]['room_image'] == null) {
+                //     this.roomImg = '../../assets/img/no_image.png';
+                // } else {
+                //     this.roomsByIdData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomsByIdData['room_image']?.[0]['room_image'].substring(20)));
+                //     this.roomImg = this.roomsByIdData['room_image']?.[0]['room_image'];
+                // }
+
+                setTimeout(() => {
+                    this.getRoomCalendar(this.roomsByIdData);
+                }, 500);
             })
-        .catch((erro: any) => {
-            $('#view-rooms').modal('hide');
-            this.notificationService.showError(erro, null);
-        });
+            .catch((erro: any) => {
+                $('#view-rooms').modal('hide');
+                this.notificationService.showError(erro, null);
+            });
     }
 
     /**
@@ -309,16 +334,16 @@ export class RoomComponent implements OnInit, OnDestroy {
      * @param   {Room data by id}
      * @return  {object array}
      */
-    getRoomCalendar(roomsByIdData:any){
+    getRoomCalendar(roomsByIdData: any) {
         this.allRoomCalndr = this.commonFunctionService.getRoomCalendar(roomsByIdData);
         this.calendarRooms = this.allRoomCalndr[0].cal;
         this.calendarOptions = {
-            plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
             initialView: 'timeGridWeek',
             headerToolbar: {
-              left: 'prev,next today',
-              center: 'title',
-              right: ''
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
             },
             slotDuration: '00:02:30', // length of time slots
             allDaySlot: false, // display all-day events in a separate all-day slot
@@ -327,7 +352,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                 minute: '2-digit',
                 hour12: false
             },
-            firstDay:1,
+            firstDay: 1,
             weekends: true,
             editable: false,
             selectable: false,
@@ -350,13 +375,13 @@ export class RoomComponent implements OnInit, OnDestroy {
                 meridiem: false,
                 hour12: false
             }
-          };
-          this.authService.setLoader(false);
+        };
+        this.authService.setLoader(false);
     }
 
     handleEventClick(arg) {
-        if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-            this.viewDetails(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetails(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
         }
     }
 
@@ -371,7 +396,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     * @param   {id , date}
     * @return  {}
     */
-    viewDetails(id: any, date: any ,type:any) {
+    viewDetails(id: any, date: any, type: any) {
         $('#view-rooms').modal('hide');
         if (type == 'course') {
             // this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
@@ -445,12 +470,12 @@ export class RoomComponent implements OnInit, OnDestroy {
                     .subscribe((respData: any) => {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'],null);
+                            self.notificationService.showSuccess(respData['result']['message'], null);
                             setTimeout(function () {
                                 self.ngOnInit();
                             }, 2000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'],null);
+                            self.notificationService.showError(respData['message'], null);
                         }
                     });
             },
@@ -462,27 +487,27 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.activatedSub.unsubscribe();
     }
 
-    getDayName(id:any){
+    getDayName(id: any) {
         if (!isNaN(id)) {
             return this.allWeekDayArray[id];
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return this.allWeekDayArray[obj.id];
-            }else{
+            } else {
                 return id;
             }
         }
     }
 
-    getDayId(id:any){
+    getDayId(id: any) {
         if (!isNaN(id)) {
             return id;
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return obj.id;
-            }else{
+            } else {
                 return id;
             }
         }

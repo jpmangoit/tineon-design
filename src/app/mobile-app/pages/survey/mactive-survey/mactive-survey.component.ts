@@ -117,6 +117,7 @@ declare var $: any;
                  if (respData['isError'] == false) {
                     if(respData?.['result']?.['survey']?.length > 0){
                         respData['result']['survey'].forEach((element: any) => {
+
                             if (this.alluserInformation[element.user_name.id] != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user_name.id].member_id, null)
                                     .subscribe(
@@ -145,6 +146,8 @@ declare var $: any;
                         });
                     }
                     this.activeSurvey = respData['result']['survey'];
+                    console.log(this.activeSurvey);
+                    
                     this.totalActiveSurvey = respData['result'].pagination.rowCount;
                 }
             })

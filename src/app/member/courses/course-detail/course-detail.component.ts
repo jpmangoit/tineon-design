@@ -163,7 +163,6 @@ export class CourseDetailComponent implements OnInit {
                         this.courseDetails = null;
                         this.updateCourseData = null;
                         this.courseDetails = respData['result'];
-
                         if (this.courseDetails?.length > 0) {
                             this.courseDetails.forEach(element => {
                                 if (this.allUsers?.length > 0) {
@@ -213,15 +212,14 @@ export class CourseDetailComponent implements OnInit {
                         // }
                         if (this.courseDetails[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
-                            if (this.courseDetails[0]?.course_image[0]?.course_image ) {
-                                this.courseDetails[0].course_image[0].course_image  = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0]?.course_image[0]?.course_image .substring(20)));
+                            if (this.courseDetails[0]?.course_image[0]?.course_image) {
+                                this.courseDetails[0].course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0]?.course_image[0]?.course_image.substring(20)));
                                 this.eventImage = this.courseDetails[0]?.course_image[0]?.course_image
                             }
                         } else {
                             this.hasPicture = false;
                             this.eventImage = '';
                         }
-
                         if (this.courseDetails[0]?.course_image[0]?.course_document) {
                             this.eventFile = this.courseDetails[0].course_image[0]?.course_document;
                         }
@@ -280,7 +278,7 @@ export class CourseDetailComponent implements OnInit {
                                     this.updateCourseData['course_users'].forEach(element => {
                                         if (this.allUsers && this.allUsers.length > 0) {
                                             this.allUsers.forEach(el => {
-                                                if (el.id == element.user_id) { 
+                                                if (el.id == element.user_id) {
                                                     element.user = el;
                                                     if (element.user.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + element.user.member_id, null)
@@ -792,8 +790,8 @@ export class CourseDetailComponent implements OnInit {
             let filename = data.name.split('/').reverse()[0];
             this.authService.downloadDocument('post', endPoint, data).toPromise()
                 .then((blob: any) => {
-                    saveAs(blob, filename); 
-                    this.authService.setLoader(false); 
+                    saveAs(blob, filename);
+                    this.authService.setLoader(false);
                     this.dowloading = false;
                     setTimeout(() => {
                         this.authService.sendRequest('post', 'delete-course-document/uploads', data).subscribe((result: any) => {

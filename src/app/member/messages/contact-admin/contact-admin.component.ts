@@ -85,6 +85,7 @@ export class ContactAdminComponent implements OnInit,OnDestroy {
                     this.authService.setLoader(false);
                     this.messageSubmitted = false;
                     if (respData['isError'] == false) {
+                        this.notificationService.showSuccess(respData['result'], null);
                         const url: string[] = ["/community"];
                         this.router.navigate(url);
                     }else if (respData['code'] == 400) {

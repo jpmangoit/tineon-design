@@ -9,7 +9,7 @@
                 </svg>
             </mat-label>
             <mat-select disableRipple matNativeControl [(value)]="selected" (selectionChange)="groupFilter($event.value)">
-                <mat-option value="0">{{language.community_groups.groups}}</mat-option>
+                <mat-option value="0">{{language.community_groups.all_groups}}</mat-option>
                 <mat-option value="1">{{language.community_groups.groups_u_manage}}</mat-option>
                 <mat-option value="2">{{language.community_groups.groups_u_joined}}</mat-option>
             </mat-select>
@@ -64,7 +64,8 @@
                                 </div>
                                 <!-- group-col start -->
                                 <div class="community-group-row">
-                                    <div class="community-group-column"  *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'>
+                                    <!-- <div class="community-group-column"  *ngFor='let data of groupData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalgroupData}'> -->
+                                    <div class="community-group-column"  *ngFor='let data of groupData'>    
                                         <div class="news-widget com-g-widget">
                                             <div class="news-image" [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
                                                 <img onContextMenu="return false;"
@@ -93,17 +94,17 @@
                                                 </div>
                                                 <button type="button" *ngIf="data.displayJoinButton"  (click)="joinGroup(data.id)"
                                                     [ngStyle]="{'border-color':'#F9DB24','background-color':'#F9DB24','color':button_ic_color}">
-                                                    +{{language.community_groups.join_group}}
+                                                    {{language.community_groups.join_group}}
                                                 </button>
 
                                                 <button type="button" *ngIf="data.displayLeaveButton" (click)="leaveGroup(data.id)"
                                                     [ngStyle]="{'border-color':'#9E9E9E','background-color':'#9E9E9E','color':button_ic_color}">
-                                                    -{{language.community_groups.leave_group}}
+                                                    {{language.community_groups.leave_group}}
                                                 </button>
 
                                                 <button type="button" *ngIf='data.displayWaitApprovalButton' class="waiting-group">
-                                                    {{language.community_groups.wait_admin_approve}}
-                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.wait_admin_approve}} -->
+                                                    {{language.community_groups.waitingApproval}}
+                                                    <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.waitingApproval}} -->
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id  || userData.isAdmin == true">
                                                     <button type="button" routerLink="/update-group/{{data.id}}"
@@ -124,12 +125,12 @@
                                                 </button>
                                                 <button type="button" class="waiting-group"
                                                     *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'
-                                                    (click)="leaveGroup(data.id)">+{{language.community_groups.wait_admin_approve}}
+                                                    (click)="leaveGroup(data.id)">+{{language.community_groups.waitingApproval}}
                                                 </button> -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="paginationHead full_width" *ngIf="groupData?.length > 0">
+                                    <!-- <div class="paginationHead full_width" *ngIf="groupData?.length > 0">
                                         <div class="pagintHeadLeft">
                                             <pagination-controls (pageChange)="pageChanged($event);"
                                                 (pageBoundsCorrection)="pageChanged($event)" autoHide="true"
@@ -159,7 +160,7 @@
                                                 {{language.community_groups.groups}}
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="container" *ngIf="groupData && groupData.length == 0">
                                         <div class="empty-data-image">
                                             <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
@@ -312,7 +313,7 @@
                                         </button>
                                         <button type="button" class="waiting-group"
                                             *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'
-                                            (click)="leaveGroup(data.id)">+{{language.community_groups.wait_admin_approve}}
+                                            (click)="leaveGroup(data.id)">+{{language.community_groups.waitingApproval}}
                                         </button> -->
                                     </div>
                                 </div>
@@ -423,7 +424,7 @@
                                                 <button type="button" *ngIf="data.created_by != user_Id"
                                                     (click)="leaveGroup(data.id)"
                                                     [ngStyle]="{'border-color':'#999','background-color':'#999','color':button_ic_color}">
-                                                    -{{language.community_groups.leave_group}}
+                                                    {{language.community_groups.leave_group}}
                                                 </button>
                                                 <!-- <button type="button" class="del-group"
                                                     *ngIf="data.created_by == user_Id" (click)="deleteGroup(data.id)"
@@ -458,7 +459,7 @@
 
     </div>
     <!-- club news top widget End -->
-    <div class="application-ad" [hidden]="isShow" *ngIf="adsTineon && allowAdvertisment == 0">
+    <!-- <div class="application-ad" [hidden]="isShow" *ngIf="adsTineon && allowAdvertisment == 0">
         <a href="{{adsTineon.redirectLink}}" target="_blank" (click)="onClickBanner(adsTineon.id)">
             <div class="add-inner">
                 <div class="ad-right">
@@ -469,7 +470,6 @@
                     </span>
                 </div>
                 <div class="ad-left">
-                    <!-- <p>community-group</p> -->
                     <Span>{{adsTineon.bannerName}}<br>
                     </Span>
                     <span class="get-btn"><a>{{language.navigation.get_app}}</a></span>
@@ -487,5 +487,5 @@
                 </svg>
             </button>
         </div>
-    </div>
+    </div> -->
 </div>

@@ -262,7 +262,7 @@
                                 </ng-container>
                                 <ng-container *ngIf="checkForWaiting (item.courseUsers)">
                                     <button *ngIf="count < item.allowed_persons" type="button"
-                                        class="sold-btns">{{language.community_groups.wait_admin_approve}}</button>
+                                        class="sold-btns">{{language.community_groups.waitingApproval}}</button>
                                     <button type="button" class="sold-btn"
                                         *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
                                 </ng-container>
@@ -413,7 +413,7 @@
                                 </ng-container>
                                 <ng-container *ngIf="checkForWaiting (item.courseUsers)">
                                     <button *ngIf="count < item.allowed_persons" type="button"
-                                        class="sold-btns">{{language.community_groups.wait_admin_approve}}</button>
+                                        class="sold-btns">{{language.community_groups.waitingApproval}}</button>
                                     <button type="button" class="sold-btn"
                                         *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
                                 </ng-container>

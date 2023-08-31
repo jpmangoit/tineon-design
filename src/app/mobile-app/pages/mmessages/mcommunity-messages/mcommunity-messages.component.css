@@ -61,12 +61,22 @@ ul.tabs__items li a.active {
     margin-bottom: 30px;
 }
 
+.horizontal-tabs {
+  display: flex;
+  margin-top: 25px;
+  gap: 20px;
+}
+
+.horizontal-tabs > .mat-form-field {
+  width: 47% !important;
+  display: inline-block;
+  flex: 0 0 46%;
+}
+
 
 ::ng-deep .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
- margin-top: 35px;
-width: calc(100% - 30px);
-left: 15px !important;
-transform: translateX(0px) translateY(-0px) !important;
+margin-top: 45px;
+width: calc(100% - 40%);
    
 }
 
@@ -121,4 +131,51 @@ transform: translateX(0px) translateY(-0px) !important;
  ::ng-deep body .mat-form-field-appearance-fill .mat-form-field-label {
       top: 31px !important;
       left: 13px !important;
+    }
+
+
+    ::ng-deep body .tabs-content-section {
+      padding-left: 0 !important;
+width: 100% !important;
+display: inline-block;
+margin-top: 15px;
+    }
+
+     ::ng-deep body .tabs-content-section .mat-select-arrow-wrapper {
+      display: none !important;
+     }
+
+    ::ng-deep body .all-widget .mat-form-field { float: right;}
+
+    ::ng-deep  body .all-widget .mat-form-field .mat-form-field-wrapper {
+        position: absolute;
+        top: -60px;
+        right: 0;
+    }
+
+    ::ng-deep  body .all-widget .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
+       width: 181px;
+    }
+
+    ::ng-deep body .tabs-content-section .mat-form-field{ width: 100% !important;}
+
+    ::ng-deep body .tabs-content-section .mat-form-field .mat-form-field-flex {
+      width: 100% !important;
+    }
+
+
+    ::ng-deep  body .all-widget .mat-select-arrow-wrapper {
+      display: none !important;
+    }
+
+    @media(max-width:400px) {
+      ::ng-deep  body .all-widget .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
+  width: 170px;
+}
+    }
+
+    @media(max-width:360px) {
+      ::ng-deep  body .all-widget .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
+       width: 151px;
+    }
     }

@@ -54,6 +54,15 @@ export class MorganizerTaskComponent implements OnInit {
     setTheme: ThemeType
     private activatedSub: Subscription;
     selected = '1';
+    selectedProgress = '5'
+    alluserInformation: { member_id: number }[] = [];
+    thumb: any;
+
+
+    displayToDo: boolean = true;
+    displayInProgress: boolean = false;
+    displayCompleted: boolean = false
+
 
     All() {
         this.displayAll = true;
@@ -83,6 +92,8 @@ export class MorganizerTaskComponent implements OnInit {
         this.displayCreated = true;
     }
 
+
+
     // active class functions
     onClick(check) {
         this.activeClass = check == 1 ? "all" : check == 2 ? "personalActive" : check == 3 ? "groupActive" : check == 4 ? "createdActive" : "all";
@@ -90,7 +101,7 @@ export class MorganizerTaskComponent implements OnInit {
 
     constructor(
         private authService: AuthServiceService,
-        private confirmDialogService: ConfirmDialogService,private themes: ThemeService,
+        private confirmDialogService: ConfirmDialogService, private themes: ThemeService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
@@ -112,21 +123,63 @@ export class MorganizerTaskComponent implements OnInit {
         this.userAccess = appSetting.role;
         this.extensions = appSetting.extensions;
         this.createAccess = this.userAccess[userRole].create;
-        this.getAllTask();
-        this.getTask();
+        this.getAllUserInfo();
+        // this.getAllTask();
+        // this.getTask();
         this.taskFilter('1');
+        this.taskProgressFilter('5');
     }
 
-    taskFilter(id:any){
-        if(id == 1){
+    taskFilter(id: any) {
+        if (id == 1) {
             this.All()
-        }else if(id == 2){
+        } else if (id == 2) {
             this.personalTask()
-        }else if(id == 3){
+        } else if (id == 3) {
             this.groupTask()
-        }else{
+        } else if (id == 4) {
             this.createdTask()
         }
+    }
+
+    taskProgressFilter(id: any) {
+        if (id == 5) {
+            this.displayToDo = true;
+            this.displayInProgress = false;
+            this.displayCompleted = false;
+
+        } else if (id == 6) {
+            this.displayToDo = false;
+            this.displayInProgress = true;
+            this.displayCompleted = false;
+
+        } else {
+            this.displayToDo = false;
+            this.displayInProgress = false;
+            this.displayCompleted = true;
+        }
+    }
+
+    /**
+      * Function is used to get all user list
+      * @author  MangoIt Solutions
+      * @param   {}
+      * @return  {object} user object
+      */
+    getAllUserInfo() {
+        let self = this;
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getAllTask();
+                    this.getTask();
+                }
+            );
     }
 
 
@@ -134,9 +187,11 @@ export class MorganizerTaskComponent implements OnInit {
         if (sessionStorage.getItem('token')) {
             var endpoint
             if (this.userDetails.roles[0] == 'admin') {
-                endpoint = 'getAllApprovedTasks'
+                endpoint = 'mobile/getAllApprovedTasks'
+                // endpoint = 'getAllApprovedTasks'
             } else {
-                endpoint = 'getAllApprovedTasks/user/' + this.user_id
+                endpoint = 'mobile/getAllApprovedTasks/user/' + this.user_id 
+                // endpoint = 'getAllApprovedTasks/user/' + this.user_id 
             }
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', endpoint, null)
@@ -146,16 +201,30 @@ export class MorganizerTaskComponent implements OnInit {
                         this.inProgress = [];
                         this.completed = [];
                         if (respData['isError'] == false) {
-                            if(respData['result'] && respData['result'].length > 0){
+                            if (respData['result'] && respData['result'].length > 0) {
                                 respData['result'].forEach((element) => {
+                                    if (this.alluserInformation[element.userstask.id] != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.userstask.id].member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    element.userstask.userImage = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.userstask.userImage = null;
+                                                });
+                                    } else {
+                                        element.userstask.userImage = null;
+                                    }
+
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
-                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
                                     }
                                     element.approvedCount = 0
                                     element.progressVal = 0
                                     if (element.subtasks.length > 0) {
                                         element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
-                                        element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
+                                        element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                                     }
 
                                     let cudate: Date = new Date();
@@ -169,9 +238,11 @@ export class MorganizerTaskComponent implements OnInit {
                                     if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
                                         this.toDoTask.push(element)
                                         this.toDoTask;
-                                    } else if (element.subtasks.some(obj => obj.status === 1)) {
+
+                                    } else if (element.status == 0 && element.subtasks.some(obj => obj.status === 1)) {
                                         this.inProgress.push(element)
                                         this.inProgress;
+
                                     } else if (element.status == 1) {
                                         this.completed.push(element)
                                         this.completed;
@@ -189,7 +260,8 @@ export class MorganizerTaskComponent implements OnInit {
     getTask() {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'getAllApprovedTasks/user/' + this.user_id, null)
+            // this.authService.memberSendRequest('get', 'getAllApprovedTasks/user/' + this.user_id, null)
+            this.authService.memberSendRequest('get', 'mobile/getAllApprovedTasks/user/' + this.user_id, null)
                 .subscribe(
                     (respData: any) => {
                         this.perToDoTask = [];
@@ -202,17 +274,32 @@ export class MorganizerTaskComponent implements OnInit {
                         this.createdInProgress = [];
                         this.createdCompleted = [];
                         if (respData['isError'] == false) {
-                            if(respData['result'] && respData['result'].length > 0){
+                            if (respData['result'] && respData['result'].length > 0) {
                                 respData['result'].forEach((element) => {
-                                    if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
-                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+
+                                    if (this.alluserInformation[element.userstask.id] != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.userstask.id].member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.thumb = resppData;
+                                                    element.userstask.userImage = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.userstask.userImage = null;
+                                                });
+                                    } else {
+                                        element.userstask.userImage = null;
                                     }
-                                    if(element.group_id == 0 || element.group_id == null || element.group_id == ''){
+
+                                    if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
+                                    }
+                                    if (element.group_id == 0 || element.group_id == null || element.group_id == '') {
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
                                         if (element.subtasks.length > 0) {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
-                                            element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
+                                            element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                                         }
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
@@ -225,20 +312,22 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id == null || element.group_id == 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.perToDoTask.push(element)
                                             this.perToDoTask;
+                                            
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.perInProgress.push(element)
                                             this.perInProgress;
+                                            
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.status == 1)) {
                                             this.perCompleted.push(element)
                                             this.perCompleted;
                                         }
                                     }
-                                    if(element.group_id > 0){
+                                    if (element.group_id > 0) {
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
                                         if (element.subtasks.length > 0) {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
-                                            element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
+                                            element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                                         }
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
@@ -251,20 +340,22 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id > 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.groupToDoTask.push(element)
                                             this.groupToDoTask;
+                                            
                                         } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.groupInProgress.push(element)
                                             this.groupInProgress;
+
                                         } else if ((element.group_id > 0) && (element.status == 1)) {
                                             this.groupCompleted.push(element)
                                             this.groupCompleted;
                                         }
                                     }
-                                    if(element.organizer_id == this.user_id){
+                                    if (element.organizer_id == this.user_id) {
                                         element.approvedCount = 0;
                                         element.progressVal = 0;
                                         if (element.subtasks.length > 0) {
                                             element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length
-                                            element.progressVal = Math.round(100 *(element.approvedCount / (element.subtasks.length)));
+                                            element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                                         }
                                         let cudate: Date = new Date();
                                         element.dayCount = element.dayCount = this.commonFunctionService.getDays(cudate, element.date);

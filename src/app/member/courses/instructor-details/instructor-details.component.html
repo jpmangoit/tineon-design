@@ -151,7 +151,7 @@
                                                 <div class="author-des" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMemId(instructorDetails.author)">
                                                     <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}} {{instructorDetails.user.firstname}} {{instructorDetails.user.lastname}}</span>
                                                     <span class="author-date">{{instructorDetails.created_at | date: 'd. MMMM y'}}</span><br/>
-                                                    <span class="author-status" *ngIf="instructorDetails.approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                    <span class="author-status" *ngIf="instructorDetails.approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                     <span class="author-status" *ngIf="instructorDetails.approved_status == 0 && instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                     <span class="author-id" *ngIf="instructorDetails.deny_by_id >= 1">
                                                         {{language.dashboard.denyBy}}:- {{instructorDetails.denybyuser.firstname}} {{instructorDetails.denybyuser.lastname}}
@@ -324,7 +324,7 @@
                                                         <div class="author-des" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMemId(instructorDetails.author)">
                                                             <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}} {{instructorDetails.user.firstname}} {{instructorDetails.user.lastname}}</span>
                                                             <span class="author-date">{{instructorDetails.created_at | date: 'd. MMMM y'}}</span><br/>
-                                                            <span class="author-status" *ngIf="instructorDetails.update_approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}} :-{{language.community_groups.wait_admin_approve}}</span>
+                                                            <span class="author-status" *ngIf="instructorDetails.update_approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}} :-{{language.community_groups.waitingApproval}}</span>
                                                             <span class="author-status" *ngIf="instructorDetails.update_approved_status == 0 && instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                             <span class="author-id" *ngIf="instructorDetails.deny_by_id >= 1">
                                                                 {{language.dashboard.denyBy}}:- {{instructorDetails.denybyuser.firstname}} {{instructorDetails.denybyuser.lastname}}
@@ -492,7 +492,7 @@
                                             <div class="author-des" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMemId(instructorDetails.author)">
                                                 <span class="author-id"> {{language.dashboard.dashboardNewsAuthor}} {{instructorDetails?.user?.firstname}} {{instructorDetails?.user?.lastname}}</span>
                                                 <span class="author-date">{{instructorDetails.created_at | date: 'd. MMMM y'}}</span><br/>
-                                                <span class="author-status" *ngIf="instructorDetails.approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                <span class="author-status" *ngIf="instructorDetails.approved_status == 0  && !instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                 <span class="author-status" *ngIf="instructorDetails.approved_status == 0 && instructorDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                 <span class="author-id" *ngIf="instructorDetails.deny_by_id >= 1">
                                                     {{language.dashboard.denyBy}}:- {{instructorDetails.denybyuser.firstname}} {{instructorDetails.denybyuser.lastname}}

@@ -91,13 +91,12 @@ export class CrmCompletedSurveyComponent implements OnInit {
                             } else if (days < 31) {
                                 element.dayCount = this.language.Survey.expired + "  " + days + "  " + this.language.Survey.day_ago;
                             }
-                        });
-                        this.Completed = respData['result']['survey'];
-                        this.Completed.forEach((element: any) => {
+
                             if (element?.picture) {
                                 element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
                             }
-                        })
+                        });
+                        this.Completed = respData['result']['survey'];
                         this.totalCompletedSurvey = respData.result['pagination']['rowCount'];
                     }
                 }

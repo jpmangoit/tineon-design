@@ -130,7 +130,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[this.userRole].create;
         this.teamId = this.userDetails.team_id;
-        this.getAllInstructor();
+        this.getAllInstructor(1);
 
         this.editInstructorForm = this.formbuilder.group({
             first_name: ['', [Validators.required]],
@@ -312,7 +312,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Array Of Object} all the Instructors
     */
-    getAllInstructor() {
+    getAllInstructor(item:any) {
+        this.currentPageNmuber = item;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('post', 'getInstructor/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
@@ -326,6 +327,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     })
                     this.totalInstructor = respData['result'].pagination.rowCount;
                     // this.totalPages = Math.ceil(this.instructorData.length / this.itemPerPage);
+                    this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
+
                 } else if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);
                 }
@@ -337,11 +340,12 @@ export class InstructorComponent implements OnInit, OnDestroy {
      * @author  MangoIt Solutions
      * @return {object} returns {Search Filter Data} The new Instructor object.
      */
-    onSearch() {
+    onSearch(item:any) {
         this.searchSubmit = true;
         let searchValue: string = this.searchForm.value.search;
         if (searchValue) {
             this.searchSubmit = false;
+            this.currentPageNmuber = item;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'getInstructor/' + this.currentPageNmuber + '/' + this.itemPerPage, this.searchForm.value)
                 .subscribe((respData: any) => {
@@ -358,6 +362,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                             }
                         })
                         this.totalInstructor = respData['result'].pagination.rowCount;
+                        this.totalPages = Math.ceil(this.totalInstructor / this.itemPerPage);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
@@ -378,7 +383,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.searchForm.get('search').updateValueAndValidity();
         this.searchForm.reset();
         this.searchData = [];
-        this.getAllInstructor();
+        this.getAllInstructor(1);
     }
 
     /**
@@ -396,23 +401,20 @@ export class InstructorComponent implements OnInit, OnDestroy {
     //     }
     // }
     pageChanged(event: number) {
-        console.log(event);
-    
         if (event === -1) {
             // Previous button clicked
-            this.currentPageNmuber--;
+            this.currentPageNmuber--; 
         } else if (event === 1) {
             // Next button clicked
             this.currentPageNmuber++;
         }
-    
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch(this.currentPageNmuber);
         } else {
-            this.getAllInstructor();
+            this.getAllInstructor(this.currentPageNmuber);
         }
     }
-    
+
 
     /**
     * Function is used for pagination
@@ -428,9 +430,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
             } else {
                 this.currentPageNmuber = eve;
                 if (this.searchData?.length > 0) {
-                    this.onSearch();
+                    this.onSearch(this.currentPageNmuber);
                 } else {
-                    this.getAllInstructor();
+                    this.getAllInstructor('');
                 }
             }
         }
@@ -446,9 +448,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
         }
         this.itemPerPage = limit;
         if (this.searchData?.length > 0) {
-            this.onSearch();
+            this.onSearch('');
         } else {
-            this.getAllInstructor();
+            this.getAllInstructor('');
         }
     }
 
@@ -811,7 +813,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result'], null);
-                        this.getAllInstructor();
+                        this.getAllInstructor(this.currentPageNmuber);
                         setTimeout(function () {
                             self.goBack();
                             $('#get-in-touch-instructor').modal('hide');
@@ -839,7 +841,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     self.responseMessage = respData['result']['message'];
                     self.notificationService.showSuccess(self.responseMessage, null);
                     setTimeout(function () {
-                        self.getAllInstructor();
+                        self.getAllInstructor(this.currentPageNmuber);
                     }, 3000);
                 } else if (respData['code'] == 400) {
                     self.responseMessage = respData['message'];

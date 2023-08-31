@@ -290,7 +290,10 @@
         "group_task": "Групповые задачи",
         "uncomplete_subrask":"Незавершенная подзадача",
         "uncomplete_heading":"У этой задачи есть незавершенная подзадача. Пожалуйста, сначала завершите подзадачу",
-        "close_subtask":"Закрывать"
+        "close_subtask":"Закрывать",
+        "viewTask": "Visualizza l'attività",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document": {
         "title": "Документы",
@@ -727,7 +730,7 @@
         "close":"Заключение",
         "edit": "Редактировать",
         "close_survey": "Близкое исследование",
-        "active_survey": "Активный опрос",
+        "active_survey": "Активный",
         "no_survey": "Исследование не найдено",
         "no_votes": "Голоса не найдены",
         "no_completed_votes" : "Не найдено завершенных голосований",
@@ -770,7 +773,7 @@
         "view_survey": "Просмотр обзора",
         "thanks_vote": "Спасибо за ваш голос! Вы проголосовали за следующие варианты",
         "my_votes": "Мои голоса",
-        "completed_votes": "Завершённые голосования",
+        "completed_votes": "Завершённые",
         "day_left": "День Остался",
         "days_left": "дней осталось",
         "month_ago": "Месяц назад",

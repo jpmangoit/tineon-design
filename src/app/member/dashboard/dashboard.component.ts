@@ -15,6 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from 'src/app/service/notification.service';
 import { take } from 'rxjs/operators';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
+import { LogarithmicScale } from 'chart.js/dist';
 declare var $: any;
 
 @Component({
@@ -76,6 +77,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     isData: boolean = true;
     totalChildComponents = 1;
     loadedChildComponents = 0;
+    groupCount: any;
+    noOfgroupCount: any;
+    groupName: any;
 
     constructor(
         private lang: LanguageService,
@@ -120,10 +124,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'numberOfPostEventsMessage/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
+
                     if (respData['isError'] == false) {
                         this.clubNewsCount = respData.result.posts;
                         this.organizerCount = respData.result.events;
                         this.communityCount = respData.result.message;
+                        this.noOfgroupCount = respData.result?.group
+                        if (this.noOfgroupCount != undefined) {
+                            if (!isNaN(this.noOfgroupCount)) {
+                                this.groupCount = respData.result?.group
+                            } else {
+                                this.groupName = respData.result?.group
+                            }
+                        }
                     }
                 }
             );
@@ -141,8 +154,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     this.eventData = respData;
                     this.eventData.forEach((element: any) => {
-                        if ( element?.event_images[0]?.event_image) {
-                            element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.event_images[0]?.event_image.substring(20)));
+                        if (element?.event_images[0]?.event_image) {
+                            element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                         }
                     });
                 }
@@ -197,36 +210,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     getDesktopDeshboardBanner() {
         // this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
-        .subscribe(
-            (respData: any) => {
-                if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner'];
+            .subscribe(
+                (respData: any) => {
+                    if (respData['isError'] == false) {
+                        this.bannerData = respData['result']['banner'];
 
-                    if (this.bannerData?.length > 0) {
-                        this.bannerData.forEach((element: any) => {
-                            element['category'] = JSON.parse(element.category);
-                            element['placement'] = JSON.parse(element.placement);
-                            element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
+                        if (this.bannerData?.length > 0) {
+                            this.bannerData.forEach((element: any) => {
+                                element['category'] = JSON.parse(element.category);
+                                element['placement'] = JSON.parse(element.placement);
+                                element['display'] = JSON.parse(element.display);
+                                // element['image'] = JSON.parse(element.image);
 
-                            if (element.banner_image[0]?.banner_image) {
-                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
-                            }
+                                if (element.banner_image[0]?.banner_image) {
+                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
+                                }
 
-                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                element['redirectLink'] = element.redirectLink;
-                            } else {
-                                element['redirectLink'] = '//' + element.redirectLink;
-                            }
-                        })
+                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                    element['redirectLink'] = element.redirectLink;
+                                } else {
+                                    element['redirectLink'] = '//' + element.redirectLink;
+                                }
+                            })
+                        }
+                        this.authService.setLoader(false);
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                        this.authService.setLoader(false);
                     }
-                    this.authService.setLoader(false);
-                } else if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
-                    this.authService.setLoader(false);
                 }
-            }
-        )
+            )
     }
 
     refreshTokens() {

@@ -87,7 +87,7 @@ ul.tabs__items li a.active {
     .scroll-navigation .tabs__items li{
        margin: 0 5px;
 width: auto !important;
-max-width: 126px;
+max-width: 136px;
 display: inherit;
     }
 }
@@ -478,13 +478,22 @@ align-items: center;
   color: #999;
 }
 .event-bottom > div:first-child {
-  max-width: 70%;
+  max-width: 40%;
+width: 50%;
 }
 
 .event-bottom div span {
     color: #999;
     font-size: 12px !important;
 }
+
+.event-bottom > div > span:first-child {
+  width: 18px;
+  text-align: center;
+  display: inline-block;
+  flex: 0 0 18px;
+}
+
 
 
 

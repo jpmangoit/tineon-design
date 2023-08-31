@@ -92,7 +92,7 @@
                                     <span class="author-id">{{data.user.firstname}}
                                         {{data.user.lastname}}</span>
                                     <span class="author-date">{{data.created_at | date:'d. MMMM y'}}</span>
-                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                     <span class="author-status" *ngIf="data.approved_status == 0 && data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                                     <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
                                     <span class="author-id">{{data.user.firstname}} {{data.user.lastname}}</span>
                                     <span class="author-date">{{data.created_at | date: 'd. MMMM y'}}</span>
-                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                    <span class="author-status" *ngIf="data.approved_status == 0  && !data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                     <span class="author-status" *ngIf="data.approved_status == 0 && data.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                                                                  {{newsData.user.firstname}} {{newsData.user.lastname}}
                                                             </span>
                                                             <span class="author-date">{{newsData.created_at | date: 'd. MMMM y'}}</span>
-                                                            <span class="author-status" *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.wait_admin_approve}}</span>
+                                                            <span class="author-status" *ngIf="newsData.approved_status == 0  && !newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
                                                             <span class="author-status" *ngIf="newsData.approved_status == 0 && newsData.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                                             <span class="author-id" *ngIf="newsData.deny_by_id >= 1">
                                                                 {{language.dashboard.denyBy}}:- {{newsData.denybyuser.firstname}} {{newsData.denybyuser.lastname}}

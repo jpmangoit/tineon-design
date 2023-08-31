@@ -97,7 +97,7 @@
         "community_subtext_chat_mob": "Chats",
         "organizer_subtext_new_mob": "Aufgaben",
         "organizer_subtext_tasks_mob": "Events",
-        
+
         "club_wall_subtext_new_desk": "News",
         "club_wall_subtext_news_desk": "Beiträge",
 
@@ -131,15 +131,15 @@
         "groups":"Groupes",
         "groups_u_joined":"Groupes que vous avez rejoints",
         "all_groups":"Tous les groupes",
-        "join_group":"Rejoindre le groupe",
-        "leave_group":"Quitter le groupe",
+        "join_group":"Rejoindre le",
+        "leave_group":"Quitter le",
         "groups_u_manage":"Groupes que vous gérez",
         "participants":"Participants",
         "all_participants":"Tous les participants",
         "cancelled":"Annulé",
         "pending":"En attente",
         "approved":"Approuvé",
-        "Edit_group":"Modifier le groupe",
+        "Edit_group":"Modifier le",
         "Delete":"Supprimer",
         "Back":"Dos",
         "group_news":"Actualités du groupe",
@@ -148,17 +148,17 @@
         "join_group_popup":"Êtes-vous sûr de vouloir rejoindre ce groupe ?",
         "no_news":"Aucune actualité trouvée.",
         "read_more":"En savoir plus",
-        "posts_for_u":"Messages pour vous",
+        "posts_for_u":"Actualités",
         "members":"Membres",
         "posts":"messages",
         "no_groups":"Aucun groupe trouvé",
-        "wait_admin_approve":"En attente d'approbation",
         "admin_deny":"L'administrateur refuse la demande",
-        "delete_group":"Supprimer le groupe",
+        "delete_group":"Supprimer le",
         "RestUpdateGroup":"Supprimer le groupe de mise à jour",
         "PublishGroup":"Groupe de publication",
         "DenyGroup":"Refuser le groupe",
-        "waitingApproval":"En attente de l'approbation de l'administrateur",
+        "waitingApproval":"En attente d'approbation",
+        "wait_admin_approve":"En attente de l'approbation de l'administrateur",
         "currentGroup":"Groupe actuel",
         "updateGroup":"Mettre à jour le groupe",
         "group":"Groupe"
@@ -392,7 +392,7 @@
         "all_participants":"Tous les participants",
         "price":"Prix",
         "free_course": "Libérer",
-        "free": "0",
+        "free": "free",
         "cancelled":"Annulé",
         "pending":"En attente",
         "approved":"Approuvé",
@@ -438,7 +438,9 @@
         "currentTask":"Tâche en cours",
         "updatedTask":"Tâche mise à jour",
 
-        "viewTask":"Afficher la tâche"
+        "viewTask":"Afficher la tâche",
+        "task_created_by": "Task Created by:"
+
     },
     "club_document":{
         "title":"Documents",
@@ -536,8 +538,8 @@
         "no_sales_partner_news":"Aucune actualité de partenaire commercial trouvée !",
         "salesPartnerNews":"Actualités des partenaires commerciaux",
         "news_type": "Taper",
-        "group_news":"Actualités du groupe",
-        "chairman": "Conseil d'administration",
+        "group_news":"Groupe",
+        "chairman": "Administration",
         "news_highlight": "News Highlight"
 
     },
@@ -988,7 +990,7 @@
         "close":"Fermer",
         "edit":"Modifier",
         "close_survey":"Fermer le sondage",
-        "active_survey":"Enquête active",
+        "active_survey":"Active",
         "no_survey":"Aucun sondage trouvé",
         "no_votes":"Aucun vote trouvé",
         "no_completed_votes":"Aucun vote terminé trouvé",
@@ -1031,7 +1033,7 @@
         "view_survey":"Afficher le sondage",
         "thanks_vote":"Merci pour votre vote ! Vous avez voté pour les options suivantes",
         "my_votes":"Mon vote",
-        "completed_votes":"Votes terminées",
+        "completed_votes":"Terminées",
         "day_left":"Jour restant",
         "days_left":"Jours restants",
         "month_ago":"Il y a un mois",

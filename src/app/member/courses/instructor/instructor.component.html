@@ -41,7 +41,7 @@
             </div>
             <div class="search_area">
                 <div class="card">
-                    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <form [formGroup]="searchForm" (ngSubmit)="onSearch(1)"> 
                         <div class="input-group no-border">
                             <input type="text" class="form-control" formControlName="search"
                                 placeholder="{{language.header.search}}">
@@ -149,11 +149,11 @@
                             </div>
                         </div>
                     </div> -->
-                    <div>
-                        <button (click)="pageChanged(-1);" [disabled]="currentPageNmuber === 1">Previous</button>
-                        <button (click)="pageChanged(1);" [disabled]="currentPageNmuber === totalPages">Next</button>
+                    <div *ngIf="(instructorData && instructorData.length > 0) ">
+                        <button (click)="pageChanged(-1);" [disabled]="currentPageNmuber === 1">{{language.pagination.previous}}</button>
+                        <button (click)="pageChanged(1);" [disabled]="currentPageNmuber === totalPages ">{{language.pagination.next}}</button>
                     </div>
-                    
+
                     <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
                         *ngIf="(instructorData && instructorData.length == 0) ">
                         <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;"
@@ -198,7 +198,7 @@
                                 <span class="author-date">{{instructorById.created_at | date: 'd. MMMM y'}}</span><br />
                                 <span class="author-status"
                                     *ngIf="instructorById.approved_status == 0  && !instructorById.deny_by_id">{{language.theme.status}}
-                                    :-{{language.community_groups.wait_admin_approve}}</span>
+                                    :-{{language.community_groups.waitingApproval}}</span>
                                 <span class="author-status"
                                     *ngIf="instructorById.approved_status == 0 && instructorById.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
                                 <span class="author-id" *ngIf="instructorById.deny_by_id >= 1">
