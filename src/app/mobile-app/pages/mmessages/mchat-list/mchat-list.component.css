@@ -20,7 +20,7 @@ padding: 0 20px !important;
     height: 15px;
     width: 15px;
     border: 2px solid #fff;
-    background: #56E965;
+    /* background: #56E965; */
     position: absolute;
     border-radius: 50%;
     top: 0;
@@ -35,7 +35,7 @@ padding: 0 20px !important;
 span.user-status-badge {
     width: 15px;
     height: 15px;
-    background: #56E965;
+    /* background: #56E965; */
     position: absolute;
     right: 0;
     border-radius: 50%;

@@ -198,9 +198,6 @@ export class MchatListComponent implements OnInit {
         this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
         .subscribe(
             (resp: any) => {
-                setTimeout(() => {
-                    this.authService.setLoader(false);
-                }, 2000);
                 this.chatUserArr = resp;
                 let grp: any;
                 if(this.chatUserArr && this.chatUserArr.length > 0){
@@ -254,7 +251,6 @@ export class MchatListComponent implements OnInit {
                 }
                 this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
                 if(this.chatId){
-
                     let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId);
                     if(chatDetails.length > 0){
                         setTimeout(() => {
@@ -263,6 +259,9 @@ export class MchatListComponent implements OnInit {
                     }
 
                 }
+                setTimeout(() => {
+                    this.authService.setLoader(false);
+                }, 2000);
             }
 
         );
