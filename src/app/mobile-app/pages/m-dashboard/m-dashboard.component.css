@@ -2,6 +2,7 @@
 
 .app-page-content {
     padding: 15px 0px;
+    background: #fff;
 }
 .all-event-calendar{
     padding: 15px;
@@ -492,9 +493,11 @@ span.profile-label-content {
 
 }
 
-::ng-deep .layout-content {
+/* ::ng-deep .layout-content {
     background: #fff !important;
-}
+} */
+
+
 
 @media (max-width: 400px) {
    ::ng-deep body .profile-card-info {
