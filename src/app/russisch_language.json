@@ -449,7 +449,9 @@
         "file_valid": "Файл недействителен",
         "hexa_error":"Must be Hexadecimal value ,start from # and alphanumeric( 0-9,A-F)",
 
-        "LogoText_max_length":"Logo Text can be maximum 55 characters long"
+        "LogoText_max_length":"Logo Text can be maximum 55 characters long",
+        "specialChar_validation" : "Please only enter the amount without special characters"
+
     },
     "genral_message": {
         "not_available_msg": "Эта функция недоступна в вашей роли"

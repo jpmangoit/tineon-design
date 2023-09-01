@@ -642,7 +642,8 @@
         "payment_method" : "Payment method is required",
         "iban" : "Iban is required",
         "courseTaskDate":"Task date must be in between of course start and end dates",
-        "eventTaskDate":"Task date must be in between of event start and end dates"
+        "eventTaskDate":"Task date must be in between of event start and end dates",
+        "specialChar_validation" : "Please only enter the amount without special characters"
 
     },
     "genral_message": {

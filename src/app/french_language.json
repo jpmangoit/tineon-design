@@ -636,7 +636,9 @@
         "payment_method" : "Le mode de paiement est requis",
         "iban" : "Iban est requis",
         "courseTaskDate":"La date de la tâche doit être comprise entre les dates de début et de fin du cours",
-        "eventTaskDate":"La date de la tâche doit être comprise entre les dates de début et de fin de l'événement"
+        "eventTaskDate":"La date de la tâche doit être comprise entre les dates de début et de fin de l'événement",
+        "specialChar_validation" : "Please only enter the amount without special characters"
+
     },
     "genral_message":{
         "not_available_msg": "Cette fonctionnalité n'est pas disponible chez vous. Pour l'utiliser, veuillez mettre à niveau le forfait ou contacter l'administrateur. ",

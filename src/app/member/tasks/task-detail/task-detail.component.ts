@@ -28,7 +28,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     displayError: boolean;
     userDetails: LoginDetails;
     setTheme: ThemeType;
-    taskDetails: TaskType[] = [];
+    // taskDetails: TaskType[] = [];
+    taskDetails: any = [];
     getclubInfo: ClubDetail;
     birthdateStatus: boolean;
     collaboratorDetails: TaskCollaboratorDetails[] = [];
@@ -139,6 +140,16 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                 if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
+
+                                console.log(this.taskDetails);
+                                this.taskDetails.approvedCount = 0;
+                                this.taskDetails.progressVal = 0;
+                                if ( this.taskDetails.subtasks.length > 0) {
+                                    this.taskDetails.approvedCount =  this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
+                                    this.taskDetails.progressVal = Math.round(100 * ( this.taskDetails.approvedCount / ( this.taskDetails.subtasks.length)));
+                                }
+
+
                                 if (this.taskDetails) {
                                     this.getOrganizerDetails(taskid);
                                 }
@@ -172,7 +183,6 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                         }
                                     });
                                 }
-                                console.log(this.taskDetails);
                                 
                                 if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                     this.UpdatedcollaboratorDetails = [];
@@ -277,11 +287,11 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-* Function to get the details of the organizer of the task
-* @author  MangoIt Solutions
-* @param   {groupId, Group Name}
-* @return  {}
-*/
+    * Function to get the details of the organizer of the task
+    * @author  MangoIt Solutions
+    * @param   {groupId, Group Name}
+    * @return  {}
+    */
     getOrganizerDetails(taskid: number) {
         if (sessionStorage.getItem('token')) {
             this.organizerDetails = [];

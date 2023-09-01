@@ -244,6 +244,7 @@ import { GroupListComponent } from './member/groups/group-list/group-list.compon
 import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
+import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function getCulture() {
@@ -459,6 +460,7 @@ FullCalendarModule.registerPlugins([
         FaqsListComponent,
         AppStoreComponent,
         MEmailComponent,
+        MorganizerTaskDetailsComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -631,7 +631,8 @@
         "payment_method" : "Il metodo di pagamento è obbligatorio",
         "iban" : "Iban  è obbligatorio",
         "courseTaskDate":"La data dell'attività deve essere compresa tra le date di inizio e di fine del corso",
-        "eventTaskDate":"La data dell'attività deve essere compresa tra le date di inizio e di fine dell'evento"
+        "eventTaskDate":"La data dell'attività deve essere compresa tra le date di inizio e di fine dell'evento",
+        "specialChar_validation" : "Please only enter the amount without special characters"
 
     },
     "genral_message": {

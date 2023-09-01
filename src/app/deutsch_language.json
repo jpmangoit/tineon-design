@@ -637,7 +637,9 @@
         "payment_method" : "Zahlungsmethode wird benötigt",
         "iban" : "Iban wird benötigt",
         "courseTaskDate":"Das Datum der Aufgabe muss zwischen dem Start- und Enddatum des Kurses liegen.",
-        "eventTaskDate":"Das Datum der Aufgabe muss zwischen dem Start- und Enddatum der Veranstaltung liegen."
+        "eventTaskDate":"Das Datum der Aufgabe muss zwischen dem Start- und Enddatum der Veranstaltung liegen.",
+        "specialChar_validation" : "Bitte nur Betrag eingeben ohne Sonderzeichen"
+
     },
     "genral_message": {
         "not_available_msg": "Diese Funktion ist für sie nicht verfügbar. Um es zu nutzen, aktualisieren Sie bitte ihren Plan oder kontaktieren Sie Admin. ",

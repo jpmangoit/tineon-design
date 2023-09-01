@@ -62,6 +62,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club"
+    },
+    "error_message" : {
+        "specialChar_validation" : "Please only enter the amount without special characters"
     }
 }
 
