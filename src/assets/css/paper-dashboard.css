@@ -8232,7 +8232,7 @@ span.info_detail a {
 
     .print_btn_group {
         display: inline-block;
-        float: none;
+        float: left;
         height: 100%;
         vertical-align: middle;
         margin: 20px 0px 0px 0px;
@@ -8250,6 +8250,10 @@ span.info_detail a {
   width: auto;
   display: flex;
 }
+
+    .title-btn-group.rp_sec button {
+        font-size: 13px;
+    }
 }
 @media (max-width: 1024px) {
     .content.profile_section .profile-sidebar {
@@ -8478,8 +8482,9 @@ div#showSubtask input::placeholder {
 }
 
 .news-dropdown .multiselect-dropdown div span.dropdown-btn span {
-    color: #cbd2eb;
-    font-weight: 600;
+   color: #7E90BE;
+font-weight: 600;
+font-size: 14px;
 }
 
 .news-dropdown .multiselect-dropdown .dropdown-btn .selected-item span {
@@ -8489,7 +8494,7 @@ div#showSubtask input::placeholder {
 .news-dropdown .multiselect-dropdown div span.dropdown-btn {
     width: 100%;
     background: #fff;
-    border: 2px solid #e9eeff !important;
+    border: 2px solid #DCE0EC !important;
     box-sizing: border-box;
     border-radius: 13px !important;
 }
@@ -12621,6 +12626,13 @@ body .news-read-more a {
     body .modal-backdrop {
         background: #fff;
     }
+
+    .news_content_text p {
+  font-size: 12px;
+  line-height: 20px;
+  color: #8E8E93;
+  font-weight: 500;
+}
 
     body button.red_more_btn {
         background: transparent;

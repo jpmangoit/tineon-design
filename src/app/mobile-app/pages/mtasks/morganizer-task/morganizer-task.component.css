@@ -176,6 +176,8 @@ span.survey-author-img img {
     font-size: 14px;
     line-height: 20px;
     color: #3C3B41;
+    display: flex;
+align-items: center;
 }
 
 .survey-author {
@@ -234,7 +236,7 @@ button.mat-menu-item {
 
 .task-category span {
   font-size: 9px;
-font-weight: 600;
+font-weight: 700;
 background: #FBC52D;
 display: inline-block;
 padding: 0 10px;

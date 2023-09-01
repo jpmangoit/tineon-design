@@ -45,7 +45,8 @@ div#profileSpinner {
     width: 100%;
     padding: 15px 15px 10px;
     border-radius: 10px;
-    box-shadow:  0px 4px 10px 0px rgba(0, 0, 0, 0.104);
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.104);
+background: #fff;
 }
 
 .title-box h5 {
@@ -647,6 +648,27 @@ justify-content: flex-start;
   flex: 0 0 40px;
 }
 
+.detail-date-time {
+    width: 100%;
+display: flex;
+
+}
+.card {
+  
+  background-color: #F8F8F8 !important;}
+
+.detail-room-location {
+      width: 100%;
+display: flex;
+
+}
+.detail-date-time > span, .detail-room-location > span {
+  width: 50%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block !important;
+}
 .chat svg {
   width: 55px !important;
   height: 25px;
@@ -673,6 +695,7 @@ justify-content: flex-start;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  background: #fff;
 }
 
 .course-price span:first-child {

@@ -84,6 +84,11 @@ button.btn-close {
     padding-left: 45px;
 }
 
+::ng-deep .mobile-green .mb-title.proile-icon svg path {
+    fill: #20AE80 !important ;
+    stroke:#20AE80;
+  }
+
 h5.modal-title {
     font-size: 20px;
 

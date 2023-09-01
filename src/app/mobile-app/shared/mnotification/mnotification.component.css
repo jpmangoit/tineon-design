@@ -139,12 +139,12 @@ button.deny_btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 23px;
     color: #8BA5CD;
     float: left;
     margin-right: 15px;
     font-family: 'Gellix', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
 }
 .notification_heading {
     background: #fafbfc;

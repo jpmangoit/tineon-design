@@ -83,7 +83,7 @@ label.guest_label span {
 }
 .upload-delete {
     display: flex;
-    margin: 5px 0px 25px;
+    margin: 5px 0px 5px;
 }
 
 .upload_btn_action {
@@ -230,6 +230,25 @@ button.btn.btn-secondary.change_btn {
 .switch_toggle input[type="checkbox"]:checked + label:after {
   left: auto;
   right: 3px;
+}
+
+.col-md-4 > .upload_btn_action.ng-star-inserted {
+  position: static;
+  float: left;
+  display: flex;
+  border: none !important;
+  border-radius: 2px;
+  height: 38px;
+width: 208px;
+}
+
+.col-md-4 > .upload_btn_action.ng-star-inserted span {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 ::ng-deep body .profile_field > span {
