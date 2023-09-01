@@ -21,6 +21,7 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 declare var $: any;
 
 @Component({
@@ -94,6 +95,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     recurrenceType: { item_id: number; description: string }[] = [];
     group_dropdown: { group_id: number; name: string }[] = [];
     userObj: { user_id: any; approved_status: number }[] = [];
+    
     private activatedSub: Subscription;
 
     editorConfig: AngularEditorConfig = {
@@ -398,7 +400,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             instructor_external: new UntypedFormControl('', Validators.required),
             add_image: new UntypedFormControl('', Validators.required),
             add_docfile: new UntypedFormControl(''),
-            price_per_participant: new UntypedFormControl('', Validators.pattern("^[0-9]+(\.[0-9]{1,2})?$")), 
+            // price_per_participant: new UntypedFormControl('', Validators.pattern("^[0-9]+(\.[0-9]{1,2})?$")), 
+            'price_per_participant': new UntypedFormControl('', [Validators.pattern("^[0-9]+([,.][0-9]{1,2})?$"), this.currencySymbolValidator()]),
             isTask: new UntypedFormControl('',),
             courseDate: this.formBuilder.array([
                 this.formBuilder.group({
@@ -412,6 +415,18 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             instructorReccurance: new UntypedFormControl(''),
             in_instructorReccurance:new UntypedFormControl('')
         });
+    }
+
+    currencySymbolValidator() {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+            const value = control.value;
+            if (typeof value === 'string' && /[€$!@#%^&*]/.test(value)) {
+
+                return { currencySymbol: true };
+            }
+            return null;
+        };
+
     }
 
     noWhitespace(control: UntypedFormControl) {
