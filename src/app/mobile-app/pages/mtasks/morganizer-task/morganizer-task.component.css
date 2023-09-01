@@ -8,7 +8,7 @@
     border-radius: 4px;
 }
 .scroll-navigation::-webkit-scrollbar {
-    display: none;
+    display: none; 
 }
 .scroll-navigation .tabs__items {
     display: flex;

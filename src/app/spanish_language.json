@@ -633,7 +633,9 @@
         "payment_method" : "Se requiere el método de pago",
         "iban" : "Se requiere el IBAN",
         "courseTaskDate":"La fecha de la tarea debe estar entre las fechas de inicio y finalización del curso",
-        "eventTaskDate":"La fecha de la tarea debe estar entre las fechas de inicio y finalización del evento"
+        "eventTaskDate":"La fecha de la tarea debe estar entre las fechas de inicio y finalización del evento",
+        "specialChar_validation" : "Please only enter the amount without special characters"
+
     },
     "genral_message": {
         "not_available_msg": "Esta función no está disponible para usted. Para usarla, actualice el plan o comuníquese con el administrador. ",

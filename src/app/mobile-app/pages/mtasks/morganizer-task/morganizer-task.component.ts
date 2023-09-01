@@ -220,6 +220,8 @@ export class MorganizerTaskComponent implements OnInit {
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
                                     }
+
+                                    
                                     element.approvedCount = 0
                                     element.progressVal = 0
                                     if (element.subtasks.length > 0) {

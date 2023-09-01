@@ -138,6 +138,8 @@ import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MclubEventsComponent } from './mobile-app/pages/mevents/mclub-events/mclub-events.component';
 import { MeventDetailComponent } from './mobile-app/pages/mevents/mevent-detail/mevent-detail.component';
+import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
+
 
 var userDetails = JSON.parse(localStorage.getItem('user-data'));
 
@@ -349,6 +351,7 @@ const mobile_routes: Routes = [
             { path: 'update-survey/:surveyId', component: UpdateServeyComponent, canActivate: [MemberLightGuard], data: { title: 'Update Survey', allow_permission: ['create'] } },
             { path: 'update-banner/:bannerId', component: UpdateBannerComponent, canActivate: [MemberLightGuard], data: { title: 'Update Banner', allow_permission: ['create'] } },
 
+            { path: 'task-detail/:taskid', component: MorganizerTaskDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'Morganizer-Task-Detail', allow_permission: ['participate']}},
             { path: 'group-detail/:groupid', component: GroupDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Group Detail', allow_permission: ['participate'] } },
             { path: 'instructor-detail/:instructorId', component: InstructorDetailsComponent, canActivate: [MemberLightGuard], data: { title: 'Instructor Detail', allow_permission: ['participate'] } },
             { path: 'task-detail/:taskid', component: TaskDetailComponent, canActivate: [MemberLightGuard], data: { title: 'Task Detail', allow_permission: ['participate'] } },
