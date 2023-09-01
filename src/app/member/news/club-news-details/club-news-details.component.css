@@ -730,6 +730,13 @@ body.login-page {
     .box-de {
         padding: 30px;
     }
+    .news_image.col-md-6.second-main-div {
+  padding: 15px;
+}
+
+.second-main-div-bottom .page-action-right {
+   padding:0 15px
+}
 }
 
 .sup {
@@ -842,13 +849,22 @@ a.edit_btn {
     margin-right: 15px;
 }
 .news_heading h2 {
-    font-size: 24px;
-    font-family: "Gellix", sans-serif;
-    margin-bottom: 20px;
-    font-weight: 700;
+  font-size: 16px;
+  font-family: "Gellix", sans-serif;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #353535;
+  margin-bottom: 5px;
 }
 .news_image {
     position: relative;
+}
+
+.news_details .news_content_text p {
+  font-size: 12px;
+  line-height: 20px;
+  color: #8E8E93;
+  font-weight: 500;
 }
 @media only screen and (max-width: 600px) {
     .group_edit_btn a {
@@ -888,10 +904,10 @@ ul.bunch_drop.show {
 }
 .dropdown.action_group button {
     border: none;
-    font-size: 24px;
+    font-size: 16px;
     border-radius: 5px !important;
     background: #e5e9f2;
-    height: 32px;
+    height: 25px;
     /* color: #fff; */
     box-shadow: 0px 1px 4px -1px #ccc;
 }
@@ -946,6 +962,12 @@ ul.bunch_drop.show li {
     margin: 0 auto;
     display: block;
 }
+
+.news_detail_inner .mat-tab-group {
+   padding: 0 15px;
+}
+
+
 
 .news_detail_inner .card {
     padding: 35px 25px;
@@ -1255,6 +1277,12 @@ span.get-btn {
     ::ng-deep body .page-action-right svg path {
         fill: #fff !important;
     } 
+
+    .news_image {
+ 
+  margin: 0 17px !important;
+ 
+}
 
     
 }

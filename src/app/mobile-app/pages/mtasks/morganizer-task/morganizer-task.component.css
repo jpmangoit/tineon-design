@@ -176,6 +176,8 @@ span.survey-author-img img {
     font-size: 14px;
     line-height: 20px;
     color: #3C3B41;
+    display: flex;
+align-items: center;
 }
 
 .survey-author {

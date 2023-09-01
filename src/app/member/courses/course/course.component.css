@@ -505,6 +505,7 @@ span.participant_status {
 
 .search-filter-wrapper .card-body {
     /* padding: 10px 10px 0px 10px !important; */
+    padding: 0px 15px 0px 0;
 }
 
 .search-filter-wrapper .event_sub_btn {
@@ -515,6 +516,12 @@ span.participant_status {
 
 .search-filter-wrapper .event_type {
     margin-bottom: 0;
+}
+
+.col-md-4.instructor-multi-inner {
+  padding-right: 0;
+  width: 280px !important;
+  max-width: 280px !important;
 }
 
 .search-filter-wrapper .profile_sub_btn .Cancel_btn,
@@ -983,13 +990,15 @@ span.instructor-badge {
 .save_btn,
 .Cancel_btn,
 .page-action-right button {
-    background: rgb(88, 191, 56) !important;
-    border-color: rgb(88, 191, 56) !important;
+    background: #FB5F5F !important;
+    border-color: #FB5F5F !important;
     height: 46px !important;
     line-height: 44px;
     padding: 0 20px !important;
     display: flex;
     align-items: center;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .save_btn span,
@@ -1079,8 +1088,8 @@ span.instructor-badge {
     color: #ff9331;
 }
 
-::ng-deep ng-multiselect-dropdown {
-    width: 60%;
+.instructor-multi-inner .ng-untouched.ng-pristine {
+    width: 100%;
     margin-right: 10px;
 }
 
