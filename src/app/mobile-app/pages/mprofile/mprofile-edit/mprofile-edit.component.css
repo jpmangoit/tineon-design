@@ -80,6 +80,7 @@ label.guest_label span {
 }
 .pro_upload_group span.upload_ol {
     max-width: 213px;
+    white-space: nowrap;
 }
 .upload-delete {
     display: flex;
