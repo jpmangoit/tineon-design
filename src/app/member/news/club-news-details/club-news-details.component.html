@@ -2,9 +2,9 @@
     <div class="news_details_main">
         <div class="news-details">
             <div class="page-action">
-                <div class="page-heading">
+                <!-- <div class="page-heading">
                     <h1>{{language.club_news.newsDetail}}</h1>
-                </div>
+                </div> -->
             </div>
             <div class="news_detail_inner">
                 <div class="card">
@@ -53,7 +53,7 @@
                             <div class="card-body">
                                 <div class="news_details" *ngIf="updateNewsData">
                                     <div class="row">
-                                        <div class="news_image col-md-6">
+                                        <div class="news_image col-md-6 ">
                                             <app-image-viewer *ngIf="updateNewsData?.newImage" [imageURL]="updateNewsData?.newImage" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                             <div class="detail-big-img" (click)="viewImage=true">
                                                 <img onContextMenu="return false;" [src]="updateNewsData?.newImage ? updateNewsData?.newImage : newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
@@ -134,7 +134,7 @@
                     <div class="card-body" *ngIf="!updateNewsData">
                         <div class="news_details" *ngIf="newsData">
                             <div class="row">
-                                <div class="news_image col-md-6">
+                                <div class="news_image col-md-6 second-main-div">
                                     <!-- <app-image-viewer *ngIf="newsData.imageUrls" [imageURL]="newsData.imageUrls" [open]="viewImage" (close)="viewImage = false"></app-image-viewer>
                                     <div class="detail-big-img" (click)="viewImage=true">
                                         <img onContextMenu="return false;" [src]="newsData.imageUrls ? newsData.imageUrls : '../../assets/img/no_image.png'" alt="" loading="lazy">
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="news_content col-md-6">
+                                <div class="news_content col-md-6 second-main-div-bottom">
                                     <div class="page-action-right" *ngIf="newsData.approved_status == 0 && userDetails.isAdmin && ( newsData.deny_by_id == '' || newsData.deny_by_id == null )">
                                         <button *ngIf="userDetails.isAdmin" (click)="approveNews(newsData.id)" type="button" >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
