@@ -1706,4 +1706,8 @@ export class CourseComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }
+
+    hasComma(str: string) {
+        return str.replace(/,/g, ".");
+    }
 }

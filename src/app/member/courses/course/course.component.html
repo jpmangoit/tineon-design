@@ -255,9 +255,9 @@
                                                         </span>
                                                         <span>
                                                             <ng-container
-                                                                *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
+                                                                *ngIf="hasComma(item.chargeable)> 0">€{{item.chargeable}}</ng-container>
                                                             <ng-container
-                                                                *ngIf="item.chargeable <= 0">€{{language.organizer.free}}</ng-container>
+                                                                *ngIf="hasComma(item.chargeable)<= 0">€{{language.organizer.free}}</ng-container>
                                                         </span>
                                                     </div>
                                                     <button type="button" class="sold-btn"
@@ -275,8 +275,8 @@
                                                             </span>
                                                             <span>
                                                                 <ng-container
-                                                                    *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
-                                                                <ng-container *ngIf="item.chargeable <= 0">
+                                                                    *ngIf="hasComma(item.chargeable)> 0">€{{item.chargeable}}</ng-container>
+                                                                <ng-container *ngIf="hasComma(item.chargeable)<= 0">
                                                                     €{{language.organizer.free}}</ng-container>
                                                             </span>
                                                         </div>
@@ -441,9 +441,9 @@
                                                         </span>
                                                         <span>
                                                             <ng-container
-                                                                *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
+                                                                *ngIf="hasComma(item.chargeable)> 0">€{{item.chargeable}}</ng-container>
                                                             <ng-container
-                                                                *ngIf="item.chargeable <= 0">€{{language.organizer.free}}</ng-container>
+                                                                *ngIf="hasComma(item.chargeable)<= 0">€{{language.organizer.free}}</ng-container>
                                                         </span>
                                                     </div>
                                                     <button type="button" class="sold-btn"
@@ -461,9 +461,9 @@
                                                             </span>
                                                             <span>
                                                                 <ng-container
-                                                                    *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
+                                                                    *ngIf="hasComma(item.chargeable)> 0">€{{item.chargeable}}</ng-container>
                                                                 <ng-container
-                                                                    *ngIf="item.chargeable <= 0">€{{language.organizer.free}}</ng-container>
+                                                                    *ngIf="hasComma(item.chargeable)<= 0">€{{language.organizer.free}}</ng-container>
                                                             </span>
                                                         </div>
                                                         <ng-container *ngIf="checkFor(item.courseUsers);">
@@ -690,8 +690,8 @@
                                     {{item.start_time.split(":").slice(0,2).join(":")}}
                                 </div>
                                 <div class="course-price"><span>{{language.organizer.price}}</span>
-                                    <span *ngIf="item.chargeable > 0">€{{item.chargeable}}</span>
-                                    <span *ngIf="item.chargeable <= 0">€{{language.organizer.free}}</span>
+                                    <span *ngIf="hasComma(item.chargeable)> 0">€{{item.chargeable}}</span>
+                                    <span *ngIf="hasComma(item.chargeable)<= 0">€{{language.organizer.free}}</span>
                                 </div>
                             </div>
                             <h3>{{item.name}}</h3>
@@ -756,8 +756,7 @@
                                     <span class="event-time"><img onContextMenu="return false;"
                                             src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt=""
                                             loading="lazy">&nbsp;
-                                        {{language.organizer.due_date}} :- {{item.courseTask.date | date: 'd. MMMM
-                                        y'}}</span>
+                                        {{language.organizer.due_date}} :- {{item.courseTask.date | date: 'd. MMMM y'}}</span>
                                 </div>
                                 <p [innerHTML]="item.courseTask.description"></p>
                             </div>

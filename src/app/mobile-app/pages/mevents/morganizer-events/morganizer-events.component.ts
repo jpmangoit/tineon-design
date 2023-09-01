@@ -472,4 +472,8 @@ export class MorganizerEventsComponent implements OnInit {
         this.activatedSub.unsubscribe();
     }
 
+    hasComma(str: string) {
+        return str.replace(/,/g, ".");
+    }
+
 }

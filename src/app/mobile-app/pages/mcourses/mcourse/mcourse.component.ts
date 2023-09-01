@@ -155,6 +155,10 @@ export class McourseComponent implements OnInit, OnDestroy {
         }
     }
 
+    hasComma(str: string) {
+        return str.replace(/,/g, ".");
+    }
+
     /**
     * Function is used to display course tab contain
     * @author  MangoIt Solutions

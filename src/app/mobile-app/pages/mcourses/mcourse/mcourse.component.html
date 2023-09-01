@@ -241,8 +241,8 @@
                                     {{count}}/{{item.allowed_persons}}</ng-container>
                             </span>
                             <span>
-                                <ng-container *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
-                                <ng-container *ngIf="item.chargeable <= 0"> €{{language.organizer.free}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) <= 0"> €{{language.organizer.free}}</ng-container>
                             </span>
                         </div>
                         <div class="course-join-btn"
@@ -392,8 +392,8 @@
                                     {{count}}/{{item.allowed_persons}}</ng-container>
                             </span>
                             <span>
-                                <ng-container *ngIf="item.chargeable > 0">€{{item.chargeable}}</ng-container>
-                                <ng-container *ngIf="item.chargeable <= 0"> €{{language.organizer.free}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) <= 0"> €{{language.organizer.free}}</ng-container>
                             </span>
                         </div>
                         <div class="course-join-btn"
@@ -507,8 +507,8 @@
                                     {{item.start_time.split(":").slice(0,2).join(":")}}
                                 </div>
                                 <div class="course-price"><span>{{language.organizer.price}}</span>
-                                    <span *ngIf="item.chargeable > 0">€{{item.chargeable}}</span>
-                                    <span *ngIf="item.chargeable <= 0"> €{{language.organizer.free}}</span>
+                                    <span *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</span>
+                                    <span *ngIf="hasComma(item.chargeable) <= 0"> €{{language.organizer.free}}</span>
                                 </div>
                             </div>
                             <h3>{{item.name}}</h3>

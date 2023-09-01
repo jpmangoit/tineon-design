@@ -769,4 +769,8 @@ export class MeventDetailComponent implements OnInit {
         this.denyRefreshPage.unsubscribe();
         this.removeUpdate.unsubscribe();
     }
+    
+    hasComma(str: string) {
+        return str.replace(/,/g, ".");
+    }
 }
