@@ -108,7 +108,7 @@
                                                                         <ng-container
                                                                             *ngIf="hasComma(eventDetails.price_per_participant) > 0">€{{eventDetails.price_per_participant}}</ng-container>
                                                                         <ng-container
-                                                                            *ngIf="hasComma(eventDetails.price_per_participant) <= 0">€{{language.organizer.free}}</ng-container>
+                                                                            *ngIf="hasComma(eventDetails.price_per_participant) <= 0">{{language.organizer.free}}</ng-container>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -460,7 +460,7 @@
                                                                         <ng-container
                                                                             *ngIf="hasComma(updateEventData.price_per_participant) > 0">€{{updateEventData.price_per_participant}}</ng-container>
                                                                         <ng-container
-                                                                            *ngIf="hasComma(updateEventData.price_per_participant) <= 0">€{{language.organizer.free}}</ng-container>
+                                                                            *ngIf="hasComma(updateEventData.price_per_participant) <= 0">{{language.organizer.free}}</ng-container>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -790,7 +790,7 @@
                                                                 <ng-container
                                                                     *ngIf="hasComma(eventDetails.price_per_participant) > 0">€{{eventDetails.price_per_participant}}</ng-container>
                                                                 <ng-container
-                                                                    *ngIf="hasComma(eventDetails.price_per_participant) <= 0">€{{language.organizer.free}}</ng-container>
+                                                                    *ngIf="hasComma(eventDetails.price_per_participant) <= 0">{{language.organizer.free}}</ng-container>
                                                             </span>
                                                         </div>
                                                     </div>

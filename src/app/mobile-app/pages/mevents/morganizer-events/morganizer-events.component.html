@@ -129,7 +129,7 @@
                                             <span><ng-container
                                                     *ngIf="hasComma(today.chargeable) > 0">€{{today.chargeable}}</ng-container>
                                                 <ng-container
-                                                    *ngIf="hasComma(today.chargeable)  <= 0">€{{language.organizer.free}}</ng-container></span>
+                                                    *ngIf="hasComma(today.chargeable)  <= 0">{{language.organizer.free}}</ng-container></span>
 
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                                             <span> <ng-container
                                                     *ngIf="hasComma(upcoming.chargeable) > 0">€{{upcoming.chargeable}}</ng-container>
                                                 <ng-container
-                                                    *ngIf="hasComma(upcoming.chargeable) <= 0">€{{language.organizer.free}}</ng-container>
+                                                    *ngIf="hasComma(upcoming.chargeable) <= 0">{{language.organizer.free}}</ng-container>
                                             </span>
                                         </div>
                                     </div>
@@ -286,7 +286,7 @@
                                             <span><ng-container
                                                     *ngIf="hasComma(today.chargeable )> 0">€{{today.chargeable}}</ng-container>
                                                 <ng-container
-                                                    *ngIf="hasComma(today.chargeable) <= 0">€{{language.organizer.free}}</ng-container></span>
+                                                    *ngIf="hasComma(today.chargeable) <= 0">{{language.organizer.free}}</ng-container></span>
 
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                             <span> <ng-container
                                                     *ngIf="hasComma(upcoming.chargeable) > 0">€{{upcoming.chargeable}}</ng-container>
                                                 <ng-container
-                                                    *ngIf="hasComma(upcoming.chargeable) <= 0">€{{language.organizer.free}}</ng-container>
+                                                    *ngIf="hasComma(upcoming.chargeable) <= 0">{{language.organizer.free}}</ng-container>
                                             </span>
                                         </div> 
                                     </div>
