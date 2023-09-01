@@ -743,5 +743,5 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
     hasComma(str: string) {
         return str.replace(/,/g, ".");
-    }
+    } 
 }
