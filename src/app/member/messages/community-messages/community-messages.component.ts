@@ -246,8 +246,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                                     if(element.id != 4){
 
                                         element.lastMessage = JSON.parse(element.lastMessage)
-                                        console.log( element.lastMessage);
-                                        
                                         element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString();
                                         let cudate = new Date().toISOString().split('T')[0]
                                         let msgdate = element.lastMsgTime.split('T')[0]

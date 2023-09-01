@@ -203,7 +203,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         // this.groupData = [];
         this.authService.memberSendRequest('get', 'getGroupsNotParticipantPagination/user/' + this.user_Id + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
-                console.log( respData['result']['group'] );
                 this.groupData = respData['result']['group'];
                 this.groupData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
@@ -221,7 +220,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         //this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
         this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
             this.groupData = respData['groups'];
-            console.log(respData);
 
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
@@ -282,7 +280,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         // this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
         this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/', null)
             .subscribe((respData: any) => {
-                console.log(respData);
                 this.groupJoinData = respData['groups'].reverse();
 
                 this.groupJoinData.forEach((element: any) => {
