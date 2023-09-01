@@ -8232,7 +8232,7 @@ span.info_detail a {
 
     .print_btn_group {
         display: inline-block;
-        float: none;
+        float: left;
         height: 100%;
         vertical-align: middle;
         margin: 20px 0px 0px 0px;
@@ -8250,6 +8250,10 @@ span.info_detail a {
   width: auto;
   display: flex;
 }
+
+    .title-btn-group.rp_sec button {
+        font-size: 13px;
+    }
 }
 @media (max-width: 1024px) {
     .content.profile_section .profile-sidebar {
