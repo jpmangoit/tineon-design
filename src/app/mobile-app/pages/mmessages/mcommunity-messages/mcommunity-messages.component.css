@@ -3,7 +3,7 @@
 }
 /* tabs css start */
 .tabs-content-section {
-    padding-left: 15px;
+    padding:0 15px !important;
 }
 .profile-area-mobile+.tabs-content-section .card-toggle {
     display: none;
@@ -27,6 +27,29 @@
     margin:5px 0px;
     padding: 0;
     list-style-type: none;
+}
+
+  .widget-chat.widget .app-right-content {
+    
+    margin-left: 0 !important;
+  }
+
+
+::ng-deep .widget-chat.widget {
+  margin-top: 0px;
+
+}
+
+::ng-deep .widget-chat.widget .widget-app-content:hover {
+  background: none;
+}
+
+::ng-deep .chat-sidebar .widget-chat.widget .widget-app-content {
+  padding: 15px 0px !important;
+}
+
+.layout-content .app-content-area {
+  padding: 0 !important;
 }
 
 .scroll-navigation .tabs__items li {

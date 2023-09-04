@@ -16,6 +16,9 @@ export const serverUrl = 'http://103.127.29.85:9001/'
 
 export const baseUrl = 'http://103.127.29.85:9001/api/';
 
+
+
+
 // export const baseUrl = 'http://backend.minikube.verein.cloud/api/';
 // export const baseUrl = 'https://keycloak.staging.verein.cloud/auth/api/';
 // export const baseUrl = 'https://backend.staging.verein.cloud/api/';

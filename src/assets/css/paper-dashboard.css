@@ -6426,7 +6426,7 @@ span.event-r-time {
     .app-right-content {
         text-align: left !important;
         width: auto !important;
-        margin-left: 65px;
+        margin-left: 0px;
     }
 
     .event-widget.wd_yellow .event-right {
@@ -6468,6 +6468,12 @@ span.event-r-time {
         margin-top: 10px !important;
         margin-bottom: 10px !important;
     }
+
+      .widget-chat.widget .app-left-content {
+    display: flex;
+    width: 70% !important;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
@@ -12338,8 +12344,24 @@ body .schedule.ng-star-inserted {
     }
 
     .card .card-body {
-     padding: 16px;
+     padding: 0 15px;
     }
+
+    .widget-chat.widget .user-img {
+ 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    .widget-chat.widget .user-img img {
+  width: auto;
+  min-height: 100%;
+  transform: scale(1.2);
+  height: auto;
+  max-width: none;
+}
 }
 
 ::ng-deep body .sidebar .nav li ul li a p {

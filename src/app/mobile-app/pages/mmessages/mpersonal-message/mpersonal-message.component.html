@@ -61,23 +61,24 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <p>{{msg.content}}</p>
+                                                                    
                                                                     <h6>{{msg.user.firstName}}
                                                                         {{msg.user.lastName}}</h6>
-                                                                    <span class="user-name"
-                                                                        *ngIf="msg.user">{{msg.subject}}</span>
+                                                                    <p>{{msg.content}}</p>    
+                                                                    <!-- <span class="user-name"
+                                                                        *ngIf="msg.user">{{msg.subject}}</span> -->
                                                                 </div>
                                                             </div>
-                                                            <div class="app-right-content" *ngIf="msg.user">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd. MMMM y' }} <br>
+                                                            <div class="app-right-content chat-time" *ngIf="msg.user">
+                                                                <span class="seen-time">{{msg.created_at | date: 'd.M.YY' }} 
                                                                     {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                                 </span>
-                                                                <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"
+                                                                <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"
                                                                     class="fa fa-envelope-o" aria-hidden="true"></i>
                                                                 <i *ngIf="msg.is_read == 1"
                                                                     id="envelope-open-{{msg.id}}"
                                                                     class="fa fa-envelope-open-o"
-                                                                    aria-hidden="true"></i>
+                                                                    aria-hidden="true"></i> -->
                                                             </div>
                                                         </div>
                                                     </div>
