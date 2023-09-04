@@ -377,7 +377,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = this.language.community_messages.email_draft;
+                                    self.responseMessage = self.language.community_messages.email_draft;
                                     self.notificationService.showSuccess(self.responseMessage,null);
                                     setTimeout(() => {
                                     //   self.responseMessage = ''
@@ -409,7 +409,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = this.language.community_messages.email_draft;
+                                    self.responseMessage = self.language.community_messages.email_draft;
                                     self.notificationService.showSuccess(self.responseMessage,null);
                                     self.messageForm.controls["kind"].setValue([]);
                                     self.messageForm.controls["kind_id"].setValue([]);
@@ -437,7 +437,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = this.language.community_messages.email_draft;
+                                    self.responseMessage = self.language.community_messages.email_draft;
                                     self.notificationService.showSuccess(self.responseMessage,null);
                                     self.messageForm.controls["kind"].setValue([]);
                                     self.messageForm.controls["receiver_id"].setValue([]);

@@ -192,7 +192,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -211,7 +211,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.selectedMessage && this.selectedMessage.length > 0){
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -253,7 +253,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -272,7 +272,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.selectedMessage && this.selectedMessage.length > 0){
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -318,7 +318,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -337,7 +337,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.selectedMessage && this.selectedMessage.length > 0){
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -379,7 +379,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -398,7 +398,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.selectedMessage && this.selectedMessage.length > 0){
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -438,7 +438,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -479,7 +479,7 @@ export class MgroupMessageComponent implements OnInit {
             if(this.groupMessage && this.groupMessage.length > 0){
                 this.groupMessage.forEach(element => {
                     if (element.user) {
-                        if (this.alluserInformation[element.user.id].member_id != null) {
+                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                 .subscribe(
                                     (resppData: any) => {
@@ -498,7 +498,7 @@ export class MgroupMessageComponent implements OnInit {
             if(this.selectedMessage && this.selectedMessage.length > 0){
                 this.selectedMessage.forEach(element => {
                     if (element.user) {
-                        if (this.alluserInformation[element.user.id].member_id != null) {
+                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                 .subscribe(
                                     (resppData: any) => {
@@ -540,7 +540,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.groupMessage && this.groupMessage.length > 0){
                     this.groupMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -559,7 +559,7 @@ export class MgroupMessageComponent implements OnInit {
                 if(this.selectedMessage && this.selectedMessage.length > 0){
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
-                            if (this.alluserInformation[element.user.id].member_id != null) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
