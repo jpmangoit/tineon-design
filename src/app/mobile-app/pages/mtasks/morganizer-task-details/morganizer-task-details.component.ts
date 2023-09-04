@@ -1,19 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { TaskCollaboratorDetails, TaskType } from 'src/app/models/task-type.model';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update-confirm-dialog.service';
-import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
-import { LanguageService } from 'src/app/service/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ThemeService } from 'src/app/service/theme.service';
+import { Subscription } from 'rxjs';
+import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
+import { ProfileDetails } from 'src/app/models/profile-details.model';
+import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
+import { ThemeType } from 'src/app/models/theme-type.model';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { UpdateConfirmDialogService } from 'src/app/update-confirm-dialog/update-confirm-dialog.service';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/service/notification.service';
+import { LanguageService } from 'src/app/service/language.service';
+import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 
@@ -22,7 +22,7 @@ declare var $: any;
 	templateUrl: './morganizer-task-details.component.html',
 	styleUrls: ['./morganizer-task-details.component.css']
 })
-export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
+export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	language: any;
 	displayError: boolean;
 	userDetails: LoginDetails;
@@ -51,13 +51,15 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 	private removeUpdate: Subscription
 	allUsers: any;
 	taskId: number;
+	alluserInformation: { member_id: number }[] = [];
+
 	constructor(
 		private authService: AuthServiceService,
 		private router: Router,
 		private route: ActivatedRoute,
 		private themes: ThemeService,
 		private updateConfirmDialogService: UpdateConfirmDialogService,
-		private _location: Location,
+		// private _location: Location,
 		private confirmDialogService: ConfirmDialogService,
 		private lang: LanguageService,
 		private denyReasonService: DenyReasonConfirmDialogService,
@@ -84,8 +86,6 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 	}
 
 	ngOnInit(): void {
-		console.log('xxx');
-		
 		if (localStorage.getItem('club_theme') != null) {
 			let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
 			this.setTheme = theme;
@@ -98,12 +98,9 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 		this.route.params.subscribe(params => {
 			const taskid: number = params['taskid'];
 			this.taskId = params['taskid'];
-			console.log(this.taskId );
-			
 			this.getAllUserInfo();
 		});
 	}
-
 
 	/**
    * Function to get all the Club Users
@@ -111,12 +108,30 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
    * @param   {}
    * @return  {Array Of Object} all the Users
    */
+	// getAllUserInfo() {
+	// 	this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+	// 		.subscribe(
+	// 			(respData: any) => {
+	// 				if (respData && respData.length > 0) {
+	// 					this.allUsers = respData;
+
+	// 				}
+	// 				this.getTaskDetails(this.taskId);
+	// 			}
+	// 		);
+	// }
+
 	getAllUserInfo() {
+		let self = this;
 		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
 			.subscribe(
 				(respData: any) => {
 					if (respData && respData.length > 0) {
 						this.allUsers = respData;
+
+						Object(respData).forEach((val, key) => {
+							this.alluserInformation[val.id] = { member_id: val.member_id };
+						})
 					}
 					this.getTaskDetails(this.taskId);
 				}
@@ -129,6 +144,7 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
  * @param   {taskid}
  * @return  {Array Of Object} all the Users
  */
+
 	getTaskDetails(taskid: number) {
 		if (sessionStorage.getItem('token')) {
 			this.authService.setLoader(true);
@@ -141,6 +157,21 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 							if (respData && respData['result'] && respData['result'][0]) {
 								this.taskDetails = respData['result'][0];
 
+								if (this.alluserInformation[this.taskDetails.userstask.id] != null) {
+									this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[this.taskDetails.userstask.id].member_id, null)
+										.subscribe(
+											(resppData: any) => {
+												this.thumb = resppData;
+												this.taskDetails.userstask.userImage = this.thumb;
+											},
+											(error: any) => {
+												this.taskDetails.userstask.userImage = null;
+											});
+								} else {
+									this.taskDetails.userstask.userImage = null;
+								}
+
+
 								if (this.taskDetails?.['task_image'][0]?.['task_image']) {
 									this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
 								}
@@ -152,7 +183,13 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 									this.taskDetails.approvedCount = this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
 									this.taskDetails.progressVal = Math.round(100 * (this.taskDetails.approvedCount / (this.taskDetails.subtasks.length)));
 								}
-
+								let cudate: Date = new Date();
+								this.taskDetails.dayCount = this.commonFunctionService.getDays(cudate, this.taskDetails.date);
+								if (this.taskDetails.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
+									this.taskDetails.remain = this.language.Survey.day_left;
+								} else {
+									this.taskDetails.remain = this.language.organizer_task.daysOverride;
+								}
 
 								if (this.taskDetails) {
 									this.getOrganizerDetails(taskid);
@@ -196,13 +233,29 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 									if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") {
 										this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']);
 									}
+
 									if (this.updatedTaskData != null) {
+										console.log(this.updatedTaskData);
 
 										if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {
 											this.updatedTaskData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedTaskData.file.substring(20)));
 										}
+										this.updatedTaskData.subtasks = JSON.parse(this.updatedTaskData?.subtasks);
 
-										this.updatedTaskData.subtasks = JSON.parse(this.updatedTaskData.subtasks);
+										this.updatedTaskData.approvedCount = 0;
+										this.updatedTaskData.progressVal = 0;
+										if (this.updatedTaskData.subtasks.length > 0) {
+											this.updatedTaskData.approvedCount = this.updatedTaskData.subtasks.filter((obj: any) => obj.status === 1).length
+											this.updatedTaskData.progressVal = Math.round(100 * (this.updatedTaskData.approvedCount / (this.updatedTaskData.subtasks.length)));
+										}
+										let cudate: Date = new Date();
+										this.updatedTaskData.dayCount = this.commonFunctionService.getDays(cudate, this.updatedTaskData.date);
+										if (this.updatedTaskData.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
+											this.updatedTaskData.remain = this.language.Survey.day_left;
+										} else {
+											this.updatedTaskData.remain = this.language.organizer_task.daysOverride;
+										}
+										
 										this.updatedTaskData.collaborators = JSON.parse(this.updatedTaskData.collaborators);
 										if (this.updatedTaskData['subtasks'] && this.updatedTaskData['subtasks'].length > 0) {
 											if (this.updatedTaskData && this.updatedTaskData['subtasks'].length > 0) {
@@ -265,6 +318,8 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 												}
 											});
 										}
+										// console.log(this.updatedCollaborators);
+
 										let org_id = 0;
 										this.updatedOrganizerDetails = [];
 										if (this.UpdatedcollaboratorDetails && this.UpdatedcollaboratorDetails.length > 0) {
@@ -288,6 +343,14 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 					}
 				);
 		}
+	}
+
+
+	selectedSubtask: any;
+	getSubTasksDetails(subtaskId: number) {
+		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
+		console.log(this.selectedSubtask);
+		//   $('#subtaskModal').modal('show');
 	}
 
 	/**
@@ -457,6 +520,8 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
  * @return  {}
  */
 	eventMarkComplete(subtaskId: number) {
+		console.log(subtaskId);
+
 		let self = this;
 		if (self.taskDetails['subtasks'] && self.taskDetails['subtasks'].length > 0) {
 			self.taskDetails['subtasks'].forEach(element => {
@@ -599,6 +664,8 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 			})
 	}
 
+
+
 	closeSubtaskModal() {
 		$('#subtask2').modal('hide')
 	}
@@ -636,8 +703,6 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 		this.denyRefreshPage.unsubscribe();
 		this.removeUpdate.unsubscribe();
 	}
-
-
 
 
 }

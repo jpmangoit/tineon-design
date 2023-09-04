@@ -718,7 +718,9 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                 if (respData['isError'] == false) {
                     this.notificationService.showSuccess(respData['result']['message'], null);
                     setTimeout(() => {
+                        // var redirectUrl: string = 'morganizer-task-detail/' + this.taskid;
                         var redirectUrl: string = 'task-detail/' + this.taskid;
+
                         this.router.navigate([redirectUrl]);
                     }, 2000);
                 } else if (respData['code'] == 400) {

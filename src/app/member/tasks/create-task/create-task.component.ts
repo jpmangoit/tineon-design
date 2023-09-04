@@ -531,6 +531,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
                         this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
                             var redirectUrl: string = 'task-detail/' + respData['result']['task']['id'];
+                            // var redirectUrl: string = 'morganizer-task-detail/' + respData['result']['task']['id'];
                             this.router.navigate([redirectUrl]);
                         }, 2000);
                     } else if (respData['code'] == 400) {

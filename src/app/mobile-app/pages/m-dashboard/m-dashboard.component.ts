@@ -24,8 +24,6 @@ declare var $: any;
     providers: [DatePipe]
 })
 
-
-
 export class MDashboardComponent implements OnInit {
     activeClass: string = 'all';
     displayAll: boolean = true;

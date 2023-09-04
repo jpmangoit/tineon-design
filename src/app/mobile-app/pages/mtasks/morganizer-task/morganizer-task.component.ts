@@ -11,6 +11,7 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -104,7 +105,8 @@ export class MorganizerTaskComponent implements OnInit {
         private confirmDialogService: ConfirmDialogService, private themes: ThemeService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+		private router: Router,
 
     ) { }
 
@@ -190,7 +192,7 @@ export class MorganizerTaskComponent implements OnInit {
                 endpoint = 'mobile/getAllApprovedTasks'
                 // endpoint = 'getAllApprovedTasks'
             } else {
-                endpoint = 'mobile/getAllApprovedTasks/user/' + this.user_id 
+                endpoint = 'mobile/getAllApprovedTasks/user/' + this.user_id
                 // endpoint = 'getAllApprovedTasks/user/' + this.user_id 
             }
             this.authService.setLoader(true);
@@ -221,7 +223,6 @@ export class MorganizerTaskComponent implements OnInit {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
                                     }
 
-                                    
                                     element.approvedCount = 0
                                     element.progressVal = 0
                                     if (element.subtasks.length > 0) {
@@ -314,11 +315,11 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id == null || element.group_id == 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.perToDoTask.push(element)
                                             this.perToDoTask;
-                                            
+
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.perInProgress.push(element)
                                             this.perInProgress;
-                                            
+
                                         } else if ((element.group_id == null || element.group_id == 0) && (element.status == 1)) {
                                             this.perCompleted.push(element)
                                             this.perCompleted;
@@ -342,7 +343,7 @@ export class MorganizerTaskComponent implements OnInit {
                                         if ((element.group_id > 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
                                             this.groupToDoTask.push(element)
                                             this.groupToDoTask;
-                                            
+
                                         } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                                             this.groupInProgress.push(element)
                                             this.groupInProgress;

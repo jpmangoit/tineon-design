@@ -136,20 +136,18 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
-
+                                console.log(this.taskDetails);
+                                
                                 if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
-
-                                console.log(this.taskDetails);
-                                this.taskDetails.approvedCount = 0;
-                                this.taskDetails.progressVal = 0;
-                                if ( this.taskDetails.subtasks.length > 0) {
-                                    this.taskDetails.approvedCount =  this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
-                                    this.taskDetails.progressVal = Math.round(100 * ( this.taskDetails.approvedCount / ( this.taskDetails.subtasks.length)));
-                                }
-
-
+                                // console.log(this.taskDetails);
+                                // this.taskDetails.approvedCount = 0;
+                                // this.taskDetails.progressVal = 0;
+                                // if ( this.taskDetails.subtasks.length > 0) {
+                                //     this.taskDetails.approvedCount =  this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
+                                //     this.taskDetails.progressVal = Math.round(100 * ( this.taskDetails.approvedCount / ( this.taskDetails.subtasks.length)));
+                                // }
                                 if (this.taskDetails) {
                                     this.getOrganizerDetails(taskid);
                                 }
@@ -183,6 +181,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                         }
                                     });
                                 }
+                                // console.log(this.taskDetails);
+                                
                                 
                                 if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                     this.UpdatedcollaboratorDetails = [];

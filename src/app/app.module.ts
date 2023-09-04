@@ -247,6 +247,7 @@ import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 export function getCulture() {
     let language = localStorage.getItem('language');
     if (language == 'en') {
@@ -527,7 +528,7 @@ FullCalendarModule.registerPlugins([
         DenyReasonConfirmDialogService,
 		NgxImageCompressService,
         { provide: LOCALE_ID, useValue: getCulture()},
-        { provide: DateAdapter, useClass: CustomDateAdapter }
+        { provide: DateAdapter, useClass: CustomDateAdapter },
         // { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
     ],
 
