@@ -1475,7 +1475,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     logout() {
         this.authService.sendRequest('put', 'setLoginStatus/' + this.userDetails.userId, null).subscribe((resp) => {
-            console.log(resp);
             if (resp['isError'] == false) {
                 sessionStorage.clear();
                 localStorage.clear();

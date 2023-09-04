@@ -316,7 +316,6 @@ export class MeventDetailComponent implements OnInit {
                             this.notificationService.showError(respData['message'], null);
                         }
                         this.authService.setLoader(false);
-                        console.log(this.eventDetails);
                     }
                 );
                 

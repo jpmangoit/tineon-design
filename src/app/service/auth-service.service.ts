@@ -276,7 +276,12 @@ export class AuthServiceService {
      */
 
     uniqueData(uniqueData:any){
-       return uniqueData.filter((value, index, array) => array.indexOf(value) === index);
+        if(uniqueData && uniqueData.length > 0 ){
+            return uniqueData.filter((value, index, array) => array.indexOf(value) === index);
+        }else{
+            return [];
+        }
+       
     }
 
      /**

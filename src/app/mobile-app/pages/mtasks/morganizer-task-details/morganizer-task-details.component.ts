@@ -83,9 +83,7 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 		})
 	}
 
-	ngOnInit(): void {
-		console.log('xxx');
-		
+	ngOnInit(): void {	
 		if (localStorage.getItem('club_theme') != null) {
 			let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
 			this.setTheme = theme;
@@ -98,8 +96,6 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 		this.route.params.subscribe(params => {
 			const taskid: number = params['taskid'];
 			this.taskId = params['taskid'];
-			console.log(this.taskId );
-			
 			this.getAllUserInfo();
 		});
 	}
@@ -144,8 +140,6 @@ export class MorganizerTaskDetailsComponent implements OnInit,OnDestroy {
 								if (this.taskDetails?.['task_image'][0]?.['task_image']) {
 									this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
 								}
-
-								console.log(this.taskDetails);
 								this.taskDetails.approvedCount = 0;
 								this.taskDetails.progressVal = 0;
 								if (this.taskDetails.subtasks.length > 0) {

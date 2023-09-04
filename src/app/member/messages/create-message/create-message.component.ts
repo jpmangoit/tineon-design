@@ -55,7 +55,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
   selectedKindId:number;
   files: string[] = [];
   receipientUsers:{approved_status:number,group_id: number,groupusers: {email: string,firstname: string, id: number, lastname: string, username: string}[],id: number,user_id: number}[] = [];
-
+  alluserInfo:any;
     private activatedSub: Subscription;
     constructor(
         private lang: LanguageService,
@@ -142,6 +142,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                         })
                     }
                     this.alluserDetails = respData;
+                    this.alluserInfo = respData;
                     self.userDropdownSettings = {
                         singleSelection: false,
                         idField: 'id',
@@ -195,7 +196,6 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         if (this.messageForm.valid) {
             var formData: FormData = new FormData();
             this.messageForm.controls["kind"].setValue(this.selectedVisiblity);
-
             var uniqueReceiverUsers = this.authService.uniqueData(this.receiverUser);
             this.messageForm.controls["receiver_id"].setValue(uniqueReceiverUsers);
 
@@ -203,8 +203,8 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
             this.messageForm.controls["cc"].setValue(uniqueCcUser);
 
             if(this.selectedKindId){
-                var uniqueKindUser = this.authService.uniqueData(this.selectedKindId);
-              this.messageForm.controls["kind_id"].setValue(uniqueKindUser);
+                //var uniqueKindUser = this.authService.uniqueData(this.selectedKindId);
+              this.messageForm.controls["kind_id"].setValue(this.selectedKindId);
             }else{
               this.messageForm.controls["kind_id"].setValue('');
             }
@@ -524,6 +524,8 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                     respData[0].participants.forEach((element:any) => {
                             if(element.approved_status == 1){
                                 this.receipientUsers.push(element);
+                                let obj = this.alluserInfo.find(o => o.id == element.user_id);
+                                this.receiverUser.push(obj.keycloak_id);
                             }
                     })
                 }

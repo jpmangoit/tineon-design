@@ -134,7 +134,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.groups = respData;
-                        console.log(this.groups);
                         // this.chats();
                     }
                 );
@@ -159,7 +158,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                             this.alluserInformation[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
                             this.alluserDetails = respData;
                         });    
-                        console.log(this.alluserDetails); 
                         this.chats();
                     }
                 }
@@ -179,7 +177,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                 (resp: any) => {
                     this.authService.setLoader(false);
                     this.chatUserArr = resp;
-                    console.log(this.chatUserArr);
                     // let chatgroupData = this.chatUserArr.filter(item => {
                     //     console.log(item);
                     //     return item.type == 'group'
@@ -193,8 +190,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                         } else {
                             userData = this.alluserDetails.filter(o => o.id != this.userDetails.userId)
                         }
-                        console.log(userData);
-                        
+                       
                         if (userData && userData.length > 0) {
                             Object(userData).forEach((val, key) => {
                                 this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
@@ -210,16 +206,11 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                                     searchPlaceholderText: this.language.header.search,
                                     closeDropDownOnSelection: true
                                 };
-                            });
-                            console.log(this.userDropdownList);
-                            
+                            });                           
                         }
                     let groupData: CommunityGroup[];
                     if (this.chatUserArr.length > 0) {
-                        console.log(this.chatUserArr);
-                        console.log(this.groups);
                         groupData = this.groups.filter(entry1 => !this.chatUserArr.some(entry2 => (entry2.type == "group") && (entry1.id == entry2.id)));
-                        console.log(groupData);
                     } else {
                         groupData = this.groups;
                     }
@@ -284,10 +275,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            formData.forEach((value: any, key: any) => {
-                console.log(key, '----------', value);
 
-            })
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'store-messages-mysql', formData)
                 .subscribe(
