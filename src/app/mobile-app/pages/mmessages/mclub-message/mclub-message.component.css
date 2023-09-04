@@ -21,6 +21,14 @@ ul.bunch_drop.show {
     width: 32px;
 }
 
+.chat-search {
+    display: none;
+}
+
+.chat-sidebar {
+    width: 100%;
+}
+
 .dropdown.action_group{
     display: inline-block;
     width: 100%;
