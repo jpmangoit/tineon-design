@@ -158,8 +158,6 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 	 */
 	addAvailableTimes() {
 		if (this.errorTime.isError == false) {
-			console.log(this.weekdays.value);
-
 			if (this.weekdays.valid) {
 				const newAvailableTimes: UntypedFormGroup = this.formbuilder.group({
 					day: ['', Validators.required],

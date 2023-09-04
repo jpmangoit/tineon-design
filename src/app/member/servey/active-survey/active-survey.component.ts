@@ -132,10 +132,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
                             }
                         });
                     }
-                    this.activeSurvey = respData['result']['survey'];
-                    console.log(this.activeSurvey );
-                    
-                    
+                    this.activeSurvey = respData['result']['survey']; 
                     this.totalActiveSurvey = respData['result'].pagination.rowCount;
                 }
             })

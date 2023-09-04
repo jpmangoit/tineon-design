@@ -210,7 +210,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         this.notificationService.showError(respData['message'], null);
                     } else {
                         this.groups = respData;
-                        console.log(this.groups);
                         this.chats();
                         
                     }
@@ -231,12 +230,8 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                     }, 2000);
                     this.chatUserArr = resp
                     let grp: any;
-                    console.log(this.chatUserArr);
-                    if(this.chatUserArr && this.chatUserArr.length > 0){
-                        
+                    if(this.chatUserArr && this.chatUserArr.length > 0){                        
                         this.chatUserArr.forEach(element => {
-                            console.log(element);
-                            
                             if (element.type == 'group') {
                                 if (this.groups && this.groups.length > 0) {
                                     grp = this.groups.find((o: any) => o.id == element.id)
@@ -289,7 +284,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         }
                     }
                     this.filteredArray = [...this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()];
-                    // console.log( this.filteredArray );
                     
                 }
             );
