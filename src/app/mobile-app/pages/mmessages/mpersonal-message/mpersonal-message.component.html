@@ -70,7 +70,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="app-right-content chat-time" *ngIf="msg.user">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd.M.YY' }} 
+                                                                <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }} 
                                                                     {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                                 </span>
                                                                 <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"
@@ -126,21 +126,22 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-content">
-                                                                <p>{{msg.content}}</p>
+                                                                
                                                                 <h6>{{msg.user.firstName}}
                                                                     {{msg.user.lastName}}</h6>
-                                                                <span class="user-name"
-                                                                    *ngIf="msg.user">{{msg.subject}}</span>
+                                                                <p>{{msg.content}}</p>
+                                                                <!-- <span class="user-name"
+                                                                    *ngIf="msg.user">{{msg.subject}}</span> -->
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y'
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
                                                                 }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span><br>
-                                                            <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"
+                                                            <!-- <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"
                                                                 aria-hidden="true"></i>
                                                             <i *ngIf="msg.is_read == 1" class="fa fa-envelope-open-o"
-                                                                aria-hidden="true"></i>
+                                                                aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -184,16 +185,17 @@
                                                                         [src]=" msg.user.image ?  msg.user.image : 'assets/img/defaultProfile.jpeg'">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <p *ngIf="msg.content">{{msg.content}}</p>
+                                                                    
                                                                     <h6 *ngIf="msg.subject">{{msg.user.firstName}}
                                                                         {{msg.user.lastName}}</h6>
-                                                                    <span class="user-name" *ngIf="msg.user">
+                                                                    <p *ngIf="msg.content">{{msg.content}}</p>    
+                                                                    <!-- <span class="user-name" *ngIf="msg.user">
                                                                         {{msg.subject}}
-                                                                    </span>
+                                                                    </span> -->
                                                                 </div>
                                                             </div>
                                                             <div class="app-right-content" *ngIf="msg.user">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd MMM  y' }} {{msg.created_at | date: 'HH:mm':'GMT+2'}}</span><br>
+                                                                <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }} {{msg.created_at | date: 'HH:mm':'GMT+2'}}</span><br>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -238,15 +240,15 @@
                                                                     [src]=" msg.user.image ?  msg.user.image : 'assets/img/defaultProfile.jpeg'">
                                                             </div>
                                                             <div class="user-content">
-                                                                <span class="user-name"
-                                                                    *ngIf="msg.user">{{msg.user.firstName}}
-                                                                    {{msg.user.lastName}}</span>
-                                                                <h6>{{msg.subject}}</h6>
+                                                                <!-- <span class="user-name"
+                                                                    *ngIf="msg.user">
+                                                                    {{msg.user.lastName}}</span> -->
+                                                                <h6>{{msg.user.firstName}}</h6>
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y'}}
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'}}
                                                                 {{msg.created_at | date: 'HH:mm': 'GMT+2' }}</span><br>
                                                         </div>
                                                     </div>
@@ -293,20 +295,20 @@
                                                                         [src]=" msg.user.image ?  msg.user.image : 'assets/img/defaultProfile.jpeg'">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                    <span class="user-name"
-                                                                        *ngIf="msg.user">{{msg.user.firstName}}
-                                                                        {{msg.user.lastName}}</span>
-                                                                    <h6>{{msg.subject}}</h6>
+                                                                    <!-- <span class="user-name"
+                                                                        *ngIf="msg.user">
+                                                                        </span> -->
+                                                                    <h6>{{msg.user.firstName}}{{msg.user.lastName}}</h6>
                                                                     <p>{{msg.content}}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="app-right-content">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd. MMMM y' }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}</span><br>
-                                                                <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"
+                                                                <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}</span><br>
+                                                                <!-- <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"
                                                                     aria-hidden="true"></i>
                                                                 <i *ngIf="msg.is_read == 1"
                                                                     class="fa fa-envelope-open-o"
-                                                                    aria-hidden="true"></i>
+                                                                    aria-hidden="true"></i> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -354,10 +356,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-content">
-                                                                <span class="user-name"
-                                                                    *ngIf="msg.user">{{msg.user.firstName}}
-                                                                    {{msg.user.lastName}}</span>
-                                                                <h6>{{msg.subject}}</h6>
+                                                                <!-- <span class="user-name"
+                                                                    *ngIf="msg.user">
+                                                                    </span> -->
+                                                                <h6>{{msg.user.firstName}}{{msg.user.lastName}}</h6>
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>

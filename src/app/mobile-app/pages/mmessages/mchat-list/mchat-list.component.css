@@ -128,6 +128,6 @@ span.user-status-badge {
 
 @media (max-width:360px){
     .chat-user-list-content {
-        max-width: 74%;
+        max-width: 81%;
     }
 }

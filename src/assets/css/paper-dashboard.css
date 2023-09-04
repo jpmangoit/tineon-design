@@ -6995,7 +6995,7 @@ span.attach_icon img {
 
     .widget-chat.widget {
         overflow: auto;
-        height: calc(50vh - 90px) !important;
+        /* height: calc(50vh - 90px) !important; */
     }
 
     .participent_sec_to {
@@ -12357,8 +12357,7 @@ body .schedule.ng-star-inserted {
 
     .widget-chat.widget .user-img img {
   width: auto;
-  min-height: 100%;
-  transform: scale(1.2);
+  
   height: auto;
   max-width: none;
 }
@@ -12374,6 +12373,10 @@ body .schedule.ng-star-inserted {
     width: 70%;
 }
 
+.chat_messager-widget {
+    border:none;
+}
+
 body .profile_field {
   margin-bottom: 10px;
   margin-top: 5px;
@@ -12382,6 +12385,12 @@ body .profile_field {
 .news-items div {
   width: 100%;
 
+}
+
+span.seen-time {
+  text-align: right;
+  margin-bottom: 0;
+    margin-top: 6px;
 }
 
 body .course_des_main {
@@ -12636,6 +12645,11 @@ body .news-read-more a {
     body .page-action-right {
       width: auto !important;
     }
+
+     .widget-chat.widget .app-right-content{
+   
+    margin-bottom: 0;
+  }
 
     .add_event_main.event_main {
         background: #F8F8F8;
