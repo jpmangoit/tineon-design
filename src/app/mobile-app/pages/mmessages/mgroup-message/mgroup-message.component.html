@@ -440,6 +440,7 @@
                                                             </div>
                                                             <div class="user-detail-info">
                                                                 <div class="chat-user-name"
+                                                                    *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -590,7 +591,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -738,7 +739,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -1024,7 +1025,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -1169,7 +1170,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
