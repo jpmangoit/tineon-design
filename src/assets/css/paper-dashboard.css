@@ -7021,7 +7021,7 @@ span.attach_icon img {
     }
 
     .widget-chat.widget .app-left-content {
-        display: inline-block;
+        display: flex; 
         width: 100%;
     }
 
@@ -12353,14 +12353,23 @@ body .schedule.ng-star-inserted {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex:0 0 50px;
 }
 
     .widget-chat.widget .user-img img {
-  width: auto;
+  width: 100%;
   
   height: auto;
   max-width: none;
 }
+
+.mobile-green .back-message-btn button svg path {
+    fill:#20AE80;
+}
+.mobile-red .back-message-btn button svg path {
+    fill:#E7345D;
+}
+ 
 }
 
 ::ng-deep body .sidebar .nav li ul li a p {

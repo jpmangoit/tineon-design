@@ -208,7 +208,7 @@ ul.bunch_drop.show li {
     display: flex !important;
 }
 .widget-chat.widget .app-right-content {
-    width: 15% !important;
+    width: 30% !important;
 }
 .chat-header {
     display: flex !important;
