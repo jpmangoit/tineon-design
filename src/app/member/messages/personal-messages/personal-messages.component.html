@@ -117,7 +117,7 @@
                                                             </div>
                                                             <div class="user-detail-info"
                                                                 *ngIf="selectedMessage && selectedMessage[0].user">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -174,9 +174,9 @@
                                                                 *ngIf="selectedMessage[0] && selectedMessage[0].cc && selectedMessage[0].cc.length > 0">
                                                                 cc :-
                                                                 <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                        tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom"
                                                                         delay="500">"{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",
@@ -236,9 +236,9 @@
                                                         <div>
                                                             <Span>{{language.create_message.participantsto}} </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="to-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="bottom"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -247,9 +247,9 @@
                                                         <div *ngIf="selectedMessage[0].cc.length > 0">
                                                             <Span>Cc: </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="cc-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="bottom"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -358,8 +358,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info ">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"
@@ -411,17 +411,17 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"   class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}" placement="top" delay="500">
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"   class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}" placement="top" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}  {{alluserDetails[touser].lastname}}",</span>
                                                                 </span>
                                                             </div>
                                                             <div class="chat-user-name"
                                                                 *ngIf="selectedMessage[0].cc.length > 0">cc :-
                                                                 <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top"
                                                                         delay="500">"{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -480,9 +480,9 @@
                                                         <div>
                                                             <Span>{{language.create_message.participantsto}} </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="to-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -491,9 +491,9 @@
                                                         <div *ngIf="selectedMessage[0].cc.length > 0">
                                                             <Span>Cc: </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="cc-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -603,8 +603,8 @@ alt="" loading="lazy"                                                           
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info ">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"
@@ -650,9 +650,9 @@ alt="" loading="lazy"                                                           
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -661,9 +661,9 @@ alt="" loading="lazy"                                                           
                                                             <div class="chat-user-name"
                                                                 *ngIf="selectedMessage[0].cc.length > 0">cc :-
                                                                 <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top"
                                                                         delay="500">"{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -722,9 +722,9 @@ alt="" loading="lazy"                                                           
                                                         <div>
                                                             <Span>{{language.create_message.participantsto}} </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="to-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -733,9 +733,9 @@ alt="" loading="lazy"                                                           
                                                         <div *ngIf="selectedMessage[0].cc.length > 0">
                                                             <Span>Cc: </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="cc-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -1055,8 +1055,8 @@ alt="" loading="lazy"                                                           
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info ">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"
@@ -1105,9 +1105,9 @@ alt="" loading="lazy"                                                           
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -1116,9 +1116,9 @@ alt="" loading="lazy"                                                           
                                                             <div class="chat-user-name"
                                                                 *ngIf="selectedMessage[0].cc.length > 0">cc :-
                                                                 <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top"
                                                                         delay="500">"{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -1178,9 +1178,9 @@ alt="" loading="lazy"                                                           
                                                         <div>
                                                             <Span>{{language.create_message.participantsto}} </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="to-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -1189,9 +1189,9 @@ alt="" loading="lazy"                                                           
                                                         <div *ngIf="selectedMessage[0].cc.length > 0">
                                                             <Span>Cc: </Span>
                                                             <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                <span *ngIf="touser && alluserDetails[touser]"
+                                                                <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                     class="cc-username"
-                                                                    tooltip="{{alluserDetails[touser].email}}"
+                                                                     tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                     placement="top"
                                                                     delay="500">"{{alluserDetails[touser].firstname}}
                                                                     {{alluserDetails[touser].lastname}}",</span>
@@ -1308,7 +1308,7 @@ alt="" loading="lazy"                                                           
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info ">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -1344,16 +1344,16 @@ alt="" loading="lazy"                                                           
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"  class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}" placement="top" delay="500">
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"  class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}" placement="top" delay="500">
                                                                         "{{alluserDetails[touser].firstname}} {{alluserDetails[touser].lastname}}",</span>
                                                                 </span>
                                                             </div>
                                                             <div class="chat-user-name"  *ngIf="selectedMessage[0].cc.length > 0">cc :-
                                                                 <span *ngFor='let touser of selectedMessage[0].cc'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="top"
                                                                         delay="500">"{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>

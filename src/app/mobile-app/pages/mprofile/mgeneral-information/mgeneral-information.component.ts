@@ -158,9 +158,7 @@ export class MgeneralInformationComponent implements OnInit {
                         // this.allowAdvertisment = this.userDetails.allowAdvertis
                     }else{
                           this.userDetails = respData;
-                    }
-                    console.log(this.userDetails);
-                    
+                    }                    
                     this.role = userData.roles[0];
                 });
         }

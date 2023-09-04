@@ -270,8 +270,6 @@ export class NewsListComponent implements OnInit {
   * @return  success/ error message
   */
     deleteNews(newsId: number) {
-        // console.log(this.searchValue);
-
         let self = this;
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {

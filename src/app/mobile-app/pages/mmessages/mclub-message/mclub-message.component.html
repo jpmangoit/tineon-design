@@ -54,18 +54,21 @@
                                                             <div class="user-content">
                                                                 <h6 class="user-name" *ngIf="msg.user">
                                                                     {{msg.user.firstName}} {{msg.user.lastName}}</h6>
-                                                                <span>{{msg.subject}}</span>
+                                                                <!-- <span>{{msg.subject}}</span> -->
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y'
-                                                                }} <br> {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
+                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                1
+                                                            </span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"
                                                                 class="fa fa-envelope-o" aria-hidden="true"></i>
                                                             <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}"
-                                                                class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                                                                class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,15 +119,18 @@
                                                             <div class="user-content">
                                                                 <h6 class="user-name" *ngIf="msg.user">
                                                                     {{msg.user.firstName}} {{msg.user.lastName}}</h6>
-                                                                <span>{{msg.subject}}</span>
+                                                                <!-- <span>{{msg.subject}}</span> -->
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y' }} <br> {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o" aria-hidden="true"></i>
-                                                            <i *ngIf="msg.is_read == 1" class="fa fa-envelope-open-o"  aria-hidden="true"></i>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                1
+                                                            </span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                            <i *ngIf="msg.is_read == 1" class="fa fa-envelope-open-o"  aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -174,13 +180,16 @@
                                                             <div class="user-content">
                                                                 <h6 class="user-name" *ngIf="msg.user">
                                                                     {{msg.user.firstName}} {{msg.user.lastName}}</h6>
-                                                                <span>{{msg.subject}}</span>
+                                                                <!-- <span>{{msg.subject}}</span> -->
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y'
-                                                                }} <br> {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
+                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                1
                                                             </span>
                                                         </div>
                                                     </div>
@@ -233,7 +242,7 @@
                                                             <div class="user-content">
                                                                 <h6 class="user-name" *ngIf="msg.user">
                                                                     {{msg.user.firstName}} {{msg.user.lastName}}</h6>
-                                                                <span>{{msg.subject}}</span>
+                                                                <!-- <span>{{msg.subject}}</span> -->
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
@@ -289,14 +298,17 @@
                                                                     <h6 class="user-name" *ngIf="msg.user">
                                                                         {{msg.user.firstName}} {{msg.user.lastName}}
                                                                     </h6>
-                                                                    <span>{{msg.subject}}</span>
+                                                                    <!-- <span>{{msg.subject}}</span> -->
                                                                     <p>{{msg.content}}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="app-right-content">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd. MMMM y' }} <br> {{msg.created_at | date: 'HH:mm': 'GMT+2' }} </span>
-                                                                <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"  aria-hidden="true"></i>
-                                                                <i *ngIf="msg.is_read == 1"  class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                                                                <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }} </span>
+                                                                <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                    1
+                                                                </span>
+                                                                <!-- <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o"  aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1"  class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -346,15 +358,18 @@
                                                             <div class="user-content">
                                                                 <h6 class="user-name" *ngIf="msg.user">
                                                                     {{msg.user.firstName}} {{msg.user.lastName}}</h6>
-                                                                <span>{{msg.subject}}</span>
+                                                                <!-- <span>{{msg.subject}}</span> -->
                                                                 <p>{{msg.content}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd. MMMM y' }} <br> {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o" aria-hidden="true"></i>
-                                                            <i *ngIf="msg.is_read == 1" class="fa fa-envelope-open-o"  aria-hidden="true"></i>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                1
+                                                            </span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                            <i *ngIf="msg.is_read == 1" class="fa fa-envelope-open-o"  aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -383,7 +398,60 @@
                     <div class="tab-pane active">
                         <ng-container>
                             <div class="feature_tab back-message-btn">
-                                <button type="button" (click)="back()">{{language.create_faq.Back}}</button>
+                                <button type="button" (click)="back()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47"
+                        viewBox="0 0 47 47" fill="none">
+                        <rect x="2" width="43" height="43" rx="9" fill="#F8F8F8" />
+                        <g filter="url(#filter0_di_363_248)">
+                            <rect x="4.38892" y="2.38892" width="38.2222" height="38.2222" rx="7"
+                                fill="url(#paint0_linear_363_248)" />
+                        </g>
+                        <g filter="url(#filter1_i_363_248)">
+                            <path
+                                d="M21.3152 21.4208C21.3808 21.4208 21.4464 21.4208 21.5116 21.4208C24.7779 21.4208 28.0448 21.4203 31.3111 21.4213C32.0898 21.4213 32.6997 21.862 32.8883 22.5552C33.1653 23.5719 32.4391 24.5253 31.3695 24.5375C30.5753 24.5462 29.7812 24.5394 28.9875 24.5394C26.497 24.5394 24.0064 24.5394 21.5159 24.5394C21.4498 24.5394 21.3837 24.5394 21.307 24.5394C21.3147 24.6207 21.3798 24.6513 21.4213 24.6931C22.2917 25.5756 23.1684 26.4522 24.0344 27.3385C24.5386 27.8541 24.6351 28.5911 24.2998 29.1992C23.8019 30.102 22.6106 30.2762 21.8676 29.5436C21.2221 28.9068 20.5895 28.2564 19.9517 27.6119C18.8116 26.4604 17.6715 25.309 16.5314 24.1571C15.8237 23.442 15.8227 22.5192 16.5295 21.8051C18.2823 20.0339 20.0337 18.2622 21.788 16.4935C22.5552 15.72 23.7666 15.8781 24.2699 16.8111C24.6023 17.4275 24.4899 18.1625 23.9756 18.684C23.1307 19.5411 22.2835 20.3953 21.4358 21.2491C21.3905 21.2948 21.3335 21.3293 21.2819 21.3692C21.2935 21.3862 21.3041 21.4037 21.3152 21.4208Z"
+                                fill="#569AFF" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_di_363_248" x="0.388916" y="0.388916" width="46.2222" height="46.2222"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dy="2" />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_363_248" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_363_248"
+                                    result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dy="1" />
+                                <feGaussianBlur stdDeviation="0.5" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                <feBlend mode="normal" in2="shape" result="effect2_innerShadow_363_248" />
+                            </filter>
+                            <filter id="filter1_i_363_248" x="16" y="16" width="16.9475" height="15"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dy="1" />
+                                <feGaussianBlur stdDeviation="0.5" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_363_248" />
+                            </filter>
+                            <linearGradient id="paint0_linear_363_248" x1="23.5" y1="2.38892" x2="23.5" y2="40.6111"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#F4F4F4" />
+                                <stop offset="1" stop-color="#F8F8F8" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                                </button>
                             </div>
                             <ng-container *ngIf="clubInbox">
                                 <div *ngIf="clubMessage && clubMessage.length == 0" class="empty-data-image">
@@ -429,8 +497,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
@@ -455,8 +523,8 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser" class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -568,7 +636,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -599,8 +667,8 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser" class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -708,7 +776,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
@@ -747,8 +815,8 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser" class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -1000,8 +1068,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
@@ -1035,9 +1103,9 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser && alluserDetails[touser]"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"
                                                                         class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>
@@ -1153,8 +1221,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name"
-                                                                    tooltip="{{selectedMessage[0].user.email}}"
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    tooltip="{{selectedMessage[0].user.email}}" 
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
@@ -1188,8 +1256,8 @@
                                                             <div class="chat-user-name">
                                                                 {{language.create_message.participantsto}}-
                                                                 <span *ngFor='let touser of selectedMessage[0].to'>
-                                                                    <span *ngIf="touser" class="to-username"
-                                                                        tooltip="{{alluserDetails[touser].email}}"
+                                                                    <span *ngIf="touser && alluserDetails && alluserDetails[touser]"class="to-username"
+                                                                         tooltip="{{alluserDetails && alluserDetails[touser] && alluserDetails[touser]?.email}}"
                                                                         placement="bottom" delay="500">
                                                                         "{{alluserDetails[touser].firstname}}
                                                                         {{alluserDetails[touser].lastname}}",</span>

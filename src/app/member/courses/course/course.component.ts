@@ -573,8 +573,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.upcomingCourseList.forEach(element => {
-                            console.log(element);
-                            
+                           
                             // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
                             //     console.log(element?.CourseExternalInstructor[0]);
 

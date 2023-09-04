@@ -218,19 +218,23 @@ ul.bunch_drop.show li {
 display: none;
 }
 .back-message-btn button {
-    background: none;
-    border: 1px solid #ebf0ff;
-    color: #68759f;
-    font-family: 'Gellix', sans-serif;
-    font-weight: 600;
-    padding: 5px 15px;
-    border-radius: 5px;
-    height: 34px;
-    box-shadow: 0px 0px 8px 0px #ebf0ff;
+  background: none;
+  border: none;
+  color: #68759f;
+  font-family: 'Gellix', sans-serif;
+  font-weight: 600;
+  padding: 0;
+  border-radius: 5px;
+  height: 34px;
+  box-shadow: none;
+  margin-top: 5px;
+  float: left;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 .back-message-btn {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-start;
 }
 .reply-users {
     display: flex;
@@ -239,6 +243,9 @@ display: none;
 .widget-chat.widget .user-content {
     width: 60%;
 }
+
+
+
 @media (max-width:1024px){
     .card.personal_msg_main {
         padding:0;

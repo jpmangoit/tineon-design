@@ -6426,7 +6426,7 @@ span.event-r-time {
     .app-right-content {
         text-align: left !important;
         width: auto !important;
-        margin-left: 65px;
+        margin-left: 0px;
     }
 
     .event-widget.wd_yellow .event-right {
@@ -6468,6 +6468,12 @@ span.event-r-time {
         margin-top: 10px !important;
         margin-bottom: 10px !important;
     }
+
+      .widget-chat.widget .app-left-content {
+    display: flex;
+    width: 70% !important;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
@@ -6989,7 +6995,7 @@ span.attach_icon img {
 
     .widget-chat.widget {
         overflow: auto;
-        height: calc(50vh - 90px) !important;
+        /* height: calc(50vh - 90px) !important; */
     }
 
     .participent_sec_to {
@@ -7015,7 +7021,7 @@ span.attach_icon img {
     }
 
     .widget-chat.widget .app-left-content {
-        display: inline-block;
+        display: flex; 
         width: 100%;
     }
 
@@ -12338,8 +12344,32 @@ body .schedule.ng-star-inserted {
     }
 
     .card .card-body {
-     padding: 16px;
+     padding: 0 15px;
     }
+
+    .widget-chat.widget .user-img {
+ 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex:0 0 50px;
+}
+
+    .widget-chat.widget .user-img img {
+  width: 100%;
+  
+  height: auto;
+  max-width: none;
+}
+
+.mobile-green .back-message-btn button svg path {
+    fill:#20AE80;
+}
+.mobile-red .back-message-btn button svg path {
+    fill:#E7345D;
+}
+ 
 }
 
 ::ng-deep body .sidebar .nav li ul li a p {
@@ -12352,6 +12382,10 @@ body .schedule.ng-star-inserted {
     width: 70%;
 }
 
+.chat_messager-widget {
+    border:none;
+}
+
 body .profile_field {
   margin-bottom: 10px;
   margin-top: 5px;
@@ -12360,6 +12394,12 @@ body .profile_field {
 .news-items div {
   width: 100%;
 
+}
+
+span.seen-time {
+  text-align: right;
+  margin-bottom: 0;
+    margin-top: 6px;
 }
 
 body .course_des_main {
@@ -12614,6 +12654,11 @@ body .news-read-more a {
     body .page-action-right {
       width: auto !important;
     }
+
+     .widget-chat.widget .app-right-content{
+   
+    margin-bottom: 0;
+  }
 
     .add_event_main.event_main {
         background: #F8F8F8;
