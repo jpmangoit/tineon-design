@@ -178,7 +178,7 @@
                                                                                 <h5 class="task-title-sub"
                                                                                     style="margin-left: 35px;"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-target="#exModal"
+                                                                                    data-bs-target="#subtaskModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -382,7 +382,7 @@
                                                                                 <h5 class="task-title-sub"
                                                                                     style="margin-left: 35px;"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-target="#exModal"
+                                                                                    data-bs-target="#subtaskModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -574,7 +574,7 @@
                                                                         <h5 class="task-title-sub"
                                                                             style="margin-left: 35px;"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#exModal"
+                                                                            data-bs-target="#subtaskModal"
                                                                             (click)="getSubTasksDetails(subtasks.id)">
                                                                             {{subtasks.title}}</h5>
                                                                     </div>
@@ -777,9 +777,8 @@
 </div>
 
 <!-- Subtasks Modal Start -->
-
-<div class="modal fade change_pass_section news_detail_popup all_news" id="exModal" tabindex="-1"
-    aria-labelledby="exampleModalLabel" *ngIf="selectedSubtask">
+<div class="modal fade change_pass_section news_detail_popup all_news" id="subtaskModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -835,8 +834,7 @@
                             <div class="col-md-12 news_detail_inner">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="news_details">
-
+                                        <div class="news_details" *ngIf="selectedSubtask">
                                             <div class="sub-task-item">
                                                 <div class="group_detail_content">
                                                     <div class="group_title">
