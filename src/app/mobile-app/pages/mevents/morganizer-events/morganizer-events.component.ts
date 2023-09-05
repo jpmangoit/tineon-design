@@ -274,6 +274,8 @@ export class MorganizerEventsComponent implements OnInit {
                                             if (dt == self.todays_date) {
                                                 self.currentEvent.push(rrEvents);
                                                 self.currentEventList.push(rrEvents);
+                                                console.log(self.currentEvent);
+                                                
 
                                             } else if (dt > self.todays_date) {
                                                 self.upcomingEvent.push(rrEvents);
@@ -473,6 +475,8 @@ export class MorganizerEventsComponent implements OnInit {
     }
 
     hasComma(str: string) {
+        console.log(str);
+        
         return str.replace(/,/g, ".");
     }
 
