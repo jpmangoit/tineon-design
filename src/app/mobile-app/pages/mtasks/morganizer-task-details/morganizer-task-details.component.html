@@ -841,13 +841,13 @@
                                                         <div class="sub-title">
                                                             <input *ngIf="selectedSubtask?.status == 0"
                                                                 class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask?.id}}"
+                                                                id="styled-checkbox-{{selectedSubtask.id}}"
                                                                 type="checkbox"
-                                                                (change)="eventMarkComplete(selectedSubtask?.id)"
+                                                                (change)="eventMarkCompleteSub(selectedSubtask?.id)"
                                                                 style="opacity: 1;margin-top: 0px;">
                                                             <input *ngIf="selectedSubtask?.status == 1"
                                                                 class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask?.id}}"
+                                                                id="styled-checkbox-{{selectedSubtask.id}}"
                                                                 type="checkbox" style="opacity: 1;margin-top: 0px;"
                                                                 checked="checked" disabled="disabled">
 
