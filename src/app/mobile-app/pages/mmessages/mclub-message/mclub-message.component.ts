@@ -64,6 +64,7 @@ export class MclubMessageComponent implements OnInit {
     isClublList: boolean = true;
 	selectedValue :any;
     // select: { value: string; viewValue: any; }[];
+	todayDate :any;
 	constructor(
 		private lang: LanguageService,
 		private authService: AuthServiceService,
@@ -72,6 +73,7 @@ export class MclubMessageComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.todayDate = new Date();
 		if (localStorage.getItem('club_theme') != null) {
 			let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
 			this.setTheme = theme;
