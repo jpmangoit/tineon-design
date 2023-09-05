@@ -250,6 +250,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     */
     createSubtask() {
         return this.formBuilder.group({
+            id: ['', Validators.compose([Validators.required])],
             title: ['', Validators.compose([Validators.required])],
             description: ['', Validators.compose([Validators.required])],
             assigned_to: ['', Validators.compose([Validators.required])],
@@ -553,11 +554,11 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                             this.updateTaskForm.controls['type_dropdown'].setValue(this.types);
                             this.updateTaskForm.controls['user_participant'].setValue(this.setTaskUsers);
                             this.updateTaskForm.controls['groups'].setValue(this.groups);
-
                             this.updateTaskForm.controls['file'].setValue(this.taskImage);
 
                             if (this.taskDetails?.subtasks?.length > 0) {
                                 this.taskDetails.subtasks.forEach((value, index) => {
+                                    
                                     let subtask_user: { id: number; user_email: string; user_name: string; }[] = [];
                                     this.addSubtask();
                                     if (this.user_dropdown && this.user_dropdown.length > 0) {
@@ -575,12 +576,15 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                     if (value.date) {
                                         subtask_date = value.date.split('T');
                                     }
+                                    
                                     let createSubtask: UntypedFormGroup = (this.updateTaskForm.controls['subtasks'] as UntypedFormArray).at(index) as UntypedFormGroup;
+                                    createSubtask?.get('id')?.patchValue(value.id);
                                     createSubtask?.get('title')?.patchValue(value.title);
                                     createSubtask?.get('description')?.patchValue(value.description);
                                     createSubtask?.get('date')?.patchValue(subtask_date[0]);
                                     createSubtask?.get('assigned_to')?.patchValue(subtask_user);
                                 });
+
                             }
                         }
                     } else if (respData['code'] == 400) {
@@ -596,6 +600,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     */
     onUpdateTask() {
         this.submitted = true;
+
         if (sessionStorage.getItem('token')) {
             if (this.updateTaskForm.get('subtasks').value.length) {
                 var subtaskDetails = this.updateTaskForm.get('subtasks').value;
@@ -613,6 +618,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                 }
                 this.updateTaskForm.controls['subtasks'].setValue(subtaskDetails);
             }
+
             for (const key in this.updateTaskForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.updateTaskForm.value, key)) {
                     const element: any = this.updateTaskForm.value[key];

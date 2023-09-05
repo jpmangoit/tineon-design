@@ -346,8 +346,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	getSubTasksDetails(subtaskId: number) {	
-		this.selectedSubtask = null;
+	getSubTasksDetails(subtaskId: number) {
+		// this.selectedSubtask = '';
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
 	}
 
@@ -568,6 +568,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	
 	/**
 	* Function for the completion of Main Task
 	* @author  MangoIt Solutions
