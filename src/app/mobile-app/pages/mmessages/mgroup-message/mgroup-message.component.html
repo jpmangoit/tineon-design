@@ -368,7 +368,9 @@
                                                             <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
                                                                 }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
+                                                                1
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>

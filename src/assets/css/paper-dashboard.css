@@ -6611,9 +6611,9 @@ span.seen-time {
 
 .widget-chat.widget .user-content p {
     font-size: 12px;
-    color: #6875aa;
+    color: #989EB2;
     font-family: "Gellix", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0;
     text-transform: capitalize;
 }
@@ -12264,6 +12264,24 @@ body .schedule.ng-star-inserted {
   max-width: 50%;
 }
 
+.widget-chat.widget h6 {
+    margin-bottom: 4px;
+}
+
+.new-message {
+  float: right;
+  width: 17px;
+  height: 17px;
+  background: #E93608;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 16px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 5px;
+}
+
 
 
 ::ng-deep body .news_content.col-md-6 {
@@ -12357,10 +12375,11 @@ body .schedule.ng-star-inserted {
 }
 
     .widget-chat.widget .user-img img {
-  width: 100%;
-  
-  height: auto;
+  width: auto;
+  min-width: 50px;
+  height: 100%;
   max-width: none;
+  border-radius: 0;
 }
 
 .mobile-green .back-message-btn button svg path {
@@ -12452,6 +12471,13 @@ line-height: 53px;
 display: flex;
 align-items: center;
 justify-content: center;
+}
+
+.box-news-top > div:first-child img {
+  width: auto !important;
+  max-width: none;
+ 
+  height: 100%;
 }
 
 .news-items {
