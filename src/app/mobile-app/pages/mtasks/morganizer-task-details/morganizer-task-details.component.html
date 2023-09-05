@@ -779,7 +779,7 @@
 <!-- Subtasks Modal Start -->
 
 <div class="modal fade change_pass_section news_detail_popup all_news" id="exModal" tabindex="-1"
-    aria-labelledby="exampleModalLabel" *ngIf="selectedSubtask">
+    aria-labelledby="exampleModalLabel" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -835,8 +835,7 @@
                             <div class="col-md-12 news_detail_inner">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="news_details">
-
+                                        <div class="news_details" *ngIf="selectedSubtask">
                                             <div class="sub-task-item">
                                                 <div class="group_detail_content">
                                                     <div class="group_title">

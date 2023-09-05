@@ -66,6 +66,7 @@ export class MpersonalMessageComponent implements OnInit {
     isPersonalList: boolean = true;
     selected = '1';
     selectedValue :any;
+    todayDate :any;
     // select: { value: string; viewValue: any; }[];
 
     constructor(
@@ -80,6 +81,7 @@ export class MpersonalMessageComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.todayDate = new Date();
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;

@@ -346,14 +346,9 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	getSubTasksDetails(subtaskId: number) {
-		console.log(subtaskId);
-		console.log(this.taskDetails);
-		
+	getSubTasksDetails(subtaskId: number) {	
 		this.selectedSubtask = null;
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
-		console.log(this.selectedSubtask);
-		//   $('#subtaskModal').modal('show');
 	}
 
 	/**
