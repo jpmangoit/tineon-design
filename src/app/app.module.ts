@@ -245,6 +245,7 @@ import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
+import { MclubAllNewsComponent } from './mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -462,6 +463,7 @@ FullCalendarModule.registerPlugins([
         AppStoreComponent,
         MEmailComponent,
         MorganizerTaskDetailsComponent,
+        MclubAllNewsComponent,
 	],
 	imports: [
 		BrowserModule,

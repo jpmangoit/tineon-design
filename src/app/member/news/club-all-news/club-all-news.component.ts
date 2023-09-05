@@ -18,7 +18,7 @@ declare var $: any;
 @Component({
     selector: 'app-club-all-news',
     templateUrl: './club-all-news.component.html',
-    styleUrls: ['./club-all-news.component.css']
+    styleUrls: ['./club-all-news.component.css'] 
 })
 
 export class ClubAllNewsComponent implements OnInit, OnDestroy { 
@@ -236,7 +236,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                     } else {
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.dashboardData = respData.news;
-
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             
                             this.dashboardData.forEach(element => {

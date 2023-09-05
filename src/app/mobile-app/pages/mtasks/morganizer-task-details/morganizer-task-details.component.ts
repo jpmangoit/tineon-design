@@ -610,8 +610,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 
 	}
 
-
-
 	/**
 	* Function for the completion of Main Task
 	* @author  MangoIt Solutions
