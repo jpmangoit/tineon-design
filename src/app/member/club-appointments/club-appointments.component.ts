@@ -635,7 +635,7 @@ export class ClubAppointmentsComponent implements OnInit {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
             displayMode = 1;
-        } else {
+        } else { 
             //desktop
             displayMode = 0;
         }

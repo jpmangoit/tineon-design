@@ -250,6 +250,16 @@
                                                         </button>
                                                         <mat-menu #menu="matMenu">
                                                             <button mat-menu-item
+                                                                *ngIf="userDetails.isAdmin && taskDetails.   organizer_id != userDetails.userId && taskDetails.deny_reason == null && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)"
+                                                                (click)="adminApprovedUpdateTasks(taskDetails.id)">
+                                                                {{language.organizer_task.PublishTask}}
+                                                            </button>
+                                                            <button mat-menu-item
+                                                                *ngIf="userDetails.isAdmin && taskDetails.organizer_id != userDetails.userId && taskDetails.deny_reason == null && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)"
+                                                                (click)="adminUnapprovedTasks(taskDetails.id)">
+                                                                {{language.organizer_task.Denytask}}
+                                                            </button>
+                                                            <button mat-menu-item
                                                                 *ngIf="userDetails.userId == updatedTaskData.organizer_id"
                                                                 (click)="deleteUpdateTask(taskDetails.id)">{{language.organizer_task.ResetUpdateTask}}</button>
                                                             <button mat-menu-item
@@ -275,14 +285,14 @@
 
                                                 <div class="group_title">
                                                     <div class="sub-title">
-                                                        <input *ngIf="updatedTaskData.status == 0" class="check-style"
+                                                        <!-- <input *ngIf="updatedTaskData.status == 0" class="check-style"
                                                             id="styled-checkbox-{{updatedTaskData.id}}" type="checkbox"
                                                             style="opacity: 1;margin-top: 0px;" type="checkbox"
                                                             (change)="mainTaskMarkComplete(updatedTaskData.id)">
                                                         <input *ngIf="updatedTaskData.status == 1" class="check-style"
                                                             id="styled-checkbox-{{updatedTaskData.id}}" type="checkbox"
                                                             style="opacity: 1;margin-top: 0px;" type="checkbox"
-                                                            checked="checked" disabled="disabled">
+                                                            checked="checked" disabled="disabled"> -->
                                                         <h5 class="" style="margin-left: 35px;">
                                                             {{updatedTaskData.title}}</h5>
                                                     </div>
@@ -324,18 +334,19 @@
                                                             {{language.community_groups.participants}}</button>
                                                     </div>
                                                 </div>
-                                                <div class="survey-author">
+                                                <div class="survey-author" *ngIf="updatedOrganizerDetails">
                                                     <span class="survey-author-img">
                                                         <img onContextMenu="return false;"
-                                                            [src]="updatedTaskData && updatedTaskData?.userstask?.userImage != null ? updatedTaskData?.userstask?.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                                            [src]="updatedOrganizerDetails && updatedOrganizerDetails[0]?.user?.image
+                                                            != null ? updatedOrganizerDetails[0]?.user?.image : '../../../../assets/img/defaultProfile.jpeg'"
                                                             alt="" loading="lazy">
                                                     </span>
                                                     <div class="user-info">
                                                         <span
                                                             class="created-lable">{{language.organizer_task.task_created_by}}</span>
                                                         <span
-                                                            class="user-lable">{{updatedTaskData?.userstask?.firstname}}
-                                                            {{updatedTaskData?.userstask?.lastname}}</span>
+                                                            class="user-lable">{{updatedOrganizerDetails[0]?.user?.firstname}}
+                                                            {{updatedOrganizerDetails[0]?.user?.lastname}}</span>
                                                     </div>
                                                 </div>
 
@@ -354,7 +365,7 @@
                                                                     <div class="group_detail_content">
                                                                         <div class="group_title">
                                                                             <div class="sub-title">
-                                                                                <input
+                                                                                <!-- <input
                                                                                     *ngIf="updatedTaskData.status == 0"
                                                                                     class="check-style"
                                                                                     id="styled-checkbox-{{subtasks.id}}"
@@ -367,7 +378,7 @@
                                                                                     type="checkbox"
                                                                                     style="opacity: 1;margin-top: 0px;"
                                                                                     checked="checked"
-                                                                                    disabled="disabled">
+                                                                                    disabled="disabled"> -->
                                                                                 <h5 class="task-title-sub"
                                                                                     style="margin-left: 35px;"
                                                                                     data-bs-toggle="modal"
@@ -841,6 +852,7 @@
                                                                 id="styled-checkbox-{{selectedSubtask?.id}}"
                                                                 type="checkbox" style="opacity: 1;margin-top: 0px;"
                                                                 checked="checked" disabled="disabled">
+
                                                             <h5 *ngIf="selectedSubtask.status != 2" class=""
                                                                 style="margin-left: 35px;">{{selectedSubtask?.title}}
                                                             </h5>

@@ -14,13 +14,13 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
     selector: 'app-create-task',
-    templateUrl: './create-task.component.html', 
+    templateUrl: './create-task.component.html',
     styleUrls: ['./create-task.component.css'],
     providers: [DatePipe],
 })
@@ -83,7 +83,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -286,7 +286,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onSubTaskUserDeSelect(item: { id: number; user_name: string }[], i: number) {
-        if(this.subTaskSelectedUser && this.subTaskSelectedUser.length > 0){
+        if (this.subTaskSelectedUser && this.subTaskSelectedUser.length > 0) {
             this.subTaskSelectedUser.forEach((value, index) => {
                 if (value == item['id']) {
                     this.subTaskSelectedUser.splice(index, 1);
@@ -402,12 +402,12 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
         }
     }
 
-     /**
-    * Function for creating a Task
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {Array Of Object} all the Groups
-    */
+    /**
+   * Function for creating a Task
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {Array Of Object} all the Groups
+   */
     onCreateTask() {
         this.submitted = true;
         if (sessionStorage.getItem('token')) {
@@ -530,8 +530,13 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            var redirectUrl: string = 'task-detail/' + respData['result']['task']['id'];
-                            // var redirectUrl: string = 'morganizer-task-detail/' + respData['result']['task']['id'];
+                            if (sessionStorage.getItem('token') && window.innerWidth < 768) {
+                                //mobile
+                                var redirectUrl: string = 'morganizer-task-detail/' + respData['result']['task']['id'];
+                            } else {
+                                //desktop
+                                var redirectUrl: string = 'task-detail/' + respData['result']['task']['id'];
+                            }
                             this.router.navigate([redirectUrl]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
@@ -671,12 +676,12 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
         }
     }
 
-     /**
-    * Function is used to validate file type is image and upload images
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  error message if file type is not image
-    */
+    /**
+   * Function is used to validate file type is image and upload images
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  error message if file type is not image
+   */
     errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     uploadFile(event: Event) {
         var file: File = (event.target as HTMLInputElement).files[0];
@@ -709,30 +714,30 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
-     /**
-    * Function is used to cropped and compress the uploaded image
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {object} file object
-    */
-	imageCropped(event: ImageCroppedEvent) {
+    /**
+   * Function is used to cropped and compress the uploaded image
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {object} file object
+   */
+    imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.createTaskForm.patchValue({ add_image: this.fileToReturn });
                     this.createTaskForm.get('add_image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);

@@ -52,6 +52,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	allUsers: any;
 	taskId: number;
 	alluserInformation: { member_id: number }[] = [];
+	selectedSubtask: any;
 
 	constructor(
 		private authService: AuthServiceService,
@@ -332,6 +333,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 										}
 										this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails, 'id'));
 										this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators, 'id'));
+                                        console.log( this.updatedOrganizerDetails);
+
 									}
 								}
 							}
@@ -343,9 +346,11 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		}
 	}
 
-
-	selectedSubtask: any;
 	getSubTasksDetails(subtaskId: number) {
+		console.log(subtaskId);
+		console.log(this.taskDetails);
+		
+		this.selectedSubtask = null;
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
 		console.log(this.selectedSubtask);
 		//   $('#subtaskModal').modal('show');
@@ -522,11 +527,17 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 
 		let self = this;
 		if (self.taskDetails['subtasks'] && self.taskDetails['subtasks'].length > 0) {
+			console.log('innn');
+			
 			self.taskDetails['subtasks'].forEach(element => {
 				if (element.id == subtaskId) {
+					console.log('subtaskId',subtaskId);
 					if (element.assigned_to && element.assigned_to.length > 0) {
+						console.log('element.id',element);
+
 						element.assigned_to.forEach(elem => {
-							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
+							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
+							 this.userDetails.roles[0] == 'admin') {
 								this.count = 1;
 							} else {
 								if (self.collaborators && self.collaborators.length > 0) {
@@ -552,6 +563,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						})
 						this.count = 0;
 					} else {
+						console.log('styled-checkbox-');
+						
 						$('#styled-checkbox-' + subtaskId).prop('checked', false);
 						$('#subtask2').modal('toggle');
 					}
