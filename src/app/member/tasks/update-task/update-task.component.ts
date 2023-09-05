@@ -503,7 +503,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                             var task_date: string[];
                             if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                 this.taskImage = this.taskDetails?.['task_image'][0]?.['task_image'];
-                                this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)))as string;
+                                this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20))) as string;
                             }
                             if (this.taskDetails.date) {
                                 task_date = this.taskDetails.date.split('T');
@@ -718,8 +718,13 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                 if (respData['isError'] == false) {
                     this.notificationService.showSuccess(respData['result']['message'], null);
                     setTimeout(() => {
-                        // var redirectUrl: string = 'morganizer-task-detail/' + this.taskid;
-                        var redirectUrl: string = 'task-detail/' + this.taskid;
+                        if (sessionStorage.getItem('token') && window.innerWidth < 768) {
+                            //mobile
+                            var redirectUrl: string = 'morganizer-task-detail/' + this.taskid;
+                        } else {
+                            //desktop
+                            var redirectUrl: string = 'task-detail/' + this.taskid;
+                        }
 
                         this.router.navigate([redirectUrl]);
                     }, 2000);

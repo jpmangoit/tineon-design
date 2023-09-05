@@ -17,20 +17,22 @@
                                                 <div class="survey-dates">
                                                     <div>
                                                         <Span class="survey-dates-inner">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                viewBox="0 0 20 20" fill="none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 20 20" fill="none">
                                                                 <path
                                                                     d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
                                                                     fill="#647895" />
-                                                            </svg>&nbsp;&nbsp;{{ (taskDetails?.date | date: "yyyy-MM-ddTHH:mm:ss.SSSZ":
+                                                            </svg>&nbsp;&nbsp;{{ (taskDetails?.date | date:
+                                                            "yyyy-MM-ddTHH:mm:ss.SSSZ":
                                                             "UTC")?.split('T')[0] | date: "d. MMMM y" }}
-                
+
                                                         </Span>
                                                     </div>
                                                     <div class="task-category">
                                                         <span
                                                             *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
-                                                        <span *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
+                                                        <span
+                                                            *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
                                                         <!-- <span> INDIVIDUAL</span> -->
                                                     </div>
                                                 </div>
@@ -41,41 +43,45 @@
                                                 </div>
                                                 <div class="task-title">
                                                     <h5>{{taskDetails?.title}}</h5>
-                
+
                                                     <div class="event-action">
                                                         <button mat-button [matMenuTriggerFor]="menu">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="5" height="19" viewBox="0 0 5 19" fill="none">
-                                                                <path d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="5"
+                                                                height="19" viewBox="0 0 5 19" fill="none">
+                                                                <path
+                                                                    d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
                                                                     fill="#D1D8EF" />
                                                             </svg>
                                                         </button>
                                                         <mat-menu #menu="matMenu">
-                                                            <button mat-menu-item 
+                                                            <button mat-menu-item
                                                                 *ngIf="(userDetails.userId == taskDetails.organizer_id && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)) || (userDetails.isAdmin && taskDetails.status != 1 &&  checkStatusToDo(taskDetails))"
                                                                 routerLink="/update-task/{{taskDetails?.id}}">{{language.Survey.edit}}</button>
-                                                            <button mat-menu-item  
+                                                            <button mat-menu-item
                                                                 *ngIf="userDetails.userId == taskDetails.organizer_id || userDetails.isAdmin"
-                                                            (click)="deleteTask(taskDetails?.id)">{{language.organizer.Delete}}</button>
-                                                            <button mat-menu-item (click)="goBack()">{{language.organizer.Back}}</button>
+                                                                (click)="deleteTask(taskDetails?.id)">{{language.organizer.Delete}}</button>
+                                                            <button mat-menu-item
+                                                                (click)="goBack()">{{language.organizer.Back}}</button>
                                                         </mat-menu>
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="survey-timeline">
                                                     <div class="timeline-label">
                                                         <span>{{language.organizer_task.progress}} :
                                                             {{taskDetails?.approvedCount}}/{{taskDetails?.subtasks?.length}}
                                                         </span>
-                                                        <span>{{language.Survey.remaining_time}}: {{taskDetails?.dayCount}}</span>
+                                                        <span>{{language.Survey.remaining_time}}:
+                                                            {{taskDetails?.dayCount}}</span>
                                                         <!-- <span>{{taskDetails?.dayCount}} {{taskDetails.remain}}</span> -->
                                                     </div>
-                
+
                                                     <div class="timeline">
                                                         <mat-progress-bar mode="determinate"
                                                             [value]="taskDetails?.progressVal"></mat-progress-bar>
                                                     </div>
                                                 </div>
-                
+
                                                 <div class="group_title">
                                                     <div class="sub-title">
                                                         <input *ngIf="taskDetails.status == 0" class="check-style"
@@ -84,13 +90,13 @@
                                                             (change)="mainTaskMarkComplete(taskDetails.id)">
                                                         <input *ngIf="taskDetails.status == 1" class="check-style"
                                                             id="styled-checkbox-{{taskDetails.id}}" type="checkbox"
-                                                            style="opacity: 1;margin-top: 0px;" type="checkbox" checked="checked"
-                                                            disabled="disabled">
+                                                            style="opacity: 1;margin-top: 0px;" type="checkbox"
+                                                            checked="checked" disabled="disabled">
                                                         <h5 class="" style="margin-left: 35px;">
                                                             {{taskDetails.title}}</h5>
                                                     </div>
                                                 </div>
-                
+
                                                 <div class="task-description">
                                                     <p [innerHTML]="taskDetails?.description">
                                                     </p>
@@ -106,11 +112,14 @@
                                                                             *ngIf="participant?.image == null || participant?.image == ''">
                                                                             <img onContextMenu="return false;"
                                                                                 [src]="'assets/img/defaultProfile.jpeg'"
-                                                                                style="width: 100px;" alt="" loading="lazy">
+                                                                                style="width: 100px;" alt=""
+                                                                                loading="lazy">
                                                                         </div>
-                                                                        <div class="author-img" *ngIf="participant?.image != null">
+                                                                        <div class="author-img"
+                                                                            *ngIf="participant?.image != null">
                                                                             <img onContextMenu="return false;"
-                                                                                [src]="participant?.image" style="width: 100px;" alt=""
+                                                                                [src]="participant?.image"
+                                                                                style="width: 100px;" alt=""
                                                                                 loading="lazy">
                                                                         </div>
                                                                     </div>
@@ -131,12 +140,13 @@
                                                             alt="" loading="lazy">
                                                     </span>
                                                     <div class="user-info">
-                                                        <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                                                        <span
+                                                            class="created-lable">{{language.organizer_task.task_created_by}}</span>
                                                         <span class="user-lable">{{taskDetails?.userstask?.firstname}}
                                                             {{taskDetails?.userstask?.lastname}}</span>
                                                     </div>
                                                 </div>
-                
+
                                                 <!-- SubTasks Start -->
                                                 <div>
                                                     <div class="sub-task-main">
@@ -144,7 +154,8 @@
                                                             *ngIf="taskDetails && taskDetails['subtasks'] && taskDetails['subtasks'].length > 0">
                                                             <div class="sub-task-item-list">
                                                                 <div class="sub-task-title">
-                                                                    <h5 class="">{{language.create_task.subtask_details}}:-</h5>
+                                                                    <h5 class="">
+                                                                        {{language.create_task.subtask_details}}:-</h5>
                                                                 </div>
                                                                 <div class="sub-task-item"
                                                                     *ngFor="let subtasks of taskDetails.subtasks">
@@ -153,15 +164,21 @@
                                                                             <div class="sub-title">
                                                                                 <input *ngIf="taskDetails.status == 0"
                                                                                     class="check-style"
-                                                                                    id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                                    id="styled-checkbox-{{subtasks.id}}"
+                                                                                    type="checkbox"
                                                                                     (change)="eventMarkComplete(subtasks.id)"
                                                                                     style="opacity: 1;margin-top: 0px;">
-                                                                                <input *ngIf="subtasks.status == 1" class="check-style"
-                                                                                    id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                                <input *ngIf="subtasks.status == 1"
+                                                                                    class="check-style"
+                                                                                    id="styled-checkbox-{{subtasks.id}}"
+                                                                                    type="checkbox"
                                                                                     style="opacity: 1;margin-top: 0px;"
-                                                                                    checked="checked" disabled="disabled">
-                                                                                <h5 class="task-title-sub" style="margin-left: 35px;"
-                                                                                    data-bs-toggle="modal" data-bs-target="#exModal"
+                                                                                    checked="checked"
+                                                                                    disabled="disabled">
+                                                                                <h5 class="task-title-sub"
+                                                                                    style="margin-left: 35px;"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#exModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -173,7 +190,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- SubTasks Ends -->
-                
+
                                             </div>
                                         </ng-container>
                                         <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image">
@@ -195,20 +212,22 @@
                                                 <div class="survey-dates">
                                                     <div>
                                                         <Span class="survey-dates-inner">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                viewBox="0 0 20 20" fill="none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 20 20" fill="none">
                                                                 <path
                                                                     d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
                                                                     fill="#647895" />
-                                                            </svg>&nbsp;&nbsp;{{ (updatedTaskData?.date | date: "yyyy-MM-ddTHH:mm:ss.SSSZ":
+                                                            </svg>&nbsp;&nbsp;{{ (updatedTaskData?.date | date:
+                                                            "yyyy-MM-ddTHH:mm:ss.SSSZ":
                                                             "UTC")?.split('T')[0] | date: "d. MMMM y" }}
-                
+
                                                         </Span>
                                                     </div>
                                                     <div class="task-category">
                                                         <span
                                                             *ngIf="updatedTaskData.group_id == 0">{{language.create_task.individual}}</span>
-                                                        <span *ngIf="updatedTaskData.group_id != 0">{{language.create_task.group}}</span>
+                                                        <span
+                                                            *ngIf="updatedTaskData.group_id != 0">{{language.create_task.group}}</span>
                                                         <!-- <span> INDIVIDUAL</span> -->
                                                     </div>
                                                 </div>
@@ -219,51 +238,66 @@
                                                 </div>
                                                 <div class="task-title">
                                                     <h5>{{updatedTaskData?.title}}</h5>
-                
+
                                                     <div class="event-action">
                                                         <button mat-button [matMenuTriggerFor]="menu">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="5" height="19" viewBox="0 0 5 19" fill="none">
-                                                                <path d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="5"
+                                                                height="19" viewBox="0 0 5 19" fill="none">
+                                                                <path
+                                                                    d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
                                                                     fill="#D1D8EF" />
                                                             </svg>
                                                         </button>
                                                         <mat-menu #menu="matMenu">
-                                                            <button mat-menu-item 
-                                                            *ngIf="userDetails.userId == updatedTaskData.organizer_id"  (click)="deleteUpdateTask(taskDetails.id)">{{language.organizer_task.ResetUpdateTask}}</button>
-                                                            <button mat-menu-item (click)="goBack()">{{language.organizer.Back}}</button>
+                                                            <button mat-menu-item
+                                                                *ngIf="userDetails.isAdmin && taskDetails.   organizer_id != userDetails.userId && taskDetails.deny_reason == null && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)"
+                                                                (click)="adminApprovedUpdateTasks(taskDetails.id)">
+                                                                {{language.organizer_task.PublishTask}}
+                                                            </button>
+                                                            <button mat-menu-item
+                                                                *ngIf="userDetails.isAdmin && taskDetails.organizer_id != userDetails.userId && taskDetails.deny_reason == null && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)"
+                                                                (click)="adminUnapprovedTasks(taskDetails.id)">
+                                                                {{language.organizer_task.Denytask}}
+                                                            </button>
+                                                            <button mat-menu-item
+                                                                *ngIf="userDetails.userId == updatedTaskData.organizer_id"
+                                                                (click)="deleteUpdateTask(taskDetails.id)">{{language.organizer_task.ResetUpdateTask}}</button>
+                                                            <button mat-menu-item
+                                                                (click)="goBack()">{{language.organizer.Back}}</button>
                                                         </mat-menu>
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="survey-timeline">
                                                     <div class="timeline-label">
                                                         <span>{{language.organizer_task.progress}} :
                                                             {{updatedTaskData?.approvedCount}}/{{updatedTaskData?.subtasks?.length}}
                                                         </span>
-                                                        <span>{{language.Survey.remaining_time}}: {{updatedTaskData?.dayCount}}</span>
+                                                        <span>{{language.Survey.remaining_time}}:
+                                                            {{updatedTaskData?.dayCount}}</span>
                                                     </div>
-                
+
                                                     <div class="timeline">
                                                         <mat-progress-bar mode="determinate"
                                                             [value]="updatedTaskData?.progressVal"></mat-progress-bar>
                                                     </div>
                                                 </div>
-                
+
                                                 <div class="group_title">
                                                     <div class="sub-title">
-                                                        <input *ngIf="updatedTaskData.status == 0" class="check-style"
+                                                        <!-- <input *ngIf="updatedTaskData.status == 0" class="check-style"
                                                             id="styled-checkbox-{{updatedTaskData.id}}" type="checkbox"
                                                             style="opacity: 1;margin-top: 0px;" type="checkbox"
                                                             (change)="mainTaskMarkComplete(updatedTaskData.id)">
                                                         <input *ngIf="updatedTaskData.status == 1" class="check-style"
                                                             id="styled-checkbox-{{updatedTaskData.id}}" type="checkbox"
-                                                            style="opacity: 1;margin-top: 0px;" type="checkbox" checked="checked"
-                                                            disabled="disabled">
+                                                            style="opacity: 1;margin-top: 0px;" type="checkbox"
+                                                            checked="checked" disabled="disabled"> -->
                                                         <h5 class="" style="margin-left: 35px;">
                                                             {{updatedTaskData.title}}</h5>
                                                     </div>
                                                 </div>
-                
+
                                                 <div class="task-description">
                                                     <p [innerHTML]="updatedTaskData?.description">
                                                     </p>
@@ -279,11 +313,14 @@
                                                                             *ngIf="participant?.image == null || participant?.image == ''">
                                                                             <img onContextMenu="return false;"
                                                                                 [src]="'assets/img/defaultProfile.jpeg'"
-                                                                                style="width: 100px;" alt="" loading="lazy">
+                                                                                style="width: 100px;" alt=""
+                                                                                loading="lazy">
                                                                         </div>
-                                                                        <div class="author-img" *ngIf="participant?.image != null">
+                                                                        <div class="author-img"
+                                                                            *ngIf="participant?.image != null">
                                                                             <img onContextMenu="return false;"
-                                                                                [src]="participant?.image" style="width: 100px;" alt=""
+                                                                                [src]="participant?.image"
+                                                                                style="width: 100px;" alt=""
                                                                                 loading="lazy">
                                                                         </div>
                                                                     </div>
@@ -297,19 +334,22 @@
                                                             {{language.community_groups.participants}}</button>
                                                     </div>
                                                 </div>
-                                                <div class="survey-author">
+                                                <div class="survey-author" *ngIf="updatedOrganizerDetails">
                                                     <span class="survey-author-img">
                                                         <img onContextMenu="return false;"
-                                                            [src]="updatedTaskData && updatedTaskData?.userstask?.userImage != null ? updatedTaskData?.userstask?.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                                            [src]="updatedOrganizerDetails && updatedOrganizerDetails[0]?.user?.image
+                                                            != null ? updatedOrganizerDetails[0]?.user?.image : '../../../../assets/img/defaultProfile.jpeg'"
                                                             alt="" loading="lazy">
                                                     </span>
                                                     <div class="user-info">
-                                                        <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
-                                                        <span class="user-lable">{{updatedTaskData?.userstask?.firstname}}
-                                                            {{updatedTaskData?.userstask?.lastname}}</span>
+                                                        <span
+                                                            class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                                                        <span
+                                                            class="user-lable">{{updatedOrganizerDetails[0]?.user?.firstname}}
+                                                            {{updatedOrganizerDetails[0]?.user?.lastname}}</span>
                                                     </div>
                                                 </div>
-                
+
                                                 <!-- SubTasks Start -->
                                                 <div>
                                                     <div class="sub-task-main">
@@ -317,24 +357,32 @@
                                                             *ngIf="updatedTaskData && updatedTaskData['subtasks'] && updatedTaskData['subtasks'].length > 0">
                                                             <div class="sub-task-item-list">
                                                                 <div class="sub-task-title">
-                                                                    <h5 class="">{{language.create_task.subtask_details}}:-</h5>
+                                                                    <h5 class="">
+                                                                        {{language.create_task.subtask_details}}:-</h5>
                                                                 </div>
                                                                 <div class="sub-task-item"
                                                                     *ngFor="let subtasks of updatedTaskData.subtasks">
                                                                     <div class="group_detail_content">
                                                                         <div class="group_title">
                                                                             <div class="sub-title">
-                                                                                <input *ngIf="updatedTaskData.status == 0"
+                                                                                <!-- <input
+                                                                                    *ngIf="updatedTaskData.status == 0"
                                                                                     class="check-style"
-                                                                                    id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                                    id="styled-checkbox-{{subtasks.id}}"
+                                                                                    type="checkbox"
                                                                                     (change)="eventMarkComplete(subtasks.id)"
                                                                                     style="opacity: 1;margin-top: 0px;">
-                                                                                <input *ngIf="subtasks.status == 1" class="check-style"
-                                                                                    id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                                <input *ngIf="subtasks.status == 1"
+                                                                                    class="check-style"
+                                                                                    id="styled-checkbox-{{subtasks.id}}"
+                                                                                    type="checkbox"
                                                                                     style="opacity: 1;margin-top: 0px;"
-                                                                                    checked="checked" disabled="disabled">
-                                                                                <h5 class="task-title-sub" style="margin-left: 35px;"
-                                                                                    data-bs-toggle="modal" data-bs-target="#exModal"
+                                                                                    checked="checked"
+                                                                                    disabled="disabled"> -->
+                                                                                <h5 class="task-title-sub"
+                                                                                    style="margin-left: 35px;"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#exModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -346,7 +394,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- SubTasks Ends -->
-                
+
                                             </div>
                                         </ng-container>
                                         <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image">
@@ -359,7 +407,7 @@
                             </div>
                         </mat-tab>
                     </mat-tab-group>
-                    
+
                     <!-- INITIAL TASK DETAILS START -->
                     <div class="card-body" *ngIf="!updatedTaskData">
                         <div class="profile_details" *ngIf="taskDetails">
@@ -374,15 +422,17 @@
                                                         <path
                                                             d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
                                                             fill="#647895" />
-                                                    </svg>&nbsp;&nbsp;{{ (taskDetails?.date | date: "yyyy-MM-ddTHH:mm:ss.SSSZ":
+                                                    </svg>&nbsp;&nbsp;{{ (taskDetails?.date | date:
+                                                    "yyyy-MM-ddTHH:mm:ss.SSSZ":
                                                     "UTC")?.split('T')[0] | date: "d. MMMM y" }}
-        
+
                                                 </Span>
                                             </div>
                                             <div class="task-category">
                                                 <span
                                                     *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
-                                                <span *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
+                                                <span
+                                                    *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
                                                 <!-- <span> INDIVIDUAL</span> -->
                                             </div>
                                         </div>
@@ -393,41 +443,45 @@
                                         </div>
                                         <div class="task-title">
                                             <h5>{{taskDetails?.title}}</h5>
-        
+
                                             <div class="event-action">
                                                 <button mat-button [matMenuTriggerFor]="menu">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="19" viewBox="0 0 5 19" fill="none">
-                                                        <path d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
+                                                        viewBox="0 0 5 19" fill="none">
+                                                        <path
+                                                            d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
                                                             fill="#D1D8EF" />
                                                     </svg>
                                                 </button>
                                                 <mat-menu #menu="matMenu">
-                                                    <button mat-menu-item 
+                                                    <button mat-menu-item
                                                         *ngIf="(userDetails.userId == taskDetails.organizer_id && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)) || (userDetails.isAdmin && taskDetails.status != 1 &&  checkStatusToDo(taskDetails))"
                                                         routerLink="/update-task/{{taskDetails?.id}}">{{language.Survey.edit}}</button>
-                                                    <button mat-menu-item  
+                                                    <button mat-menu-item
                                                         *ngIf="userDetails.userId == taskDetails.organizer_id || userDetails.isAdmin"
-                                                    (click)="deleteTask(taskDetails?.id)">{{language.organizer.Delete}}</button>
-                                                    <button mat-menu-item (click)="goBack()">{{language.organizer.Back}}</button>
+                                                        (click)="deleteTask(taskDetails?.id)">{{language.organizer.Delete}}</button>
+                                                    <button mat-menu-item
+                                                        (click)="goBack()">{{language.organizer.Back}}</button>
                                                 </mat-menu>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="survey-timeline">
                                             <div class="timeline-label">
                                                 <span>{{language.organizer_task.progress}} :
                                                     {{taskDetails?.approvedCount}}/{{taskDetails?.subtasks?.length}}
                                                 </span>
-                                                <span>{{language.Survey.remaining_time}}: {{taskDetails?.dayCount}}</span>
+                                                <span>{{language.Survey.remaining_time}}:
+                                                    {{taskDetails?.dayCount}}</span>
                                                 <!-- <span>{{taskDetails?.dayCount}} {{taskDetails.remain}}</span> -->
                                             </div>
-        
+
                                             <div class="timeline">
                                                 <mat-progress-bar mode="determinate"
                                                     [value]="taskDetails?.progressVal"></mat-progress-bar>
                                             </div>
                                         </div>
-        
+
                                         <div class="group_title">
                                             <div class="sub-title">
                                                 <input *ngIf="taskDetails.status == 0" class="check-style"
@@ -436,13 +490,13 @@
                                                     (change)="mainTaskMarkComplete(taskDetails.id)">
                                                 <input *ngIf="taskDetails.status == 1" class="check-style"
                                                     id="styled-checkbox-{{taskDetails.id}}" type="checkbox"
-                                                    style="opacity: 1;margin-top: 0px;" type="checkbox" checked="checked"
-                                                    disabled="disabled">
+                                                    style="opacity: 1;margin-top: 0px;" type="checkbox"
+                                                    checked="checked" disabled="disabled">
                                                 <h5 class="" style="margin-left: 35px;">
                                                     {{taskDetails.title}}</h5>
                                             </div>
                                         </div>
-        
+
                                         <div class="task-description">
                                             <p [innerHTML]="taskDetails?.description">
                                             </p>
@@ -460,10 +514,11 @@
                                                                         [src]="'assets/img/defaultProfile.jpeg'"
                                                                         style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
-                                                                <div class="author-img" *ngIf="participant?.image != null">
+                                                                <div class="author-img"
+                                                                    *ngIf="participant?.image != null">
                                                                     <img onContextMenu="return false;"
-                                                                        [src]="participant?.image" style="width: 100px;" alt=""
-                                                                        loading="lazy">
+                                                                        [src]="participant?.image" style="width: 100px;"
+                                                                        alt="" loading="lazy">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -483,12 +538,13 @@
                                                     alt="" loading="lazy">
                                             </span>
                                             <div class="user-info">
-                                                <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                                                <span
+                                                    class="created-lable">{{language.organizer_task.task_created_by}}</span>
                                                 <span class="user-lable">{{taskDetails?.userstask?.firstname}}
                                                     {{taskDetails?.userstask?.lastname}}</span>
                                             </div>
                                         </div>
-        
+
                                         <!-- SubTasks Start -->
                                         <div>
                                             <div class="sub-task-main">
@@ -505,15 +561,20 @@
                                                                     <div class="sub-title">
                                                                         <input *ngIf="taskDetails.status == 0"
                                                                             class="check-style"
-                                                                            id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                            id="styled-checkbox-{{subtasks.id}}"
+                                                                            type="checkbox"
                                                                             (change)="eventMarkComplete(subtasks.id)"
                                                                             style="opacity: 1;margin-top: 0px;">
-                                                                        <input *ngIf="subtasks.status == 1" class="check-style"
-                                                                            id="styled-checkbox-{{subtasks.id}}" type="checkbox"
+                                                                        <input *ngIf="subtasks.status == 1"
+                                                                            class="check-style"
+                                                                            id="styled-checkbox-{{subtasks.id}}"
+                                                                            type="checkbox"
                                                                             style="opacity: 1;margin-top: 0px;"
                                                                             checked="checked" disabled="disabled">
-                                                                        <h5 class="task-title-sub" style="margin-left: 35px;"
-                                                                            data-bs-toggle="modal" data-bs-target="#exModal"
+                                                                        <h5 class="task-title-sub"
+                                                                            style="margin-left: 35px;"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#exModal"
                                                                             (click)="getSubTasksDetails(subtasks.id)">
                                                                             {{subtasks.title}}</h5>
                                                                     </div>
@@ -525,7 +586,7 @@
                                             </div>
                                         </div>
                                         <!-- SubTasks Ends -->
-        
+
                                     </div>
                                 </ng-container>
                                 <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image">
@@ -791,6 +852,7 @@
                                                                 id="styled-checkbox-{{selectedSubtask?.id}}"
                                                                 type="checkbox" style="opacity: 1;margin-top: 0px;"
                                                                 checked="checked" disabled="disabled">
+
                                                             <h5 *ngIf="selectedSubtask.status != 2" class=""
                                                                 style="margin-left: 35px;">{{selectedSubtask?.title}}
                                                             </h5>
@@ -852,7 +914,6 @@
         </div>
     </div>
 </div>
-
 <!-- Subtasks Modal End -->
 
 <!-- Collabarators Modal Start -->

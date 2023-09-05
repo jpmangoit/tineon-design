@@ -141,7 +141,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                 if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
-                                // console.log(this.taskDetails);
+                                
                                 // this.taskDetails.approvedCount = 0;
                                 // this.taskDetails.progressVal = 0;
                                 // if ( this.taskDetails.subtasks.length > 0) {
@@ -181,9 +181,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                         }
                                     });
                                 }
-                                // console.log(this.taskDetails);
-                                
-                                
+                                    
                                 if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedCollaborators = [];
@@ -192,6 +190,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                     if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") { 
                                         this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']); 
                                     }
+                                    
                                     if (this.updatedTaskData != null) {
 
                                         if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {
