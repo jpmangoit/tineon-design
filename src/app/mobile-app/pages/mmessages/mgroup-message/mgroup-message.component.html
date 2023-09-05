@@ -62,12 +62,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
-                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
-                                                                1
+                                                            <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'd.MM.YY' }}
                                                             </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -125,12 +128,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
-                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
-                                                                1
+                                                            <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'd.MM.YY' }}
                                                             </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,12 +198,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
-                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
-                                                                1
+                                                            <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'd.MM.YY' }}
                                                             </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,12 +260,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
-                                                                }}  {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            <span class="new-message" *ngIf="msg.is_read == 0" >
-                                                                1
+                                                            <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'd.MM.YY' }}
                                                             </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -309,11 +321,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="app-right-content">
-                                                                <span class="seen-time">{{msg.created_at | date: 'd.MM.YY' }}  {{msg.created_at | date: 'HH:mm': 'GMT+2'
-                                                                    }} </span>
-                                                                    <span class="new-message" *ngIf="msg.is_read == 0" >
-                                                                        1
-                                                                    </span>
+                                                                <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                    {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                                </span>
+                                                                <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                    {{msg.created_at | date: 'd.MM.YY' }}
+                                                                </span>
+                                                                <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                                <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                    <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -365,10 +381,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="app-right-content">
-                                                            <span class="seen-time">{{msg.created_at | date: 'd.MM.YY'
-                                                                }} {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
+                                                            <span class="seen-time" *ngIf=" (msg.created_at | date: 'dd-MM-YY') == (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'HH:mm': 'GMT+2' }}
                                                             </span>
-                                                            
+                                                            <span class="seen-time" *ngIf="(msg.created_at | date: 'dd-MM-YY') != (todayDate | date: 'dd-MM-YY')">
+                                                                {{msg.created_at | date: 'd.MM.YY' }}
+                                                            </span>
+                                                            <span class="new-message" *ngIf="msg.is_read == 0" > 1</span>
+                                                            <!-- <i *ngIf="msg.is_read == 0" id="envelope-{{msg.id}}"class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                                <i *ngIf="msg.is_read == 1" id="envelope-open-{{msg.id}}" class="fa fa-envelope-open-o" aria-hidden="true"></i> -->
                                                         </div>
                                                     </div>
                                                 </div>

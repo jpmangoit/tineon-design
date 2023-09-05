@@ -184,7 +184,7 @@
                                                                                 <h5 class="task-title-sub"
                                                                                     style="padding-left:34px;"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-target="#exModal"
+                                                                                    data-bs-target="#subtaskModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -389,7 +389,7 @@
                                                                                 <h5 class="task-title-sub"
                                                                                     style="padding-left: 34px;"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-target="#exModal"
+                                                                                    data-bs-target="#subtaskModal"
                                                                                     (click)="getSubTasksDetails(subtasks.id)">
                                                                                     {{subtasks.title}}</h5>
                                                                             </div>
@@ -582,7 +582,7 @@
                                                                         <h5 class="task-title-sub"
                                                                             style="padding-left: 34px;"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#exModal"
+                                                                            data-bs-target="#subtaskModal"
                                                                             (click)="getSubTasksDetails(subtasks.id)">
                                                                             {{subtasks.title}}</h5>
                                                                     </div>
@@ -782,9 +782,14 @@
 </div>
 
 <!-- Subtasks Modal Start -->
+<<<<<<< HEAD
 
 <div class="modal fade change_pass_section news_detail_popup all_news" id="exModal" tabindex="-1"
-    aria-labelledby="exampleModalLabel" *ngIf="selectedSubtask">
+    aria-labelledby="exampleModalLabel" >
+=======
+<div class="modal fade change_pass_section news_detail_popup all_news" id="subtaskModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
+>>>>>>> e5364d2bc179c1a008bb227201516261950140b0
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -840,21 +845,20 @@
                             <div class="col-md-12 news_detail_inner">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="news_details">
-
+                                        <div class="news_details" *ngIf="selectedSubtask">
                                             <div class="sub-task-item">
                                                 <div class="group_detail_content">
                                                     <div class="group_title">
                                                         <div class="sub-title">
                                                             <input *ngIf="selectedSubtask?.status == 0"
                                                                 class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask?.id}}"
+                                                                id="styled-checkbox-{{selectedSubtask.id}}"
                                                                 type="checkbox"
-                                                                (change)="eventMarkComplete(selectedSubtask?.id)"
+                                                                (change)="eventMarkCompleteSub(selectedSubtask?.id)"
                                                                 style="opacity: 1;margin-top: 0px;">
                                                             <input *ngIf="selectedSubtask?.status == 1"
                                                                 class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask?.id}}"
+                                                                id="styled-checkbox-{{selectedSubtask.id}}"
                                                                 type="checkbox" style="opacity: 1;margin-top: 0px;"
                                                                 checked="checked" disabled="disabled">
 

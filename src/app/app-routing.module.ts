@@ -138,6 +138,7 @@ import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MclubEventsComponent } from './mobile-app/pages/mevents/mclub-events/mclub-events.component';
 import { MeventDetailComponent } from './mobile-app/pages/mevents/mevent-detail/mevent-detail.component';import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
+import { MclubAllNewsComponent } from './mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
 ;
 
 
@@ -404,6 +405,7 @@ const mobile_routes: Routes = [
             { path: 'coming_soon', component: ComingSoonComponent },
             { path: 'banner-list', component: MbannerlistComponent, canActivate: [MemberLightGuard], data: { title: 'Display Banners', allow_permission: ['create'] } },
             { path: 'app-store', component: AppStoreComponent, data: { title: 'App Store' } },
+            { path: 'mclub-all-news', component: MclubAllNewsComponent, canActivate: [MemberLightGuard], data: { title: 'Club-all-news', allow_permission: ['participate'] } },
 
         ]
     },

@@ -100,8 +100,8 @@ export class MclubNewsComponent implements OnInit {
                         if (this.dashboardData?.length > 0) {
                             this.dashboardData.forEach((element, index) => {
 
-                                if (element?.news_image[0]?.news_image ) {
-                                    element.news_image[0].news_image= this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
+                                if (element?.news_image[0]?.news_image) {
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
                                 if (index < 7) {
                                     if (element.user.member_id != null) {
@@ -177,7 +177,13 @@ export class MclubNewsComponent implements OnInit {
     }
 
     showAll() {
-        this.router.navigate(['/clubwall-news/1']);
+        if (sessionStorage.getItem('token') && window.innerWidth < 768) {
+            //mobile
+            this.router.navigate(['/mclub-all-news']);
+        } else { 
+            //desktop
+            this.router.navigate(['/clubwall-news/1']);
+        }
     }
 
     showToggle: boolean = false;

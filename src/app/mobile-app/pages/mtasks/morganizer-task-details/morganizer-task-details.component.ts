@@ -86,7 +86,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		})
 	}
 
-	ngOnInit(): void {	
+	ngOnInit(): void {
 		if (localStorage.getItem('club_theme') != null) {
 			let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
 			this.setTheme = theme;
@@ -234,7 +234,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 									}
 
 									if (this.updatedTaskData != null) {
-										console.log(this.updatedTaskData);
 
 										if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {
 											this.updatedTaskData.file = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updatedTaskData.file.substring(20)));
@@ -254,7 +253,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 										} else {
 											this.updatedTaskData.remain = this.language.organizer_task.daysOverride;
 										}
-										
+
 										this.updatedTaskData.collaborators = JSON.parse(this.updatedTaskData.collaborators);
 										if (this.updatedTaskData['subtasks'] && this.updatedTaskData['subtasks'].length > 0) {
 											if (this.updatedTaskData && this.updatedTaskData['subtasks'].length > 0) {
@@ -317,7 +316,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 												}
 											});
 										}
-										// console.log(this.updatedCollaborators);
 
 										let org_id = 0;
 										this.updatedOrganizerDetails = [];
@@ -333,7 +331,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 										}
 										this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails, 'id'));
 										this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators, 'id'));
-                                        console.log( this.updatedOrganizerDetails);
 
 									}
 								}
@@ -347,13 +344,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	}
 
 	getSubTasksDetails(subtaskId: number) {
-		console.log(subtaskId);
-		console.log(this.taskDetails);
-		
-		this.selectedSubtask = null;
+		// this.selectedSubtask = '';
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
-		console.log(this.selectedSubtask);
-		//   $('#subtaskModal').modal('show');
 	}
 
 	/**
@@ -523,21 +515,59 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
  * @return  {}
  */
 	eventMarkComplete(subtaskId: number) {
-		console.log(subtaskId);
-
 		let self = this;
 		if (self.taskDetails['subtasks'] && self.taskDetails['subtasks'].length > 0) {
-			console.log('innn');
-			
 			self.taskDetails['subtasks'].forEach(element => {
 				if (element.id == subtaskId) {
-					console.log('subtaskId',subtaskId);
 					if (element.assigned_to && element.assigned_to.length > 0) {
-						console.log('element.id',element);
 
 						element.assigned_to.forEach(elem => {
 							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
-							 this.userDetails.roles[0] == 'admin') {
+								this.userDetails.roles[0] == 'admin') {
+								this.count = 1;
+							} else {
+								if (self.collaborators && self.collaborators.length > 0) {
+									self.collaborators.forEach((el: any) => {
+										if (el.user_id == this.userDetails.userId) {
+											this.count = 1
+										}
+									})
+								}
+							}
+						});
+					}
+
+					if (this.count == 1) {
+						this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,
+							function () {
+								self.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
+									(respData: any) => {
+										self.collaboratorDetails = [];
+										self.ngOnInit();
+									}
+								)
+							}, function () {
+								$('#styled-checkbox-' + subtaskId).prop('checked', false);
+							})
+						this.count = 0;
+					} else {
+						$('#styled-checkbox-' + subtaskId).prop('checked', false);
+						$('#subtask2').modal('toggle');
+					}
+				}
+			});
+		}
+	}
+
+	eventMarkCompleteSub(subtaskId: number) {
+		let self = this;
+		if (self.taskDetails['subtasks'] && self.taskDetails['subtasks'].length > 0) {
+			self.taskDetails['subtasks'].forEach(element => {
+				if (element.id == subtaskId) {
+					if (element.assigned_to && element.assigned_to.length > 0) {
+						element.assigned_to.forEach(elem => {
+							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
+								this.userDetails.roles[0] == 'admin') {
 								this.count = 1;
 							} else {
 								if (self.collaborators && self.collaborators.length > 0) {
@@ -551,26 +581,33 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						});
 					}
 					if (this.count == 1) {
-						this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-							self.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
-								(respData: any) => {
-									self.collaboratorDetails = [];
-									self.ngOnInit();
-								}
-							)
-						}, function () {
-							$('#styled-checkbox-' + subtaskId).prop('checked', false);
-						})
+						this.confirmDialogService.confirmThis(
+							this.language.confirmation_message.complete_task,
+							() => {
+
+								self.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
+									(respData: any) => {
+										self.collaboratorDetails = [];
+										self.ngOnInit();
+									}
+								);
+							},
+							() => {
+								$('input[type="checkbox"]').prop('checked', false);
+								// $('#styled-checkbox-' + subtaskId).prop('checked', false); // Uncheck the checkbox
+							},
+							subtaskId // Pass subtaskId to the callbacks
+						);
 						this.count = 0;
 					} else {
-						console.log('styled-checkbox-');
-						
 						$('#styled-checkbox-' + subtaskId).prop('checked', false);
 						$('#subtask2').modal('toggle');
 					}
+
 				}
 			});
 		}
+
 	}
 
 	/**
