@@ -35,16 +35,8 @@
                                                             *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
                                                         <!-- <span> INDIVIDUAL</span> -->
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <img onContextMenu="return false;"
-                                                        [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != '' ?  taskDetails['task_image']?.[0]?.['task_image'] : '../../../../assets/img/no_image.png'"
-                                                        alt="" loading="lazy">
-                                                </div>
-                                                <div class="task-title">
-                                                    <h5>{{taskDetails?.title}}</h5>
 
-                                                    <div class="event-action">
+                                                     <div class="event-action">
                                                         <button mat-button [matMenuTriggerFor]="menu">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="5"
                                                                 height="19" viewBox="0 0 5 19" fill="none">
@@ -64,6 +56,16 @@
                                                                 (click)="goBack()">{{language.organizer.Back}}</button>
                                                         </mat-menu>
                                                     </div>
+                                                </div>
+                                                <div>
+                                                    <img onContextMenu="return false;"
+                                                        [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != '' ?  taskDetails['task_image']?.[0]?.['task_image'] : '../../../../assets/img/no_image.png'"
+                                                        alt="" loading="lazy">
+                                                </div>
+                                                <div class="task-title">
+                                                    <h5>{{taskDetails?.title}}</h5>
+
+                                                   
                                                 </div>
 
                                                 <div class="survey-timeline">
@@ -92,7 +94,7 @@
                                                             id="styled-checkbox-{{taskDetails.id}}" type="checkbox"
                                                             style="opacity: 1;margin-top: 0px;" type="checkbox"
                                                             checked="checked" disabled="disabled">
-                                                        <h5 class="" style="margin-left: 35px;">
+                                                        <h5 class="" style="margin-left: 35px;font-size: 12px;color: #999;font-weight: 400;">
                                                             {{taskDetails.title}}</h5>
                                                     </div>
                                                 </div>
