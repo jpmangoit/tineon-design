@@ -1591,7 +1591,7 @@ span.get-btn {
     font-family: "Gellix", sans-serif;
 }
 
-::ng-deep body .news-item {
+.news-item {
     background: #fff;
     border-radius: 15px;
     overflow: visible !important;
