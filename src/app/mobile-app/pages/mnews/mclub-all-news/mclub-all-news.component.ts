@@ -16,73 +16,73 @@ declare var $: any;
 
 
 @Component({
-	selector: 'app-mclub-all-news',
-	templateUrl: './mclub-all-news.component.html',
-	styleUrls: ['./mclub-all-news.component.css']
+    selector: 'app-mclub-all-news',
+    templateUrl: './mclub-all-news.component.html',
+    styleUrls: ['./mclub-all-news.component.css']
 })
-export class MclubAllNewsComponent implements OnInit {
-	language: any;
-	role: string = '';
-	responseMessage: string = null;
-	currentPageNmuber: number = 1;
-	itemPerPage: number = 8;
-	newsTotalRecords: number = 0;
-	guestNewsRecords: number = 0;
-	limitPerPage: { value: string }[] = [
-		{ value: '8' },
-		{ value: '16' },
-		{ value: '24' },
-		{ value: '32' },
-		{ value: '40' }
-	];
-	thumbnails: string[] = [];
-	memberid: number;
-	thumb: string;
-	thumbnail: any;
-	userData: LoginDetails;
-	dashboardData: NewsType[] = [];
-	guestNews: NewsType[] = [];
-	newsData: NewsType;
-	setTheme: ThemeType;
-	newImg: string
-	private activatedSub: Subscription;
-	sliderOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		dots: true,
-		navSpeed: 700,
-		navText: ['', ''],
-		margin: 24,
-		responsive: {
-			0: {
-				items: 1
-			},
-			400: {
-				items: 1
-			},
-			740: {
-				items: 1
-			},
-			940: {
-				items: 1
-			}
-		},
-		nav: false,
-		autoplay: true
-	}
-	bannerData: any;
-	mobBannerData: any;
-	adsTineon: any;
-	allowAdvertisment: any;
-	isShow: boolean = false;
+export class MclubAllNewsComponent implements OnInit, OnDestroy {
+    language: any;
+    role: string = '';
+    responseMessage: string = null;
+    currentPageNmuber: number = 1;
+    itemPerPage: number = 8;
+    newsTotalRecords: number = 0;
+    guestNewsRecords: number = 0;
+    limitPerPage: { value: string }[] = [
+        { value: '8' },
+        { value: '16' },
+        { value: '24' },
+        { value: '32' },
+        { value: '40' }
+    ];
+    thumbnails: string[] = [];
+    memberid: number;
+    thumb: string;
+    thumbnail: any;
+    userData: LoginDetails;
+    dashboardData: NewsType[] = [];
+    guestNews: NewsType[] = [];
+    newsData: NewsType;
+    setTheme: ThemeType;
+    newImg: string
+    private activatedSub: Subscription;
+    sliderOptions: OwlOptions = {
+        loop: true,
+        mouseDrag: true,
+        touchDrag: true,
+        pullDrag: true,
+        dots: true,
+        navSpeed: 700,
+        navText: ['', ''],
+        margin: 24,
+        responsive: {
+            0: {
+                items: 1
+            },
+            400: {
+                items: 1
+            },
+            740: {
+                items: 1
+            },
+            940: {
+                items: 1
+            }
+        },
+        nav: false,
+        autoplay: true
+    }
+    bannerData: any;
+    mobBannerData: any;
+    adsTineon: any;
+    allowAdvertisment: any;
+    isShow: boolean = false;
 
-	constructor(
+    constructor(
         private authService: AuthServiceService,
         private router: Router,
         private lang: LanguageService,
-		 private themes: ThemeService,
+        private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
@@ -90,7 +90,7 @@ export class MclubAllNewsComponent implements OnInit {
 
     ) { }
 
-	ngOnInit(): void {
+    ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -107,47 +107,11 @@ export class MclubAllNewsComponent implements OnInit {
         if (this.allowAdvertisment == 0) {
             if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                 this.getMobileAllNewsBanners()
-            } else {
-                this.getDesktopAllNewsBanners()
             }
         }
         this.getAllNews();
     }
 
-	   /**
-  * Function for get All the Banners
-  * @author  MangoIt Solutions(M)
-  * @param   {}
-  * @return  {all the records of Banners} array of object
-  */
-	   getDesktopAllNewsBanners() {
-        this.authService.setLoader(true);
-        this.authService.memberSendRequest('get', 'getBannerForAllNews_Desktop/', null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.bannerData = respData['result']['banner']
-                        this.bannerData.forEach((element: any) => {
-                            element['category'] = JSON.parse(element.category);
-                            element['placement'] = JSON.parse(element.placement);
-                            element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
-                            if (element.banner_image[0]?.banner_image) {
-                                element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                            }
-                            if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                element['redirectLink'] = element.redirectLink;
-                            } else {
-                                element['redirectLink'] = '//' + element.redirectLink;
-                            }
-                        })
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
-                    }
-                }
-            )
-    }
 
     /**
   * Function for get All the Banners
@@ -184,7 +148,6 @@ export class MclubAllNewsComponent implements OnInit {
                 }
             )
     }
-
 
     timeOut1() {
         let count = 0;
@@ -238,12 +201,12 @@ export class MclubAllNewsComponent implements OnInit {
                         this.dashboardData = respData.news;
 
                         if (this.dashboardData && this.dashboardData.length > 0) {
-                            
+
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
-                                
+
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
@@ -273,42 +236,42 @@ export class MclubAllNewsComponent implements OnInit {
 
                 this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
                     (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData.news.length == 0) {
                         this.authService.setLoader(false);
-                    } else {
-                        this.newsTotalRecords = respData.pagination.rowCount;
-                        this.dashboardData = respData.news;
-                        if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach(element => {
-                                if (element?.news_image[0]?.news_image) {
-                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
-                                }
-
-                                if (element.user.member_id != null) {
-                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                        .subscribe(
-                                            (resppData: any) => {
-                                                this.authService.setLoader(false);
-                                                this.thumb = resppData;
-                                                element.user.image = this.thumb;
-                                            },
-                                            (error: any) => {
-                                                element.user.image = null;
-                                            });
-                                } else {
-                                    element.user.image = '';
-                                }
-                                if (this.role == 'guest') {
-                                    if (element.show_guest_list == 'true') {
-                                        this.guestNews.push(element);
+                        if (respData.news.length == 0) {
+                            this.authService.setLoader(false);
+                        } else {
+                            this.newsTotalRecords = respData.pagination.rowCount;
+                            this.dashboardData = respData.news;
+                            if (this.dashboardData && this.dashboardData.length > 0) {
+                                this.dashboardData.forEach(element => {
+                                    if (element?.news_image[0]?.news_image) {
+                                        element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                     }
-                                    this.guestNewsRecords = respData.pagination.rowCount;
-                                }
-                            });
+
+                                    if (element.user.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.authService.setLoader(false);
+                                                    this.thumb = resppData;
+                                                    element.user.image = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.user.image = null;
+                                                });
+                                    } else {
+                                        element.user.image = '';
+                                    }
+                                    // if (this.role == 'guest') {
+                                    //     if (element.show_guest_list == 'true') {
+                                    //         this.guestNews.push(element);
+                                    //     }
+                                    //     this.guestNewsRecords = respData.pagination.rowCount;
+                                    // }
+                                });
+                            }
                         }
-                    }
-                });
+                    });
             }
         }
     }
@@ -346,15 +309,11 @@ export class MclubAllNewsComponent implements OnInit {
         if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            
+
             if (this.newsData?.news_image[0]?.news_image) {
                 this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20))) as string;
                 this.newImg = this.newsData?.news_image[0]?.news_image;
             }
-            // if (this.newsData.imageUrls) { 
-            //     this.newsData.imageUrls = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.imageUrls.substring(20)));
-            //     this.newImg = this.newsData.imageUrls;
-            // }
         }
         this.memberid = this.newsData.user.member_id;
         this.authService.setLoader(true);

@@ -60,7 +60,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private themes: ThemeService,
 		private updateConfirmDialogService: UpdateConfirmDialogService,
-		// private _location: Location,
 		private confirmDialogService: ConfirmDialogService,
 		private lang: LanguageService,
 		private denyReasonService: DenyReasonConfirmDialogService,
@@ -109,19 +108,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
    * @param   {}
    * @return  {Array Of Object} all the Users
    */
-	// getAllUserInfo() {
-	// 	this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-	// 		.subscribe(
-	// 			(respData: any) => {
-	// 				if (respData && respData.length > 0) {
-	// 					this.allUsers = respData;
-
-	// 				}
-	// 				this.getTaskDetails(this.taskId);
-	// 			}
-	// 		);
-	// }
-
 	getAllUserInfo() {
 		let self = this;
 		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
@@ -140,12 +126,11 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	}
 
 	/**
- * Function to get a task detail
- * @author  MangoIt Solutions
- * @param   {taskid}
- * @return  {Array Of Object} all the Users
- */
-
+	  * Function to get a task detail
+	* @author  MangoIt Solutions
+	* @param   {taskid}
+	* @return  {Array Of Object} all the Users
+	*/
 	getTaskDetails(taskid: number) {
 		if (sessionStorage.getItem('token')) {
 			this.authService.setLoader(true);
@@ -171,8 +156,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 								} else {
 									this.taskDetails.userstask.userImage = null;
 								}
-
-
 								if (this.taskDetails?.['task_image'][0]?.['task_image']) {
 									this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
 								}
@@ -455,7 +438,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 				.subscribe(
 					(respData: any) => {
 						self.ngOnInit();
-						self.router.navigate(['task-detail/' + taskId])
+						self.router.navigate(['morganizer-task-detail/' + taskId])
+						// self.router.navigate(['task-detail/' + taskId])
 					}
 				)
 		}, function () {
@@ -500,7 +484,8 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 					(respData: any) => {
 						setTimeout(() => {
 							self.ngOnInit()
-							self.router.navigate(['task-detail/' + task_id])
+							self.router.navigate(['morganizer-task-detail/' + task_id])
+							// self.router.navigate(['task-detail/' + task_id])
 						}, 1000);
 					}
 				)
@@ -567,14 +552,10 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						element.assigned_to.forEach(elem => {
 							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
 								this.userDetails.roles[0] == 'admin') {
-									console.log('----in-----');
-									
 								this.count = 1;
 							} else {
 								if (self.collaborators && self.collaborators.length > 0) {
 									self.collaborators.forEach((el: any) => {
-									console.log('----out-----');
-
 										if (el.user_id == this.userDetails.userId) {
 											this.count = 1
 										}
@@ -587,7 +568,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						this.confirmDialogService.confirmThis(
 							this.language.confirmation_message.complete_task,
 							() => {
-
 								self.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
 									(respData: any) => {
 										self.collaboratorDetails = [];
@@ -606,11 +586,9 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						$('#styled-checkbox-' + subtaskId).prop('checked', false);
 						$('#subtask2').modal('toggle');
 					}
-
 				}
 			});
 		}
-
 	}
 
 	/**
@@ -730,6 +708,12 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	closeModals() {
 		$('#subtask1').modal('hide');
 		$('#styled-checkbox-' + this.task_id).prop('checked', false);
+	}
+
+	onSubtask2ModalShown(){
+		 $('#subtaskModal').modal('hide'); 
+		//  $('#styled-checkbox-' + this.task_id).prop('checked', false);
+		 $('input[type="checkbox"]').prop('checked', false);
 	}
 
 	showToggle: boolean = false;

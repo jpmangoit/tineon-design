@@ -274,10 +274,10 @@
                                             <h3>
                                                 {{data?.user?.firstname}} {{data?.user?.lastname}}
                                             </h3>
-                                            <span class="news-date" >
+                                            <span class="news-date">
                                                 <img onContextMenu="return false;"
                                                     src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
-                                                    alt="" loading="lazy" >&nbsp;
+                                                    alt="" loading="lazy">&nbsp;
                                                 {{data.created_at | date: 'd. MMMM y'}}
                                             </span>
                                         </div>
@@ -290,7 +290,7 @@
 
                                     </div>
                                     <div class="news-image-area">
-                                        <img onContextMenu="return false;" 
+                                        <img onContextMenu="return false;"
                                             [src]="data?.news_image[0]?.news_image != null ? data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
                                             alt="{{data.name}}" loading="lazy">
                                     </div>
@@ -340,13 +340,15 @@
                                         <!-- upcoming item start -->
                                         <div class="upcoming-item">
                                             <div class="news-items">
-                                                <div class="news-image-area" *ngIf="upcoming.event_image != undefined" (click)="eventDetails(upcoming.id,upcoming.date_from)">
+                                                <div class="news-image-area" *ngIf="upcoming.event_image != undefined"
+                                                    (click)="eventDetails(upcoming.id,upcoming.date_from)">
                                                     <img onContextMenu="return false;"
                                                         [src]="upcoming.event_image && upcoming.event_image != undefined ? upcoming?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'"
                                                         alt="" loading="lazy">
                                                     <!-- <img onContextMenu="return false;" [src]="upcoming?.event_images[0]?.event_image ? upcoming?.event_images[0]?.event_image : '../../../../assets/img/new-design/dashboard/event-img.png'" alt="" loading="lazy"> -->
                                                 </div>
-                                                <div class="news-des-area" (click)="eventDetails(upcoming.id,upcoming.date_from)">
+                                                <div class="news-des-area"
+                                                    (click)="eventDetails(upcoming.id,upcoming.date_from)">
                                                     <div class="news-top-content">
                                                         <span class="news-badge">{{language.organizer.events}}</span>
                                                     </div>
@@ -608,12 +610,11 @@
 
                                                         <div class="new-action" *ngIf="(role !='guest')">
                                                             <a class="green"
-                                                                *ngIf="((modalNews.user.id == userDetails['userId']) || (role == 'admin'))"
+                                                                *ngIf="((modalNews.user.id == userDetails['userId']) || (userDetails?.isAdmin))"
                                                                 (click)="updateNews(modalNews.id)">
                                                                 {{language.club_news.Edit}}</a>
-
                                                             <a class="red"
-                                                                *ngIf="((modalNews.user.id == userDetails['userId']) || (role == 'admin'))"
+                                                                *ngIf="((modalNews.user.id == userDetails['userId']) || (userDetails?.isAdmin))"
                                                                 (click)="deleteNews(modalNews.id)">
                                                                 {{language.club_news.Delete}}</a>
                                                         </div>
