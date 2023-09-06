@@ -65,6 +65,9 @@
     },
     "error_message" : {
         "specialChar_validation" : "Please only enter the amount without special characters"
+    },
+    "club_events": {
+        "today_course_offer": "Heutige Kurs-Angebote"
     }
 }
 

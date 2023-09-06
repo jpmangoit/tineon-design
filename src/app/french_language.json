@@ -225,7 +225,9 @@
         "upcoming":"À venir",
         "currentEvent":"Événement en cours",
         "updateEvent":"Mettre à jour le Événement",
-        "image_wid_heig": "Veuillez télécharger l'image de résolution au moins largeur = 800 et hauteur = 500"
+        "image_wid_heig": "Veuillez télécharger l'image de résolution au moins largeur = 800 et hauteur = 500",
+        "today_course_offer": "Heutige Kurs-Angebote"
+
     },
     "club_news":{
         "Edit":"Modifier",

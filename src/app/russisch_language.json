@@ -157,7 +157,9 @@
         "no_events": "Нет событий",
         "today": "Сегодня",
         "show_calendar": "Показать календарь",
-        "upcoming": "Скоро будет"
+        "upcoming": "Скоро будет",
+        "today_course_offer": "Heutige Kurs-Angebote"
+
     },
     "club_news": {
         "Edit": "Редактировать",

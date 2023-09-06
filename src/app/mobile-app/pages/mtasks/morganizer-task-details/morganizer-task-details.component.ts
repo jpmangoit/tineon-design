@@ -159,12 +159,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 								if (this.taskDetails?.['task_image'][0]?.['task_image']) {
 									this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
 								}
-								this.taskDetails.approvedCount = 0;
-								this.taskDetails.progressVal = 0;
-								if (this.taskDetails.subtasks.length > 0) {
-									this.taskDetails.approvedCount = this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
-									this.taskDetails.progressVal = Math.round(100 * (this.taskDetails.approvedCount / (this.taskDetails.subtasks.length)));
-								}
+								
 								let cudate: Date = new Date();
 								this.taskDetails.dayCount = this.commonFunctionService.getDays(cudate, this.taskDetails.date);
 								if (this.taskDetails.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -176,7 +171,14 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 								if (this.taskDetails) {
 									this.getOrganizerDetails(taskid);
 								}
+
+								this.taskDetails.approvedCount = 0;
+								this.taskDetails.progressVal = 0;
 								if (this.taskDetails['subtasks']?.length > 0) {
+
+									this.taskDetails.approvedCount = this.taskDetails.subtasks.filter((obj: any) => obj.status === 1).length
+									this.taskDetails.progressVal = Math.round(100 * (this.taskDetails.approvedCount / (this.taskDetails.subtasks.length)));
+
 									this.taskDetails['subtasks'].forEach(element => {
 										element.assigned_to = JSON.parse(element.assigned_to);
 										if (element.assigned_to.length > 0) {
@@ -206,7 +208,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 										}
 									});
 								}
-
 								if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
 									this.UpdatedcollaboratorDetails = [];
 									this.updatedCollaborators = [];

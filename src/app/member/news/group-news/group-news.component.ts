@@ -76,11 +76,7 @@ export class GroupNewsComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.groupNewsData = respData['result'];
-                        console.log(this.groupNewsData);
-
                         this.groupNewsData.forEach((groupNewsItem: any) => {
-                            console.log(groupNewsItem);
-
                             if (groupNewsItem?.news?.news_image[0]?.news_image) {
                                 groupNewsItem.news.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem?.news?.news_image[0]?.news_image.substring(20))) as string;
                             }

@@ -35,8 +35,15 @@
                                                             *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
                                                         <!-- <span> INDIVIDUAL</span> -->
                                                     </div>
-
-                                                     <div class="event-action">
+                                                </div>
+                                                <div>
+                                                    <img onContextMenu="return false;"
+                                                        [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != '' ?  taskDetails['task_image']?.[0]?.['task_image'] : '../../../../assets/img/no_image.png'"
+                                                        alt="" loading="lazy">
+                                                </div>
+                                                <div class="task-title">
+                                                    <h5>{{taskDetails?.title}}</h5>
+                                                    <div class="event-action">
                                                         <button mat-button [matMenuTriggerFor]="menu">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="5"
                                                                 height="19" viewBox="0 0 5 19" fill="none">
@@ -56,16 +63,6 @@
                                                                 (click)="goBack()">{{language.organizer.Back}}</button>
                                                         </mat-menu>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <img onContextMenu="return false;"
-                                                        [src]="taskDetails['task_image']?.[0]?.['task_image'] != null && taskDetails['task_image']?.[0]?.['task_image'] != '' ?  taskDetails['task_image']?.[0]?.['task_image'] : '../../../../assets/img/no_image.png'"
-                                                        alt="" loading="lazy">
-                                                </div>
-                                                <div class="task-title">
-                                                    <h5>{{taskDetails?.title}}</h5>
-
-                                                   
                                                 </div>
 
                                                 <div class="survey-timeline">
@@ -94,7 +91,8 @@
                                                             id="styled-checkbox-{{taskDetails.id}}" type="checkbox"
                                                             style="opacity: 1;margin-top: 0px;" type="checkbox"
                                                             checked="checked" disabled="disabled">
-                                                        <h5 class="" style="margin-left: 35px;font-size: 12px;color: #999;font-weight: 400;">
+                                                        <h5 class=""
+                                                            style="margin-left: 35px;font-size: 12px;color: #999;font-weight: 400;">
                                                             {{taskDetails.title}}</h5>
                                                     </div>
                                                 </div>
@@ -463,6 +461,21 @@
                                                         *ngIf="userDetails.userId == taskDetails.organizer_id || userDetails.isAdmin"
                                                         (click)="deleteTask(taskDetails?.id)">{{language.organizer.Delete}}</button>
                                                     <button mat-menu-item
+                                                        *ngIf="userDetails.isAdmin && taskDetails.organizer_id != userDetails.userId && taskDetails.updated_record != null"
+                                                        (click)="adminApprovedUpdateTasks(taskDetails.id)">
+                                                        {{language.organizer_task.PublishTask}}
+                                                    </button>
+                                                    <button mat-menu-item
+                                                        *ngIf="taskDetails.status == 2 && userDetails.isAdmin && ( taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )"
+                                                        (click)="adminApprovedTasks(taskDetails.id)">
+                                                        {{language.organizer_task.PublishTask}}
+                                                    </button>
+                                                    <button mat-menu-item
+                                                        *ngIf="userDetails.isAdmin && taskDetails.organizer_id != userDetails.userId && taskDetails.status == 2 && taskDetails.deny_reason == null"
+                                                        (click)="adminUnapprovedTasks(taskDetails.id)">
+                                                        {{language.organizer_task.Denytask}}
+                                                    </button>
+                                                    <button mat-menu-item
                                                         (click)="goBack()">{{language.organizer.Back}}</button>
                                                 </mat-menu>
                                             </div>
@@ -703,7 +716,8 @@
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" tabindex="-1" aria-labelledby="exampleModalLabel" id="subtask2" (shown.bs.modal)="onSubtask2ModalShown()">
+<div class="modal fade" tabindex="-1" tabindex="-1" aria-labelledby="exampleModalLabel" id="subtask2"
+    (shown.bs.modal)="onSubtask2ModalShown()">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
