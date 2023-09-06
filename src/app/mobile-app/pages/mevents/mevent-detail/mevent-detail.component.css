@@ -727,7 +727,7 @@ ul.bunch_drop.show li {
 .card-body.top-box.ng-star-inserted .widget-app-content span {
     white-space: nowrap;
     margin-left: 32px;
-    font-size: 14px;
+    font-size: 14px; 
     color: #999;
 }
 

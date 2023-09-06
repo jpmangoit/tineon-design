@@ -75,6 +75,10 @@ export class ClubAppointmentsComponent implements OnInit {
     allowAdvertisment: any;
     headline_word_option: number = 0;
     allClubEvents: EventsType[] = [];
+    allUsers: any;
+    thumb: string;
+    alluserInformation: { member_id: number }[] = [];
+
 
     constructor(
         private authService: AuthServiceService,
@@ -97,7 +101,9 @@ export class ClubAppointmentsComponent implements OnInit {
             this.participateAccess = this.userAccess[role].participate;
             if (!this.userDetails.isMember_light && !this.userDetails.isMember_light_admin) {
                 this.getDesktopDeshboardBanner();
-                this.getEvent();
+                this.getAllUserInfo();
+
+                // this.getEvent();
                 this.getAllCourses();
             }
         }
@@ -111,6 +117,29 @@ export class ClubAppointmentsComponent implements OnInit {
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
         }
+    }
+
+    /**
+    * Function to get all the Club Users
+    * @author  MangoIt Solutions
+    * @param   {}
+    * @return  {Array Of Object} all the Users
+    */
+    getAllUserInfo() {
+        let self = this;
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        this.allUsers = respData;
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getEvent();
+                    // this.getAllCourses();
+                }
+            );
     }
 
     /**
@@ -144,10 +173,27 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                 var element: any = null;
                 var url: string[] = [];
-
                 for (var key in this.eventData) {
+
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
+                        element.eventUsers.forEach((el: any) => {
+                            if (el.user_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[el.user_id].member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            this.thumb = resppData;
+                                            el.userImage = this.thumb;
+                                        },
+                                        (error: any) => {
+                                            el.userImage = null;
+                                        });
+                            } else {
+                                el.userImage = null;
+                            }
+
+                        });
+
                         let self = this;
                         if (element && element.recurrence != '' && element.recurrence != null) {
                             let recurrence: string = element.recurrence;
@@ -192,7 +238,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                         "description": element.description,
                                         "start_time": element.start_time,
                                         "end_time": element.end_time,
-                                        "isCourse": false
+                                        "isCourse": false,
+                                        "users": element.eventUsers
                                     }
                                     self.eventList.push(rrEvents);
                                     if (dt == self.todays_date) {
@@ -240,7 +287,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                         "description": element.description,
                                         "start_time": element.start_time,
                                         "end_time": element.end_time,
-                                        "isCourse": false
+                                        "isCourse": false,
+                                        "users": element.eventUsers
                                     }
                                     self.eventList.push(rrEvents1);
                                     if (dt1 == self.todays_date) {
@@ -291,7 +339,8 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "description": element.description,
                                             "start_time": element.start_time,
                                             "end_time": element.end_time,
-                                            "isCourse": false
+                                            "isCourse": false,
+                                            "users": element.eventUsers
                                         }
                                         self.eventList.push(rrEvents1);
                                         if (dt1 == self.todays_date) {
@@ -340,26 +389,8 @@ export class ClubAppointmentsComponent implements OnInit {
                     for (var key in this.allCourses) {
                         if (this.allCourses.hasOwnProperty(key)) {
                             element = this.allCourses[key];
-                            // var url: string[] = [];
-                            // for (const key in element) {
-                            //     if (Object.prototype.hasOwnProperty.call(element, key)) {
-                            //         const value: string = element[key]
-                            //         if (key == 'picture_video' && value != null) {
-                            //             url = value.split('\"');
-                            //         }
-                            //     }
-                            // }
-                            // if (url && url.length > 0) {
-                            //     let self = this;
-                            //     url.forEach(el => {
-                            //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                            //             element.picture_video = el;
-                            //         }
-                            //     });
-                            // } else {
-                            //     element['picture_video'] = '';
-                            // }
                             this.allData[key] = element;
+
                             if (element && element.recurrence && element.recurrence != '' && element.recurrence != null) {
                                 let recurrence: string = element.recurrence;
                                 if (recurrence.includes('UNTIL') == false) {
@@ -621,6 +652,8 @@ export class ClubAppointmentsComponent implements OnInit {
             if (index < 10) {
                 this.allClubEvents.push(element);
             }
+            console.log( this.allClubEvents);
+
         })
     }
 
@@ -635,7 +668,7 @@ export class ClubAppointmentsComponent implements OnInit {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
             displayMode = 1;
-        } else { 
+        } else {
             //desktop
             displayMode = 0;
         }

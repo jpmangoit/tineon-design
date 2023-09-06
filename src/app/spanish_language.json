@@ -210,7 +210,9 @@
         "group_in_common":"Grupo en Común",
         "delete_chat":"Borrar chat",
         "media_link_doc":"Medios, enlaces y documentos",
-        "email_draft": "Correo electrónico guardado como borrador"
+        "email_draft": "Correo electrónico guardado como borrador",
+        "message_to_me" : "nachrichten an mich"
+
     },
     "group_news": {
         "title": "Noticias del grupo",

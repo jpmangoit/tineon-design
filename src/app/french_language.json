@@ -210,7 +210,9 @@
         "group_in_common":"Groupe en commun",
         "delete_chat":"Supprimer discussion",
         "media_link_doc":"Médias, liens et documents",
-        "email_draft":"E-mail enregistré comme brouillon"
+        "email_draft":"E-mail enregistré comme brouillon",
+        "message_to_me" : "nachrichten an mich"
+
     },
     "group_news":{
         "title":"Actualités du groupe",

@@ -241,8 +241,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         }
                                     }
                                     
-                                    // console.log(element);
-
                                     // var url: string[] = [];
                                     // if (element) {
                                     //     for (const key in element) {
@@ -541,8 +539,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
-
-                        console.log( this.currentCourseList);
                         
                         this.currentCourseList.forEach(element => {
                             // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
@@ -575,15 +571,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.upcomingCourseList.forEach(element => {
-                           
-                            // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
-                            //     console.log(element?.CourseExternalInstructor[0]);
-
-                            //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
-                            //         console.log(element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]);
-                            //         // element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
-                            //     }
-                            // }
 
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {

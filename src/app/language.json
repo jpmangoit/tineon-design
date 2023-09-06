@@ -68,6 +68,9 @@
     },
     "club_events": {
         "today_course_offer": "Heutige Kurs-Angebote"
+    },
+    "community_messages" : {
+        "message_to_me" : "nachrichten an mich"
     }
 }
 

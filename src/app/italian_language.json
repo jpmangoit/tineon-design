@@ -210,7 +210,9 @@
         "group_in_common":"Gruppo in comune",
         "delete_chat":"Cancellare la chat",
         "media_link_doc":"Media, link e documenti",
-        "email_draft": "Email salva come bozza"
+        "email_draft": "Email salva come bozza",
+        "message_to_me" : "nachrichten an mich"
+
     },
     "group_news": {
         "title": "Notizie di gruppo",

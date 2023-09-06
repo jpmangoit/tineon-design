@@ -889,7 +889,6 @@ span.instructor-badge {
     font-size: 24px;
     font-weight: 600;
     color: #ffbe02 !important;
-    ;
 }
 
 .course-price span {
@@ -1118,7 +1117,7 @@ font-size: 14px;
   font-weight: 700;
   font-family: "Gellix", sans-serif;
   border-right: 1px solid #D9D9D9;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #647895 !important;
   line-height: 15px;
 }

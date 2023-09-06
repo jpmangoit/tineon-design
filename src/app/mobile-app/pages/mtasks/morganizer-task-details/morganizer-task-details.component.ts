@@ -142,7 +142,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						if (respData['isError'] == false) {
 							if (respData && respData['result'] && respData['result'][0]) {
 								this.taskDetails = respData['result'][0];
-
 								if (this.alluserInformation[this.taskDetails.userstask.id] != null) {
 									this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[this.taskDetails.userstask.id].member_id, null)
 										.subscribe(

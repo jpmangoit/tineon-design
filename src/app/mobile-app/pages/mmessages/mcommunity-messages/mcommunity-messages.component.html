@@ -7,8 +7,14 @@
                     <path d="M0.00910226 7.48914C-0.000382009 7.26109 0.051783 7.04806 0.155162 6.84441C0.576267 6.01199 1.57307 5.74734 2.38683 6.27382C3.53349 7.01615 4.67161 7.77068 5.80593 8.53178C5.98993 8.65566 6.11133 8.66317 6.30007 8.53647C7.41353 7.78757 8.53458 7.049 9.66037 6.31793C10.3613 5.86277 11.2566 6.0439 11.7261 6.71772C12.1955 7.3906 12.0523 8.31312 11.3675 8.7739C9.88325 9.77337 8.38852 10.7569 6.88904 11.7338C6.35792 12.0792 5.78222 12.0933 5.2511 11.7479C3.70041 10.7419 2.16205 9.718 0.625586 8.69038C0.206377 8.40978 0.0128959 7.99028 0.00910226 7.48914ZM1.54841 0.00203327C1.86045 -0.0186128 2.16774 0.120281 2.45796 0.312667C3.56763 1.04655 4.68299 1.77293 5.78507 2.51807C5.99562 2.66072 6.13409 2.64476 6.33611 2.50962C7.42017 1.78043 8.51371 1.06344 9.60726 0.347392C10.347 -0.136858 11.2575 0.0273732 11.7308 0.722778C12.2192 1.43977 12.0267 2.33507 11.2708 2.83621C9.85764 3.7728 8.43784 4.70001 7.02941 5.64411C6.37499 6.08238 5.74618 6.09082 5.08987 5.64974C4.02477 4.93369 2.94925 4.23359 1.87847 3.52598C1.44598 3.24069 1.00401 2.9676 0.588596 2.65978C0.0688542 2.27594 -0.122728 1.61245 0.0783396 1.0259C0.290789 0.410267 0.849417 0.00766371 1.54841 0.00203327Z" fill="#999999"/>
                     </svg>
                 </mat-label>
-                <mat-select matNativeControl [(value)]="selected" (selectionChange)="messageFilter($event.value)">
+                <!-- <mat-select matNativeControl [(value)]="selected" (selectionChange)="messageFilter($event.value)">
                     <mat-option value="1">{{language.community_messages.personal_messages}}</mat-option>
+                    <mat-option value="2" *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</mat-option>
+                    <mat-option value="2" *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</mat-option>
+                    <mat-option value="3">{{language.community_messages.group_messages}}</mat-option>
+                </mat-select> -->
+                <mat-select matNativeControl [(value)]="selected" (selectionChange)="messageFilter($event.value)">
+                    <mat-option value="1">{{language.community_messages.message_to_me}}</mat-option>
                     <mat-option value="2" *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</mat-option>
                     <mat-option value="2" *ngIf="headline_word_option == 1">{{language.community_messages.club_messages_untern}}</mat-option>
                     <mat-option value="3">{{language.community_messages.group_messages}}</mat-option>

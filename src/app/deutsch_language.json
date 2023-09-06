@@ -170,10 +170,10 @@
         "personal_messages": "Nachrichten",
         "club_messages": "Vereins-Nachrichten",
 
-        "club_messages_stand": "Vereins-Nachrichten",
+        "club_messages_stand": "Vereinsnachrichten",
         "club_messages_untern": "Unternehmens-Nachricht",
 
-        "group_messages": "Gruppen-Nachrichten",
+        "group_messages": "Gruppennachrichten",
         "search": "Suche",
         "inbox": "Posteingang",
         "starred": "Markierte",
@@ -213,7 +213,9 @@
         "group_in_common": "Gemeinsame Gruppen",
         "delete_chat": "Chat löschen",
         "media_link_doc": "Medien, Links and Dokumente",
-        "email_draft": "E-Mail wurde als Entwurf gespeichert."
+        "email_draft": "E-Mail wurde als Entwurf gespeichert.",
+        "message_to_me" : "nachrichten an mich"
+
     },
     "group_news": {
         "title": "Aktuelles aus den Gruppen",

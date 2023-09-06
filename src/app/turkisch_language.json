@@ -211,7 +211,9 @@
         "group_in_common":"Ortak Grup",
         "delete_chat":"Sohbeti Sil",
         "media_link_doc":"Medya, Bağlantılar ve Dokümanlar",
-        "email_draft": "E-posta taslak olarak kaydet"
+        "email_draft": "E-posta taslak olarak kaydet",
+        "message_to_me" : "nachrichten an mich"
+
     },
     "group_news": {
         "title": "Grup haberleri",

@@ -217,7 +217,8 @@
         "group_in_common":"Group in Common",
         "delete_chat":"Delete Chat",
         "media_link_doc":"Media, Links and Docs",
-        "email_draft": "Email save as draft"
+        "email_draft": "Email save as draft",
+        "message_to_me" : "nachrichten an mich"
     },
     "group_news": {
         "title": "Group-News",
