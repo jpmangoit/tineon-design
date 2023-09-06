@@ -472,7 +472,11 @@ export class MorganizerEventsComponent implements OnInit {
     }
 
     hasComma(str: string) {
-        return str.replace(/,/g, ".");
+        if(str){
+            return str.replace(/,/g, ".");
+        }else{
+            return str;
+        }        
     }
 
 }

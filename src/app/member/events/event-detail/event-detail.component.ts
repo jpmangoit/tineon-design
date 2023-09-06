@@ -741,7 +741,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         this.removeUpdate.unsubscribe();
     }
 
-    hasComma(str: string) {
-        return str.replace(/,/g, ".");
-    } 
+   hasComma(str: string) {
+        if(str){
+            return str.replace(/,/g, ".");
+        }else{
+            return str;
+        }        
+    }
 }
