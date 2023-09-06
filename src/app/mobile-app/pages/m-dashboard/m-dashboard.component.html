@@ -314,7 +314,7 @@
                                     </div>
                                 </div>
                                 <div class="show-all-button" *ngIf="userRole != 'guest'">
-                                    <button type="button" routerLink="/clubwall-news/1">
+                                    <button type="button" (click)="showAll()">
                                         {{language.dashboard.dashboardNewsShowAll}}
                                     </button>
                                 </div>

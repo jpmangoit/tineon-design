@@ -391,8 +391,8 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
                                 if ((val.role != 'guest')) {
                                     this.user_dropdown.push({
                                         id: val.id,
-                                        user_email: val.email,
-                                        user_name: val.firstname + ' ' + val.lastname + ' (' + val.email + ' )',
+                                        user_email: val.username,
+                                        user_name: val.firstname + ' ' + val.lastname + ' (' + val.username + ' )',
                                     });
                                 }
                             });

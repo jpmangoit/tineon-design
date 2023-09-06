@@ -274,7 +274,6 @@ export class MorganizerEventsComponent implements OnInit {
                                             if (dt == self.todays_date) {
                                                 self.currentEvent.push(rrEvents);
                                                 self.currentEventList.push(rrEvents);
-
                                             } else if (dt > self.todays_date) {
                                                 self.upcomingEvent.push(rrEvents);
                                                 self.upcomingEventList.push(rrEvents);
