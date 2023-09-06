@@ -12,10 +12,11 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { logging } from 'protractor';
 declare var $: any;
 
 @Component({
-    selector: 'app-group-news', 
+    selector: 'app-group-news',
     templateUrl: './group-news.component.html',
     styleUrls: ['./group-news.component.css']
 })
@@ -75,23 +76,28 @@ export class GroupNewsComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         this.groupNewsData = respData['result'];
+                        console.log(this.groupNewsData);
+
                         this.groupNewsData.forEach((groupNewsItem: any) => {
+                            console.log(groupNewsItem);
+
                             if (groupNewsItem?.news?.news_image[0]?.news_image) {
                                 groupNewsItem.news.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(groupNewsItem?.news?.news_image[0]?.news_image.substring(20))) as string;
                             }
-                            if (groupNewsItem?.news?.user.member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + groupNewsItem?.news?.user.member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-
-                                            let thumb = resppData;
-                                            groupNewsItem.news.user.image = thumb;
-                                        },
-                                        (error: any) => {
-                                            groupNewsItem.news.user.image = null;
-                                        })
-                            } else {
-                                groupNewsItem.user.image = '';
+                            if (groupNewsItem?.news?.user) {
+                                if (groupNewsItem?.news?.user?.member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + groupNewsItem?.news?.user.member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                let thumb = resppData;
+                                                groupNewsItem.news.user.image = thumb;
+                                            },
+                                            (error: any) => {
+                                                groupNewsItem.news.user.image = null;
+                                            })
+                                } else{
+                                    groupNewsItem.news.user.image = '';
+                                }
                             }
                         });
                         this.dataLoaded.emit();
@@ -108,6 +114,7 @@ export class GroupNewsComponent implements OnInit {
                         //         }
                         //     }
                         // }
+
 
                     }
                 );

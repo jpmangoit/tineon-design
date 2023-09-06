@@ -520,7 +520,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 			self.taskDetails['subtasks'].forEach(element => {
 				if (element.id == subtaskId) {
 					if (element.assigned_to && element.assigned_to.length > 0) {
-
 						element.assigned_to.forEach(elem => {
 							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
 								this.userDetails.roles[0] == 'admin') {
@@ -568,10 +567,14 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						element.assigned_to.forEach(elem => {
 							if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId ||
 								this.userDetails.roles[0] == 'admin') {
+									console.log('----in-----');
+									
 								this.count = 1;
 							} else {
 								if (self.collaborators && self.collaborators.length > 0) {
 									self.collaborators.forEach((el: any) => {
+									console.log('----out-----');
+
 										if (el.user_id == this.userDetails.userId) {
 											this.count = 1
 										}

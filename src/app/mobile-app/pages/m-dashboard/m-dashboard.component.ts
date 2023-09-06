@@ -229,6 +229,17 @@ export class MDashboardComponent implements OnInit {
         }
     }
 
+    showAll() {
+        if (sessionStorage.getItem('token') && window.innerWidth < 768) {
+            //mobile
+            this.router.navigate(['/mclub-all-news']);
+        } else {
+            //desktop
+            this.router.navigate(['/clubwall-news/1']);
+        }
+    }
+
+
     // active class functions
     onClick(check) {
         this.activeClass = check == 1 ? "all" : check == 2 ? "news" : check == 3 ? "events" : check == 4 ? "group" : "all";
@@ -665,7 +676,7 @@ export class MDashboardComponent implements OnInit {
         this.authService.memberSendRequest('get', 'mv/web/get-groups-by-user-id/' + this.userId, null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData.reverse();
-                this.groupJoinData.forEach((element:any) => {
+                this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }

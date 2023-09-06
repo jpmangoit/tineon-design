@@ -292,6 +292,16 @@ export class MallNewsComponent implements OnInit {
         }
     }
 
+    showAll() {
+        if (sessionStorage.getItem('token') && window.innerWidth < 768) {
+            //mobile
+            this.router.navigate(['/mclub-all-news']);
+        } else {
+            //desktop
+            this.router.navigate(['/clubwall-news/1']);
+        }
+    }
+
     /**
     * Function is used to delete news by news Id
     * @author  MangoIt Solutions
