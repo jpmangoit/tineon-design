@@ -509,7 +509,7 @@ span.participant_status {
 }
 
 .search-filter-wrapper .event_sub_btn {
-    margin: 0 !important;
+    margin: 0 0 0 10px !important;
     display: flex;
     justify-content: flex-end;
 }
@@ -522,6 +522,7 @@ span.participant_status {
   padding-right: 0;
   width: 280px !important;
   max-width: 280px !important;
+  padding-left: 10px;
 }
 
 .search-filter-wrapper .profile_sub_btn .Cancel_btn,
@@ -632,7 +633,7 @@ span.participant_status {
     box-shadow: none;
     font-family: "Gellix", sans-serif;
     border: none !important;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     padding: 0 35px;
 }
@@ -755,7 +756,8 @@ span.participant_status {
     border-radius: 20px;
     box-shadow: none;
     background: none;
-}
+    margin-bottom: 10px;
+} 
 
 .search-filter-wrapper .card {
     margin-bottom: 0;
@@ -766,15 +768,20 @@ span.participant_status {
 
 .course-list-main .card-header {
     padding-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
+    border:none !important;
+}
+
+.course-list-main .card-header .card-title {
+    margin-bottom: 3.5rem;
 }
 
 .course-list-main .card {
-    padding: 20px 15px;
+    padding: 20px;
     border-radius: 20px;
     max-width: 49.5%;
     flex: 49.5%;
-    box-shadow: none;
+    box-shadow: none; 
 }
 
 .course-list-main {
@@ -799,8 +806,8 @@ span.participant_status {
     margin-right: 20px;
     cursor: pointer; */
 
-    width: 25%;
-    margin-right: 20px;
+    width:220px;
+    
     cursor: pointer;
     border-radius: 15px;
     border: none;
@@ -814,6 +821,12 @@ span.participant_status {
     aspect-ratio: 4/3;
 
 
+}
+
+.course-box {
+  width: 33%;
+  display: inline-block;
+  margin-right: 30px;
 }
 
 .course-image img {
@@ -849,7 +862,7 @@ span.instructor-badge {
     font-family: 'Gellix', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 13px;
     color: #fff;
     padding: 7px 15px;
@@ -889,12 +902,16 @@ span.instructor-badge {
     flex-wrap: wrap;
 }
 
+.course-duration > span {
+  margin-left: 35px !important;
+}
+
 .course-data h5 {
     font-size: 19px;
     font-weight: 700;
     color: #414141;
     font-family: "Gellix", sans-serif;
-    margin: 8px 0 17px;
+    margin: 30px 0 30px;
     cursor: pointer;
 }
 
@@ -903,10 +920,15 @@ span.instructor-badge {
     display: flex;
     font-size: 14px;
     font-family: 'Gellix', sans-serif;
-    color: #95a0c6;
+    color: #647895;
     font-weight: 600;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.course-duration svg path,
+.course-time svg path {
+    fill:#647895;
 }
 
 .course-time span {
@@ -920,9 +942,9 @@ span.instructor-badge {
     margin-right: 0;
 }
 
-.course-footer-left {
+/* .course-footer-left {
     width: 50%;
-}
+} */
 
 .course-footer-left label {
     font-size: 12px;
@@ -933,12 +955,15 @@ span.instructor-badge {
 }
 
 .instructor-list {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    margin-bottom: 0px;
-    width: 100%;
-    margin-left: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+  margin-bottom: 0px;
+  width: 100%;
+  margin-left: 0;
+  border-top: 1px solid #647895;
+  padding-top: 11px;
+  margin-top: 15px;
 }
 
 .place-icon svg {
@@ -966,13 +991,28 @@ span.instructor-badge {
     font-weight: 600;
     font-size: 14px;
     line-height: 14px;
-    color: #95a0c6;
-    margin-left: 9px;
+    color: #647895;
+    margin-left: 0px;
     text-overflow: ellipsis;
     overflow: visible;
     width: 80%;
     white-space: nowrap;
     text-transform: capitalize;
+}
+
+.instructor-label-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 13px;
+}
+
+.instructor-list .instructor-label-box span {
+  width: 100% !important;
+  display: inline-block;
+  flex: 0 0 100%;
+  font-size: 10px;
+  color: #647895;
+  font-weight: 600;
 }
 
 .course-footer-right button {
@@ -1069,22 +1109,23 @@ span.instructor-badge {
 }
 
 .course-price span:first-child {
-    margin-right: 5px;
-    padding-right: 5px;
+margin-right: 1px;
+  padding-right: 10px;
 }
 
 .course-price span:first-child {
-    color: #a1a1a1;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "Gellix", sans-serif;
-    border-right: 1px solid;
-    text-transform: uppercase;
+font-size: 14px;
+  font-weight: 700;
+  font-family: "Gellix", sans-serif;
+  border-right: 1px solid #D9D9D9;
+  text-transform: uppercase;
+  color: #647895 !important;
+  line-height: 15px;
 }
 
 .course-price span:last-child {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
     color: #ff9331;
 }
 

@@ -1709,6 +1709,10 @@ export class CourseComponent implements OnInit, OnDestroy {
     }
 
     hasComma(str: string) {
-        return str.replace(/,/g, ".");
+        if(str){
+            return str.replace(/,/g, ".");
+        }else{
+            return str;
+        }        
     }
 }

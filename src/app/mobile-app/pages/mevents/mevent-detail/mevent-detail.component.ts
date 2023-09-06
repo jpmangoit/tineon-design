@@ -769,7 +769,11 @@ export class MeventDetailComponent implements OnInit {
         this.removeUpdate.unsubscribe();
     }
     
-    hasComma(str: string) {
-        return str.replace(/,/g, ".");
+   hasComma(str: string) {
+        if(str){
+            return str.replace(/,/g, ".");
+        }else{
+            return str;
+        }        
     }
 }
