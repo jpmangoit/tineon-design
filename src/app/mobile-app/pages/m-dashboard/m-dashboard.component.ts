@@ -189,11 +189,10 @@ export class MDashboardComponent implements OnInit {
         this.language = this.lang.getLanguaageFile();
         this.userId = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+
         if (this.userDetails['qrcode_url']) {
             this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
         }
-
-
         this.userRole = this.userDetails.roles[0];
         this.authService.memberSendRequest('get', 'numberOfPostEventsMessage/user/' + this.userId, null)
             .subscribe(
