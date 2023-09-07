@@ -84,7 +84,8 @@ export class ClubAppointmentsComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private datePipe: DatePipe,
-        private router: Router, private sanitizer: DomSanitizer,
+        private router: Router,
+         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) {
 
@@ -102,7 +103,6 @@ export class ClubAppointmentsComponent implements OnInit {
             if (!this.userDetails.isMember_light && !this.userDetails.isMember_light_admin) {
                 this.getDesktopDeshboardBanner();
                 this.getAllUserInfo();
-
                 // this.getEvent();
                 this.getAllCourses();
             }
@@ -652,8 +652,6 @@ export class ClubAppointmentsComponent implements OnInit {
             if (index < 10) {
                 this.allClubEvents.push(element);
             }
-            console.log( this.allClubEvents);
-
         })
     }
 

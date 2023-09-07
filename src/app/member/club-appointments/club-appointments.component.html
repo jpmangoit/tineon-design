@@ -92,7 +92,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <span>+ {{item?.users?.length - 3}}
+                                                    <span *ngIf="item?.users?.length > 3">+ {{item?.users?.length - 3}}
                                                         {{language.community_groups.participants}}
                                                     </span>
                                                 </div>

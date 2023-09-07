@@ -663,9 +663,8 @@
         "birthday": "Geburtstag",
         "anniversary": "Jubiläum",
         "years": "Jahre",
-        "years_in_club": "Jahre im Verein"
-
-
+        "years_in_club": "Jahre im Verein",
+        "all_events_new": "Alle Ereignisse"
     },
     "confirmation_message": {
         "accept_group": "Möchten Sie diese Gruppe akzeptieren?",
@@ -1134,7 +1133,7 @@
         "get_app": "Hol dir die App"
     }
     ,
-    "banner":{
+    "banner":{ 
         "banner":" Banner",
         "create_banner":"Banner erstellen",
         "banner_status":"Banner Status",

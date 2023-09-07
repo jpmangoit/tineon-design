@@ -284,7 +284,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         }
                     }
                     this.filteredArray = [...this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()];
-                    
+                  
                 }
             );
     }
@@ -543,6 +543,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                 return valueString?.includes(filter.toLowerCase());
             })? user  : null;
         });
+        
     }
 
     ngAfterViewChecked() {

@@ -470,7 +470,8 @@
         "birthday": "Birthday",
         "anniversary": "Anniversary",
         "years": "Years",
-        "years_in_club": "Years in the Club"
+        "years_in_club": "Years in the Club",
+        "all_events_new": "All events"
     },
     "confirmation_message": {
         "accept_group": "Вы уверены, что хотите принять эту группу?",

@@ -61,7 +61,8 @@
         "birthday": "Birthday",
         "anniversary": "Anniversary",
         "years": "Years",
-        "years_in_club": "Years in the Club"
+        "years_in_club": "Years in the Club",
+        "all_events_new": "All events"
     },
     "error_message" : {
         "specialChar_validation" : "Please only enter the amount without special characters"

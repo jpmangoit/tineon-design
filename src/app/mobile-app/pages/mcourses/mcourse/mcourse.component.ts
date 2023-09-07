@@ -262,6 +262,10 @@ export class McourseComponent implements OnInit, OnDestroy {
                                     if (recurrence.includes('UNTIL') == false) {
                                         recurrence = recurrence + ';UNTIL=' + nextYear;
                                     }
+                                    if (element?.CourseExternalInstructor && element?.CourseExternalInstructor?.length > 0 && typeof element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]?.instructor_image === 'string') {
+                                       element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image  = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]?.instructor_image.substring(20)));
+                                    }
+
                                     recurrence = recurrence.replace("T000000Z;", "T200000Z;");
                                     recurrence = recurrence.slice(0, -1);
                                     var DTSTART = element.date_from.split('T')[0].replace(/-/gi, '') + "T000000Z";
@@ -469,7 +473,7 @@ export class McourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
-
+                        
                         this.currentCourseList.forEach(element => {
                             let self = this;
                             if (self.allUsers?.length > 0) {

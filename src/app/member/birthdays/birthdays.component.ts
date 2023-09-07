@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { LanguageService } from '../../service/language.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-birthdays',
@@ -11,18 +12,21 @@ import { LoginDetails } from 'src/app/models/login-details.model';
 
 export class BirthdaysComponent implements OnInit {
     language: any;
-    ageDiff: number; 
-    birthdayData: any = [];
-    jubileesData: any = [];
+    ageDiff: number;
+    birthdayData: any[] = [];
+    jubileesData: any[] = [];
     userData: any;
     // alluserInformation: any= [];
     alluserInformation: { member_id: number }[] = [];
     allUser: any[] = [];
-
+    selected = '1';
+    currentBirthday: any
 
     constructor(
         private authService: AuthServiceService,
-        private lang: LanguageService
+        private lang: LanguageService,
+        private router: Router,
+
     ) { }
 
     ngOnInit(): void {
@@ -31,8 +35,8 @@ export class BirthdaysComponent implements OnInit {
             this.language = this.lang.getLanguaageFile();
             this.getAllUserInfo();
             this.getCurrentBirthday();
-            this.getCurrentJubilees();
-
+            // this.getCurrentJubilees();
+            this.onFilter(1)
         }
     }
 
@@ -51,6 +55,7 @@ export class BirthdaysComponent implements OnInit {
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.id] = { member_id: val.member_id };
                         })
+                        this.getCurrentJubilees();
                     }
                 }
             );
@@ -68,9 +73,26 @@ export class BirthdaysComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
+                    this.currentBirthday = respData
                     this.getBirthDay(respData);
                 }
             );
+    }
+
+    onFilter(selectedValue: any) {
+        ;
+        if (selectedValue === '1') {
+            this.getBirthDay(this.currentBirthday);
+            this.getCurrentJubilees();
+        } else if (selectedValue === '2') {
+            this.birthdayData = [];
+            this.getBirthDay(this.currentBirthday);
+            this.jubileesData = [];
+        } else if (selectedValue === '3') {
+            this.birthdayData = [];
+            this.jubileesData = [];
+            this.getCurrentJubilees();
+        }
     }
 
     /**
@@ -85,9 +107,7 @@ export class BirthdaysComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.jubileesData = respData['result'];
-                    
                     this.authService.setLoader(false);
-                    
                     this.jubileesData?.forEach(val => {
                         if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                             this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -104,9 +124,6 @@ export class BirthdaysComponent implements OnInit {
                             val.user.imagePro = null;
                         }
                     });
-                    console.log(this.jubileesData);
-
-                    
                 }
             );
     }
@@ -120,7 +137,6 @@ export class BirthdaysComponent implements OnInit {
     getBirthDay(birthday) {
         let self = this;
         this.birthdayData = birthday['result'];
-
         this.birthdayData?.forEach(val => {
             if (this.alluserInformation[val?.id]?.member_id != null) {
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.id].member_id, null)
@@ -146,6 +162,7 @@ export class BirthdaysComponent implements OnInit {
         }
     }
 
+
     /**
     * Function to calculate user age with current year
     * @author  MangoIt Solutions
@@ -157,4 +174,10 @@ export class BirthdaysComponent implements OnInit {
         this.ageDiff = ageDifMs;
         return ageDifMs;
     }
+
+
+    onPersonalChat(){
+        this.router.navigate(['/community'])
+    }
+
 }

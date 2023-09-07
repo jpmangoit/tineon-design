@@ -115,7 +115,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 				(respData: any) => {
 					if (respData && respData.length > 0) {
 						this.allUsers = respData;
-
 						Object(respData).forEach((val, key) => {
 							this.alluserInformation[val.id] = { member_id: val.member_id };
 						})

@@ -1,27 +1,24 @@
 <div class="card birth_main">
     <div class="card-header ">
         <h5 class="card-title">{{language.club.anniversaries_birthday}}</h5>
-    </div>
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>{{language.courses.filter}}</mat-label>
-            <mat-select matNativeControl>
-                <!-- <mat-option  value="1" >{{language.club_document.asending}}</mat-option>
-                <mat-option  value="2" >{{language.club_document.descending}}</mat-option> -->
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="card-body ">
-        <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
-            <!-- <img src="assets/img/no-event-img.png" onContextMenu="return false;" alt="{{language.club.no_anniversaries_birthday}}" loading="lazy"><br> -->
-            <span>{{language.club.no_anniversaries_birthday}}</span>
+        <div>
+            <mat-form-field  appearance="fill">
+                <mat-select matNativeControl [(value)]="selected" (selectionChange)="onFilter($event.value)">
+                    <mat-option value="1">{{language.club.all_events_new}}</mat-option>
+                    <mat-option value="2" >{{language.club.birthday}}</mat-option>
+                    <mat-option value="3">{{language.club.anniversary}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+    </div>
+  
+    <div class="card-body ">
+        <!-- <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
+            <span>{{language.club.no_anniversaries_birthday}}</span>
+        </div> -->
         <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
                 <div class="app-left-content">
-                    <!-- <div class="user-img"> <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
-                            alt="{{data?.firstname}} {{data?.lastname}}" loading="lazy">
-                    </div> -->
                     <div class="user-img" *ngIf="data.imagePro == null || data.imagePro == ''">
                         <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
                             style="width: 100px;" alt="" loading="lazy">
@@ -39,9 +36,9 @@
 
                     </div>
                     <div>
-                        <a>{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                        <a (click)="onPersonalChat()">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
-                                    loading="lazy"></span></a>
+                                    loading="lazy" ></span></a>
                     </div>
                 </div>
                 <!-- <div class="app-right-content" *ngIf="ageDiff">
@@ -52,10 +49,6 @@
         <div class="widget-appointment widget" *ngFor='let data of jubileesData'>
             <div class="widget-app-content"> 
                 <div class="app-left-content">
-                    <!-- <div class="user-img">
-                        <img src="assets/img/faces/joe-gardner-1.jpg" onContextMenu="return false;"
-                            alt="{{data?.user?.firstname}} {{data?.user?.lastname}}" loading="lazy">
-                    </div> -->
                     <div class="user-img" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
                         <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
                             style="width: 100px;" alt="" loading="lazy">
@@ -72,7 +65,7 @@
                         </span>
                     </div>
                     <div>
-                        <a>{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                        <a (click)="onPersonalChat()">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
                                     loading="lazy"></span></a>
                     </div>

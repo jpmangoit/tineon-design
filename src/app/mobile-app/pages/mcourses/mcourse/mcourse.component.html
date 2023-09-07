@@ -130,11 +130,6 @@
                             <img onContextMenu="return false;"
                                 [src]="item.course_image != null ? item.course_image : '../../../../assets/img/no_image.png'"
                                 alt="" loading="lazy">
-
-
-
-
-
                         </div>
                         <div class="coruse-description">
                             <div class="course-category">
@@ -462,8 +457,6 @@
                                     [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"
                                     alt="" loading="lazy">
 
-
-
                                 <div class="avail_detail">
                                     <div class="event_pricing FREE">
                                         <span>{{language.courses.availability}}</span>
@@ -665,7 +658,7 @@
                             <h5>{{language.courses.all_instructor}}</h5>
                             <div class="app_widget_sc">
                                 <div class="widget-app-content">
-                                    <div *ngIf="item.CourseExternalInstructor.length> 0">
+                                    <div *ngIf="item?.CourseExternalInstructor?.length > 0">
                                         <div class="widget-app-content"
                                             *ngFor="let val of item.CourseExternalInstructor;let i=index">
                                             <!-- <div class="parti_name"
@@ -673,13 +666,13 @@
                                                 {{val.externalIns?.first_name.charAt(0)}}{{val.externalIns?.last_name.charAt(0)}}
                                             </div> -->
                                             <div class="author-img"
-                                                *ngIf="val.externalIns.add_img == null || val.externalIns.add_img == ''">
+                                                *ngIf="val?.externalIns?.instructor_iml?.instructor_image == null || val?.externalIns?.instructor_image[0]?.instructor_image  == ''">
                                                 <img onContextMenu="return false;"
                                                     [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
                                                     alt="" loading="lazy">
                                             </div>
-                                            <div class="author-img" *ngIf="val.externalIns.add_img != null">
-                                                <img onContextMenu="return false;" [src]="val.externalIns.add_img"
+                                            <div class="author-img" *ngIf="val?.externalIns?.instructor_image[0]?.instructor_image != null">
+                                                <img onContextMenu="return false;" [src]="val?.externalIns?.instructor_image[0]?.instructor_image"
                                                     style="width: 100px;" alt="" loading="lazy">
                                             </div>
                                             <div class="user-content">
