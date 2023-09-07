@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChi
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { appSetting } from 'src/app/app-settings';
 import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
@@ -74,12 +74,15 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     scrollContainer: any;
     isNearBottom: boolean = true;
     headline_word_option: number = 0;
+    chatId: any
+
 
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService,
+        private route: ActivatedRoute,
         private scroller: ViewportScroller,
         private notificationService: NotificationService
 
@@ -101,6 +104,11 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.socket = io(serverUrl, { transports: ['websocket'] });
+
+        this.route.queryParams.subscribe(params => {
+            this.chatId = params.id;
+        });
+
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
         if (localStorage.getItem('club_theme') != null) {
@@ -112,21 +120,21 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         });
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         let userRole: string = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.userDetails.member_id, null)
-        .subscribe(
-            (resppData: any) => {
-                this.thumb = resppData;
-                this.userDetails.image = this.thumb;
-            },
-            (error:any) => {
-                this.userDetails.image = null;
-            });
+            .subscribe(
+                (resppData: any) => {
+                    this.thumb = resppData;
+                    this.userDetails.image = this.thumb;
+                },
+                (error: any) => {
+                    this.userDetails.image = null;
+                });
         if (localStorage.getItem('backItem')) {
             if (localStorage.getItem('backItem') == 'personalMsg') {
                 localStorage.removeItem('backItem');
@@ -155,7 +163,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                 this.finalMessages = []
                 this.finalMessages = data;
-                if(this.finalMessages && this.finalMessages.length > 0){
+                if (this.finalMessages && this.finalMessages.length > 0) {
                     this.finalMessages.forEach((element: any) => {
                         element.msg = JSON.parse(element.message);
                         if (this.groupUsers) {
@@ -172,7 +180,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             let isWhitespace: boolean = (control.value || '').trim().length === 0;
             let isValid: boolean = !isWhitespace;
             return isValid ? null : { 'whitespace': true }
-        }else {
+        } else {
             let isValid: boolean = true;
             return isValid ? null : { 'whitespace': true }
         }
@@ -187,34 +195,34 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                this.alluserDetails = respData;
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    this.alluserDetails = respData;
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getGroup();
                 }
-                this.getGroup();
-            }
-        );
+            );
     }
 
     getGroup() {
         if (sessionStorage.getItem('token')) {
             this.authService.memberSendRequest('get', 'web/get-groups-by-user-id/' + this.userDetails.userId, null)
-            .subscribe(
-                (respData: any) => {
-                    // this.chats();
-                    if (respData['isError'] == true) {
-                        this.notificationService.showError(respData['message'], null);
-                    } else {
-                        this.groups = respData;
-                        this.chats();
-                        
+                .subscribe(
+                    (respData: any) => {
+                        // this.chats();
+                        if (respData['isError'] == true) {
+                            this.notificationService.showError(respData['message'], null);
+                        } else {
+                            this.groups = respData;
+                            this.chats();
+
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -224,21 +232,21 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
             .subscribe(
                 (resp: any) => {
-                    
+
                     setTimeout(() => {
                         this.authService.setLoader(false);
                     }, 2000);
                     this.chatUserArr = resp
                     let grp: any;
-                    if(this.chatUserArr && this.chatUserArr.length > 0){                        
+                    if (this.chatUserArr && this.chatUserArr.length > 0) {
                         this.chatUserArr.forEach(element => {
                             if (element.type == 'group') {
                                 if (this.groups && this.groups.length > 0) {
                                     grp = this.groups.find((o: any) => o.id == element.id)
-                                    
+
                                     element.name = grp ? grp.name : element.id
                                     element.image = grp.image ? grp.image : ''
-                                    if(element.id != 4){
+                                    if (element.id != 4) {
 
                                         element.lastMessage = JSON.parse(element.lastMessage)
                                         element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString();
@@ -263,14 +271,14 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                                 }
                                 if (this.alluserInformation[element.id].member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.image = null;
-                                        });
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.image = null;
+                                            });
                                 } else {
                                     element.image = null;
                                 }
@@ -284,7 +292,30 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         }
                     }
                     this.filteredArray = [...this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()];
-                  
+
+                    // if (this.chatId) {
+                    //     let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId);
+
+                    //     if (chatDetails.length > 0) {
+                    //         setTimeout(() => {
+                    //             $("#chat-" + this.chatId).click();
+                    //         }, 3000);
+                    //     }
+
+                    // }
+                    if (this.chatId) {
+                        let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId && x.type == 'individual');
+                        if (chatDetails.length > 0) {
+                            setTimeout(() => {
+                                this.clickChat(chatDetails[0])
+                            }, 3000);
+                        }
+                    }
+
+                    setTimeout(() => {
+                        this.authService.setLoader(false);
+                    }, 2000);
+
                 }
             );
     }
@@ -308,11 +339,11 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             }
 
             $('.message-upload-list').show();
-			if (mimeType.match(/image\/*/)) {
-				$('.preview_img').attr('src', url);
-			} else {
-				$('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');
-			}
+            if (mimeType.match(/image\/*/)) {
+                $('.preview_img').attr('src', url);
+            } else {
+                $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');
+            }
             $('#selectedImage').modal('show');
             $('#selectedImage').modal({
                 backdrop: 'static',
@@ -322,7 +353,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
 
 
     unselectImage() {
-        this.imageSrc ='';
+        this.imageSrc = '';
         this.chatForm.controls['message'].setValue('');
         this.chatForm.controls['message'].setValidators(Validators.required);
         this.chatForm.controls['message'].updateValueAndValidity();
@@ -330,11 +361,10 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     }
 
 
-    clickChat(chat: { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string }) {
+    // clickChat(chat: { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string }) {
+    clickChat(chat: any) {
         $('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
         this.selectedChat = chat;
-        console.log(chat);
-        
         this.selectdChatCommonGroup = []
         if (this.selectedChat.count > 0) {
             this.readChat(this.selectedChat);
@@ -355,7 +385,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                 this.finalMessages = []
                 this.finalMessages = data;
-                if(this.finalMessages && this.finalMessages.length > 0){
+                if (this.finalMessages && this.finalMessages.length > 0) {
                     this.finalMessages.forEach((element: any) => {
                         element.msg = JSON.parse(element.message);
                         if (element.receiver_id == this.userDetails.userId && element.msg.read == false) {
@@ -379,7 +409,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                 this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                     this.finalMessages = []
                     this.finalMessages = data;
-                    if(this.finalMessages && this.finalMessages.length > 0){
+                    if (this.finalMessages && this.finalMessages.length > 0) {
                         this.finalMessages.forEach((element: any) => {
                             element.sender = this.groupUsers.find((o: any) => o.id == JSON.parse(element.sender_id))
                             element.msg = JSON.parse(element.message);
@@ -396,7 +426,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
 
     getMedia() {
         this.selectedChatMedia = [];
-        if(this.finalMessages && this.finalMessages.length > 0){
+        if (this.finalMessages && this.finalMessages.length > 0) {
             this.finalMessages.forEach(element => {
                 if (element.msg.messageType != 'text') {
                     this.selectedChatMedia.push(element.msg)
@@ -502,7 +532,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                             var self = this;
                             this.clickChat(this.selectedChat)
                             this.chats();
-                        }else  if (respData['code'] == 400) {
+                        } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
                     }
@@ -543,9 +573,9 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
             return properties.find((property) => {
                 const valueString = user[property]?.toString().toLowerCase();
                 return valueString?.includes(filter.toLowerCase());
-            })? user  : null;
+            }) ? user : null;
         });
-        
+
     }
 
     ngAfterViewChecked() {

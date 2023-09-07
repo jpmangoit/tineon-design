@@ -211,19 +211,12 @@ export class BirthdaysComponent implements OnInit {
                     }
                     this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
                     this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
-                    console.log(this.chatUserArr);
-                    
-
                 }
             );
     }
 
     checkChatDetails(userId: any) {
-        console.log(userId);
-        
         let chatUser = this.chatUserArr.filter(x => x.id == userId);
-        console.log(chatUser);
-        
         if (chatUser?.length > 0) {
             this.router.navigate(['/community/'], { queryParams: { id: userId } });
         } else {

@@ -58,15 +58,15 @@ export class CommunityComponent implements OnInit, OnDestroy {
                 this.onGroups();
             }
         }
-        if (this.participateAccess.message == 'Yes'){
+        if (this.participateAccess.message == 'Yes') {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'message/get-message-count', null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.communityCount = respData.value;
-                }
-            );
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.communityCount = respData.value;
+                    }
+                );
         }
     }
 

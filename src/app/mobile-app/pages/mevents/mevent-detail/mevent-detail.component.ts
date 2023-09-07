@@ -222,7 +222,7 @@ export class MeventDetailComponent implements OnInit {
                                             this.updateEventData.baseImage[0].image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateEventData.baseImage[0].image.substring(20)));
                                             this.updateImageurl = this.updateEventData.baseImage[0].image
                                         }
-                                        
+
                                         if (this.updateEventData && this.updateEventData.users.length > 0) {
                                             // this.updateEventData.date_from = this.eventDate ? this.eventDate + 'T' + this.updateEventData.date_from.split(' ')[1] : this.updateEventData.date_from
                                             this.updateEventData.users.forEach(element => {
@@ -318,7 +318,7 @@ export class MeventDetailComponent implements OnInit {
                         this.authService.setLoader(false);
                     }
                 );
-                
+
         }
     }
 
@@ -680,8 +680,7 @@ export class MeventDetailComponent implements OnInit {
                     }
                     this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
                     this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
-                    console.log( this.chatUserArr);
-                    
+
                 }
 
             );
@@ -770,12 +769,12 @@ export class MeventDetailComponent implements OnInit {
         this.denyRefreshPage.unsubscribe();
         this.removeUpdate.unsubscribe();
     }
-    
-   hasComma(str: string) {
-        if(str){
+
+    hasComma(str: string) {
+        if (str) {
             return str.replace(/,/g, ".");
-        }else{
+        } else {
             return str;
-        }        
+        }
     }
 }
