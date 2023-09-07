@@ -167,7 +167,7 @@ const desktop_routes: Routes = [
             {
                 path: 'community', component: CommunityComponent, data: { title: 'Community' }, children: [
                     { path: 'community-messages', component: CommunityMessagesComponent },
-                    { path: 'chat', component: CommunityMessagesComponent },
+                    { path: 'chat/:id', component: CommunityMessagesComponent },
                     { path: 'club-msg', component: ClubMessagesComponent },
                     { path: 'group-msg', component: GroupMessagesComponent },
                     { path: 'personal-msg', component: PersonalMessagesComponent },
@@ -176,6 +176,7 @@ const desktop_routes: Routes = [
                     { path: 'groups-joined', component: CommunityGroupsComponent },
                 ]
             },
+            // { path: 'chat/:id', component: MchatComponent },
             {
                 path: 'organizer', component: OrganizerComponent, data: { title: 'Organizer' }, children: [
                     { path: 'organizer-event', component: OrganizerEventComponent },

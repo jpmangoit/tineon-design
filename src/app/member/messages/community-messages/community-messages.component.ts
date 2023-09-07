@@ -333,6 +333,8 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     clickChat(chat: { count: number, id: any, image: string, members: ChatUsers[], name: string, type: string }) {
         $('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
         this.selectedChat = chat;
+        console.log(chat);
+        
         this.selectdChatCommonGroup = []
         if (this.selectedChat.count > 0) {
             this.readChat(this.selectedChat);

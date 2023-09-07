@@ -680,6 +680,8 @@ export class MeventDetailComponent implements OnInit {
                     }
                     this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
                     this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
+                    console.log( this.chatUserArr);
+                    
                 }
 
             );

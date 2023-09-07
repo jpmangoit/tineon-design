@@ -20,7 +20,13 @@ export class BirthdaysComponent implements OnInit {
     alluserInformation: { member_id: number }[] = [];
     allUser: any[] = [];
     selected = '1';
-    currentBirthday: any
+    currentBirthday: any;
+    chatUserArr: {
+        lastMsgTime: string;
+        lastMsgDate: string;
+        lastMsgTimming: string;
+        lastMessage: any; count: number, id: number, image: string, name: string, type: string
+    }[];
 
     constructor(
         private authService: AuthServiceService,
@@ -36,7 +42,9 @@ export class BirthdaysComponent implements OnInit {
             this.getAllUserInfo();
             this.getCurrentBirthday();
             // this.getCurrentJubilees();
-            this.onFilter(1)
+            this.onFilter(1);
+            this.chats();
+
         }
     }
 
@@ -176,8 +184,52 @@ export class BirthdaysComponent implements OnInit {
     }
 
 
-    onPersonalChat(){
-        this.router.navigate(['/community'])
+    chats() {
+        this.authService.setLoader(true);
+        this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userData.userId, '')
+            .subscribe(
+                (resp: any) => {
+                    setTimeout(() => {
+                        this.authService.setLoader(false);
+                    }, 2000);
+                    this.chatUserArr = resp;
+                    let grp: any;
+                    if (this.chatUserArr && this.chatUserArr.length > 0) {
+                        this.chatUserArr.forEach(element => {
+                            if (element.type == 'individual') {
+                                element.lastMessage = JSON.parse(element.lastMessage)
+                                element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString()
+                                let cudate = new Date().toISOString().split('T')[0]
+                                let msgdate = element.lastMsgTime.split('T')[0]
+                                if (new Date(msgdate).getTime() == new Date(cudate).getTime()) {
+                                    element.lastMsgTimming = element.lastMsgTime
+                                } else {
+                                    element.lastMsgDate = msgdate
+                                }
+                            }
+                        });
+                    }
+                    this.chatUserArr = this.chatUserArr.sort((a: any, b: any) => Number(new Date(a.lastMessage.timestamp)) - Number(new Date(b.lastMessage.timestamp))).reverse()
+                    this.chatUserArr = this.chatUserArr.filter(x => x.type == 'individual');
+                    console.log(this.chatUserArr);
+                    
+
+                }
+            );
     }
+
+    checkChatDetails(userId: any) {
+        console.log(userId);
+        
+        let chatUser = this.chatUserArr.filter(x => x.id == userId);
+        console.log(chatUser);
+        
+        if (chatUser?.length > 0) {
+            this.router.navigate(['/community/'], { queryParams: { id: userId } });
+        } else {
+            this.router.navigate(['create-chat']);
+        }
+    }
+
 
 }

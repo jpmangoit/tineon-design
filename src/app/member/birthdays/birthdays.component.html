@@ -36,7 +36,7 @@
 
                     </div>
                     <div>
-                        <a (click)="onPersonalChat()">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                        <a (click)="checkChatDetails(data.id)">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
                                     loading="lazy" ></span></a>
                     </div>
@@ -65,7 +65,7 @@
                         </span>
                     </div>
                     <div>
-                        <a (click)="onPersonalChat()">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
+                        <a  (click)="checkChatDetails(data?.user?.id)">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
                                     loading="lazy"></span></a>
                     </div>
