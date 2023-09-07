@@ -16,6 +16,8 @@ import { CommunityGroup } from 'src/app/models/community-group.model';
 import { ChatUsers, UserMessages } from 'src/app/models/chat-type.model';
 import { ViewportScroller } from "@angular/common";
 import { NotificationService } from 'src/app/service/notification.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
@@ -84,7 +86,9 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         private router: Router, private themes: ThemeService,
         private route: ActivatedRoute,
         private scroller: ViewportScroller,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private sanitizer: DomSanitizer,
+        private commonFunctionService: CommonFunctionService,
 
     ) {
         var getParamFromUrl = this.router.url.split("/")['2'];
@@ -239,15 +243,18 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                     this.chatUserArr = resp
                     let grp: any;
                     if (this.chatUserArr && this.chatUserArr.length > 0) {
-                        this.chatUserArr.forEach(element => {
+                        this.chatUserArr.forEach((element:any) => {
                             if (element.type == 'group') {
+                                
                                 if (this.groups && this.groups.length > 0) {
                                     grp = this.groups.find((o: any) => o.id == element.id)
-
                                     element.name = grp ? grp.name : element.id
                                     element.image = grp.image ? grp.image : ''
+                                    element.image = (grp.group_images[0]?.group_image) ? (grp.group_images[0]?.group_image) : ''
+                                    if (element?.image) {
+                                        element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.image.substring(20)));
+                                    }
                                     if (element.id != 4) {
-
                                         element.lastMessage = JSON.parse(element.lastMessage)
                                         element.lastMsgTime = new Date(element.lastMessage.timestamp).toISOString();
                                         let cudate = new Date().toISOString().split('T')[0]

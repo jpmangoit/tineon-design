@@ -73,7 +73,7 @@
                                                                 (click)="scrollToBottom()" (click)="menuOpened = true">
                                                                 <div class="chat-user-thumb" *ngIf="chat && chat.image">
                                                                     <img onContextMenu="return false;" alt="" loading="lazy"
-                                                                        [src]=" chat.image ?  chat.image : '../../../assets/img/no_image.png'">
+                                                                        [src]=" chat.image">
                                                                 </div>
                                                                 <!-- <div class="parti_name" *ngIf="chat.image == null || chat.image == ''">
                                                                     {{chat?.name.charAt(0)}}

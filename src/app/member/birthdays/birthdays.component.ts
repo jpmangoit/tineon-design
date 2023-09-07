@@ -88,7 +88,6 @@ export class BirthdaysComponent implements OnInit {
     }
 
     onFilter(selectedValue: any) {
-        ;
         if (selectedValue === '1') {
             this.getBirthDay(this.currentBirthday);
             this.getCurrentJubilees();
