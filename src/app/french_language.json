@@ -971,7 +971,7 @@
         "room_error":"Les personnes autorisées doivent être inférieures ou égales au nombre de personnes dans la pièce",
         "valid_price":"Le prix doit être supérieur à zéro",
         "filter":"Filtre",
-        "sold_out":"SOLD OUT",
+        "sold_out":"Sold Out",
         "join":"JOINDRE",
         "ResetUpdateCourse":"Supprimer la mise à jour du cours",
         "PublishCourse":"Publier le cours",

@@ -19,6 +19,10 @@
     flex-wrap: nowrap;
 }
 
+::ng-deep .tab-button button span {
+   white-space: nowrap;
+}
+
 .event-summery span {
     padding: 0px 15px;
     font-weight: 600;
@@ -54,7 +58,7 @@ span.event-cat {
     border-radius: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
  border: none;
 padding: 0;
 }

@@ -41,6 +41,24 @@
     position: relative;
     top: -2px;
 }
+
+::ng-deep .card.birth_main .card-body { padding: 0px !important;}
+
+
+::ng-deep  .mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+::ng-deep  .tab-button button  span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+} 
+
 .tab-button button.active{
     background-color: #fff;    
     border-radius: 16px;

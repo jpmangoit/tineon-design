@@ -774,6 +774,7 @@ span.participant_status {
 
 .course-list-main .card-header .card-title {
     margin-bottom: 3.5rem;
+    margin-top: 1.3rem;
 }
 
 .course-list-main .card {
@@ -824,9 +825,10 @@ span.participant_status {
 }
 
 .course-box {
-  width: 33%;
+  width: 100%;
   display: inline-block;
   margin-right: 30px;
+  max-width: 220px;
 }
 
 .course-image img {
@@ -849,15 +851,15 @@ span.participant_status {
     border-radius: 15px;
     margin-bottom: 15px;
     align-items: flex-start;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .course-data {
     width: 80%;
 }
 
-span.instructor-badge {
-    background: #FFBE02;
-    border: 1px solid #FFBE02;
+.course-category-header > span {
+   
     border-radius: 5px;
     font-family: 'Gellix', sans-serif;
     font-style: normal;
@@ -868,6 +870,16 @@ span.instructor-badge {
     padding: 7px 15px;
     height: 30px;
 
+}
+
+.internal-instructor-badge {
+   background: #FBC52D;
+    border: 1px solid #FBC52D;
+}
+
+.external-instructor-badge {
+   background: #FB5F5F;
+    border: 1px solid #FB5F5F;
 }
 
 .course-category-header {
@@ -888,7 +900,11 @@ span.instructor-badge {
 .course-price span:last-child {
     font-size: 24px;
     font-weight: 600;
-    color: #ffbe02 !important;
+    color: #FBC52D !important;
+}
+
+.course-duration span, .course-time span {
+    width: 50%;
 }
 
 .course-price span {
@@ -901,9 +917,9 @@ span.instructor-badge {
     flex-wrap: wrap;
 }
 
-.course-duration > span {
+/* .course-duration > span {
   margin-left: 35px !important;
-}
+} */
 
 .course-data h5 {
     font-size: 19px;
@@ -933,7 +949,7 @@ span.instructor-badge {
 .course-time span {
     display: flex;
     align-items: center;
-    margin-right: 23px;
+    margin-right:0px;
     margin-top: 0px;
 }
 
@@ -987,7 +1003,7 @@ span.instructor-badge {
 .instructor-list span {
     font-family: 'Gellix', sans-serif;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     line-height: 14px;
     color: #647895;
@@ -1022,7 +1038,7 @@ span.instructor-badge {
 }
 
 .course-footer-right button {
-    background: #ff9331;
+    background: #FBC52D;
     border-radius: 7px;
     border: none;
     color: #fff;
@@ -1030,7 +1046,7 @@ span.instructor-badge {
     font-family: 'Gellix', sans-serif;
     min-height: 50px;
     min-width: 130px;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .save_btn,
@@ -1066,8 +1082,8 @@ span.instructor-badge {
 
 .instructor-image {
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
     overflow: hidden;
 }
 
@@ -1306,4 +1322,15 @@ font-size: 14px;
     border-radius: 0px 0 0;
     background: #FB5F5F;
     cursor: pointer
+}
+
+@media(min-width:1200px) and (max-width:1480px) {
+    .course-image{
+  width: 180px;
+  
+}
+.course-box {
+  
+  max-width: 180px;
+}
 }

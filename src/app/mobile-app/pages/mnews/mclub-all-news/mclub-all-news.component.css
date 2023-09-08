@@ -933,10 +933,7 @@ div#all_news_grid .card {
 }
 
   .news_image {
-    height: auto;
-    border: none;
-    padding: 0px;
-    display: inline-block;
+    
     margin: 0;
     width: 100%;
   }

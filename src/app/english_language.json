@@ -977,7 +977,7 @@
         "room_error": "Allowed Persons must be less or equal to Number of Room's Person",
         "valid_price": "Price must be greater than Zero",
         "filter": "Filter",
-        "sold_out": "SOLD OUT",
+        "sold_out": "Sold Out",
         "join": "JOIN",
         "ResetUpdateCourse": "Delete update Course",
         "PublishCourse": "Publish Course",
