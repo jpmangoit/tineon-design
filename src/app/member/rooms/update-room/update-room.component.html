@@ -74,6 +74,20 @@
                                             </span>
                                         </div>
                                         <div class="event_field">
+                                            <label>{{language.instructor.email}}</label>
+                                            <input type="text" placeholder="{{language.instructor.email}}" formControlName="room_email">
+                                            <span class="text-danger" *ngIf="formSubmit ||  roomForm.controls['room_email'].touched">
+                                                <span *ngIf="roomForm.controls['room_email'].errors">{{language.error_message.common_required}}</span>
+                                            </span>
+                                        </div>
+                                        <div class="event_field">
+                                            <label>{{language.instructor.address}}</label>
+                                            <input type="text" placeholder="{{language.instructor.address}}" formControlName="room_address">
+                                            <span class="text-danger" *ngIf="formSubmit ||  roomForm.controls['room_address'].touched">
+                                                <span *ngIf="roomForm.controls['room_address'].errors">{{language.error_message.common_required}}</span>
+                                            </span>
+                                        </div>
+                                        <div class="event_field">
                                             <label>{{language.room.number_of_person}}</label>
                                             <input type="text" placeholder="{{language.room.number_of_person}}" formControlName="no_of_persons" (keyup)="checkNumber()">
                                             <div class="text-danger" *ngIf="checkNum == true">{{language.room.number_of_person_error}}</div>

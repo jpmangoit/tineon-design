@@ -235,12 +235,12 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         element.course_image[0].course_image = blobUrl;
                                         this.eventImage = element.course_image[0].course_image
                                     }
-                                    if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
-                                        if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
-                                            element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
+                                    if (element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0) {
+                                        if (element.CourseExternalInstructor[0]?.externalIns?.instructor_image) {
+                                            element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image.substring(20)));
                                         }
                                     }
-                                    
+
                                     // var url: string[] = [];
                                     // if (element) {
                                     //     for (const key in element) {
@@ -539,9 +539,9 @@ export class CourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
+
                         console.log(this.currentCourseList);
-                        
-                        
+
                         this.currentCourseList.forEach(element => {
                             // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
                             //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
@@ -605,6 +605,11 @@ export class CourseComponent implements OnInit, OnDestroy {
                 }
             );
         }
+    }
+
+
+    isStartDateEqualToEndDate(): boolean {
+        return this.upcomingCourseList['date_from']?.getTime() === this.upcomingCourseList['date_to']?.getTime();
     }
 
     /**
@@ -1698,10 +1703,10 @@ export class CourseComponent implements OnInit, OnDestroy {
     }
 
     hasComma(str: string) {
-        if(str){
+        if (str) {
             return str.replace(/,/g, ".");
-        }else{
+        } else {
             return str;
-        }        
+        }
     }
 }

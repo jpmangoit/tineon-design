@@ -33,7 +33,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     checkNum: boolean = false;
     fileToReturn: File;
     roomId: number;
-    roomData: Room;
+    // roomData: Room;
+    roomData: any;
     imageUrl: string;
     hasPicture: boolean = false;
     weekdayArray:  { name: any; id: number; }[];
@@ -131,6 +132,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
+            room_email: ['', Validators.required],
+            room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],
             description: ['', Validators.required],
@@ -245,6 +248,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getRoomsById/' + this.roomId, null)
         .subscribe((respData: Room) => {
+            console.log(respData);
+            
             this.authService.setLoader(false);
             if (respData['isError'] == false) {
                 this.roomData = respData['result'];
@@ -253,6 +258,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                 this.roomForm.controls['name'].setValue(this.roomData.name);
                 this.roomForm.controls['description'].setValue(this.roomData.description);
                 this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
+                this.roomForm.controls['room_email'].setValue(this.roomData.room_email);
+                this.roomForm.controls['room_address'].setValue(this.roomData.room_address);
                 this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
 
                 if(this.roomData.room_image.length == 0){
@@ -346,6 +353,12 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     if (key == 'room_type') {
                         formData.append('room_type', element);
                     }
+                    if (key == 'room_email') {
+                        formData.append('room_email', element);
+                    }
+                    if (key == 'room_address') {
+                        formData.append('room_address', element);
+                    }
                     if (key == 'no_of_persons') {
                         formData.append('no_of_persons', element);
                     }
@@ -361,7 +374,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     if (key == 'image') {
                         formData.append('file', element);
                     } else {
-                        if ((key != 'name') && (key != 'room_type') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
+                        if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
                             formData.append(key, element);
                         }
                     }

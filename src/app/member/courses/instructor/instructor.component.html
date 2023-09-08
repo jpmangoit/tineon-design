@@ -65,15 +65,15 @@
             </div>
             <div class="main-card">
                 <div class="card">
-                    <h3 class="inst-title">Kursleiter - Übersicht</h3>
+                    <h3 class="inst-title">{{language.instructor.instructor_overview}}</h3>
                     <div class="category-listing-main">
                         <div class="category-listing"
                             *ngFor="let item of instructorData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalInstructor}">
                             <div class="category-list">
                                 <div class="category-content">
                                     <a>
-                                        <div class="instructor-image" data-bs-toggle="modal" data-bs-target="#exModal">
-                                            <img onContextMenu="return false;"
+                                        <div class="instructor-image">
+                                            <img  data-bs-toggle="modal" data-bs-target="#exModal" onContextMenu="return false;"
                                                 (click)="getInstructorById(item.id, 'view')"
                                                 [src]="(item['instructor_image'][0]?.['instructor_image']) ? (item['instructor_image'][0]?.['instructor_image']) : '../../assets/img/no_image.png'"
                                                 alt="" loading="lazy">

@@ -925,7 +925,9 @@
         "PublishInstructor":"Publier l'instructeur",
         "DenyInstructor":"Refuser l'instructeur",
         "currentInstructor":"Instructeur actuel",
-        "updateInstructor":"Mettre à jour l'instructeur"
+        "updateInstructor":"Mettre à jour l'instructeur",
+        "instructor_overview" : "Instructor"
+
     },
     "courses": {
         "instructor_type":"Type d'instructeur",

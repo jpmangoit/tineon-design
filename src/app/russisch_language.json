@@ -677,7 +677,9 @@
         "content": "Сообщение",
         "all_course": "Все курсы",
         "text_for_search": "Пожалуйста, введите текст для поиска",
-        "no_instructor": "Инструктор не найден"
+        "no_instructor": "Инструктор не найден",
+        "instructor_overview" : "Instructor"
+
     },
 
     "courses": {

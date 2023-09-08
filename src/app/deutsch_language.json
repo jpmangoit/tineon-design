@@ -924,7 +924,8 @@
         "PublishInstructor": "Kursleiter veröffentlichen",
         "DenyInstructor": "Kursleiter verweigern",
         "currentInstructor": "Aktueller Kursleiter",
-        "updateInstructor": "Kursleiter aktualisieren"
+        "updateInstructor": "Kursleiter aktualisieren",
+        "instructor_overview" : "Kursleiter - Ubersicht"
     },
     "courses": {
         "instructor_type": "Kursleiter Typ",

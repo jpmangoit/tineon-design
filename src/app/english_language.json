@@ -931,7 +931,9 @@
         "PublishInstructor": "Publish Instructor",
         "DenyInstructor": "Deny Instructor",
         "currentInstructor": "Current Instructor",
-        "updateInstructor": "Update Instructor"
+        "updateInstructor": "Update Instructor",
+        "instructor_overview" : "Instructor"
+
     },
     "courses": {
         "instructor_type": "Instructor Type",

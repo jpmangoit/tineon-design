@@ -72,6 +72,9 @@
     },
     "community_messages" : {
         "message_to_me" : "nachrichten an mich"
+    },
+    "instructor" : {
+        "instructor_overview" : "Instructor"
     }
 }
 

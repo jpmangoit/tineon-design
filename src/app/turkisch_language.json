@@ -920,7 +920,9 @@
         "PublishInstructor": "Publish Instructor",
         "DenyInstructor": "Eğitmeni Reddet",
         "currentInstructor": "Mevcut Eğitmen",
-        "updateInstructor": "Eğitmen Güncelle"
+        "updateInstructor": "Eğitmen Güncelle",
+        "instructor_overview" : "Instructor"
+
     },
     "courses": {
         "instructor_type": "Eğitmen Türü",

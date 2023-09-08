@@ -123,6 +123,8 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
+            room_email: ['', Validators.required],
+            room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],
             description: ['', Validators.required],
@@ -221,6 +223,12 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     if (key == 'room_type') {
                         formData.append('room_type', element);
                     }
+                    if (key == 'room_email') {
+                        formData.append('room_email', element);
+                    }
+                    if (key == 'room_address') {
+                        formData.append('room_address', element);
+                    }
                     if (key == 'no_of_persons') {
                         formData.append('no_of_persons', element);
                     }
@@ -236,8 +244,8 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     if (key == 'team_id') {
                         formData.append('team_id', element);
                     } else {
-                        if ((key != 'name') && (key != 'room_type') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
-                            formData.append(key, element);
+                        if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
+                            formData.append(key, element); 
                         }
                     }
                 }

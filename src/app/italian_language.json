@@ -920,7 +920,9 @@
         "PublishInstructor": "Pubblica istruttore",
         "DenyInstructor": "Nega istruttore",
         "currentInstructor": "Istruttore attuale",
-        "updateInstructor": "Aggiorna istruttore"
+        "updateInstructor": "Aggiorna istruttore",
+        "instructor_overview" : "Instructor"
+
     },
     "courses": {
         "instructor_type": "Tipo di istruttore",
