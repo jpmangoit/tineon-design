@@ -383,7 +383,6 @@
                                             <span class="course_des" *ngIf="selectedRoom">
                                                 <ul>
                                                     <li><strong>{{language.courses.number_of_person}}</strong><span>:-</span><span>{{selectedRoom.no_of_persons}}</span>
-
                                                     </li>
                                                     <li>
                                                         <strong>{{language.Survey.active_form}}</strong><span>:-</span><span>{{selectedRoom?.active_from?.split('T')[0] | date: 'd. MMMM y'}}</span>
@@ -608,7 +607,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="event_field" *ngIf='eventPriceDisplay'>
+                                        <!-- <div class="event_field" *ngIf='eventPriceDisplay'>
                                             <label>{{language.courses.course_price}}</label>
                                             <input type="text" placeholder="{{language.create_event.event_price}}"
                                                 formControlName="price_per_participant" (keyup)="checkPrice()">
@@ -618,6 +617,29 @@
                                                 *ngIf="(courseForm.controls.price_per_participant.touched || formSubmit) && (courseForm.controls.price_per_participant.errors?.pattern)">
                                                 <div *ngIf="courseForm.controls.price_per_participant.errors?.pattern">
                                                     {{language.error_message.common_valid}}</div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="event_field" *ngIf="eventPriceDisplay">
+                                            <label>{{language.courses.course_price}}</label>
+                                            <input type="text"
+                                                placeholder="{{language.create_event.event_price}}"
+                                                formControlName="price_per_participant" (keyup)="checkPrice()">
+                                            <div class="text-danger" *ngIf="checkPric == true">
+                                                {{language.courses.valid_price}}</div>
+
+                                            <div class="text-danger"
+                                                *ngIf="(courseForm.controls.price_per_participant.touched || formSubmit)">
+                                                <div
+                                                    *ngIf="courseForm.controls.price_per_participant.errors?.currencySymbol; else patternError">
+                                                    {{ language.error_message.specialChar_validation }}
+                                                </div>
+                                                <ng-template #patternError>
+                                                    <div
+                                                        *ngIf="courseForm.controls.price_per_participant.errors?.pattern">
+                                                        {{ language.error_message.common_valid }}
+                                                    </div>
+                                                </ng-template>
                                             </div>
                                         </div>
 

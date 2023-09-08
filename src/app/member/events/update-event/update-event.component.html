@@ -631,7 +631,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="event_field" *ngIf='eventPriceDisplay'>
+                                        <!-- <div class="event_field" *ngIf='eventPriceDisplay'>
                                             <label>{{language.create_event.event_price}}</label>
                                             <input type="text" placeholder="Event-Price"  formControlName="price_per_participant" (keyup)="checkPrice()">
                                             <div class="text-danger" *ngIf="checkPric == true"> {{language.courses.valid_price}}</div>
@@ -642,7 +642,31 @@
                                                     {{language.error_message.common_valid}}
                                                 </div>
                                             </div>
+                                        </div> -->
+
+                                        <div class="event_field" *ngIf="eventPriceDisplay">
+                                            <label>{{ language.create_event.event_price }}</label>
+                                            <input type="text"
+                                                placeholder="{{ language.create_event.event_price }}"
+                                                formControlName="price_per_participant" (keyup)="checkPrice()" />
+                                            <div class="text-danger" *ngIf="checkPric == true">
+                                                {{ language.courses.valid_price }}
+                                            </div>
+                                            <div class="text-danger"
+                                                *ngIf="(eventForm.controls.place.touched || eventSubmitted)">
+                                                <div
+                                                    *ngIf="eventForm.controls.price_per_participant.errors?.currencySymbol; else patternError">
+                                                    {{ language.error_message.specialChar_validation }}
+                                                </div>
+                                                <ng-template #patternError>
+                                                    <div
+                                                        *ngIf="eventForm.controls.price_per_participant.errors?.pattern">
+                                                        {{ language.error_message.common_valid }}
+                                                    </div>
+                                                </ng-template>
+                                            </div>
                                         </div>
+                                        
                                         <div class="event_field" *ngIf="isTaskField">
                                             <div>
                                                 <button class="delete_task_btn" type="button" style="margin-left: 73%;" *ngIf="taskStatus == 1" (click)="deleteTask(taskId)">  {{language.organizer.Delete}}

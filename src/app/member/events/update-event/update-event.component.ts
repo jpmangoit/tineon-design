@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, UntypedFormArray } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, UntypedFormArray, AbstractControl } from '@angular/forms';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
 import { DatePipe } from '@angular/common';
@@ -43,7 +43,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     eventSubmitted: boolean = false;
     recurrenceDropdownField: boolean = false;
     eventForm: UntypedFormGroup;
-    responseMessage: string = null;
+    responseMessage: string = null; 
     eventId: number;
     imageUrl: string;
     fileUrl: string;
@@ -441,7 +441,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             'group': new UntypedFormControl(''),
             'audience': new UntypedFormControl('1'),
             'customRecurrence': new UntypedFormControl(''),
-            'price_per_participant': new UntypedFormControl('', Validators.pattern("^[0-9]*$")),
+            // 'price_per_participant': new UntypedFormControl('', Validators.pattern("^[0-9]*$")),
+            'price_per_participant': new UntypedFormControl('', [Validators.pattern("^[0-9]+([,.][0-9]{1,2})?$"), this.currencySymbolValidator()]),
             'isTask': new UntypedFormControl('',),
             eventDate: this.formBuilder.array([
                 this.formBuilder.group({
@@ -454,6 +455,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             task: this.formBuilder.array([]),
             roomBookingDates: new UntypedFormControl(''),
         });
+
+        
     }
 
     get eventDate() {
@@ -462,6 +465,18 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
     get task() {
         return this.eventForm.get('task') as UntypedFormArray;
+    }
+
+    currencySymbolValidator() {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+            const value = control.value;
+            if (typeof value === 'string' && /[€$!@#%^&*]/.test(value)) {
+
+                return { currencySymbol: true };
+            }
+            return null;
+        };
+
     }
 
     /**
