@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogService } from '../../../confirm-dialog/confirm-dialog.service';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/service/theme.service';
@@ -34,6 +34,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     displayPopup: boolean = false;
     responseMessage: string = null;
     userData: LoginDetails;
+    dashboardNewsData: NewsType[];
     dashboardData: NewsType[];
     guestNews: NewsType[] = [];
     newsData: any;
@@ -75,13 +76,15 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     };
     currentPageNmuber: number = 1;
     totalPages: any
-    itemPerPage: number = 5;
+    itemPerPage: number = 4;
     newsTotalRecords: number = 0;
-    
+    showClubDash: boolean = true;
+
     constructor(
         public authService: AuthServiceService,
         private lang: LanguageService,
         private router: Router,
+        private route: ActivatedRoute,
         private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService,
         private notificationService: NotificationService,
@@ -98,6 +101,13 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
+        let currentUrl: string = this.router.url;
+
+        if (currentUrl == '/dashboard') {
+            this.showClubDash = true;
+        } else {
+            this.showClubDash = false;
+        }
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
@@ -116,6 +126,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.getDesktopDeshboardBanner();
         }
         this.getAllNews();
+        this.getAllNewspagination();
+
     }
 
     /**
@@ -136,7 +148,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']
-                            // console.log(this.bannerData );
+                            console.log( this.bannerData);
                             
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
@@ -194,52 +206,47 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @param   {userId}
     * @return  {Object}
     */
-    // getAllNews() {
-    //     if (sessionStorage.getItem('token')) {
-    //         let userId: string = localStorage.getItem('user-id');
-    //         this.authService.setLoader(true);
-    //         this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
-    //             .subscribe(
-    //                 (respData: any) => {
-    //                     this.authService.setLoader(false);
-    //                     this.dashboardData = respData;
-    //                     console.log( this.dashboardData);
-
-    //                     if (this.dashboardData && this.dashboardData.length > 0) {
-    //                         this.dashboardData.forEach((element: any, index) => {
-    //                             // if(element['is_highlighted']){
-    //                             //     element['is_highlighted'] = JSON.parse(element.is_highlighted) // Convert to boolean
-    //                             // }
-    //                             if (element?.news_image[0]?.news_image) {
-    //                                 element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
-    //                             }
-    //                             if (element.user.member_id != null) {
-    //                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-    //                                     .subscribe(
-    //                                         (resppData: any) => {
-    //                                             this.thumb = resppData;
-    //                                             element.user.image = this.thumb;
-    //                                         },
-    //                                         (error: any) => {
-    //                                             element.user.image = null;
-    //                                         })
-    //                             } else {
-    //                                 element.user.image = '';
-    //                             }
-    //                         });
-    //                         this.dataLoaded.emit();
-    //                         // this.authService.setLoader(false);
-    //                         // setTimeout(() => {
-    //                         //     this.authService.setLoader(false);
-    //                         //     this.isLoading = false;
-    //                         // }, 1500);
-    //                     }
-    //                 }
-    //             );
-    //     }
-    // }
-
     getAllNews() {
+        if (sessionStorage.getItem('token')) {
+            let userId: string = localStorage.getItem('user-id');
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.dashboardNewsData = respData;
+                        if (this.dashboardNewsData && this.dashboardNewsData.length > 0) {
+                            this.dashboardNewsData.forEach((element: any, index) => {
+                                if (element?.news_image[0]?.news_image) {
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
+                                }
+                                if (element.user.member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            })
+                                } else {
+                                    element.user.image = '';
+                                }
+                            });
+                            this.dataLoaded.emit();
+                            // this.authService.setLoader(false);
+                            // setTimeout(() => {
+                            //     this.authService.setLoader(false);
+                            //     this.isLoading = false;
+                            // }, 1500);
+                        }
+                    }
+                );
+        }
+    }
+
+    getAllNewspagination() {
         if (sessionStorage.getItem('token')) {
             this.dashboardData = [];
             this.guestNews = [];
@@ -250,15 +257,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     if (respData.news.length == 0) {
                         this.authService.setLoader(false);
                     } else {
-                        // this.totalPages = respData.pagination.rowCount;
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
-                        
                         this.dashboardData = respData.news;
-                        console.log(respData);
-                        
-                        if (this.dashboardData && this.dashboardData.length > 0) {
 
+                        if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
@@ -285,7 +288,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     // this.totalPages = respData.pagination.rowCount;
                                     this.newsTotalRecords = respData.pagination.rowCount;
                                     this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
-
                                 }
                             });
                         }
@@ -303,14 +305,12 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                             // this.totalPages = respData.pagination.rowCount;
                             this.newsTotalRecords = respData.pagination.rowCount;
                             this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
-
                             this.dashboardData = respData.news;
                             if (this.dashboardData && this.dashboardData.length > 0) {
                                 this.dashboardData.forEach(element => {
                                     if (element?.news_image[0]?.news_image) {
                                         element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                     }
-
                                     if (element.user.member_id != null) {
                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                             .subscribe(
@@ -429,6 +429,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                 self.notificationService.showSuccess(resp, null);
                 setTimeout(function () {
                     self.getAllNews()
+                    self.getAllNewspagination()
                     const url: string[] = ["/clubwall"];
                     self.router.navigate(url);
                 }, 3000);
@@ -449,8 +450,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     }
 
     pageChanged(event: number) {
-        console.log(event);
-
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;
@@ -458,6 +457,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             // Next button clicked
             this.currentPageNmuber++;
         }
+        this.getAllNewspagination();
     }
 
 

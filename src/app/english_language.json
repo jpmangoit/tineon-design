@@ -234,7 +234,7 @@
         "currentEvent": "Current Event",
         "updateEvent":"Update Event",
         "image_wid_heig": "Please upload the Image of resolution at least Width = 800 & height = 500",
-        "today_course_offer": "Heutige Kurs-Angebote"
+        "today_course_offer": "Today"
     },
     "club_news": {
         "Edit": "Edit",

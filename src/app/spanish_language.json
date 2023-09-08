@@ -228,7 +228,7 @@
         "currentEvent": "Evento actual",
         "updateEvent":"Actualizar evento",
         "image_wid_heig": "Cargue la imagen con una resolución de al menos ancho = 800 y alto = 500",
-        "today_course_offer": "Heutige Kurs-Angebote"
+        "today_course_offer": "Hoy"
 
     },
     "club_news": {
