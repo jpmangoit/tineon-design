@@ -999,6 +999,13 @@ span.instructor-badge {
     text-transform: capitalize;
 }
 
+.instructor-list span > span:last-child {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #647895;
+}
+
 .instructor-label-box {
   display: flex;
   flex-wrap: wrap;
