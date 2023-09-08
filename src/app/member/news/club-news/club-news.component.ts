@@ -26,12 +26,12 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
 
     language: any;
     role: string = '';
-    thumbnail: string; 
+    thumbnail: string;
     num: number = 4;
     num1: number = 3;
     memberid: number;
     displayError: boolean = false;
-    displayPopup: boolean = false; 
+    displayPopup: boolean = false;
     responseMessage: string = null;
     userData: LoginDetails;
     dashboardData: NewsType[];
@@ -73,7 +73,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         nav: false,
         autoplay: true
     };
-
+    currentPageNmuber: number = 1;
+    totalPages: any
+    itemPerPage: number = 5;
+    newsTotalRecords: number = 0;
+    
     constructor(
         public authService: AuthServiceService,
         private lang: LanguageService,
@@ -132,6 +136,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']
+                            // console.log(this.bannerData );
+                            
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
@@ -188,48 +194,154 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @param   {userId}
     * @return  {Object}
     */
+    // getAllNews() {
+    //     if (sessionStorage.getItem('token')) {
+    //         let userId: string = localStorage.getItem('user-id');
+    //         this.authService.setLoader(true);
+    //         this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
+    //             .subscribe(
+    //                 (respData: any) => {
+    //                     this.authService.setLoader(false);
+    //                     this.dashboardData = respData;
+    //                     console.log( this.dashboardData);
+
+    //                     if (this.dashboardData && this.dashboardData.length > 0) {
+    //                         this.dashboardData.forEach((element: any, index) => {
+    //                             // if(element['is_highlighted']){
+    //                             //     element['is_highlighted'] = JSON.parse(element.is_highlighted) // Convert to boolean
+    //                             // }
+    //                             if (element?.news_image[0]?.news_image) {
+    //                                 element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
+    //                             }
+    //                             if (element.user.member_id != null) {
+    //                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+    //                                     .subscribe(
+    //                                         (resppData: any) => {
+    //                                             this.thumb = resppData;
+    //                                             element.user.image = this.thumb;
+    //                                         },
+    //                                         (error: any) => {
+    //                                             element.user.image = null;
+    //                                         })
+    //                             } else {
+    //                                 element.user.image = '';
+    //                             }
+    //                         });
+    //                         this.dataLoaded.emit();
+    //                         // this.authService.setLoader(false);
+    //                         // setTimeout(() => {
+    //                         //     this.authService.setLoader(false);
+    //                         //     this.isLoading = false;
+    //                         // }, 1500);
+    //                     }
+    //                 }
+    //             );
+    //     }
+    // }
+
     getAllNews() {
         if (sessionStorage.getItem('token')) {
-            let userId: string = localStorage.getItem('user-id');
+            this.dashboardData = [];
+            this.guestNews = [];
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'topNews/user/' + userId, null)
-                .subscribe(
-                    (respData: any) => {
+            if (this.role == 'admin' || this.role == 'guest') {
+                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData.news.length == 0) {
                         this.authService.setLoader(false);
-                        this.dashboardData = respData;
+                    } else {
+                        // this.totalPages = respData.pagination.rowCount;
+                        this.newsTotalRecords = respData.pagination.rowCount;
+                        this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+                        
+                        this.dashboardData = respData.news;
+                        console.log(respData);
+                        
                         if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach((element: any, index) => {
-                                // if(element['is_highlighted']){
-                                //     element['is_highlighted'] = JSON.parse(element.is_highlighted) // Convert to boolean
-                                // }
+
+                            this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
-                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
+                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
+
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
                                             (resppData: any) => {
+                                                this.authService.setLoader(false);
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
                                             (error: any) => {
                                                 element.user.image = null;
-                                            })
+                                            });
                                 } else {
                                     element.user.image = '';
                                 }
+                                if (this.role == 'guest') {
+                                    if (element.show_guest_list == 'true') {
+                                        this.guestNews.push(element);
+                                    }
+                                    // this.totalPages = respData.pagination.rowCount;
+                                    this.newsTotalRecords = respData.pagination.rowCount;
+                                    this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+
+                                }
                             });
-                            this.dataLoaded.emit();
-                            // this.authService.setLoader(false);
-                            // setTimeout(() => {
-                            //     this.authService.setLoader(false);
-                            //     this.isLoading = false;
-                            // }, 1500);
                         }
                     }
-                );
+                });
+            } else if ((this.role != 'admin') && (this.role != 'guest')) {
+                let userId: string = localStorage.getItem('user-id');
+
+                this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData.news.length == 0) {
+                            this.authService.setLoader(false);
+                        } else {
+                            // this.totalPages = respData.pagination.rowCount;
+                            this.newsTotalRecords = respData.pagination.rowCount;
+                            this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+
+                            this.dashboardData = respData.news;
+                            if (this.dashboardData && this.dashboardData.length > 0) {
+                                this.dashboardData.forEach(element => {
+                                    if (element?.news_image[0]?.news_image) {
+                                        element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
+                                    }
+
+                                    if (element.user.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.authService.setLoader(false);
+                                                    this.thumb = resppData;
+                                                    element.user.image = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.user.image = null;
+                                                });
+                                    } else {
+                                        element.user.image = '';
+                                    }
+                                    if (this.role == 'guest') {
+                                        if (element.show_guest_list == 'true') {
+                                            this.guestNews.push(element);
+                                        }
+                                        // this.totalPages = respData.pagination.rowCount;
+                                        this.newsTotalRecords = respData.pagination.rowCount;
+                                        this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+
+                                    }
+                                });
+                            }
+                        }
+                    });
+            }
         }
     }
+
 
     /**
     * Function is used to get news details by news id
@@ -335,6 +447,19 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         const url: string[] = ["/update-news/" + newsId];
         this.router.navigate(url);
     }
+
+    pageChanged(event: number) {
+        console.log(event);
+
+        if (event === -1) {
+            // Previous button clicked
+            this.currentPageNmuber--;
+        } else if (event === 1) {
+            // Next button clicked
+            this.currentPageNmuber++;
+        }
+    }
+
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
