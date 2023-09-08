@@ -22,8 +22,8 @@
 
 .category-content h5 {
     font-size: 16px;
-    font-weight: 700;
-    color: #414141;
+   font-weight: 700;
+  color: #353535;
     margin-top: 0px;
     margin-bottom: 5px;
     font-family: 'Gellix', sans-serif;
@@ -38,6 +38,7 @@
     height: calc(1 * 1.4rem);
 }
 
+
 .title-btn-group.right-btn-group img {
     margin-right: 5px;
     margin-top: -2px;
@@ -49,11 +50,11 @@
 }
 
 .category-content p {
-    color: #95A0C6;
-    font-size: 15px;
-    margin-bottom: 5px;
+    color: #565656;
+    font-size: 13px;
+    margin-bottom: 0px;
     font-family: 'Gellix', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -113,6 +114,14 @@ span.course-count {
     justify-content: center;
 }
 
+.inst-title {
+    color: #555555;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 85px;
+}
+
 .instructor-bottom {
     display: flex;
     gap: 20px;
@@ -148,14 +157,71 @@ div#edit_instructor .event_upload.news_pic_upload input {
     margin: 48px 0;
 }
 
-.instructor-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 5px solid #e9ebf1;
-    margin-bottom: 10px;
-    overflow: hidden;
-    display: inline-block;
+.new-action {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.new-action a.red {
+  width: 79px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 0px 0 0;
+  background: #FB5F5F;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-des {
+  text-align: left;
+
+}
+
+.inst-type-label span {
+     background: #FBC52D;
+  height: 19px;
+  line-height: 20px;
+  border-radius: 25px;
+  display: inline-block;
+  padding: 0 15px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.new-action a.green {
+  background: #41AE4C;
+  width: 79px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 15px 0 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instructor-image{
+  width: 100%;
+  height: 207px;
+  border-radius: 15px;
+  border: none;
+  margin-bottom: 5px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
 }
 
 .category-content img {
@@ -163,7 +229,8 @@ div#edit_instructor .event_upload.news_pic_upload input {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    cursor:pointer
+    cursor:pointer;
+    border-radius:0
 }
 
 .ins-courses h5 {
@@ -359,12 +426,19 @@ a .input-group-text {
     top: 0;
 }
 
+.search_area .input-group.no-border > div:first-child {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  z-index: 5;
+}
+
 .search_area .input-group.no-border input {
     height: 45px;
-    border-radius: 25px;
+    border-radius: 10px;
     border-color: transparent;
-    background: #e9ebf1;
-    padding: 0 20px;
+    background: #fff;
+    padding: 0 20px 0 54px;
     color: #98A2C3;
     font-family: 'Gellix', sans-serif;
     font-size: 16px;
@@ -502,38 +576,42 @@ a .input-group-text {
     flex-wrap: wrap;
     align-items: stretch;
     width: 50%;
-    float: right;
+    float: left;
 }
 
 .input-group-text button {
     height: 40px;
-    border-radius: 10px;
+    border-radius: 13px;
     float: left;
     margin-right: 10px;
     /* border: 1px solid #68759f; */
-    border: 1px solid rgb(88, 191, 56);
+    border: 1px solid #FB5F5F;
     color: #fff;
     padding: 0 20px;
-    background-color: rgb(88, 191, 56);
+    background-color: #FB5F5F;
     ;
-    font-size: 15px;
+    font-size: 12px;
     font-family: 'Gellix', sans-serif;
     text-transform: none;
+    font-weight: 700;
 }
 
 .input-group-text button.save_btn {
     height: 40px;
-    border-radius: 10px;
+    border-radius: 13px;
     float: left;
     margin-right: 5px;
-    border: 1px solid rgb(88, 191, 56);
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid #FB5F5F;
     /* border: 1px solid #68759f; */
 
     color: #fff;
-    background-color: rgb(88, 191, 56);
+    background-color: #FB5F5F;
     /* background-color: #68759f; */
     display: flex;
     align-items: center;
+    margin-left: 35px;
 }
 
 .input-group-text button:last-child {
@@ -568,10 +646,14 @@ button.reset_btn span {
 }
 
 .search_area .card {
-    padding: 25px;
+    padding: 25px 0;
     border-radius: 20px;
     box-shadow: none;
+    background: none;
+    
 }
+
+
 
 .main-card .card {
     padding: 35px 25px;
@@ -583,13 +665,17 @@ button.reset_btn span {
     display: flex;
     flex-flow: row wrap;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 .category-listing {
-    text-align: center;
-    width: 25%;
-
-    padding: 12px 12px 0 12px;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  max-width: 306px;
+  background: #F2F2F5;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .category-action a {
@@ -824,7 +910,7 @@ span.info_detail {
 
 .page-action-right button {
     margin-right: 15px;
-    background: rgb(88, 191, 56);
+    background: #41AE4C;
     /* background: #1EB176; */
 
 }
@@ -1047,11 +1133,34 @@ span.deny-reason {
     margin: 5px;
 }
 
+.pageination-box {
+  text-align: center;
+  margin-top: 144px;
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+}
+
+.pageination-box button  {
+  border: 1px solid #68759F;
+  background: none;
+  height: 53px;
+  width: 105px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  gap: 10px;
+  color: #68759F;
+  border-radius: 15px;
+}
+
 .news-read-more a {
     color: #5293F4;
     font-size: 11px;
     font-weight: 500;
-    float: right;
+    float: right; 
 }
 
 .news-read-more a span {
@@ -1061,4 +1170,13 @@ span.deny-reason {
 .news-read-more {
     margin-top: 10px;
     cursor: pointer;
+    border-top: 1px solid #BDBDBD;
+  padding-top: 8px;
+}
+
+@media (min-width:1200px) and (max-width:1480px) {
+    .category-listing {
+      width: 21%;
+     max-width: none;
+ }
 }

@@ -521,6 +521,7 @@ body {
   ::ng-deep body .tab-button button{
         padding: 0 !important;
     }
+
 }
 
 /* Portrait */
@@ -10778,8 +10779,8 @@ li.nav-item.dropdown.add_dropdown
   position: absolute;
   bottom: inherit;
   top: 10px;
-  z-index: 500;
-  cursor: pointer;
+  z-index: 87;
+  cursor: pointer; 
 }
 
 .document-inner.list_document
@@ -12755,6 +12756,8 @@ background: #FBC52D;
     body .course-price-section{
         flex-wrap: wrap;
     }
+
+  
 }
 
 /* 24 a */
