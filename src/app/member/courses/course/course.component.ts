@@ -607,7 +607,6 @@ export class CourseComponent implements OnInit, OnDestroy {
         }
     }
 
-
     isStartDateEqualToEndDate(): boolean {
         return this.upcomingCourseList['date_from']?.getTime() === this.upcomingCourseList['date_to']?.getTime();
     }
