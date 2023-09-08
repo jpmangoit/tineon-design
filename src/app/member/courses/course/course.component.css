@@ -774,6 +774,7 @@ span.participant_status {
 
 .course-list-main .card-header .card-title {
     margin-bottom: 3.5rem;
+    margin-top: 1.3rem;
 }
 
 .course-list-main .card {
@@ -850,6 +851,7 @@ span.participant_status {
     border-radius: 15px;
     margin-bottom: 15px;
     align-items: flex-start;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .course-data {
@@ -901,6 +903,10 @@ span.participant_status {
     color: #FBC52D !important;
 }
 
+.course-duration span, .course-time span {
+    width: 50%;
+}
+
 .course-price span {
     padding: 0 10px;
 }
@@ -911,9 +917,9 @@ span.participant_status {
     flex-wrap: wrap;
 }
 
-.course-duration > span {
+/* .course-duration > span {
   margin-left: 35px !important;
-}
+} */
 
 .course-data h5 {
     font-size: 19px;
@@ -943,7 +949,7 @@ span.participant_status {
 .course-time span {
     display: flex;
     align-items: center;
-    margin-right: 23px;
+    margin-right:0px;
     margin-top: 0px;
 }
 
@@ -1316,4 +1322,15 @@ font-size: 14px;
     border-radius: 0px 0 0;
     background: #FB5F5F;
     cursor: pointer
+}
+
+@media(min-width:1200px) and (max-width:1480px) {
+    .course-image{
+  width: 180px;
+  
+}
+.course-box {
+  
+  max-width: 180px;
+}
 }
