@@ -152,8 +152,9 @@ export class RoomComponent implements OnInit, OnDestroy {
                                 element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
                             }
                         })
-                        this.totalRoomData = respData['result'].pagination.rowCount;
+                        this.totalRoomData = respData['result'].pagination.rowCount; 
                         this.totalPages = Math.ceil(this.totalRoomData / this.itemPerPage);
+
 
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -192,7 +193,6 @@ export class RoomComponent implements OnInit, OnDestroy {
                             this.totalRoomData = respData['result'].pagination.rowCount;
                             this.totalPages = Math.ceil(this.totalRoomData / this.itemPerPage);
 
-
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
@@ -228,7 +228,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     //     }
     // }
 
-    pageChanged(event: number) {
+    pageChanged(event: number) { 
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;

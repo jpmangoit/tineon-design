@@ -3,10 +3,18 @@
     <div class="col-md-12 club_widget">
         <div class="card ">
             <div class="card-header ">
-                <h5 class="card-title" *ngIf="headline_word_option == 0">{{language.dashboard.dashboardNewsTitle_stand}}
+                <h5 class="card-title" *ngIf="headline_word_option == 0">
+                    {{language.dashboard.dashboardNewsTitle_stand}}
                 </h5>
                 <h5 class="card-title" *ngIf="headline_word_option == 1">
-                    {{language.dashboard.dashboardNewsTitle_untern}}</h5>
+                    {{language.dashboard.dashboardNewsTitle_untern}}
+                </h5>
+                <div >
+                    <button (click)="pageChanged(-1);"
+                        [disabled]="currentPageNmuber === 1">{{language.pagination.previous}}</button>
+                    <button (click)="pageChanged(1);"
+                        [disabled]="currentPageNmuber === totalPages ">{{language.pagination.next}}</button>
+                </div>
             </div>
             <div class="card-body">
                 <div class="dash-news" (onLoad)="getAllNews()">
@@ -90,31 +98,6 @@
                     <div class="news-item multi-item">
                         <div class="dashboard-slider" *ngIf="dashboardData?.length > 0 || bannerData?.length > 0">
                             <div class="multi-item-carousel" *ngIf="bannerData?.length > 0 && allowAdvertisment == 0">
-                                <!-- <owl-carousel-o [options]="sliderOptions" >
-                                            <ng-template carouselSlide *ngFor='let item of bannerData; let i=index'>
-                                                <div class="multi-item-car-single">
-                                                    <a [href]="item.redirectLink"  target="_blank" (click)="onClickBanner(item.id)">
-                                                        <div class="news-item-image" [ngClass]="item.image == null ? 'no_image' : ''">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="item.image != null ? item.image: '../../../../assets/img/no_image.png'"
-                                                                alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="news-item-content">
-                                                            <div class="news-description">
-                                                                <div class="car-badge">
-                                                                <span class="carousel-badge-2 two">{{language.banner.advertisment}}</span>
-                                                                </div>
-                                                                <h5 [innerHTML]="(item.bannerName.length > 0 )? (item.bannerName | slice:0:30)+'...':(item.bannerName)">
-                                                                </h5>
-                                                                <p
-                                                                    [innerHTML]="(item.description.length > 0 )? (item.description | slice:0:200)+'...':(item.description)">
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </ng-template>
-                                    </owl-carousel-o> -->
                                 <owl-carousel-o [options]="sliderOptions">
                                     <ng-template carouselSlide *ngFor="let item of bannerData; let i=index">
                                         <div class="news-widget com-g-widget">
@@ -166,7 +149,6 @@
                                                 {{language.club_news.Delete}}</a>
                                         </div>
                                     </div>
-
                                     <div class="news-item-content">
                                         <div class="news-top-content">
                                             <span *ngIf="data.audience == '0'"
@@ -175,12 +157,6 @@
                                                 class="news-badge-group">{{language.create_news.group_news}}</span>
                                             <span *ngIf="data.audience == '3'"
                                                 class="news-badge-chairman">{{language.create_news.chairman}}</span>
-                                            <!-- <span class="news-date">
-                                                <img onContextMenu="return false;"
-                                                    src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
-                                                    alt="" loading="lazy">&nbsp;
-                                                {{data.created_at | date: 'd. MMMM y'}}
-                                            </span> -->
                                         </div>
                                         <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
                                             (click)="getNewsDetails(data.id)">
