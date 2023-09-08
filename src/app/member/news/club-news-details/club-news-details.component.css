@@ -1262,7 +1262,8 @@ span.get-btn {
         border: none;
         padding: 0px;
         display: inline-block;
-        margin: 0 25px;
+        margin: 0 0px;
+        width: 100%;
     }
 
     ::ng-deep .news_image_container {

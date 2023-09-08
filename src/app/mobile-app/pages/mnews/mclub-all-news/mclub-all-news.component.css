@@ -932,12 +932,21 @@ div#all_news_grid .card {
     background: transparent !important;
 }
 
+  .news_image {
+    height: auto;
+    border: none;
+    padding: 0px;
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+  }
+
 .all_news .news_image_container {
     /* height: 320px;
     object-fit: contain; */
     border-radius: 15px;
     /* border: 1px solid #c0ccda; */
-    padding: 15px 10px 15px 10px;
+    padding: 0;
     background: #fff !important;
     max-height: 400px;
     overflow: hidden;
@@ -953,6 +962,7 @@ div#all_news_grid .card {
     border-radius: 15px;
     margin: 0 auto;
     display: flex;
+    width: 100%;
 }
 
 .all_news .news_heading h2 {
@@ -976,9 +986,9 @@ div#all_news_grid .card {
     font-size: 20px;
 }
 
-.news_detail_popup .modal-header {
+/* .news_detail_popup .modal-header {
     justify-content: space-between;
-}
+} */
 
 .dropdown.action_group button {
     border: none;
@@ -1124,6 +1134,7 @@ div#all_news_grid .card {
 .all-news-row {
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-end;
 }
 
 .all-news-column {
@@ -1318,7 +1329,7 @@ span.get-btn {
     }
 
     .page-heading {
-        width: 70% !important;
+        width: 100% !important;
     }
 
     .page-action-right {
@@ -1591,6 +1602,24 @@ span.get-btn {
     font-family: "Gellix", sans-serif;
 }
 
+.card-body.club_all_news {
+    padding: 0px !important;
+}
+
+::ng-deep .mobile-green #all_news_grid span:first-child svg path  {
+ stroke:#20AE80  !important;
+ fill:none !important
+}
+
+::ng-deep .mobile-green #all_news_grid span svg path  {
+ fill:#20AE80  !important;
+}
+
+::ng-deep .mobile-green #all_news_grid span svg path:first-child {
+   stroke:#20AE80  !important; 
+} 
+
+
 .news-item {
     background: #fff;
     border-radius: 15px;
@@ -1601,7 +1630,7 @@ span.get-btn {
     position: relative;
     padding: 20px 20px 20px 40px !important;
     margin-bottom: 15px;
-    width: 100% !important;
+    width: 90% !important;
     float: right;
     gap: 8px;
     display: flex;
