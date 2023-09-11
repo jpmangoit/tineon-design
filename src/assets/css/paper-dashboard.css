@@ -4085,6 +4085,18 @@ body.collapse-in .footer-logo img {
         height: 100%;
     }
 
+    .mobile-green .page-heading svg path{
+      stroke:#20AE80 !important;
+    }
+
+    .mobile-green .page-heading svg:first-child + svg path {
+       fill:#20AE80 !important;
+    }
+
+    .mobile-green .page-heading svg:first-child + svg path + path {
+        stroke: #fff !important;
+    }
+
     .col-lg-6.col-md-6.log-det {
         margin-bottom: 60px;
     }
@@ -4573,10 +4585,12 @@ button.navbar-toggler.open {
 
 .card .card-header:not([data-background-color]) {
     background-color: transparent;
-    border-bottom: 1px solid #EFF2FD !important;
+    /* border-bottom: 1px solid #EFF2FD !important;
     padding-bottom: 7px !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 0 !important; */
 }
+
+
 
 .card .card-header .card-title {
     margin-top: 0px;

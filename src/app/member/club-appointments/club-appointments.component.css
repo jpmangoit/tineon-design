@@ -82,7 +82,7 @@ span.news-category {
 
 .news-content p {
     font-size: 16px;
-    color: #192838;
+    color: #fff;
     font-weight: 600;
     margin-bottom: 20px;
 
@@ -92,10 +92,14 @@ span.news-category {
     display: inline-block;
     position: absolute;
     bottom: 10px;
-    left: 24px;
-    background: rgba(255, 255, 255, 0.6);
+    left: 0px;
+    background: rgba(251, 95, 95, 0.9);
     height: auto;
-    padding: 5px;
+    padding: 0 5px;
+    font-size: 20px;
+    font-weight: 700;
+    height: 40px;
+    line-height: 40px;
 
 }
 
@@ -932,15 +936,16 @@ span.club-badge {
     width: 30px;
     position: relative;
     padding-top: 10px;
+    display: none;
 }
 
 .club-widget-appointment .card-body {
-    padding: 0;
+    padding: 0 0 0 15px; 
 }
 
 .club-widget-description {
-    width: 90%;
-    border-bottom: 1px solid #eaedf5;
+    width: 98%;
+    /* border-bottom: 1px solid #eaedf5; */
     padding-top: 10px;
 }
 
@@ -954,11 +959,11 @@ span.club-badge {
 }
 
 .club-w-image {
-    width: 65px;
-    height: 65px;
+    width: 100%;
+  height: 114px;
     overflow: hidden;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 0px;
     cursor: pointer;
 }
 
@@ -966,6 +971,7 @@ span.club-badge {
     height: 100%;
     object-fit: cover;
     width: 100%;
+    border-radius: 0;
 }
 
 .club-widget-main {
@@ -986,8 +992,8 @@ span.club-badge {
 }
 
 .club-left-area {
-    margin-right: 5px;
-    width: 65px;
+  margin-right: 0;
+  width: 45%;
 }
 
 .ticket-time span strong {
@@ -995,20 +1001,20 @@ span.club-badge {
 }
 
 .ticket-time span {
-    width: 100%;
+    width: 50%;
     display: flex;
     color: #9B9C9F;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 6px; 
 }
 
 .club-right-area h5 {
-    color: #000;
-    font-size: 16px;
+    color: #292929;
+    font-size: 14px;
     font-weight: 700;
     line-height: 18px;
-    margin: -2px 0 10px;
+    margin: -2px 0 20px;
     cursor: pointer;
     /* text-transform: capitalize; */
     display: -webkit-box;
@@ -1019,6 +1025,7 @@ span.club-badge {
     white-space: normal;
     text-overflow: ellipsis;
     font-family: 'Gellix', sans-serif;
+    padding: 0 13px;
     /* min-height: 37px; */
 }
 
@@ -1050,8 +1057,13 @@ span.club-badge {
 .club-widget-des-inner {
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px;
-    align-items: flex-start;
+    gap: 0px;
+    align-items: flex-start; 
+    background: #F2F2F5;
+    border-radius: 10px;
+  overflow: hidden; 
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin-bottom: 2.2rem;
 }
 
 .event-groups span.club-badge {
@@ -1082,14 +1094,34 @@ span.club-badge {
     gap: 10px;
 }
 
-.ticket-time {
+.ticket-time{
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  line-height: 15px;
+  padding-bottom: 0;
+  color: #585858;
+  flex-wrap: nowrap;
+  margin-top: 15px;
+}
+
+.ticket-time span:first-child {
+    background: #FBC52D;
+    height: 26px;
+    font-size: 12px;
+    font-weight: 700;
+    
+}
+
+.ticket-time span {
+    background: #FB5F5F;
+     height: 26px;
+    font-size: 12px;
+    font-weight: 700; 
     display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    line-height: 15px;
-    padding-bottom: 10px;
-    color: #585858;
-    flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
 }
 
 .ticket-time span strong {
@@ -1100,13 +1132,23 @@ span.club-badge {
     margin-bottom: 12px !important;
 }
 
+.ticket-time span p {
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 0;
+  color: #fff;
+}
+
 .club-right-area {
-    width: 80%;
-    display: inline-block;
+ width: 65%;
+  display: inline-block;
+  padding: 15px 0 0;
 }
 
 .club-widget-des-inner {
-    padding-bottom: 15px;
+    padding-bottom: 0px;
 }
 
 /* .card .card-header {
@@ -1161,11 +1203,16 @@ span.carousel-badge {
 
     position: absolute;
     bottom: 70px;
-    left: 24px;
+    left: 0px;
+      font-size:14px;
+    font-weight: 700;
 
     background: rgba(255, 255, 255, 0.6);
     height: auto;
-    padding: 5px
+    padding: 0 5px;
+    height: 31px;
+    color: #555555;
+    line-height: 31px;
 }
 
 .card.club-widget-appointment.banner-area {
@@ -1358,7 +1405,14 @@ span.carousel-badge {
 
 .widget-app-content {
     display: flex;
-    width: 100%;
+    width: 100%; 
+}
+
+.card-body.top-box .widget-appointment.widget {
+  
+  display: flex;
+  
+  align-items: center;
 }
 
 .widget-app-content {
@@ -1381,6 +1435,7 @@ span.carousel-badge {
     gap: 0px !important;
     width: 100px;
     justify-content: flex-start;
+    margin-bottom: 0;
 }
 
 .card-body.top-box .widget-app-content>div:first-child+div {
@@ -1405,9 +1460,10 @@ span.carousel-badge {
 
 .card-body.top-box.ng-star-inserted .widget-app-content span {
     white-space: nowrap;
-    margin-left: 32px;
-    font-size: 14px;
-    color: #999;
+    margin-left: 25px;
+    font-size: 11px;
+    color: #BDBDBD;
+    font-weight: 700;
 }
 
 .widget-app-content {
@@ -1429,8 +1485,8 @@ span.carousel-badge {
 }
 
 .card-body.top-box .author-img {
-    width: 30px !important;
-    height: 30px !important;
+    width: 22px !important;
+    height: 22px !important;
     flex: 0 0 30px;
     border: 1px solid #fff;
 }
