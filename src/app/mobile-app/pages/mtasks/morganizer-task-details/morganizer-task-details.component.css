@@ -73,8 +73,36 @@ span.survey-dates-inner {
 
 .task-title{
     display: flex;
+    justify-content: space-between;
 }
 
+.sub-title h5 {
+   font-size: 16px;
+  font-weight: 600;
+  color: rgba(53, 53, 53, 0.9);
+  text-transform: capitalize;
+}
+
+.group_detail_content p {
+  font-size: 12px;
+  color: #8E8E93;
+  line-height: 21px;
+}
+
+
+.card-body > div {
+  padding: 0 !important;
+}
+.card-body > div > div {
+  padding: 0 !important;
+}
+
+.news-date {
+  font-size: 12px;
+  color: #8E8E93;
+  margin-bottom: 8px;
+  display: inline-block;
+}
 
 .task-title h5 {
     margin-bottom: 20px !important;
@@ -139,8 +167,13 @@ span.survey-author-img {
 }
 
 span.survey-author-img img {
-    width: 100%;
-    transform: scale(2);
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.task-item .task-detail-profile img {
+  width: 100%;
 }
 
 .survey-author {
@@ -234,11 +267,17 @@ letter-spacing: 1px;
   line-height: normal;
   height: auto;
   margin-bottom: 9px;
-  padding-bottom: 15px;
+padding-bottom: 12px;
   display: inline-block;
   width: 100%;
   border-bottom: 1px solid #F4F2F2;
+  padding-top: 4px;
 }
+
+ body .card {
+    margin-bottom: 2px;
+  }
+
 
 ::ng-deep .mat-progress-bar-buffer {
     background-color: #e8e5ff;
@@ -267,7 +306,7 @@ letter-spacing: 1px;
 .widget-appointment {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #eaedf5;
+    border-top: 1px solid #eaedf5;
 }
 
 @media only screen and (max-width: 1260px) and (min-width: 1025px) {
