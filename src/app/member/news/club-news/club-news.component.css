@@ -143,11 +143,13 @@ span.news-category {
 
     position: absolute;
     bottom: 70px;
-    left: 24px;
+    left: 0px;
 
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
     height: auto;
-    padding: 5px
+    padding: 5px;
+    font-size:14px;
+    font-weight: 700;
 }
 
 .com-g-widget .news-image img {
@@ -299,7 +301,7 @@ span.author-date {
 .news-badge {
     font-size: 9px;
     font-weight: 700;
-    background: #FFBE00;
+    background: #FBC52D;
     display: inline-block;
     padding: 0 10px;
     border-radius: 25px;
@@ -405,8 +407,8 @@ span.author-date {
 }
 
 .news-author img {
-    width: 50px;
-    height: 50px;
+    width: 39px;
+    height: 39px;
     border-radius: 50%;
     margin-right: 10px;
     object-fit: cover;
@@ -688,7 +690,7 @@ owl-carousel-o.ng-star-inserted {
     }
 
     .large-item .news-item-image {
-        height: 741px;
+        height: 501px;
     }
 
     ::ng-deep .club_widget.club-wall-news .large-item .news-item-image {

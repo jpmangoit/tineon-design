@@ -74,7 +74,7 @@
         "denyBy": "Deny by",
         "denyReason": "Deny reason",
         "dashboardNewsTitle": "Aktuelles aus dem Verein",
-        "dashboardNewsTitle_stand": "Aktuelles aus dem Verein",
+        "dashboardNewsTitle_stand": "Neues aus dem Verein",
         "dashboardNewsTitle_untern": "Aktuelles aus dem Unternehmen",
         "dashboardNewsContent_new": "Weiter",
         "dashboardNewsContent": "Mehr lesen ",
@@ -108,7 +108,6 @@
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
         "congratulate": "Congratulate"
-
     },
     "club_wall": {
         "title": "News",
@@ -162,7 +161,9 @@
         "wait_admin_approve": "Warten auf die Genehmigung des Admin",
         "currentGroup": "Aktuelle Gruppe",
         "updateGroup": "Gruppe aktualisieren",
-        "group": "Gruppe"
+        "group": "Gruppe",
+        "close_news": "News schliessen"
+
     },
     "community_messages": {
         "date_month": "MMM",
@@ -658,7 +659,7 @@
         "years_old": "Jahre alt",
         "club_Appointments": "Vereins Termine",
         "ticket": "TICKET",
-        "club_Appointments_stand": "Vereins Termine",
+        "club_Appointments_stand": "Aktuelle Vereins-Termine",
         "club_Appointments_untern": "Unternehmens Termine",
         "birthday": "Geburtstag",
         "anniversary": "Jubiläum",
@@ -984,7 +985,8 @@
         "instruct_not_avail":"Der Kursleiter ist für die angegebenen Kursdaten nicht verfügbar",
         "room_not_avail":"Für die angegebenen Kursdaten ist kein Zimmer verfügbar",
         "not_room":"Zimmer ist nicht verfügbar",
-        "not_instruct":"Externer Dozent ist nicht verfügbar"
+        "not_instruct":"Externer Dozent ist nicht verfügbar",
+        "extern": "Extern"
     },
     "Survey": {
         "survey": "Umfragen",

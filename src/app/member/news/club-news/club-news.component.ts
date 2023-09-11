@@ -18,7 +18,7 @@ declare var $: any;
     selector: 'app-club-news',
     templateUrl: './club-news.component.html',
     styleUrls: ['./club-news.component.css']
-})
+}) 
 
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
@@ -259,7 +259,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
                         this.dashboardData = respData.news;
-
                         if (this.dashboardData && this.dashboardData.length > 0) {
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
