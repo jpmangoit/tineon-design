@@ -145,20 +145,18 @@ export class MgeneralInformationComponent implements OnInit {
             );
             this.authService.setLoader(true);
             this.authService
-                .memberSendRequest('get','member-info/' + userData.database_id + '/' + userData.team_id + '/' + userData.member_id, userData)
+                .memberSendRequest('get', 'member-info/' + userData.database_id + '/' + userData.team_id + '/' + userData.member_id, userData)
                 .subscribe((respData: any) => {
-                    console.log(respData);
-                    
                     this.authService.setLoader(false);
-                    if(respData.changeRequest.member.status === 'pending'){
+                    if (respData.changeRequest.member.status === 'pending') {
                         this.checkStatus = respData.changeRequest.member;
                         this.userDetails = respData.changeRequest.member.dataChanges;
                         this.userDetails.shareBirthday = respData.shareBirthday
                         // this.userDetails.push(respData.shareBirthday)
                         // this.allowAdvertisment = this.userDetails.allowAdvertis
-                    }else{
-                          this.userDetails = respData;
-                    }                    
+                    } else {
+                        this.userDetails = respData;
+                    }
                     this.role = userData.roles[0];
                 });
         }
@@ -197,7 +195,7 @@ export class MgeneralInformationComponent implements OnInit {
             this.c_password == false
         ) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('post','change-password',this.changePasswordForm.value)
+            this.authService.memberSendRequest('post', 'change-password', this.changePasswordForm.value)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {

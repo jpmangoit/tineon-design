@@ -11,7 +11,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -29,7 +29,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     weekdayList: UntypedFormArray;
     formSubmit: boolean = false;
     roomsSubmitted: boolean = false;
-    responseMessage: string; 
+    responseMessage: string;
     checkNum: boolean = false;
     fileToReturn: File;
     roomId: number;
@@ -37,10 +37,10 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     roomData: any;
     imageUrl: string;
     hasPicture: boolean = false;
-    weekdayArray:  { name: any; id: number; }[];
+    weekdayArray: { name: any; id: number; }[];
     weekdayDropdownSettings: object;
     selectDay: string[] = [];
-    errorTime: { isError: boolean; errorMessage: string } = { isError: false,errorMessage: '' };
+    errorTime: { isError: boolean; errorMessage: string } = { isError: false, errorMessage: '' };
     indax: number;
     teamId: number;
     imageChangedEvent: Event;
@@ -59,7 +59,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -146,8 +146,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     time_to: ['', Validators.required],
                 }),
             ]),
-            active_from :['', Validators.required],
-            active_to :['', Validators.required],
+            active_from: ['', Validators.required],
+            active_to: ['', Validators.required],
         });
 
         this.allWeekDayArray = [
@@ -161,23 +161,23 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         ];
 
         this.weekdayArray = [
-            { id: 1, name: this.language.new_create_event.monday},
-            { id: 2, name: this.language.new_create_event.tuesday},
-            { id: 3, name: this.language.new_create_event.wednesday},
-            { id: 4, name: this.language.new_create_event.thrusday},
-            { id: 5, name: this.language.new_create_event.friday},
-            { id: 6, name: this.language.new_create_event.saturday},
-            { id: 0, name: this.language.new_create_event.sunday},
+            { id: 1, name: this.language.new_create_event.monday },
+            { id: 2, name: this.language.new_create_event.tuesday },
+            { id: 3, name: this.language.new_create_event.wednesday },
+            { id: 4, name: this.language.new_create_event.thrusday },
+            { id: 5, name: this.language.new_create_event.friday },
+            { id: 6, name: this.language.new_create_event.saturday },
+            { id: 0, name: this.language.new_create_event.sunday },
         ];
 
         this.allWeekDayArrayName = [
-            { id: 0, name: ["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar"]},
-            { id: 1, name: ["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi"]},
-            { id: 2, name: ["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı"]},
-            { id: 3, name: ["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba"]},
-            { id: 4, name: ["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe"]},
-            { id: 5, name: ["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma"]},
-            { id: 6, name: ["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi"]}
+            { id: 0, name: ["Sonntag", "Sunday", "dimanche", "domenica", "Воскресенье", "domingo", "Pazar"] },
+            { id: 1, name: ["Montag", "Monday", "lundi", "lunedì", "понедельник", "lunes", "Pazartesi"] },
+            { id: 2, name: ["Dienstag", "Tuesday", "mardi", "martedì", "вторник", "martes", "Salı"] },
+            { id: 3, name: ["Mittwoch", "Wednesday", "mercredi", "mercoledì", "среда", "miércoles", "Çarşamba"] },
+            { id: 4, name: ["Donnerstag", "Thursday", "jeudi", "giovedì", "четверг", "jueves", "Perşembe"] },
+            { id: 5, name: ["Freitag", "Friday", "vendredi", "venerdì", "Пятница", "viernes", "Cuma"] },
+            { id: 6, name: ["Samstag", "Saturday", "samedi", "sabato", "Суббота", "sábado", "Cumartesi"] }
         ]
         this.weekdayDropdownSettings = {
             singleSelection: true,
@@ -223,7 +223,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.selectDay.push(item.id);
     }
 
-    onWeekdayItemDeSelect(item: string){
+    onWeekdayItemDeSelect(item: string) {
         this.selectDay = [];
     }
 
@@ -243,85 +243,83 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {object array}
     */
-   originalImg:any;
+    originalImg: any;
     getRoomInfo() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getRoomsById/' + this.roomId, null)
-        .subscribe((respData: Room) => {
-            console.log(respData);
-            
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                this.roomData = respData['result'];
-                this.roomForm.controls['author'].setValue(this.roomData.author);
-                this.roomForm.controls['approved_status'].setValue(this.roomData.approved_status);
-                this.roomForm.controls['name'].setValue(this.roomData.name);
-                this.roomForm.controls['description'].setValue(this.roomData.description);
-                this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
-                this.roomForm.controls['room_email'].setValue(this.roomData.room_email);
-                this.roomForm.controls['room_address'].setValue(this.roomData.room_address);
-                this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
+            .subscribe((respData: Room) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.roomData = respData['result'];
+                    this.roomForm.controls['author'].setValue(this.roomData.author);
+                    this.roomForm.controls['approved_status'].setValue(this.roomData.approved_status);
+                    this.roomForm.controls['name'].setValue(this.roomData.name);
+                    this.roomForm.controls['description'].setValue(this.roomData.description);
+                    this.roomForm.controls['room_type'].setValue(this.roomData.room_type);
+                    this.roomForm.controls['room_email'].setValue(this.roomData.room_email);
+                    this.roomForm.controls['room_address'].setValue(this.roomData.room_address);
+                    this.roomForm.controls['no_of_persons'].setValue(this.roomData.no_of_persons);
 
-                if(this.roomData.room_image.length == 0){
-                    this.imageUrl = '../../../assets/img/no_image.png'
-                    
-                }else if(this.roomData?.room_image[0]?.room_image){
-                    this.hasPicture = true;
-                    this.roomForm.controls['image'].setValue(this.roomData?.room_image[0]?.room_image);
-                    this.originalImg = this.roomData?.room_image[0]?.room_image;
-                    this.roomData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData?.room_image[0]?.room_image.substring(20)));
-                    this.imageUrl = this.roomData?.room_image[0]?.room_image;
-                }
+                    if (this.roomData.room_image.length == 0) {
+                        this.imageUrl = '../../../assets/img/no_image.png'
 
-                // if (this.roomData['room_image']?.[0]['room_image']){
-                //     this.hasPicture = true;
-                //     this.roomForm.controls['image'].setValue(this.roomData['room_image']?.[0]['room_image']);
-                //     this.originalImg = this.roomData['room_image']?.[0]['room_image']
-                //     this.roomData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData['room_image']?.[0]['room_image'].substring(20)));
-                //     this.imageUrl = this.roomData['room_image']?.[0]['room_image'];
-                // }
-
-                if ( this.roomData['active_from']) {
-                    this.roomForm.controls['active_from'].setValue(this.roomData['active_from'].split('T')[0]);
-                }
-                if(this.roomData['active_to']){
-                    this.roomForm.controls['active_to'].setValue(this.roomData['active_to'].split('T')[0])
-                }
-
-                // if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.roomData.image.endsWith(char))) {
-                // this.hasPicture = true;
-                //     this.imageUrl = this.roomData.image;
-                // }
-                this.weekdays.reset();
-                //-------------------set weekdays-------------
-                for (let i = 0; i < this.roomData.room_availablity.length; i++) {
-                    this.weekdays.removeAt(i);
-                    if (this.weekdays.value[i] && this.weekdays.value[i].day == null && this.weekdays.value[i].time_from == null && this.weekdays.value[i].time_to == null) {
-                        this.weekdays.removeAt(i);
+                    } else if (this.roomData?.room_image[0]?.room_image) {
+                        this.hasPicture = true;
+                        this.roomForm.controls['image'].setValue(this.roomData?.room_image[0]?.room_image);
+                        this.originalImg = this.roomData?.room_image[0]?.room_image;
+                        this.roomData.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData?.room_image[0]?.room_image.substring(20)));
+                        this.imageUrl = this.roomData?.room_image[0]?.room_image;
                     }
-                }
-                this.weekdays.removeAt(0);
-                if(this.roomData?.room_availablity?.length > 0){
 
-                    this.roomData.room_availablity.forEach((key, value) => {
-                        if( key.time_from.includes(':00') && key.time_to.includes(':00')){
-                            key.time_from = key.time_from.slice(0, 5)
-                            key.time_to = key.time_to.slice(0, 5)
+                    // if (this.roomData['room_image']?.[0]['room_image']){
+                    //     this.hasPicture = true;
+                    //     this.roomForm.controls['image'].setValue(this.roomData['room_image']?.[0]['room_image']);
+                    //     this.originalImg = this.roomData['room_image']?.[0]['room_image']
+                    //     this.roomData['room_image'][0]['room_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.roomData['room_image']?.[0]['room_image'].substring(20)));
+                    //     this.imageUrl = this.roomData['room_image']?.[0]['room_image'];
+                    // }
+
+                    if (this.roomData['active_from']) {
+                        this.roomForm.controls['active_from'].setValue(this.roomData['active_from'].split('T')[0]);
+                    }
+                    if (this.roomData['active_to']) {
+                        this.roomForm.controls['active_to'].setValue(this.roomData['active_to'].split('T')[0])
+                    }
+
+                    // if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.roomData.image.endsWith(char))) {
+                    // this.hasPicture = true;
+                    //     this.imageUrl = this.roomData.image;
+                    // }
+                    this.weekdays.reset();
+                    //-------------------set weekdays-------------
+                    for (let i = 0; i < this.roomData.room_availablity.length; i++) {
+                        this.weekdays.removeAt(i);
+                        if (this.weekdays.value[i] && this.weekdays.value[i].day == null && this.weekdays.value[i].time_from == null && this.weekdays.value[i].time_to == null) {
+                            this.weekdays.removeAt(i);
                         }
-                        let room_info = [];
-                        room_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)]});
-                        const newAvailableTimes: UntypedFormGroup = this.formBuilder.group({
-                            day: [room_info, Validators.required],
-                            time_from: [key.time_from, Validators.required],
-                            time_to: [key.time_to, Validators.required],
+                    }
+                    this.weekdays.removeAt(0);
+                    if (this.roomData?.room_availablity?.length > 0) {
+
+                        this.roomData.room_availablity.forEach((key, value) => {
+                            if (key.time_from.includes(':00') && key.time_to.includes(':00')) {
+                                key.time_from = key.time_from.slice(0, 5)
+                                key.time_to = key.time_to.slice(0, 5)
+                            }
+                            let room_info = [];
+                            room_info.push({ id: key.weekday, name: this.allWeekDayArray[this.getDayId(key.weekday)] });
+                            const newAvailableTimes: UntypedFormGroup = this.formBuilder.group({
+                                day: [room_info, Validators.required],
+                                time_from: [key.time_from, Validators.required],
+                                time_to: [key.time_to, Validators.required],
+                            });
+                            this.weekdays.push(newAvailableTimes);
                         });
-                        this.weekdays.push(newAvailableTimes);
-                    });
+                    }
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
                 }
-            }else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            });
     }
 
     updateRoomForm() {
@@ -380,18 +378,18 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            if (this.roomForm.valid && (this.errorTime['isError'] == false)){
+            if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('put', 'updateRooms/' + this.roomId, formData).subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;
                     if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         var self = this;
                         setTimeout(function () {
                             self.router.navigate(['room-detail/' + self.roomId]);
                         }, 2000);
-                    }else if (respData['code'] == 400) {
+                    } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
                 });
@@ -406,10 +404,9 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.roomForm?.controls?.weekdays?.value?.length; i++) {
             if ((this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] != "" && this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] != "") &&
                 (this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] > this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] ||
-                this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to'])
-            )
-            {
-                this.errorTime = { isError: true,errorMessage: this.language.error_message.end_time_same, };
+                    this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to'])
+            ) {
+                this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, };
                 return this.indax;
             } else {
                 this.errorTime = { isError: false, errorMessage: '' };
@@ -430,9 +427,9 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.roomForm.get('active_from').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else {
+        } else {
             return this.roomForm.controls['active_from'].value
         }
     }
@@ -486,14 +483,14 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
             };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -507,10 +504,10 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.roomForm.patchValue({ image: this.fileToReturn });
                     this.roomForm.get('image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
@@ -534,27 +531,27 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         window.history.back();
     }
 
-    getDayName(id:any){
+    getDayName(id: any) {
         if (!isNaN(id)) {
             return this.allWeekDayArray[id];
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return this.allWeekDayArray[obj.id];
-            }else{
+            } else {
                 return id;
             }
         }
     }
 
-    getDayId(id:any){
+    getDayId(id: any) {
         if (!isNaN(id)) {
             return id;
-        }else{
+        } else {
             let obj = this.allWeekDayArrayName.find(o => o.name.includes(id));
             if (obj?.name) {
                 return obj.id;
-            }else{
+            } else {
                 return id;
             }
         }

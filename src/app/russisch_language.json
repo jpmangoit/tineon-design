@@ -296,7 +296,8 @@
         "uncomplete_heading":"У этой задачи есть незавершенная подзадача. Пожалуйста, сначала завершите подзадачу",
         "close_subtask":"Закрывать",
         "viewTask": "Visualizza l'attività",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "days": "Дни"
 
     },
     "club_document": {

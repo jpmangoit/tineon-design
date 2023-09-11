@@ -539,9 +539,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
-
-                        console.log(this.currentCourseList);
-
                         this.currentCourseList.forEach(element => {
                             // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
                             //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
