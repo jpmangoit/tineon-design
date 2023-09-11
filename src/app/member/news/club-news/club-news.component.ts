@@ -148,8 +148,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = respData['result']['banner']
-                            console.log( this.bannerData);
-                            
+
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
@@ -295,7 +294,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                 });
             } else if ((this.role != 'admin') && (this.role != 'guest')) {
                 let userId: string = localStorage.getItem('user-id');
-
                 this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
                     (respData: any) => {
                         this.authService.setLoader(false);
