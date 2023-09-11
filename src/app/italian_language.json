@@ -442,7 +442,8 @@
         "currentTask": "Attività corrente",
         "updatedTask": "Attività aggiornata",
         "viewTask": "Visualizza l'attività",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "days": "Giorni"
 
     },
     "club_document": {

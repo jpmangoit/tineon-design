@@ -825,7 +825,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     this.romData.forEach(element => {
                         if (element.id == this.courseDetails.room) {
                             this.selectedRoom = element
-                            // console.log(this.selectedRoom); 
                         }
                     });
                 }

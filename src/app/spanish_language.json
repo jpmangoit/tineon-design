@@ -441,7 +441,8 @@
         "currentTask": "Tarea actual",
         "updatedTask": "Tarea actualizada",
         "viewTask":"Ver tarea",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "days": "Días"
 
     },
     "club_document": {

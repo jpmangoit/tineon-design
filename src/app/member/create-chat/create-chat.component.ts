@@ -157,7 +157,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
                             this.alluserDetails = respData;
-                        });    
+                        });
                         this.chats();
                     }
                 }
@@ -180,41 +180,40 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     // let chatgroupData = this.chatUserArr.filter(item => {
                     //     console.log(item);
                     //     return item.type == 'group'
-                        
-                    // } );
 
-                        this.userDropdownList = [];
-                        var userData: UserDetails[];
-                        if (this.chatUserArr.length > 0) {
-                            userData = this.alluserDetails.filter(entry1 => !this.chatUserArr.some(entry2 =>(entry2.type == "individual") && (entry1.id == entry2.id || entry1.id == this.userDetails.userId)));
-                        } else {
-                            userData = this.alluserDetails.filter(o => o.id != this.userDetails.userId)
-                        }
-                       
-                        if (userData && userData.length > 0) {
-                            Object(userData).forEach((val, key) => {
-                                this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
-                                
-                                self.userDropdownSettings = {
-                                    singleSelection: true,
-                                    idField: 'id',
-                                    textField: 'name',
-                                    selectAllText: 'Select All',
-                                    enableCheckAll: false,
-                                    unSelectAllText: 'UnSelect All',
-                                    allowSearchFilter: true,
-                                    searchPlaceholderText: this.language.header.search,
-                                    closeDropDownOnSelection: true
-                                };
-                            });                           
-                        }
+                    // } );
+                    this.userDropdownList = [];
+                    var userData: UserDetails[];
+                    if (this.chatUserArr.length > 0) {
+                        userData = this.alluserDetails.filter(entry1 => !this.chatUserArr.some(entry2 => (entry2.type == "individual") && (entry1.id == entry2.id || entry1.id == this.userDetails.userId)));
+                    } else {
+                        userData = this.alluserDetails.filter(o => o.id != this.userDetails.userId)
+                    }
+
+                    if (userData && userData.length > 0) {
+                        Object(userData).forEach((val, key) => {
+                            this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
+
+                            self.userDropdownSettings = {
+                                singleSelection: true,
+                                idField: 'id',
+                                textField: 'name',
+                                selectAllText: 'Select All',
+                                enableCheckAll: false,
+                                unSelectAllText: 'UnSelect All',
+                                allowSearchFilter: true,
+                                searchPlaceholderText: this.language.header.search,
+                                closeDropDownOnSelection: true
+                            };
+                        });
+                    }
                     let groupData: CommunityGroup[];
                     if (this.chatUserArr.length > 0) {
                         groupData = this.groups.filter(entry1 => !this.chatUserArr.some(entry2 => (entry2.type == "group") && (entry1.id == entry2.id)));
                     } else {
                         groupData = this.groups;
                     }
-                    this.groups = groupData            
+                    this.groups = groupData
                     this.groupDropdownSettings = {
                         singleSelection: true,
                         idField: 'id',

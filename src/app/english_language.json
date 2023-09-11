@@ -448,7 +448,8 @@
         "updatedTask": "Updated task",
 
         "viewTask":"View Task",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "days": "Days"
     },
     "club_document": {
         "title": "Documents",

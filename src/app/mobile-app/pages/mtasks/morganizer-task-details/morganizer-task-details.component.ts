@@ -18,7 +18,7 @@ declare var $: any;
 
 
 @Component({
-	selector: 'app-morganizer-task-details',
+	selector: 'app-morganizer-task-details', 
 	templateUrl: './morganizer-task-details.component.html',
 	styleUrls: ['./morganizer-task-details.component.css']
 })
