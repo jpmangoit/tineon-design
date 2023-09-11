@@ -1,18 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="52px" height="52px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
-<g>
-	<circle fill="#FFFFFF" cx="25.557" cy="25.557" r="25.557"/>
+<svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_99_516)">
+<circle cx="25.5565" cy="25.5565" r="25.5565" fill="white"/>
 </g>
-<g>
-	<path fill="#778899" d="M23.996,31.385c-0.007-0.028-0.032-0.023-0.053-0.028c-1.476-0.321-2.009-1.88-1.026-2.991
-		c1.063-1.202,2.122-2.409,3.186-3.61c0.068-0.077,0.062-0.117-0.002-0.19c-1.066-1.206-2.129-2.415-3.194-3.621
-		c-0.792-0.896-0.593-2.173,0.432-2.762c0.77-0.443,1.762-0.281,2.365,0.4c1.44,1.628,2.88,3.258,4.312,4.893
-		c0.631,0.72,0.63,1.655-0.002,2.375c-1.433,1.635-2.873,3.264-4.311,4.894c-0.273,0.309-0.615,0.513-1.029,0.6
-		c-0.035,0.007-0.085-0.005-0.105,0.042C24.378,31.385,24.187,31.385,23.996,31.385z"/>
+<g filter="url(#filter1_i_99_516)">
+<path d="M23.9963 31.3852C23.9895 31.3566 23.9642 31.3609 23.9434 31.3562C22.4674 31.0351 21.9347 29.476 22.9176 28.3649C23.9812 27.1629 25.0395 25.9563 26.1036 24.7548C26.1716 24.6781 26.1653 24.6378 26.1012 24.5648C25.0346 23.3596 23.972 22.1506 22.907 20.944C22.1158 20.0472 22.3145 18.7709 23.3387 18.1821C24.109 17.7393 25.1012 17.9008 25.7039 18.5818C27.1448 20.2097 28.5834 21.8403 30.0161 23.4752C30.6469 24.1951 30.6455 25.1298 30.0141 25.8496C28.5809 27.484 27.141 29.1128 25.7024 30.743C25.4295 31.0519 25.0881 31.2555 24.6738 31.3426C24.6388 31.3501 24.5888 31.3384 24.5684 31.3852C24.378 31.3852 24.1872 31.3852 23.9963 31.3852Z" fill="#FB5F5F"/>
 </g>
-<div  xmlns="" style="display: none" id="divScriptsUsed"></div>
-<script  src="moz-extension://b8897ea9-e640-46f6-8e88-ab53dcdd5f8f/js/wrs_env.js" xmlns="" id="globalVarsDetection"></script>
+<defs>
+<filter id="filter0_i_99_516" x="0" y="0" width="51.113" height="55.113" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_99_516"/>
+</filter>
+<filter id="filter1_i_99_516" x="22.418" y="17.9344" width="8.07043" height="14.4508" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="0.5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_99_516"/>
+</filter>
+</defs>
 </svg>
