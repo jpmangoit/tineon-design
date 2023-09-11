@@ -442,8 +442,8 @@
         "currentTask": "Geçerli Görev",
         "updatedTask": "Güncellenmiş görev",
         "viewTask":"Görevi Görüntüle",
-        "task_created_by": "Task Created by:"
-
+        "task_created_by": "Task Created by:",
+        "days": "Günler"
     },
     "club_document": {
         "title": "Belgeler",

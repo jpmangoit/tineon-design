@@ -446,8 +446,8 @@
         "currentTask": "Aktuelle Aufgabe",
         "updatedTask": "Aktualisierte Aufgabe",
         "viewTask": "Aufgabe ansehen",
-        "task_created_by": "Aufgabe erstellt von:"
-
+        "task_created_by": "Aufgabe erstellt von:",
+        "days": "Tage"
     },
     "club_document": {
         "title": "Dokumente",
