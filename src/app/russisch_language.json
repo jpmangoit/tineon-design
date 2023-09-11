@@ -102,7 +102,9 @@
         "members": "Члены",
         "posts": "Посты",
 
-        "no_groups":"No Groups Found"
+        "no_groups":"No Groups Found",
+        "close_news": "Close News"
+
     },
     "community_messages": {
         "all_active_chat": "Чаты",
@@ -726,7 +728,9 @@
 
         "third_panel": "Third Panel",
         "room_error": "Количество разрешенных лиц должно быть меньше или равно количеству человек в номере",
-        "valid_price":"Price must be greater than Zero"
+        "valid_price":"Price must be greater than Zero",
+        "extern": "Extern"
+
     },
     "Survey": {
         "survey": "Исследование",

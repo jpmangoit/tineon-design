@@ -13,7 +13,7 @@ declare var $: any;
     styleUrls: ['./organizer-all-task.component.css']
 })
 
-export class OrganizerAllTaskComponent implements OnInit {
+export class OrganizerAllTaskComponent implements OnInit { 
     language: any;
     user_id: string;
     allTasks: TaskType[];

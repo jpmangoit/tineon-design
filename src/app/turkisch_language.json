@@ -162,7 +162,9 @@
         "wait_admin_approve": "Yönetici onayı bekleniyor",
         "currentGroup": "Geçerli Grup",
         "updateGroup": "Grubu Güncelle",
-        "group": "Grup"
+        "group": "Grup",
+        "close_news": "Close News"
+
     },
     "community_messages": {
         "date_month": "MMM",
@@ -981,7 +983,8 @@
         "instruct_not_avail":"Eğitmen belirtilen kurs tarihlerinde müsait değil",
         "room_not_avail":"Oda belirtilen kurs tarihlerinde müsait değil",
         "not_room":"Oda müsait değil",
-        "not_instruct":"Harici Eğitmen Uygun Değil"
+        "not_instruct":"Harici Eğitmen Uygun Değil",
+        "extern": "Extern"
     },
     "Survey": {
         "survey": "Anket",
