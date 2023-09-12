@@ -414,6 +414,10 @@ span.author-date {
     object-fit: cover;
 }
 
+.highlighted-news {
+    border: 2px solid #FB5F5F;
+}
+
 .news-footer {
     display: flex;
     flex-wrap: wrap;
