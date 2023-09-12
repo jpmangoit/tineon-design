@@ -241,6 +241,8 @@ export class MorganizerTaskComponent implements OnInit {
                                     if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
                                         this.toDoTask.push(element) 
                                         this.toDoTask;
+                                        console.log(this.toDoTask);
+                                        
 
                                     } else if (element.status == 0 && element.subtasks.some(obj => obj.status === 1)) {
                                         this.inProgress.push(element)
