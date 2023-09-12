@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
@@ -26,7 +26,7 @@ declare var $: any;
     styleUrls: ['./community-messages.component.css']
 })
 
-export class CommunityMessagesComponent implements OnInit, OnDestroy {
+export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewInit,AfterViewChecked {
     language: any;
     alluserDetails: any = [];
     userDetails: LoginDetails;
@@ -586,6 +586,13 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         });
 
     }
+
+    ngAfterViewInit() {
+        // Check if chatContainer is available after the view is initialized
+        if (this.scrollBottom) {
+          this.scrollToBottom();
+        }
+      }
 
     ngAfterViewChecked() {
         if (this.finalMessages && this.finalMessages.length > 0) {
