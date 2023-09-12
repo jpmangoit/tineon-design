@@ -926,7 +926,7 @@ span.club-badge {
 
 .club-widget-item-inner {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap; 
 }
 
 /* .club-widget-item {
@@ -940,6 +940,10 @@ span.club-badge {
 }
 
 .club-widget-appointment .card-body {
+    padding: 0px;;
+}
+
+.club-widget-appointment .club-right-area .card-body {
     padding: 0 0 0 15px; 
 }
 
@@ -1017,12 +1021,10 @@ span.club-badge {
     margin: -2px 0 20px;
     cursor: pointer;
     /* text-transform: capitalize; */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  
     overflow: hidden;
-    max-height: calc(2 * 2rem);
-    white-space: normal;
+   display: block;
+    white-space:nowrap;
     text-overflow: ellipsis;
     font-family: 'Gellix', sans-serif;
     padding: 0 13px;
@@ -1464,6 +1466,9 @@ span.carousel-badge {
     font-size: 11px;
     color: #BDBDBD;
     font-weight: 700;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .widget-app-content {
