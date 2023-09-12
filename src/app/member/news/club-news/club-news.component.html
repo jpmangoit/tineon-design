@@ -59,7 +59,7 @@
                                     <h5>{{data.title}}</h5>
                                     <div class="news-summery">
                                         <p
-                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:800)+'...':(data.text)">
+                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:250)+'...':(data.text)">
                                         </p>
                                     </div>
                                 </div>
@@ -330,7 +330,7 @@
                                     <h5>{{data.title}}</h5>
                                     <div class="news-summery">
                                         <p
-                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:800)+'...':(data.text)">
+                                            [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:250)+'...':(data.text)">
                                         </p>
                                     </div>
                                 </div>
