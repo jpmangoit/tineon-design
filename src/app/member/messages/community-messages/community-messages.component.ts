@@ -245,7 +245,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                     if (this.chatUserArr && this.chatUserArr.length > 0) {
                         this.chatUserArr.forEach((element:any) => {
                             if (element.type == 'group') {
-                                
+
                                 if (this.groups && this.groups.length > 0) {
                                     grp = this.groups.find((o: any) => o.id == element.id)
                                     element.name = grp ? grp.name : element.id

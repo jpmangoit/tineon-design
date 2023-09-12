@@ -21,14 +21,14 @@ export class RoomListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true; 
+    isData: boolean = true;
     displayedColumns: string[] = [
         'title',
         'description',
         'image',
-        'no_of_persons',        
+        'no_of_persons',
         'created_at',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -88,7 +88,7 @@ export class RoomListComponent implements OnInit {
                         if(element?.room_image[0]?.room_image){
                             element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
                         }
-                    }) 
+                    })
                 }
             )
     }

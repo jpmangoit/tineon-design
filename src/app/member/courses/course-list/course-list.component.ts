@@ -21,14 +21,14 @@ export class CourseListComponent implements OnInit {
 
     eventTypeList: { name: string }[] = [];
     userData: LoginDetails;
-    language: any; 
+    language: any;
     isData: boolean = true;
     displayedColumns: string[] = [
         'name',
         'description',
         'place',
         'picture_video',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();

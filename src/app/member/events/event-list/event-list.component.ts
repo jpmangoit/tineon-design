@@ -28,7 +28,7 @@ export class EventListComponent implements OnInit {
         'name',
         'description',
         'picture_video',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();

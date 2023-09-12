@@ -28,7 +28,7 @@ export class NewsListComponent implements OnInit {
         'headline',
         'imageUrls',
         'created_at',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();

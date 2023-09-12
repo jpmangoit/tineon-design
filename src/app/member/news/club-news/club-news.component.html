@@ -95,10 +95,8 @@
                                 <owl-carousel-o [options]="sliderOptions">
                                     <ng-template carouselSlide *ngFor="let item of bannerData; let i=index">
                                         <div class="news-widget com-g-widget">
-                                            <a [href]="item.redirectLink" target="_blank"
-                                                (click)="onClickBanner(item.id)">
-                                                <div class="news-image"
-                                                    [ngClass]="item.banner_image[0]?.banner_image == null ?'no_image' : ''">
+                                            <a [href]="item.redirectLink" target="_blank" (click)="onClickBanner(item.id)">
+                                                <div class="news-image" [ngClass]="item.banner_image[0]?.banner_image == null ?'no_image' : ''">
                                                     <img onContextMenu="return false;"
                                                         [src]="item.banner_image[0]?.banner_image!= null? item.banner_image[0]?.banner_image: '../../assets/img/no_image.png'"
                                                         alt="{{item.bannerName }}" loading="lazy" />
@@ -272,16 +270,12 @@
                             alt="{{language.group_news.no_news}}" loading="lazy"><br>
                         <span>{{language.group_news.no_news}}</span>
                     </div>
-                    <ng-container
-                        *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
-                        <div class="news-item large-item"
-                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1">
+                    <ng-container *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
+                        <div class="news-item large-item" [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1">
 
                             <div class="news-item-image">
-                                <img onContextMenu="return false;"
-                                    [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
-                                    alt="" loading="lazy" data-bs-toggle="modal" data-bs-target="#exModal"
-                                    (click)="getNewsDetails(data.id)">
+                                <img onContextMenu="return false;"  alt="" loading="lazy" data-bs-toggle="modal" data-bs-target="#exModal"  (click)="getNewsDetails(data.id)"
+                                    [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'">
 
                                 <div class="new-action">
                                     <a class="green"
@@ -307,7 +301,7 @@
                                         <!-- <img onContextMenu="return false;"
                                             src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt=""
                                             loading="lazy">&nbsp; -->
-                                        {{data.created_at | date: 'd. MMMM y'}}
+                                        {{data.created_at | date: 'd.MM.yyyy'}}
                                     </span>
                                 </div>
                                 <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
@@ -346,13 +340,12 @@
                         </div>
                     </ng-container>
                     <div class="news-item multi-item">
-                        <div class="dashboard-slider" *ngIf="bannerData">
+                        <div class="dashboard-slider">
                             <div class="multi-item-carousel" *ngIf="bannerData?.length > 0 && allowAdvertisment == 0">
-                                <owl-carousel-o [options]="sliderOptions">
+                                <owl-carousel-o *ngIf="sliderOptionsOne != undefined" [options]="sliderOptionsOne">
                                     <ng-template carouselSlide *ngFor="let item of bannerData; let i=index">
                                         <div class="news-widget com-g-widget">
-                                            <a [href]="item.redirectLink" target="_blank"
-                                                (click)="onClickBanner(item.id)">
+                                            <a [href]="item.redirectLink" target="_blank" (click)="onClickBanner(item.id)">
                                                 <div class="news-image"
                                                     [ngClass]="item?.banner_image[0]?.banner_image == null ?'no_image' : ''">
                                                     <img onContextMenu="return false;"
@@ -376,11 +369,8 @@
                                     </ng-template>
                                 </owl-carousel-o>
                             </div>
-                            <ng-container
-                                *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
-                                <div class="multi-item-single"
-                                    [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
-                                    *ngIf="i >= 1 && i <= newsDisplay">
+                            <ng-container  *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
+                                <div class="multi-item-single" [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i >= 1 && i <= newsDisplay">
 
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
                                         <img onContextMenu="return false;"
@@ -412,7 +402,7 @@
                                                 <!-- <img onContextMenu="return false;"
                                                         src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt=""
                                                         loading="lazy">&nbsp; -->
-                                                {{data.created_at | date: 'd. MMMM y'}}
+                                                {{data.created_at | date: 'd.MM.y'}}
                                             </span>
                                         </div>
                                         <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"

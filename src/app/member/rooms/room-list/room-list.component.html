@@ -52,12 +52,12 @@
                             {{language.banner.image}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
-                            <img [src]="row?.room_image[0]?.room_image ? row?.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
-                             width="60px" height="60px" /> 
+                            <img [src]="row?.room_image[0]?.room_image ? row?.room_image[0]?.room_image : '../../../../assets/img/no_image.png'"
+                             width="60px" height="60px" />
 
-                            <!-- <img onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'" 
+                            <!-- <img onContextMenu="return false;" [src]="item.room_image[0]?.room_image ? item.room_image[0]?.room_image : '../../../../assets/img/no_image.png'"
 										alt="" loading="lazy"> -->
-										
+
                         </td>
                     </ng-container>
 
@@ -71,14 +71,14 @@
                     </ng-container>
 
 
-                    <ng-container matColumnDef="author">
+                    <!-- <ng-container matColumnDef="author">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             {{language.dashboard.dashboardNewsAuthor}}
                         </th>
                         <td class="odd" mat-cell *matCellDef="let row">
                             {{userData.firstName }}
                         </td>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="View">
                         <th class="text-left" mat-header-cell *matHeaderCellDef>

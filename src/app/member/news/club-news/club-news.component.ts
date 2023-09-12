@@ -18,7 +18,7 @@ declare var $: any;
     selector: 'app-club-news',
     templateUrl: './club-news.component.html',
     styleUrls: ['./club-news.component.css']
-}) 
+})
 
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
@@ -74,6 +74,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         nav: false,
         autoplay: true
     };
+    sliderOptionsOne: OwlOptions;
     currentPageNmuber: number = 1;
     totalPages: any
     itemPerPage: number = 4;
@@ -90,9 +91,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-    ) { }
+    ) {  }
 
     ngOnInit(): void {
+        console.log(this.sliderOptions);
+
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -108,6 +111,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         } else {
             this.showClubDash = false;
         }
+
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
@@ -124,6 +128,34 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         }
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
+           this.sliderOptionsOne = {
+                loop: true,
+                mouseDrag: true,
+                touchDrag: true,
+                pullDrag: true,
+                dots: true,
+                navSpeed: 700,
+                navText: ['', ''],
+                margin: 24,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    400: {
+                        items: 1
+                    },
+                    740: {
+                        items: 1
+                    },
+                    940: {
+                        items: 1
+                    }
+                },
+                nav: false,
+                autoplay: true
+            };
+
+
         }
         this.getAllNews();
         this.getAllNewspagination();
@@ -137,18 +169,22 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @return  {all the records of Banners} array of object
     */
     getDesktopDeshboardBanner() {
+        console.log(this.bannerData);
+
         if (this.bannerData?.length > 0) {
             this.newsDisplay = 3;
-        }
-        else {
+        }  else {
+            console.log(this.bannerData);
             // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
                     (respData: any) => {
+                        console.log(respData);
+
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
+                            this.bannerData = [];
                             this.bannerData = respData['result']['banner']
-
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
@@ -163,6 +199,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     element['redirectLink'] = '//' + element.redirectLink;
                                 }
                             })
+                            console.log(this.bannerData);
                             if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
                                 this.newsDisplay = 3;
                             }
