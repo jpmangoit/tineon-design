@@ -762,7 +762,7 @@ max-width: none;
     background: #fff;
     border-radius: 21px;
 } */
-@media only screen and (min-width: 1450px) and (max-width: 1780px) {
+@media only screen and (min-width: 1681px) and (max-width: 1780px) {
     .dash-widget.dashboard_w_m .col-md-9 {
         flex: 0 0 66.666667%;
         max-width: 66.666667%;
@@ -773,7 +773,7 @@ max-width: none;
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1449px) {
+@media only screen and (min-width: 1025px) and (max-width: 1680px) {
     .dash-widget.dashboard_w_m .col-md-9 {
         flex: 0 0 75%;
         max-width: 75%;
