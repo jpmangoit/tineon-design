@@ -7719,8 +7719,8 @@ span.manage_g_cat {
 }
 
 .button-create { 
-    background: rgb(88,191,56) !important;
-    border-color:rgb(88,191,56) !important;
+    background: #41AE4C !important;
+    border-color:#41AE4C !important;
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {

@@ -24,6 +24,10 @@ Style css start
     justify-content: space-between;
     margin-bottom: 6px;
 }
+.club-widget-inner {
+  max-height: 850px;
+  overflow-y: scroll;
+}
 
 .page-title i {
     font-size: 28px;
@@ -1374,7 +1378,7 @@ span.club-schedule {
 } */
 .club-w-image {
     width: 128px;
-    height: 91px;
+    height: 100%;
     overflow: hidden;
     object-fit: cover;
     border-radius: 10px;
@@ -1414,7 +1418,7 @@ span.club-schedule {
 
 .right-group-bottom {
     border-top: 1px solid #BDBDBD;
-    padding-top: 10px;
+    padding-top: 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1438,15 +1442,18 @@ span.club-schedule {
 .right-group-inner-left span.img {
     width: 18px;
     height: 18px;
-    display: inline-block;
-    border-radius: 100%;
-    overflow: hidden;
-    margin-right: 5px;
+   display: flex;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 5px;
+  align-content: center;
+  justify-content: center;
 }
 
 .right-group-inner-left span.img img {
-    width: 100%;
-    transform: scale(1.8);
+width: auto;
+  /* transform: scale(1.8); */
+  max-width: none;
 }
 
 
@@ -1457,13 +1464,12 @@ span.club-schedule {
     font-weight: 700;
     line-height: 18px;
     margin: 0px;
-    display: -webkit-box;
-    white-space: normal;
-    max-height: calc(2 * 2rem);
-    -webkit-box-orient: vertical;
+  
+    white-space: nowrap;
+    
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+    
     cursor: pointer;
 }
 
@@ -1529,7 +1535,8 @@ span.club-schedule {
 }
 
 .event-groups h5 {
-    margin-bottom: 12px !important;
+ margin-bottom: 14px !important;
+  margin-top: 14px;
 }
 
 .event-groups .club-left-area {

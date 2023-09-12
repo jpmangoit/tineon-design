@@ -400,10 +400,27 @@ span.author-date {
     cursor: pointer;
 }
 
+
+
 .news-author {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.news-item.multi-item  .dashboard-slider > div:nth-child(2n + 0) {
+  margin-right: 0;
+}
+
+.card-header.clubwall-ne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header.clubwall-ne button {
+    border: none;
+    background: none;
 }
 
 .news-author img {
