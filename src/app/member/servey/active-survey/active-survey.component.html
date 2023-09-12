@@ -35,7 +35,7 @@
                 &nbsp;&nbsp;{{item.user_name.firstname}} {{item.user_name.lastname}}
             </td>
             <!-- <td class="active-from">{{item.surveyStartDate | date: 'd. MMMM y - hh:mm:a'}}</td> -->
-            <td class="active-from">{{item.surveyStartDate | date: "d. MMMM y,HH:mm" : "UTC"}}</td>
+            <td class="active-from">{{item.surveyStartDate | date: "d. MMMM y - HH:mm" : "UTC"}} {{language.login.o_clock}}</td>
 
             <td class="remaining-time">
                 <div>

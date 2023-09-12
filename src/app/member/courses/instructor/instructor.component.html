@@ -93,7 +93,7 @@
                                         <div class="category-des" (click)="getInstructorById(item.id, 'view')"
                                             data-bs-toggle="modal" data-bs-target="#exModal">
                                             <div class="inst-type-label">
-                                                <span>Extern</span>
+                                                <span>{{language.courses.extern}}</span>
                                             </div>
                                             <h5>{{item.first_name}} {{item.last_name}}
                                                 <span *ngFor="let val of item.qualification">

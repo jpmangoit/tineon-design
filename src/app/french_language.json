@@ -161,7 +161,9 @@
         "wait_admin_approve":"En attente de l'approbation de l'administrateur",
         "currentGroup":"Groupe actuel",
         "updateGroup":"Mettre à jour le groupe",
-        "group":"Groupe"
+        "group":"Groupe",
+        "close_news": "Close News"
+
     },
     "community_messages":{
         "date_month":"MMM",
@@ -987,7 +989,8 @@
         "instruct_not_avail":"L'instructeur n'est pas disponible pour les dates de cours données",
         "room_not_avail":"La salle n'est pas disponible pour les dates de cours données",
         "not_room":"La chambre n'est pas disponible",
-        "not_instruct":"L'instructeur externe n'est pas disponible"
+        "not_instruct":"L'instructeur externe n'est pas disponible",
+        "extern": "Extern"
     },
     "Survey":{
         "survey":"Enquête",

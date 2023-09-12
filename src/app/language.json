@@ -75,6 +75,12 @@
     },
     "instructor" : {
         "instructor_overview" : "Instructor"
+    },
+    "community_groups":{
+        "close_news": "Close News"
+    },
+    "courses": {
+        "extern": "Extern"
     }
 }
 
