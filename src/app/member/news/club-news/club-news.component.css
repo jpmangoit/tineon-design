@@ -296,7 +296,7 @@ span.author-date {
 
 ::ng-deep body .news-item.large-item {
     padding: 12px 0px 0 0 !important;
-} 
+}
 
 .news-badge {
     font-size: 9px;
@@ -779,3 +779,9 @@ owl-carousel-o.ng-star-inserted {
 /* .highlighted-news{
     background-color: #d4927e;
 } */
+
+/* Dashboard page css */
+.card {
+    background: #fff !important;
+    border-radius: 1.25rem !important;
+  }

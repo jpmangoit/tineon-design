@@ -8,32 +8,32 @@
                     </svg>
                     <h1>{{language.menu.club_wall}}</h1>
                 </div> -->
-                <div class="page-action-left"> 
+                <div class="page-action-left">
                     <div class="tab-button">
                         <button type="button" routerLink="./club-news" *ngIf="participateAccess.news == 'Yes'" (click)="onNews()"
                             [ngStyle]="displayNews == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                                'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                                'background-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
                                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                                 : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
                             <Span>{{language.club_wall.club_news}}</Span>
                         </button>
                         <button type="button" routerLink="club-dates" *ngIf="participateAccess.appointments == 'Yes'" (click)="onDates()"
                             [ngStyle]="displayDates == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                                'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                                'background-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
                                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                                 : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}" >
                             <Span>{{language.club_wall.club_dates}}</Span>
                         </button>
                         <button type="button" routerLink="club-events" *ngIf="participateAccess.event == 'Yes'" (click)="onEvents()"
                             [ngStyle]="displayEvents == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                                'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                                'background-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
                                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                                 : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
                             <span>{{language.club_wall.club_events}}</span>
                         </button>
                     </div>
-                </div> 
-                
+                </div>
+
                 <div class="page-action-right" *ngIf="createAccess.news == 'Yes' || createAccess.event == 'Yes'">
                     <!-- <button *ngIf="createAccess.news == 'Yes'" type="button" class="disabled"  routerLink="/create-news"
                         [ngStyle]="{'border-color':setTheme.default_status == true ? setTheme.button_y_bgcolor : setTheme.button_bgcolor,
@@ -71,7 +71,7 @@
         <!-- club news top widget start -->
         <div class="row dash-widget" *ngIf="displayNews == true">
             <div class="col-md-9 club_widget club-wall-news">
-                <app-club-news (dataLoaded)="onChildDataLoaded()"></app-club-news> 
+                <app-club-news (dataLoaded)="onChildDataLoaded()"></app-club-news>
             </div>
             <div class="col-md-3 appointment_widget">
                 <app-group-news (dataLoaded)="onChildDataLoaded()"></app-group-news>
