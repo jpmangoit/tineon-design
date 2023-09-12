@@ -1466,9 +1466,9 @@ span.carousel-badge {
     font-size: 11px;
     color: #BDBDBD;
     font-weight: 700;
-    white-space: nowrap;
+    /* white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .widget-app-content {
