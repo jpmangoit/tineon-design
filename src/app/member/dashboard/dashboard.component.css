@@ -21,7 +21,7 @@ Style css start
 
 .page-title h2 {
     font-size: 24px;
-    
+
     color: #424d5c;
     display: inline-block;
     margin-top: 23px;
@@ -649,7 +649,7 @@ mat-button-toggle-group {
 }
 
 .card-stats .card-body {
- 
+
   padding: 2rem !important;
 }
 
@@ -669,7 +669,7 @@ h3.count-dashboard {
 .card.card-stats.profile-card {
     border-radius: 1.25rem;
 background: #9EA5BD;
-box-shadow: 0px 4px 4px 0px #BDBDBD; 
+box-shadow: 0px 4px 4px 0px #BDBDBD;
 }
 
 
@@ -688,7 +688,7 @@ justify-content: center;
 padding: 6px;
 }
 .profile-image span {
-   
+
     display: flex;
     height: 100%;
     filter: drop-shadow(0px 0px 10px #BDBDBD);
@@ -721,7 +721,7 @@ max-width: none;
     font-size: 12px;
     font-family: "Gellix", sans-serif;
     position: relative;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     font-weight: 600;
 }
 .profile-card-description ul li:after {
@@ -801,7 +801,7 @@ background: #FB0E3A;
 box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
 }
 .yellow-card .card.card-stats {
-    background: #FBC52D; 
+    background: #FBC52D;
     box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
     border-radius: 1.25rem;
 }
@@ -879,7 +879,7 @@ box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
     width: auto;
     display: flex;
     justify-content: flex-end;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .colored-grid-area {
@@ -891,7 +891,7 @@ box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
 }
 
 .right-card-content {
-    margin-left: 11px; 
+    margin-left: 11px;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -912,14 +912,14 @@ box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
 .widget-top.widget-col.grid_col h3 {
     position: relative;
     top: -5px;
-   
+
 }
 .card-content h3 {
 color: #fff;
   font-weight: 600;
   margin-bottom: 0;
   font-size: 1.375rem;
-    
+
 }
 .loader_image {
     border: 8px solid #f3f3f3;
@@ -956,3 +956,9 @@ color: #fff;
         transform: rotate(360deg);
     }
 }
+
+
+.col-md-9.ng-star-inserted {
+    background: none !important;
+    border-radius: 25px;
+  }
