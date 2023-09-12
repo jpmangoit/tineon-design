@@ -94,8 +94,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     ) {  }
 
     ngOnInit(): void {
-        console.log(this.sliderOptions);
-
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
@@ -128,33 +126,34 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         }
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
-           this.sliderOptionsOne = {
-                loop: true,
-                mouseDrag: true,
-                touchDrag: true,
-                pullDrag: true,
-                dots: true,
-                navSpeed: 700,
-                navText: ['', ''],
-                margin: 24,
-                responsive: {
-                    0: {
-                        items: 1
+            setTimeout(() => {
+                this.sliderOptionsOne = {
+                    loop: true,
+                    mouseDrag: true,
+                    touchDrag: true,
+                    pullDrag: true,
+                    dots: true,
+                    navSpeed: 700,
+                    navText: ['', ''],
+                    margin: 24,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        400: {
+                            items: 1
+                        },
+                        740: {
+                            items: 1
+                        },
+                        940: {
+                            items: 1
+                        }
                     },
-                    400: {
-                        items: 1
-                    },
-                    740: {
-                        items: 1
-                    },
-                    940: {
-                        items: 1
-                    }
-                },
-                nav: false,
-                autoplay: true
-            };
-
+                    nav: false,
+                    autoplay: true
+                };
+            },500);
 
         }
         this.getAllNews();
@@ -169,18 +168,13 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @return  {all the records of Banners} array of object
     */
     getDesktopDeshboardBanner() {
-        console.log(this.bannerData);
-
         if (this.bannerData?.length > 0) {
             this.newsDisplay = 3;
         }  else {
-            console.log(this.bannerData);
             // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.bannerData = [];
@@ -199,7 +193,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                     element['redirectLink'] = '//' + element.redirectLink;
                                 }
                             })
-                            console.log(this.bannerData);
                             if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
                                 this.newsDisplay = 3;
                             }

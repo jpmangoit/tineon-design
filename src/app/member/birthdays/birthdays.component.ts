@@ -1,3 +1,4 @@
+import { CommonFunctionService } from './../../service/common-function.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { LanguageService } from '../../service/language.service';
@@ -32,6 +33,7 @@ export class BirthdaysComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private router: Router,
+        private commonFunctionService:CommonFunctionService
 
     ) { }
 

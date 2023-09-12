@@ -199,17 +199,17 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.alluserDetails = respData;
-                    if (respData && respData.length > 0) {
-                        Object(respData).forEach((val, key) => {
-                            this.alluserInformation[val.id] = { member_id: val.member_id };
-                        })
-                    }
-                    this.getGroup();
+        .subscribe(
+            (respData: any) => {
+                this.alluserDetails = respData;
+                if (respData && respData.length > 0) {
+                    Object(respData).forEach((val, key) => {
+                        this.alluserInformation[val.id] = { member_id: val.member_id };
+                    })
                 }
-            );
+                this.getGroup();
+            }
+        );
     }
 
     getGroup() {
@@ -310,6 +310,8 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                     //     }
 
                     // }
+                    console.log(this.chatId);
+
                     if (this.chatId) {
                         let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId && x.type == 'individual');
                         if (chatDetails.length > 0) {
@@ -318,7 +320,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                             }, 3000);
                         }
                     }
-
                     setTimeout(() => {
                         this.authService.setLoader(false);
                     }, 2000);
@@ -400,6 +401,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                         }
                     });
                 }
+                this.scrollToBottom();
             })
         } else if (chat.type == 'group') {
             this.frndId = chat.id;
@@ -601,7 +603,8 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
     scrollToBottom(): void {
         try {
             this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
-        } catch (err) { }
+        } catch (err) {console.log(err);
+         }
     }
 
     private isUserNearBottom(): boolean {
