@@ -26,7 +26,7 @@ declare var $: any;
     styleUrls: ['./community-messages.component.css']
 })
 
-export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewInit,AfterViewChecked {
+export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewChecked {
     language: any;
     alluserDetails: any = [];
     userDetails: LoginDetails;
@@ -310,8 +310,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewIn
                     //     }
 
                     // }
-                    console.log(this.chatId);
-
                     if (this.chatId) {
                         let chatDetails = this.chatUserArr.filter(x => x.id == this.chatId && x.type == 'individual');
                         if (chatDetails.length > 0) {
@@ -586,13 +584,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewIn
         });
 
     }
-
-    ngAfterViewInit() {
-        // Check if chatContainer is available after the view is initialized
-        if (this.scrollBottom) {
-          this.scrollToBottom();
-        }
-      }
 
     ngAfterViewChecked() {
         if (this.finalMessages && this.finalMessages.length > 0) {
