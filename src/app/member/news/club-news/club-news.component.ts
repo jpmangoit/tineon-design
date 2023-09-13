@@ -101,13 +101,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-
-        // let currentUrl: string = this.router.url;
-        // if (currentUrl == '/dashboard') {
-        //     this.showClubDash = true;
-        // } else {
-        //     this.showClubDash = false;
-        // }
         this.url = this.router.url;
         if (this.url == '/dashboard' || this.url == '/') {
             this.displayPopup = true;
@@ -118,7 +111,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.newsDisplay = 4;
             this.showClubDash = false;
         }
-
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
