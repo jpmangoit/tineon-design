@@ -345,6 +345,7 @@ span.author-date {
     height: calc(100% - 400px) !important;
     display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .news-item.large-item {
@@ -362,6 +363,7 @@ span.author-date {
 .news-item.large-item .news-description {
   height: calc(100% - 99px);
   border-bottom: 1px solid #BDBDBD;
+  width: 100%;
 }
 
 .news-item.large-item .news-description p { border:none}

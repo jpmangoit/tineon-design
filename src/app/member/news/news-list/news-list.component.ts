@@ -28,10 +28,10 @@ export class NewsListComponent implements OnInit {
         'headline',
         'imageUrls',
         'created_at',
-        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();
+    
     dataSource !: MatTableDataSource<any>;
     result: any;
     @ViewChild(MatPaginator) matpaginator!: MatPaginator;
