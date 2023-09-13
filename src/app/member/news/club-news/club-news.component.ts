@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { LanguageService } from '../../../service/language.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmDialogService } from '../../../confirm-dialog/confirm-dialog.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/service/theme.service';
 import { LoginDetails } from 'src/app/models/login-details.model';
@@ -27,8 +26,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     language: any;
     role: string = '';
     thumbnail: string;
-    num: number = 4;
-    num1: number = 3;
     memberid: number;
     displayError: boolean = false;
     displayPopup: boolean = false;
@@ -85,8 +82,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         public authService: AuthServiceService,
         private lang: LanguageService,
         private router: Router,
-        private route: ActivatedRoute,
-        private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
@@ -101,13 +96,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-
-        // let currentUrl: string = this.router.url;
-        // if (currentUrl == '/dashboard') {
-        //     this.showClubDash = true;
-        // } else {
-        //     this.showClubDash = false;
-        // }
         this.url = this.router.url;
         if (this.url == '/dashboard' || this.url == '/') {
             this.displayPopup = true;
@@ -118,7 +106,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.newsDisplay = 4;
             this.showClubDash = false;
         }
-
         this.language = this.lang.getLanguaageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
@@ -265,11 +252,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                                 }
                             });
                             this.dataLoaded.emit();
-                            // this.authService.setLoader(false);
-                            // setTimeout(() => {
-                            //     this.authService.setLoader(false);
-                            //     this.isLoading = false;
-                            // }, 1500);
                         }
                     }
                 );
@@ -412,7 +394,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                 this.newImg = this.newsData?.news_image[0]?.news_image;
             }
         }
-
         this.memberid = this.newsData.user.member_id;
         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.memberid, null)
             .subscribe(
@@ -489,7 +470,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         }
         this.getAllNewspagination();
     }
-
 
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();

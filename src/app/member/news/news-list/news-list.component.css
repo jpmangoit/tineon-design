@@ -1,13 +1,86 @@
 ::ng-deep .mat-paginator-container{
     margin-right: 40px;
+
 }
 
 .panel {
     margin: 15px;
 }
 
+::ng-deep .mat-sort-header-container {
+    border-right: 1px solid #fff  !important;
+}
+
 .list-search-panel {
     justify-content: flex-end;
     display: flex;
     margin-right: 10px
+}
+
+.page-action-left {
+  background: #fff;
+  padding: 2.19rem 1.19rem;
+  fill: linear-gradient(180deg, #FFF 0%, #FFF 100%);
+box-shadow: 0px 1px 1px 0px #FFF inset;
+filter: drop-shadow(0px 10px 10px #ECEEF4);
+border-radius: 25px;
+}
+
+.page-action-left .panel {
+    margin: 0px;;
+}
+
+.tab-button button {
+  border: none;
+  height: 55px;
+  padding: 0 1.75rem;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 10px 10px 0 0;
+}
+
+.mat-elevation-z8 { box-shadow: none !important;}
+
+tr.mat-header-row {
+  height: 71px;
+ 
+  background: #EAEDF5;
+}
+
+tr.mat-header-row  div{
+    line-height: normal;
+}
+
+
+
+tr.mat-header-row th {
+    padding:0 0 0 1.6rem;
+}
+
+.page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered {
+    border: 1px solid #EAEDF5;
+}
+
+.page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered td {
+   border-color: #EAEDF5;
+}
+
+.page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered td:first-child {
+    font-weight: 700;
+}
+
+::ng-deep .page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered td p{
+    margin-bottom: 0px !important;
+}
+
+.page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered td {
+    font-size: 14px;
+    color: #414141;
+    font-weight: 400;
+    padding: 0 0 0 1.6rem;
+    height: 75px;
+}
+
+.page-action-left .mat-table.cdk-table.mat-sort.table.table-bordered td:last-child {
+    border-right: 1px solid #EAEDF5;
 }

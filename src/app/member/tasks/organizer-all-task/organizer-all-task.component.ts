@@ -47,6 +47,8 @@ export class OrganizerAllTaskComponent implements OnInit {
             this.authService.memberSendRequest('get', endpoint, null)
                 .subscribe(
                     (respData: any) => {
+                        console.log(respData);
+
                         this.toDoTask = [];
                         this.inProgress = [];
                         this.completed = [];

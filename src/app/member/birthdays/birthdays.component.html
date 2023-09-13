@@ -1,5 +1,5 @@
 <div class="card birth_main">
-    <div class="card-header ">
+    <div class="card-header card-header-new">
         <h5 class="card-title">{{language.club.anniversaries_birthday}}</h5>
         <div>
             <mat-form-field  appearance="fill">
@@ -11,12 +11,12 @@
             </mat-form-field>
         </div>
     </div>
-  
-    <div class="card-body ">
+
+    <div class="card-body card-body-new">
         <!-- <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
             <span>{{language.club.no_anniversaries_birthday}}</span>
         </div> -->
-        <div class="widget-appointment widget" *ngFor='let data of birthdayData'>
+        <div class="widget-appointment widget widget-appointment-new" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
                 <div class="app-left-content">
                     <div class="user-img" *ngIf="data.imagePro == null || data.imagePro == ''">
@@ -26,7 +26,7 @@
                     <div class="user-img" *ngIf="data.imagePro != null"><img onContextMenu="return false;"
                             [src]="data.imagePro" style="width: 100px;" alt="" loading="lazy">
                     </div>
-                    <div class="user-content">
+                    <div class="user-content user-content-new">
                         <span class="birthday-badge">{{language.club.birthday}}</span>
                         <Span class="user-name">{{data.firstname}} {{data.lastname}}</Span>
                         <span class="user-status" *ngIf="ageDiff">
@@ -34,20 +34,21 @@
                             {{data.bd_notification | date: 'dd.MM.yy'}} | {{data.age}} {{language.club.years}}
                         </span>
 
-                    </div>
-                    <div>
+
+                    <div class="chat-details-new">
                         <a (click)="checkChatDetails(data.id)">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
                                     loading="lazy" ></span></a>
                     </div>
+                </div>
                 </div>
                 <!-- <div class="app-right-content" *ngIf="ageDiff">
                     <span class="user-age">{{data.age}} {{language.club.years_old}}</span>
                 </div> -->
             </div>
         </div>
-        <div class="widget-appointment widget" *ngFor='let data of jubileesData'>
-            <div class="widget-app-content"> 
+        <div class="widget-appointment widget widget-appointment-new" *ngFor='let data of jubileesData'>
+            <div class="widget-app-content">
                 <div class="app-left-content">
                     <div class="user-img" *ngIf="data?.user?.imagePro == null || data?.user?.imagePro == ''">
                         <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
@@ -56,19 +57,19 @@
                     <div class="user-img" *ngIf="data?.user?.imagePro != null"><img onContextMenu="return false;"
                             [src]="data?.user?.imagePro" style="width: 100px;" alt="" loading="lazy">
                     </div>
-                    <div class="user-content">
+                    <div class="user-content user-content-new">
                         <span class="jubilee-badge">{{language.club.anniversary}}</span>
                         <Span class="user-name">{{data.user.firstname}} {{data.user.lastname}}</Span>
                         <span class="user-status">
                             <!-- <i class="nc-icon nc-air-baloon"></i>&nbsp; -->
                             {{data.user.created_at |date: 'dd.MM.yy'}} | {{data.vjet}} {{language.club.years_in_club}}
                         </span>
-                    </div>
-                    <div>
+                    <div class="chat-details-new">
                         <a  (click)="checkChatDetails(data?.user?.id)">{{language.dashboard.congratulate}}<span><img onContextMenu="return false;"
                                     src="../../../../assets/img/new-design/dashboard/read-more-ic.svg" alt=""
                                     loading="lazy"></span></a>
                     </div>
+                </div>
                 </div>
                 <!-- <div class="app-right-content">
                     <span class="user-age">{{data.vjet}} {{language.club.years_old}}</span>

@@ -104,7 +104,7 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.getDesktopDeshboardBanner();
                 this.getAllUserInfo();
                 // this.getEvent();
-                this.getAllCourses();
+                // this.getAllCourses();
             }
         }
     }
@@ -652,7 +652,9 @@ export class ClubAppointmentsComponent implements OnInit {
             if (index < 10) {
                 this.allClubEvents.push(element);
             }
-        })
+        });
+        console.log(this.allClubEvents);
+
     }
 
     /**
