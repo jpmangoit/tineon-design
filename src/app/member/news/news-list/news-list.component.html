@@ -6,60 +6,60 @@
         <div class="page-action-left">
             <div class="tab-button">
 
-                <button type="button" *ngIf="participateAccess.news == 'Yes'" (click)="onNews()" [ngStyle]="displayNews == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                        'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                        'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                        : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                <button type="button" *ngIf="participateAccess.news == 'Yes'" (click)="onNews()" [ngStyle]="displayNews == true ? {'border-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
+                        'background-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
+                        'color': setTheme.default_status == true ? '#fff' : setTheme.button_text, 'font-weight':'700'}
+                        : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.header.news}}</Span>
                 </button>
                 <button type="button" *ngIf="participateAccess.event == 'Yes'" (click)="onEvents()" [ngStyle]="displayEvents == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                    : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                    : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <span>{{language.organizer.events}}</span>
                 </button>
                 <button type="button" *ngIf="participateAccess.course == 'Yes'" (click)="onCourses()" [ngStyle]="displayCourses == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                    : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                    : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.create_event.courses}}</Span>
                 </button>
                 <button type="button" *ngIf="participateAccess.room == 'Yes'" (click)="onRoom()" [ngStyle]="displayRooms == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                     'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                    : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                    : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.room.rooms}}</Span>
                 </button>
 
                 <button type="button" *ngIf="participateAccess.instructor == 'Yes'" (click)="onInstructor()" [ngStyle]="displayInstructors == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.courses.instructor}}</Span>
                 </button>
 
                 <button type="button" *ngIf="participateAccess.survey == 'Yes'" (click)="onSurvey()" [ngStyle]="displaySurvey == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.Survey.survey}}</Span>
                 </button>
                 <button type="button" *ngIf="participateAccess.task == 'Yes'" (click)="onTasks()" [ngStyle]="displayTasks == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.organizer.task_list}}</Span>
                 </button>
                 <button type="button" *ngIf="participateAccess.group == 'Yes'" (click)="onGroup()" [ngStyle]="displayGroup == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.community_groups.groups}}</Span>
                 </button>
                 <button type="button" *ngIf="participateAccess.faq == 'Yes'" (click)="onFaq()" [ngStyle]="displayFaq == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
-                : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
+                : {'border-color':setTheme.button_bgcolor,'background-color':'transparent','color':'#999999'}">
                     <Span>{{language.create_faq.faqs}}</Span>
                 </button>
 
@@ -85,7 +85,7 @@
             <div *ngIf="displayNews">
                 <div class="mat-elevation-z8" *ngIf="isData == true">
                     <!-- search heading of list start -->
-                    <div class="list-search-panel mt-10">
+                    <!-- <div class="list-search-panel mt-10">
                         <div class="search-list">
                             <mat-form-field>
                                 <mat-label>{{language.header.search}}</mat-label>
@@ -93,7 +93,7 @@
                                     autocomplete="off" #input (keyup)="getUserAllNews($event)">
                             </mat-form-field>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- search heading of list end -->
 
                     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
@@ -133,7 +133,7 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                 {{language.create_event.date}}
                             </th>
-                            <td class="odd" mat-cell *matCellDef="let row">
+                            <td class="odd date-box" mat-cell *matCellDef="let row">
                                 {{row.created_at | date: 'd. MMMM y'}}
                             </td>
                         </ng-container>
