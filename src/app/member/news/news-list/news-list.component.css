@@ -11,3 +11,7 @@
     display: flex;
     margin-right: 10px
 }
+
+.page-action-left {
+  background: #fff;
+}
