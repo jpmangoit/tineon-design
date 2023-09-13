@@ -102,11 +102,20 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        let currentUrl: string = this.router.url;
-
-        if (currentUrl == '/dashboard') {
+        // let currentUrl: string = this.router.url;
+        // if (currentUrl == '/dashboard') {
+        //     this.showClubDash = true;
+        // } else {
+        //     this.showClubDash = false;
+        // }
+        this.url = this.router.url;
+        if (this.url == '/dashboard' || this.url == '/') {
+            this.displayPopup = true;
+            this.newsDisplay = 4;
             this.showClubDash = true;
-        } else {
+        } else if (this.url == '/clubwall/club-news' || this.url == '/clubwall') {
+            this.displayPopup = false;
+            this.newsDisplay = 4;
             this.showClubDash = false;
         }
 
@@ -115,15 +124,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.role = this.userData.roles[0];
-        this.url = this.router.url;
 
-        if (this.url == '/dashboard' || this.url == '/') {
-            this.displayPopup = true;
-            this.newsDisplay = 4;
-        } else if (this.url == '/clubwall/club-news' || this.url == '/clubwall') {
-            this.displayPopup = false;
-            this.newsDisplay = 4;
-        }
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
             setTimeout(() => {
@@ -158,7 +159,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         }
         this.getAllNews();
         this.getAllNewspagination();
-
     }
 
     /**
@@ -195,6 +195,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                             })
                             if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
                                 this.newsDisplay = 3;
+                                this.itemPerPage = 5;
                             }
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -276,12 +277,14 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     }
 
     getAllNewspagination() {
+        (this.bannerData?.length == 0 || this.bannerData == undefined) ? this.itemPerPage = 5 : this.itemPerPage = 4;
         if (sessionStorage.getItem('token')) {
             this.dashboardData = [];
             this.guestNews = [];
             this.authService.setLoader(true);
             if (this.role == 'admin' || this.role == 'guest') {
-                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
+                this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+                .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     if (respData.news.length == 0) {
                         this.authService.setLoader(false);
