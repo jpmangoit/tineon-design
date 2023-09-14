@@ -1,6 +1,6 @@
 <div style="margin-top:5px;">
 </div>
-<table class="table active-survey-data table-responsive">
+<table class="table active-survey-data table-responsive table-responsive-new">
     <thead>
         <tr>
             <th>{{language.Survey.title}}</th>
@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of activeSurvey| paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalActiveSurvey}">
-            <td class="survey-title">
+            <td class="survey-title survey-title-new">
                 <p [innerHTML]="item.title.length> 0 ?(item.title | slice : 0 : 30) + '...' : item.title"></p>
 
             </td>
