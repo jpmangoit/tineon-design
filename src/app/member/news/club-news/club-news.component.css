@@ -198,8 +198,41 @@ span.author-date {
 }
 
 .change_pass_section .modal-dialog {
-    max-width: 650px;
+    max-width: 635px;
     width: 100%;
+}
+
+.change_pass_section .modal-dialog .modal-body {
+  padding: 28px;
+}
+
+.author-info.club-new-popup .author-des {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.author-info.club-new-popup .author-des > span {
+    font-size: 11px;
+    font-weight: 500;
+    color: #5293F4;
+}
+
+.author-info.club-new-popup .author-des > div  {
+  line-height: normal;
+}
+
+.author-info.club-new-popup .author-des > div span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #BDBDBD;
+}
+
+.author-info.club-new-popup .author-des > div span:first-child {
+    font-size: 8px;
+    color: #BDBDBD;
+    font-weight: 500;
 }
 
 .change_pass_section .news_details>.row,
