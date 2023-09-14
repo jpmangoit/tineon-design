@@ -88,7 +88,7 @@
     padding: 60px 40px;
 }
 
-.button-create { 
+.button-create {
     background: rgb(88,191,56) !important;
     border-color:rgb(88,191,56) !important;
 }
@@ -171,12 +171,12 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom-width: 1px !important;
-    border-bottom-color: #eff2fd;
+    /* border-bottom-width: 1px !important;
+    border-bottom-color: #eff2fd; */
 }
-.tasks_navigation ul {
+/* .tasks_navigation ul {
     border-bottom: 1px solid #eff2fd;
-}
+} */
 .tasks_navigation {
     padding: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -313,4 +313,16 @@
     .survey-tabs-wrapper .card {
         padding: 0;
     }
+}
+
+
+/* ================= */
+.survey-tabs-wrapper .card {
+    padding: 35px 19px;
+}
+.card-body-new{
+    padding: 0;
+}
+.chat-navigation-new{
+    border-bottom: none;
 }

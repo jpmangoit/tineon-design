@@ -74,7 +74,8 @@ table.table.active-survey-data tr th span {
   background-color: #E8E5FF;
 }
 ::ng-deep .mat-progress-bar-fill::after {
-  background-color: #6E63EE;
+  /* background-color: #6E63EE; */
+  background-color: #FBC52D;
 }
 td.remaining-time div span {
   width: 165px;
@@ -109,3 +110,32 @@ td.crm-author img {
     height: 32px;
     border-radius: 50%;
 }
+
+
+/* =========== */
+.survey-title-new p{
+    margin-bottom: 0 !important;
+}
+td.crm-author img {
+    width: 29px;
+    height: 29px;
+}
+.table-responsive-new{
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+  }
+  .chat-navigation-new{
+    border-bottom: none;
+}
+.table-responsive-new td{
+    border-bottom: 1px solid #dee2e6;
+  }
+  td.remaining-time div{
+    font-size: 13px;
+    font-weight: 800;
+    color: #647895;
+  }
+  .table-responsive-new td div :first-child{
+    margin-left: 0px !important;
+}
+

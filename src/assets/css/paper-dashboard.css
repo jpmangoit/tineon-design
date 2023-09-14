@@ -631,7 +631,7 @@ body {
     }
 
 
-    
+
 
 
 }
@@ -7037,7 +7037,7 @@ span.attach_icon img {
     }
 
     .widget-chat.widget .app-left-content {
-        display: flex; 
+        display: flex;
         width: 100%;
     }
 
@@ -7594,7 +7594,7 @@ button.btn.btn-yes {
 }
 
 .tasks_navigation a.nav-link {
-    font-size: 14px;
+    font-size: 17px;
     text-transform: uppercase;
     color: #677180;
     font-weight: 700;
@@ -8851,7 +8851,7 @@ width: 100%;
 }
 
 html hr {
- 
+
   border-top: 1px solid #BDBDBD;
   margin-bottom:5px ;
 
@@ -10813,7 +10813,7 @@ li.nav-item.dropdown.add_dropdown
   bottom: inherit;
   top: 10px;
   z-index: 87;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .document-inner.list_document
@@ -12400,7 +12400,7 @@ body .schedule.ng-star-inserted {
     }
 
     .widget-chat.widget .user-img {
- 
+
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -12422,7 +12422,7 @@ body .schedule.ng-star-inserted {
 .mobile-red .back-message-btn button svg path {
     fill:#E7345D;
 }
- 
+
 }
 
 ::ng-deep body .sidebar .nav li ul li a p {
@@ -12510,7 +12510,7 @@ justify-content: center;
 .box-news-top > div:first-child img {
   width: auto !important;
   max-width: none;
- 
+
   height: 100%;
 }
 
@@ -12716,7 +12716,7 @@ body .news-read-more a {
     }
 
      .widget-chat.widget .app-right-content{
-   
+
     margin-bottom: 0;
   }
 
@@ -12756,7 +12756,7 @@ background: #FBC52D;
     }
 
    body  .news_content_text {
-  
+
   color: #8e8e93;
 }
 
@@ -12765,7 +12765,7 @@ background: #FBC52D;
 ::ng-deep input:focus,
 ::ng-deep input:focus-visible {
   outline: none !important;
-  
+
 }
 
 @media(max-width:410px) {
@@ -12790,7 +12790,7 @@ background: #FBC52D;
         flex-wrap: wrap;
     }
 
-  
+
 }
 
 /* 24 a */

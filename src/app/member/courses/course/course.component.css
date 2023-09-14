@@ -757,7 +757,7 @@ span.participant_status {
     box-shadow: none;
     background: none;
     margin-bottom: 10px;
-} 
+}
 
 .search-filter-wrapper .card {
     margin-bottom: 0;
@@ -768,7 +768,7 @@ span.participant_status {
 
 .course-list-main .card-header {
     padding-top: 0;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     border:none !important;
 }
 
@@ -782,7 +782,7 @@ span.participant_status {
     border-radius: 20px;
     max-width: 49.5%;
     flex: 49.5%;
-    box-shadow: none; 
+    box-shadow: none;
 }
 
 .course-list-main {
@@ -808,7 +808,7 @@ span.participant_status {
     cursor: pointer; */
 
     width:220px;
-    
+
     cursor: pointer;
     border-radius: 15px;
     border: none;
@@ -859,7 +859,7 @@ span.participant_status {
 }
 
 .course-category-header > span {
-   
+
     border-radius: 5px;
     font-family: 'Gellix', sans-serif;
     font-style: normal;
@@ -1050,8 +1050,8 @@ span.participant_status {
 }
 
 .save_btn,
-.Cancel_btn,
-.page-action-right button {
+.Cancel_btn
+ {
     background: #FB5F5F !important;
     border-color: #FB5F5F !important;
     height: 46px !important;
@@ -1061,6 +1061,10 @@ span.participant_status {
     align-items: center;
     font-size: 12px;
     font-weight: 700;
+}
+.page-action-right button{
+    background: rgb(88,191,56) !important;
+  border-color: rgb(88,191,56) !important;
 }
 
 .save_btn span,
@@ -1327,10 +1331,10 @@ font-size: 14px;
 @media(min-width:1200px) and (max-width:1480px) {
     .course-image{
   width: 180px;
-  
+
 }
 .course-box {
-  
+
   max-width: 180px;
 }
 }
