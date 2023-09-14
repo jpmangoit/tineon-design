@@ -33,7 +33,7 @@ export class BirthdaysComponent implements OnInit {
         private authService: AuthServiceService,
         private lang: LanguageService,
         private router: Router,
-        private commonFunctionService:CommonFunctionService
+        private commonFunctionService: CommonFunctionService
 
     ) { }
 
@@ -46,7 +46,6 @@ export class BirthdaysComponent implements OnInit {
             // this.getCurrentJubilees();
             this.onFilter(1);
             this.chats();
-
         }
     }
 
@@ -146,7 +145,10 @@ export class BirthdaysComponent implements OnInit {
     getBirthDay(birthday) {
         let self = this;
         this.birthdayData = birthday['result'];
-        this.birthdayData?.forEach(val => {
+        this.birthdayData?.forEach((val: any, key: any) => {
+            var age = self.calculateAge(val.bd_notification);
+            Object.assign(val, { age: age });
+
             if (this.alluserInformation[val?.id]?.member_id != null) {
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.id].member_id, null)
                     .subscribe(
@@ -162,13 +164,12 @@ export class BirthdaysComponent implements OnInit {
                 val.imagePro = null;
             }
         });
-
-        if (this.birthdayData?.length > 0) {
-            this.birthdayData.forEach(function (val, key) {
-                var age = self.calculateAge(val.bd_notification);
-                Object.assign(val, { age: age });
-            });
-        }
+        // if (this.birthdayData?.length > 0) {
+        //     this.birthdayData.forEach(function (val, key) {
+        //         var age = self.calculateAge(val.bd_notification);
+        //         Object.assign(val, { age: age });
+        //     });
+        // }
     }
 
 

@@ -77,6 +77,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     itemPerPage: number = 4;
     newsTotalRecords: number = 0;
     showClubDash: boolean = true;
+    newData: any;
 
     constructor(
         public authService: AuthServiceService,
@@ -86,7 +87,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-    ) {  }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -141,8 +142,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     nav: false,
                     autoplay: true
                 };
-            },500);
-
+            }, 500);
         }
         this.getAllNews();
         this.getAllNewspagination();
@@ -157,7 +157,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     getDesktopDeshboardBanner() {
         if (this.bannerData?.length > 0) {
             this.newsDisplay = 3;
-        }  else {
+        } else {
             // this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
                 .subscribe(
@@ -266,46 +266,46 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.authService.setLoader(true);
             if (this.role == 'admin' || this.role == 'guest') {
                 this.authService.memberSendRequest('get', 'posts/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
-                .subscribe((respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData.news.length == 0) {
+                    .subscribe((respData: any) => {
                         this.authService.setLoader(false);
-                    } else {
-                        this.newsTotalRecords = respData.pagination.rowCount;
-                        this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
-                        this.dashboardData = respData.news;
-                        if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach(element => {
-                                if (element?.news_image[0]?.news_image) {
-                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
-                                }
-
-                                if (element.user.member_id != null) {
-                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                        .subscribe(
-                                            (resppData: any) => {
-                                                this.authService.setLoader(false);
-                                                this.thumb = resppData;
-                                                element.user.image = this.thumb;
-                                            },
-                                            (error: any) => {
-                                                element.user.image = null;
-                                            });
-                                } else {
-                                    element.user.image = '';
-                                }
-                                if (this.role == 'guest') {
-                                    if (element.show_guest_list == 'true') {
-                                        this.guestNews.push(element);
+                        if (respData.news.length == 0) {
+                            this.authService.setLoader(false);
+                        } else {
+                            this.newsTotalRecords = respData.pagination.rowCount;
+                            this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+                            this.dashboardData = respData.news;
+                            if (this.dashboardData && this.dashboardData.length > 0) {
+                                this.dashboardData.forEach(element => {
+                                    if (element?.news_image[0]?.news_image) {
+                                        element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                     }
-                                    // this.totalPages = respData.pagination.rowCount;
-                                    this.newsTotalRecords = respData.pagination.rowCount;
-                                    this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
-                                }
-                            });
+
+                                    if (element.user.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.authService.setLoader(false);
+                                                    this.thumb = resppData;
+                                                    element.user.image = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.user.image = null;
+                                                });
+                                    } else {
+                                        element.user.image = '';
+                                    }
+                                    if (this.role == 'guest') {
+                                        if (element.show_guest_list == 'true') {
+                                            this.guestNews.push(element);
+                                        }
+                                        // this.totalPages = respData.pagination.rowCount;
+                                        this.newsTotalRecords = respData.pagination.rowCount;
+                                        this.totalPages = Math.ceil(this.newsTotalRecords / this.itemPerPage);
+                                    }
+                                });
+                            }
                         }
-                    }
-                });
+                    });
             } else if ((this.role != 'admin') && (this.role != 'guest')) {
                 let userId: string = localStorage.getItem('user-id');
                 this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
