@@ -135,6 +135,7 @@ declare var $: any;
                             let cudate = new Date();
                             if (cudate.toISOString().split('T')[0] >= element.surveyStartDate.split('T')[0]) {
                                 element.dayCount = this.commonFunctionService.getDays(cudate, element.surveyEndDate.split('T')[0]);
+                                element.remain = this.language.courses.days
                                 /* Progress Bar calculation */
                                 element.progress =  this.commonFunctionService.progressBarCalculation(element.surveyStartDate, element.surveyEndDate);
                             } else {
@@ -145,7 +146,7 @@ declare var $: any;
                             }
                         });
                     }
-                    this.activeSurvey = respData['result']['survey'];                   
+                    this.activeSurvey = respData['result']['survey'];
                     this.totalActiveSurvey = respData['result'].pagination.rowCount;
                 }
             })

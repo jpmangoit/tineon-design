@@ -22,6 +22,11 @@
     font-weight: bold;
 }
 
+::ng-deep .mat-tab-label-container .mat-tab-label {
+    height: auto;
+    padding: 0 80px 0 0;
+}
+
 .panel_heading h3 {
     font-size: 20px;
     color: #424D5C;
@@ -36,7 +41,7 @@
     display: inline-block;
     width: 100%;
     background-color: #fff;
-    padding: 35px 25px;
+    padding: 20px 20px;
     border-radius: 20px;
 }
 
@@ -76,8 +81,8 @@
 }
 
 .button-create { 
-    background: rgb(88,191,56) !important;
-    border-color:rgb(88,191,56) !important;
+    background: #41AE4C !important;
+    border-color:#41AE4C !important;
 }
 
 .active-mat {
@@ -99,41 +104,53 @@
     position: relative;
 }
 
-.accordion-button::after {
+/* .accordion-button::after {
     content: "\f078";
     position: absolute;
     font: normal normal normal 18px/1 FontAwesome;
     right: 0px;
     color: #68759f;
     top: 15px;
-}
+} */
 
-.accordion-button.collapsed::after {
+/* .accordion-button.collapsed::after {
     content: "\f077";
     position: absolute;
     font: normal normal normal 18px/1 FontAwesome;
     right: 0px;
     color: #68759f;
     top: 15px;
-}
+} */
 .event-action{
     width: 90px;
-    margin-left: 15px;
+    margin-left: 11px;
+}
+
+.accordion-button.collapsed svg {
+    transform: rotate(180deg);
+}
+
+.accordion-button svg {
+    transform: rotate(0deg);
+    margin-top: 6px;
 }
 .faq-accordion .accordion-header a.accordion-button {
-    font-size: 16px;
-    width: 100%;
-    padding: 10px 0px;
-    display: flex;
-    justify-content: space-between;
-    line-height: 25px;
-    color: #68759f;
-    font-family: 'Gellix', sans-serif;
-    font-weight: 600;
+  font-size: 17px;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  line-height: 25px;
+  color: #353535;
+  font-family: 'Gellix', sans-serif;
+  font-weight: 600;
+  line-height: 18px;
+
 }
 .attach_btn {
     background: #6E63EE;
     font-family: 'Gellix', sans-serif;
+    margin-bottom: 0px;
 }
 .faq-accordion .accordion-header a.accordion-button span::first-letter {
     text-transform: capitalize;
@@ -145,20 +162,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+  
 }
 
 .faq-accordion .accordion-item {
     border-bottom: none;
-    background: #EFF2FD;
-    border-radius: 10px;
-    padding: 0 20px;
-    margin-bottom: 10px;
+    background: #F2F2F5;
+    padding: 1.19rem 2rem;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 0.9375rem;
 }
 
 
 
 .faq-accordion .card-body {
-    padding: 0.5rem 0px;
+    margin-top: 1rem;
+     padding: 0.8rem 0 2.31rem ;
+     border-top: 1px dashed #DEE2E6;
 }
 
 .m-4 {
@@ -166,11 +188,17 @@
 }
 
 .faq-accordion .card-body p {
-    color: #414141;
+    color: #353535;
     font-family: 'Gellix', sans-serif;
+    font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  letter-spacing: 0.0265rem;
 }
 ::ng-deep mat-tab-header.mat-tab-header {
+    padding-bottom: 1.81rem;
     border-bottom: 1px solid #EFF2FD;
+    /* margin-bottom: 1.5rem; */
 }
 div#myAccordion {
     margin-bottom: 30px;
@@ -311,9 +339,9 @@ div#myAccordion {
     border-radius: 10px;
     float: left;
     margin-right: 5px;
-    border: 1px solid  rgb(88,191,56) !important;;
+    border: 1px solid  #FB5F5F !important;;
     color: #fff;
-    background-color:  rgb(88,191,56) !important;;
+    background-color:  #FB5F5F !important;;
     padding: 0 20px;
 }
 
@@ -460,8 +488,15 @@ div#myAccordion {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    width: 50%;
+    width: 40%;
     /* float: right; */
+}
+
+.input-group-append.search-icon-box {
+  position: absolute;
+  z-index: 5;
+  top: 13px;
+  left: 22px;
 }
 
 .search_area .card {
@@ -473,10 +508,10 @@ div#myAccordion {
 
 .search_area .input-group.no-border input {
     height: 45px;
-    border-radius: 25px;
+    border-radius: 10px;
     border-color: transparent;
     background: #e9ebf1;
-    padding: 0 20px;
+    padding: 0 20px 0 50px;
     color: #98A2C3;
     font-family: 'Gellix', sans-serif;
     font-size: 16px;
@@ -504,11 +539,11 @@ div#myAccordion {
     position: relative;
 }
 .event-action ul li svg{
-    width: 22px;
-    height: 22px;
-    /* border: 1px solid #68759f; */
-    border-radius: 3px;
-    padding: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 4px;
 }
 
 .page-not-available {

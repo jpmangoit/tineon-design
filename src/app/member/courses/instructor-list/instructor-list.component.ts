@@ -20,14 +20,14 @@ export class InstructorListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true; 
+    isData: boolean = true;
     displayedColumns: string[] = [
         'first_name',
         'last_name',
         'emaill',
         'add_img',
         'created_at',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();

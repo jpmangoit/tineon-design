@@ -19,13 +19,13 @@ import { NotificationService } from 'src/app/service/notification.service';
 export class FaqsListComponent implements OnInit {
 
     userData: LoginDetails;
-    language: any; 
+    language: any;
     isData: boolean = true;
     displayedColumns: string[] = [
         'name',
         'description',
         'picture_video',
-        'author',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();

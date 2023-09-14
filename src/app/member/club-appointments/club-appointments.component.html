@@ -73,26 +73,20 @@
                                         <div class="card-body top-box" *ngIf="item?.users">
                                             <div class="widget-appointment widget">
                                                 <div class="widget-app-content">
-                                                    <div class="widget-appointment widget"
-                                                        *ngFor="let participant of item?.users">
+                                                    <div class="widget-appointment widget" *ngFor="let participant of item?.users">
                                                         <div class="widget-app-content">
                                                             <div class="app-left-content">
-                                                                <div class="author-img"
-                                                                    *ngIf="participant.userImage == null || participant.userImage == ''">
-                                                                    <img onContextMenu="return false;"
-                                                                        [src]="'assets/img/defaultProfile.jpeg'"
+                                                                <div class="author-img" *ngIf="participant.userImage == null || participant.userImage == ''">
+                                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
                                                                         style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
-                                                                <div class="author-img"
-                                                                    *ngIf="participant.userImage != null">
-                                                                    <img onContextMenu="return false;"
-                                                                        [src]="participant.userImage"
-                                                                        style="width: 100px;" alt="" loading="lazy">
+                                                                <div class="author-img" *ngIf="participant.userImage != null">
+                                                                    <img onContextMenu="return false;"  [src]="participant.userImage" style="width: 100px;" alt="" loading="lazy">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <span *ngIf="item?.users?.length > 3">+ {{item?.users?.length - 3}}
+                                                    <span *ngIf="item?.users?.length > 3"> + {{item?.users?.length - 3}}
                                                         {{language.community_groups.participants}}
                                                     </span>
                                                 </div>
@@ -109,9 +103,7 @@
                                                 <p> {{ item?.date_from | date: 'dd.MM.yyyy' }}</p>
                                             </span>
                                             <span>
-                                                <p> {{ item?.date_from | date: 'HH:mm' }} - {{ item?.date_to | date:
-                                                    'HH:mm'
-                                                    }} {{language.login.o_clock}}</p>
+                                                <p> {{ item?.date_from | date: 'HH:mm' }} - {{ item?.date_to | date:'HH:mm'}} {{language.login.o_clock}}</p>
                                             </span>
                                         </div>
                                     </div>
@@ -412,7 +404,6 @@
             <div class="not-available-user">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" id="IconChangeColor" height="50"
                     width="50">
-                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                     <path d="M592
                         288H576V212.7c0-41.84-30.03-80.04-71.66-84.27C456.5
                         123.6 416 161.1 416 208V288h-16C373.6 288 352 309.6 352

@@ -18,15 +18,15 @@ export class ServeyListComponent implements OnInit {
 
     userData: LoginDetails;
     language: any;
-    isData: boolean = true; 
+    isData: boolean = true;
     displayedColumns: string[] = [
         'title',
         'description',
-        'surveyType',        
+        'surveyType',
         'surveyStartDate',
         'surveyEndtDate',
-        'created_at',        
-        'author',
+        'created_at',
+        // 'author',
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -142,5 +142,5 @@ export class ServeyListComponent implements OnInit {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-   
+
 }
