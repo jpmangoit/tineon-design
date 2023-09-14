@@ -653,8 +653,6 @@ export class ClubAppointmentsComponent implements OnInit {
                 this.allClubEvents.push(element);
             }
         });
-        console.log(this.allClubEvents);
-
     }
 
     /**

@@ -78,8 +78,9 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
-                            <span
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,7 @@
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
 
                             <span>{{language.Survey.remaining_time}}: {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -161,8 +162,9 @@
                         </div>
 
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
-                            <span
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -241,8 +243,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                                 <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -405,8 +407,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -486,8 +488,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -585,8 +587,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                                 <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -669,8 +671,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -751,8 +753,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -850,8 +852,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -931,8 +933,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -1012,8 +1014,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
+                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
                                 <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"

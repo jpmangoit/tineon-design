@@ -164,12 +164,6 @@ export class BirthdaysComponent implements OnInit {
                 val.imagePro = null;
             }
         });
-        // if (this.birthdayData?.length > 0) {
-        //     this.birthdayData.forEach(function (val, key) {
-        //         var age = self.calculateAge(val.bd_notification);
-        //         Object.assign(val, { age: age });
-        //     });
-        // }
     }
 
 
