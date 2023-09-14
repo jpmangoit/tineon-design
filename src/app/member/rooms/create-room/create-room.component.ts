@@ -123,7 +123,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
-            room_email: ['', Validators.required],
+            room_email: ['',  [Validators.required, Validators.email]],
             room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],

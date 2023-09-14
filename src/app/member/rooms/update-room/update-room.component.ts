@@ -132,7 +132,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
-            room_email: ['', Validators.required],
+            room_email: ['',  [Validators.required, Validators.email]],
             room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],
@@ -327,7 +327,8 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         // for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
         //     this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
         // }
-
+        console.log(this.roomForm.controls.weekdays);
+        
         for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
             this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
         }

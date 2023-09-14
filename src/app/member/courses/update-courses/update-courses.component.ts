@@ -615,7 +615,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 self.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
                             })
                         }
-
+                        console.log(respData);
+                        
                         if (respData && respData?.result?.rooms?.length > 0) {
                             this.romData = respData.result.rooms;
 
@@ -825,6 +826,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     this.romData.forEach(element => {
                         if (element.id == this.courseDetails.room) {
                             this.selectedRoom = element
+                            console.log(element);
+                            
                         }
                     });
                 }

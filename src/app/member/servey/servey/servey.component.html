@@ -3,7 +3,7 @@
         <div class="col-md-12 page-main">
             <div class="page-action">
                 <div class="page-heading">
-                    <h1>{{language.Survey.survey}}</h1>
+                    <h1>{{language.group_news.club}} - {{language.Survey.survey}}</h1>
                 </div>
                 <div class="page-action-right"
                     *ngIf="userDetails.isAdmin || userDetails.isEditor || userDetails.isFunctionary  || userDetails.isSecretary">
@@ -34,7 +34,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <!-- <div class="error alert alert-danger" id="responseMessage" *ngIf="responseMessage"> {{responseMessage}}</div> -->
-                            <div class="card-body">
+                            <div class="card-body card-body-new">
                                 <div class="tasks_navigation">
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
@@ -60,21 +60,21 @@
                                 </div>
                                 <div class="tab-content">
                                     <div class="active" id="tabs-1" *ngIf="displayActiveSurvey">
-                                        <div class="chat-navigation">
+                                        <div class="chat-navigation chat-navigation-new">
                                             <div class="tab-content">
                                                 <app-active-survey></app-active-survey>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="" id="tabs-2" *ngIf="displayMySurvey">
-                                        <div class="chat-navigation">
+                                        <div class="chat-navigation chat-navigation-new">
                                             <div class="tab-content">
                                                 <app-my-survey></app-my-survey>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="" id="tabs-3" *ngIf="displayCompletedSurvey">
-                                        <div class="chat-navigation">
+                                        <div class="chat-navigation chat-navigation-new">
                                             <div class="tab-content">
                                                 <app-completed-survey></app-completed-survey>
                                             </div>

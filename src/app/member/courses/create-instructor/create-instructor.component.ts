@@ -75,7 +75,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 		this.instructorForm = this.formbuilder.group({
 			first_name: ['', [Validators.required]],
 			last_name: ['', Validators.required],
-			emaill: ['', [Validators.required, Validators.email]],
+			emaill: ['', [Validators.required, Validators.email]], 
 			phone_no: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
 			address: ['', Validators.required],
 			add_img: ['', Validators.required],

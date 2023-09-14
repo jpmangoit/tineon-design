@@ -142,7 +142,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     nav: false,
                     autoplay: true
                 };
-            }, 500);
+            }, 1000);
         }
         this.getAllNews();
         this.getAllNewspagination();

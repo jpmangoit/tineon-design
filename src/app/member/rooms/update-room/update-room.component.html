@@ -77,7 +77,8 @@
                                             <label>{{language.instructor.email}}</label>
                                             <input type="text" placeholder="{{language.instructor.email}}" formControlName="room_email">
                                             <span class="text-danger" *ngIf="formSubmit ||  roomForm.controls['room_email'].touched">
-                                                <span *ngIf="roomForm.controls['room_email'].errors">{{language.error_message.common_required}}</span>
+                                                <span *ngIf="roomForm.controls['room_email'].errors?.required">{{language.error_message.common_required}}</span>
+                                                <span *ngIf="(roomForm.controls['room_email'].errors?.email  && roomForm.controls['room_email'].invalid)">{{language.error_message.email_proper}}</span>
                                             </span>
                                         </div>
                                         <div class="event_field">

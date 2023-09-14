@@ -11,7 +11,7 @@ declare var $: any;
     selector: 'app-organizer-all-task',
     templateUrl: './organizer-all-task.component.html',
     styleUrls: ['./organizer-all-task.component.css']
-})
+}) 
 
 export class OrganizerAllTaskComponent implements OnInit {
     language: any;
@@ -21,7 +21,7 @@ export class OrganizerAllTaskComponent implements OnInit {
     inProgress: TaskType[] = [];
     completed: TaskType[] = [];
     userDetails: any;
-    task_id:number;
+    task_id: number;
     count: number = 0;
 
     constructor(
@@ -58,7 +58,7 @@ export class OrganizerAllTaskComponent implements OnInit {
 
                                 respData?.['result']?.forEach((element) => {
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
-                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['task_image'][0]?.['task_image'].substring(20)))as string;
+                                        element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['task_image'][0]?.['task_image'].substring(20))) as string;
                                     }
                                     element.approvedCount = 0
                                     element.progressVal = 0
