@@ -610,19 +610,19 @@
                                                     href="#">{{language.dashboard.dashboardNewsContent}}</a>
                                             </div>
                                             <hr>
-                                            <div class="author-info">
+                                            <div class="author-info club-new-popup">
                                                 <div class="author-img">
                                                     <img onContextMenu="return false;"
                                                         [src]="thumbnail != null && thumbnail != '' ? thumbnail : 'assets/img/defaultProfile.jpeg'"
                                                         alt="" loading="lazy" style="width: 100px;">
                                                 </div>
                                                 <div class="author-des">
-                                                    <span class="author-id">
+                                                   <div> <span class="author-id">
                                                         {{language.dashboard.dashboardNewsAuthor}}
                                                     </span>
                                                     <span class="author-id">
                                                         {{newsData?.user?.firstname}} {{newsData?.user?.lastname}}
-                                                    </span>
+                                                    </span></div>
                                                     <!-- <span class="author-date">
                                                         {{newsData.created_at | date: 'd. MMMM y'}}
                                                     </span> -->

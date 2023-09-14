@@ -126,8 +126,8 @@
                                                                 <img onContextMenu="return false;" [src]="newsData[0]?.author_image" style="width: 100px;" alt="" loading="lazy">
                                                             </div>
                                                             <div class="author-des">
-                                                                <span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
-                                                                <span class="author-id"> {{newsData[0].author}} </span>
+                                                                <div><span class="author-date">{{language.dashboard.dashboardNewsAuthor}}</span>
+                                                                <span class="author-id"> {{newsData[0].author}} </span></div>
                                                                 <span class="author-date">{{newsData[0].created| date:'d. MMMM y'}}</span>
                                                                 <!-- <span class="author-status">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span> -->
                                                             </div>
