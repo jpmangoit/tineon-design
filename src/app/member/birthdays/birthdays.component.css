@@ -7754,7 +7754,7 @@ span.user-status img {
     padding: 0 10px;
     border-radius: 25px;
     color: #fff;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .jubilee-badge {
@@ -7765,7 +7765,7 @@ span.user-status img {
     padding: 0 10px;
     border-radius: 25px;
     color: #fff;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 /* ========New css====== */
 .card-body-new{

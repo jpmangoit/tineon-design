@@ -58,8 +58,6 @@ export class MorganizerTaskComponent implements OnInit {
     selectedProgress = '5'
     alluserInformation: { member_id: number }[] = [];
     thumb: any;
-
-
     displayToDo: boolean = true;
     displayInProgress: boolean = false;
     displayCompleted: boolean = false

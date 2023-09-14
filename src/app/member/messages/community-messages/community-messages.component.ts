@@ -26,7 +26,7 @@ declare var $: any;
     styleUrls: ['./community-messages.component.css']
 })
 
-export class CommunityMessagesComponent implements OnInit, OnDestroy,AfterViewChecked {
+export class CommunityMessagesComponent implements OnInit, OnDestroy {
     language: any;
     alluserDetails: any = [];
     userDetails: LoginDetails;

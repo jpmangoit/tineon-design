@@ -40,19 +40,19 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" id="head-allTask" (click)="onSurvey(1)"
                                                 [ngStyle]="displayActiveSurvey == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
-                                                <div class="tab_value">{{language.Survey.active_survey}}</div>
+                                                <div class="tab_value">{{language.Survey.active_survey}} {{language.Survey.survey}}</div>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="head-personalTask" (click)="onSurvey(2)"
                                                 [ngStyle]="displayMySurvey == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
-                                                <div class="tab_value">{{language.Survey.my_votes}}</div>
+                                                <div class="tab_value">{{language.Survey.my_votes}} {{language.Survey.survey}}</div>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="head-groupTask" (click)="onSurvey(3)"
                                                 [ngStyle]="displayCompletedSurvey == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
-                                                <div class="tab_value">{{language.Survey.completed_votes}}</div>
+                                                <div class="tab_value">{{language.Survey.completed_votes}} {{language.Survey.survey}}</div>
                                             </a>
                                         </li>
                                     </ul>
