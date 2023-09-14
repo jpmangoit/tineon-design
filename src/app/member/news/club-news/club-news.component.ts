@@ -18,7 +18,7 @@ declare var $: any;
     selector: 'app-club-news',
     templateUrl: './club-news.component.html',
     styleUrls: ['./club-news.component.css']
-}) 
+})
 
 export class ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
@@ -74,11 +74,39 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         nav: false,
         autoplay: true
     };
+
+    sliderOptions1: OwlOptions = {
+        loop: true,
+        mouseDrag: true,
+        touchDrag: true,
+        pullDrag: true,
+        dots: true,
+        navSpeed: 700,
+        navText: ['', ''],
+        margin: 24,
+        responsive: {
+            0: {
+                items: 1
+            },
+            400: {
+                items: 1
+            },
+            740: {
+                items: 1
+            },
+            940: {
+                items: 1
+            }
+        },
+        nav: false,
+        autoplay: true
+    };
     currentPageNmuber: number = 1;
     totalPages: any
     itemPerPage: number = 4;
     newsTotalRecords: number = 0;
     showClubDash: boolean = true;
+    newData: any;
 
     constructor(
         public authService: AuthServiceService,
@@ -93,14 +121,6 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        if (localStorage.getItem('club_theme') != null) {
-            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
-            this.setTheme = theme;
-        }
-        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
-            this.setTheme = resp;
-        });
-
         let currentUrl: string = this.router.url;
 
         if (currentUrl == '/dashboard') {
@@ -108,13 +128,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         } else {
             this.showClubDash = false;
         }
-        this.language = this.lang.getLanguaageFile();
-        this.userData = JSON.parse(localStorage.getItem('user-data'));
-        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
-        this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.role = this.userData.roles[0];
         this.url = this.router.url;
-
         if (this.url == '/dashboard' || this.url == '/') {
             this.displayPopup = true;
             this.newsDisplay = 4;
@@ -122,6 +136,20 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.displayPopup = false;
             this.newsDisplay = 4;
         }
+
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            this.setTheme = theme;
+        }
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
+        });
+        this.language = this.lang.getLanguaageFile();
+        this.userData = JSON.parse(localStorage.getItem('user-data'));
+        this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
+        this.allowAdvertisment = localStorage.getItem('allowAdvertis');
+        this.role = this.userData.roles[0];
+
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
         }
@@ -139,6 +167,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     getDesktopDeshboardBanner() {
         if (this.bannerData?.length > 0) {
             this.newsDisplay = 3;
+            // console.log('bannerData', this.bannerData);
         }
         else {
             // this.authService.setLoader(true);
@@ -147,23 +176,25 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         // this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            this.bannerData = respData['result']['banner']
-
-                            this.bannerData.forEach((element: any) => {
-                                element['category'] = JSON.parse(element.category);
-                                element['placement'] = JSON.parse(element.placement);
-                                element['display'] = JSON.parse(element.display);
-                                // element['image'] = JSON.parse(element.image);
-                                if (element.banner_image[0]?.banner_image) {
-                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
-                                }
-                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                    element['redirectLink'] = element.redirectLink;
-                                } else {
-                                    element['redirectLink'] = '//' + element.redirectLink;
-                                }
-                            })
-                            if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
+                            this.newData = respData['result']['banner']
+                            // console.log('newData', this.newData);
+                            if (this.newData?.length > 0) {
+                                this.newData.forEach((element: any) => {
+                                    element['category'] = JSON.parse(element.category);
+                                    element['placement'] = JSON.parse(element.placement);
+                                    element['display'] = JSON.parse(element.display);
+                                    // element['image'] = JSON.parse(element.image);
+                                    if (element.banner_image[0]?.banner_image) {
+                                        element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
+                                    }
+                                    if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                        element['redirectLink'] = element.redirectLink;
+                                    } else {
+                                        element['redirectLink'] = '//' + element.redirectLink;
+                                    }
+                                })
+                            }
+                            if (this.allowAdvertisment == 0 && this.newData?.length > 0) {
                                 this.newsDisplay = 3;
                             }
                         } else if (respData['code'] == 400) {

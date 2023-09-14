@@ -92,7 +92,7 @@
                     <div class="news-item multi-item">
                         <div class="dashboard-slider" *ngIf="dashboardNewsData?.length > 0 || bannerData?.length > 0">
                             <div class="multi-item-carousel" *ngIf="bannerData?.length > 0 && allowAdvertisment == 0">
-                                <owl-carousel-o [options]="sliderOptions">
+                                <owl-carousel-o [options]="sliderOptions" >
                                     <ng-template carouselSlide *ngFor="let item of bannerData; let i=index">
                                         <div class="news-widget com-g-widget">
                                             <a [href]="item.redirectLink" target="_blank"
@@ -346,10 +346,10 @@
                         </div>
                     </ng-container>
                     <div class="news-item multi-item">
-                        <div class="dashboard-slider" *ngIf="bannerData">
-                            <div class="multi-item-carousel" *ngIf="bannerData?.length > 0 && allowAdvertisment == 0">
-                                <owl-carousel-o [options]="sliderOptions">
-                                    <ng-template carouselSlide *ngFor="let item of bannerData; let i=index">
+                        <div class="dashboard-slider" *ngIf="newData">
+                            <div class="multi-item-carousel" *ngIf="newData?.length > 0 && allowAdvertisment == 0">
+                                <owl-carousel-o [options]="sliderOptions1">
+                                    <ng-template carouselSlide *ngFor="let item of newData; let i=index">
                                         <div class="news-widget com-g-widget">
                                             <a [href]="item.redirectLink" target="_blank"
                                                 (click)="onClickBanner(item.id)">
