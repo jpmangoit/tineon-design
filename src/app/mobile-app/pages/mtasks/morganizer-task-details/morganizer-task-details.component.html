@@ -41,8 +41,9 @@
 
                                                         </Span>
                                                     </div>
-                                                    <div class="task-category" >
-                                                        <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
+                                                    <div class="task-category">
+                                                        <span
+                                                            [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
@@ -190,7 +191,7 @@
                                                                                 style="padding-left:34px;"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#subtaskModal"
-                                                                                (click)="getSubTasksDetails(subtasks.id)">
+                                                                                (click)="getSubTasksDetails(subtasks.id, 'current')">
                                                                                 {{subtasks.title}}</h5>
                                                                         </div>
                                                                     </div>
@@ -232,7 +233,8 @@
                                                         </Span>
                                                     </div>
                                                     <div class="task-category">
-                                                        <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
+                                                        <span
+                                                            [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="updatedTaskData.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="updatedTaskData.group_id != 0">{{language.create_task.group}}</span>
@@ -391,7 +393,7 @@
                                                                                 style="padding-left: 34px;"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#subtaskModal"
-                                                                                (click)="getSubTasksDetails(subtasks.id)">
+                                                                                (click)="getSubTasksDetails(subtasks.id, 'updated')">
                                                                                 {{subtasks.title}}</h5>
                                                                         </div>
                                                                     </div>
@@ -433,8 +435,9 @@
 
                                                 </Span>
                                             </div>
-                                            <div class="task-category" >
-                                                <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
+                                            <div class="task-category">
+                                                <span
+                                                    [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                     *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                 <span
                                                     *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
@@ -593,7 +596,7 @@
                                                                         style="padding-left: 34px;"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#subtaskModal"
-                                                                        (click)="getSubTasksDetails(subtasks.id)">
+                                                                        (click)="getSubTasksDetails(subtasks.id, 'current')">
                                                                         {{subtasks.title}}</h5>
                                                                 </div>
                                                             </div>
@@ -1054,7 +1057,8 @@
                                                 <div class="group_detail_content">
                                                     <div class="group_title">
                                                         <div class="sub-title">
-                                                            <div *ngIf="(taskDetails.status != 2) && (taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null ) || (updated_record == null)">
+                                                            <div
+                                                                *ngIf="taskDetails?.status == 0 && (taskDetails?.deny_by_id != '' ||  taskDetails?.deny_by_id != null) && !showUpdatedData">
                                                                 <input *ngIf="selectedSubtask?.status == 0"
                                                                     class="check-style"
                                                                     id="styled-checkbox-{{selectedSubtask.id}}"

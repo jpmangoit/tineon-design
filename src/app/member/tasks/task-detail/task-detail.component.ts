@@ -136,11 +136,11 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             if (respData && respData['result'] && respData['result'][0]) {
                                 this.taskDetails = respData['result'][0];
-                                
+
                                 if (this.taskDetails?.['task_image'][0]?.['task_image']) {
                                     this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
                                 }
-                                
+
                                 // this.taskDetails.approvedCount = 0;
                                 // this.taskDetails.progressVal = 0;
                                 // if ( this.taskDetails.subtasks.length > 0) {
@@ -180,16 +180,16 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                         }
                                     });
                                 }
-                                    
+
                                 if (this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedCollaborators = [];
                                     this.UpdatedcollaboratorDetails = [];
                                     this.updatedTaskData = null;
-                                    if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") { 
-                                        this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']); 
+                                    if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") {
+                                        this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']);
                                     }
-                                    
+
                                     if (this.updatedTaskData != null) {
 
                                         if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {
@@ -198,6 +198,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
 
                                         this.updatedTaskData.subtasks = JSON.parse(this.updatedTaskData.subtasks);
                                         this.updatedTaskData.collaborators = JSON.parse(this.updatedTaskData.collaborators);
+
                                         if (this.updatedTaskData['subtasks'] && this.updatedTaskData['subtasks'].length > 0) {
                                             if (this.updatedTaskData && this.updatedTaskData['subtasks'].length > 0) {
                                                 this.updatedTaskData['subtasks'].forEach(element => {
@@ -272,7 +273,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                                             })
                                         }
                                         this.updatedOrganizerDetails = Object.assign(this.authService.uniqueObjData(this.updatedOrganizerDetails, 'id'));
-                                        this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators, 'id'));
+                                        // this.updatedCollaborators = Object.assign(this.authService.uniqueObjData(this.updatedCollaborators, 'id'));
+
                                     }
                                 }
                             }
@@ -329,6 +331,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                             });
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
                             this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
+
                         }
                     }
                 );

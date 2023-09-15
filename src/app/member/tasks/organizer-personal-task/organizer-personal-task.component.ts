@@ -6,7 +6,7 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
-@Component({
+@Component({ 
 	selector: 'app-organizer-personal-task',
 	templateUrl: './organizer-personal-task.component.html',
 	styleUrls: ['./organizer-personal-task.component.css']
