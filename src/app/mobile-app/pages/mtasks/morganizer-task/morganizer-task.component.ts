@@ -104,7 +104,7 @@ export class MorganizerTaskComponent implements OnInit {
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
-		private router: Router,
+        private router: Router,
 
     ) { }
 
@@ -236,18 +236,21 @@ export class MorganizerTaskComponent implements OnInit {
                                         element.remain = this.language.organizer_task.daysOverride;
                                     }
 
-                                    if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
-                                        this.toDoTask.push(element) 
-                                        this.toDoTask;
+                                    if (element.team_id != null) {
+                                        if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
+                                            this.toDoTask.push(element)
+                                            this.toDoTask;
 
-                                    } else if (element.status == 0 && element.subtasks.some(obj => obj.status === 1)) {
-                                        this.inProgress.push(element)
-                                        this.inProgress;
+                                        } else if (element.status == 0 && element.subtasks.some(obj => obj.status === 1)) {
+                                            this.inProgress.push(element)
+                                            this.inProgress;
 
-                                    } else if (element.status == 1) {
-                                        this.completed.push(element)
-                                        this.completed;
+                                        } else if (element.status == 1) {
+                                            this.completed.push(element)
+                                            this.completed;
+                                        }
                                     }
+
                                 });
                             }
                         }
@@ -309,19 +312,21 @@ export class MorganizerTaskComponent implements OnInit {
                                         } else {
                                             element.remain = this.language.organizer_task.daysOverride;
                                         }
+                                        if (element.team_id != null) {
+                                            if ((element.group_id == null || element.group_id == 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
+                                                this.perToDoTask.push(element)
+                                                this.perToDoTask;
 
-                                        if ((element.group_id == null || element.group_id == 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
-                                            this.perToDoTask.push(element)
-                                            this.perToDoTask;
+                                            } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
+                                                this.perInProgress.push(element)
+                                                this.perInProgress;
 
-                                        } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
-                                            this.perInProgress.push(element)
-                                            this.perInProgress;
-
-                                        } else if ((element.group_id == null || element.group_id == 0) && (element.status == 1)) {
-                                            this.perCompleted.push(element)
-                                            this.perCompleted;
+                                            } else if ((element.group_id == null || element.group_id == 0) && (element.status == 1)) {
+                                                this.perCompleted.push(element)
+                                                this.perCompleted;
+                                            }
                                         }
+
                                     }
                                     if (element.group_id > 0) {
                                         element.approvedCount = 0;
@@ -337,19 +342,21 @@ export class MorganizerTaskComponent implements OnInit {
                                         } else {
                                             element.remain = this.language.organizer_task.daysOverride;
                                         }
+                                        if (element.team_id != null) {
+                                            if ((element.group_id > 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
+                                                this.groupToDoTask.push(element)
+                                                this.groupToDoTask;
 
-                                        if ((element.group_id > 0) && (element.status == 0 && element.subtasks.every(obj => obj.status === 0))) {
-                                            this.groupToDoTask.push(element)
-                                            this.groupToDoTask;
+                                            } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
+                                                this.groupInProgress.push(element)
+                                                this.groupInProgress;
 
-                                        } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
-                                            this.groupInProgress.push(element)
-                                            this.groupInProgress;
-
-                                        } else if ((element.group_id > 0) && (element.status == 1)) {
-                                            this.groupCompleted.push(element)
-                                            this.groupCompleted;
+                                            } else if ((element.group_id > 0) && (element.status == 1)) {
+                                                this.groupCompleted.push(element)
+                                                this.groupCompleted;
+                                            }
                                         }
+
                                     }
                                     if (element.organizer_id == this.user_id) {
                                         element.approvedCount = 0;
@@ -365,16 +372,19 @@ export class MorganizerTaskComponent implements OnInit {
                                         } else {
                                             element.remain = this.language.organizer_task.daysOverride;
                                         }
-                                        if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
-                                            this.createdToDoTask.push(element)
-                                            this.createdToDoTask;
-                                        } else if (element.subtasks.some(obj => obj.status === 1) && element.status != 1) {
-                                            this.createdInProgress.push(element)
-                                            this.createdInProgress;
-                                        } else if (element.status == 1) {
-                                            this.createdCompleted.push(element)
-                                            this.createdCompleted;
+                                        if (element.team_id != null) {
+                                            if (element.status == 0 && element.subtasks.every(obj => obj.status === 0)) {
+                                                this.createdToDoTask.push(element)
+                                                this.createdToDoTask;
+                                            } else if (element.subtasks.some(obj => obj.status === 1) && element.status != 1) {
+                                                this.createdInProgress.push(element)
+                                                this.createdInProgress;
+                                            } else if (element.status == 1) {
+                                                this.createdCompleted.push(element)
+                                                this.createdCompleted;
+                                            }
                                         }
+
                                     }
                                 });
                             }

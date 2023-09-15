@@ -41,8 +41,8 @@
 
                                                         </Span>
                                                     </div>
-                                                    <div class="task-category">
-                                                        <span
+                                                    <div class="task-category" >
+                                                        <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
@@ -232,7 +232,7 @@
                                                         </Span>
                                                     </div>
                                                     <div class="task-category">
-                                                        <span
+                                                        <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="updatedTaskData.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="updatedTaskData.group_id != 0">{{language.create_task.group}}</span>
@@ -433,12 +433,11 @@
 
                                                 </Span>
                                             </div>
-                                            <div class="task-category">
-                                                <span
+                                            <div class="task-category" >
+                                                <span [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                     *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                 <span
                                                     *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
-                                                <!-- <span> INDIVIDUAL</span> -->
                                             </div>
                                         </div>
                                         <div class="task-detail-profile">

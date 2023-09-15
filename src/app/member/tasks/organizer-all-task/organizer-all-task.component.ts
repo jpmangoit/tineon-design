@@ -11,8 +11,8 @@ declare var $: any;
     selector: 'app-organizer-all-task',
     templateUrl: './organizer-all-task.component.html',
     styleUrls: ['./organizer-all-task.component.css']
-}) 
- 
+})
+
 export class OrganizerAllTaskComponent implements OnInit {
     language: any;
     user_id: string;
@@ -51,6 +51,7 @@ export class OrganizerAllTaskComponent implements OnInit {
                         this.inProgress = [];
                         this.completed = [];
                         if (respData['isError'] == false) {
+
                             if (respData['result']?.length > 0) {
                                 respData?.['result']?.forEach((element) => {
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
@@ -71,16 +72,17 @@ export class OrganizerAllTaskComponent implements OnInit {
                                     } else {
                                         element.remain = this.language.organizer_task.daysOverride;
                                     }
-
-                                    if ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0)) {
-                                        this.toDoTask.push(element);
-                                        this.toDoTask;
-                                    } else if (element.subtasks.some(obj => obj.status === 1 && element.status != 1)) {
-                                        this.inProgress.push(element);
-                                        this.inProgress;
-                                    } else if (element.status == 1) {
-                                        this.completed.push(element);
-                                        this.completed;
+                                    if (element.team_id !== null) {
+                                        if ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0)) {
+                                            this.toDoTask.push(element);
+                                            this.toDoTask;
+                                        } else if (element.subtasks.some(obj => obj.status === 1 && element.status != 1)) {
+                                            this.inProgress.push(element);
+                                            this.inProgress;
+                                        } else if (element.status == 1) {
+                                            this.completed.push(element);
+                                            this.completed;
+                                        }
                                     }
                                 });
                             }
