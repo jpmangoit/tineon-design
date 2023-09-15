@@ -12,7 +12,7 @@ declare var $: any;
     templateUrl: './organizer-all-task.component.html',
     styleUrls: ['./organizer-all-task.component.css']
 }) 
-
+ 
 export class OrganizerAllTaskComponent implements OnInit {
     language: any;
     user_id: string;
@@ -47,15 +47,11 @@ export class OrganizerAllTaskComponent implements OnInit {
             this.authService.memberSendRequest('get', endpoint, null)
                 .subscribe(
                     (respData: any) => {
-                        console.log(respData);
-
                         this.toDoTask = [];
                         this.inProgress = [];
                         this.completed = [];
                         if (respData['isError'] == false) {
-
                             if (respData['result']?.length > 0) {
-
                                 respData?.['result']?.forEach((element) => {
                                     if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                                         element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['task_image'][0]?.['task_image'].substring(20))) as string;

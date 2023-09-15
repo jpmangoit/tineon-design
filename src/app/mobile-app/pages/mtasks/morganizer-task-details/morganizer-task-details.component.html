@@ -471,7 +471,7 @@
                                                         {{language.organizer_task.PublishTask}}
                                                     </button>
                                                     <button mat-menu-item
-                                                        *ngIf="taskDetails.status == 2 && userDetails.isAdmin && ( taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )"
+                                                        *ngIf="taskDetails.status == 2 && userDetails.isAdmin && (taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )"
                                                         (click)="adminApprovedTasks(taskDetails.id)">
                                                         {{language.organizer_task.PublishTask}}
                                                     </button>
@@ -1055,17 +1055,19 @@
                                                 <div class="group_detail_content">
                                                     <div class="group_title">
                                                         <div class="sub-title">
-                                                            <input *ngIf="selectedSubtask?.status == 0"
-                                                                class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask.id}}"
-                                                                type="checkbox"
-                                                                (change)="eventMarkCompleteSub(selectedSubtask?.id)"
-                                                                style="opacity: 1;margin-top: 0px;">
-                                                            <input *ngIf="selectedSubtask?.status == 1"
-                                                                class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask.id}}"
-                                                                type="checkbox" style="opacity: 1;margin-top: 0px;"
-                                                                checked="checked" disabled="disabled">
+                                                            <div *ngIf="(taskDetails.status != 2) && (taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null ) || (updated_record == null)">
+                                                                <input *ngIf="selectedSubtask?.status == 0"
+                                                                    class="check-style"
+                                                                    id="styled-checkbox-{{selectedSubtask.id}}"
+                                                                    type="checkbox"
+                                                                    (change)="eventMarkCompleteSub(selectedSubtask?.id)"
+                                                                    style="opacity: 1;margin-top: 0px;">
+                                                                <input *ngIf="selectedSubtask?.status == 1"
+                                                                    class="check-style"
+                                                                    id="styled-checkbox-{{selectedSubtask.id}}"
+                                                                    type="checkbox" style="opacity: 1;margin-top: 0px;"
+                                                                    checked="checked" disabled="disabled">
+                                                            </div>
 
                                                             <h5 *ngIf="selectedSubtask.status != 2" class=""
                                                                 style="margin-left: 35px;">{{selectedSubtask?.title}}
