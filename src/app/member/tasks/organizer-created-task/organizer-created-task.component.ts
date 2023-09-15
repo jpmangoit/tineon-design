@@ -11,7 +11,7 @@ declare var $: any;
     templateUrl: './organizer-created-task.component.html',
     styleUrls: ['./organizer-created-task.component.css']
 })
-
+ 
 export class OrganizerCreatedTaskComponent implements OnInit {
     @Input() organizerTask: any;
     language: any;
@@ -55,16 +55,19 @@ export class OrganizerCreatedTaskComponent implements OnInit {
                             } else {
                                 element.remain = this.language.organizer_task.daysOverride;
                             }
-                            if ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0)) {
-                                this.toDoTask.push(element);
-                                this.toDoTask;
-                            } else if (element.subtasks.some(obj => obj.status === 1 && element.status != 1)) {
-                                this.inProgress.push(element);
-                                this.inProgress;
-                            } else if (element.status == 1) {
-                                this.completed.push(element);
-                                this.completed;
+                            if(element.team_id != null){
+                                if ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0)) {
+                                    this.toDoTask.push(element);
+                                    this.toDoTask;
+                                } else if (element.subtasks.some(obj => obj.status === 1 && element.status != 1)) {
+                                    this.inProgress.push(element);
+                                    this.inProgress;
+                                } else if (element.status == 1) {
+                                    this.completed.push(element);
+                                    this.completed;
+                                }
                             }
+                         
                     }
                 });
             }

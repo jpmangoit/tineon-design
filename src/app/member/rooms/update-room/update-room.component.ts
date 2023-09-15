@@ -132,7 +132,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
-            room_email: ['',  [Validators.required, Validators.email]],
+            room_email: ['', [Validators.required, Validators.email]],
             room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],
@@ -285,11 +285,6 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     if (this.roomData['active_to']) {
                         this.roomForm.controls['active_to'].setValue(this.roomData['active_to'].split('T')[0])
                     }
-
-                    // if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.roomData.image.endsWith(char))) {
-                    // this.hasPicture = true;
-                    //     this.imageUrl = this.roomData.image;
-                    // }
                     this.weekdays.reset();
                     //-------------------set weekdays-------------
                     for (let i = 0; i < this.roomData.room_availablity.length; i++) {
@@ -327,60 +322,60 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         // for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
         //     this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
         // }
-        console.log(this.roomForm.controls.weekdays);
+        console.log(this.roomForm.controls.weekdays.value);
         
-        for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-            this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
-        }
-        this.roomForm.value['team_id'] = this.teamId;
-        if (this.fileToReturn) {
-            this.roomForm.value['image'] = this.fileToReturn;
-        } else {
-            this.roomForm.value['image'] = this.originalImg;
-            // this.roomForm.value['image'] = this.imageUrl;
-        }
-        if (this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
-            var formData: FormData = new FormData();
+        if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
+            for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
+                this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;
+            }
+            this.roomForm.value['team_id'] = this.teamId;
+            if (this.fileToReturn) {
+                this.roomForm.value['image'] = this.fileToReturn;
+            } else {
+                this.roomForm.value['image'] = this.originalImg;
+                // this.roomForm.value['image'] = this.imageUrl;
+            }
+            if (this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
+                var formData: FormData = new FormData();
 
-            let self = this;
-            for (const key in this.roomForm.value) {
-                if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
-                    const element: string = this.roomForm.value[key];
-                    if (key == 'name') {
-                        formData.append('name', element);
-                    }
-                    if (key == 'room_type') {
-                        formData.append('room_type', element);
-                    }
-                    if (key == 'room_email') {
-                        formData.append('room_email', element);
-                    }
-                    if (key == 'room_address') {
-                        formData.append('room_address', element);
-                    }
-                    if (key == 'no_of_persons') {
-                        formData.append('no_of_persons', element);
-                    }
-                    if (key == 'weekdays') {
-                        formData.append('weekdays', JSON.stringify(element));
-                    }
-                    if (key == 'description') {
-                        formData.append('description', element);
-                    }
-                    if (key == 'team_id') {
-                        formData.append('team_id', element);
-                    }
-                    if (key == 'image') {
-                        formData.append('file', element);
-                    } else {
-                        if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
-                            formData.append(key, element);
+                let self = this;
+                for (const key in this.roomForm.value) {
+                    if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
+                        const element: string = this.roomForm.value[key];
+                        if (key == 'name') {
+                            formData.append('name', element);
+                        }
+                        if (key == 'room_type') {
+                            formData.append('room_type', element);
+                        }
+                        if (key == 'room_email') {
+                            formData.append('room_email', element);
+                        }
+                        if (key == 'room_address') {
+                            formData.append('room_address', element);
+                        }
+                        if (key == 'no_of_persons') {
+                            formData.append('no_of_persons', element);
+                        }
+                        if (key == 'weekdays') {
+                            formData.append('weekdays', JSON.stringify(element));
+                        }
+                        if (key == 'description') {
+                            formData.append('description', element);
+                        }
+                        if (key == 'team_id') {
+                            formData.append('team_id', element);
+                        }
+                        if (key == 'image') {
+                            formData.append('file', element);
+                        } else {
+                            if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
+                                formData.append(key, element);
+                            }
                         }
                     }
                 }
-            }
-            if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
-                this.authService.setLoader(true);
+                this.authService.setLoader(true); 
                 this.authService.memberSendRequest('put', 'updateRooms/' + this.roomId, formData).subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;

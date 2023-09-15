@@ -742,70 +742,10 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.eventImage = '';
         }
 
-        // if (this.eventDetails?.picture_video != null) {
-        //     this.hasPicture = true;
-        //     if (this.eventDetails.picture_video){
-        //     this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
-        //     this.eventImage =  this.eventDetails.picture_video;
-        //     this.imageUrl = this.eventDetails.picture_video;
-        //     }
-        // } else {
-        //     this.hasPicture = false;
-        //     this.eventImage = '';
-        // }
-
-
         if (this.eventDetails?.event_images[0]?.event_document) {
             this.eventFile = this.eventDetails?.event_images[0]?.event_document;
             this.fileUrl = this.eventDetails?.event_images[0]?.event_document;
         }
-
-        // if (this.eventDetails.picture_video != null) {
-        //     this.hasPicture = true;
-        //     let responseImg: string;
-        //     responseImg = this.eventDetails.picture_video;
-        //     let resp: string[] = [];
-        //     resp = responseImg.split("\"");
-        //     let imgArray: string[] = [];
-        //     let self = this;
-        //     if (resp && resp.length > 0) {
-        //         resp.forEach(element => {
-        //             if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
-        //                 (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
-        //                 (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
-        //                 (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
-        //             ) {
-        //                 imgArray.push(element);
-        //                 this.eventImage = imgArray[0];
-        //             }
-        //             if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
-        //                 (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
-        //                 (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
-        //                 (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
-        //                 (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
-        //                 this.eventFile = element;
-        //             }
-        //         });
-        //     }
-        // }
-
-
-        // if (this.eventDetails.picture_video) {
-        //     this.image = this.eventDetails.picture_video;
-        //     let resp: string[] = [];
-        //     resp = this.image.split("\"");
-        //     let self = this;
-        //     if (resp && resp.length > 0) {
-        //         resp.forEach(element => {
-
-        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-        //                 this.imageUrl = element;
-        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-        //                 this.fileUrl = element;
-        //             }
-        //         })
-        //     }
-        // }
         if (this.eventDetails.recurrence != null && this.eventDetails.recurrence != "") {
             const textArray: string[] = this.eventDetails.recurrence.split(";", 1);
             const until = this.eventDetails.recurrence.split(";", 2)[1];

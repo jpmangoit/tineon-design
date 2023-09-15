@@ -6,7 +6,7 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
-@Component({
+@Component({ 
 	selector: 'app-organizer-group-task',
 	templateUrl: './organizer-group-task.component.html',
 	styleUrls: ['./organizer-group-task.component.css']
@@ -16,7 +16,7 @@ export class OrganizerGroupTaskComponent implements OnInit {
 	language:any;
 	user_id:string;
 	personalTasks:TaskType[];
-    toDoTask:TaskType[]=[];
+    toDoTask:TaskType[]=[]; 
     inProgress:TaskType[]=[];
     completed:TaskType[]=[];
 
@@ -34,11 +34,14 @@ export class OrganizerGroupTaskComponent implements OnInit {
             this.toDoTask = [];
             this.inProgress = [];
             this.completed = [];
+            console.log(this.organizerTask);
+            
             if (this.organizerTask?.length > 0) {
                 this.organizerTask?.forEach((element) => {
                     // if (element && element?.['task_image'] && element?.['task_image'][0]?.['task_image']) {
                     //     element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
                     // }
+                    // element.group_id = 37
                     if (element.group_id > 0) {
                         element.approvedCount = 0;
                         element.progressVal = 0;
@@ -47,7 +50,7 @@ export class OrganizerGroupTaskComponent implements OnInit {
                             element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
                         }
 
-                        let cudate: Date = new Date();
+                        let cudate: Date = new Date(); 
                         element.dayCount = this.commonFunctionService.getDays(cudate, element.date);
 
                         if (element.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -56,15 +59,17 @@ export class OrganizerGroupTaskComponent implements OnInit {
                             element.remain = this.language.organizer_task.daysOverride;
                         }
 
-                        if ((element.group_id > 0) && ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0))) {
-                            this.toDoTask.push(element);
-                            this.toDoTask;
-                        } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
-                            this.inProgress.push(element);
-                            this.inProgress;
-                        } else if ((element.group_id > 0) && (element.status == 1)) {
-                            this.completed.push(element);
-                            this.completed;
+                        if(element.team_id != null){
+                            if ((element.group_id > 0) && ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0))) {
+                                this.toDoTask.push(element);
+                                this.toDoTask;
+                            } else if ((element.group_id > 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
+                                this.inProgress.push(element);
+                                this.inProgress;
+                            } else if ((element.group_id > 0) && (element.status == 1)) {
+                                this.completed.push(element);
+                                this.completed;
+                            }
                         }
                     }
                 });
