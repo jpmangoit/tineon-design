@@ -36,6 +36,9 @@
 .active-survey-data thead tr th:last-child {
   border-top-right-radius: 20px;
 }
+table.table.active-survey-data th:last-child:after{
+  display: none;
+}
 table.table.active-survey-data th:after {
   content: '';
   position: absolute;

@@ -46,6 +46,10 @@ table.table.active-survey-data th:after {
   display: inline-block;
   top: 20px;
 }
+
+table.table.active-survey-data th:last-child:after{
+  display: none;
+}
 table.table.active-survey-data td {
   font-weight: 600;
   font-size: 14px;

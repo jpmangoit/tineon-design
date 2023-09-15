@@ -1,21 +1,24 @@
 .task-list-header {
-    color: #fff;
-    padding: 25px 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-size: 15px;
-    text-transform: uppercase;
+  color: #fff;
+  padding: 0px 1.5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+  height: 71px;
+  line-height: 71px;
 }
 
 .task-list-header h5 {
     margin: 0px;
     font-weight: 700;
     font-family: 'Gellix', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 71px;
 }
 
 .todo-task .task-list-header {
-    background: #E93608;
+    background: #FF7791;
 }
 
 .progress-task .task-list-header {
@@ -23,7 +26,7 @@
 }
 
 .completed-task .task-list-header {
-    background: rgb(30, 177, 118);
+    background: #1EB176;
 }
 
 .task-list {
@@ -42,7 +45,7 @@
 }
 
 .task-list-row {
-    padding: 12px 0;
+    padding: 1.25rem 1.31rem;
     background: none;
     height: 770px;
     overflow-y: auto;
@@ -52,7 +55,28 @@
 .task-category {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    padding: 0.8rem 1.5rem 0 ;
+   
+}
+
+.event-action button{
+  padding: 0px;
+  line-height: normal;
+}
+
+.tag {
+    padding: 0 1.5rem;
+    margin-bottom: 10px;
+  margin-top: 3px;
+}
+.tag  span {
+    background: #FBC52D;
+    padding: 0.30rem;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
 }
 
 .task-category span {
@@ -66,10 +90,15 @@
 }
 
 .task-list-item {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
+background: #fff;
+  padding: 0rem 0 0.9rem;
+  border-radius: 15px;
+  margin: 0 0 2.09rem;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.task-list-content {
+  padding: 0 1.51rem;
 }
 
 .task-list-content h5 {
@@ -92,11 +121,15 @@
 
 .task-list-content p {
     font-family: 'Gellix', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #9EACC1;
     font-size: 14px;
+    text-align: justify;
 }
 
+.task-list-content p {
+  margin-bottom: 5px;
+}
 .mat-progress-bar {
     height: 13px;
     border-radius: 25px;
@@ -110,10 +143,12 @@
     background-color: #FF7791;
 }
 ::ng-deep .progress-task .mat-progress-bar-fill::after {
-    background-color: #76B0EF;
+    /* background-color: #76B0EF; */
+    background-color: #FBC52D;
 }
 ::ng-deep .completed-task .mat-progress-bar-fill::after {
-    background-color: #51D39E;
+    /* background-color: #51D39E; */
+    background-color: #41AE4C;
 }
 .progress-content {
     display: flex;
@@ -123,9 +158,10 @@
 
 .progress-content span {
     font-size: 10px;
-    font-weight: 600;
-    color: #95A0C6;
-    font-family: 'Gellix', sans-serif;
+  font-weight: 700;
+  color: #95A0C6;
+  font-family: 'Gellix', sans-serif;
+  text-transform: uppercase;
 }
 .joined-user span:first-child {
     position: relative;
@@ -179,16 +215,17 @@ span.total-joiny {
     align-items: center;
 }
 .task-list-image {
-    border-radius: 10px;
-    padding: 0px;
-    background: #fff !important;
-    /* height: 260px; */
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    aspect-ratio: 4/3;
+   border-radius: 10px 10px 0 0;
+  padding: 0px;
+  background: #fff !important;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+  aspect-ratio: 4/3;
+  height: 232px;
+  width: 100%;
 }
 .task-list-image img {
     border-radius: 15px;
@@ -196,7 +233,7 @@ span.total-joiny {
     display: block;
     width: 100%;
     height: 100%;
-    transform: scale(1.2)
+    transform: scale(1.2);
 }
 .individual-category span.total-joiny{
     font-size: 14px;
@@ -225,3 +262,14 @@ span.total-joiny {
         flex-wrap: wrap;
     }
 }
+
+.todo-task.task-list, .progress-task.task-list, .completed-task.task-list {
+    border-radius: 10px;
+    background: #EFF2FD;
+  }
+.task-category h5{
+    font-size: 17px !important;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
