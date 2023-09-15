@@ -11,7 +11,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
@@ -39,7 +39,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     indax: number;
     weekdayArray: { name: any; id: number; }[];
     weekdayDropdownSettings: object;
-    selectDay:any[]=[];
+    selectDay: any[] = [];
     croppedImage: string = '';
     imageChangedEvent: Event;
     editorConfig: AngularEditorConfig = {
@@ -49,7 +49,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -123,7 +123,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         this.roomForm = this.formBuilder.group({
             name: ['', Validators.required],
             room_type: ['', Validators.required],
-            room_email: ['',  [Validators.required, Validators.email]],
+            room_email: ['', [Validators.required, Validators.email]],
             room_address: ['', Validators.required],
             no_of_persons: ['', [Validators.required, Validators.pattern('^[0-9]*$')],],
             image: ['', Validators.required],
@@ -137,18 +137,18 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     time_to: ['', Validators.required],
                 }),
             ]),
-            active_from :['', Validators.required],
-            active_to :['', Validators.required],
+            active_from: ['', Validators.required],
+            active_to: ['', Validators.required],
         });
 
         this.weekdayArray = [
-            { id: 1, name: this.language.new_create_event.monday},
-            { id: 2, name: this.language.new_create_event.tuesday},
-            { id: 3, name: this.language.new_create_event.wednesday},
-            { id: 4, name: this.language.new_create_event.thrusday},
-            { id: 5, name: this.language.new_create_event.friday},
-            { id: 6, name: this.language.new_create_event.saturday},
-            { id: 0, name: this.language.new_create_event.sunday},
+            { id: 1, name: this.language.new_create_event.monday },
+            { id: 2, name: this.language.new_create_event.tuesday },
+            { id: 3, name: this.language.new_create_event.wednesday },
+            { id: 4, name: this.language.new_create_event.thrusday },
+            { id: 5, name: this.language.new_create_event.friday },
+            { id: 6, name: this.language.new_create_event.saturday },
+            { id: 0, name: this.language.new_create_event.sunday },
         ];
 
         this.weekdayDropdownSettings = {
@@ -189,7 +189,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         this.selectDay.push(item.id);
     }
 
-    onWeekdayItemDeSelect(item: string){
+    onWeekdayItemDeSelect(item: string) {
         this.selectDay = [];
     }
 
@@ -206,68 +206,72 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     }
 
     createRoomForm() {
-        this.formSubmit = true;
-        for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
-            this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0]?.id;
-        }
-        this.roomForm.value['team_id'] = this.teamId;
-        if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
-            var formData: FormData = new FormData();
-            let self = this;
-            for (const key in this.roomForm.value) {
-                if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
-                    const element: string = this.roomForm.value[key];
-                    if (key == 'name') {
-                        formData.append('name', element);
-                    }
-                    if (key == 'room_type') {
-                        formData.append('room_type', element);
-                    }
-                    if (key == 'room_email') {
-                        formData.append('room_email', element);
-                    }
-                    if (key == 'room_address') {
-                        formData.append('room_address', element);
-                    }
-                    if (key == 'no_of_persons') {
-                        formData.append('no_of_persons', element);
-                    }
-                    if (key == 'weekdays') {
-                        formData.append('weekdays', JSON.stringify(element));
-                    }
-                    if (key == 'description') {
-                        formData.append('description', element);
-                    }
-                    if (key == 'image') {
-                        formData.append('file', element);
-                    }
-                    if (key == 'team_id') {
-                        formData.append('team_id', element);
-                    } else {
-                        if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
-                            formData.append(key, element); 
+        this.formSubmit = true; 
+        console.log(this.roomForm.controls.weekdays.value);
+        
+        if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
+            for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
+                this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0]?.id;
+            }
+            this.roomForm.value['team_id'] = this.teamId;
+            if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
+                var formData: FormData = new FormData();
+                let self = this;
+                for (const key in this.roomForm.value) {
+                    if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
+                        const element: string = this.roomForm.value[key];
+                        if (key == 'name') {
+                            formData.append('name', element);
+                        }
+                        if (key == 'room_type') {
+                            formData.append('room_type', element);
+                        }
+                        if (key == 'room_email') {
+                            formData.append('room_email', element);
+                        }
+                        if (key == 'room_address') {
+                            formData.append('room_address', element);
+                        }
+                        if (key == 'no_of_persons') {
+                            formData.append('no_of_persons', element);
+                        }
+                        if (key == 'weekdays') {
+                            formData.append('weekdays', JSON.stringify(element));
+                        }
+                        if (key == 'description') {
+                            formData.append('description', element);
+                        }
+                        if (key == 'image') {
+                            formData.append('file', element);
+                        }
+                        if (key == 'team_id') {
+                            formData.append('team_id', element);
+                        } else {
+                            if ((key != 'name') && (key != 'room_type') && (key != 'room_email') && (key != 'room_address') && (key != 'no_of_persons') && (key != 'weekdays') && (key != 'description') && (key != 'image') && (key != 'team_id')) {
+                                formData.append(key, element);
+                            }
                         }
                     }
                 }
+
             }
-            if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
-                this.authService.setLoader(true);
-                this.authService.memberSendRequest('post', 'createRoom', formData)
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('post', 'createRoom', formData)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;
                     if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         var self = this;
                         setTimeout(function () {
                             self.router.navigate(['room-detail/' + respData['result']['room']['id']]);
                         }, 2000);
-                    }else  if (respData['code'] == 400) {
+                    } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }
                 });
-            }
         }
+
     }
 
 
@@ -275,18 +279,18 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         return new Date().toISOString().split('T')[0];
     }
 
-        /**
-    * Function is used to get end date
-    * @author  MangoIt Solutions
-    */
+    /**
+* Function is used to get end date
+* @author  MangoIt Solutions
+*/
     getEndDate() {
         this.roomForm.get('active_from').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else{
-            return this. getToday()
+        } else {
+            return this.getToday()
         }
     }
 
@@ -298,9 +302,9 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.roomForm?.controls?.weekdays?.value.length; i++) {
             if ((this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] != "" && this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] != "") &&
                 (this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] > this.roomForm?.controls?.weekdays?.value[i]?.['time_to'] ||
-                this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to'])
+                    this.roomForm?.controls?.weekdays?.value[i]?.['time_from'] == this.roomForm?.controls?.weekdays?.value[i]?.['time_to'])
             ) {
-                this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same,};
+                this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, };
                 return this.indax;
             } else {
                 this.errorTime = { isError: false, errorMessage: '' };
@@ -357,14 +361,14 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -378,10 +382,10 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.roomForm.patchValue({ image: this.fileToReturn });
                     this.roomForm.get('image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);

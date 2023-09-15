@@ -312,7 +312,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {Array Of Object} all the Instructors
     */
-    getAllInstructor(item:any) {
+    getAllInstructor(item: any) {
         this.currentPageNmuber = item;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('post', 'getInstructor/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
@@ -340,7 +340,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
      * @author  MangoIt Solutions
      * @return {object} returns {Search Filter Data} The new Instructor object.
      */
-    onSearch(item:any) {
+    onSearch(item: any) {
         this.searchSubmit = true;
         let searchValue: string = this.searchForm.value.search;
         if (searchValue) {
@@ -403,7 +403,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     pageChanged(event: number) {
         if (event === -1) {
             // Previous button clicked
-            this.currentPageNmuber--; 
+            this.currentPageNmuber--;
         } else if (event === 1) {
             // Next button clicked
             this.currentPageNmuber++;
@@ -677,57 +677,58 @@ export class InstructorComponent implements OnInit, OnDestroy {
         // for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
         //     this.editInstructorForm.value.weekdays[i].day = (this.editInstructorForm.controls.weekdays.value[i].day[0].length == 1) ? this.editInstructorForm.controls.weekdays.value[i].day : this.editInstructorForm.controls.weekdays.value[i].day[0];
         // }
+        console.log(this.editInstructorForm.controls.weekdays.value);
 
-        for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
-            this.editInstructorForm.value.weekdays[i].day = this.editInstructorForm.controls.weekdays.value[i].day[0].id;
-        }
-        this.editInstructorForm.value['team_id'] = this.teamId;
-        if (this.fileToReturn) {
-            this.editInstructorForm.value['add_img'] = this.fileToReturn;
-        } else {
-            this.editInstructorForm.value['add_img'] = this.instruct_img;
-        }
-        var formData: FormData = new FormData();
-        let self = this;
-        for (const key in this.editInstructorForm.value) {
-            if (Object.prototype.hasOwnProperty.call(this.editInstructorForm.value, key)) {
-                const element = this.editInstructorForm.value[key];
-                if (key == 'first_name') {
-                    formData.append('first_name', element);
-                }
-                if (key == 'last_name') {
-                    formData.append('last_name', element);
-                }
-                if (key == 'emaill') {
-                    formData.append('emaill', element);
-                }
-                if (key == 'phone_no') {
-                    formData.append('phone_no', element);
-                }
-                if (key == 'address') {
-                    formData.append('address', element);
-                }
-                if (key == 'add_img') {
-                    formData.append('file', element);
-                }
-                if (key == 'qualifications') {
-                    formData.append('qualifications', JSON.stringify(element));
-                }
-                if (key == 'weekdays') {
-                    formData.append('weekdays', JSON.stringify(element));
-                }
-                if (key == 'team_id') {
-                    formData.append('team_id', element);
-                } else {
-                    if ((key != 'first_name') && (key != 'last_name') && (key != 'emaill') && (key != 'phone_no') && (key != 'address') && (key != 'add_img') && (key != 'qualifications')
-                        && (key != 'weekdays') && (key != 'team_id')) {
-                        formData.append(key, element);
+        if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
+            for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
+                this.editInstructorForm.value.weekdays[i].day = this.editInstructorForm.controls.weekdays.value[i].day[0].id;
+            }
+            this.editInstructorForm.value['team_id'] = this.teamId;
+            if (this.fileToReturn) {
+                this.editInstructorForm.value['add_img'] = this.fileToReturn;
+            } else {
+                this.editInstructorForm.value['add_img'] = this.instruct_img;
+            }
+            var formData: FormData = new FormData();
+            let self = this;
+            for (const key in this.editInstructorForm.value) {
+                if (Object.prototype.hasOwnProperty.call(this.editInstructorForm.value, key)) {
+                    const element = this.editInstructorForm.value[key];
+                    if (key == 'first_name') {
+                        formData.append('first_name', element);
+                    }
+                    if (key == 'last_name') {
+                        formData.append('last_name', element);
+                    }
+                    if (key == 'emaill') {
+                        formData.append('emaill', element);
+                    }
+                    if (key == 'phone_no') {
+                        formData.append('phone_no', element);
+                    }
+                    if (key == 'address') {
+                        formData.append('address', element);
+                    }
+                    if (key == 'add_img') {
+                        formData.append('file', element);
+                    }
+                    if (key == 'qualifications') {
+                        formData.append('qualifications', JSON.stringify(element));
+                    }
+                    if (key == 'weekdays') {
+                        formData.append('weekdays', JSON.stringify(element));
+                    }
+                    if (key == 'team_id') {
+                        formData.append('team_id', element);
+                    } else {
+                        if ((key != 'first_name') && (key != 'last_name') && (key != 'emaill') && (key != 'phone_no') && (key != 'address') && (key != 'add_img') && (key != 'qualifications')
+                            && (key != 'weekdays') && (key != 'team_id')) {
+                            formData.append(key, element);
+                        }
                     }
                 }
             }
-        }
 
-        if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateInstructor/' + this.editId, formData)
                 .subscribe((respData: any) => {

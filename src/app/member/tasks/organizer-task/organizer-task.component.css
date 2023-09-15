@@ -14,7 +14,6 @@
     padding: 0 24px;
     cursor: pointer;
     box-sizing: border-box;
-    opacity: .6;
     min-width: auto;
     text-align: center;
     display: inline-flex;
@@ -22,6 +21,7 @@
     align-items: center;
     white-space: nowrap;
     position: relative;
+   
   }
   /* .tasks_navigation a.nav-link.active {
     border-bottom: 2px solid red !important;
@@ -31,9 +31,9 @@
   } */
   .tasks_navigation {
     padding: 0;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #EFF2FD;
-    margin-bottom: 30px;
+    padding-bottom: 1.4rem;
+  border-bottom: none;
+  margin-bottom: 0;
   }
   .tasks_navigation ul li a:first-child {
     padding-left: 0 !important;

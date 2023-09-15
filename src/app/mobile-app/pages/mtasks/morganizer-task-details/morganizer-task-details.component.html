@@ -43,6 +43,7 @@
                                                     </div>
                                                     <div class="task-category">
                                                         <span
+                                                            [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
@@ -190,7 +191,7 @@
                                                                                 style="padding-left:34px;"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#subtaskModal"
-                                                                                (click)="getSubTasksDetails(subtasks.id)">
+                                                                                (click)="getSubTasksDetails(subtasks.id, 'current')">
                                                                                 {{subtasks.title}}</h5>
                                                                         </div>
                                                                     </div>
@@ -233,6 +234,7 @@
                                                     </div>
                                                     <div class="task-category">
                                                         <span
+                                                            [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                             *ngIf="updatedTaskData.group_id == 0">{{language.create_task.individual}}</span>
                                                         <span
                                                             *ngIf="updatedTaskData.group_id != 0">{{language.create_task.group}}</span>
@@ -391,7 +393,7 @@
                                                                                 style="padding-left: 34px;"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#subtaskModal"
-                                                                                (click)="getSubTasksDetails(subtasks.id)">
+                                                                                (click)="getSubTasksDetails(subtasks.id, 'updated')">
                                                                                 {{subtasks.title}}</h5>
                                                                         </div>
                                                                     </div>
@@ -435,10 +437,10 @@
                                             </div>
                                             <div class="task-category">
                                                 <span
+                                                    [ngClass]="{'individual-task-category': taskDetails.group_id == 0}"
                                                     *ngIf="taskDetails.group_id == 0">{{language.create_task.individual}}</span>
                                                 <span
                                                     *ngIf="taskDetails.group_id != 0">{{language.create_task.group}}</span>
-                                                <!-- <span> INDIVIDUAL</span> -->
                                             </div>
                                         </div>
                                         <div class="task-detail-profile">
@@ -471,7 +473,7 @@
                                                         {{language.organizer_task.PublishTask}}
                                                     </button>
                                                     <button mat-menu-item
-                                                        *ngIf="taskDetails.status == 2 && userDetails.isAdmin && ( taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )"
+                                                        *ngIf="taskDetails.status == 2 && userDetails.isAdmin && (taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )"
                                                         (click)="adminApprovedTasks(taskDetails.id)">
                                                         {{language.organizer_task.PublishTask}}
                                                     </button>
@@ -594,7 +596,7 @@
                                                                         style="padding-left: 34px;"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#subtaskModal"
-                                                                        (click)="getSubTasksDetails(subtasks.id)">
+                                                                        (click)="getSubTasksDetails(subtasks.id, 'current')">
                                                                         {{subtasks.title}}</h5>
                                                                 </div>
                                                             </div>
@@ -1055,17 +1057,20 @@
                                                 <div class="group_detail_content">
                                                     <div class="group_title">
                                                         <div class="sub-title">
-                                                            <input *ngIf="selectedSubtask?.status == 0"
-                                                                class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask.id}}"
-                                                                type="checkbox"
-                                                                (change)="eventMarkCompleteSub(selectedSubtask?.id)"
-                                                                style="opacity: 1;margin-top: 0px;">
-                                                            <input *ngIf="selectedSubtask?.status == 1"
-                                                                class="check-style"
-                                                                id="styled-checkbox-{{selectedSubtask.id}}"
-                                                                type="checkbox" style="opacity: 1;margin-top: 0px;"
-                                                                checked="checked" disabled="disabled">
+                                                            <div
+                                                                *ngIf="taskDetails?.status == 0 && (taskDetails?.deny_by_id != '' ||  taskDetails?.deny_by_id != null) && !showUpdatedData">
+                                                                <input *ngIf="selectedSubtask?.status == 0"
+                                                                    class="check-style"
+                                                                    id="styled-checkbox-{{selectedSubtask.id}}"
+                                                                    type="checkbox"
+                                                                    (change)="eventMarkCompleteSub(selectedSubtask?.id)"
+                                                                    style="opacity: 1;margin-top: 0px;">
+                                                                <input *ngIf="selectedSubtask?.status == 1"
+                                                                    class="check-style"
+                                                                    id="styled-checkbox-{{selectedSubtask.id}}"
+                                                                    type="checkbox" style="opacity: 1;margin-top: 0px;"
+                                                                    checked="checked" disabled="disabled">
+                                                            </div>
 
                                                             <h5 *ngIf="selectedSubtask.status != 2" class=""
                                                                 style="margin-left: 35px;">{{selectedSubtask?.title}}

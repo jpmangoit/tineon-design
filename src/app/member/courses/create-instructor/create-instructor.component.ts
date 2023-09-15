@@ -202,7 +202,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 	createInstructor() {
 		this.formSubmit = true;
 
-		if (this.instructorForm.valid && (this.errorTime['isError'] == false)) {
+		if (this.instructorForm.valid && (this.errorTime['isError'] == false)) { 
 			for (let i = 0; i < this.instructorForm?.controls?.weekdays?.value?.length; i++) {
 				this.instructorForm.value.weekdays[i].day = this.instructorForm.controls.weekdays.value[i].day[0]?.id;
 				//this.instructorForm.value.weekdays[i].day = (this.instructorForm.controls?.weekdays?.value[i]?.day[0]?.length == 1) ? this.instructorForm.controls?.weekdays?.value[i]?.day : this.instructorForm.controls?.weekdays?.value[i]?.day[0];

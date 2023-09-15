@@ -18,7 +18,7 @@ declare var $: any;
 
 
 @Component({
-	selector: 'app-morganizer-task-details', 
+	selector: 'app-morganizer-task-details',
 	templateUrl: './morganizer-task-details.component.html',
 	styleUrls: ['./morganizer-task-details.component.css']
 })
@@ -157,7 +157,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 								if (this.taskDetails?.['task_image'][0]?.['task_image']) {
 									this.taskDetails['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.taskDetails['task_image'][0]?.['task_image'].substring(20)));
 								}
-								
+
 								let cudate: Date = new Date();
 								this.taskDetails.dayCount = this.commonFunctionService.getDays(cudate, this.taskDetails.date);
 								if (this.taskDetails.date.split('T')[0] > cudate.toISOString().split('T')[0]) {
@@ -214,6 +214,9 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 									if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") {
 										this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']);
 									}
+									console.log(this.taskDetails);
+									console.log(this.updatedTaskData);
+
 
 									if (this.updatedTaskData != null) {
 
@@ -325,11 +328,15 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	getSubTasksDetails(subtaskId: number) {
+	showUpdatedData: boolean = true;
+	getSubTasksDetails(subtaskId: number, mode: any) {
+		if (mode === 'updated') {
+			this.showUpdatedData = true;
+		} else {
+			this.showUpdatedData = false;
+		}
 		// this.selectedSubtask = '';
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
-		console.log(this.selectedSubtask);
-		
 	}
 
 	/**
@@ -711,10 +718,10 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		$('#styled-checkbox-' + this.task_id).prop('checked', false);
 	}
 
-	onSubtask2ModalShown(){
-		 $('#subtaskModal').modal('hide'); 
+	onSubtask2ModalShown() {
+		$('#subtaskModal').modal('hide');
 		//  $('#styled-checkbox-' + this.task_id).prop('checked', false);
-		 $('input[type="checkbox"]').prop('checked', false);
+		$('input[type="checkbox"]').prop('checked', false);
 	}
 
 	showToggle: boolean = false;
