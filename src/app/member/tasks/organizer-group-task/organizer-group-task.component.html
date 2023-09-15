@@ -30,9 +30,9 @@
                                 </mat-menu>
                             </div>
                         </div>
-                        <div class="tag"> <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
-                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                        <div class="tag"> 
+                            <span class="group-badge"  *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
 
@@ -90,9 +90,9 @@
                                 </mat-menu>
                             </div>
                         </div>
-                        <div class="tag"><span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
-                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                        <div class="tag">
+                            <span class="group-badge" *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
 
@@ -150,9 +150,9 @@
                                 </mat-menu>
                             </div>
                         </div>
-                        <div class="tag"> <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span
-                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                        <div class="tag"> 
+                            <span class="group-badge" *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
 

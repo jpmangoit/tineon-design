@@ -137,7 +137,8 @@ import { FaqsListComponent } from './member/faq/faqs-list/faqs-list.component';
 import { AppStoreComponent } from './member/app-store/app-store.component';
 import { MEmailComponent } from './mobile-app/shared/m-email/m-email.component';
 import { MclubEventsComponent } from './mobile-app/pages/mevents/mclub-events/mclub-events.component';
-import { MeventDetailComponent } from './mobile-app/pages/mevents/mevent-detail/mevent-detail.component';import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
+import { MeventDetailComponent } from './mobile-app/pages/mevents/mevent-detail/mevent-detail.component';
+import { MorganizerTaskDetailsComponent } from './mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
 import { MclubAllNewsComponent } from './mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
 ;
 

@@ -79,6 +79,10 @@
     color: #fff;
 }
 
+.tag  span.individual-badge.ng-star-inserted{
+    background: #FB5F5F;
+}
+
 .task-category span {
     font-size: 9px;
     font-weight: 600;
