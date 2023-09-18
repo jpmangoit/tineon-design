@@ -886,7 +886,8 @@
         "currentRoom":"Mevcut Oda",
         "updateRoom":"Odayı Güncelle",
         "deleteRoom":"Odayı Sil",
-        "search_result": "Arama Sonucu"
+        "search_result": "Arama Sonucu",
+        "room_overview" : "Rooms"
     },
     "instructor": {
         "create_instructor": "Eğitmen Oluştur",

@@ -94,6 +94,11 @@ td.remaining-time div {
 table.table.active-survey-data.table-responsive thead th {
   width: 25%;
 }
+
+/* table.table.active-survey-data.table-responsive tbody td:last-child {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+} */
 td.crm-author img {
     width: 32px;
     height: 32px;

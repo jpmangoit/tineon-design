@@ -887,7 +887,8 @@
         "currentRoom":"Stanza attuale",
         "updateRoom":"Aggiorna Stanza",
         "deleteRoom":"Elimina Stanza",
-        "search_result": "Risultato della ricerca"
+        "search_result": "Risultato della ricerca",
+        "room_overview" : "Rooms"
     },
     "instructor": {
         "create_instructor": "Crea istruttore",

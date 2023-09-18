@@ -322,8 +322,6 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         // for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
         //     this.roomForm.value.weekdays[i].day = ( this.roomForm.controls.weekdays.value[i].day[0].length == 1) ? this.roomForm.controls.weekdays.value[i].day: this.roomForm.controls.weekdays.value[i].day[0];
         // }
-        console.log(this.roomForm.controls.weekdays.value);
-        
         if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
             for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
                 this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0].id;

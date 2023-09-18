@@ -892,7 +892,8 @@
         "currentRoom":"Salle en cours",
         "updateRoom":"Mettre à jour la salle",
         "deleteRoom":"Supprimer salle",
-        "search_result":"Résultat de la recherche"
+        "search_result":"Résultat de la recherche",
+        "room_overview" : "Rooms"
     },
     "instructor":{
         "create_instructor":"Créer un instructeur",

@@ -897,7 +897,9 @@
         "currentRoom":"Current Room",
         "updateRoom":"Update Room",
         "deleteRoom":"Delete Room",
-        "search_result": "Search Result"
+        "search_result": "Search Result",
+        "room_overview" : "Rooms"
+
     },
     "instructor": {
         "create_instructor": "Create Instructor",

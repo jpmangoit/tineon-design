@@ -887,7 +887,8 @@
         "currentRoom":"Habitación actual",
         "updateRoom":"Actualizar Sala",
         "deleteRoom":"Borrar Sala",
-        "search_result": "Resultado de la búsqueda"
+        "search_result": "Resultado de la búsqueda",
+        "room_overview" : "Rooms"
     },
     "instructor": {
         "create_instructor": "Crear Instructor",
