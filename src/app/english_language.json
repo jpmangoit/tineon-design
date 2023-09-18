@@ -10,8 +10,7 @@
         "signIn": "Sign In",
         "userNameError": "User name is required.",
         "passwordError": "Password is required.",
-        "o_clock":"O'clock",
-
+        "o_clock": "O'clock",
         "name": "Name",
         "club_name": "Club Name",
         "email": "E-mail",
@@ -35,8 +34,8 @@
         "admin_function": "Admin Area",
         "tineon_admin": "Tineon Admin",
         "tineon_news": "Tineon News",
-        "page_not_found":"Page Not Found",
-        "back_to_home":"Back To Home" ,
+        "page_not_found": "Page Not Found",
+        "back_to_home": "Back To Home",
         "owner": "Owner",
         "wording": "Wordings",
         "headline_wording_option": "Wording Options",
@@ -73,7 +72,6 @@
         "denyBy": "Deny by",
         "denyReason": "Deny reason",
         "dashboardNewsTitle": "Current Club-News",
-
         "dashboardNewsTitle_stand": "Current Club-News",
         "dashboardNewsTitle_untern": "Company news",
         "dashboardNewsContent_new": "Read More",
@@ -89,29 +87,21 @@
         "club_wall_subtext_new": "new",
         "community_subtext_msg": "new Messages",
         "organizer_subtext_new": "new",
-
         "club_wall_subtext_news": "News / Posts",
         "community_subtext_chat": "Messages / Chats",
         "organizer_subtext_tasks": "Tasks / Events",
-
         "club_wall_subtext_new_desk": "News",
         "club_wall_subtext_news_desk": "Beiträge",
-
         "community_subtext_msg_desk": "Nachrichten",
         "community_subtext_chat_desk": "Chats",
-
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-
         "club_wall_subtext_new_mob": "News",
         "club_wall_subtext_news_mob": "Beiträge",
-
         "community_subtext_msg_mob": "Nachrichten",
         "community_subtext_chat_mob": "Chats",
-
         "organizer_subtext_new_mob": "Aufgaben",
         "organizer_subtext_tasks_mob": "Events",
-
         "congratulate": "Congratulate"
     },
     "club_wall": {
@@ -174,10 +164,8 @@
         "all_active_chat": "Chat",
         "personal_messages": "Personal Messages",
         "club_messages": "Club-Messages",
-
         "club_messages_stand": "Club-Messages",
         "club_messages_untern": "Corporate message",
-
         "group_messages": "Group-Messages",
         "search": "Search",
         "inbox": "Inbox",
@@ -213,13 +201,13 @@
         "permanently_delete": "Message permanently delete successfully",
         "message_sent": "Message sent successfully",
         "code_error": "Something went wrong. Please try again",
-        "you":"You",
-        "media":"Media",
-        "group_in_common":"Group in Common",
-        "delete_chat":"Delete Chat",
-        "media_link_doc":"Media, Links and Docs",
+        "you": "You",
+        "media": "Media",
+        "group_in_common": "Group in Common",
+        "delete_chat": "Delete Chat",
+        "media_link_doc": "Media, Links and Docs",
         "email_draft": "Email save as draft",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me": "Personal - Messages"
     },
     "group_news": {
         "title": "Group-News",
@@ -233,7 +221,7 @@
         "show_calendar": "Show Calendar",
         "upcoming": "Upcoming",
         "currentEvent": "Current Event",
-        "updateEvent":"Update Event",
+        "updateEvent": "Update Event",
         "image_wid_heig": "Please upload the Image of resolution at least Width = 800 & height = 500",
         "today_course_offer": "Today"
     },
@@ -249,7 +237,7 @@
         "groupNewsDetails": "Group News Details",
         "currentNews": "Current News",
         "updatedNews": "Updated News",
-        "deleteNews":"Delete News"
+        "deleteNews": "Delete News"
     },
     "profile": {
         "profile_nav": {
@@ -259,7 +247,7 @@
             "my_club_data": "Me at the club",
             "my_club_data_stand": "Me at the club",
             "my_club_data_untern": "I in the company",
-            "digital_card":"Digital membership card"
+            "digital_card": "Digital membership card"
         },
         "membership_date": "MemberShip Start Date",
         "current_role": "My verein.cloud role",
@@ -305,18 +293,18 @@
         "upload_profile": "Profile Picture Succesfully Updated",
         "change_image": "Change Image",
         "change_profile_pic": "Change Profile Picture",
-        "approv_unlock" : "Approval / Unlock",
+        "approv_unlock": "Approval / Unlock",
         "request_approval": " Your current Request is wating for the Approval"
     },
     "profile_bank": {
         "title": "Bank-Data",
         "bank_holder_name": "Bank Holder Name",
         "payment_method": "Payment Method",
-        "iban":"IBAN",
+        "iban": "IBAN",
         "bic": "BIC",
         "success_msg": "Updated successfully and sent for club admin approval",
         "bank_name": "Bank-Name",
-        "non_german_account":"Non German Account"
+        "non_german_account": "Non German Account"
     },
     "header": {
         "to": "to",
@@ -447,10 +435,10 @@
         "endDateError": "The enddate of the subtask must be before the enddate of the main task",
         "currentTask": "Current Task",
         "updatedTask": "Updated task",
-
-        "viewTask":"View Task",
+        "viewTask": "View Task",
         "task_created_by": "Task Created by:",
-        "days": "Days"
+        "days": "Days",
+        "task-details": "Task - Details"
     },
     "club_document": {
         "title": "Documents",
@@ -460,18 +448,15 @@
         "club_documents": "Club Documents",
         "current_status": "Current Status",
         "archived_documents": "Archived Documents",
-
         "club_documents_stand": "Club Documents",
         "club_documents_untern": "Corporate documents",
-
         "current_status_stand": "Current Status",
         "current_status_untern": "Corporate philosophy",
-
-        "documents":"Documents",
-        "tables":"Tables",
-        "pictures":"Pictures",
-        "asending":"Ascending",
-        "descending":"Descending"
+        "documents": "Documents",
+        "tables": "Tables",
+        "pictures": "Pictures",
+        "asending": "Ascending",
+        "descending": "Descending"
     },
     "create_event": {
         "title": "New Event",
@@ -522,7 +507,7 @@
         "denied": "Denied",
         "updateEvent": "Update Event",
         "event_duration": "Event Duration",
-        "date":"Date",
+        "date": "Date",
         "instruct_not_avail": "Instructor is not Available for the given event dates",
         "room_not_avail": "Room is not Available for the given event dates",
         "not_room": "Room is not Available",
@@ -547,10 +532,9 @@
         "no_sales_partner_news": "No Sales Partner News Found!",
         "salesPartnerNews": "Sales Partner News",
         "news_type": "Type",
-        "group_news":"Group",
+        "group_news": "Group",
         "chairman": "Chairman",
         "news_highlight": "News Highlight"
-
     },
     "create_group": {
         "title": "Create Group",
@@ -642,17 +626,16 @@
         "valid_bank_name": "Bank name is not valid",
         "bank_holder_name": "Bank holder name is required",
         "valid_bank_holder_name": "Bank holder name is not valid",
-        "payment_method" : "Payment method is required",
-        "iban" : "Iban is required",
-        "courseTaskDate":"Task date must be in between of course start and end dates",
-        "eventTaskDate":"Task date must be in between of event start and end dates",
-        "specialChar_validation" : "Please only enter the amount without special characters"
-
+        "payment_method": "Payment method is required",
+        "iban": "Iban is required",
+        "courseTaskDate": "Task date must be in between of course start and end dates",
+        "eventTaskDate": "Task date must be in between of event start and end dates",
+        "specialChar_validation": "Please only enter the amount without special characters"
     },
     "genral_message": {
         "not_available_msg": "This feature is not available with you. In order to use it please upgrade the plan or contact admin.",
         "feature_locked": "Feature Locked",
-        "loading" : "Loading..."
+        "loading": "Loading..."
     },
     "club": {
         "club_appointments": "Current Club-Appointments",
@@ -662,10 +645,8 @@
         "years_old": "Years Old",
         "club_Appointments": "Club Appointments",
         "ticket": "TICKET",
-
         "club_Appointments_stand": "Club Appointments",
         "club_Appointments_untern": "Company appointments",
-
         "birthday": "Birthday",
         "anniversary": "Anniversary",
         "years": "Years",
@@ -814,10 +795,8 @@
         "create_faq": "Create FAQ",
         "all_faq": "All FAQ",
         "vereins_faqs": "Vereins FAQs",
-
         "vereins_faqs_stand": "Vereins FAQs",
         "vereins_faqs_untern": "Company FAQs",
-
         "edit_faqs": "Edit FAQs",
         "search": "Search",
         "showall": "Show All",
@@ -852,7 +831,6 @@
         "viewFaq": "View Faq",
         "editFaq": "Edit Faq",
         "deleteFaq": "Delete Faq",
-
         "delete_category": "Delete Category"
     },
     "room": {
@@ -894,12 +872,11 @@
         "ResetUpdateRoom": "Delete update Room",
         "PublishRoom": "Publish Room",
         "DenyRoom": "Deny Room",
-        "currentRoom":"Current Room",
-        "updateRoom":"Update Room",
-        "deleteRoom":"Delete Room",
+        "currentRoom": "Current Room",
+        "updateRoom": "Update Room",
+        "deleteRoom": "Delete Room",
         "search_result": "Search Result",
-        "room_overview" : "Rooms"
-
+        "room_overview": "Rooms"
     },
     "instructor": {
         "create_instructor": "Create Instructor",
@@ -936,8 +913,7 @@
         "DenyInstructor": "Deny Instructor",
         "currentInstructor": "Current Instructor",
         "updateInstructor": "Update Instructor",
-        "instructor_overview" : "Instructor"
-
+        "instructor_overview": "Instructor"
     },
     "courses": {
         "instructor_type": "Instructor Type",
@@ -993,7 +969,6 @@
         "creator_joined": "has Joined you in the Course",
         "currentCourse": "Current Course",
         "course_price": "Course-Price",
-
         "instruct_not_avail": "Instructor is not Available for the given course dates",
         "room_not_avail": "Room is not Available for the given course dates",
         "not_room": "Room is not Available",
@@ -1074,8 +1049,7 @@
         "survey_detail": "Survey Detail",
         "RestUpdateSurvey": "Delete Update Survey",
         "current_survey": "Current Survey",
-
-        "new_survey":"New Survey Created"
+        "new_survey": "New Survey Created"
     },
     "email": {
         "email_template": "E-Mail Template",
@@ -1123,76 +1097,74 @@
         "enter_logo_text": "Enter Logo Text",
         "choose_color": "Choose Colour",
         "default_theme": "Default Theme",
-        "create_save_btn_theme":"Create & Save Button Theme",
-        "create_btn_background":"Create Button Background",
-        "create_btn_text":"Create Button Text",
-        "create_btn_icon":"Create Button Icon",
-        "cancel_btn_theme":"Cancel Button Theme",
-        "cancel_btn_background":"Cancel Button Background",
-        "cancel_btn_text":"Cancel Button Text",
-        "cancel_btn_icon":"Cancel Button Icon",
-
-        "delete_theme":"Are you sure you want to delete this Theme?",
-        "apply_default_theme":"Are you sure to want to delete this Theme? , if you delete these theme then default theme will Apply"
-
+        "create_save_btn_theme": "Create & Save Button Theme",
+        "create_btn_background": "Create Button Background",
+        "create_btn_text": "Create Button Text",
+        "create_btn_icon": "Create Button Icon",
+        "cancel_btn_theme": "Cancel Button Theme",
+        "cancel_btn_background": "Cancel Button Background",
+        "cancel_btn_text": "Cancel Button Text",
+        "cancel_btn_icon": "Cancel Button Icon",
+        "delete_theme": "Are you sure you want to delete this Theme?",
+        "apply_default_theme": "Are you sure to want to delete this Theme? , if you delete these theme then default theme will Apply"
     },
     "actionTool": {
         "addItems": "Add Items"
     },
-    "navigation":{
-        "buy_now_pay_later":"Buy now Play Later!",
+    "navigation": {
+        "buy_now_pay_later": "Buy now Play Later!",
         "get_app": "Get App"
     },
-    "banner":{
+    "banner": {
         "banner": "Banner",
-        "create_banner":"Create Banner",
+        "create_banner": "Create Banner",
         "banner_status": "Banner Status",
-        "active":"Active",
-        "inactive":"Inactive",
-        "banner_invoice":"Banner Invoice",
-        "created":"Created",
-        "paid":"Paid",
-        "not_paid":"Not Paid",
-        "banner_category":"Banner Category",
-        "app_sponsor":"App sponsor",
-        "sponsor":"Sponsor",
-        "free_space":"Free space",
-        "banner_placement":"Banner placement",
-        "dashboard":"Dashboard",
-        "all_news":"All News",
-        "news_details":"News Details",
-        "all_events":"All Events",
-        "event_details":"Event Details",
-        "all_groups":"All Groups",
-        "groups_details":"Groups Details",
-        "all_courses":"All Courses",
-        "course_details":"Course Details",
-        "banner_display":"Banner Display",
-        "mobile_app":"Mobile App",
-        "desktop":"Desktop",
-        "notification_section":"Notification section",
-        "everywhere":"Everywhere",
-        "banner_redirect_link":"Banner Redirect link",
-        "banner_name":"Banner Name",
+        "active": "Active",
+        "inactive": "Inactive",
+        "banner_invoice": "Banner Invoice",
+        "created": "Created",
+        "paid": "Paid",
+        "not_paid": "Not Paid",
+        "banner_category": "Banner Category",
+        "app_sponsor": "App sponsor",
+        "sponsor": "Sponsor",
+        "free_space": "Free space",
+        "banner_placement": "Banner placement",
+        "dashboard": "Dashboard",
+        "all_news": "All News",
+        "news_details": "News Details",
+        "all_events": "All Events",
+        "event_details": "Event Details",
+        "all_groups": "All Groups",
+        "groups_details": "Groups Details",
+        "all_courses": "All Courses",
+        "course_details": "Course Details",
+        "banner_display": "Banner Display",
+        "mobile_app": "Mobile App",
+        "desktop": "Desktop",
+        "notification_section": "Notification section",
+        "everywhere": "Everywhere",
+        "banner_redirect_link": "Banner Redirect link",
+        "banner_name": "Banner Name",
         "update_banner": "Update banner",
-        "invalid_url":"Invalid Url",
+        "invalid_url": "Invalid Url",
         "banner_image": "Banner Image",
         "banner_detail": "Banner Detail",
-        "link":"Link",
+        "link": "Link",
         "no_banner_available": "No Banners Available",
-        "advertisment":"Advertisment",
+        "advertisment": "Advertisment",
         "banner_statistics": "Banner Statistics",
         "mobile": "Mobile",
-        "not_allow_Advertisment":"Not Allow Advertisment?",
-        "view_Advertisment":"View Advertisment",
-        "image":"Image"
+        "not_allow_Advertisment": "Not Allow Advertisment?",
+        "view_Advertisment": "View Advertisment",
+        "image": "Image"
     },
     "qr_page": {
-        "member_ship_card":"Digital membership card",
-        "member_pay":"PAY",
-        "member_active":"Active Member",
-        "member_number":"Membership number:",
-        "member_since":"In the association since:",
-        "member_card":"Digital membership card"
+        "member_ship_card": "Digital membership card",
+        "member_pay": "PAY",
+        "member_active": "Active Member",
+        "member_number": "Membership number:",
+        "member_since": "In the association since:",
+        "member_card": "Digital membership card"
     }
 }

@@ -131,7 +131,6 @@ export class MclubAllNewsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -199,14 +198,11 @@ export class MclubAllNewsComponent implements OnInit, OnDestroy {
                     } else {
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.dashboardData = respData.news;
-
                         if (this.dashboardData && this.dashboardData.length > 0) {
-
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
-
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(

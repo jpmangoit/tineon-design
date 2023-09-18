@@ -222,7 +222,6 @@ export class MallEventsComponent implements OnInit {
                                         JSON.parse(element.recurring_dates).forEach((dd: any, index: any) => {
                                             let yourDate1: Date = new Date(dd.date_from);
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
-
                                             let recurring_dates = JSON.parse(element.recurring_dates);
                                             var recurring_time: any
                                             var recurring_etime: any
@@ -401,13 +400,6 @@ export class MallEventsComponent implements OnInit {
     getCalendarData() {
         this.calendarEvents = [];
         var count: number = 0;
-        // if ((this.eventList && this.eventList.length > 0) && (this.courseList && this.courseList.length > 0)) {
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }else if ((this.eventList && this.eventList.length > 0) && (this.courseList && this.courseList.length == 0)){
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }else if ((this.eventList && this.eventList.length == 0) && (this.courseList && this.courseList.length > 0)){
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }
         if (this.eventList && this.eventList.length > 0) {
 
             this.eventList.forEach((keys: any, vals: any) => {
@@ -551,27 +543,6 @@ export class MallEventsComponent implements OnInit {
                                     if (element?.course_image[0]?.course_image) {
                                         element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                                     }
-
-                                    // var url: string[] = [];
-                                    // for (const key in element) {
-                                    //     if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                    //         const value: string = element[key]
-                                    //         if (key == 'picture_video' && value != null) {
-                                    //             url = value.split('\"');
-                                    //         }
-                                    //     }
-                                    // }
-                                    // if (url && url.length > 0) {
-                                    //     let self = this;
-                                    //     url.forEach(el => {
-                                    //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                    //             element.picture_video = el;
-                                    //         }
-                                    //     });
-                                    // }
-                                    // else {
-                                    //     element['picture_video'] = '';
-                                    // }
                                     this.allData[key] = element;
                                     if (element && element.recurrence != '' && element.recurrence != null) {
 
@@ -724,7 +695,6 @@ export class MallEventsComponent implements OnInit {
                                                         "type": 4,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        // "picture_video": element.picture_video,
                                                         "event_image": (element.course_image[0]?.course_image && element.course_image[0]?.course_image != undefined) ? element.course_image[0]?.course_image : '../../../../assets/img/new-design/dashboard/event-img.png',
                                                         "event_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,

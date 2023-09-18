@@ -199,17 +199,6 @@ export class CourseDetailComponent implements OnInit {
                         }
 
                         this.courseDetails[0]['date_from'] = this.courseDate ? this.courseDate + 'T' + this.courseDetails[0]?.date_from.split('T')[1] : this.courseDetails[0]?.date_from;
-
-                        // if (this.courseDetails[0]?.picture_video != "[]") {
-                        //         this.hasPicture = true;
-                        //         if (this.courseDetails[0].picture_video){
-                        //         this.courseDetails[0].picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.courseDetails[0].picture_video.substring(20)));
-                        //         this.eventImage =  this.courseDetails[0].picture_video
-                        //     }
-                        // } else {
-                        //     this.hasPicture = false;
-                        //     this.eventImage = '';
-                        // }
                         if (this.courseDetails[0]?.course_image[0]?.course_image != "[]") {
                             this.hasPicture = true;
                             if (this.courseDetails[0]?.course_image[0]?.course_image) {
@@ -223,38 +212,6 @@ export class CourseDetailComponent implements OnInit {
                         if (this.courseDetails[0]?.course_image[0]?.course_document) {
                             this.eventFile = this.courseDetails[0].course_image[0]?.course_document;
                         }
-
-                        // if (this.courseDetails[0] && this.courseDetails[0].picture_video) {
-                        //     if (this.courseDetails[0].picture_video != "[]") {
-                        //         let responseImg: string;
-                        //         responseImg = this.courseDetails[0].picture_video;
-                        //         let resp: string[] = [];
-                        //         resp = responseImg.split("\"");
-                        //         let imgArray: any[] = [];
-                        //         let fileArray: string[] = [];
-                        //         if (resp && resp.length > 0) {
-                        //             resp.forEach((element: string) => {
-                        //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                        //                     imgArray.push(element);
-                        //                     this.hasPicture = true;
-                        //                     if (imgArray[0]){
-                        //                         imgArray[0] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(imgArray[0].substring(20)));
-                        //                         this.eventImage = imgArray[0];
-                        //                     }
-
-                        //                 } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                        //                     fileArray.push(element);
-                        //                     this.eventFile = fileArray[0];
-                        //                     this.eventFile = element;
-                        //                 }
-                        //             });
-                        //         }
-                        //     } else {
-                        //         this.hasPicture = false;
-                        //         this.eventImage = '';
-                        //     }
-                        // }
-
                         this.getOrganizerDetails(courseId);
                         this.getParticipantDetails(courseId);
                         if (this.courseDetails[0]?.['author'] == JSON.parse(this.userId) || this.userDetails.roles[0] == 'admin') {
@@ -312,30 +269,6 @@ export class CourseDetailComponent implements OnInit {
                                 if (this.updateCourseData?.baseImage[0]?.documentUrl) {
                                     this.eventUpdateFile = this.updateCourseData?.baseImage[0]?.documentUrl;
                                 }
-                                // if (this.updateCourseData['imageUrl']) {
-                                //     if (this.updateCourseData['imageUrl'].length > 0) {
-                                //         let resp: string[] = [];
-                                //         resp = this.updateCourseData['imageUrl'];
-                                //         let imgUpdateArray: string[] = [];
-                                //         let fileUpdateArray: string[] = [];
-                                //         if (resp && resp.length > 0) {
-                                //             resp.forEach((element: string) => {
-                                //                 if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                //                     imgUpdateArray.push(element);
-                                //                     this.hasUpdatePicture = true;
-                                //                     this.eventUpdateImage = imgUpdateArray[0];
-                                //                 } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => element.endsWith(char))) {
-                                //                     fileUpdateArray.push(element);
-                                //                     this.eventUpdateFile = fileUpdateArray[0];
-                                //                     this.eventUpdateFile = element;
-                                //                 }
-                                //             });
-                                //         }
-                                //     } else {
-                                //         this.hasUpdatePicture = false;
-                                //         this.eventUpdateImage = '';
-                                //     }
-                                // }
 
                                 if (this.updateCourseData?.task?.length > 0) {
                                     this.isTaskDetailsUpdate = true

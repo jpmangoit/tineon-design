@@ -43,7 +43,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     eventSubmitted: boolean = false;
     recurrenceDropdownField: boolean = false;
     eventForm: UntypedFormGroup;
-    responseMessage: string = null; 
+    responseMessage: string = null;
     eventId: number;
     imageUrl: string;
     fileUrl: string;
@@ -456,7 +456,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             roomBookingDates: new UntypedFormControl(''),
         });
 
-        
+
     }
 
     get eventDate() {
@@ -849,7 +849,6 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                     .subscribe(
                                         (respData) => {
                                             this.authService.setLoader(false);
-
                                             var groupParticipants: any = respData[0].participants;
                                             var groupUsers: any = [];
                                             if (groupParticipants && groupParticipants.length > 0) {

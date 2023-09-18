@@ -4,31 +4,31 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 
 @Component({
-  selector: 'app-banner-statistics',
-  templateUrl: './banner-statistics.component.html',
-  styleUrls: ['./banner-statistics.component.css']
+    selector: 'app-banner-statistics',
+    templateUrl: './banner-statistics.component.html',
+    styleUrls: ['./banner-statistics.component.css']
 })
 export class BannerStatisticsComponent implements OnInit {
     language: any;
 
-    allBanners:any
-    bannerName: any[]=[];
-    bannerGender: any[]=[];
-    bannerFemale: any[]=[];
-    bannerMale: any[]=[];
-    bannerDiverse: any[]=[];
-    bannerBusiness: any[]=[];
-    bannerUndefine: any[]=[];
+    allBanners: any
+    bannerName: any[] = [];
+    bannerGender: any[] = [];
+    bannerFemale: any[] = [];
+    bannerMale: any[] = [];
+    bannerDiverse: any[] = [];
+    bannerBusiness: any[] = [];
+    bannerUndefine: any[] = [];
     isSuccessFalse: boolean = false;
 
     allMobBanners: any;
-    bannerNameMob: any[]=[];
-    bannerGenderMob: any[]=[];
-    bannerFemaleMob: any[]=[];
-    bannerMaleMob: any[]=[];
-    bannerDiverseMob: any[]=[];
-    bannerBusinessMob: any[]=[];
-    bannerUndefineMob: any[]=[];
+    bannerNameMob: any[] = [];
+    bannerGenderMob: any[] = [];
+    bannerFemaleMob: any[] = [];
+    bannerMaleMob: any[] = [];
+    bannerDiverseMob: any[] = [];
+    bannerBusinessMob: any[] = [];
+    bannerUndefineMob: any[] = [];
     isSuccessFalseMob: boolean = false;
 
     public barChartOptions = {
@@ -39,9 +39,9 @@ export class BannerStatisticsComponent implements OnInit {
     public barChartType = 'bar';
     public barChartLegend = true;
     // add all banner click data
-    public barChartData = [{data: [], label: 'Clicks'}];
-    barChartName: any[]=[];
-    barChartCount: any[]=[];
+    public barChartData = [{ data: [], label: 'Clicks' }];
+    barChartName: any[] = [];
+    barChartCount: any[] = [];
 
     public barChartOptions1 = {
         scaleShowVerticalLines: false,
@@ -51,82 +51,82 @@ export class BannerStatisticsComponent implements OnInit {
     public barChartType1 = 'bar';
     public barChartLegend1 = true;
     // add all banner click data
-    public barChartData1 = [{data: [], label: 'Clicks'}];
-    barChartName1: any[]=[];
-    barChartCount1: any[]=[];
+    public barChartData1 = [{ data: [], label: 'Clicks' }];
+    barChartName1: any[] = [];
+    barChartCount1: any[] = [];
 
-    constructor(private authService:AuthServiceService,private lang: LanguageService) { }
+    constructor(private authService: AuthServiceService, private lang: LanguageService) { }
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         var endPoint = 'getBannerStatisticForDesktop'
         this.authService.memberSendRequest('get', endPoint, "")
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData.isError == true) {
-                this.isSuccessFalse = true;
-            } else if (respData.isError == false) {
-                this.isSuccessFalse = false;
-                this.allBanners = respData.result.banner;
-                this.genderStatisticsDesktop(this.allBanners);
-                this.bannerClickDesktop(this.allBanners);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData.isError == true) {
+                    this.isSuccessFalse = true;
+                } else if (respData.isError == false) {
+                    this.isSuccessFalse = false;
+                    this.allBanners = respData.result.banner;
+                    this.genderStatisticsDesktop(this.allBanners);
+                    this.bannerClickDesktop(this.allBanners);
+                }
+            });
         var endPoint = 'getBannerStatisticForMobileApp'
         this.authService.memberSendRequest('get', endPoint, "")
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData.isError == true) {
-                this.isSuccessFalseMob = true;
-            } else if (respData.isError == false) {
-                this.isSuccessFalseMob = false;
-                this.allMobBanners = respData.result.banner;
-                this.genderStatisticsMobile(this.allMobBanners);
-                this.bannerClickMobile(this.allMobBanners);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData.isError == true) {
+                    this.isSuccessFalseMob = true;
+                } else if (respData.isError == false) {
+                    this.isSuccessFalseMob = false;
+                    this.allMobBanners = respData.result.banner;
+                    this.genderStatisticsMobile(this.allMobBanners);
+                    this.bannerClickMobile(this.allMobBanners);
+                }
+            });
     }
 
-    bannerClickDesktop(allBanners:any){
-        if(allBanners?.length > 0){
-            allBanners.forEach((element:any) =>{
+    bannerClickDesktop(allBanners: any) {
+        if (allBanners?.length > 0) {
+            allBanners.forEach((element: any) => {
                 this.barChartName.push(element.bannerName);
                 this.barChartCount.push(element.Totalcount);
             })
             this.barChartLabels = this.barChartName;
-            this.barChartData[0].data  = this.barChartCount;
+            this.barChartData[0].data = this.barChartCount;
         }
     }
 
-    bannerClickMobile(allMobBanners:any){
-        if(allMobBanners?.length > 0){
-            allMobBanners.forEach((element:any) =>{
+    bannerClickMobile(allMobBanners: any) {
+        if (allMobBanners?.length > 0) {
+            allMobBanners.forEach((element: any) => {
                 this.barChartName1.push(element.bannerName);
                 this.barChartCount1.push(element.Totalcount);
             })
             this.barChartLabels1 = this.barChartName1;
-            this.barChartData1[0].data  = this.barChartCount1;
+            this.barChartData1[0].data = this.barChartCount1;
         }
     }
 
-    genderStatisticsDesktop(allBanners:any){
-        if(allBanners?.length > 0){
-            allBanners.forEach((element:any,index:any) => {
-                let bFemale:number = 0;
-                let bMale:number = 0;
-                let bDirvers:number = 0;
-                let bBusiness:number = 0;
-                let bUndefine:number = 0;
+    genderStatisticsDesktop(allBanners: any) {
+        if (allBanners?.length > 0) {
+            allBanners.forEach((element: any, index: any) => {
+                let bFemale: number = 0;
+                let bMale: number = 0;
+                let bDirvers: number = 0;
+                let bBusiness: number = 0;
+                let bUndefine: number = 0;
                 this.bannerName.push(element.bannerName)
-                element.banner_stat.forEach((elem:any) =>{
-                    if(elem.gender == 'F'){
+                element.banner_stat.forEach((elem: any) => {
+                    if (elem.gender == 'F') {
                         bFemale++;
-                    }else if(elem.gender == 'M'){
+                    } else if (elem.gender == 'M') {
                         bMale++;
-                    }else if(elem.gender == 'D'){
+                    } else if (elem.gender == 'D') {
                         bDirvers++;
-                    }else if(elem.gender == 'B'){
+                    } else if (elem.gender == 'B') {
                         bBusiness++;
-                    }else if(elem.gender == 'U'){
+                    } else if (elem.gender == 'U') {
                         bUndefine++;
                     }
                 })
@@ -241,7 +241,7 @@ export class BannerStatisticsComponent implements OnInit {
                         }
                     },
                     legend: {
-                        data: ['Female', 'Male', 'Divers', 'Business','Undefine']
+                        data: ['Female', 'Male', 'Divers', 'Business', 'Undefine']
                     },
                     xAxis: [
                         {
@@ -311,25 +311,25 @@ export class BannerStatisticsComponent implements OnInit {
         }
     }
 
-    genderStatisticsMobile(allMobBanners:any){
-        if(allMobBanners?.length > 0){
-            allMobBanners.forEach((element:any,index:any) => {
-                let bFemale:number = 0;
-                let bMale:number = 0;
-                let bDirvers:number = 0;
-                let bBusiness:number = 0;
-                let bUndefine:number = 0;
+    genderStatisticsMobile(allMobBanners: any) {
+        if (allMobBanners?.length > 0) {
+            allMobBanners.forEach((element: any, index: any) => {
+                let bFemale: number = 0;
+                let bMale: number = 0;
+                let bDirvers: number = 0;
+                let bBusiness: number = 0;
+                let bUndefine: number = 0;
                 this.bannerNameMob.push(element.bannerName)
-                element.banner_stat.forEach((elem:any) =>{
-                    if(elem.gender == 'F'){
+                element.banner_stat.forEach((elem: any) => {
+                    if (elem.gender == 'F') {
                         bFemale++;
-                    }else if(elem.gender == 'M'){
+                    } else if (elem.gender == 'M') {
                         bMale++;
-                    }else if(elem.gender == 'D'){
+                    } else if (elem.gender == 'D') {
                         bDirvers++;
-                    }else if(elem.gender == 'B'){
+                    } else if (elem.gender == 'B') {
                         bBusiness++;
-                    }else if(elem.gender == 'U'){
+                    } else if (elem.gender == 'U') {
                         bUndefine++;
                     }
                 })
@@ -444,7 +444,7 @@ export class BannerStatisticsComponent implements OnInit {
                         }
                     },
                     legend: {
-                        data: ['Female', 'Male', 'Divers', 'Business','Undefine']
+                        data: ['Female', 'Male', 'Divers', 'Business', 'Undefine']
                     },
                     xAxis: [
                         {

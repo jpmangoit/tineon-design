@@ -17,8 +17,8 @@ import { LanguageService } from 'src/app/service/language.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NotificationService } from 'src/app/service/notification.service';
 declare var $: any;
- 
-@Component({ 
+
+@Component({
     selector: 'app-mchat',
     templateUrl: './mchat.component.html',
     styleUrls: ['./mchat.component.css']
@@ -76,7 +76,7 @@ export class MchatComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,private notificationService: NotificationService,
+        private authService: AuthServiceService, private notificationService: NotificationService,
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService
     ) {
@@ -106,7 +106,7 @@ export class MchatComponent implements OnInit {
                     this.thumb = resppData;
                     this.userDetails.image = this.thumb;
                 },
-                (error:any) => {
+                (error: any) => {
                     this.userDetails.image = null;
                 });
 
@@ -118,7 +118,7 @@ export class MchatComponent implements OnInit {
             this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                 this.finalMessages = []
                 this.finalMessages = data;
-                if(this.finalMessages && this.finalMessages.length > 0){
+                if (this.finalMessages && this.finalMessages.length > 0) {
                     this.finalMessages.forEach((element: any) => {
                         element.msg = JSON.parse(element.message);
                         if (this.groupUsers) {
@@ -155,7 +155,7 @@ export class MchatComponent implements OnInit {
             this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                 this.finalMessages = []
                 this.finalMessages = data;
-                if(this.finalMessages && this.finalMessages.length > 0){
+                if (this.finalMessages && this.finalMessages.length > 0) {
                     this.finalMessages.forEach((element: any) => {
                         element.msg = JSON.parse(element.message);
                         if (element.receiver_id == this.userDetails.userId && element.msg.read == false) {
@@ -184,7 +184,7 @@ export class MchatComponent implements OnInit {
                 this.authService.sendRequest('get', 'get-chat/' + this.roomId, '').subscribe((data) => {
                     this.finalMessages = []
                     this.finalMessages = data;
-                    if(this.finalMessages && this.finalMessages.length > 0){
+                    if (this.finalMessages && this.finalMessages.length > 0) {
                         this.finalMessages.forEach((element: any) => {
                             element.sender = this.groupUsers.find((o: any) => o.id == JSON.parse(element.sender_id))
                             element.msg = JSON.parse(element.message);
@@ -199,7 +199,7 @@ export class MchatComponent implements OnInit {
         }
 
         this.selectedChatMedia = [];
-        if(this.finalMessages && this.finalMessages.length > 0){
+        if (this.finalMessages && this.finalMessages.length > 0) {
             this.finalMessages.forEach(element => {
                 if (element.msg.messageType != 'text') {
                     this.selectedChatMedia.push(element.msg)
@@ -225,7 +225,7 @@ export class MchatComponent implements OnInit {
 
     getMedia() {
         this.selectedChatMedia = [];
-        if(this.finalMessages && this.finalMessages.length > 0){
+        if (this.finalMessages && this.finalMessages.length > 0) {
             this.finalMessages.forEach(element => {
                 if (element.msg.messageType != 'text') {
                     this.selectedChatMedia.push(element.msg)
@@ -298,7 +298,7 @@ export class MchatComponent implements OnInit {
                             this.chatFormSubmitted = false;
                             var self = this;
                             this.required(this.selectedChat)
-                        }else if (respData['code'] == 400) {
+                        } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
                     }
@@ -337,7 +337,7 @@ export class MchatComponent implements OnInit {
     }
 
     unselectImage() {
-        this.imageSrc ='';
+        this.imageSrc = '';
         this.chatForm.controls['message'].setValue('');
         this.chatForm.controls['message'].setValidators(Validators.required);
         this.chatForm.controls['message'].updateValueAndValidity();

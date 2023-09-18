@@ -15,7 +15,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-mall-news',
-    templateUrl: './mall-news.component.html', 
+    templateUrl: './mall-news.component.html',
     styleUrls: ['./mall-news.component.css']
 })
 export class MallNewsComponent implements OnInit {
@@ -46,8 +46,8 @@ export class MallNewsComponent implements OnInit {
     newsData: NewsType;
     setTheme: ThemeType;
     newImg: string;
-    allUser: any[]=[];
-    alluserInformation:{member_id: number}[] = [];
+    allUser: any[] = [];
+    alluserInformation: { member_id: number }[] = [];
 
     private activatedSub: Subscription;
     // @HostListener('window:scroll', ['$event']) // for window scroll events
@@ -79,25 +79,25 @@ export class MallNewsComponent implements OnInit {
         this.getAllNews();
     }
 
-           /**
-   * Function to get all the Club Users
-   * @author  MangoIt Solutions
-   * @param   {}
-   * @return  {Array Of Object} all the Users
-   */
-	getAllUserInfo() {
-		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userData.team_id, null)
-		.subscribe(
-			(respData: any) => {
-                if(respData?.length > 0){
-                    this.allUser = respData;
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    });
+    /**
+* Function to get all the Club Users
+* @author  MangoIt Solutions
+* @param   {}
+* @return  {Array Of Object} all the Users
+*/
+    getAllUserInfo() {
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userData.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData?.length > 0) {
+                        this.allUser = respData;
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        });
+                    }
                 }
-			}
-		);
-	}
+            );
+    }
 
 
     /**
@@ -124,17 +124,16 @@ export class MallNewsComponent implements OnInit {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
                                         .subscribe(
                                             (resppData: any) => {
-                                                // this.thumb = resppData;
                                                 val.user.imagePro = resppData;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 val.user.imagePro = null;
                                             }
                                         );
                                 } else {
                                     val.user.imagePro = null;
                                 }
-                                if (val?.news_image[0]?.news_image){
+                                if (val?.news_image[0]?.news_image) {
                                     val.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.news_image[0]?.news_image.substring(20)));
                                 }
                             });
@@ -159,13 +158,13 @@ export class MallNewsComponent implements OnInit {
                                                     this.thumb = resppData;
                                                     element.user.imagePro = this.thumb;
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     element.user.imagePro = null;
                                                 })
                                     } else {
                                         element.user.imagePro = '';
                                     }
-                                    if (element?.news_image[0]?.news_image){
+                                    if (element?.news_image[0]?.news_image) {
                                         element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                     }
 
@@ -200,13 +199,13 @@ export class MallNewsComponent implements OnInit {
                                                     element.user.imagePro = this.thumb;
                                                     this.authService.setLoader(false);
                                                 },
-                                                (error:any) => {
+                                                (error: any) => {
                                                     element.user.imagePro = null;
                                                 })
                                     } else {
                                         element.user.imagePro = '';
                                     }
-                                    if (element?.news_image[0]?.news_image){
+                                    if (element?.news_image[0]?.news_image) {
                                         element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20)));
                                     }
                                 });
@@ -250,7 +249,7 @@ export class MallNewsComponent implements OnInit {
         if (this.newsData.news_image[0]?.news_image == '' || this.newsData.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            if (this.newsData.news_image[0]?.news_image){
+            if (this.newsData.news_image[0]?.news_image) {
                 this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData.news_image[0]?.news_image.substring(20)));
                 this.newImg = this.newsData.news_image[0]?.news_image;
             }
@@ -263,7 +262,7 @@ export class MallNewsComponent implements OnInit {
                     this.authService.setLoader(false);
                     this.thumbnail = respData;
                 },
-                (error:any) => {
+                (error: any) => {
                     this.thumbnail = null;
                 }
             );

@@ -18,7 +18,7 @@ import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
-import { saveAs } from 'file-saver'; 
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -353,7 +353,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                 this.hasPicture = true;
                 this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20))) as string;
                 this.imageUrl = this.faqDataById['faq_image'][0]['faq_image'];
-                
+
             }
         }
         if (this.faqDataById['faq_image'][0]?.['faq_document'] != '') {
@@ -536,8 +536,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                         $('#individualFAQ').hide();
                         $('#searchId').show();
                         this.searchData = respData;
-                        
-                        this.searchData.forEach((element:any) =>{
+                        this.searchData.forEach((element: any) => {
                             if (element['faq_image'][0]?.['faq_image']) {
                                 element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                             }

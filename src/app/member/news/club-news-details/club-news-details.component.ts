@@ -149,7 +149,6 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -185,7 +184,6 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -344,7 +342,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     updateNews(newsId: number) {
         const url: string[] = ["/update-news/" + newsId];
         this.router.navigate(url);
-    } 
+    }
 
     /**
     * Function is used to aprove news by news Id

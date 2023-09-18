@@ -118,7 +118,6 @@ export class McommunityGroupsComponent implements OnInit {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -190,7 +189,7 @@ export class McommunityGroupsComponent implements OnInit {
         this.authService.memberSendRequest('get', 'getGroupsNotParticipantPagination/user/' + this.user_Id + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
             .subscribe((respData: any) => {
                 this.groupData = respData['result']['group'];
-                this.groupData.forEach((element:any) => {
+                this.groupData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
@@ -200,16 +199,16 @@ export class McommunityGroupsComponent implements OnInit {
             });
     }
 
-        /**
-     * Function to get all the groups of clubs
-     * @author  MangoIt Solutions
-     * @param   {}
-     * @return  {Array of Object} all the groups
-     */
+    /**
+ * Function to get all the groups of clubs
+ * @author  MangoIt Solutions
+ * @param   {}
+ * @return  {Array of Object} all the groups
+ */
     allGroups() {
         this.authService.setLoader(true);
         this.groupData = [];
-        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/', null).subscribe((respData: any) => {
             this.groupData = respData['groups'];
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
@@ -218,34 +217,34 @@ export class McommunityGroupsComponent implements OnInit {
                 element.displayJoinButton = true;
                 element.displayLeaveButton = false;
                 element.displayWaitApprovalButton = false;
-                element.participants.forEach((elem:any) => {
-                    if(elem.user_id  == parseInt(this.user_Id)){
-                        if(!(element.created_by == parseInt(this.user_Id)) && !this.userData.isAdmin){
-                            if(elem.approved_status == 0){
+                element.participants.forEach((elem: any) => {
+                    if (elem.user_id == parseInt(this.user_Id)) {
+                        if (!(element.created_by == parseInt(this.user_Id)) && !this.userData.isAdmin) {
+                            if (elem.approved_status == 0) {
                                 element.displayJoinButton = true;
                                 element.displayLeaveButton = false;
                                 element.displayWaitApprovalButton = false;
-                            }else if(elem.approved_status == 1){
+                            } else if (elem.approved_status == 1) {
                                 element.displayLeaveButton = true;
                                 element.displayJoinButton = false;
                                 element.displayWaitApprovalButton = false;
-                            }else if(elem.approved_status == 2){
+                            } else if (elem.approved_status == 2) {
                                 element.displayLeaveButton = false;
                                 element.displayJoinButton = false;
                                 element.displayWaitApprovalButton = true;
                             }
-                        }else if(this.userData.isAdmin){
-                            if(elem.approved_status == 0){
+                        } else if (this.userData.isAdmin) {
+                            if (elem.approved_status == 0) {
                                 element.displayJoinButton = true;
                                 element.displayLeaveButton = false;
                                 element.displayWaitApprovalButton = false;
-                            }else if(elem.approved_status == 1 && element.created_by != (this.user_Id)){
+                            } else if (elem.approved_status == 1 && element.created_by != (this.user_Id)) {
                                 element.displayLeaveButton = true;
                                 element.displayJoinButton = false;
                                 element.displayWaitApprovalButton = false;
                             }
                         }
-                    }else if(element.created_by == parseInt(this.user_Id)){
+                    } else if (element.created_by == parseInt(this.user_Id)) {
                         element.displayJoinButton = false;
                         element.displayLeaveButton = false;
                         element.displayWaitApprovalButton = false;
@@ -259,10 +258,10 @@ export class McommunityGroupsComponent implements OnInit {
 
     joinAllGroups() {
         let userId: string = localStorage.getItem('user-id');
-        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/', null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id + '/', null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
-                this.groupJoinData.forEach((element:any) => {
+                this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
                     }
@@ -273,16 +272,16 @@ export class McommunityGroupsComponent implements OnInit {
     groupsYouManage() {
         let userId: string = localStorage.getItem('user-id');
         //this.authService.setLoader(true);
-        this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id , null)
+        this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null)
             .subscribe((respData: any) => {
-            this.groupsYouManageData = respData['groups'].reverse();
-            this.groupsYouManageData.forEach((element:any) => {
-                if (element.group_images[0]?.['group_image']) {
-                    element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
-                }
-            })
-            //this.authService.setLoader(false);
-        });
+                this.groupsYouManageData = respData['groups'].reverse();
+                this.groupsYouManageData.forEach((element: any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
+                //this.authService.setLoader(false);
+            });
     }
 
     onGroup() {
@@ -304,17 +303,17 @@ export class McommunityGroupsComponent implements OnInit {
     }
 
 
-       /**
-     * Function to select the types of Group
-     */
-       groupFilter(filterValue:any) {
-        if(filterValue == 0){
+    /**
+  * Function to select the types of Group
+  */
+    groupFilter(filterValue: any) {
+        if (filterValue == 0) {
             //all group
             this.onGroup()
-        }else if(filterValue == 1){
+        } else if (filterValue == 1) {
             // groups you manage
             this.onManagegroups()
-        }else{
+        } else {
             // group you have joined
             // this.onGroups(2)
             this.onJoinGroups()

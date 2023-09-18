@@ -295,7 +295,6 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     }
                     this.weekdays.removeAt(0);
                     if (this.roomData?.room_availablity?.length > 0) {
-
                         this.roomData.room_availablity.forEach((key, value) => {
                             if (key.time_from.includes(':00') && key.time_to.includes(':00')) {
                                 key.time_from = key.time_from.slice(0, 5)
@@ -373,7 +372,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                         }
                     }
                 }
-                this.authService.setLoader(true); 
+                this.authService.setLoader(true);
                 this.authService.memberSendRequest('put', 'updateRooms/' + this.roomId, formData).subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;

@@ -42,7 +42,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -81,27 +81,27 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         this.notification_id = [];
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', endPoint, '')
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false && respData.result != '') {
-                this.displayNotification = respData.result;
-                if(this.displayNotification?.length > 0){
-                    this.displayNotification.forEach((element: any) => {
-                        this.notification_id.push(element.id);
-                    });
-                    let dis_noti = this.displayNotification.filter((o: any) => o.author != this.userData.userId );
-                    this.displayNotification = [];
-                    this.displayNotification = dis_noti;
-                    this.displayNotification['text'] = this.language.Survey.new_survey;
-                    $('#push-notification').modal({
-                        backdrop: 'static',
-                    });
-                    $('#push-notification').modal('show');
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false && respData.result != '') {
+                    this.displayNotification = respData.result;
+                    if (this.displayNotification?.length > 0) {
+                        this.displayNotification.forEach((element: any) => {
+                            this.notification_id.push(element.id);
+                        });
+                        let dis_noti = this.displayNotification.filter((o: any) => o.author != this.userData.userId);
+                        this.displayNotification = [];
+                        this.displayNotification = dis_noti;
+                        this.displayNotification['text'] = this.language.Survey.new_survey;
+                        $('#push-notification').modal({
+                            backdrop: 'static',
+                        });
+                        $('#push-notification').modal('show');
+                    }
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
                 }
-            } else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            });
     }
 
     getCRMNews() {
@@ -109,30 +109,30 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         if (loginStatus == '1') {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'get-crmnews-notification', null)
-            .subscribe((respData: CrmNews) => {
-                this.authService.setLoader(false);
-                if ( respData?.result?.news?.length > 0 && respData.isError == false) {
-                    setTimeout(() => {
-                        $('#push-notification').modal({ backdrop: 'static', });
-                        $('#push-notification').modal('show');
-                        this.newsData = respData.result.news;
-                        this.newsData.forEach((element:any) => {
-                            if ( element?.picture ) {
-                                element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.picture.substring(20)));
-                            }
-                            if ( element?.image) {
-                                element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.image.substring(20)));
-                            }
-                        })
+                .subscribe((respData: CrmNews) => {
+                    this.authService.setLoader(false);
+                    if (respData?.result?.news?.length > 0 && respData.isError == false) {
+                        setTimeout(() => {
+                            $('#push-notification').modal({ backdrop: 'static', });
+                            $('#push-notification').modal('show');
+                            this.newsData = respData.result.news;
+                            this.newsData.forEach((element: any) => {
+                                if (element?.picture) {
+                                    element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
+                                }
+                                if (element?.image) {
+                                    element.image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.image.substring(20)));
+                                }
+                            })
+                            var status = '0';
+                            localStorage.setItem('loginStatus', status);
+                        }, 600);
+                    } else if (respData.isError == false && respData?.result?.news?.length < 1) {
+                        $('#push-notification').modal('hide');
                         var status = '0';
                         localStorage.setItem('loginStatus', status);
-                    }, 600);
-                } else if ( respData.isError == false && respData?.result?.news?.length < 1) {
-                    $('#push-notification').modal('hide');
-                    var status = '0';
-                    localStorage.setItem('loginStatus', status);
-                }
-            });
+                    }
+                });
         }
     }
 
@@ -143,20 +143,20 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
             this.authService.memberSendRequest('get', 'get-crmsurvey-notification', null)
                 .subscribe((respData: CrmSurvey) => {
                     this.authService.setLoader(false);
-                    if ( respData?.result?.survey?.length > 0 && respData.isError == false ) {
+                    if (respData?.result?.survey?.length > 0 && respData.isError == false) {
                         setTimeout(() => {
-                            $('#push-notification').modal({backdrop: 'static',});
+                            $('#push-notification').modal({ backdrop: 'static', });
                             $('#push-notification').modal('show');
                             this.surveyData = respData.result.survey;
-                            this.surveyData.forEach((element:any) =>{
-                                if ( element?.picture) {
-                                    element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( element?.picture.substring(20)));
+                            this.surveyData.forEach((element: any) => {
+                                if (element?.picture) {
+                                    element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20)));
                                 }
                             })
                             var status = '0';
                             localStorage.setItem('loginStatus', status);
                         }, 600);
-                    } else if (respData.isError == false &&  respData.result.survey.length < 1) {
+                    } else if (respData.isError == false && respData.result.survey.length < 1) {
                         $('#push-notification').modal('hide');
                         var status = '0';
                         localStorage.setItem('loginStatus', status);
@@ -170,24 +170,24 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         let read: any = { id: this.notification_id, loginId: this.userData.userId };
         this.authService.setLoader(true);
         this.authService.memberSendRequest('post', endPoint, read)
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                $('#push-notification').modal('hide');
-                this.getNotify();
-                this.notificationService.showSuccess(respData['result']['message'],null);
-                setTimeout(() => {
-                    this.notification_id = [];
-                }, 1000);
-            }else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    $('#push-notification').modal('hide');
+                    this.getNotify();
+                    this.notificationService.showSuccess(respData['result']['message'], null);
+                    setTimeout(() => {
+                        this.notification_id = [];
+                    }, 1000);
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
     }
 
 
     getpopclosed() {
-        if( this.newsData &&  this.newsData.length > 0){
+        if (this.newsData && this.newsData.length > 0) {
             this.newsData.forEach((element) => {
                 this.newsForm.value.newsIds.push(element.news_id);
             });
@@ -196,14 +196,14 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
             this.authService.setLoader(true);
             let userId = localStorage.getItem('user-id');
             this.authService
-                .memberSendRequest('post', 'get-crmnews-read',this.newsForm.value).subscribe((respData: CrmNews) => {
+                .memberSendRequest('post', 'get-crmnews-read', this.newsForm.value).subscribe((respData: CrmNews) => {
                     this.authService.setLoader(false);
                 });
         }
     }
 
     getsurveypopclosed() {
-        if(this.surveyData && this.surveyData.length > 0){
+        if (this.surveyData && this.surveyData.length > 0) {
             this.surveyData.forEach((element) => {
                 this.surveyForm.value.surveyIds.push(element.id);
             });
@@ -211,7 +211,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService
-                .memberSendRequest( 'post', 'get-crmsurvey-read',  this.surveyForm.value).subscribe((respData: CrmSurvey) => {
+                .memberSendRequest('post', 'get-crmsurvey-read', this.surveyForm.value).subscribe((respData: CrmSurvey) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         $('#push-notification').modal('hide');
@@ -228,19 +228,19 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         this.router.navigate(['/crm-survey']);
     }
 
-    viewNewsDetails(){
+    viewNewsDetails() {
         $('#push-notification').modal('hide');
         this.getpopclosed();
         this.router.navigate(['/crm-news']);
     }
 
-    viewReadSurveyDetail(){
+    viewReadSurveyDetail() {
         $('#push-notification').modal('hide');
         this.readSurvey();
         this.router.navigate(['survey']);
     }
 
-    redirectToDashboard(){
+    redirectToDashboard() {
         $('#push-notification').modal('hide');
         this.getpopclosed();
         this.getsurveypopclosed();
@@ -248,7 +248,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
     }
 
-    closeModal(){
+    closeModal() {
         $('#push-notification').modal('hide');
     }
 

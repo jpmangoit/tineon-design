@@ -6,41 +6,38 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
-@Component({ 
-	selector: 'app-organizer-personal-task',
-	templateUrl: './organizer-personal-task.component.html',
-	styleUrls: ['./organizer-personal-task.component.css']
+@Component({
+    selector: 'app-organizer-personal-task',
+    templateUrl: './organizer-personal-task.component.html',
+    styleUrls: ['./organizer-personal-task.component.css']
 })
 
 export class OrganizerPersonalTaskComponent implements OnInit {
     @Input() organizerTask: any;
-	language:any;
-	user_id:string;
-	personalTasks:TaskType[];
-    toDoTask:TaskType[];
-    inProgress:TaskType[];
-    completed:TaskType[];
+    language: any;
+    user_id: string;
+    personalTasks: TaskType[];
+    toDoTask: TaskType[];
+    inProgress: TaskType[];
+    completed: TaskType[];
 
-	constructor(
-		private authService: AuthServiceService,
-		private lang: LanguageService,
+    constructor(
+        private authService: AuthServiceService,
+        private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-	) { }
+    ) { }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
         this.user_id = localStorage.getItem('user-id');
-        if (sessionStorage.getItem('token')) { 
+        if (sessionStorage.getItem('token')) {
             this.toDoTask = [];
             this.inProgress = [];
             this.completed = [];
-            
-            if (this.organizerTask && this.organizerTask?.length > 0) {                
+
+            if (this.organizerTask && this.organizerTask?.length > 0) {
                 this.organizerTask?.forEach((element) => {
-                    // if (element['task_image'] && element['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
-                    //     element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
-                    // }
                     if ((element.group_id == 0 || element.group_id == null || element.group_id == '') && (element.team_id != null)) {
                         element.approvedCount = 0;
                         element.progressVal = 0;
@@ -58,7 +55,7 @@ export class OrganizerPersonalTaskComponent implements OnInit {
                         if ((element.group_id == null || element.group_id == 0) && ((element.status == 0 || element.status == 2) && element.subtasks.every(obj => obj.status === 0))) {
                             this.toDoTask.push(element);
                             this.toDoTask;
-                            
+
                         } else if ((element.group_id == null || element.group_id == 0) && (element.subtasks.some(obj => obj.status === 1) && element.status != 1)) {
                             this.inProgress.push(element);
                             this.inProgress;

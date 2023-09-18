@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { saveAs } from 'file-saver';
-declare var $:any;
+declare var $: any;
 
 @Component({
     selector: 'app-view-servey',
@@ -21,7 +21,7 @@ declare var $:any;
 })
 export class ViewServeyComponent implements OnInit, OnDestroy {
     language: any;
-    userDetails: LoginDetails; 
+    userDetails: LoginDetails;
     userRole: string;
     surveyId: string;
     surveyData: Survey;
@@ -36,12 +36,12 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     showImage: any;
     showFile: any;
 
-    responseMessage:string = null;
-	result: any;
+    responseMessage: string = null;
+    result: any;
     documentData: any;
     dowloading: boolean = false;
 
-    constructor(private authService: AuthServiceService, private themes: ThemeService,private notificationService: NotificationService,
+    constructor(private authService: AuthServiceService, private themes: ThemeService, private notificationService: NotificationService,
         private lang: LanguageService, private route: ActivatedRoute,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer) { }
@@ -79,7 +79,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
                 this.surveyVoteResult = [];
                 this.authService.setLoader(false);
                 this.surveyVoteResult = respData['result'];
-                if(this.surveyVoteResult && this.surveyVoteResult['result'] && this.surveyVoteResult['result'].length > 0){
+                if (this.surveyVoteResult && this.surveyVoteResult['result'] && this.surveyVoteResult['result'].length > 0) {
                     this.surveyData = this.surveyVoteResult['result'];
                     this.show_name = this.surveyData[0].additional_anonymous_voting;
 
@@ -92,17 +92,9 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
                         this.showFile = this.surveyData[0]?.surevyImage[0]?.surevy_document;
                         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
                     }
-                    // if (this.surveyData[0].image != null) {
-                    //     if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
-                    //         this.showImage = this.surveyData[0].image;
-                    //     } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
-                    //         this.showFile = this.surveyData[0].image;
-                    //         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-                    //     }
-                    // }
                 }
 
-                if(this.surveyVoteResult && this.surveyVoteResult['answerCount'] && this.surveyVoteResult['answerCount'].length > 0){
+                if (this.surveyVoteResult && this.surveyVoteResult['answerCount'] && this.surveyVoteResult['answerCount'].length > 0) {
                     this.surveyVoteResult['answerCount'].forEach(element => {
                         if (this.surveyVoteResult['TotalCount'] != 0) {
                             element.per = (((element.count) / this.surveyVoteResult['TotalCount']) * 100);
@@ -144,16 +136,16 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     getAnswerResult(ans_id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'surveyResult/' + 'survey/' + this.surveyId + '/answerId/' + ans_id, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.vote_setting = respData['result']['result'];
-                    this.voteCount = this.vote_setting.length;
-                    this.currentDate = new Date();
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        this.vote_setting = respData['result']['result'];
+                        this.voteCount = this.vote_setting.length;
+                        this.currentDate = new Date();
+                    }
                 }
-            }
-        )
+            )
     }
 
     showVote(vote: Survey) {
@@ -192,15 +184,15 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     surveyClose(id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('put', 'closeSurvey/survey/' + id, '')
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                this.notificationService.showSuccess(respData['result'],null);
-                this.ngOnInit();
-            }else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.notificationService.showSuccess(respData['result'], null);
+                    this.ngOnInit();
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
     }
 
     /**
@@ -242,7 +234,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     downloadImage(blobUrl: any) {
         window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
     }
-    
+
     ngOnDestroy(): void {
         this.activatedSub.unsubscribe();
     }

@@ -240,28 +240,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                                             element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image.substring(20)));
                                         }
                                     }
-
-                                    // var url: string[] = [];
-                                    // if (element) {
-                                    //     for (const key in element) {
-                                    //         if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                    //             const value: string = element[key]
-                                    //             if (key == 'picture_video' && value != null) {
-                                    //                 url = value.split('\"');
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
-                                    // if (url && url.length > 0) {
-                                    //     let self = this;
-                                    //     url.forEach(el => {
-                                    //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                    //             element.picture_video = el;
-                                    //         }
-                                    //     });
-                                    // } else {
-                                    //     element['picture_video'] = '';
-                                    // }
                                     this.allData[key] = element;
                                     if (element && element.recurrence != '' && element.recurrence != null) {
                                         let recurrence: string = element.recurrence;
@@ -570,7 +548,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.upcomingCourseList.forEach(element => {
-
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
@@ -669,31 +646,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                         if (this.courseByIdData[0]?.document_url) {
                             this.eventFile = this.courseByIdData[0].document_url;
                         }
-
-                        // if (this.courseByIdData[0]?.picture_video && this.courseByIdData[0].picture_video != "[]") {
-                        //     let responseImg: string;
-                        //     responseImg = this.courseByIdData[0].picture_video;
-                        //     let resp: string[] = [];
-                        //     resp = responseImg.split("\"");
-                        //     let imgArray: string[] = [];
-                        //     let fileArray: string[] = [];
-                        //     if (resp && resp.length > 0) {
-                        //         resp.forEach((element: string) => {
-                        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                        //                 imgArray.push(element);
-                        //                 this.hasPicture = true;
-                        //                 this.eventImage = imgArray[0];
-                        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                        //                 fileArray.push(element);
-                        //                 this.eventFile = fileArray[0];
-                        //                 this.eventFile = element;
-                        //             }
-                        //         });
-                        //     }
-                        // } else {
-                        //     this.hasPicture = false;
-                        //     this.eventImage = '';
-                        // }
                         this.getOrganizerDetails(id);
                         this.getParticipantDetails(id);
                         if (this.courseByIdData[0]?.courseTask?.id) {
@@ -1356,26 +1308,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 element.course_image[0].course_image = blobUrl;
                                                 this.eventImage = element.course_image[0].course_image
                                             }
-                                            // var url = [];
-                                            // for (const key in element) {
-                                            //     if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                            //         const value = element[key]
-                                            //         if (key == 'picture_video' && value != null) {
-                                            //             url = value.split('\"');
-                                            //         }
-                                            //     }
-                                            // }
-                                            // if (url && url.length > 0) {
-                                            //     // let imgArray: any = [];
-                                            //     let self = this;
-                                            //     url.forEach(el => {
-                                            //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                            //             element.picture_video = el;
-                                            //         }
-                                            //     });
-                                            // } else {
-                                            //     element['picture_video'] = '';
-                                            // }
                                             this.allData[key] = element;
                                             if (element && element.recurrence != '' && element.recurrence != null) {
                                                 let recurrence = element.recurrence;

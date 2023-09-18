@@ -22,7 +22,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     setTheme: ThemeType;
     currentPageNmuber: number = 1;
     itemPerPage: number = 10;
-    totalRecord: number = 0; 
+    totalRecord: number = 0;
     totalActiveSurvey: number = 0;
     limitPerPage: { value: string }[] = [
         { value: '10' },
@@ -44,7 +44,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
         private commonFunctionService: CommonFunctionService
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
@@ -71,16 +71,16 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getSurveyData();
                 }
-                this.getSurveyData();
-            }
-        );
+            );
     }
 
     /**
@@ -90,20 +90,19 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     * @return  {object} survey object
     */
     getSurveyData() {
-        var endPoints:any
-        if(this.userRole == 'admin'){
+        var endPoints: any
+        if (this.userRole == 'admin') {
             endPoints = 'getActivePollSurvey/' + this.currentPageNmuber + '/' + this.itemPerPage;
-        }else if(this.userRole != 'admin'){
+        } else if (this.userRole != 'admin') {
             endPoints = 'getActivePollSurveyUser/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage;
         }
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', endPoints, null)
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
-                 if (respData['isError'] == false) {
-                    if(respData?.['result']?.['survey']?.length > 0){
+                if (respData['isError'] == false) {
+                    if (respData?.['result']?.['survey']?.length > 0) {
                         respData['result']['survey'].forEach((element: any) => {
-                            
                             if (this.alluserInformation[element.user_name.id] != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user_name.id].member_id, null)
                                     .subscribe(
@@ -111,7 +110,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.userImage = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.userImage = null;
                                         });
                             } else {
@@ -132,7 +131,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
                             }
                         });
                     }
-                    this.activeSurvey = respData['result']['survey']; 
+                    this.activeSurvey = respData['result']['survey'];
                     this.totalActiveSurvey = respData['result'].pagination.rowCount;
                 }
             })
@@ -168,7 +167,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalActiveSurvey / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
                 this.getSurveyData()
@@ -197,14 +196,14 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     surveyClose(id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('put', 'closeSurvey/survey/' + id, '')
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                this.notificationService.showSuccess(respData['result'],null);
-            }else if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.notificationService.showSuccess(respData['result'], null);
+                } else if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
     }
 
     ngOnDestroy(): void {

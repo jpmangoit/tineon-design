@@ -15,30 +15,30 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
-  selector: 'app-create-banner',
-  templateUrl: './create-banner.component.html',
-  styleUrls: ['./create-banner.component.css']
+    selector: 'app-create-banner',
+    templateUrl: './create-banner.component.html',
+    styleUrls: ['./create-banner.component.css']
 })
-export class CreateBannerComponent implements OnInit,OnDestroy {
+export class CreateBannerComponent implements OnInit, OnDestroy {
 
     language: any;
     createBannerForm: UntypedFormGroup;
-    formSubmit:boolean = false;
-    bannerCategoryOption:{ name:string, value: string}[];
+    formSubmit: boolean = false;
+    bannerCategoryOption: { name: string, value: string }[];
     bannerPlacementOption: { name: any; value: string; }[];
     setTheme: ThemeType;
     file: File;
     fileToReturn: File;
     croppedImage: string = '';
-    imageChangedEvent:Event = null;
-    image:File
+    imageChangedEvent: Event = null;
+    image: File
     isImage: boolean = false;
     private activatedSub: Subscription;
     bannerDisplayOption: { name: any; id: string; }[];
-    displayedDropdownSettings:IDropdownSettings;
+    displayedDropdownSettings: IDropdownSettings;
     bannerDispledSelected: any[] = [];
     userData: LoginDetails;
     imgHeight: any;
@@ -52,7 +52,7 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -106,10 +106,10 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
-            let theme:ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
 
@@ -128,7 +128,7 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
             { name: this.language.banner.all_news, value: '2' },
             { name: this.language.banner.news_details, value: '3' },
             { name: this.language.banner.all_groups, value: '4' },
-            { name: this.language.banner.groups_details, value: '5'},
+            { name: this.language.banner.groups_details, value: '5' },
         ];
 
         this.bannerDisplayOption = [
@@ -151,13 +151,13 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
             description: ['', Validators.required],
             bannerStartDate: ['', Validators.required],
             bannerEndDate: ['', Validators.required],
-            image: ['',Validators.required],
-            redirectLink: ['',Validators.compose([Validators.required, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")])],
-            status:['',Validators.required],
-            invoice:['',Validators.required],
-            category:this.formBuilder.array([], [Validators.required]),
-            placement:this.formBuilder.array([], [Validators.required]),
-            display:['',Validators.required]
+            image: ['', Validators.required],
+            redirectLink: ['', Validators.compose([Validators.required, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")])],
+            status: ['', Validators.required],
+            invoice: ['', Validators.required],
+            category: this.formBuilder.array([], [Validators.required]),
+            placement: this.formBuilder.array([], [Validators.required]),
+            display: ['', Validators.required]
         });
     }
 
@@ -227,10 +227,10 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
         this.createBannerForm.get('bannerStartDate').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else{
-            return this. getToday()
+        } else {
+            return this.getToday()
         }
     }
 
@@ -240,13 +240,13 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     * @param   {}
     * @return  {Array} numbers array
     */
-    oncategoryChange(e:Event) {
+    oncategoryChange(e: Event) {
         const categoryOption: UntypedFormArray = this.createBannerForm.get('category') as UntypedFormArray;
         if (e.target['checked']) {
             categoryOption.push(new UntypedFormControl(e.target['value']));
         } else {
-            let i:number = 0;
-            if(categoryOption.controls && categoryOption.controls.length > 0){
+            let i: number = 0;
+            if (categoryOption.controls && categoryOption.controls.length > 0) {
                 categoryOption.controls.forEach((item: UntypedFormControl) => {
                     if (item.value == e.target['value']) {
                         categoryOption.removeAt(i);
@@ -264,13 +264,13 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     * @param   {}
     * @return  {Array} numbers array
     */
-    onPlacementChange(e:Event){
+    onPlacementChange(e: Event) {
         const placementOption: FormArray = this.createBannerForm.get('placement') as FormArray;
         if (e.target['checked']) {
             placementOption.push(new FormControl(e.target['value']));
         } else {
-            let i:number = 0;
-            if(placementOption.controls && placementOption.controls.length > 0){
+            let i: number = 0;
+            if (placementOption.controls && placementOption.controls.length > 0) {
                 placementOption.controls.forEach((item: UntypedFormControl) => {
                     if (item.value == e.target['value']) {
                         placementOption.removeAt(i);
@@ -288,7 +288,7 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     * @param   {}
     * @return  {Array} numbers array
     */
-    onbannerDispledSelect(item:any){
+    onbannerDispledSelect(item: any) {
         this.bannerDispledSelected.push(item.id);
     }
 
@@ -299,7 +299,7 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     * @param   {}
     * @return  {Array} numbers array
     */
-    onbannerDispledDeSelect(item:any){
+    onbannerDispledDeSelect(item: any) {
         this.bannerDispledSelected = [];
     }
 
@@ -309,19 +309,19 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     */
 
     getToday(): string {
-		return new Date().toISOString().split('T')[0]
-	}
+        return new Date().toISOString().split('T')[0]
+    }
 
     onCancel() {
-		window.history.back();
-	}
+        window.history.back();
+    }
 
-     /**
-    * Function is used to validate file type is image and upload images
-    * @author  MangoIt Solutions(M)
-    * @param   {}
-    * @return  error message if file type is not image
-    */
+    /**
+   * Function is used to validate file type is image and upload images
+   * @author  MangoIt Solutions(M)
+   * @param   {}
+   * @return  error message if file type is not image
+   */
     errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     uploadFile(event: Event) {
         var file: File = (event.target as HTMLInputElement).files[0];
@@ -376,16 +376,16 @@ export class CreateBannerComponent implements OnInit,OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
-            (compressedImage) => {
-                this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
-                this.createBannerForm.patchValue({ image: this.fileToReturn });
-                this.createBannerForm.get('image').updateValueAndValidity();
-                $('.preview_txt').show(this.fileToReturn.name);
-                $('.preview_txt').text(this.fileToReturn.name);
-            }
-        );
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
+                (compressedImage) => {
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.createBannerForm.patchValue({ image: this.fileToReturn });
+                    this.createBannerForm.get('image').updateValueAndValidity();
+                    $('.preview_txt').show(this.fileToReturn.name);
+                    $('.preview_txt').text(this.fileToReturn.name);
+                }
+            );
     }
 
     imageLoaded() {

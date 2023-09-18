@@ -16,13 +16,13 @@ import { DropdownService } from 'src/app/service/dropdown.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-mclub-message',
-  templateUrl: './mclub-message.component.html',
-  styleUrls: ['./mclub-message.component.css']
+	selector: 'app-mclub-message',
+	templateUrl: './mclub-message.component.html',
+	styleUrls: ['./mclub-message.component.css']
 })
 export class MclubMessageComponent implements OnInit {
 
-    language: any;
+	language: any;
 	replyMsgForm: UntypedFormGroup;
 	messageForm: UntypedFormGroup;
 	replyMsgSubmitted: boolean = false;
@@ -59,16 +59,16 @@ export class MclubMessageComponent implements OnInit {
 	thumb: string;
 	clubMessage: ClubMessagesType[];
 	private activatedSub: Subscription;
-    selected = '1';
+	selected = '1';
 
-    isClublList: boolean = true;
-	selectedValue :any;
-    // select: { value: string; viewValue: any; }[];
-	todayDate :any;
+	isClublList: boolean = true;
+	selectedValue: any;
+	// select: { value: string; viewValue: any; }[];
+	todayDate: any;
 	constructor(
 		private lang: LanguageService,
 		private authService: AuthServiceService,
-		public formBuilder: UntypedFormBuilder,private notificationService: NotificationService,
+		public formBuilder: UntypedFormBuilder, private notificationService: NotificationService,
 		private confirmDialogService: ConfirmDialogService, private themes: ThemeService, private dropdownService: DropdownService
 	) { }
 
@@ -83,10 +83,10 @@ export class MclubMessageComponent implements OnInit {
 		});
 
 		this.dropdownService.getDropdownValue().subscribe(value => {
-            this.selectedValue = value;
-            this.onSelect(this.selectedValue);
-            // Do something with the value
-          });
+			this.selectedValue = value;
+			this.onSelect(this.selectedValue);
+			// Do something with the value
+		});
 
 		let self = this;
 		this.language = this.lang.getLanguaageFile();
@@ -111,122 +111,122 @@ export class MclubMessageComponent implements OnInit {
 			'cc': new UntypedFormControl('')
 		})
 		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
-                        this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email, };
-                        this.userDropdownList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
-                    })
-                }
-                this.alluserInfo = respData;
-                self.userDropdownSettings = {
-                    singleSelection: false,
-                    idField: 'id',
-                    textField: 'name',
-                    selectAllText: 'Select All',
-                    enableCheckAll: false,
-                    unSelectAllText: 'UnSelect All',
-                    allowSearchFilter: true,
-                    searchPlaceholderText: this.language.header.search
-                };
-            }
-        )
+			.subscribe(
+				(respData: any) => {
+					if (respData && respData.length > 0) {
+						Object(respData).forEach((val, key) => {
+							this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
+							this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email, };
+							this.userDropdownList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
+						})
+					}
+					this.alluserInfo = respData;
+					self.userDropdownSettings = {
+						singleSelection: false,
+						idField: 'id',
+						textField: 'name',
+						selectAllText: 'Select All',
+						enableCheckAll: false,
+						unSelectAllText: 'UnSelect All',
+						allowSearchFilter: true,
+						searchPlaceholderText: this.language.header.search
+					};
+				}
+			)
 
-        // this.select = [
-        //     { value: '1', viewValue: this.language.community_messages.inbox },
-        //     { value: '2', viewValue: this.language.community_messages.starred },
-        //     { value: '3', viewValue: this.language.community_messages.sent },
-        //     { value: '4', viewValue: this.language.community_messages.drafts },
-        //     { value: '5', viewValue: this.language.community_messages.allmail },
-        //     { value: '6', viewValue: this.language.community_messages.trash },
-        // ];
-        this.onSelect('1')
+		// this.select = [
+		//     { value: '1', viewValue: this.language.community_messages.inbox },
+		//     { value: '2', viewValue: this.language.community_messages.starred },
+		//     { value: '3', viewValue: this.language.community_messages.sent },
+		//     { value: '4', viewValue: this.language.community_messages.drafts },
+		//     { value: '5', viewValue: this.language.community_messages.allmail },
+		//     { value: '6', viewValue: this.language.community_messages.trash },
+		// ];
+		this.onSelect('1')
 	}
 
-    onSelect(value) {
-        this.isClublList = true;
-        if (value == 1) {
-            this.clubMessages();
-        } else if (value == 2) {
-            this.clubStarredMessages()
+	onSelect(value) {
+		this.isClublList = true;
+		if (value == 1) {
+			this.clubMessages();
+		} else if (value == 2) {
+			this.clubStarredMessages()
 
-        } else if (value == 3) {
-            this.clubSentMessages()
+		} else if (value == 3) {
+			this.clubSentMessages()
 
-        } else if (value == 4) {
-            this.clubDraftsMessages()
+		} else if (value == 4) {
+			this.clubDraftsMessages()
 
-        } else if (value == 5) {
-            this.clubAllMailMessages();
-        } else if (value == 6) {
-            this.clubTrashMessages();
-        }
-    }
+		} else if (value == 5) {
+			this.clubAllMailMessages();
+		} else if (value == 6) {
+			this.clubTrashMessages();
+		}
+	}
 
-    back() {
-        this.isClublList = true;
-    }
+	back() {
+		this.isClublList = true;
+	}
 
 	getclubMessage() {
 		this.isReplyMsgForm = false;
 		this.selectedMessage = [];
 		this.authService.setLoader(true);
 		this.authService.memberSendRequest('get', 'message/get-club-inbox', null)
-        .subscribe(
-            (respData: any) => {
-                // this.responseMessage = null;
-                this.clubMessage = [];
-                this.clubMessage = respData.reverse();
-                this.clubInbox = true;
-                this.clubStarred = false;
-                this.clubSent = false;
-                this.clubDrafts = false;
-                this.clubAllMail = false;
-                this.clubTrash = false;
-                this.authService.setLoader(false);
-                if (this.clubMessage.length > 0) {
-                    this.selectedMessage.push(this.clubMessage[0])
-                }
-                if(this.clubMessage && this.clubMessage.length > 0){
-                    this.clubMessage.forEach(element => {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
-                        }
-                    })
-                }
+			.subscribe(
+				(respData: any) => {
+					// this.responseMessage = null;
+					this.clubMessage = [];
+					this.clubMessage = respData.reverse();
+					this.clubInbox = true;
+					this.clubStarred = false;
+					this.clubSent = false;
+					this.clubDrafts = false;
+					this.clubAllMail = false;
+					this.clubTrash = false;
+					this.authService.setLoader(false);
+					if (this.clubMessage.length > 0) {
+						this.selectedMessage.push(this.clubMessage[0])
+					}
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-                if(this.selectedMessage && this.selectedMessage.length > 0){
-                    this.selectedMessage.forEach(element => {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
-                        }
-                    })
-                }
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-            }
-        )
+				}
+			)
 	}
 
 	clubMessages() {
@@ -249,40 +249,40 @@ export class MclubMessageComponent implements OnInit {
 					if (this.clubMessage.length > 0) {
 						this.selectedMessage.push(this.clubMessage[0])
 					}
-                    if(this.clubMessage && this.clubMessage.length > 0){
-                        this.clubMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 				}
 			)
@@ -308,41 +308,41 @@ export class MclubMessageComponent implements OnInit {
 					if (this.clubMessage.length > 0) {
 						this.selectedMessage.push(this.clubMessage[0])
 					}
-                    if(this.clubMessage && this.clubMessage.length > 0){
-                        this.clubMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 				}
 			)
@@ -353,59 +353,59 @@ export class MclubMessageComponent implements OnInit {
 		this.selectedMessage = [];
 		this.authService.setLoader(true);
 		this.authService.memberSendRequest('get', 'message/get-club-sent', null)
-        .subscribe(
-            (respData: any) => {
-                // this.responseMessage = null;
-                this.clubMessage = [];
-                this.clubMessage = respData.reverse();
-                this.clubInbox = false;
-                this.clubStarred = false;
-                this.clubSent = true;
-                this.clubDrafts = false;
-                this.clubAllMail = false;
-                this.clubTrash = false;
-                this.authService.setLoader(false);
-                if (this.clubMessage.length > 0) {
-                    this.selectedMessage.push(this.clubMessage[0])
-                }
-                if(this.clubMessage && this.clubMessage.length > 0){
-                    this.clubMessage.forEach(element => {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
-                        }
-                    })
-                }
+			.subscribe(
+				(respData: any) => {
+					// this.responseMessage = null;
+					this.clubMessage = [];
+					this.clubMessage = respData.reverse();
+					this.clubInbox = false;
+					this.clubStarred = false;
+					this.clubSent = true;
+					this.clubDrafts = false;
+					this.clubAllMail = false;
+					this.clubTrash = false;
+					this.authService.setLoader(false);
+					if (this.clubMessage.length > 0) {
+						this.selectedMessage.push(this.clubMessage[0])
+					}
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-                if(this.selectedMessage && this.selectedMessage.length > 0){
-                    this.selectedMessage.forEach(element => {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
-                        }
-                    })
-                }
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-            }
-        )
+				}
+			)
 	}
 
 	clubDraftsMessages() {
@@ -425,23 +425,23 @@ export class MclubMessageComponent implements OnInit {
 					this.clubAllMail = false;
 					this.clubTrash = false;
 					this.authService.setLoader(false);
-                    if(this.clubMessage && this.clubMessage.length > 0){
-                        this.clubMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 				}
 			)
@@ -467,41 +467,41 @@ export class MclubMessageComponent implements OnInit {
 					if (this.clubMessage.length > 0) {
 						this.selectedMessage.push(this.clubMessage[0])
 					}
-                    if(this.clubMessage && this.clubMessage.length > 0){
-                        this.clubMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 				}
 			)
@@ -527,42 +527,42 @@ export class MclubMessageComponent implements OnInit {
 					if (this.clubMessage.length > 0) {
 						this.selectedMessage.push(this.clubMessage[0])
 					}
-                    if(this.clubMessage && this.clubMessage.length > 0){
-                        this.clubMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.clubMessage && this.clubMessage.length > 0) {
+						this.clubMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        })
-                    }
+					if (this.selectedMessage && this.selectedMessage.length > 0) {
+						this.selectedMessage.forEach(element => {
+							if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+								this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+									.subscribe(
+										(resppData: any) => {
+											this.thumb = resppData;
+											element.user.image = this.thumb;
+										},
+										(error: any) => {
+											element.user.image = null;
+										});
+							} else {
+								element.user.image = null;
+							}
+						})
+					}
 
 				}
 			)
@@ -631,7 +631,7 @@ export class MclubMessageComponent implements OnInit {
 				(respData: any) => {
 					this.authService.setLoader(false);
 					this.responseMessage = this.language.community_messages.move_inbox;
-                    this.notificationService.showSuccess(this.responseMessage,null);
+					this.notificationService.showSuccess(this.responseMessage, null);
 					let selectedTab: any = $('.feature_tab .active a').text().trim();
 					setTimeout(() => {
 						this.clubStarredMessages();
@@ -641,19 +641,19 @@ export class MclubMessageComponent implements OnInit {
 	}
 
 	clickMessages(id: number, esdb_id: string) {
-        this.isClublList = false;
+		this.isClublList = false;
 		this.selectedMessage = [];
 		this.authService.setLoader(true);
 		$(".widget-app-content").removeClass("highlight");
 		this.selectedMessage = [];
-        if(this.clubMessage && this.clubMessage.length > 0){
-            this.clubMessage.forEach((val, index) => {
-                if (val.id == id) {
-                    this.selectedMessage.push(val)
-                    this.authService.setLoader(false);
-                }
-            });
-        }
+		if (this.clubMessage && this.clubMessage.length > 0) {
+			this.clubMessage.forEach((val, index) => {
+				if (val.id == id) {
+					this.selectedMessage.push(val)
+					this.authService.setLoader(false);
+				}
+			});
+		}
 
 		this.isReplyMsgForm = false;
 
@@ -672,7 +672,7 @@ export class MclubMessageComponent implements OnInit {
 	}
 
 	clickDraftMessages(id: number, esdb_id: string) {
-        this.isClublList = false;
+		this.isClublList = false;
 		this.isReplyMsgForm = false;
 		this.visiblityDropdownSettings = {};
 		this.language = this.lang.getLanguaageFile();
@@ -682,15 +682,15 @@ export class MclubMessageComponent implements OnInit {
 		this.replyMsgSubmitted = false;
 		$(".widget-app-content").removeClass("highlight");
 		this.selectedMessage = [];
-        if(this.clubMessage && this.clubMessage.length > 0){
+		if (this.clubMessage && this.clubMessage.length > 0) {
 
-            this.clubMessage.forEach((val, index) => {
-                if (val.id == id) {
-                    this.selectedMessage.push(val)
-                    this.authService.setLoader(false);
-                }
-            });
-        }
+			this.clubMessage.forEach((val, index) => {
+				if (val.id == id) {
+					this.selectedMessage.push(val)
+					this.authService.setLoader(false);
+				}
+			});
+		}
 		this.isReplyMsgForm = false;
 		$("#message-" + id).parent().addClass('highlight');
 		let toUsers: { 'id': any, 'name': string }[] = [];
@@ -727,7 +727,7 @@ export class MclubMessageComponent implements OnInit {
 					(respData: any) => {
 						self.authService.setLoader(false);
 						self.responseMessage = self.language.community_messages.move_trash;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+						self.notificationService.showSuccess(self.responseMessage, null);
 						// setTimeout(() => {
 						// 	self.responseMessage = '';
 						// }, 2000);
@@ -763,8 +763,8 @@ export class MclubMessageComponent implements OnInit {
 					(respData: any) => {
 						self.authService.setLoader(false);
 						self.responseMessage = self.language.community_messages.permanently_delete;
-						self.notificationService.showSuccess(self.responseMessage,null);
-                        // setTimeout(() => {
+						self.notificationService.showSuccess(self.responseMessage, null);
+						// setTimeout(() => {
 						// 	self.responseMessage = '';
 						// }, 400);
 						let selectedTab: any = $('.feature_tab .active a').text().trim();
@@ -822,9 +822,9 @@ export class MclubMessageComponent implements OnInit {
 							this.authService.setLoader(false);
 							this.replyMsgSubmitted = false;
 							if (respData.isError == false) {
-                                this.notificationService.showSuccess(respData.result,null);
+								this.notificationService.showSuccess(respData.result, null);
 							} else {
-                                this.notificationService.showError(respData.result,null);
+								this.notificationService.showError(respData.result, null);
 							}
 							this.replyMsgForm.reset();
 							this.isReplyMsgForm = false;
@@ -838,9 +838,9 @@ export class MclubMessageComponent implements OnInit {
 							this.authService.setLoader(false);
 							this.replyMsgSubmitted = false;
 							if (respData.isError == false) {
-                                this.notificationService.showSuccess(respData.result,null);
+								this.notificationService.showSuccess(respData.result, null);
 							} else {
-                                this.notificationService.showError(respData.result,null);
+								this.notificationService.showError(respData.result, null);
 							}
 							this.replyMsgForm.reset();
 							this.isReplyMsgForm = false;
@@ -955,17 +955,17 @@ export class MclubMessageComponent implements OnInit {
 					if (key == 'file') {
 						formData.append('file', element);
 					} else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
-                            element.forEach(function (value, key) {
-                                formData.append("receiver_id[" + key + "]", value);
-                            });
-                        }
+						if (element && element.length > 0) {
+							element.forEach(function (value, key) {
+								formData.append("receiver_id[" + key + "]", value);
+							});
+						}
 					} else if (key == 'cc') {
-                        if(element && element.length > 0){
-                            element.forEach(function (value, key) {
-                                formData.append("cc[" + key + "]", value);
-                            });
-                        }
+						if (element && element.length > 0) {
+							element.forEach(function (value, key) {
+								formData.append("cc[" + key + "]", value);
+							});
+						}
 					} else {
 						formData.append(key, element);
 					}
@@ -978,7 +978,7 @@ export class MclubMessageComponent implements OnInit {
 						this.authService.setLoader(false);
 						this.messageSubmitted = false;
 						if (respData['isError'] == false) {
-                            this.notificationService.showSuccess(respData['result'],null);
+							this.notificationService.showSuccess(respData['result'], null);
 							this.messageForm.reset();
 							this.messageForm.controls["kind"].setValue([]);
 							this.messageForm.controls["receiver_id"].setValue([]);
@@ -987,13 +987,13 @@ export class MclubMessageComponent implements OnInit {
 								.subscribe(
 									(respData: any) => {
 										this.authService.setLoader(false);
-										this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
+										this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
 										setTimeout(() => {
 											this.clubDraftsMessages();
 										}, 500);
 									}
 								)
-						}else if (respData['code'] == 400) {
+						} else if (respData['code'] == 400) {
 							this.notificationService.showError(respData['message'], null);
 						}
 					},
@@ -1013,8 +1013,8 @@ export class MclubMessageComponent implements OnInit {
 					(respData: any) => {
 						self.authService.setLoader(false);
 						self.responseMessage = self.language.community_messages.permanently_delete;
-						self.notificationService.showError(self.responseMessage,null);
-                        // setTimeout(() => {
+						self.notificationService.showError(self.responseMessage, null);
+						// setTimeout(() => {
 						// 	self.responseMessage = '';
 						// }, 400);
 						let selectedTab: any = $('.feature_tab .active a').text().trim();

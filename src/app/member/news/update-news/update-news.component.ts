@@ -15,7 +15,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { NgxImageCompressService} from "ngx-image-compress"; 
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -27,27 +27,27 @@ declare var $: any;
     providers: [DatePipe]
 })
 
-export class UpdateNewsComponent implements OnInit ,OnDestroy{
-    language:any;
-    userDetails:LoginDetails;
-    newsData:NewsType;
+export class UpdateNewsComponent implements OnInit, OnDestroy {
+    language: any;
+    userDetails: LoginDetails;
+    newsData: NewsType;
     viewImage: boolean = false;
-    submitted : boolean= false;
+    submitted: boolean = false;
     imageChangedEvent: Event = null;
     croppedImage: string = '';
     file: File;
     fileToReturn: File;
     updateNewsForm: UntypedFormGroup;
     responseMessage: string = '';
-    visiblity: {id: number,name: string }[] = [];
-    groupVisiblity:number;
-    visiblityDropdownSettings:IDropdownSettings;
-    groupDropdownSettings:IDropdownSettings;
-    categoryDropdownSettings:IDropdownSettings;
-    dropdownSettings:IDropdownSettings; 
-    groups:CommunityGroup;
-    newsid:number;
-    groupSelectedItem :number[]= [];
+    visiblity: { id: number, name: string }[] = [];
+    groupVisiblity: number;
+    visiblityDropdownSettings: IDropdownSettings;
+    groupDropdownSettings: IDropdownSettings;
+    categoryDropdownSettings: IDropdownSettings;
+    dropdownSettings: IDropdownSettings;
+    groups: CommunityGroup;
+    newsid: number;
+    groupSelectedItem: number[] = [];
     teamId: number;
     setTheme: ThemeType;
     isImage: boolean = false;
@@ -65,7 +65,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         defaultFontSize: '2',
         defaultParagraphSeparator: 'p',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -102,7 +102,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     };
     imgHeight: any;
     imgWidth: any;
-    originalImg:string;
+    originalImg: string;
 
     constructor(
         private authService: AuthServiceService,
@@ -121,11 +121,11 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
-            let theme:ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
 
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
 
@@ -230,11 +230,11 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             this.groupVisiblity = 2;
             type = [{ "id": "2", "name": this.language.create_news.group_news }];
 
-        }else if (this.newsData.audience != null && this.newsData.audience == 0) {
+        } else if (this.newsData.audience != null && this.newsData.audience == 0) {
             this.groupVisiblity = 0;
             type = [{ "id": "0", "name": this.language.create_news.title }];
 
-        }else if (this.newsData.audience != null && this.newsData.audience == 3) {
+        } else if (this.newsData.audience != null && this.newsData.audience == 3) {
             this.groupVisiblity = 3;
             type = [{ "id": "3", "name": this.language.create_news.chairman }];
         }
@@ -257,8 +257,8 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         this.updateNewsForm.controls['title'].setValue(this.newsData.title);
         this.updateNewsForm.controls['content'].setValue(this.newsData.text);
 
-        
-        if (this.newsData?.news_image[0]?.news_image){
+
+        if (this.newsData?.news_image[0]?.news_image) {
             this.originalImg = this.newsData?.news_image[0]?.news_image
             this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20)));
             // this.updateNewsForm.controls['add_image'].setValue(this.newsData?.news_image[0]?.news_image);
@@ -288,19 +288,19 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
         this.submitted = true;
         if ((sessionStorage.getItem('token')) && (this.updateNewsForm.valid) && (!this.errorImage.isError)) {
             this.authService.setLoader(true);
-            var priority:number = 1;
-            var audience:number = this.groupVisiblity;
-            var tags:any = null;
-            var attachment:any = null;
-            var show_guest:boolean = this.updateNewsForm.get('show_guest').value;
+            var priority: number = 1;
+            var audience: number = this.groupVisiblity;
+            var tags: any = null;
+            var attachment: any = null;
+            var show_guest: boolean = this.updateNewsForm.get('show_guest').value;
             var isHighlighted: boolean = this.updateNewsForm.get('isHighlighted').value;
-            
+
             var formData: any = new FormData();
-            if(this.fileToReturn){
+            if (this.fileToReturn) {
                 formData.append("file", this.updateNewsForm.get('add_image').value);
-            }else{
+            } else {
                 // this.updateNewsForm.controls['add_image'].setValue(this.newsData?.news_image[0]?.news_image);
-                formData.append("file", this.originalImg );
+                formData.append("file", this.originalImg);
             }
             formData.append("team_id", this.userDetails.team_id);
             formData.append("title", this.updateNewsForm.get('title').value);
@@ -330,7 +330,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
             } else {
                 formData.append("highlighted", false);
             }
-            
+
             formData.append("publication_date_to", new Date().toISOString());
             formData.append("publication_date_from", new Date().toISOString());
             this.authService.setLoader(true);
@@ -358,12 +358,12 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     * Function is used to add validation as per Visiblity selection
     * @author  MangoIt Solutions
     */
-    onVisiblitySelect(item: {id: number, name: string}) {
+    onVisiblitySelect(item: { id: number, name: string }) {
         this.groupVisiblity = item.id;
         if (this.groupVisiblity == 2) {
             this.updateNewsForm.get('group_dropdown').setValidators(Validators.required);
             this.updateNewsForm.get('group_dropdown').updateValueAndValidity();
-        }else {
+        } else {
             this.groupSelectedItem = [];
             this.updateNewsForm.get('group_dropdown').clearValidators();
             this.updateNewsForm.get('group_dropdown').updateValueAndValidity();
@@ -417,7 +417,7 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     * @param   {}
     * @return  error message if file type is not image
     */
-    errorImage:  { isError: boolean, errorMessage: string} = { isError: false, errorMessage: '' };
+    errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     uploadFile(event: Event) {
         var file: File = (event.target as HTMLInputElement).files[0];
         if (file) {
@@ -467,19 +467,19 @@ export class UpdateNewsComponent implements OnInit ,OnDestroy{
     * @return  {object} file object
     */
     imageCropped(event: ImageCroppedEvent) {
-        this.errorImage = { isError: false, errorMessage: ''};
+        this.errorImage = { isError: false, errorMessage: '' };
         let imgData = this.commonFunctionService.getAspectRatio(event.height, event.width);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
-            (compressedImage) => {
-                this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
-                this.updateNewsForm.patchValue({ add_image: this.fileToReturn });
-                this.updateNewsForm.get('add_image').updateValueAndValidity();
-                $('.preview_txt').show(this.fileToReturn.name);
-                $('.preview_txt').text(this.fileToReturn.name);
-            }
-        );
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
+                (compressedImage) => {
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.updateNewsForm.patchValue({ add_image: this.fileToReturn });
+                    this.updateNewsForm.get('add_image').updateValueAndValidity();
+                    $('.preview_txt').show(this.fileToReturn.name);
+                    $('.preview_txt').text(this.fileToReturn.name);
+                }
+            );
     }
 
     imageLoaded() {

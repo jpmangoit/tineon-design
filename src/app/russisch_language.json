@@ -148,7 +148,7 @@
         "permanently_delete": "Сообщение удалено навсегда успешно",
         "message_sent": "Сообщение отправлено успешно",
         "code_error": "Что-то пошло не так, пожалуйста, попробуйте еще раз",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me" : "Nachrichten an mich"
 
     },
     "group_news": {
@@ -299,8 +299,8 @@
         "close_subtask":"Закрывать",
         "viewTask": "Visualizza l'attività",
         "task_created_by": "Task Created by:",
-        "days": "Дни"
-
+        "days": "Дни",
+        "task-details": "Task - Details"
     },
     "club_document": {
         "title": "Документы",

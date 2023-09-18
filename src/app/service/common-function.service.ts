@@ -7,9 +7,9 @@ import { LanguageService } from './language.service';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-declare var $:any
+declare var $: any
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CommonFunctionService {
     userDetails: LoginDetails;
@@ -17,21 +17,21 @@ export class CommonFunctionService {
     userId: string;
     calendarOptions: CalendarOptions;
     selectLanguage: string;
-    changeHeadline:any = new Subject()
-    changeMobileTheme:any = new Subject()
-    docViewOption:any = new Subject();
-    docViewOrder:any = new Subject();
+    changeHeadline: any = new Subject()
+    changeMobileTheme: any = new Subject()
+    docViewOption: any = new Subject();
+    docViewOrder: any = new Subject();
 
     constructor(private authService: AuthServiceService, private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService, private sanitizer: DomSanitizer) { }
 
 
-     /**
-     * Function is used to set the view(list/grid) of the documents
-     * @author MangoIt Solutions (M)
-     * @param {number}
-     */
-    getSelectedDocView(view_id:number){
+    /**
+    * Function is used to set the view(list/grid) of the documents
+    * @author MangoIt Solutions (M)
+    * @param {number}
+    */
+    getSelectedDocView(view_id: number) {
         this.docViewOption.next(view_id);
     }
 
@@ -40,7 +40,7 @@ export class CommonFunctionService {
      * @author MangoIt Solutions (M)
      * @param {number}
      */
-    getSelectedDocOrder(selectedDocOrder:any){
+    getSelectedDocOrder(selectedDocOrder: any) {
         this.docViewOrder.next(selectedDocOrder);
     }
 
@@ -49,16 +49,16 @@ export class CommonFunctionService {
      * @author MangoIt Solutions (M)
      * @param {number}
      */
-    getChangeHeadline(changeHeadlineOption:string){
+    getChangeHeadline(changeHeadlineOption: string) {
         this.changeHeadline.next(changeHeadlineOption);
     }
 
-    getChangeMobileTheme(changeMobileThemeOption:string){
+    getChangeMobileTheme(changeMobileThemeOption: string) {
         this.changeMobileTheme.next(changeMobileThemeOption);
     }
 
     // Function to convert time to required format
-       convertTime(time) {
+    convertTime(time) {
         const parts = time.split(":");
         // Remove seconds if present
         if (parts.length > 2) {
@@ -66,7 +66,7 @@ export class CommonFunctionService {
         }
         // Pad with leading zero if necessary
         if (parts[1].length === 1) {
-        parts[1] = "0" + parts[1];
+            parts[1] = "0" + parts[1];
         }
         return parts.join(":");
     }
@@ -89,68 +89,68 @@ export class CommonFunctionService {
      */
     getMemberId(id: number) {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        var memberInfo:any = {};
+        var memberInfo: any = {};
         $("#profileSpinner").show();
-        return new Promise((resolve,reject) =>{
+        return new Promise((resolve, reject) => {
             if (sessionStorage.getItem('token')) {
                 this.authService.memberSendRequest('get', 'get-club-info/' + this.userDetails.database_id + '/' + this.userDetails.team_id, this.userDetails,)
-                .subscribe(
-                    (respData: any) => {
-                        if(toString.call(respData) == '[object Object]'){
-                            memberInfo.getclubInfo = respData;
-                        }
-                    },
-                    (err:any) =>{
-                        console.log(err);
-                    });
+                    .subscribe(
+                        (respData: any) => {
+                            if (toString.call(respData) == '[object Object]') {
+                                memberInfo.getclubInfo = respData;
+                            }
+                        },
+                        (err: any) => {
+                            console.log(err);
+                        });
             }
-            this.authService.memberSendRequest('get', 'usersDetails/user_id/'+id+'/team/' + this.userDetails.team_id, null)
+            this.authService.memberSendRequest('get', 'usersDetails/user_id/' + id + '/team/' + this.userDetails.team_id, null)
                 .subscribe(
                     (respUser: any) => {
-                        if(respUser?.length > 0){
-                            this.authService.memberSendRequest('get', 'member-info/'+ this.userDetails.database_id + '/' + this.userDetails.team_id + '/' + respUser[0].member_id,null)
-                            .subscribe(
-                            (respData: any) => {
-                                if(respData.isError == true){
-                                    memberInfo.birthdateStatus = false;
-                                }else{
-                                    memberInfo.birthdateStatus = respData['shareBirthday'];
-                                }
-                            })
-                            this.authService.memberSendRequest('get', 'profile-info/' +this.userDetails.database_id + '/' + this.userDetails.team_id + '/' +  respUser[0].member_id, null)
-                            .subscribe(
-                                (resp: any) => {
-                                    if (toString.call(resp) == '[object Object]') {
-                                        memberInfo.profile_data = resp;
-                                        memberInfo.memberStartDateStatus = resp.membershipStartDate;
-                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + respUser[0].member_id, null)
-                                            .subscribe(
-                                                (respData: any) => {
-                                                    $("#profileSpinner").hide();
-                                                    if(respData == '' || respData == null){
+                        if (respUser?.length > 0) {
+                            this.authService.memberSendRequest('get', 'member-info/' + this.userDetails.database_id + '/' + this.userDetails.team_id + '/' + respUser[0].member_id, null)
+                                .subscribe(
+                                    (respData: any) => {
+                                        if (respData.isError == true) {
+                                            memberInfo.birthdateStatus = false;
+                                        } else {
+                                            memberInfo.birthdateStatus = respData['shareBirthday'];
+                                        }
+                                    })
+                            this.authService.memberSendRequest('get', 'profile-info/' + this.userDetails.database_id + '/' + this.userDetails.team_id + '/' + respUser[0].member_id, null)
+                                .subscribe(
+                                    (resp: any) => {
+                                        if (toString.call(resp) == '[object Object]') {
+                                            memberInfo.profile_data = resp;
+                                            memberInfo.memberStartDateStatus = resp.membershipStartDate;
+                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + respUser[0].member_id, null)
+                                                .subscribe(
+                                                    (respData: any) => {
+                                                        $("#profileSpinner").hide();
+                                                        if (respData == '' || respData == null) {
+                                                            memberInfo.thumbnail = 'assets/img/defaultProfile.jpeg';
+                                                        } else {
+                                                            memberInfo.thumbnail = respData;
+                                                        }
+                                                        resolve(memberInfo);
+                                                    },
+                                                    (err) => {
                                                         memberInfo.thumbnail = 'assets/img/defaultProfile.jpeg';
-                                                    }else{
-                                                        memberInfo.thumbnail = respData;
-                                                    }
-                                                    resolve(memberInfo);
-                                                },
-                                                (err) => {
-                                                    memberInfo.thumbnail = 'assets/img/defaultProfile.jpeg';
-                                                    resolve(memberInfo);
-                                                    $("#profileSpinner").hide();
+                                                        resolve(memberInfo);
+                                                        $("#profileSpinner").hide();
 
-                                                }
-                                            );
-                                    } else {
-                                        setTimeout(() => {
-                                            memberInfo.displayError = true;
-                                            resolve(memberInfo);
-                                            $("#profileSpinner").hide();
-                                        }, 2000);
-                                    }
-                                },
-                            );
-                        }else{
+                                                    }
+                                                );
+                                        } else {
+                                            setTimeout(() => {
+                                                memberInfo.displayError = true;
+                                                resolve(memberInfo);
+                                                $("#profileSpinner").hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                );
+                        } else {
                             setTimeout(() => {
                                 memberInfo.displayError = true
                                 resolve(memberInfo);
@@ -158,7 +158,7 @@ export class CommonFunctionService {
                             }, 2000);
                         }
                     }
-            );
+                );
         })
     }
 
@@ -242,11 +242,11 @@ export class CommonFunctionService {
     * @param   {newsId}
     * @return  success/ error message
     */
-    deleteNews(newsId:any){
+    deleteNews(newsId: any) {
         let self = this;
         this.language = this.lang.getLanguaageFile();
         this.userId = localStorage.getItem('user-id');
-        return new Promise((resolve,reject) =>{
+        return new Promise((resolve, reject) => {
             this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article, function () {
                 self.authService.setLoader(true);
                 self.authService.memberSendRequest('delete', 'news/' + newsId + '/user/' + self.userId, null)
@@ -300,15 +300,15 @@ export class CommonFunctionService {
         // height = (height < imgHeight) ? height: imgHeight;
 
         let height = 500;
-        let width  = height * imgWidth / imgHeight;
+        let width = height * imgWidth / imgHeight;
 
         let aspectRatio = (imgHeight / imgWidth);
 
         width = imgWidth;
         height = imgHeight;
 
-        let ratio = (width == imgWidth && height == imgHeight)? 100 :aspectRatio*100;
-        return [Math.round(width),Math.round(height),Math.round(ratio)];
+        let ratio = (width == imgWidth && height == imgHeight) ? 100 : aspectRatio * 100;
+        return [Math.round(width), Math.round(height), Math.round(ratio)];
     }
 
     /**
@@ -335,17 +335,17 @@ export class CommonFunctionService {
      */
     roomsById(id: number) {
         this.authService.setLoader(true);
-        return new Promise((resolve,reject) =>{
+        return new Promise((resolve, reject) => {
             this.authService.memberSendRequest('get', 'getRoomsById/' + id, null)
-            .subscribe((respData: Room) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    let roomsByIdData = respData['result'];
-                    resolve(roomsByIdData);
-                } else if (respData['code'] == 400) {
-                    reject(respData['message']);
-                }
-            });
+                .subscribe((respData: Room) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
+                        let roomsByIdData = respData['result'];
+                        resolve(roomsByIdData);
+                    } else if (respData['code'] == 400) {
+                        reject(respData['message']);
+                    }
+                });
         });
     }
 
@@ -355,20 +355,20 @@ export class CommonFunctionService {
      * @param   {Room data by id}
      * @return  {object array}
      */
-     getRoomCalendar(roomsByIdData:any){
+    getRoomCalendar(roomsByIdData: any) {
         this.authService.setLoader(true);
         // var date_end:any = this.datePipe.transform(new Date(roomsByIdData.active_to),'YYYY-MM-DD' );
-        var date_end:any = new Date(roomsByIdData.active_to)
+        var date_end: any = new Date(roomsByIdData.active_to)
         var calendarRooms = [];
         var count: number = 0;
         var count1: number = 0;
         var selectedDay: number;
         const inputDate = new Date(roomsByIdData.active_from);
-        const weekDays = this.getDates(inputDate,date_end);
-        var weekDates:any[]=[];
+        const weekDays = this.getDates(inputDate, date_end);
+        var weekDates: any[] = [];
         var room_Booked = [];
         var room_avail = [];
-        var same_date:any[]=[];
+        var same_date: any[] = [];
         weekDays.forEach((element) => {    // active from -to- active to
             const originalTime = new Date(element);
             const year = originalTime.getFullYear();
@@ -380,33 +380,33 @@ export class CommonFunctionService {
 
         if (roomsByIdData?.room_availablity?.length > 0) {
             roomsByIdData.room_availablity.forEach((keys: any, vals: any) => {
-                if(keys.weekday == '0' || keys.weekday == 'Sunday' || keys.weekday == 'Sonntag'|| keys.weekday == 'Воскресенье'|| keys.weekday == 'Pazar'|| keys.weekday == 'domingo'|| keys.weekday == 'dimanche'|| keys.weekday == 'domenica'){
+                if (keys.weekday == '0' || keys.weekday == 'Sunday' || keys.weekday == 'Sonntag' || keys.weekday == 'Воскресенье' || keys.weekday == 'Pazar' || keys.weekday == 'domingo' || keys.weekday == 'dimanche' || keys.weekday == 'domenica') {
                     selectedDay = 0;
 
-                }else if(keys.weekday == '1' || keys.weekday == 'Monday' || keys.weekday == 'Montag'|| keys.weekday == 'понедельник'|| keys.weekday == 'Pazartesi'|| keys.weekday == 'lunes'|| keys.weekday == 'lundi' || keys.weekday == 'lunedì'){
+                } else if (keys.weekday == '1' || keys.weekday == 'Monday' || keys.weekday == 'Montag' || keys.weekday == 'понедельник' || keys.weekday == 'Pazartesi' || keys.weekday == 'lunes' || keys.weekday == 'lundi' || keys.weekday == 'lunedì') {
                     selectedDay = 1;
 
-                }else if(keys.weekday == '2' || keys.weekday == 'Tuesday' || keys.weekday == 'Dienstag'|| keys.weekday == 'вторник'|| keys.weekday == 'Salı'|| keys.weekday == 'martes'|| keys.weekday == 'mardi'|| keys.weekday == 'martedì'){
-                selectedDay = 2;
+                } else if (keys.weekday == '2' || keys.weekday == 'Tuesday' || keys.weekday == 'Dienstag' || keys.weekday == 'вторник' || keys.weekday == 'Salı' || keys.weekday == 'martes' || keys.weekday == 'mardi' || keys.weekday == 'martedì') {
+                    selectedDay = 2;
 
-                }else if(keys.weekday == '3' || keys.weekday == 'Wednesday' || keys.weekday == 'Mittwoch'|| keys.weekday == 'среда'|| keys.weekday == 'Çarşamba'|| keys.weekday == 'miércoles'|| keys.weekday == 'mercredi'|| keys.weekday == 'mercoledì'){
-                selectedDay = 3;
+                } else if (keys.weekday == '3' || keys.weekday == 'Wednesday' || keys.weekday == 'Mittwoch' || keys.weekday == 'среда' || keys.weekday == 'Çarşamba' || keys.weekday == 'miércoles' || keys.weekday == 'mercredi' || keys.weekday == 'mercoledì') {
+                    selectedDay = 3;
 
-                }else if(keys.weekday == '4' || keys.weekday == 'Thursday' || keys.weekday == 'Donnerstag'|| keys.weekday == 'четверг'|| keys.weekday == 'Perşembe'|| keys.weekday == 'jueves'|| keys.weekday == 'jeudi'|| keys.weekday == 'giovedì'){
-                selectedDay = 4;
+                } else if (keys.weekday == '4' || keys.weekday == 'Thursday' || keys.weekday == 'Donnerstag' || keys.weekday == 'четверг' || keys.weekday == 'Perşembe' || keys.weekday == 'jueves' || keys.weekday == 'jeudi' || keys.weekday == 'giovedì') {
+                    selectedDay = 4;
 
-                }else if(keys.weekday == '5' || keys.weekday == 'Friday' || keys.weekday == 'Freitag'|| keys.weekday == 'Пятница'|| keys.weekday == 'Cuma'|| keys.weekday == 'viernes'|| keys.weekday == 'vendredi'|| keys.weekday == 'venerdì'){
-                selectedDay = 5;
+                } else if (keys.weekday == '5' || keys.weekday == 'Friday' || keys.weekday == 'Freitag' || keys.weekday == 'Пятница' || keys.weekday == 'Cuma' || keys.weekday == 'viernes' || keys.weekday == 'vendredi' || keys.weekday == 'venerdì') {
+                    selectedDay = 5;
 
-                }else if(keys.weekday == '6' || keys.weekday == 'Saturday' || keys.weekday == 'Samstag'|| keys.weekday == 'Суббота'|| keys.weekday == 'Cumartesi'|| keys.weekday == 'sábado'|| keys.weekday == 'samedi'|| keys.weekday == 'sabato'){
-                selectedDay = 6;
+                } else if (keys.weekday == '6' || keys.weekday == 'Saturday' || keys.weekday == 'Samstag' || keys.weekday == 'Суббота' || keys.weekday == 'Cumartesi' || keys.weekday == 'sábado' || keys.weekday == 'samedi' || keys.weekday == 'sabato') {
+                    selectedDay = 6;
                 }
 
-                weekDates.forEach((elem:any,i:any) =>{
-                    if(new Date(elem).getDay() == selectedDay){
+                weekDates.forEach((elem: any, i: any) => {
+                    if (new Date(elem).getDay() == selectedDay) {
                         room_avail[count] = {
                             'start': elem + 'T' + keys.time_from, 'end': elem + 'T' + keys.time_to,
-                            'date_start': elem, 'date_end': date_end ,'classNames': 'room-availability',
+                            'date_start': elem, 'date_end': date_end, 'classNames': 'room-availability',
                         };
                         count++;
                     }
@@ -414,50 +414,50 @@ export class CommonFunctionService {
             });
         }
         if (roomsByIdData?.roomBooking?.length > 0) {
-            roomsByIdData.roomBooking.forEach((vals: any ,keys: any) => {
-                weekDates.forEach((elem:any) =>{
-                    if(elem ==  vals.date_from){
-                        if(vals.course_id != null){
+            roomsByIdData.roomBooking.forEach((vals: any, keys: any) => {
+                weekDates.forEach((elem: any) => {
+                    if (elem == vals.date_from) {
+                        if (vals.course_id != null) {
                             var title_name = vals.course.name;
                             var type = vals.course.type;
                             var evt_or_cour_id = vals.course.id;
-                        }else if(vals.event_id != null){
+                        } else if (vals.event_id != null) {
                             var title_name = vals.event.name;
                             var type = vals.event.type;
                             var evt_or_cour_id = vals.event.id;
                         }
                         room_Booked[count1] = {
-                            'start': elem + 'T' + vals.start_time, 'end': elem + 'T' + vals.end_time,'type': type,'id':evt_or_cour_id,
-                            'title': title_name, 'date_start': elem,'date_end': elem,'classNames': 'room-booked',
+                            'start': elem + 'T' + vals.start_time, 'end': elem + 'T' + vals.end_time, 'type': type, 'id': evt_or_cour_id,
+                            'title': title_name, 'date_start': elem, 'date_end': elem, 'classNames': 'room-booked',
                         };
                         count1++;
                     }
                 })
             });
         }
-        room_avail?.forEach((element:any)=>{
-            room_Booked?.forEach((elem:any)=>{
-                if(elem.date_start == element.date_start &&
-                     elem.start.split('T')[1] >= element.start.split('T')[1] &&
-                     elem.end.split('T')[1] <= element.end.split('T')[1]
-                     ){
+        room_avail?.forEach((element: any) => {
+            room_Booked?.forEach((elem: any) => {
+                if (elem.date_start == element.date_start &&
+                    elem.start.split('T')[1] >= element.start.split('T')[1] &&
+                    elem.end.split('T')[1] <= element.end.split('T')[1]
+                ) {
                     same_date.push(element)
                 }
             })
         })
         let final_availability = room_avail.filter(item1 => !same_date?.some(item2 => (item1.start === item2.start && item1.end === item2.end)));
         calendarRooms = [...room_Booked, ...final_availability];
-        return [{'cal':calendarRooms},{'avail': room_avail}];
+        return [{ 'cal': calendarRooms }, { 'avail': room_avail }];
         // return calendarRooms;
     }
 
-       /**
-     * Function to get the instructor availability and booked instructor details
-     * @author  MangoIt Solutions(M)
-     * @param   {Room data by id}
-     * @return  {object array}
-     */
-       externalInstructorCalendar(instructorById:any){
+    /**
+  * Function to get the instructor availability and booked instructor details
+  * @author  MangoIt Solutions(M)
+  * @param   {Room data by id}
+  * @return  {object array}
+  */
+    externalInstructorCalendar(instructorById: any) {
         this.authService.setLoader(true);
         var instructorCalendar = [];
         var count: number = 0;
@@ -465,11 +465,11 @@ export class CommonFunctionService {
         var selectedDay: number;
         var external_Booked = [];
         var external_avail = [];
-        var same_date:any[]=[];
+        var same_date: any[] = [];
         const inputDate = new Date(instructorById.active_from);
-        var date_end:any = new Date(instructorById.active_to)
-        const weekDays = this.getDates(inputDate,date_end);
-        var weekDates:any[]=[];
+        var date_end: any = new Date(instructorById.active_to)
+        const weekDays = this.getDates(inputDate, date_end);
+        var weekDates: any[] = [];
         weekDays.forEach((element) => {    // active from -to- active to
             const originalTime = new Date(element);
             const year = originalTime.getFullYear();
@@ -480,26 +480,26 @@ export class CommonFunctionService {
         })
         if (instructorById?.availablity?.length > 0) {
             instructorById.availablity.forEach((keys: any, vals: any) => {
-                if(["Sonntag","Sunday","dimanche","domenica","Воскресенье","domingo","Pazar","0"].includes(keys.weekday)){
+                if (["Sonntag", "Sunday", "dimanche", "domenica", "Воскресенье", "domingo", "Pazar", "0"].includes(keys.weekday)) {
                     selectedDay = 0;
-                }else if(["Montag","Monday","lundi","lunedì","понедельник","lunes","Pazartesi","1"].includes(keys.weekday)){
+                } else if (["Montag", "Monday", "lundi", "lunedì", "понедельник", "lunes", "Pazartesi", "1"].includes(keys.weekday)) {
                     selectedDay = 1;
-                }else if(["Dienstag","Tuesday","mardi","martedì","вторник", "martes","Salı","2"].includes(keys.weekday)){
+                } else if (["Dienstag", "Tuesday", "mardi", "martedì", "вторник", "martes", "Salı", "2"].includes(keys.weekday)) {
                     selectedDay = 2;
-                }else if(["Mittwoch","Wednesday","mercredi","mercoledì","среда","miércoles","Çarşamba","3"].includes(keys.weekday)){
+                } else if (["Mittwoch", "Wednesday", "mercredi", "mercoledì", "среда", "miércoles", "Çarşamba", "3"].includes(keys.weekday)) {
                     selectedDay = 3;
-                }else if(["Donnerstag","Thursday","jeudi","giovedì","четверг","jueves","Perşembe","4"].includes(keys.weekday)){
+                } else if (["Donnerstag", "Thursday", "jeudi", "giovedì", "четверг", "jueves", "Perşembe", "4"].includes(keys.weekday)) {
                     selectedDay = 4;
-                }else if(["Freitag","Friday","vendredi","venerdì","Пятница","viernes","Cuma","5"].includes(keys.weekday)){
+                } else if (["Freitag", "Friday", "vendredi", "venerdì", "Пятница", "viernes", "Cuma", "5"].includes(keys.weekday)) {
                     selectedDay = 5;
-                }else if(["Samstag", "Saturday","samedi","sabato","Суббота","sábado","Cumartesi","6"].includes(keys.weekday)){
+                } else if (["Samstag", "Saturday", "samedi", "sabato", "Суббота", "sábado", "Cumartesi", "6"].includes(keys.weekday)) {
                     selectedDay = 6;
                 }
-                weekDates.forEach((elem:any,i:any) =>{
-                    if(new Date(elem).getDay() == selectedDay){
+                weekDates.forEach((elem: any, i: any) => {
+                    if (new Date(elem).getDay() == selectedDay) {
                         external_avail[count] = {
                             'start': elem + 'T' + keys.time_from, 'end': elem + 'T' + keys.time_to,
-                            'date_start': elem, 'date_end': date_end ,'classNames': 'exInstruct-availability',
+                            'date_start': elem, 'date_end': date_end, 'classNames': 'exInstruct-availability',
                         };
                         count++;
                     }
@@ -507,50 +507,49 @@ export class CommonFunctionService {
             });
         }
         if (instructorById?.instructorBooking?.length > 0) {
-            instructorById.instructorBooking.forEach((vals: any ,keys: any) => {
-                weekDates.forEach((elem:any) =>{
+            instructorById.instructorBooking.forEach((vals: any, keys: any) => {
+                weekDates.forEach((elem: any) => {
 
-                    if(elem ==  vals.date_from){
-                        if(vals.course_id != null){
+                    if (elem == vals.date_from) {
+                        if (vals.course_id != null) {
                             var title_name = vals.course.name;
                             var type = vals.course.type;
                             var evt_or_cour_id = vals.course.id;
                         }
                         external_Booked[count1] = {
-                            'start': elem + 'T' + vals.start_time, 'end': elem + 'T' + vals.end_time,'type': type,'id':evt_or_cour_id,
-                            'title': title_name, 'date_start': elem,'date_end': elem,'classNames': 'exInstruct-booked',
+                            'start': elem + 'T' + vals.start_time, 'end': elem + 'T' + vals.end_time, 'type': type, 'id': evt_or_cour_id,
+                            'title': title_name, 'date_start': elem, 'date_end': elem, 'classNames': 'exInstruct-booked',
                         };
                         count1++;
                     }
                 })
             });
         }
-        external_avail.forEach((element:any)=>{
-            external_Booked.forEach((elem:any)=>{
-                if(elem.date_start == element.date_start && elem.start.split('T')[1] >= element.start.split('T')[1]
-                 && elem.end.split('T')[1] <= element.end.split('T')[1])
-                {
+        external_avail.forEach((element: any) => {
+            external_Booked.forEach((elem: any) => {
+                if (elem.date_start == element.date_start && elem.start.split('T')[1] >= element.start.split('T')[1]
+                    && elem.end.split('T')[1] <= element.end.split('T')[1]) {
                     same_date.push(element)
                 }
             })
         })
         let final_availability = external_avail.filter(item1 => !same_date.some(item2 => (item1.start === item2.start && item1.end === item2.end)));
         instructorCalendar = [...external_Booked, ...final_availability];
-        return [{'cal':instructorCalendar},{'avail': external_avail}];
+        return [{ 'cal': instructorCalendar }, { 'avail': external_avail }];
         // return instructorCalendar
     }
 
     convertImages(image: any) {
-        return new Promise((resolve,reject) =>{
+        return new Promise((resolve, reject) => {
             this.imageUrlToBlob(image)
-            .then(imageBlob => {
-                const blob = new Blob([imageBlob], { type: 'image/png' });
-                let imgURL =  this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-                resolve(imgURL);
-            })
-            .catch(error => {
-                console.error('Error converting image URL to blob:', error);
-            });
+                .then(imageBlob => {
+                    const blob = new Blob([imageBlob], { type: 'image/png' });
+                    let imgURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+                    resolve(imgURL);
+                })
+                .catch(error => {
+                    console.error('Error converting image URL to blob:', error);
+                });
 
         });
     }

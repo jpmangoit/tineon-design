@@ -12,18 +12,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
-  selector: 'app-mcrm-my-survey',
-  templateUrl: './mcrm-my-survey.component.html',
-  styleUrls: ['./mcrm-my-survey.component.css']
+    selector: 'app-mcrm-my-survey',
+    templateUrl: './mcrm-my-survey.component.html',
+    styleUrls: ['./mcrm-my-survey.component.css']
 })
 export class McrmMySurveyComponent implements OnInit {
     language: any;
     setTheme: ThemeType;
     currentPageNmuber: number = 1;
-    itemPerPage:number = 8;
-    totalRecord:number = 0;
-    totalActiveSurvey:number = 0;
-    limitPerPage:{value:string}[] = [
+    itemPerPage: number = 8;
+    totalRecord: number = 0;
+    totalActiveSurvey: number = 0;
+    limitPerPage: { value: string }[] = [
         { value: '10' },
         { value: '20' },
         { value: '30' },
@@ -33,8 +33,8 @@ export class McrmMySurveyComponent implements OnInit {
     userDetails: LoginDetails;
     userRole: string;
     responseMessage: string;
-    totalMyVotes:number = 0;
-    totalCompletedSurvey:number = 0;
+    totalMyVotes: number = 0;
+    totalCompletedSurvey: number = 0;
     Completed: Survey[];
     activeSurvey: Survey[];
     myVoteParam: Survey[] = [];
@@ -42,13 +42,13 @@ export class McrmMySurveyComponent implements OnInit {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService, 
+        private authService: AuthServiceService,
         private notificationService: NotificationService,
-        private lang: LanguageService, 
+        private lang: LanguageService,
         private themes: ThemeService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -82,7 +82,7 @@ export class McrmMySurveyComponent implements OnInit {
                             let cudate = new Date()
                             element.remain = this.language.Survey.day_left;
                             /* Progress Bar calculation */
-                            element.progress =  this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
+                            element.progress = this.commonFunctionService.progressBarCalculation(element.survey_start_date, element.survey_end_date);
 
                             if (cudate.toISOString().split('T')[0] <= element.survey_end_date.split('T')[0]) {
                                 element.dayCount = this.commonFunctionService.getDays(cudate, element.survey_end_date.split('T')[0]);
@@ -92,11 +92,11 @@ export class McrmMySurveyComponent implements OnInit {
                             }
                         });
                         this.myVotes = respData['result']['survey'];
-                        this.myVotes.forEach((element:any) =>{
+                        this.myVotes.forEach((element: any) => {
                             if (element?.picture) {
                                 element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20))) as string;
-                            } 
-                        }) 
+                            }
+                        })
                         this.totalMyVotes = respData.result['pagination']['rowCount'];
                     }
                 }

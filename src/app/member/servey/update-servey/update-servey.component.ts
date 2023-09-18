@@ -35,7 +35,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     TypeDropdownSettings: IDropdownSettings;
     groupTypeDropdownSettings: IDropdownSettings;
     surveyType: string;
-    TypeDropdownList: { item_id: string, item_text: string }[]; 
+    TypeDropdownList: { item_id: string, item_text: string }[];
     groupTypeDropdownList: { id: number, name: string }[] = [];
     selectedGroup: number[] = [];
     choiceData: { name: string, value: number, noti_id: any }[];
@@ -115,7 +115,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
     dowloading: boolean = false;
     result: any;
     documentData: any;
-    responseMessage:string = null;
+    responseMessage: string = null;
 
 
 
@@ -293,7 +293,6 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
             let self = this;
             if (self.choiceData?.length > 0) {
                 self.choiceData.forEach((element: any, index: any) => {
-                    
                     if (self.surveynotify?.length > 0) {
                         let noti_id: number = self.surveynotify.find((o: any) => o === element.value);
                         if (noti_id) {
@@ -328,7 +327,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         }
 
         this.updateServeyForm.controls['image'].setValue(this.surveyDetails.image);
-        
+
 
         if (this.surveyDetails?.surevyImage[0]) {
             if (this.surveyDetails?.surevyImage[0]?.survey_image) {
@@ -336,11 +335,11 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
                 this.originalImage = this.surveyDetails?.surevyImage[0]?.survey_image
                 this.surveyDetails.surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyDetails?.surevyImage[0]?.survey_image.substring(20))) as string;
                 this.showImage = this.surveyDetails?.surevyImage[0]?.survey_image;
-                
+
             } else if (this.surveyDetails?.surevyImage[0]?.surevy_document) {
                 this.hasPicture = false;
                 this.showFile = this.surveyDetails?.surevyImage[0]?.surevy_document;
-                
+
             }
         }
 

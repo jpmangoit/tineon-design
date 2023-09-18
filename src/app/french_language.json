@@ -212,8 +212,9 @@
         "group_in_common":"Groupe en commun",
         "delete_chat":"Supprimer discussion",
         "media_link_doc":"Médias, liens et documents",
-        "email_draft":"E-mail enregistré comme brouillon",
-        "message_to_me" : "nachrichten an mich"
+        "email_draft":"E-mail enregistré comme brouillon", 
+        "message_to_me" : "Nachrichten an mich"
+
 
     },
     "group_news":{
@@ -446,8 +447,8 @@
 
         "viewTask":"Afficher la tâche",
         "task_created_by": "Task Created by:",
-        "days":"Jours"
-
+        "days":"Jours",
+        "task-details": "Task - Details"
     },
     "club_document":{
         "title":"Documents",

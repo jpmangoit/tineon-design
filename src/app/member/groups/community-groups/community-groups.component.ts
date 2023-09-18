@@ -36,7 +36,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         loop: true,
         mouseDrag: true,
         touchDrag: true,
-        pullDrag: true, 
+        pullDrag: true,
         dots: true,
         navSpeed: 700,
         navText: ['', ''],
@@ -148,7 +148,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -218,9 +217,8 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupData = [];
         //this.authService.memberSendRequest('get', 'getAllApprovedGroups/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe((respData: any) => {
-        this.authService.memberSendRequest('get', 'getAllApprovedGroups/' , null).subscribe((respData: any) => {
+        this.authService.memberSendRequest('get', 'getAllApprovedGroups/', null).subscribe((respData: any) => {
             this.groupData = respData['groups'];
-
             this.groupData.forEach((element: any) => {
                 if (element.group_images[0]?.['group_image']) {
                     element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
@@ -228,39 +226,39 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
                 element.displayJoinButton = true;
                 element.displayLeaveButton = false;
                 element.displayWaitApprovalButton = false;
-                    element.participants.forEach((elem:any) => {
-                        if(elem.user_id  == parseInt(this.user_Id)){
-                             if(!(element.created_by == parseInt(this.user_Id)) && !this.userDetails.isAdmin){
-                                if(elem.approved_status == 0){
-                                    element.displayJoinButton = true;
-                                    element.displayLeaveButton = false;
-                                    element.displayWaitApprovalButton = false;
-                                }else if(elem.approved_status == 1){
-                                    element.displayLeaveButton = true;
-                                    element.displayJoinButton = false;
-                                    element.displayWaitApprovalButton = false;
-                                }else if(elem.approved_status == 2){
-                                    element.displayLeaveButton = false;
-                                    element.displayJoinButton = false;
-                                    element.displayWaitApprovalButton = true;
-                                }
-                            }else if(this.userDetails.isAdmin){
-                                if(elem.approved_status == 0){
-                                    element.displayJoinButton = true;
-                                    element.displayLeaveButton = false;
-                                    element.displayWaitApprovalButton = false;
-                                }else if(elem.approved_status == 1){
-                                    element.displayLeaveButton = true;
-                                    element.displayJoinButton = false;
-                                    element.displayWaitApprovalButton = false;
-                                }
+                element.participants.forEach((elem: any) => {
+                    if (elem.user_id == parseInt(this.user_Id)) {
+                        if (!(element.created_by == parseInt(this.user_Id)) && !this.userDetails.isAdmin) {
+                            if (elem.approved_status == 0) {
+                                element.displayJoinButton = true;
+                                element.displayLeaveButton = false;
+                                element.displayWaitApprovalButton = false;
+                            } else if (elem.approved_status == 1) {
+                                element.displayLeaveButton = true;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = false;
+                            } else if (elem.approved_status == 2) {
+                                element.displayLeaveButton = false;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = true;
                             }
-                        }else if(element.created_by == parseInt(this.user_Id)){
-                            element.displayJoinButton = false;
-                            element.displayLeaveButton = false;
-                            element.displayWaitApprovalButton = false;
+                        } else if (this.userDetails.isAdmin) {
+                            if (elem.approved_status == 0) {
+                                element.displayJoinButton = true;
+                                element.displayLeaveButton = false;
+                                element.displayWaitApprovalButton = false;
+                            } else if (elem.approved_status == 1) {
+                                element.displayLeaveButton = true;
+                                element.displayJoinButton = false;
+                                element.displayWaitApprovalButton = false;
+                            }
                         }
-                    });
+                    } else if (element.created_by == parseInt(this.user_Id)) {
+                        element.displayJoinButton = false;
+                        element.displayLeaveButton = false;
+                        element.displayWaitApprovalButton = false;
+                    }
+                });
             })
             //this.totalgroupData = respData['pagination']['rowCount'];
             this.authService.setLoader(false);
@@ -278,7 +276,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupJoinData = [];
         // this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/' + this.currentPageNmuberOne + '/' + this.itemPerPageOne, null)
-        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id+ '/', null)
+        this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id + '/', null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
 
@@ -302,17 +300,17 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.groupsYouManageData = [];
         //this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id + '/' + this.currentPageNmuberTwo + '/' + this.itemPerPageTwo, null)
-        this.authService.memberSendRequest('get', 'getGroupsYouManage/'  + this.user_Id , null)
-        .subscribe((respData: any) => {
-            this.groupsYouManageData = respData['groups'].reverse();
-            this.groupsYouManageData.forEach((element: any) => {
-                if (element.group_images[0]?.['group_image']) {
-                    element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
-                }
-            })
-            //this.totalManagaeGroupData = respData['pagination']['rowCount'];
-            this.authService.setLoader(false);
-        });
+        this.authService.memberSendRequest('get', 'getGroupsYouManage/' + this.user_Id, null)
+            .subscribe((respData: any) => {
+                this.groupsYouManageData = respData['groups'].reverse();
+                this.groupsYouManageData.forEach((element: any) => {
+                    if (element.group_images[0]?.['group_image']) {
+                        element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));
+                    }
+                })
+                //this.totalManagaeGroupData = respData['pagination']['rowCount'];
+                this.authService.setLoader(false);
+            });
     }
 
     onGroups(id: number) {
@@ -467,39 +465,39 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     * Function is used to change the page of pagination
     * @author  MangoIt Solutions(M)
     */
-        pageChangedOne(event: number) {
-            this.currentPageNmuberOne = event;
-            this.joinAllGroups();
-        }
+    pageChangedOne(event: number) {
+        this.currentPageNmuberOne = event;
+        this.joinAllGroups();
+    }
 
     /**
     * Function is used to go to the page of pagination
     * @author  MangoIt Solutions(M)
     */
-        goToPgOne(eve: number) {
-            if (isNaN(eve)) {
-                eve = this.currentPageNmuberOne;
+    goToPgOne(eve: number) {
+        if (isNaN(eve)) {
+            eve = this.currentPageNmuberOne;
+        } else {
+            if (eve > Math.round(this.totalJoinedGroupData / this.itemPerPageOne)) {
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
-                if (eve > Math.round(this.totalJoinedGroupData / this.itemPerPageOne)) {
-                    this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
-                } else {
-                    this.currentPageNmuberOne = eve;
-                    this.joinAllGroups();
-                }
+                this.currentPageNmuberOne = eve;
+                this.joinAllGroups();
             }
         }
+    }
 
     /**
     * Function is used to set the page of pagination
     * @author  MangoIt Solutions(M)
     */
-        setItemPerPageOne(limit: number) {
-            if (isNaN(limit)) {
-                limit = this.itemPerPageOne;
-            }
-            this.itemPerPageOne = limit;
-            this.joinAllGroups();
+    setItemPerPageOne(limit: number) {
+        if (isNaN(limit)) {
+            limit = this.itemPerPageOne;
         }
+        this.itemPerPageOne = limit;
+        this.joinAllGroups();
+    }
 
 
     ngOnDestroy(): void {

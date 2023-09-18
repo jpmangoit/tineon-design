@@ -13,7 +13,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
@@ -82,7 +82,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
         defaultFontSize: '2',
         defaultParagraphSeparator: 'p',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -181,28 +181,28 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.receiveData = respData;
-                    if(respData?.length > 0){
-                        Object(respData).forEach((val, key) => {
-                            if (val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
-                                this.participant.push({
-                                    'id': val.id,
-                                    'user_email': val.email,
-                                    'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
-                                });
-                                this.user_dropdown.push({
-                                    'id': val.id,
-                                    'user_email': val.email,
-                                    'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
-                                });
-                            }
-                        });
+                .subscribe(
+                    (respData: any) => {
+                        this.receiveData = respData;
+                        if (respData?.length > 0) {
+                            Object(respData).forEach((val, key) => {
+                                if (val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
+                                    this.participant.push({
+                                        'id': val.id,
+                                        'user_email': val.email,
+                                        'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
+                                    });
+                                    this.user_dropdown.push({
+                                        'id': val.id,
+                                        'user_email': val.email,
+                                        'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
+                                    });
+                                }
+                            });
+                        }
+                        this.setGroupData(this.groupid);
                     }
-                    this.setGroupData(this.groupid);
-                }
-            );
+                );
         }
     }
 
@@ -237,7 +237,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                                                 'approved_status': val.approved_status
                                             });
                                         }
-                                        if(this.participantSelectedToShow?.length > 0){
+                                        if (this.participantSelectedToShow?.length > 0) {
                                             Object(this.participantSelectedToShow).forEach((valu, key) => {
                                                 if (this.alluserInformation && this.alluserInformation[valu.id] && this.alluserInformation[valu.id].member_id != null) {
                                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[valu.id].member_id, null)
@@ -246,7 +246,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                                                                 this.thumb = resppData;
                                                                 valu.image = this.thumb;
                                                             },
-                                                            (error:any) => {
+                                                            (error: any) => {
                                                                 valu.image = null;
                                                             });
                                                 } else {
@@ -261,11 +261,11 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                                 });
                             }
                         });
-                        this.participantSelectedItem= this.authService.uniqueData(this.participantSelectedItem);
-                        this.groupParticipant = Object.assign(this.authService.uniqueObjData(this.groupParticipant,'id'));
-                        this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow,'id'))
+                        this.participantSelectedItem = this.authService.uniqueData(this.participantSelectedItem);
+                        this.groupParticipant = Object.assign(this.authService.uniqueObjData(this.groupParticipant, 'id'));
+                        this.participantSelectedToShow = Object.assign(this.authService.uniqueObjData(this.participantSelectedToShow, 'id'))
 
-                        if (this.groupData['group_images'].length > 0 && this.groupData['group_images'][0]?.['group_image']){
+                        if (this.groupData['group_images'].length > 0 && this.groupData['group_images'][0]?.['group_image']) {
                             this.group_img = this.groupData['group_images'][0]['group_image'];
                             this.groupData['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.groupData['group_images'][0]['group_image'].substring(20)));
                             this.showImage = this.groupData['group_images'][0]['group_image'];
@@ -282,8 +282,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                             this.updateGroupForm.controls['participants'].setValue(this.groupParticipant);
                             this.updateGroupForm.controls['approved_status'].setValue(this.groupData['approved_status']);
                         }
-                    }else{
-                        this.notificationService.showError(this.language.community_groups.no_groups,null);
+                    } else {
+                        this.notificationService.showError(this.language.community_groups.no_groups, null);
                     }
                 }
             );
@@ -300,7 +300,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
     updateGroup() {
         this.submitted = true;
         if ((sessionStorage.getItem('token')) && (this.updateGroupForm.valid) && (!this.errorImage.isError)) {
-            if(this.participantSelectedItem?.length > 0){
+            if (this.participantSelectedItem?.length > 0) {
                 this.participantSelectedItem.forEach((value, index) => {
                     let status: number = 0;
                     if (this.groupData['created_by'] == value) {
@@ -322,7 +322,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                     if (key == 'participants') {
                         let self = this;
                         let ifAuthor = 0;
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 if (value.user_id == self.groupData['created_by']) {
                                     ifAuthor++;
@@ -343,19 +343,19 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
             }
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateGroup/' + this.groupid, formData)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
-                        var self = this;
-                        var redirectUrl = 'group-detail/' + this.groupid;
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            var self = this;
+                            var redirectUrl = 'group-detail/' + this.groupid;
                             self.router.navigate([redirectUrl]);
-                    }else  if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -432,14 +432,14 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -453,10 +453,10 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.updateGroupForm.patchValue({ add_image: this.fileToReturn });
                     this.updateGroupForm.get('add_image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
