@@ -37,7 +37,7 @@ export class RoomDetailsComponent implements OnInit {
     setTheme: ThemeType;
     private activatedSub: Subscription;
     language: any;
-    thumbnail: string; 
+    thumbnail: string;
     memberid: number;
     displayError: boolean = false
     getclubInfo: ClubDetail;
@@ -139,8 +139,7 @@ export class RoomDetailsComponent implements OnInit {
 
                         this.updateRoomData = JSON.parse(this.roomDetails.updated_record);
                         if (this.updateRoomData?.newImage) {
-                            this.updateRoomData.newImage= this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateRoomData?.newImage.substring(20)));
-                            // this.updateRoomData.file= this.updateRoomData?.file
+                            this.updateRoomData.newImage = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateRoomData?.newImage.substring(20)));
                         }
                         this.updateRoomData.weekdays = JSON.parse(this.updateRoomData['weekdays']);
                         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)

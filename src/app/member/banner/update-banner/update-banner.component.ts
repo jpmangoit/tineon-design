@@ -11,7 +11,7 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { AuthServiceService } from '../../../service/auth-service.service';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { NgxImageCompressService,DOC_ORIENTATION } from 'ngx-image-compress';
+import { NgxImageCompressService, DOC_ORIENTATION } from 'ngx-image-compress';
 import { NotificationService } from 'src/app/service/notification.service';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,7 +22,7 @@ declare var $: any;
     templateUrl: './update-banner.component.html',
     styleUrls: ['./update-banner.component.css']
 })
-export class UpdateBannerComponent implements OnInit,OnDestroy {
+export class UpdateBannerComponent implements OnInit, OnDestroy {
 
     language: any;
     updateBannerForm: UntypedFormGroup;
@@ -45,7 +45,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -91,11 +91,11 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     userData: LoginDetails;
     bannerDetail: any;
     showBannerImage: any;
-    bannerDropdown:  { name: any; id: string; }[] = [];
+    bannerDropdown: { name: any; id: string; }[] = [];
     bannerId: any;
     checkedStatus: any;
     checkedInvoice: number;
-    bannerDisplayed: any[]=[];
+    bannerDisplayed: any[] = [];
     checkActive: boolean = false;
     checkInactive: boolean = false;
     imgHeight: any;
@@ -113,7 +113,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         private imageCompress: NgxImageCompressService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -126,7 +126,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         this.authService.setLoader(false);
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.language = this.lang.getLanguaageFile();
-        this.route.params.subscribe(params =>{
+        this.route.params.subscribe(params => {
             this.bannerId = params['bannerId'];
         })
 
@@ -238,12 +238,10 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
 
             }
 
-        }else if(bannerInfo.banner_image.length == 0){
+        } else if (bannerInfo.banner_image.length == 0) {
             this.hasPicture = true;
             this.showBannerImage = '../../../assets/img/no_image.png'
-             
         }
-
         if (bannerInfo['category']) {
             let bennerCate = JSON.parse(bannerInfo['category']);
             if (this.bannerCategoryOption?.length > 0) {
@@ -259,7 +257,6 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
                 })
             }
         }
-
         if (bannerInfo['placement']) {
             let bannerPlace = JSON.parse(bannerInfo['placement']);
             if (this.bannerPlacementOption?.length > 0) {
@@ -276,7 +273,6 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
 
             }
         }
-
         if (bannerInfo['display']) {
             let bannerDisp = JSON.parse(bannerInfo['display']);
             if (this.bannerDisplayOption?.length > 0) {
@@ -325,7 +321,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
                     formData.append('display', JSON.stringify(element));
                 }
                 if (key == 'image') {
-                    formData.append('file', element); 
+                    formData.append('file', element);
                 } else {
                     if ((key != 'image') && (key != 'category') && (key != 'placement') && (key != 'display')) {
                         formData.append(key, element);
@@ -355,17 +351,17 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
         }
     }
 
-        /**
-    * Function is used to get end date
-    * @author  MangoIt Solutions
-    */
+    /**
+* Function is used to get end date
+* @author  MangoIt Solutions
+*/
     getEndDate() {
         this.updateBannerForm.get('bannerStartDate').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else {
+        } else {
             return this.updateBannerForm.controls['bannerStartDate'].value
         }
     }
@@ -374,7 +370,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     * Function for select the status
     * @author  MangoIt Solutions(M)
     */
-    checkStatusRadioBtn(val:any){
+    checkStatusRadioBtn(val: any) {
         this.updateBannerForm.controls['status'].setValue('');
         this.updateBannerForm.controls['status'].setValue(val);
     }
@@ -383,7 +379,7 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     * Function for select the Invoices
     * @author  MangoIt Solutions(M)
     */
-    checkInvoicesRadioBtn(value:any){
+    checkInvoicesRadioBtn(value: any) {
         this.updateBannerForm.controls['invoice'].setValue('')
         this.updateBannerForm.controls['invoice'].setValue(value)
     }
@@ -524,8 +520,8 @@ export class UpdateBannerComponent implements OnInit,OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.updateBannerForm.patchValue({ image: this.fileToReturn });

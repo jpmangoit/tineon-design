@@ -558,7 +558,6 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
 
                             if (this.taskDetails?.subtasks?.length > 0) {
                                 this.taskDetails.subtasks.forEach((value, index) => {
-                                    
                                     let subtask_user: { id: number; user_email: string; user_name: string; }[] = [];
                                     this.addSubtask();
                                     if (this.user_dropdown && this.user_dropdown.length > 0) {
@@ -576,7 +575,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                     if (value.date) {
                                         subtask_date = value.date.split('T');
                                     }
-                                    
+
                                     let createSubtask: UntypedFormGroup = (this.updateTaskForm.controls['subtasks'] as UntypedFormArray).at(index) as UntypedFormGroup;
                                     createSubtask?.get('id')?.patchValue(value.id);
                                     createSubtask?.get('title')?.patchValue(value.title);

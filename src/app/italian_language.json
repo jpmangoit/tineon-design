@@ -213,7 +213,7 @@
         "delete_chat":"Cancellare la chat",
         "media_link_doc":"Media, link e documenti",
         "email_draft": "Email salva come bozza",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me" : "Nachrichten an mich"
 
     },
     "group_news": {
@@ -445,7 +445,8 @@
         "updatedTask": "Attività aggiornata",
         "viewTask": "Visualizza l'attività",
         "task_created_by": "Task Created by:",
-        "days": "Giorni"
+        "days": "Giorni",
+        "task-details": "Task - Details"
 
     },
     "club_document": {

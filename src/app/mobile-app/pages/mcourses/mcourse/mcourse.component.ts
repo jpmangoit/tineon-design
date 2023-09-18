@@ -156,11 +156,11 @@ export class McourseComponent implements OnInit, OnDestroy {
     }
 
     hasComma(str: string) {
-        if(str){
+        if (str) {
             return str.replace(/,/g, ".");
-        }else{
+        } else {
             return str;
-        }        
+        }
     }
 
     /**
@@ -217,7 +217,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     this.date = new Date(); // Today's date
                     this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-
                     respData && respData.result.forEach(element => {
                         element.recurring_dates = JSON.parse(element.recurring_dates);
                     });
@@ -247,7 +246,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                 else {
                                     element['picture_video'] = '';
                                 }
-
                                 this.allCourses.forEach((element: any) => {
                                     if (element?.course_image && element.course_image.length > 0 && typeof element.course_image[0]?.course_image === 'string') {
                                         const base64String = element.course_image[0].course_image;
@@ -263,7 +261,7 @@ export class McourseComponent implements OnInit, OnDestroy {
                                         recurrence = recurrence + ';UNTIL=' + nextYear;
                                     }
                                     if (element?.CourseExternalInstructor && element?.CourseExternalInstructor?.length > 0 && typeof element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]?.instructor_image === 'string') {
-                                       element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image  = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]?.instructor_image.substring(20)));
+                                        element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.CourseExternalInstructor[0]?.externalIns?.instructor_image[0]?.instructor_image.substring(20)));
                                     }
 
                                     recurrence = recurrence.replace("T000000Z;", "T200000Z;");
@@ -335,7 +333,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                         })
                                     }
                                 } else {
-
                                     if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                         const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
                                         element.recurring_dates.forEach(dd => {
@@ -473,14 +470,13 @@ export class McourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
-                        
+
                         this.currentCourseList.forEach(element => {
                             let self = this;
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                         if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                            // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                             if (el.member_id != null) {
                                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
                                                     .subscribe(
@@ -504,7 +500,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                 self.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                         if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                            // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                             if (el.member_id != null) {
                                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
                                                     .subscribe(
@@ -591,39 +586,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                         if (this.courseByIdData[0]?.document_url) {
                             this.eventFile = this.courseByIdData[0].document_url;
                         }
-                        // if (this.courseByIdData[0].picture_video != "[]") {
-                        //     let responseImg: string;
-                        //     responseImg = this.courseByIdData[0].picture_video;
-                        //     let resp: string[] = [];
-                        //     resp = responseImg.split("\"");
-                        //     let imgArray: string[] = [];
-                        //     let fileArray: string[] = [];
-                        //     if(resp && resp.length > 0){
-                        //         resp.forEach((element: string) => {
-                        //             if ((element.endsWith(".jpg")) || (element.endsWith(".jpeg")) || (element.endsWith(".png")) ||
-                        //                 (element.endsWith(".gif")) || (element.endsWith(".svg")) || (element.endsWith(".webp")) ||
-                        //                 (element.endsWith(".avif")) || (element.endsWith(".apng")) || (element.endsWith(".jfif")) ||
-                        //                 (element.endsWith(".pjpeg")) || (element.endsWith(".pjp"))
-                        //             ) {
-                        //                 imgArray.push(element);
-                        //                 this.hasPicture = true;
-                        //                 this.eventImage = imgArray[0];
-                        //             }
-                        //             if ((element.endsWith(".pdf")) || (element.endsWith(".doc")) || (element.endsWith(".zip")) ||
-                        //                 (element.endsWith(".docx")) || (element.endsWith(".docm")) || (element.endsWith(".dot")) ||
-                        //                 (element.endsWith(".odt")) || (element.endsWith(".txt")) || (element.endsWith(".xml")) ||
-                        //                 (element.endsWith(".wps")) || (element.endsWith(".xps")) || (element.endsWith(".html")) ||
-                        //                 (element.endsWith(".htm")) || (element.endsWith(".rtf")) || (element.endsWith(".xlsx"))) {
-                        //                 fileArray.push(element);
-                        //                 this.eventFile = fileArray[0];
-                        //                 this.eventFile = element;
-                        //             }
-                        //         });
-                        //     }
-                        // } else {
-                        //     this.hasPicture = false;
-                        //     this.eventImage = '';
-                        // }
                         this.getOrganizerDetails(id);
                         this.getParticipantDetails(id);
                         if (this.courseByIdData[0]?.courseTask?.id) {
@@ -1267,7 +1229,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        // "picture_video": element.picture_video,
                                                         "course_image": element.course_image[0]?.course_image,
                                                         "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
@@ -1328,7 +1289,7 @@ export class McourseComponent implements OnInit, OnDestroy {
 
                                             if (element && element.recurring_dates != '' && element.recurring_dates != null) {
                                                 const dates = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
-                                           
+
                                                 element.recurring_dates = JSON.parse(element.recurring_dates);
                                                 element?.recurring_dates?.forEach(dd => {
                                                     let yourDate1: Date = new Date(dd.date_from)
@@ -1342,7 +1303,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        // "picture_video": element.picture_video,
                                                         "course_image": element.course_image[0]?.course_image,
                                                         "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
@@ -1410,7 +1370,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                                         "type": element.type,
                                                         "instructor_type": element.instructor_type,
                                                         "name": element.name,
-                                                        // "picture_video": element.picture_video,
                                                         "course_image": element.course_image[0]?.course_image,
                                                         "course_document": element.course_image[0]?.course_document,
                                                         "allowed_persons": element.allowed_persons,
@@ -1483,7 +1442,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                         self.allUsers.forEach(el => {
                                             if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                 if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                                    // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                                     if (el.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
                                                             .subscribe(
@@ -1507,7 +1465,6 @@ export class McourseComponent implements OnInit, OnDestroy {
                                         self.allUsers.forEach(el => {
                                             if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                 if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
-                                                    // element.CourseInternalInstructor[0].internalUsers.add_img = el;
                                                     if (el.member_id != null) {
                                                         this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
                                                             .subscribe(

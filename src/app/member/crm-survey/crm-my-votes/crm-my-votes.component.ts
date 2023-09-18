@@ -80,7 +80,6 @@ export class CrmMyVotesComponent implements OnInit, OnDestroy {
                         respData?.['result']?.['survey']?.forEach(element => {
                             let cudate = new Date()
                             var days = this.commonFunctionService.getDays(cudate, element.survey_end_date.split('T')[0]);
-                            // element.dayCount = days;
                             if (cudate.toISOString().split('T')[0] <= element.survey_end_date.split('T')[0]) {
                                 element.dayCount = days;
                                 element.remain = this.language.Survey.day_left;

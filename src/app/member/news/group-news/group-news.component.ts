@@ -91,7 +91,7 @@ export class GroupNewsComponent implements OnInit {
                                             (error: any) => {
                                                 groupNewsItem.news.user.image = null;
                                             })
-                                } else{
+                                } else {
                                     groupNewsItem.news.user.image = '';
                                 }
                             }

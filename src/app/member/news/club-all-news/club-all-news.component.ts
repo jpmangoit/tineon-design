@@ -18,10 +18,10 @@ declare var $: any;
 @Component({
     selector: 'app-club-all-news',
     templateUrl: './club-all-news.component.html',
-    styleUrls: ['./club-all-news.component.css'] 
+    styleUrls: ['./club-all-news.component.css']
 })
 
-export class ClubAllNewsComponent implements OnInit, OnDestroy { 
+export class ClubAllNewsComponent implements OnInit, OnDestroy {
     language: any;
     role: string = '';
     responseMessage: string = null;
@@ -33,7 +33,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         { value: '8' },
         { value: '16' },
         { value: '24' },
-        { value: '32' }, 
+        { value: '32' },
         { value: '40' }
     ];
     thumbnails: string[] = [];
@@ -132,7 +132,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -167,7 +166,6 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -237,12 +235,11 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
                         this.newsTotalRecords = respData.pagination.rowCount;
                         this.dashboardData = respData.news;
                         if (this.dashboardData && this.dashboardData.length > 0) {
-                            
+
                             this.dashboardData.forEach(element => {
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
-                                
                                 if (element.user.member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
                                         .subscribe(
@@ -272,42 +269,41 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
 
                 this.authService.memberSendRequest('get', 'uposts/' + userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null).subscribe(
                     (respData: any) => {
-                    this.authService.setLoader(false);
-                    if (respData.news.length == 0) {
                         this.authService.setLoader(false);
-                    } else {
-                        this.newsTotalRecords = respData.pagination.rowCount;
-                        this.dashboardData = respData.news;
-                        if (this.dashboardData && this.dashboardData.length > 0) {
-                            this.dashboardData.forEach(element => {
-                                if (element?.news_image[0]?.news_image) {
-                                    element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
-                                }
-
-                                if (element.user.member_id != null) {
-                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
-                                        .subscribe(
-                                            (resppData: any) => {
-                                                this.authService.setLoader(false);
-                                                this.thumb = resppData;
-                                                element.user.image = this.thumb;
-                                            },
-                                            (error: any) => {
-                                                element.user.image = null;
-                                            });
-                                } else {
-                                    element.user.image = '';
-                                }
-                                if (this.role == 'guest') {
-                                    if (element.show_guest_list == 'true') {
-                                        this.guestNews.push(element);
+                        if (respData.news.length == 0) {
+                            this.authService.setLoader(false);
+                        } else {
+                            this.newsTotalRecords = respData.pagination.rowCount;
+                            this.dashboardData = respData.news;
+                            if (this.dashboardData && this.dashboardData.length > 0) {
+                                this.dashboardData.forEach(element => {
+                                    if (element?.news_image[0]?.news_image) {
+                                        element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                     }
-                                    this.guestNewsRecords = respData.pagination.rowCount;
-                                }
-                            });
+                                    if (element.user.member_id != null) {
+                                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + element.user.member_id, null)
+                                            .subscribe(
+                                                (resppData: any) => {
+                                                    this.authService.setLoader(false);
+                                                    this.thumb = resppData;
+                                                    element.user.image = this.thumb;
+                                                },
+                                                (error: any) => {
+                                                    element.user.image = null;
+                                                });
+                                    } else {
+                                        element.user.image = '';
+                                    }
+                                    if (this.role == 'guest') {
+                                        if (element.show_guest_list == 'true') {
+                                            this.guestNews.push(element);
+                                        }
+                                        this.guestNewsRecords = respData.pagination.rowCount;
+                                    }
+                                });
+                            }
                         }
-                    }
-                });
+                    });
             }
         }
     }
@@ -345,7 +341,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
         if (this.newsData?.news_image[0]?.news_image == '' || this.newsData?.news_image[0]?.news_image == null) {
             this.newImg = '../../assets/img/no_image.png';
         } else {
-            
+
             if (this.newsData?.news_image[0]?.news_image) {
                 this.newsData.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.newsData?.news_image[0]?.news_image.substring(20))) as string;
                 this.newImg = this.newsData?.news_image[0]?.news_image;

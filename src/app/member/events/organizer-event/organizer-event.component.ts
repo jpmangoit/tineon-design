@@ -113,25 +113,6 @@ export class OrganizerEventComponent implements OnInit {
                             if (respData.hasOwnProperty(key)) {
                                 element = respData[key];
                                 var url: string[] = [];
-                                // for (const key in element) {
-                                //     if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                //         const value: any = element[key];
-                                //         if (key == 'picture_video' && value != null) {
-                                //             url = value.split('\"');
-                                //         }
-                                //     }
-                                // }
-                                // if (url && url.length > 0) {
-                                //     let self = this;
-                                //     url.forEach(element1 => {
-                                //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element1.endsWith(char))) {
-                                //             element['picture_video'] = element1;
-                                //         }
-                                //     });
-                                // } else {
-                                //     element['picture_video'] = '';
-                                // }
-
                                 this.allData[key] = element;
                                 if ((element) && element.recurrence != '' && element.recurrence != null && element.recurrence != 'null') {
                                     let recurrence: string = element.recurrence;
@@ -449,25 +430,6 @@ export class OrganizerEventComponent implements OnInit {
                                 if (this.allCourses.hasOwnProperty(key)) {
                                     element = this.allCourses[key];
                                     var url: string[] = [];
-                                    // for (const key in element) {
-                                    //     if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                    //         const value: string = element[key]
-                                    //         if (key == 'picture_video' && value != null) {
-                                    //             url = value.split('\"');
-                                    //         }
-                                    //     }
-                                    // }
-                                    // if (url && url.length > 0) {
-                                    //     let self = this;
-                                    //     url.forEach(el => {
-                                    //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                    //             element.picture_video = el;
-                                    //         }
-                                    //     });
-                                    // }
-                                    // else {
-                                    //     element['picture_video'] = '';
-                                    // }
                                     this.allData[key] = element;
                                     // if(element.id == 31){
                                     if (element && element.recurrence != '' && element.recurrence != null) {
@@ -514,50 +476,7 @@ export class OrganizerEventComponent implements OnInit {
                                                     "end_time": element.end_time,
                                                     "isCourse": true,
                                                     "show_guest_list": element.show_guest_list
-                                                    // "id": element.id,
-                                                    // "schedule": element.schedule,
-                                                    // "official_club_date": element.official_club_date,
-                                                    // "type": 4,
-                                                    // "instructor_type": element.instructor_type,
-                                                    // "name": element.name,
-                                                    // "picture_video": element.picture_video,
-                                                    // "allowed_persons": element.allowed_persons,
-                                                    // "date_from": rrDate,
-                                                    // "date_to": rrDateEnd,
-                                                    // "place": element.place,
-                                                    // "room": element.room,
-                                                    // "visibility": element.visibility,
-                                                    // "limitation_of_participants": element.limitation_of_participants,
-                                                    // "participants": element.participants,
-                                                    // "waiting_list": element.waiting_list,
-                                                    // "max_on_waiting_list": element.max_on_waiting_list,
-                                                    // "attachments": element.attachments,
-                                                    // "link_to_ticket_store": element.link_to_ticket_store,
-                                                    // "tags": element.tags,
-                                                    // "author": element.author,
-                                                    // "approved_status": element.approved_status,
-                                                    // "audience": element.audience,
-                                                    // "created_at": element.created_at,
-                                                    // "updated_at": element.created_at,
-                                                    // "coorganizer": element.coorganizer,
-                                                    // "invite_friends": element.invite_friends,
-                                                    // "description": element.description,
-                                                    // "show_guest_list": element.show_guest_list,
-                                                    // "chargeable": element.chargeable,
-                                                    // "price_per_participant": element.price_per_participant,
-                                                    // "create_invoice": element.create_invoice,
-                                                    // "start_time": element.start_time,
-                                                    // "end_time": element.end_time,
-                                                    // "group_id": element.group_id,
-                                                    // "recurrence": element.recurrence,
-                                                    // "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                    // "courseUsers": element.courseUsers,
-                                                    // "RoomsDetails": element.RoomsDetails,
-                                                    // "CourseGroups": element.CourseGroups,
-                                                    // "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                    // "team_id": element.team_id,
-                                                    // "date_repeat": element.date_repeat,
-                                                    // "isCourse": true
+
                                                 }
                                                 self.eventList.push(rrEvents);
                                             })
@@ -598,50 +517,7 @@ export class OrganizerEventComponent implements OnInit {
                                                     "end_time": element.end_time,
                                                     "isCourse": true,
                                                     "show_guest_list": element.show_guest_list
-                                                    // "id": element.id,
-                                                    // "schedule": element.schedule,
-                                                    // "official_club_date": element.official_club_date,
-                                                    // "type": 4,
-                                                    // "instructor_type": element.instructor_type,
-                                                    // "name": element.name,
-                                                    // "picture_video": element.picture_video,
-                                                    // "allowed_persons": element.allowed_persons,
-                                                    // "date_from": rrDate1,
-                                                    // "date_to": rrDateEnd1,
-                                                    // "place": element.place,
-                                                    // "room": element.room,
-                                                    // "visibility": element.visibility,
-                                                    // "limitation_of_participants": element.limitation_of_participants,
-                                                    // "participants": element.participants,
-                                                    // "waiting_list": element.waiting_list,
-                                                    // "max_on_waiting_list": element.max_on_waiting_list,
-                                                    // "attachments": element.attachments,
-                                                    // "link_to_ticket_store": element.link_to_ticket_store,
-                                                    // "tags": element.tags,
-                                                    // "author": element.author,
-                                                    // "approved_status": element.approved_status,
-                                                    // "audience": element.audience,
-                                                    // "created_at": element.created_at,
-                                                    // "updated_at": element.created_at,
-                                                    // "coorganizer": element.coorganizer,
-                                                    // "invite_friends": element.invite_friends,
-                                                    // "description": element.description,
-                                                    // "show_guest_list": element.show_guest_list,
-                                                    // "chargeable": element.chargeable,
-                                                    // "price_per_participant": element.price_per_participant,
-                                                    // "create_invoice": element.create_invoice,
-                                                    // "start_time": element.start_time,
-                                                    // "end_time": element.end_time,
-                                                    // "group_id": element.group_id,
-                                                    // "recurrence": element.recurrence,
-                                                    // "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                    // "courseUsers": element.courseUsers,
-                                                    // "RoomsDetails": element.RoomsDetails,
-                                                    // "CourseGroups": element.CourseGroups,
-                                                    // "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                    // "team_id": element.team_id,
-                                                    // "date_repeat": element.date_repeat,
-                                                    // "isCourse": true
+
                                                 }
                                                 self.eventList.push(rrEvents1);
                                             });
@@ -680,50 +556,7 @@ export class OrganizerEventComponent implements OnInit {
                                                         "group_id": element.group_id,
                                                         "isCourse": true,
                                                         "show_guest_list": element.show_guest_list
-                                                        // "id": element.id,
-                                                        // "schedule": element.schedule,
-                                                        // "official_club_date": element.official_club_date,
-                                                        // "type": 4,
-                                                        // "instructor_type": element.instructor_type,
-                                                        // "name": element.name,
-                                                        // "picture_video": element.picture_video,
-                                                        // "allowed_persons": element.allowed_persons,
-                                                        // "date_from": rrDate1,
-                                                        // "date_to": rrDateEnd1,
-                                                        // "place": element.place,
-                                                        // "room": element.room,
-                                                        // "visibility": element.visibility,
-                                                        // "limitation_of_participants": element.limitation_of_participants,
-                                                        // "participants": element.participants,
-                                                        // "waiting_list": element.waiting_list,
-                                                        // "max_on_waiting_list": element.max_on_waiting_list,
-                                                        // "attachments": element.attachments,
-                                                        // "link_to_ticket_store": element.link_to_ticket_store,
-                                                        // "tags": element.tags,
-                                                        // "author": element.author,
-                                                        // "approved_status": element.approved_status,
-                                                        // "audience": element.audience,
-                                                        // "created_at": element.created_at,
-                                                        // "updated_at": element.created_at,
-                                                        // "coorganizer": element.coorganizer,
-                                                        // "invite_friends": element.invite_friends,
-                                                        // "description": element.description,
-                                                        // "show_guest_list": element.show_guest_list,
-                                                        // "chargeable": element.chargeable,
-                                                        // "price_per_participant": element.price_per_participant,
-                                                        // "create_invoice": element.create_invoice,
-                                                        // "start_time": element.start_time,
-                                                        // "end_time": element.end_time,
-                                                        // "group_id": element.group_id,
-                                                        // "recurrence": element.recurrence,
-                                                        // "CourseExternalInstructor": element.CourseExternalInstructor,
-                                                        // "courseUsers": element.courseUsers,
-                                                        // "RoomsDetails": element.RoomsDetails,
-                                                        // "CourseGroups": element.CourseGroups,
-                                                        // "CourseInternalInstructor": element.CourseInternalInstructor,
-                                                        // "team_id": element.team_id,
-                                                        // "date_repeat": element.date_repeat,
-                                                        // "isCourse": true
+
                                                     }
                                                     self.eventList.push(rrEvents1);
                                                 });
@@ -758,22 +591,12 @@ export class OrganizerEventComponent implements OnInit {
     getCalendarData() {
         this.calendarEvents = [];
         var count: number = 0;
-        // if ((this.eventList && this.eventList.length > 0) && (this.courseList && this.courseList.length > 0)) {
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }else if ((this.eventList && this.eventList.length > 0) && (this.courseList && this.courseList.length == 0)){
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }else if ((this.eventList && this.eventList.length == 0) && (this.courseList && this.courseList.length > 0)){
-        //     Array.prototype.push.apply(this.eventList, this.courseList);
-        // }
         if (this.eventList && this.eventList.length > 0) {
 
             this.eventList.forEach((keys: any, vals: any) => {
                 let date_from: string = keys.date_from.replace('Z', '');
                 let date_to: string = keys.date_to.replace('Z', '');
                 if (keys.isCourse) {
-                    // if (keys?.course_image) {
-                    //     keys.course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(keys?.course_image.substring(20)));
-                    // }
                     keys.course_image = '../../../../assets/img/brand_img_old.png'
                     this.calendarEvents[count] = {
                         'title': keys.name, 'start': date_from, 'end': date_to, 'description': keys.description, 'event_id': keys.id,
@@ -781,10 +604,6 @@ export class OrganizerEventComponent implements OnInit {
                         'event_name': keys.name, 'imageUrl': keys.course_image, 'isCourse': keys.isCourse
                     };
                 } else {
-                    // if ( keys?.event_image) {
-                    //     keys.event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl( keys?.event_image.substring(20)));
-                    // }
-                    // keys.event_image = '../../../../assets/img/defaultProfile.jpeg'
                     keys.event_image = '../../../../assets/img/brand_img.png'
                     this.calendarEvents[count] = {
                         'title': keys.name, 'start': date_from, 'end': date_to, 'description': keys.description, 'event_id': keys.id,
@@ -795,14 +614,6 @@ export class OrganizerEventComponent implements OnInit {
                 count++;
             });
         }
-
-        // // Define the eventRender function separately
-        // function customEventRender(info) {
-        //     const eventEl = info.el;
-        //     const imageSrc = 'path_to_your_image.jpg'; // Replace with actual image source
-        //     eventEl.style.backgroundImage = `url(${imageSrc})`;
-        // }
-
 
         this.calendarOptionsTimeGrid = {
             locale: this.selectLanguage,
@@ -833,20 +644,20 @@ export class OrganizerEventComponent implements OnInit {
     }
 
     //Event Render Function
-    customEventRenderer(eventInfo: any,createElement:any): void {
+    customEventRenderer(eventInfo: any, createElement: any): void {
 
         const events = [     // Sample event data
             {
-            title: 'Event A',
-            start: '2023-08-25T10:00:00',
+                title: 'Event A',
+                start: '2023-08-25T10:00:00',
             },
             {
-            title: 'Event B',
-            start: '2023-08-25T15:00:00',
+                title: 'Event B',
+                start: '2023-08-25T15:00:00',
             },
             {
-            title: 'Event C',
-            start: '2023-08-26T11:30:00',
+                title: 'Event C',
+                start: '2023-08-26T11:30:00',
             },
         ];
 
@@ -872,7 +683,7 @@ export class OrganizerEventComponent implements OnInit {
     }
 
     //Event Render Function
-    renderEventContent(eventInfo:any, createElement:any) {
+    renderEventContent(eventInfo: any, createElement: any) {
         var innerHtml;
         //Check if event has image
         if (eventInfo.event._def.extendedProps.imageUrl) {

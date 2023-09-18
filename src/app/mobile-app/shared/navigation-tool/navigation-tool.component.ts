@@ -38,8 +38,8 @@ export class NavigationToolComponent implements OnInit {
     constructor(private _bottomSheet: MatBottomSheet,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
-        private tostrNotificationService: NotificationService,private router:Router,
-        private notificationService: NotificationsService, private lang: LanguageService,private authService:AuthServiceService) { }
+        private tostrNotificationService: NotificationService, private router: Router,
+        private notificationService: NotificationsService, private lang: LanguageService, private authService: AuthServiceService) { }
 
     openBottomSheet(): void {
         this._bottomSheet.open(ActionToolComponent);
@@ -64,8 +64,8 @@ export class NavigationToolComponent implements OnInit {
             });
         }, 3000);
         this.getAdvertisement();
-        let currentUrl:string = this.router.url;
-        if(currentUrl == '/dashboard'){
+        let currentUrl: string = this.router.url;
+        if (currentUrl == '/dashboard') {
             this.getTineonBanners();
         }
     }
@@ -113,7 +113,7 @@ export class NavigationToolComponent implements OnInit {
                         if (respData.isError == false) {
                             this.authService.setLoader(false);
                             this.advertisement = respData.result.advertisement;
-                            this.advertisement.forEach((element:any) => {
+                            this.advertisement.forEach((element: any) => {
                                 if (element?.advertisement_image) {
                                     element.advertisement_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.advertisement_image.substring(20)));
                                 }
@@ -122,7 +122,7 @@ export class NavigationToolComponent implements OnInit {
                             this.timeOut();
                         }
                     }
-            );
+                );
         }
     }
 
@@ -135,7 +135,7 @@ export class NavigationToolComponent implements OnInit {
             this.ads = this.advertisement[count];
             count++;
         }, 3000);
-      }
+    }
 
     /**
     * Function for get All the Banners
@@ -143,34 +143,33 @@ export class NavigationToolComponent implements OnInit {
     * @param   {}
     * @return  {all the records of Banners} array of object
     */
-    getTineonBanners(){
+    getTineonBanners() {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
-        this.authService.setLoader(true);
-        this.authService.memberSendRequest('get', 'getBannerForDashboardMobileApp/', null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
-                    this.bannerData = respData['result']['banner']
-                    this.bannerData.forEach((element: any) => {
-                        element['category'] = JSON.parse(element.category);
-                        element['placement'] = JSON.parse(element.placement);
-                        element['display'] = JSON.parse(element.display);
-                        // element['image'] = JSON.parse(element.image);
-                        if (element.banner_image[0]?.banner_image) {
-                            element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
-                        }
-                        if((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))){
-                            element['redirectLink'] = element.redirectLink;
-                        }else{
-                            element['redirectLink'] = '//' + element.redirectLink;
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'getBannerForDashboardMobileApp/', null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            this.bannerData = respData['result']['banner']
+                            this.bannerData.forEach((element: any) => {
+                                element['category'] = JSON.parse(element.category);
+                                element['placement'] = JSON.parse(element.placement);
+                                element['display'] = JSON.parse(element.display);
+                                if (element.banner_image[0]?.banner_image) {
+                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
+                                }
+                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+                                    element['redirectLink'] = element.redirectLink;
+                                } else {
+                                    element['redirectLink'] = '//' + element.redirectLink;
+                                }
+                            })
+                            this.timeOut1();
+                        } else if (respData['code'] == 400) {
+                            this.tostrNotificationService.showError(respData['message'], null);
                         }
                     })
-                    this.timeOut1();
-                }else  if (respData['code'] == 400) {
-                    this.tostrNotificationService.showError(respData['message'], null);
-                }
-            })
         }
     }
 
@@ -186,31 +185,31 @@ export class NavigationToolComponent implements OnInit {
     }
 
 
-      /**
-    * Function is used to add click count for a the particular mobile or desktop Banner
-    * @author  MangoIt Solutions(M)
-    * @param   {BannerId}
-    * @return  {Object}
-    */
-    onClickBanner(bannerId:number){
-        let displayMode:number
+    /**
+  * Function is used to add click count for a the particular mobile or desktop Banner
+  * @author  MangoIt Solutions(M)
+  * @param   {BannerId}
+  * @return  {Object}
+  */
+    onClickBanner(bannerId: number) {
+        let displayMode: number
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            displayMode = 1 ;
-        }else{
+            displayMode = 1;
+        } else {
             //desktop
-            displayMode = 0 ;
+            displayMode = 0;
         }
         let data = {
             banner_id: bannerId,
-            user_id : this.userDetails.userId,
-            display_mode : displayMode
+            user_id: this.userDetails.userId,
+            display_mode: displayMode
         }
-        this.authService.memberSendRequest('post','bannerClick/',data)
-        .subscribe((respData:any) =>{
-            console.log(respData);
+        this.authService.memberSendRequest('post', 'bannerClick/', data)
+            .subscribe((respData: any) => {
+                console.log(respData);
 
-        })
+            })
     }
 
 }

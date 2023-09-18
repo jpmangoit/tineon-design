@@ -85,7 +85,7 @@ export class GlobalSearchComponent implements OnInit {
                                 if (element?.survey) {
                                     element.survey.forEach(elem => {
                                         if (elem.surevyImage[0]?.survey_image) {
-                                            elem.surevyImage[0].survey_image= this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.surevyImage[0]?.survey_image.substring(20)));
+                                            elem.surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(elem.surevyImage[0]?.survey_image.substring(20)));
                                         }
 
                                     });

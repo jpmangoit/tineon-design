@@ -10,9 +10,9 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 
 @Component({
-  selector: 'app-mbannerlist',
-  templateUrl: './mbannerlist.component.html',
-  styleUrls: ['./mbannerlist.component.css'],
+    selector: 'app-mbannerlist',
+    templateUrl: './mbannerlist.component.html',
+    styleUrls: ['./mbannerlist.component.css'],
 })
 export class MbannerlistComponent implements OnInit {
     language: any;
@@ -69,7 +69,7 @@ export class MbannerlistComponent implements OnInit {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            if (element?.banner_image[0]?.banner_image ) {
+                            if (element?.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.banner_image?.[0].banner_image.substring(20))) as string;
                             }
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
@@ -102,7 +102,7 @@ export class MbannerlistComponent implements OnInit {
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalBanners / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
                 this.getAllBanners();

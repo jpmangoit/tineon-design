@@ -44,7 +44,7 @@ export class BannerDetailComponent implements OnInit {
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
 
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -98,23 +98,19 @@ export class BannerDetailComponent implements OnInit {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerDetail = respData['result']
+                        this.bannerDetail['category'] = JSON.parse(this.bannerDetail.category);
+                        this.bannerDetail['placement'] = JSON.parse(this.bannerDetail.placement);
+                        this.bannerDetail['display'] = JSON.parse(this.bannerDetail.display);
 
-
-                            this.bannerDetail['category'] = JSON.parse(this.bannerDetail.category);
-                            this.bannerDetail['placement'] = JSON.parse(this.bannerDetail.placement);
-                            this.bannerDetail['display'] = JSON.parse(this.bannerDetail.display);
-                            // this.bannerDetail['image'] = JSON.parse(this.bannerDetail.image);
-
-                            if (this.bannerDetail.banner_image[0].banner_image ) {
-                                this.bannerDetail.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.bannerDetail.banner_image[0].banner_image.substring(20))) as string;
-                                this.showImage =  this.bannerDetail.banner_image[0].banner_image
-                            }
-
-                            if ((this.bannerDetail['redirectLink'].includes('https://')) || (this.bannerDetail['redirectLink'].includes('http://'))) {
-                                this.bannerDetail['redirectLink'] = this.bannerDetail.redirectLink;
-                            } else {
-                                this.bannerDetail['redirectLink'] = '//' + this.bannerDetail.redirectLink;
-                            }
+                        if (this.bannerDetail.banner_image[0].banner_image) {
+                            this.bannerDetail.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.bannerDetail.banner_image[0].banner_image.substring(20))) as string;
+                            this.showImage = this.bannerDetail.banner_image[0].banner_image
+                        }
+                        if ((this.bannerDetail['redirectLink'].includes('https://')) || (this.bannerDetail['redirectLink'].includes('http://'))) {
+                            this.bannerDetail['redirectLink'] = this.bannerDetail.redirectLink;
+                        } else {
+                            this.bannerDetail['redirectLink'] = '//' + this.bannerDetail.redirectLink;
+                        }
 
                         // this.bannerDetail.forEach((element: any) => {
                         //     element['category'] = JSON.parse(element.category);

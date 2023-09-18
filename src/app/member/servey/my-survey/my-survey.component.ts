@@ -43,7 +43,7 @@ export class MySurveyComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
     thumb: any;
     myVoteParamDetails: Survey[] = [];
-    surveyFinish :boolean = false;
+    surveyFinish: boolean = false;
 
     constructor(
         private authService: AuthServiceService,
@@ -51,7 +51,7 @@ export class MySurveyComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -76,16 +76,16 @@ export class MySurveyComponent implements OnInit, OnDestroy {
     getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getMyAllVotes();
                 }
-                this.getMyAllVotes();
-            }
-        );
+            );
     }
 
     /**
@@ -94,27 +94,27 @@ export class MySurveyComponent implements OnInit, OnDestroy {
     * @param   {userId}
     * @return  {object} survey object
     */
-    getMyAllVotes(){
-        this.authService.memberSendRequest('get', 'getMySurveyVotes/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' +this.itemPerPage, null)
-        .subscribe(
-            (respData: any) => {
-                if (respData['isError'] == false) {
-                    if(respData?.['result']?.['survey']?.length > 0){
-                        respData?.['result']?.['survey']?.forEach((element:any,index:any) => {
-                            if (this.alluserInformation[element.survey.user_id] != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.survey.user_id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.survey.userImage = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.survey.userImage = null;
-                                    });
-                            } else {
-                                element.survey.userImage = null;
-                            }
-                            let cudate: Date = new Date();
+    getMyAllVotes() {
+        this.authService.memberSendRequest('get', 'getMySurveyVotes/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData['isError'] == false) {
+                        if (respData?.['result']?.['survey']?.length > 0) {
+                            respData?.['result']?.['survey']?.forEach((element: any, index: any) => {
+                                if (this.alluserInformation[element.survey.user_id] != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.survey.user_id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.survey.userImage = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.survey.userImage = null;
+                                            });
+                                } else {
+                                    element.survey.userImage = null;
+                                }
+                                let cudate: Date = new Date();
                                 if (cudate?.toISOString().split('T')[0] >= element?.survey?.surveyStartDate?.split('T')[0]) {
                                     var days = this.commonFunctionService.getDays(cudate, element.survey.surveyEndDate.split('T')[0]);
                                     element.survey.dayCount = days;
@@ -139,12 +139,12 @@ export class MySurveyComponent implements OnInit, OnDestroy {
                                     element.survey.progress = 0
                                 }
                                 this.myVoteParam.push(element.survey);
-                        });
-                        this.totalMyVotes = respData['result'].pagination.rowCount;
+                            });
+                            this.totalMyVotes = respData['result'].pagination.rowCount;
+                        }
                     }
                 }
-            }
-        );
+            );
     }
 
     /**
@@ -166,7 +166,7 @@ export class MySurveyComponent implements OnInit, OnDestroy {
         }
         else {
             if (eve > Math.round(this.totalMyVotes / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             }
             else {
                 this.currentPageNmuber = eve;

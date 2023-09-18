@@ -176,23 +176,6 @@ export class MorganizerEventsComponent implements OnInit {
                                 if (element?.event_images[0]?.event_image) {
                                     element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                                 }
-
-                                // var url: string[] = [];
-                                // if (element.picture_video != null && element.picture_video != '') {
-                                //     if (element.picture_video) {
-                                //         url = element.picture_video.split('"');
-                                //         if (url && url.length > 0) {
-                                //             url.forEach((el) => {
-                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                //                     element.picture_video = el;
-                                //                 }
-                                //             });
-                                //         } else {
-                                //             element.picture_video = '';
-                                //         }
-                                //     }
-                                // }
-
                                 if (element && element.recurrence != '' && element.recurrence != null) {
                                     let recurrence: string = element.recurrence;
                                     if (recurrence.includes('UNTIL') == false) {
@@ -207,7 +190,6 @@ export class MorganizerEventsComponent implements OnInit {
                                         rules.forEach(function (val, index) {
                                             let yourDate: Date = new Date(val)
                                             let dt: string = yourDate.toISOString().split('T')[0];
-
                                             let recurring_dates = JSON.parse(element.recurring_dates);
                                             var recurring_time:any
                                             var recurring_etime:any

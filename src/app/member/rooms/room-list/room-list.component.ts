@@ -83,7 +83,6 @@ export class RoomListComponent implements OnInit {
                     this.totalRows = respData.pagination.rowCount;
                     this.dataSource.sort = this.matsort;
                     this.isData = true;
-
                     this.dataSource.filteredData.forEach((element:any) =>{
                         if(element?.room_image[0]?.room_image){
                             element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;

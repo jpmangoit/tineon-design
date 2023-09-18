@@ -49,7 +49,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'}, 
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -248,18 +248,18 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
         }
     }
 
-     /**
-    * Function is used to get end date
-    * @author  MangoIt Solutions
-    */
-     getEndDate() {
+    /**
+   * Function is used to get end date
+   * @author  MangoIt Solutions
+   */
+    getEndDate() {
         this.createServeyForm.get('surveyStartDate').valueChanges.subscribe((value) => {
             this.minDate = value;
         });
-        if(this.minDate != undefined){
+        if (this.minDate != undefined) {
             return this.minDate
-        }else{
-            return this. getToday()
+        } else {
+            return this.getToday()
         }
     }
 
@@ -412,14 +412,14 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -432,7 +432,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
                     if (this.imageChangedEvent?.target['files'][0]?.name) {

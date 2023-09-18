@@ -85,7 +85,7 @@ export class ClubAppointmentsComponent implements OnInit {
         private lang: LanguageService,
         private datePipe: DatePipe,
         private router: Router,
-         private sanitizer: DomSanitizer,
+        private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService
     ) {
 

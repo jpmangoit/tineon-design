@@ -31,7 +31,7 @@ export class NewsListComponent implements OnInit {
         'View',
     ];
     columnsToDisplay: string[] = this.displayedColumns.slice();
-    
+
     dataSource !: MatTableDataSource<any>;
     result: any;
     @ViewChild(MatPaginator) matpaginator!: MatPaginator;
@@ -230,7 +230,6 @@ export class NewsListComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.dataSource = new MatTableDataSource(respData.news);
-
                     this.dataSource?.filteredData.forEach((element: any) => {
                         if (element?.news_image[0]?.news_image) {
                             element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;

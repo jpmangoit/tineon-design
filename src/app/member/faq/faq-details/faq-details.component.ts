@@ -17,11 +17,11 @@ import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DenyReasonConfirmDialogService } from 'src/app/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
-import { saveAs } from 'file-saver'; 
+import { saveAs } from 'file-saver';
 declare var $: any;
 
 @Component({
@@ -30,26 +30,26 @@ declare var $: any;
     styleUrls: ['./faq-details.component.css'],
 })
 
-export class FaqDetailsComponent implements OnInit,OnDestroy {
-    language:any;
+export class FaqDetailsComponent implements OnInit, OnDestroy {
+    language: any;
     FAQForm: UntypedFormGroup;
-    userDetails:LoginDetails;
-    updateFaqsData:any;
-    displayError:boolean = false
+    userDetails: LoginDetails;
+    updateFaqsData: any;
+    displayError: boolean = false
     getclubInfo: ClubDetail;
     profile_data: ProfileDetails;
-    thumbnail:string;
+    thumbnail: string;
     birthdateStatus: boolean;
     memberStartDateStatus: Date;
     setTheme: ThemeType;
     private activatedSub: Subscription;
-    faqsData:any;
-    responseMessage:string = null;
+    faqsData: any;
+    responseMessage: string = null;
     FAQSubmit: boolean = false;
     docErrorMsg: boolean = false;
     hasPicture: boolean = false;
     hasDoc: boolean = false;
-    selectPos: boolean =  false;
+    selectPos: boolean = false;
     deletePos: boolean = false;
     tenCategoryFAQ: boolean = false;
     allCategoryFAQ: boolean = false;
@@ -61,35 +61,35 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
     file: File;
     fileToReturn: File
     imgName: string;
-    positionDeSelectedItem:number;
-    categorySelectedItem:number;
-    positionSelectedItem:number;
+    positionDeSelectedItem: number;
+    categorySelectedItem: number;
+    positionSelectedItem: number;
     categoryDropdownSettings: IDropdownSettings;
     positionDropdownSettings: IDropdownSettings;
-    userRole:string
+    userRole: string
     imageUrl: string;
     teamId: number
     showFile: string;
     faqId: number;
     editId: number;
-    catListArray: { id: number, name:string }[] = [];
-    positionList: { id: number, name:number }[] = [];
+    catListArray: { id: number, name: string }[] = [];
+    positionList: { id: number, name: number }[] = [];
     positionn: { id: number, name: number }[] = []
-    categoryShow: { id: number, name:string }[] = []
+    categoryShow: { id: number, name: string }[] = []
     categoryData: FAQCategory[] = [];
-    faqDataById:FAQ;
-    faqDataByCat:FAQ[] = [];
+    faqDataById: FAQ;
+    faqDataByCat: FAQ[] = [];
     searchData: FAQ[] = [];
     categoryAllFaq: FAQ[];
-    approved_status:number;
-    private refreshPage:Subscription
-    private denyRefreshPage:Subscription
-    private removeUpdate:Subscription
+    approved_status: number;
+    private refreshPage: Subscription
+    private denyRefreshPage: Subscription
+    private removeUpdate: Subscription
     isImage: boolean = false;
     imgHeight: any;
     imgWidth: any;
-    allUser: any[]=[];
-    alluserInformation:{member_id: number}[] = [];
+    allUser: any[] = [];
+    alluserInformation: { member_id: number }[] = [];
     position: { id: number; name: number }[] = [];
     editorConfig: AngularEditorConfig = {
         editable: true,
@@ -98,7 +98,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -158,17 +158,17 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
     ) {
-        this.refreshPage =  this.confirmDialogService.dialogResponse.subscribe(message => {
+        this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp =>{
+        this.denyRefreshPage = this.updateConfirmDialogService.denyDialogResponse.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 2000);
         });
-        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp =>{
+        this.removeUpdate = this.denyReasonService.remove_deny_update.subscribe(resp => {
             setTimeout(() => {
                 this.ngOnInit();
             }, 1000);
@@ -188,7 +188,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.getAllUserInfo();
         this.route.params.subscribe(params => {
-            const faqId:number = params['faqId'];
+            const faqId: number = params['faqId'];
             this.getFAaqDetails(faqId);
         });
 
@@ -224,7 +224,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
             position: [''],
             description: ['', Validators.required],
             image: [''],
-            approved_status:[this.approved_status]
+            approved_status: [this.approved_status]
         });
     }
 
@@ -234,78 +234,78 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
    * @param   {}
    * @return  {Array Of Object} all the Users
    */
-	getAllUserInfo() {
-		this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-		.subscribe(
-			(respData: any) => {
-                if(respData?.length > 0){
-                    this.allUser = respData;
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+    getAllUserInfo() {
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe(
+                (respData: any) => {
+                    if (respData?.length > 0) {
+                        this.allUser = respData;
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
                 }
-			}
-		);
-	}
+            );
+    }
 
-    getFAaqDetails(faqId:number) {
+    getFAaqDetails(faqId: number) {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getFaqbyId/' + faqId, null)
-            .subscribe(
-                (respData: any) => {
-                    if (respData['isError'] == false) {
-                        this.faqsData = null;
-                        this.faqsData = respData?.result[0];
-                        if (this.faqsData['faq_image'][0]?.['faq_image']) {
-                            this.faqsData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqsData['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                .subscribe(
+                    (respData: any) => {
+                        if (respData['isError'] == false) {
+                            this.faqsData = null;
+                            this.faqsData = respData?.result[0];
+                            if (this.faqsData['faq_image'][0]?.['faq_image']) {
+                                this.faqsData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqsData['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                            }
+                            this.getProfileImages(this.faqsData);
+                            this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
+                            if (this.updateFaqsData != null && this.updateFaqsData?.['baseImage'][0]?.['image']) {
+                                this.updateFaqsData['baseImage'][0]['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateFaqsData['baseImage'][0]?.['image'].substring(20))) as string;
+                            }
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
                         }
-                        this.getProfileImages(this.faqsData);
-                        this.updateFaqsData = JSON.parse(respData?.result[0]?.updated_record);
-                        if (this.updateFaqsData != null && this.updateFaqsData?.['baseImage'][0]?.['image']) {
-                            this.updateFaqsData['baseImage'][0]['image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.updateFaqsData['baseImage'][0]?.['image'].substring(20)))as string;
-                        }
-                    } else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+                        this.authService.setLoader(false);
                     }
-                    this.authService.setLoader(false);
-                }
-            );
+                );
         }
     }
 
-        /**
-   * Function to get profile images
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {Array Of Object}
-   */
-    getProfileImages(usersAllData:any){
-            if (this.alluserInformation[usersAllData?.user?.id]?.member_id != null) {
-                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[usersAllData?.user?.id].member_id, null)
-                    .subscribe(
-                        (resppData: any) => {
-                            usersAllData.user.imagePro = resppData;
-                        },
-                        (error:any) => {
-                            usersAllData.user.imagePro = null;
-                        }
-                    );
-            } else {
-                usersAllData.user.imagePro = null;
-            }
+    /**
+* Function to get profile images
+* @author  MangoIt Solutions
+* @param   {GroupId}
+* @return  {Array Of Object}
+*/
+    getProfileImages(usersAllData: any) {
+        if (this.alluserInformation[usersAllData?.user?.id]?.member_id != null) {
+            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[usersAllData?.user?.id].member_id, null)
+                .subscribe(
+                    (resppData: any) => {
+                        usersAllData.user.imagePro = resppData;
+                    },
+                    (error: any) => {
+                        usersAllData.user.imagePro = null;
+                    }
+                );
+        } else {
+            usersAllData.user.imagePro = null;
+        }
         return usersAllData;
     }
 
     getCategoryName() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'category', null).subscribe(
-            (respData:any) => {
+            (respData: any) => {
                 this.authService.setLoader(false)
                 this.categoryData = respData
                 let self = this;
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((key:FAQCategory, value:number) => {
+                if (respData && respData.length > 0) {
+                    Object(respData).forEach((key: FAQCategory, value: number) => {
                         if (value == 0) {
                             self.getFaqByCategory(key.id);
                         }
@@ -320,23 +320,23 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
     getFaqByCategory(id: number) {
         this.faqId = id
         this.authService.setLoader(true)
-        this.authService.memberSendRequest('get', 'getFaqbyCategory/'+ id + '/0/',null).subscribe(
-            (respData:any) => {
+        this.authService.memberSendRequest('get', 'getFaqbyCategory/' + id + '/0/', null).subscribe(
+            (respData: any) => {
                 this.authService.setLoader(false)
                 this.tenCategoryFAQ = true;
                 this.allCategoryFAQ = false;
                 this.faqDataByCat = respData;
 
-                if(this.faqDataByCat && this.faqDataByCat.length == 10){
+                if (this.faqDataByCat && this.faqDataByCat.length == 10) {
                     this.showButton = true;
-                }else{
+                } else {
                     this.showButton = false;
                 }
             }
         )
     }
 
-    editFAQById(id:number) {
+    editFAQById(id: number) {
         this.getFaqByCategory(this.faqId);
         $("#imageCrope").hide();
         $('.preview_txt').text('');
@@ -349,7 +349,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 this.authService.setLoader(false);
                 this.editId = respData.result[0].id;
                 let self = this;
-                if(respData?.result?.length > 0){
+                if (respData?.result?.length > 0) {
                     respData.result.forEach(function (val, key) {
                         self.faqDataById = val;
                     })
@@ -364,7 +364,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.positionn = [];
         if (this.faqDataById.position) {
             let self = this
-            if(this.positionList && this.positionList.length > 0){
+            if (this.positionList && this.positionList.length > 0) {
                 this.positionList.forEach((val, key) => {
                     if (val.id == self.faqDataById.position) {
                         self.positionn.push({ id: val.id, name: val.name })
@@ -373,10 +373,10 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 });
             }
 
-        }else{
+        } else {
             this.FAQForm.controls["position"].setValue(this.positionn);
         }
-        if(this.catListArray && this.catListArray.length > 0){
+        if (this.catListArray && this.catListArray.length > 0) {
             this.catListArray.forEach((val, key) => {
                 if (val.id == this.faqDataById.category) {
                     this.categoryShow = []
@@ -400,15 +400,15 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                 this.faq_image = this.faqDataById['faq_image'][0]?.['faq_image'];
                 this.hasDoc = false;
                 this.hasPicture = true;
-                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
+                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                this.imageUrl = this.faqDataById['faq_image'][0]['faq_image'];
             }
         }
-        if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
+        if (this.faqDataById['faq_image'][0]?.['faq_document'] != '') {
             // this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
             this.hasPicture = false;
             this.hasDoc = true;
-            this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            this.faq_document = this.faqDataById['faq_image'][0]?.['faq_document'];
         }
 
         // if (this.faqDataById.image) {
@@ -443,7 +443,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
             this.FAQForm.controls["category"].setValue(this.categorySelectedItem)
 
         } else if (this.faqDataById.category) {
-            if(this.categoryShow && this.categoryShow.length > 0){
+            if (this.categoryShow && this.categoryShow.length > 0) {
                 this.categoryShow.forEach((val, key) => {
                     let categoryShow = val.id
                     this.FAQForm.controls["category"].setValue(categoryShow);
@@ -456,7 +456,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.authService.setLoader(false);
         for (const key in this.FAQForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.FAQForm.value, key)) {
-                const element:any = this.FAQForm.value[key];
+                const element: any = this.FAQForm.value[key];
                 if (key == 'title') {
                     formData.append('title', element);
                 }
@@ -464,57 +464,57 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     formData.append('category', element);
                 }
                 if (key == 'position') {
-                    if(this.positionSelectedItem && this.selectPos == true){
-                        formData.append("position",this.positionSelectedItem);
+                    if (this.positionSelectedItem && this.selectPos == true) {
+                        formData.append("position", this.positionSelectedItem);
 
-                    }else if(this.positionDeSelectedItem && this.deletePos == true){
+                    } else if (this.positionDeSelectedItem && this.deletePos == true) {
                         this.positionSelectedItem = null;
-                        formData.append("position",this.positionSelectedItem);
+                        formData.append("position", this.positionSelectedItem);
                         this.positionDeSelectedItem = null;
 
-                    }else if(this.faqDataById.position) {
-                            formData.append('position', this.positionn[0].id);
+                    } else if (this.faqDataById.position) {
+                        formData.append('position', this.positionn[0].id);
 
-                    }else if(this.faqDataById.position == null){
-                            formData.append("position",'');
+                    } else if (this.faqDataById.position == null) {
+                        formData.append("position", '');
                     }
                 }
                 if (key == 'description') {
                     formData.append('description', element);
                 }
 
-                if (key == 'approved_status'){
+                if (key == 'approved_status') {
                     formData.append('approved_status', element);
                 }
 
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-                    }else {
-                        if(this.faq_image ){
+                    } else {
+                        if (this.faq_image) {
                             formData.append('faq_image', this.faq_image);
-                        }else{
-                             formData.append('faq_image', '');
+                        } else {
+                            formData.append('faq_image', '');
                         }
-                        if(this.faq_document){
+                        if (this.faq_document) {
                             formData.append('faq_document', this.faq_document);
-                        }else{
-                             formData.append('faq_document', '');
+                        } else {
+                            formData.append('faq_document', '');
                         }
                     }
                 }
-                if (key == 'team_id'){
+                if (key == 'team_id') {
                     formData.append('team_id', element);
                 }
             }
         }
-        if(this.FAQForm.valid){
+        if (this.FAQForm.valid) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateFaq/' + this.editId, formData).subscribe(
-                (respData:any) => {
+                (respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         this.getFaqByCategory(this.faqId);
                         setTimeout(() => {
                             $('#exModal').modal('hide');
@@ -524,11 +524,11 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                         this.notificationService.showError(respData['message'], null);
 
                         if (this.categorySelectedItem || this.faqDataById.category) {
-                            var faq_cat:any;
-                            if(this.categorySelectedItem){
+                            var faq_cat: any;
+                            if (this.categorySelectedItem) {
                                 faq_cat = this.categorySelectedItem
-                            }else if(this.faqDataById.category){
-                                faq_cat =  this.faqDataById.category
+                            } else if (this.faqDataById.category) {
+                                faq_cat = this.faqDataById.category
                             }
                             if (this.catListArray?.length > 0) {
                                 this.catListArray.forEach((val, key) => {
@@ -553,21 +553,21 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
      * @param {user id}
      * @returns {Object} Details of the User
      */
-    getMemId(id:number) {
+    getMemId(id: number) {
         $("#profileSpinner").show();
         this.thumbnail = '';
         this.commonFunctionService.getMemberId(id)
-        .then((resp:any)=>{
+            .then((resp: any) => {
                 this.getclubInfo = resp.getclubInfo;
                 this.birthdateStatus = resp.birthdateStatus;
                 this.profile_data = resp.profile_data
                 this.memberStartDateStatus = resp.memberStartDateStatus
                 this.thumbnail = resp.thumbnail
                 this.displayError = resp.displayError
-        })
-        .catch((err:any) => {
-            console.log(err);
-        })
+            })
+            .catch((err: any) => {
+                console.log(err);
+            })
     }
 
     showToggle: boolean = false;
@@ -593,16 +593,16 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.router.navigate(['/vereins-faq']);
     }
 
-    deleteFaqs(faqsId:number) {
+    deleteFaqs(faqsId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
             self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteFaq/' +faqsId, null)
+            self.authService.memberSendRequest('delete', 'deleteFaq/' + faqsId, null)
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         const url: string[] = ["/vereins-faq"];
                         self.router.navigate(url);
                     }
@@ -611,7 +611,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         })
     }
 
-    deleteUpdateFaqs(faqsId:number) {
+    deleteUpdateFaqs(faqsId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
             self.authService.setLoader(true);
@@ -624,19 +624,19 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     }
                 )
         }, function () {
-        },'deleteUpdate')
+        }, 'deleteUpdate')
     }
 
-    updateNews(newsId:number) {
+    updateNews(newsId: number) {
         const url: string[] = ["/update-news/" + newsId];
         this.router.navigate(url);
     }
 
-    approveFaqs(faqsId:number) {
+    approveFaqs(faqsId: number) {
         let self = this;
-        let userId :string= localStorage.getItem('user-id');
+        let userId: string = localStorage.getItem('user-id');
         this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqsId + '/approvedby/' +userId, null)
+            self.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/vereins-faq"];
@@ -647,11 +647,11 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         })
     }
 
-    approveUpdteFaqs(faqsId:number) {
+    approveUpdteFaqs(faqsId: number) {
         let self = this;
-        let userId :string= localStorage.getItem('user-id');
+        let userId: string = localStorage.getItem('user-id');
         this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqsId + '/approvedby/' +userId, null)
+            self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/vereins-faq"];
@@ -662,15 +662,15 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         })
     }
 
-    denyFaqs(faqsId:number) {
+    denyFaqs(faqsId: number) {
         let self = this;
         this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function () {
-            let reason  = $("#message-text").val();
+            let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id":self.userDetails.userId
+                "deny_by_id": self.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId,postData)
+            self.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
@@ -680,48 +680,48 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         })
     }
 
-    onFaq(){
+    onFaq() {
         this.displayFaq = true;
         this.displayFaqCategory = false;
     }
-    onFaqCategory(){
+    onFaqCategory() {
         this.displayFaqCategory = true;
         this.displayFaq = false;
     }
 
-    onCategoryItemSelect(item: { id: number, name:string }) {
+    onCategoryItemSelect(item: { id: number, name: string }) {
         this.categorySelectedItem = item.id;
     }
 
-    onCategoryItemDeSelect(item: { id: number, name:string }) {
+    onCategoryItemDeSelect(item: { id: number, name: string }) {
         this.categorySelectedItem = null;
         this.categoryShow = []
         this.FAQForm.value.category = '';
     }
 
-    onPositionItemSelect(item: { id: number, name:number }) {
+    onPositionItemSelect(item: { id: number, name: number }) {
         this.positionSelectedItem = item.id;
         this.selectPos = true;
-        this.deletePos =  false
+        this.deletePos = false
     }
 
-    onPositionItemDeSelect(item: { id: number, name:number }) {
+    onPositionItemDeSelect(item: { id: number, name: number }) {
         this.positionDeSelectedItem = item.id;
         this.selectPos = false;
-        this.deletePos =  true;
+        this.deletePos = true;
     }
 
-     /**
-    * Function is used to validate file type is image and upload images
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  error message if file type is not image
-    */
-    errorFile:  { isError: boolean, errorMessage: string }  = { isError: false, errorMessage: '' };
-    uploadFile(event:Event) {
-        var file:File = (event.target as HTMLInputElement).files[0];
-        const mimeType:string = file.type;
-        const mimeSize:number = file.size;
+    /**
+   * Function is used to validate file type is image and upload images
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  error message if file type is not image
+   */
+    errorFile: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
+    uploadFile(event: Event) {
+        var file: File = (event.target as HTMLInputElement).files[0];
+        const mimeType: string = file.type;
+        const mimeSize: number = file.size;
         this.imgName = file.name
         if ((mimeType.match(/image\/*/) != null) || (mimeType.match(/application\/*/) != null)) {
             if ((mimeType.match(/application\/*/))) {
@@ -730,7 +730,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     this.errorFile = { isError: true, errorMessage: this.language.create_message.file_size };
                 } else {
                     this.fileToReturn = null;
-                    this.errorFile = { isError: false,errorMessage: '' };
+                    this.errorFile = { isError: false, errorMessage: '' };
                     this.docErrorMsg = false;
                     this.fileToReturn = file;
                     this.FAQForm.patchValue({
@@ -738,10 +738,10 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
                     });
                     this.FAQForm.get('image').updateValueAndValidity();
 
-                    this.fileToReturn =  file;
+                    this.fileToReturn = file;
                     const reader: FileReader = new FileReader();
                     reader.readAsDataURL(file);
-                    var url:any;
+                    var url: any;
                     let self = this
                     reader.onload = (_event) => {
                         url = reader.result;
@@ -758,7 +758,7 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         }
     }
 
-    errorImage: { isError: boolean, errorMessage: string} = { isError: false, errorMessage: '' };
+    errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     fileChangeEvent(event: Event): void {
         if (event && event.type == 'change') {
             this.croppedImage = '';
@@ -771,35 +771,35 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.fileToReturn = null;
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
-        var mimeType:string = this.file.type;
+        var mimeType: string = this.file.type;
         if (mimeType.match(/image\/*/) == null) {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
-     /**
-    * Function is used to cropped and compress the uploaded image
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {object} file object
-    */
-	imageCropped(event: ImageCroppedEvent) {
+    /**
+   * Function is used to cropped and compress the uploaded image
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {object} file object
+   */
+    imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.FAQForm.patchValue({ image: this.fileToReturn });
                     this.FAQForm.get('image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
@@ -866,5 +866,5 @@ export class FaqDetailsComponent implements OnInit,OnDestroy {
         this.denyRefreshPage.unsubscribe();
         this.removeUpdate.unsubscribe()
     }
-    
+
 }

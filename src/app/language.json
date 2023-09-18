@@ -54,7 +54,8 @@
     },
     "organizer_task":{
         "no_task": "No Tasks Found",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "task-details": "Task - Details"
 
     },
     "club": {
@@ -85,6 +86,7 @@
     "room":{
         "room_overview" : "Rooms"
     }
+   
 }
 
 

@@ -41,7 +41,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     checkNum: boolean = false;
     isCustom: boolean = false;
     recurrenceDropdownField: boolean = false;
-    endDateRepeat: boolean = false; 
+    endDateRepeat: boolean = false;
     userDetails: LoginDetails;
     alluserDetails: UserDetails[] = [];
     userSelected: number[] = [];

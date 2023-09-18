@@ -215,7 +215,7 @@
         "delete_chat": "Chat löschen",
         "media_link_doc": "Medien, Links and Dokumente",
         "email_draft": "E-Mail wurde als Entwurf gespeichert.",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me" : "Nachrichten an mich"
 
     },
     "group_news": {
@@ -416,7 +416,7 @@
         "calendar": "Kalender",
         "event_list": "Event Liste"
     },
-    "organizer_task": {
+    "organizer_task": { 
         "title": "Aufgaben",
         "all_task": "Alle Aufgaben",
         "no_task_available": "Keine Aufgaben vorhanden",
@@ -427,7 +427,7 @@
         "completed": "Erledigt",
         "personal_task": "Meine Aufgaben",
         "created_task": "Von mir erstellte Aufgaben",
-        "group_task": "Gruppen Aufgaben",
+        "group_task": "Gruppen - Aufgaben",
         "uncomplete_subtask": "Unvollständig Unteraufgabe",
         "uncomplete_heading": "Diese Aufgabe hat eine unvollständige Teilaufgabe. Bitte zuerst die Teilaufgabe vervollständigen",
         "close_subtask": "Nah dran",
@@ -448,7 +448,8 @@
         "updatedTask": "Aktualisierte Aufgabe",
         "viewTask": "Aufgabe ansehen",
         "task_created_by": "Aufgabe erstellt von:",
-        "days": "Tage"
+        "days": "Tage",
+        "task_details": "Aufgaben - Details"
     },
     "club_document": {
         "title": "Dokumente",

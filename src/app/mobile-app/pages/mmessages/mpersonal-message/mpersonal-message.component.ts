@@ -65,8 +65,8 @@ export class MpersonalMessageComponent implements OnInit {
 
     isPersonalList: boolean = true;
     selected = '1';
-    selectedValue :any;
-    todayDate :any;
+    selectedValue: any;
+    todayDate: any;
     // select: { value: string; viewValue: any; }[];
 
     constructor(
@@ -99,7 +99,7 @@ export class MpersonalMessageComponent implements OnInit {
             this.selectedValue = value;
             this.onSelectMsgType(this.selectedValue);
             // Do something with the value
-          });
+        });
 
         this.replyMsgForm = this.formBuilder.group({
             content: ['', Validators.required],
@@ -124,7 +124,7 @@ export class MpersonalMessageComponent implements OnInit {
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
-                    if(respData && respData.length > 0){
+                    if (respData && respData.length > 0) {
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
                             this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
@@ -216,7 +216,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage && this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0]);
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -226,7 +226,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -236,7 +236,7 @@ export class MpersonalMessageComponent implements OnInit {
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -246,7 +246,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -279,7 +279,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -289,7 +289,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -299,7 +299,7 @@ export class MpersonalMessageComponent implements OnInit {
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -309,7 +309,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -342,7 +342,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -352,7 +352,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -362,7 +362,7 @@ export class MpersonalMessageComponent implements OnInit {
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -372,7 +372,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -405,7 +405,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -415,7 +415,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -424,7 +424,7 @@ export class MpersonalMessageComponent implements OnInit {
                             }
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -434,7 +434,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -464,7 +464,7 @@ export class MpersonalMessageComponent implements OnInit {
                     this.personalAllMail = false;
                     this.personalTrash = false;
                     this.authService.setLoader(false);
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
@@ -473,7 +473,7 @@ export class MpersonalMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -506,7 +506,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -516,7 +516,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -526,7 +526,7 @@ export class MpersonalMessageComponent implements OnInit {
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
@@ -535,7 +535,7 @@ export class MpersonalMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -567,7 +567,7 @@ export class MpersonalMessageComponent implements OnInit {
                     if (this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
 
                         this.personalMessage.forEach(element => {
                             if (element.user) {
@@ -578,7 +578,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -588,7 +588,7 @@ export class MpersonalMessageComponent implements OnInit {
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
                             if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -598,7 +598,7 @@ export class MpersonalMessageComponent implements OnInit {
                                                 this.thumb = resppData;
                                                 element.user.image = this.thumb;
                                             },
-                                            (error:any) => {
+                                            (error: any) => {
                                                 element.user.image = null;
                                             });
                                 } else {
@@ -624,7 +624,7 @@ export class MpersonalMessageComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    this.notificationService.showSuccess(this.language.community_messages.move_starreds,null);
+                    this.notificationService.showSuccess(this.language.community_messages.move_starreds, null);
 
                     if (this.personalInbox == true) {
                         this.personalMessages();
@@ -658,7 +658,7 @@ export class MpersonalMessageComponent implements OnInit {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    this.notificationService.showSuccess(this.language.community_messages.move_inbox,null);
+                    this.notificationService.showSuccess(this.language.community_messages.move_inbox, null);
                     let selectedTab = $('.feature_tab .active a').text().trim();
                     setTimeout(() => {
                         this.personalStarredMessages();
@@ -674,7 +674,7 @@ export class MpersonalMessageComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(this.personalMessage && this.personalMessage.length > 0){
+        if (this.personalMessage && this.personalMessage.length > 0) {
             this.personalMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -688,13 +688,13 @@ export class MpersonalMessageComponent implements OnInit {
         if (this.selectedMessage) {
             if (this.selectedMessage[0].is_read == 0) {
                 this.authService.memberSendRequest('get', 'message/read-message/' + id, null)
-                .subscribe(
-                    (respData: any) => {
-                        setTimeout(() => {
-                            $("#envelope-" + id).removeClass("fa-envelope-o").addClass("fa-envelope-open-o");
-                        }, 500);
-                    }
-                )
+                    .subscribe(
+                        (respData: any) => {
+                            setTimeout(() => {
+                                $("#envelope-" + id).removeClass("fa-envelope-o").addClass("fa-envelope-open-o");
+                            }, 500);
+                        }
+                    )
             }
         }
     }
@@ -710,7 +710,7 @@ export class MpersonalMessageComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(this.personalMessage && this.personalMessage.length > 0){
+        if (this.personalMessage && this.personalMessage.length > 0) {
             this.personalMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -762,7 +762,7 @@ export class MpersonalMessageComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        this.notificationService.showSuccess(self.language.community_messages.move_trash,null);
+                        this.notificationService.showSuccess(self.language.community_messages.move_trash, null);
                         if (self.personalInbox == true) {
                             self.personalMessages();
                         } else if (self.personalStarred == true) {
@@ -791,7 +791,7 @@ export class MpersonalMessageComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        this.notificationService.showSuccess(self.language.community_messages.permanently_delete,null);
+                        this.notificationService.showSuccess(self.language.community_messages.permanently_delete, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.personalTrashMessages();
@@ -847,9 +847,9 @@ export class MpersonalMessageComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.replyMsgSubmitted = false;
                             if (respData.isError == false) {
-                                this.notificationService.showSuccess(respData.result,null);
+                                this.notificationService.showSuccess(respData.result, null);
                             } else {
-                                this.notificationService.showError(respData.result,null);
+                                this.notificationService.showError(respData.result, null);
                             }
                             this.replyMsgForm.reset();
                             this.isReplyMsgForm = false;
@@ -880,9 +880,9 @@ export class MpersonalMessageComponent implements OnInit {
                             this.authService.setLoader(false);
                             this.replyMsgSubmitted = false;
                             if (respData.isError == false) {
-                                this.notificationService.showSuccess(respData.result,null);
+                                this.notificationService.showSuccess(respData.result, null);
                             } else {
-                                this.notificationService.showError(respData.result,null);
+                                this.notificationService.showError(respData.result, null);
                             }
                             this.replyMsgForm.reset();
                             this.isReplyMsgForm = false;
@@ -1011,13 +1011,13 @@ export class MpersonalMessageComponent implements OnInit {
                     if (key == 'file') {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("cc[" + key + "]", value);
                             });
@@ -1033,7 +1033,7 @@ export class MpersonalMessageComponent implements OnInit {
                     (respData: any) => {
                         this.messageSubmitted = false;
                         if (respData['isError'] == false) {
-                            this.notificationService.showSuccess(respData['result'],null);
+                            this.notificationService.showSuccess(respData['result'], null);
                             this.messageForm.reset();
                             this.messageForm.controls["kind"].setValue([]);
                             this.messageForm.controls["receiver_id"].setValue([]);
@@ -1042,13 +1042,13 @@ export class MpersonalMessageComponent implements OnInit {
                                 .subscribe(
                                     (respData: any) => {
                                         this.authService.setLoader(false);
-                                        this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
+                                        this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
                                         setTimeout(() => {
                                             this.personalDraftsMessages();
                                         }, 500);
                                     }
                                 )
-                        }else  if (respData['code'] == 400) {
+                        } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
                     },
@@ -1070,7 +1070,7 @@ export class MpersonalMessageComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.personalDraftsMessages();

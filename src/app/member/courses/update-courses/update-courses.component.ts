@@ -615,8 +615,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 self.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
                             })
                         }
-                        console.log(respData);
-                        
+
                         if (respData && respData?.result?.rooms?.length > 0) {
                             this.romData = respData.result.rooms;
 
@@ -785,29 +784,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             this.eventFile = this.courseDetails?.course_image[0]?.course_document;
             this.fileUrl = this.courseDetails?.course_image[0]?.course_document
         }
-
-        // if (this.courseDetails.picture_video && this.courseDetails.picture_video != "[]") {
-        //     this.hasPicture = true;
-        //     let responseImg: string;
-        //     responseImg = this.courseDetails.picture_video;
-        //     this.image = this.courseDetails.picture_video;
-        //     let resp: string[];
-        //     resp = responseImg.split("\"");
-        //     let imgArray: string[] = [];
-        //     let self = this;
-        //     if (resp && resp.length > 0) {
-        //         resp.forEach(element => {
-        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-        //                 imgArray.push(element);
-        //                 this.eventImage = imgArray[0];
-        //                 this.imageUrl = element;
-        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-        //                 this.eventFile = element;
-        //                 this.fileUrl = element;
-        //             }
-        //         });
-        //     }
-        // }
         if (this.courseDetails.allowed_persons == null) {
             this.courseDetails.allowed_persons = null
         }
@@ -826,8 +802,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     this.romData.forEach(element => {
                         if (element.id == this.courseDetails.room) {
                             this.selectedRoom = element
-                            console.log(element);
-                            
                         }
                     });
                 }

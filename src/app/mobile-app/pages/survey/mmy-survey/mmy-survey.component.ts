@@ -48,7 +48,7 @@ export class MmySurveyComponent implements OnInit {
         private notificationService: NotificationService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
@@ -66,25 +66,25 @@ export class MmySurveyComponent implements OnInit {
         this.getAllUserInfo();
     }
 
-     /**
-   * Function to get all the Club Users
-   * @author  MangoIt Solutions
-   * @param   {}
-   * @return  {Array Of Object} all the Users
-   */
+    /**
+  * Function to get all the Club Users
+  * @author  MangoIt Solutions
+  * @param   {}
+  * @return  {Array Of Object} all the Users
+  */
     getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getMyAllVotes();
                 }
-                this.getMyAllVotes();
-            }
-        );
+            );
     }
 
     /**
@@ -93,59 +93,59 @@ export class MmySurveyComponent implements OnInit {
     * @param   {userId}
     * @return  {object} survey object
     */
-    getMyAllVotes(){
-        this.authService.memberSendRequest('get', 'getMySurveyVotes/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' +this.itemPerPage, null)
-        .subscribe(
-            (respData: any) => {
+    getMyAllVotes() {
+        this.authService.memberSendRequest('get', 'getMySurveyVotes/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
+            .subscribe(
+                (respData: any) => {
 
-                if (respData['isError'] == false) {
-                    if(respData?.['result']?.['survey']?.length > 0){
-                        respData['result']['survey'].forEach((element,index) => {
-                            if (this.alluserInformation[element.survey.user_id] != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.survey.user_id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.survey.userImage = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.survey.userImage = null;
-                                        });
-                            } else {
-                                element.survey.userImage = null;
-                            }
-                            let cudate: Date = new Date();
-                            if (cudate.toISOString().split('T')[0] >= element.survey.surveyStartDate.split('T')[0]) {
-                                var days = this.commonFunctionService.getDays(cudate, element.survey.surveyEndDate.split('T')[0]);
-                                element.survey.dayCount = days;
-                                element.survey.remain = this.language.courses.days;
-
-                                if (element.survey.dayCount > 1) {
-                                    element.survey.dayCount = days + "  " + this.language.courses.days;
-                                } else if (element.survey.dayCount == 1 || element.survey.dayCount == 0) {
-                                    element.survey.dayCount = days + "  " + this.language.courses.day;
+                    if (respData['isError'] == false) {
+                        if (respData?.['result']?.['survey']?.length > 0) {
+                            respData['result']['survey'].forEach((element, index) => {
+                                if (this.alluserInformation[element.survey.user_id] != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.survey.user_id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.survey.userImage = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.survey.userImage = null;
+                                            });
+                                } else {
+                                    element.survey.userImage = null;
                                 }
-                                /* Progress Bar calculation */
-                                element.survey.progress = this.commonFunctionService.progressBarCalculation(element.survey.surveyStartDate, element.survey.surveyEndDate);
-                            } else {
-                                var days = this.commonFunctionService.getDayDifference(element.survey.surveyStartDate, element.survey.surveyEndDate);
+                                let cudate: Date = new Date();
+                                if (cudate.toISOString().split('T')[0] >= element.survey.surveyStartDate.split('T')[0]) {
+                                    var days = this.commonFunctionService.getDays(cudate, element.survey.surveyEndDate.split('T')[0]);
+                                    element.survey.dayCount = days;
+                                    element.survey.remain = this.language.courses.days;
 
-                                element.survey.dayCount = days;
-                                element.survey.remain = this.language.courses.days;
-                                if (element.survey.dayCount > 1) {
-                                    element.survey.dayCount = days + "  " + this.language.courses.days;
-                                } else if (element.survey.dayCount == 1 || element.survey.dayCount == 0) {
-                                    element.survey.dayCount = days + "  " + this.language.courses.day;
+                                    if (element.survey.dayCount > 1) {
+                                        element.survey.dayCount = days + "  " + this.language.courses.days;
+                                    } else if (element.survey.dayCount == 1 || element.survey.dayCount == 0) {
+                                        element.survey.dayCount = days + "  " + this.language.courses.day;
+                                    }
+                                    /* Progress Bar calculation */
+                                    element.survey.progress = this.commonFunctionService.progressBarCalculation(element.survey.surveyStartDate, element.survey.surveyEndDate);
+                                } else {
+                                    var days = this.commonFunctionService.getDayDifference(element.survey.surveyStartDate, element.survey.surveyEndDate);
+
+                                    element.survey.dayCount = days;
+                                    element.survey.remain = this.language.courses.days;
+                                    if (element.survey.dayCount > 1) {
+                                        element.survey.dayCount = days + "  " + this.language.courses.days;
+                                    } else if (element.survey.dayCount == 1 || element.survey.dayCount == 0) {
+                                        element.survey.dayCount = days + "  " + this.language.courses.day;
+                                    }
+                                    element.survey.progress = 0
                                 }
-                                element.survey.progress = 0
-                            }
-                            this.myVoteParam.push(element.survey);
-                        });
-                        this.totalMyVotes = respData['result'].pagination.rowCount;
+                                this.myVoteParam.push(element.survey);
+                            });
+                            this.totalMyVotes = respData['result'].pagination.rowCount;
+                        }
                     }
                 }
-            }
-        );
+            );
     }
 
     /**
@@ -167,7 +167,7 @@ export class MmySurveyComponent implements OnInit {
         }
         else {
             if (eve > Math.round(this.totalMyVotes / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             }
             else {
                 this.currentPageNmuber = eve;

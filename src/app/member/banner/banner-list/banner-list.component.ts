@@ -69,12 +69,12 @@ export class BannerListComponent implements OnInit {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.bannerLists = respData['result']['banner'];
-                        this.bannerLists.forEach((element: any) => { 
+                        this.bannerLists.forEach((element: any) => {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
                             // element['image'] = JSON.parse(element.image);
-                            if (element?.banner_image[0]?.banner_image ) {
+                            if (element?.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.banner_image?.[0].banner_image.substring(20))) as string;
                             }
                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
@@ -108,7 +108,7 @@ export class BannerListComponent implements OnInit {
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalBanners / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
                 this.getAllBanners();

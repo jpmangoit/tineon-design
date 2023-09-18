@@ -12,12 +12,12 @@ import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-mactive-survey',
-  templateUrl: './mactive-survey.component.html',
-  styleUrls: ['./mactive-survey.component.css']
+    selector: 'app-mactive-survey',
+    templateUrl: './mactive-survey.component.html',
+    styleUrls: ['./mactive-survey.component.css']
 })
 
- export class MactiveSurveyComponent implements OnInit {
+export class MactiveSurveyComponent implements OnInit {
     language: any;
     alluserInformation: { member_id: number }[] = [];
     setTheme: ThemeType;
@@ -46,7 +46,7 @@ declare var $: any;
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
         private commonFunctionService: CommonFunctionService
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.language = this.lang.getLanguaageFile();
@@ -104,20 +104,19 @@ declare var $: any;
     * @return  {object} survey object
     */
     getSurveyData() {
-        var endPoints:any
-        if(this.userRole == 'admin'){
+        var endPoints: any
+        if (this.userRole == 'admin') {
             endPoints = 'getActivePollSurvey/' + this.currentPageNmuber + '/' + this.itemPerPage;
-        }else if(this.userRole != 'admin'){
+        } else if (this.userRole != 'admin') {
             endPoints = 'getActivePollSurveyUser/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage;
         }
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', endPoints, null)
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
-                 if (respData['isError'] == false) {
-                    if(respData?.['result']?.['survey']?.length > 0){
+                if (respData['isError'] == false) {
+                    if (respData?.['result']?.['survey']?.length > 0) {
                         respData['result']['survey'].forEach((element: any) => {
-
                             if (this.alluserInformation[element.user_name.id] != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user_name.id].member_id, null)
                                     .subscribe(
@@ -125,7 +124,7 @@ declare var $: any;
                                             this.thumb = resppData;
                                             element.userImage = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.userImage = null;
                                         });
                             } else {
@@ -137,7 +136,7 @@ declare var $: any;
                                 element.dayCount = this.commonFunctionService.getDays(cudate, element.surveyEndDate.split('T')[0]);
                                 element.remain = this.language.courses.days
                                 /* Progress Bar calculation */
-                                element.progress =  this.commonFunctionService.progressBarCalculation(element.surveyStartDate, element.surveyEndDate);
+                                element.progress = this.commonFunctionService.progressBarCalculation(element.surveyStartDate, element.surveyEndDate);
                             } else {
                                 element.dayCount = this.commonFunctionService.getDayDifference(element.surveyStartDate, element.surveyEndDate);
                                 element.remain = this.language.courses.days;
@@ -170,7 +169,7 @@ declare var $: any;
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalActiveSurvey / this.itemPerPage)) {
-                this.notificationService.showSuccess(this.language.error_message.invalid_pagenumber,null);
+                this.notificationService.showSuccess(this.language.error_message.invalid_pagenumber, null);
             } else {
                 this.currentPageNmuber = eve;
                 this.getSurveyData();
@@ -199,17 +198,17 @@ declare var $: any;
     surveyClose(id: number) {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('put', 'closeSurvey/survey/' + id, '')
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            if (respData['isError'] == false) {
-                this.notificationService.showSuccess(respData['result'],null);
-                var self = this;
-                setTimeout(function () { self.ngOnInit(); }, 2000);
-            }
-            if (respData['code'] == 400) {
-                this.notificationService.showError(respData['message'], null);
-            }
-        });
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                if (respData['isError'] == false) {
+                    this.notificationService.showSuccess(respData['result'], null);
+                    var self = this;
+                    setTimeout(function () { self.ngOnInit(); }, 2000);
+                }
+                if (respData['code'] == 400) {
+                    this.notificationService.showError(respData['message'], null);
+                }
+            });
     }
 
     ngOnDestroy(): void {
