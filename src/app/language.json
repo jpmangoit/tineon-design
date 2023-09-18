@@ -81,6 +81,9 @@
     },
     "courses": {
         "extern": "Extern"
+    },
+    "room":{
+        "room_overview" : "Rooms"
     }
 }
 

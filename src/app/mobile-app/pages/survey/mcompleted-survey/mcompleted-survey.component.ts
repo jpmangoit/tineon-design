@@ -119,13 +119,12 @@ export class McompletedSurveyComponent implements OnInit {
                             var year: number = Math.abs(Math.round((time / (60 * 60 * 24)) / 365.25));
                             var month: number = Math.abs(Math.round(time / (60 * 60 * 24 * 7 * 4)));
                             var days: number = Math.abs(Math.round(time / (3600 * 24)));
-
+                            
                             if (days > 31) {
                                 if (days > 1) {
-                                    element.dayCount = this.language.Survey.expired + month + this.language.Survey.months_ago;
-
+                                    element.dayCount = this.language.Survey.expired + " " + month + " " + this.language.Survey.months_ago;
                                 } else if (days == 1 || days == 0) {
-                                    element.dayCount = this.language.Survey.expired + month + this.language.Survey.month_ago;
+                                    element.dayCount = this.language.Survey.expired + " " + month + " " + this.language.Survey.months_ago;
                                 }
                             } else if (days < 31) {
                                 if (days > 1) {

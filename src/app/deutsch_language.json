@@ -889,7 +889,8 @@
         "currentRoom": "Aktueller Raum",
         "updateRoom": "Raum aktualisieren",
         "deleteRoom": "Raum löschen",
-        "search_result": "Suchergebnis"
+        "search_result": "Suchergebnis",
+        "room_overview" : "Räume - Übersicht"
     },
     "instructor": {
         "create_instructor": "Kursleiter erstellen",

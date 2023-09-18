@@ -649,7 +649,8 @@
         "search_by_name": "Поиск по имени",
         "angular_editor_text": "Введите текст здесь...",
         "search_atleast": "Поиск хотя бы одного фильтра",
-        "number_of_person_error":"Number of Persons must be greater than Zero"
+        "number_of_person_error":"Number of Persons must be greater than Zero",
+        "room_overview" : "Rooms"
     },
     "instructor":{
         "create_instructor": "Создать инструктора",

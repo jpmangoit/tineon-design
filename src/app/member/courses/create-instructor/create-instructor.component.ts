@@ -315,7 +315,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 					}
 				}
 			}
-		}
+		} 
 	}
 
 
