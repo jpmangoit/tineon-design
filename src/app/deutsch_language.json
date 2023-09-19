@@ -107,7 +107,9 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Aktuelles aus dem Verein"
+
     },
     "club_wall": {
         "title": "News",
@@ -248,7 +250,8 @@
         "RestUpdateNews": "Update-News löschen",
         "PublishNews": "News veröffentlichen",
         "DenyNews": "News ablehnen",
-        "salesPartnerNews": "Vertriebspartner News"
+        "salesPartnerNews": "Vertriebspartner News",
+        "author": "Verfasser"
     },
     "profile": {
         "profile_nav": {
@@ -666,7 +669,9 @@
         "anniversary": "Jubiläum",
         "years": "Jahre",
         "years_in_club": "Jahre im Verein",
-        "all_events_new": "Alle Ereignisse"
+        "all_events_new": "Alle wichtigen Ereignisse",
+        "anniversaries_birthday_new": "Geburstage und Jubiläen im Verein"
+
     },
     "confirmation_message": {
         "accept_group": "Möchten Sie diese Gruppe akzeptieren?",

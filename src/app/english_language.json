@@ -102,7 +102,8 @@
         "community_subtext_chat_mob": "Chats",
         "organizer_subtext_new_mob": "Aufgaben",
         "organizer_subtext_tasks_mob": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
     },
     "club_wall": {
         "title": "Club-Wall",
@@ -237,7 +238,9 @@
         "groupNewsDetails": "Group News Details",
         "currentNews": "Current News",
         "updatedNews": "Updated News",
-        "deleteNews": "Delete News"
+        "deleteNews": "Delete News",
+        "author": "Author"
+
     },
     "profile": {
         "profile_nav": {
@@ -651,7 +654,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message": {
         "accept_group": "Are you sure you want to accept this group?",

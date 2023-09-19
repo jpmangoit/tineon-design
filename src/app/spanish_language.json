@@ -106,7 +106,8 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
 
     },
     "club_wall": {
@@ -244,7 +245,9 @@
         "groupNewsDetails": "Detalles de noticias del grupo",
         "currentNews":"Actualidad",
         "updatedNews": "Noticias actualizadas",
-        "deleteNews":"Eliminar noticias"
+        "deleteNews":"Eliminar noticias",
+        "author": "Author"
+
     },
     "profile": {
         "profile_nav": {
@@ -662,7 +665,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message": {
         "accept_group": "¿Está seguro de que desea aceptar este grupo?",
