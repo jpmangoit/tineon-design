@@ -228,8 +228,8 @@
                                                 </div>
 
                                             </div>
-                                            <h5 data-bs-toggle="modal" data-bs-target="#view-course"
-                                                (click)="courseById(item.id)">{{item.name}}</h5>
+                                            <!-- <h5 data-bs-toggle="modal" data-bs-target="#view-course"
+                                                (click)="courseById(item.id)">{{item.name}}</h5> -->
                                             <div class="course-duration">
                                                 <!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none">
@@ -284,14 +284,23 @@
                                                 <div></div>
                                                 <!-- course left area footer -->
                                                 <!-- course right area footer -->
-                                                <div class="course-footer-right"
-                                                    *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
-
+                                                <!-- <div class="course-footer-right"
+                                                    *ngIf="checkAcceptOrNot(item.courseUsers,item?.CourseInternalInstructor); else notEqual">
                                                     <button type="button" class="sold-btn"
                                                         *ngIf="count < item.allowed_persons">{{language.courses.already_joined}}</button>
                                                     <button type="button" class="sold-btn"
                                                         *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                                </div> -->
+
+                                                <div class="course-footer-right"
+                                                    *ngIf="item?.CourseInternalInstructor && item.CourseInternalInstructor.length > 0; else notEqual">
+                                                    <button type="button" class="sold-btn"
+                                                        *ngIf="checkAcceptOrNot(item.courseUsers, item.CourseInternalInstructor) && count < item.allowed_persons">{{language.courses.already_joined}}</button>
+                                                    <button type="button" class="sold-btn"
+                                                        *ngIf="checkAcceptOrNot(item.courseUsers, item.CourseInternalInstructor) && count >= item.allowed_persons">{{language.courses.sold_out}}</button>
                                                 </div>
+
+
                                                 <ng-template #notEqual>
                                                     <div class="course-footer-right">
                                                         <div class="course-price">
@@ -484,13 +493,21 @@
                                                 <div></div>
                                                 <!-- course left area footer -->
                                                 <!-- course right area footer -->
-                                                <div class="course-footer-right"
-                                                    *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                                                <!-- <div class="course-footer-right"
+                                                    *ngIf="checkAcceptOrNot(item.courseUsers,item?.CourseInternalInstructor); else notEqual">
 
                                                     <button type="button" class="sold-btn"
                                                         *ngIf="count < item.allowed_persons">{{language.courses.already_joined}}</button>
                                                     <button type="button" class="sold-btn"
                                                         *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                                </div> -->
+
+                                                <div class="course-footer-right"
+                                                    *ngIf="item?.CourseInternalInstructor && item.CourseInternalInstructor.length > 0; else notEqual">
+                                                    <button type="button" class="sold-btn"
+                                                        *ngIf="checkAcceptOrNot(item.courseUsers, item.CourseInternalInstructor) && count < item.allowed_persons">{{language.courses.already_joined}}</button>
+                                                    <button type="button" class="sold-btn"
+                                                        *ngIf="checkAcceptOrNot(item.courseUsers, item.CourseInternalInstructor) && count >= item.allowed_persons">{{language.courses.sold_out}}</button>
                                                 </div>
                                                 <ng-template #notEqual>
                                                     <div class="course-footer-right">
@@ -567,8 +584,7 @@
                                                 <p class="news-content-text"><a>{{item.date_from |date: 'EEEE' :
                                                         locale}} - {{item.date_to | date: 'EEEE' : locale}}</a></p>
                                                 <p class="course-time">
-                                                    <i class="fa fa-calendar"></i> {{item.date_from | date: 'd. MMMM
-                                                    y'}} - {{item.date_to | date:'d. MMMM y'}} <br>
+                                                    <i class="fa fa-calendar"></i> {{item.date_from | date: 'd. MMMM y'}} - {{item.date_to | date:'d. MMMM y'}} <br>
                                                     <span class="course-time">
                                                         <i class="fa fa-clock-o"></i>
                                                         {{item.start_time.split(":").slice(0,2).join(":")}} -
@@ -577,7 +593,7 @@
                                                 </p>
                                             </div>
                                             <div class="join_status"
-                                                *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                                                *ngIf="checkAcceptOrNot(item.courseUsers,item?.CourseInternalInstructor); else notEqual">
                                                 <span>{{language.courses.already_joined}}</span>
                                             </div>
                                         </div>
@@ -840,7 +856,7 @@
                         </div>
 
                         <div class="jc_button inner_btn"
-                            *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                            *ngIf="checkAcceptOrNot(item.courseUsers,item?.CourseInternalInstructor); else notEqual">
                             <button type="button" class="sold-btn"
                                 *ngIf="count < item.allowed_persons">{{language.courses.already_joined}}</button>
                             <button type="button" class="sold-btn"

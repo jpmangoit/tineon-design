@@ -216,7 +216,6 @@ export class CourseComponent implements OnInit, OnDestroy {
                     if (respData['isError'] == false) {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-
                         if (respData && respData['result']) {
                             respData.result.forEach(element => {
                                 element.recurring_dates = JSON.parse(element.recurring_dates);
@@ -517,12 +516,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
+
                         this.currentCourseList.forEach(element => {
-                            // if(element?.CourseExternalInstructor && element?.CourseExternalInstructor['length'] > 0){
-                            //     if(element.CourseExternalInstructor[0]?.externalIns?.instructor_image){
-                            //         element.CourseExternalInstructor[0].externalIns.instructor_image[0].instructor_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.CourseExternalInstructor[0]?.externalIns?.instructor_image[0].instructor_image .substring(20))) ;
-                            //     }
-                            // }
                             let self = this;
                             if (self.allUsers?.length > 0) {
                                 self.allUsers.forEach(el => {
@@ -1138,6 +1133,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   * @return {boolean} depends on condition it returns return the function value true or false .
   */
     checkAcceptOrNot(arrayOfObject: any, internalInstructor: any) {
+
         if (internalInstructor && internalInstructor.length == 0) {
             if (this.userRole != 'admin') {
                 return arrayOfObject.some((obj: any) => obj.user_id === this.userDetails.userId && obj.approved_status === 1);
@@ -1151,6 +1147,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                     return true;
                 } else { return internalInstructor.some((obj: any) => obj.user_id === this.userDetails.userId); }
             } else if (this.userRole == 'admin') {
+
                 if (internalInstructor.some((obj: any) => obj.user_id != this.userDetails.userId &&
                     arrayOfObject.some(obj => obj.user_id === this.userDetails.userId && obj.approved_status === 1))) {
                     return true;
@@ -1246,6 +1243,7 @@ export class CourseComponent implements OnInit, OnDestroy {
      * @return {object} returns {Instructor Search Filter Data} The new Course object.
      */
     getInstructor() {
+
         if (this.getInstructorForm.value.instructor_type.length > 0 || this.getInstructorForm.value.room_id.length > 0) {
             if (this.getInstructorForm.value.instructor_type.length > 0 && this.getInstructorForm.value.instructor_type[0].item_id == 1) {
                 var internal = [];
@@ -1525,8 +1523,6 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                                         }
                                     }
-
-
                                 }
                                 const sortByDate = (arr: any) => {
                                     const sorter = (a: any, b: any) => {
@@ -1535,6 +1531,67 @@ export class CourseComponent implements OnInit, OnDestroy {
                                     arr.sort(sorter);
                                 };
                                 sortByDate(this.upcomingCourseList);
+                                this.currentCourseList.forEach(element => {
+                                    console.log(element);
+
+                                    let self = this;
+                                    if (self.allUsers?.length > 0) {
+                                        self.allUsers.forEach(el => {
+                                            if (element?.CourseInternalInstructor != undefined) {
+                                                if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                    if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                        // element.CourseInternalInstructor[0].internalUsers.add_img = el;
+                                                        if (el.member_id != null) {
+                                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
+                                                                .subscribe(
+                                                                    (resppData: any) => {
+                                                                        this.thumb = resppData;
+                                                                        element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
+                                                                    },
+                                                                    (error: any) => {
+                                                                        element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                                    });
+                                                        } else {
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        });
+                                    }
+                                });
+                                console.log(this.currentCourseList);
+
+                                this.upcomingCourseList.forEach(element => {
+                                    if (self.allUsers?.length > 0) {
+                                        self.allUsers.forEach(el => {
+                                            if (element?.CourseInternalInstructor != undefined) {
+                                                if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                    if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
+                                                        // element.CourseInternalInstructor[0].internalUsers.add_img = el;
+                                                        if (el.member_id != null) {
+                                                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + el.member_id, null)
+                                                                .subscribe(
+                                                                    (resppData: any) => {
+                                                                        this.thumb = resppData;
+                                                                        element.CourseInternalInstructor[0].internalUsers.add_img = this.thumb;
+                                                                    },
+                                                                    (error: any) => {
+                                                                        element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                                    });
+                                                        } else {
+                                                            element.CourseInternalInstructor[0].internalUsers.add_img = null;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        });
+                                    }
+                                });
+                                console.log(this.upcomingCourseList);
+
                                 this.authService.setLoader(false);
                             } else {
                                 this.notificationService.showError(this.language.create_faq.search_not_found, null);
