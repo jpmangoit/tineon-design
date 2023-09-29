@@ -168,7 +168,9 @@
     "club_news": {
         "Edit": "Редактировать",
         "Delete": "Удалить",
-        "Back": "Назад"
+        "Back": "Назад",
+        "author": "Author"
+
     },
     "profile": {
         "profile_nav": {
@@ -474,7 +476,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message": {
         "accept_group": "Вы уверены, что хотите принять эту группу?",

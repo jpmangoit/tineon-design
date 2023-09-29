@@ -9,11 +9,13 @@
                 <!-- task-item list -->
                 <ng-container *ngFor="let task of toDoTask; let i = index">
                     <div class="task-list-item" *ngIf="toDoTask && toDoTask.length > 0">
-                        <div class="task-list-image"  *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
+                        <div class="task-list-image"
+                            *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
                             <!-- <img onContextMenu="return false;"
                                 [src]="task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' ? task['task_image'][0]?.['task_image'] : '../../../../assets/img/no_image.png'"
                                 alt="" loading="lazy"> -->
-                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt="" loading="lazy">
+                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt=""
+                                loading="lazy">
                         </div>
                         <div class="task-category">
                             <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
@@ -30,24 +32,26 @@
                                 </mat-menu>
                             </div>
                         </div>
-                        <div class="tag"> 
-                            <span class="group-badge"  *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                        <div class="tag">
+                            <span class="group-badge"
+                                *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
-
-                            <p [innerHTML]="task.description
-                            "></p>
+                            <p
+                            [innerHTML]="task?.description?.length> 0 ?(task?.description | slice : 0 : 90) + '...' : task?.description">
+                            </p>
                             <div class="progress-task">
                                 <div class="progress-content">
                                     <span>{{language.organizer_task.progress}} :
                                         {{task.approvedCount}}/{{task.subtasks.length}}</span>
-                                    <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
+                                    <!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
                                             viewBox="0 0 13 14" fill="none">
                                             <path
                                                 d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
                                                 fill="#95A0C6" />
-                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span> -->
                                 </div>
                                 <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
                             </div>
@@ -68,11 +72,13 @@
                 <!-- task-item list -->
                 <ng-container *ngFor="let task of inProgress; let i = index">
                     <div class="task-list-item">
-                        <div class="task-list-image"  *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
+                        <div class="task-list-image"
+                            *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
                             <!-- <img onContextMenu="return false;"
                                 [src]="task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' ? task['task_image'][0]?.['task_image'] : '../../../../assets/img/no_image.png'"
                                 alt="" loading="lazy"> -->
-                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt="" loading="lazy">
+                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt=""
+                                loading="lazy">
                         </div>
                         <div class="task-category">
                             <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
@@ -91,23 +97,25 @@
                             </div>
                         </div>
                         <div class="tag">
-                            <span class="group-badge" *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <span class="group-badge"
+                                *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
-
-                            <p [innerHTML]="task.description
-                            "></p>
+                            <p
+                            [innerHTML]="task?.description?.length> 0 ?(task?.description | slice : 0 : 90) + '...' : task?.description">
+                            </p>
                             <div class="progress-task">
                                 <div class="progress-content">
                                     <span>{{language.organizer_task.progress}} :
                                         {{task.approvedCount}}/{{task.subtasks.length}}</span>
-                                    <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
+                                    <!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
                                             viewBox="0 0 13 14" fill="none">
                                             <path
                                                 d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
                                                 fill="#95A0C6" />
-                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span> -->
                                 </div>
                                 <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
                             </div>
@@ -129,11 +137,13 @@
                 <!-- task-item list -->
                 <ng-container *ngFor="let task of completed; let i = index">
                     <div class="task-list-item" *ngIf="completed && completed.length > 0">
-                        <div class="task-list-image"  *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
+                        <div class="task-list-image"
+                            *ngIf="task && task?.['task_image'] && task?.['task_image'][0]?.['task_image']">
                             <!-- <img onContextMenu="return false;"
                                 [src]="task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' ? task['task_image'][0]?.['task_image'] : '../../../../assets/img/no_image.png'"
                                 alt="" loading="lazy"> -->
-                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt="" loading="lazy">
+                            <img onContextMenu="return false;" [src]="task?.['task_image'][0]?.['task_image']" alt=""
+                                loading="lazy">
                         </div>
                         <div class="task-category">
                             <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
@@ -150,24 +160,27 @@
                                 </mat-menu>
                             </div>
                         </div>
-                        <div class="tag"> 
-                            <span class="group-badge" *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
-                            <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                        <div class="tag">
+                            <span class="group-badge"
+                                *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span class="individual-badge"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         </div>
                         <div class="task-list-content">
+                            <p
+                            [innerHTML]="task?.description?.length> 0 ?(task?.description | slice : 0 : 90) + '...' : task?.description">
+                            </p>
 
-                            <p [innerHTML]="task.description
-                    "></p>
                             <div class="progress-task">
                                 <div class="progress-content">
                                     <span>{{language.organizer_task.progress}} :
                                         {{task.approvedCount}}/{{task.subtasks.length}}</span>
-                                    <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
+                                    <!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
                                             viewBox="0 0 13 14" fill="none">
                                             <path
                                                 d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
                                                 fill="#95A0C6" />
-                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                                        </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span> -->
                                 </div>
                                 <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
                             </div>

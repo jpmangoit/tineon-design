@@ -660,7 +660,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             }
         }
 
-
         if ((this.eventForm.valid) && (!this.errorTime.isError) && (!this.errorDate.isError) && (!this.errorImage.isError) && (!this.matchDateError.isError)
             && (!this.errorDateTask.isError) && (!this.errorMatch.isError) && (!this.customReccDateError.isError)) {
             this.authService.setLoader(true);
@@ -1856,19 +1855,22 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                 if (this.eventForm.controls.date_from.value <= date.target.value && this.eventForm.controls.date_to.value >= date.target.value) {
                     this.errorDateTask = { isError: false, errorMessage: '' };
                 } else {
-                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
+                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.eventTaskDate };
                 }
             } else {
                 if (this.eventForm.controls.date_from.value >= date.target.value) {
                     this.errorDateTask = { isError: false, errorMessage: '' };
                 } else {
-                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
+                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.eventTaskDate };
                 }
             }
         } else if (this.eventForm?.value?.eventDate?.length > 1) {
             this.eventForm?.value?.eventDate?.forEach((element: any, index: any) => {
+                console.log(element);
+
                 if (index == 0) {
                     date_from = element.date_from;
+                    console.log(element);
                 }
                 if (this.eventForm?.value?.eventDate.length - 1 === index) {
                     date_to = element.date_from
@@ -1876,7 +1878,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                 if (date_from <= date.target.value && date_to >= date.target.value) {
                     this.errorDateTask = { isError: false, errorMessage: '' };
                 } else {
-                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
+                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.eventTaskDate };
                 }
             });
         }
