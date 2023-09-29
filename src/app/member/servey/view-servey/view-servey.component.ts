@@ -22,7 +22,7 @@ declare var $: any;
 export class ViewServeyComponent implements OnInit, OnDestroy {
     language: any;
     userDetails: LoginDetails;
-    userRole: string;
+    userRole: string; 
     surveyId: string;
     surveyData: Survey;
     voteCount: number;
