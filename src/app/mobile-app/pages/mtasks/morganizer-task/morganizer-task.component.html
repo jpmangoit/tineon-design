@@ -57,7 +57,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of toDoTask; let i = index">
-                <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0">
+                <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -66,7 +66,7 @@
                             ? task['task_image'][0]?.['task_image']
                             : '../../../../assets/img/no_image.png'"
                             alt="" loading="lazy">
-                    </div> -->
+                        </div> -->
                         <div>
                             <Span class="survey-dates-inner">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -98,18 +98,16 @@
                     </div>
                     <div class="task-title">
                         <!-- <h5>{{task.title}}</h5> -->
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}}:
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}}:
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
-
                             <span>{{language.Survey.remaining_time}}: {{task.dayCount}} {{task.remain}}</span>
-
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -140,7 +138,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of inProgress; let i = index">
-                <div class="task-item" *ngIf="inProgress && inProgress.length > 0">
+                <div class="task-item" *ngIf="inProgress && inProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                     <img onContextMenu="return false;"
@@ -182,17 +180,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 >{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
-                           
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -222,7 +220,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of completed; let i = index">
-                <div class="task-item" *ngIf="completed && completed.length > 0">
+                <div class="task-item" *ngIf="completed && completed.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -243,7 +241,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -261,17 +260,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 >{{task.title}}</h5>
                         <!-- <p
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
                     <div class="progress-task  survey-timeline">
                         <div class="progress-content timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline"> <mat-progress-bar mode="determinate"
                                 [value]="task.progressVal"></mat-progress-bar></div>
@@ -305,7 +304,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perToDoTask; let i = index">
-                <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0">
+                <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -345,17 +344,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
-                           
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -386,7 +385,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perInProgress; let i = index">
-                <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0">
+                <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0"  routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -407,7 +406,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -426,17 +426,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}}: {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -467,7 +467,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perCompleted; let i = index">
-                <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0">
+                <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -488,7 +488,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -506,7 +507,7 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
@@ -528,10 +529,10 @@
 
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                           
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -566,7 +567,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupToDoTask; let i = index">
-                <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0">
+                <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -587,7 +588,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -606,17 +608,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                           
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -650,7 +652,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupInProgress; let i = index">
-                <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0">
+                <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -671,7 +673,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -690,17 +693,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 >{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -732,7 +735,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupCompleted; let i = index">
-                <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0">
+                <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -753,7 +756,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -771,7 +775,7 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
@@ -792,10 +796,10 @@
 
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -831,7 +835,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdToDoTask; let i = index">
-                <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0">
+                <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -852,7 +856,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -871,17 +876,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -912,7 +917,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdInProgress; let i = index">
-                <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0">
+                <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -933,7 +938,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -952,17 +958,17 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                         [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                     </p> -->
                     </div>
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                            
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
@@ -993,7 +999,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdCompleted; let i = index">
-                <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0">
+                <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}"> 
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -1014,7 +1020,8 @@
                             </Span>
                         </div>
                         <div class="task-category">
-                            <span class="group-task-category" *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
                             <span class="individual-task-category"
                                 *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                             <!-- <div class="event-action">
@@ -1032,7 +1039,7 @@
                         </div>
                     </div>
                     <div class="task-title">
-                        <h5 routerLink="/morganizer-task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5>{{task.title}}</h5>
                         <!-- <p
                             [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
                         </p> -->
@@ -1053,10 +1060,10 @@
 
                     <div class="survey-timeline">
                         <div class="timeline-label">
-                            <span>{{language.organizer_task.progress}} :
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
                                 {{task.approvedCount}}/{{task.subtasks.length}}</span>
                             <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
-                           
+
                         </div>
                         <div class="timeline">
                             <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
