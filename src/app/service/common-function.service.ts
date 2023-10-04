@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConfirmDialogService } from '../confirm-dialog/confirm-dialog.service';
+import { ConfirmDialogService } from '../shared/confirm-dialog/confirm-dialog.service';
 import { LoginDetails } from '../models/login-details.model';
 import { Room } from '../models/room.model';
 import { AuthServiceService } from './auth-service.service';

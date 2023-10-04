@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import  *  as deutschLanguage from "../deutsch_language.json";
-import  *  as englishLanguage from "../english_language.json";
-import  *  as turkischLanguage from "../turkisch_language.json";
-import  *  as italianLanguage from "../italian_language.json";
-import  *  as spanishLanguage from "../spanish_language.json";
-import  *  as frenchLanguage from "../french_language.json";
-
-import * as Language from "../language.json";
+import *  as deutschLanguage from "../../assets/i18n/deutsch_language.json";
+import *  as englishLanguage from "../../assets/i18n/english_language.json";
+import *  as turkischLanguage from "../../assets/i18n/turkisch_language.json";
+import *  as italianLanguage from "../../assets/i18n/italian_language.json";
+import *  as spanishLanguage from "../../assets/i18n/spanish_language.json";
+import *  as frenchLanguage from "../../assets/i18n/french_language.json";
+import * as Language from "../../assets/i18n/language.json";
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class LanguageService{
+export class LanguageService {
     constructor() { }
     deutschlanguage: any = (deutschLanguage as any).default;
     englishlanguage: any = (englishLanguage as any).default;
@@ -24,23 +23,23 @@ export class LanguageService{
     language: any = (Language as any).default;
 
     getLanguaageFile() {
-        let language:string = localStorage.getItem('language');
-        if(language == "en"){
+        let language: string = localStorage.getItem('language');
+        if (language == "en") {
             return this.englishlanguage;
-        }else if(language == "tr"){
+        } else if (language == "tr") {
             return this.turkischLanguage;
-        }else if(language == "it"){
+        } else if (language == "it") {
             return this.italianLanguage;
-        }else if(language == "sp"){
+        } else if (language == "sp") {
             return this.spanishLanguage;
-        }else if(language == "fr"){
+        } else if (language == "fr") {
             return this.frenchLanguage;
-        }else{
+        } else {
             return this.deutschlanguage;
         }
     }
 
-    getBanner(){
+    getBanner() {
         return this.language
     }
 }

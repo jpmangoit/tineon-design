@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
         this.scrWidth = window.innerWidth;
         if (window.innerWidth < 768) {
             this.applicationStateService.isMobileResolution = true;
-            this.routerModule.changeRoute();
+            // this.routerModule.changeRoute();
             this.router.navigate([this.router.url]);
         }
     }
