@@ -219,6 +219,10 @@
         <!-- <div class="loader_image"></div> -->
         <ng-container>
             <!-- <div class="club_widget" class="col-md-9" *ngIf="showCalendar == true"> -->
+            <div class="club_widget" class="col-md-9" *ngIf="allowAdvertisment == 0 && bannerData?.length == 0" >
+                <app-club-news [bannerData]="bannerData"></app-club-news>
+                <!-- <app-dashboard-event *ngIf="eventData && courseData" [eventData]="eventData" [courseData]="courseData" ></app-dashboard-event> -->
+            </div>
             <div class="club_widget" class="col-md-9" *ngIf="allowAdvertisment == 0 && bannerData?.length > 0" >
                 <app-club-news [bannerData]="bannerData"></app-club-news>
                 <!-- <app-dashboard-event *ngIf="eventData && courseData" [eventData]="eventData" [courseData]="courseData" ></app-dashboard-event> -->

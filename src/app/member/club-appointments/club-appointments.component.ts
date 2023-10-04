@@ -174,10 +174,11 @@ export class ClubAppointmentsComponent implements OnInit {
                 var element: any = null;
                 var url: string[] = [];
                 for (var key in this.eventData) {
-
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-                        element.eventUsers.forEach((el: any) => {
+                        console.log(element);
+
+                        element?.eventUsers?.forEach((el: any) => {
                             if (el.user_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[el.user_id].member_id, null)
                                     .subscribe(
@@ -191,7 +192,6 @@ export class ClubAppointmentsComponent implements OnInit {
                             } else {
                                 el.userImage = null;
                             }
-
                         });
 
                         let self = this;

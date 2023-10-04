@@ -117,6 +117,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         let userRole: string = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
         this.allowAdvertisment = localStorage.getItem('allowAdvertis')
+        console.log(this.allowAdvertisment);
+
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
@@ -203,6 +205,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     if (respData['isError'] == false) {
                         this.bannerData = respData['result']['banner'];
+                        console.log(this.bannerData);
+
                         if (this.bannerData?.length > 0) {
                             this.bannerData.forEach((element: any) => {
                                 element['category'] = JSON.parse(element.category);
