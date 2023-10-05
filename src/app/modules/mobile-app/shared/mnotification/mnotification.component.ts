@@ -908,7 +908,7 @@ export class MnotificationComponent implements OnInit {
                     (respData: any) => {
                         self.ngOnInit();
                         self.toggleField();
-                        self._router.navigate(['/survey-detail/' + surveyId])
+                        self._router.navigate(['/mobile/survey-detail/' + surveyId])
                     }
                 )
         }, function () {
@@ -929,7 +929,7 @@ export class MnotificationComponent implements OnInit {
                     (respData: any) => {
                         self.ngOnInit();
                         self.toggleField();
-                        self._router.navigate(['/survey-detail/' + surveyId]);
+                        self._router.navigate(['/mobile/survey-detail/' + surveyId]);
                     }
                 )
         }, function () {
@@ -963,7 +963,7 @@ export class MnotificationComponent implements OnInit {
                         self.alreadyAcceptMsg = respData['message'];
 
                     } else if (respData['isError'] == false) {
-                        self._router.navigate(['/survey-detail/' + surveyId])
+                        self._router.navigate(['/mobile/survey-detail/' + surveyId])
                         self.ngOnInit();
                         self.toggleField();
 

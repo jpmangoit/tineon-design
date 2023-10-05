@@ -1319,7 +1319,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                             this.notificationService.showSuccess(respData['result']['message'], null);
                             var self = this;
                             setTimeout(function () {
-                                self._router.navigate(['event-detail/' + respData['result']['event']['id']]);
+                                self._router.navigate(['/web/event-detail/' + respData['result']['event']['id']]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

@@ -168,7 +168,7 @@ export class MprofileComponent implements OnInit {
     }
 
     inEdit() {
-        this._router.navigate(['/edit-profile']);
+        this._router.navigate(['/mobile/edit-profile']);
     }
 
     print() {

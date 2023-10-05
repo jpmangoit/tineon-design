@@ -174,7 +174,7 @@ export class MprofileEditComponent implements OnInit {
     * @author  MangoIt Solutions (R)
     */
     setValue() {
-        
+
         if(this.userData.changeRequest.member.status == 'pending'){
             this.registrationForm = this.formBuilder.group({
                 street: [this.userData.changeRequest.member.dataChanges.street, [Validators.required, this.noWhitespace]],
@@ -366,7 +366,7 @@ export class MprofileEditComponent implements OnInit {
                     this.themes.getProfilePicture(this.memberPhotosuccess);
                     this.notificationService.showSuccess(this.language.profile.upload_profile,null);
                     setTimeout(() => {
-                        self._router.navigate(['/profile']);
+                        self._router.navigate(['/mobile/profile']);
                     }, 3000);
                 }else if (respData['code'] == 400) {
                     self.authService.setLoader(false)
@@ -377,7 +377,7 @@ export class MprofileEditComponent implements OnInit {
     }
 
     cancel() {
-        this._router.navigate(['/profile']);
+        this._router.navigate(['/mobile/profile']);
     }
 
     /**
@@ -436,7 +436,7 @@ export class MprofileEditComponent implements OnInit {
             this.registrationForm.reset();
             let self = this;
             setTimeout(function () {
-                self._router.navigate(['/profile']);
+                self._router.navigate(['/mobile/profile']);
             }, 2000);
             return true;
         }

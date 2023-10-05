@@ -299,7 +299,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             this.registrationForm.reset();
             let self = this;
             setTimeout(function () {
-                self._router.navigate(['/profile']);
+                self._router.navigate(['/web/profile']);
             }, 2000);
             return true;
         }
@@ -328,7 +328,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
                     this.themes.getProfilePicture(this.memberPhotosuccess);
                     this.notificationService.showSuccess(this.language.profile.upload_profile,null);
                     setTimeout(() => {
-                        self._router.navigate(['/profile']);
+                        self._router.navigate(['/web/profile']);
                     }, 3000);
                 }else if (respData['code'] == 400) {
                     this.notificationService.showError(this.language.community_messages.code_error,null);

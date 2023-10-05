@@ -918,7 +918,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(['/survey-detail/' + surveyId])
+                        self._router.navigate(['/web/survey-detail/' + surveyId])
                     }
                 )
         }, function () {
@@ -938,7 +938,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(['/survey-detail/' + surveyId]);
+                        self._router.navigate(['/web/survey-detail/' + surveyId]);
                     }
                 )
         }, function () {
@@ -968,7 +968,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                         self.alreadyAcceptMsg = respData['message'];
 
                     } else if (respData['isError'] == false) {
-                        self._router.navigate(['/survey-detail/' + surveyId])
+                        self._router.navigate(['/web/survey-detail/' + surveyId])
                         self.ngOnInit();
                     }
                 }
