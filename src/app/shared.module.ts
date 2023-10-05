@@ -4,7 +4,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ProgressBarModule } from 'angular-progress-bar';
 import { NgChartsModule } from 'ng2-charts';
@@ -16,15 +15,23 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastContainerModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+
+FullCalendarModule.registerPlugins([
+    interactionPlugin,
+    dayGridPlugin,
+    timeGridPlugin,
+]);
 
 @NgModule({
     declarations: [],
     exports: [
         CommonModule,
-        HttpClientModule,
-        FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
+        FormsModule,
         AngularEditorModule,
         FullCalendarModule,
         NgxPaginationModule,
