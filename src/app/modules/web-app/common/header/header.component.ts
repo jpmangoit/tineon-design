@@ -175,7 +175,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (this.globalSearchForm.invalid) {
             return;
         } else {
-            this._router.navigate(['search/' + this.globalSearchForm.value.searchOption]);
+            this._router.navigate(['/web/search/' + this.globalSearchForm.value.searchOption]);
             this.globalSearchForm.reset();
         }
     }
@@ -214,7 +214,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                             self.alreadyAcceptMsg = respData['result'];
                             self.tostrNotificationService.showSuccess(self.alreadyAcceptMsg, null);
                             self.ngOnInit();
-                            self._router.navigate(["/course-detail/" + CourseId]);
+                            self._router.navigate(["/web/course-detail/" + CourseId]);
                         }
                     }
                 )
@@ -245,7 +245,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                             self.alreadyAcceptMsg = respData['result'];
                             // $('#notification-message').modal('show');
                             self.ngOnInit();
-                            self._router.navigate(["/course-detail/" + courseId]);
+                            self._router.navigate(["/web/course-detail/" + courseId]);
                         }
                     }
                 )
@@ -273,7 +273,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/course-detail/" + courseId]);
+                        self._router.navigate(["/web/course-detail/" + courseId]);
                     }
                 )
         }, function () {
@@ -325,7 +325,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/web/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -344,7 +344,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/web/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -365,7 +365,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/web/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -386,7 +386,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/web/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -432,7 +432,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedgroupByUser/' + groupId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/web/group-detail/" + groupId]);
                     self.ngOnInit();
                 }
             )
@@ -443,7 +443,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'getreadGroupInvitaion/' + groupId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/web/group-detail/" + groupId]);
                     self.ngOnInit();
                 }
             )
@@ -454,7 +454,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedgroup-notification/' + groupId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/web/group-detail/" + groupId]);
                     self.ngOnInit();
                 }
             )
@@ -467,7 +467,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/web/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -481,7 +481,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/clubnews-detail/" + newsId]);
+                        self._router.navigate(["/web/clubnews-detail/" + newsId]);
                     }
                 )
         }, function () {
@@ -495,7 +495,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/clubnews-detail/" + newsId]);
+                        self._router.navigate(["/web/clubnews-detail/" + newsId]);
                     }
                 )
         }, function () {
@@ -527,7 +527,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/event-detail/" + eventId]);
+                        self._router.navigate(["/web/event-detail/" + eventId]);
                     }
                 )
         }, function () {
@@ -544,7 +544,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
                         if (respData['isError'] == false) {
                             self.ngOnInit();
-                            self._router.navigate(["/event-detail/" + eventId]);
+                            self._router.navigate(["/web/event-detail/" + eventId]);
                         } else if (respData['code'] == 400) {
                             self.tostrNotificationService.showError(respData['message'], null);
                         } else {
@@ -581,7 +581,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/event-detail/" + eventId]);
+                        self._router.navigate(["/web/event-detail/" + eventId]);
                     }
                 )
         }, function () {
@@ -609,7 +609,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/task-detail/" + taskId]);
+                        self._router.navigate(["/web/task-detail/" + taskId]);
                     }
                 )
         }, function () {
@@ -641,7 +641,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/task-detail/" + taskId]);
+                        self._router.navigate(["/web/task-detail/" + taskId]);
                     }
                 )
         }, function () {
@@ -653,7 +653,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'readtasknotification/' + taskId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/web/task-detail/" + taskId]);
                     self.ngOnInit();
                 }
             )
@@ -665,7 +665,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .subscribe(
                 (respData: any) => {
                     self.ngOnInit();
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/web/task-detail/" + taskId]);
                 }
             )
     }
@@ -675,7 +675,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedtaskByUser/' + taskId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/web/task-detail/" + taskId]);
                     self.ngOnInit();
                 }
             )
@@ -686,7 +686,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'readCompletedTasksNotification/' + taskId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/web/task-detail/" + taskId]);
                     self.ngOnInit();
                 }
             )
@@ -725,7 +725,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/room-detail/" + roomId]);
+                        self._router.navigate(["/web/room-detail/" + roomId]);
                     }
                 )
         }, function () {
@@ -739,7 +739,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/room-detail/" + roomId]);
+                        self._router.navigate(["/web/room-detail/" + roomId]);
                     }
                 )
         }, function () {
@@ -773,7 +773,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/instructor-detail/" + instructor_id]);
+                        self._router.navigate(["/web/instructor-detail/" + instructor_id]);
                     }
                 )
         }, function () {
@@ -788,7 +788,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/instructor-detail/" + instructor_id]);
+                        self._router.navigate(["/web/instructor-detail/" + instructor_id]);
                     }
                 )
         }, function () {
@@ -820,7 +820,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/vereins-faq-detail/" + faqId]);
+                        self._router.navigate(["/web/vereins-faq-detail/" + faqId]);
                     }
                 )
         }, function () {
@@ -834,7 +834,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/vereins-faq-detail/" + faqId]);
+                        self._router.navigate(["/web/vereins-faq-detail/" + faqId]);
                     }
                 )
         }, function () {
@@ -853,7 +853,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/vereins-faq-detail/" + faqsId]);
+                        self._router.navigate(["/web/vereins-faq-detail/" + faqsId]);
                     }
                 )
         }, function () {
@@ -866,7 +866,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .subscribe(
                 (respData: any) => {
                     self.ngOnInit();
-                    this._router.navigate(["/vereins-faq"]);
+                    this._router.navigate(["/web/vereins-faq"]);
                 }
             );
     }
@@ -878,7 +878,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self._router.navigate(["/vereins-faq-detail/" + faqId]);
+                        self._router.navigate(["/web/vereins-faq-detail/" + faqId]);
                     }
                 )
         }, function () {
@@ -951,7 +951,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + self.userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self._router.navigate(["/survey-detail/" + survey_id]);
+                        self._router.navigate(["/web/survey-detail/" + survey_id]);
                         self.ngOnInit();
                     }
                 )
@@ -988,7 +988,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedpublishednews/news_id/' + newsId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/clubnews-detail/" + newsId]);
+                    self._router.navigate(["/web/clubnews-detail/" + newsId]);
                     self.ngOnInit();
                 }
             )
@@ -999,7 +999,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatednews/' + newsId + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/clubnews-detail/" + newsId]);
+                    self._router.navigate(["/web/clubnews-detail/" + newsId]);
                     self.ngOnInit();
                 }
             )
@@ -1026,7 +1026,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedtask-notification/' + task_id + '/organizer/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + task_id]);
+                    self._router.navigate(["/web/task-detail/" + task_id]);
                     self.ngOnInit();
                 }
             )
@@ -1037,7 +1037,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedtask/' + task_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + task_id]);
+                    self._router.navigate(["/web/task-detail/" + task_id]);
                     self.ngOnInit();
                 }
             )
@@ -1055,7 +1055,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let self = this;
         self.authService.memberSendRequest('get', 'read-approvedinstructor-notification/' + instructor_id + '/author/' + self.userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/instructor-detail/" + instructor_id]);
+                self._router.navigate(["/web/instructor-detail/" + instructor_id]);
                 self.ngOnInit();
             })
     }
@@ -1064,7 +1064,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let self = this;
         self.authService.memberSendRequest('get', 'read-notification-updatedinstructor/' + instructor_id + '/user/' + self.userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/instructor-detail/" + instructor_id]);
+                self._router.navigate(["/web/instructor-detail/" + instructor_id]);
                 self.ngOnInit();
             })
     }
@@ -1073,7 +1073,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let self = this;
         self.authService.memberSendRequest('get', 'read-approvedsurvey-notification/survey_id/' + survey_id + '/author/' + self.userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/survey-detail/" + survey_id]);
+                self._router.navigate(["/web/survey-detail/" + survey_id]);
             })
     }
 
@@ -1081,7 +1081,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let self = this;
         self.authService.memberSendRequest('get', 'read-notification-updatedsurvey/' + survey_id + '/user/' + self.userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/survey-detail/" + survey_id]);
+                self._router.navigate(["/web/survey-detail/" + survey_id]);
             })
     }
 
@@ -1100,7 +1100,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedroom-notification/' + room_id + '/author/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/room-detail/" + room_id]);
+                    self._router.navigate(["/web/room-detail/" + room_id]);
                     self.ngOnInit();
                 }
             )
@@ -1111,7 +1111,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedroom/' + room_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/room-detail/" + room_id]);
+                    self._router.navigate(["/web/room-detail/" + room_id]);
                     self.ngOnInit();
                 }
             )
@@ -1138,7 +1138,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedevent-notification/' + event_id + '/author/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/web/event-detail/" + event_id]);
                     self.ngOnInit();
                 }
             )
@@ -1150,7 +1150,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedevent/' + event_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/web/event-detail/" + event_id]);
                     self.ngOnInit();
                 }
             )
@@ -1161,7 +1161,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedeventByUser/' + event_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/web/event-detail/" + event_id]);
                     self.ngOnInit();
                 }
             )
@@ -1179,7 +1179,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-approvedcourse-notification/' + course_id + '/author/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1190,7 +1190,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedcourses/' + course_id + '/author/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1201,7 +1201,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-notification-updatedCourseByUser/' + course_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1212,7 +1212,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-courseinternalinstructor-notification/internal-instructor/' + self.userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1223,7 +1223,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'readupdate-courseinternalinstructor-notification/internal-instructor/' + self.userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1234,7 +1234,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         self.authService.memberSendRequest('get', 'read-course-join-message/' + course_id + '/user/' + self.userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/web/course-detail/" + course_id]);
                     self.ngOnInit();
                 }
             )
@@ -1255,7 +1255,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.documentForm.get('add_calendar').updateValueAndValidity();
         this.insertDoc(file);
         setTimeout(() => {
-            this._router.navigate(["/dashboard"]);
+            this._router.navigate(["/web/dashboard"]);
             this.authService.setLoader(false);
         }, 3000);
     }
@@ -1488,7 +1488,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     goToProfile() {
         this.showDropdown();
-        this._router.navigate(["/profile"]);
+        this._router.navigate(["/web/profile"]);
     }
 
     ngOnDestroy(): void {

@@ -125,7 +125,7 @@ export class UploadCalendarComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'],null);
                             setTimeout(() => {
-                                this.router.navigate(['/dashboard']);
+                                this.router.navigate(['/web/dashboard']);
                             }, 2000);
                         }else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

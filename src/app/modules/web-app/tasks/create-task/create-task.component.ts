@@ -532,10 +532,10 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
                         setTimeout(() => {
                             if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                                 //mobile
-                                var redirectUrl: string = 'morganizer-task-detail/' + respData['result']['task']['id'];
+                                var redirectUrl: string = 'web/morganizer-task-detail/' + respData['result']['task']['id'];
                             } else {
                                 //desktop
-                                var redirectUrl: string = 'task-detail/' + respData['result']['task']['id'];
+                                var redirectUrl: string = 'web/task-detail/' + respData['result']['task']['id'];
                             }
                             this.router.navigate([redirectUrl]);
                         }, 2000);

@@ -699,7 +699,7 @@ export class MdashboardEventComponent implements OnInit {
 
     viewDetails() {
         $('#showPopup').trigger('click');
-        this.router.navigate(['/event-detail/' + this.newClickedEvent.extendedProps.event_id]);
+        this.router.navigate(['/mobile/event-detail/' + this.newClickedEvent.extendedProps.event_id]);
     }
 
     showEvents(item: any) {

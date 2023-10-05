@@ -513,7 +513,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData['result']['message'], null);
-                        const url: string[] = ["/organizer"];
+                        const url: string[] = ["/web/organizer"];
                         self.router.navigate(url);
                     }
                 )
@@ -560,7 +560,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.router.navigate(['/organizer']);
+        this.router.navigate(['/web/organizer']);
     }
 
     /**

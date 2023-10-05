@@ -89,7 +89,7 @@ export class EventsCalendarComponent implements OnInit {
             this.setTheme = resp;
         });
         this.currentUrl = this.router.url;
-        if(this.currentUrl == '/clubwall/club-events'){
+        if(this.currentUrl == '/web/clubwall/club-events'){
             this.filterOpt = false;
         }else{
             this.filterOpt = true
@@ -622,9 +622,9 @@ export class EventsCalendarComponent implements OnInit {
     */
     viewDetails(id: any, date: any ,type:any) {
         if (type == 6) {
-            this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+            this.router.navigate(['/web/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
         } else {
-            this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+            this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
         }
     }
 

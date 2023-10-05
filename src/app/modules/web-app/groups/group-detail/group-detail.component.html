@@ -46,7 +46,7 @@
                                                             <li
                                                                 *ngIf="groupDetails && groupDetails.created_by == userId || userDetails.isAdmin">
                                                                 <a class="dropdown-item"
-                                                                    routerLink="/update-group/{{groupDetails.id}}">{{language.community_groups.Edit_group}}</a>
+                                                                    routerLink="/web/update-group/{{groupDetails.id}}">{{language.community_groups.Edit_group}}</a>
                                                             </li>
 
                                                             <li
@@ -308,7 +308,7 @@
                                                                                         | date: 'd. MMMM y'}}</span>
                                                                                 </div>
                                                                                 <div class="group_rm"><a
-                                                                                        routerLink="/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
+                                                                                        routerLink="/web/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -562,14 +562,14 @@
                                                                     itemsPerPage: itemPerPage, currentPage: currentPageNmuber, totalItems: newsTotalRecords }">
                                                             <div class="news-widget">
                                                                 <div class="news-image">
-                                                                    <a routerLink="/clubnews-detail/{{news.id}}">
+                                                                    <a routerLink="/web/clubnews-detail/{{news.id}}">
                                                                         <img onContextMenu="return false;"
                                                                             [src]="news.imageUrls != null ? news.imageUrls : '../../assets/img/no_image.png'"
                                                                             alt="{{news.title}}" loading="lazy">
                                                                     </a>
                                                                 </div>
                                                                 <div class="news-content">
-                                                                    <a routerLink="/clubnews-detail/{{news.id}}">
+                                                                    <a routerLink="/web/clubnews-detail/{{news.id}}">
                                                                         <h5 class="news-content-heading"
                                                                             [innerHTML]="news.title"></h5>
                                                                     </a>
@@ -612,12 +612,12 @@
                                                                                     | date: 'd. MMMM y'}}</span>
                                                                             </div>
                                                                             <div class="group_rm"><a
-                                                                                    routerLink="/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
+                                                                                    routerLink="/web/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <!-- <div class="group_rm">
-                                                                                <a routerLink="/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
+                                                                                <a routerLink="/web/clubnews-detail/{{news.id}}">{{language.community_groups.read_more}}</a>
                                                                             </div> -->
                                                                 </div>
                                                             </div>
@@ -669,7 +669,7 @@
                                                     <li
                                                         *ngIf="groupDetails && groupDetails.created_by == userId || userDetails.isAdmin">
                                                         <a class="dropdown-item"
-                                                            routerLink="/update-group/{{groupDetails.id}}">{{language.community_groups.Edit_group}}</a>
+                                                            routerLink="/web/update-group/{{groupDetails.id}}">{{language.community_groups.Edit_group}}</a>
                                                     </li>
                                                     <li
                                                         *ngIf="groupDetails && groupDetails.created_by == userId || userDetails.isAdmin">
@@ -984,7 +984,7 @@
                                                                 | date: 'd. MMMM y'}}</span>
                                                         </div>
                                                         <div class="group_rm">
-                                                            <!-- <a routerLink="/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}
+                                                            <!-- <a routerLink="/web/clubnews-detail/{{data.id}}">{{language.community_groups.read_more}}
                                                                                                             </a> -->
                                                             <a (click)="getNewsDetails(data.id)">{{language.community_groups.read_more}}<span>
                                                                     <img onContextMenu="return false;"

@@ -63,12 +63,12 @@
                             <!-- {{language.header.view}} -->
                         </th>
                         <td class="odd table_action view" mat-cell *matCellDef="let row">
-                            <!-- <button class="btn btn-outline-secondary" routerLink="/event-detail/{{row.id}}">{{language.header.view}}</button> -->
+                            <!-- <button class="btn btn-outline-secondary" routerLink="/web/event-detail/{{row.id}}">{{language.header.view}}</button> -->
                             <a>
-                                <i class="fa fa-eye" aria-hidden="true"  routerLink="/event-detail/{{row.id}}"></i>
+                                <i class="fa fa-eye" aria-hidden="true"  routerLink="/web/event-detail/{{row.id}}"></i>
                             </a>&nbsp;&nbsp;
                             <a>
-                                <i class="fa fa-pencil"  routerLink="/update-event/{{ row.id}}"></i>
+                                <i class="fa fa-pencil"  routerLink="/web/update-event/{{ row.id}}"></i>
                             </a>&nbsp;&nbsp;
                             <a>
                                 <i class="fa fa-trash" aria-hidden="true" (click)="deleteEvents(row.id)"></i>

@@ -338,7 +338,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     }
 
     cancel() {
-        this._router.navigate(['/profile']);
+        this._router.navigate(['/web/profile']);
     }
 
     /**

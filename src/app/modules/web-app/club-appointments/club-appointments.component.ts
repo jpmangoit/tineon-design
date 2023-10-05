@@ -176,8 +176,6 @@ export class ClubAppointmentsComponent implements OnInit {
                 for (var key in this.eventData) {
                     if (this.eventData && this.eventData.hasOwnProperty(key)) {
                         element = this.eventData[key];
-                        console.log(element);
-
                         element?.eventUsers?.forEach((el: any) => {
                             if (el.user_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[el.user_id].member_id, null)
@@ -689,7 +687,7 @@ export class ClubAppointmentsComponent implements OnInit {
     */
     eventDetails(id: any, date: any) {
         // this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: date.split('T')[0] } });
+        this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 
     /**
@@ -701,7 +699,7 @@ export class ClubAppointmentsComponent implements OnInit {
     */
     courseDetails(id: any, date: any) {
         // this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
-        this.router.navigate(['/course-detail/' + id], { queryParams: { date: date.split('T')[0] } });
+        this.router.navigate(['/web/course-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 
 }

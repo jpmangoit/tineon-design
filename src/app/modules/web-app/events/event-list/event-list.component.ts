@@ -124,7 +124,7 @@ export class EventListComponent implements OnInit {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData['result']['message'], null);
                         self.getUserAllEvents("");
-                        // const url: string[] = ["/all-list"];
+                        // const url: string[] = ["/web/all-list"];
                         // self.router.navigate(url);
                     }
                 )
@@ -141,7 +141,7 @@ export class EventListComponent implements OnInit {
     //             this.searchValue = '';
     //             this.dataSource.filter = '';
     //             this.getUserAllNews("");
-    //             // const url: string[] = ["/all-list"];
+    //             // const url: string[] = ["/web/all-list"];
     //             // self._router.navigate(url);
 
     //         })

@@ -471,7 +471,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
                             $('#exModal').modal('hide');
                             this.getFaqByCategory(this.faqId);
                             this.fileToReturn = null;
-                            const url: string[] = ["/vereins-faq-detail/" + this.editId];
+                            const url: string[] = ["/web/vereins-faq-detail/" + this.editId];
                             this.router.navigate(url);
                         }, 2000);
 

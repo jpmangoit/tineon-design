@@ -176,7 +176,7 @@ export class BannerDetailComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData['result']['message'], null);
-                        const url: string[] = ["/banner-list"];
+                        const url: string[] = ["/web/banner-list"];
                         self.router.navigate(url);
                     }
                 )
@@ -200,7 +200,7 @@ export class BannerDetailComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/banner-list']);
+        this.router.navigate(['/web/banner-list']);
     }
 
     ngOnDestroy(): void {

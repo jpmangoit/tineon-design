@@ -285,7 +285,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                             this.chatFormSubmitted = false;
                             var self = this;
                             setTimeout(function () {
-                                self.router.navigate(['community']);
+                                self.router.navigate(['web/community']);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

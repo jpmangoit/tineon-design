@@ -31,7 +31,7 @@
                                                                     *ngIf="(userDetails.userId == taskDetails.organizer_id && taskDetails.status != 1 &&  checkStatusToDo(taskDetails) )||
                                                                      (userDetails.isAdmin && taskDetails.status != 1 &&  checkStatusToDo(taskDetails))">
                                                                     <a class="dropdown-item"
-                                                                        routerLink="/update-task/{{taskDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                        routerLink="/web/update-task/{{taskDetails.id}}">{{language.organizer.Edit}}</a>
                                                                 </li>
                                                                 <li
                                                                     *ngIf="userDetails.userId == taskDetails.organizer_id || userDetails.isAdmin">
@@ -528,7 +528,7 @@
                                                         <li
                                                             *ngIf="(userDetails.userId == taskDetails.organizer_id && taskDetails.status != 1 &&  checkStatusToDo(taskDetails)) || (userDetails.isAdmin && taskDetails.status != 1 &&  checkStatusToDo(taskDetails))">
                                                             <a class="dropdown-item"
-                                                                routerLink="/update-task/{{taskDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                routerLink="/web/update-task/{{taskDetails.id}}">{{language.organizer.Edit}}</a>
                                                         </li>
                                                         <li
                                                             *ngIf="userDetails.userId == taskDetails.organizer_id || userDetails.isAdmin">
@@ -658,7 +658,7 @@
                                 <div class="col-md-6 all_participants">
                                     <div class="page-action-right"
                                         *ngIf="taskDetails.status == 2 && userDetails.isAdmin && ( taskDetails.deny_by_id == '' || taskDetails.deny_by_id == null )">
-                                        
+
                                         <button *ngIf="userDetails.isAdmin" (click)="adminApprovedTasks(taskDetails.id)"
                                             type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18"

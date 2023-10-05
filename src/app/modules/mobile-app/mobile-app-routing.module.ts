@@ -57,8 +57,6 @@ import { CreateThemeComponent } from 'src/app/modules/web-app/theme/create-theme
 import { ThemesComponent } from 'src/app/modules/web-app/theme/themes/themes.component';
 import { UpdateThemeComponent } from 'src/app/modules/web-app/theme/update-theme/update-theme.component';
 import { ComingSoonComponent } from 'src/app/shared/coming-soon/coming-soon.component';
-// import { LoginComponent } from 'src/app/pages/login/login.component';
-// import { RecoverPasswordComponent } from 'src/app/pages/recover-password/recover-password.component';
 import { McrmSurveyComponent } from './pages/crm-survey/mcrm-survey/mcrm-survey.component';
 import { MDashboardComponent } from './pages/m-dashboard/m-dashboard.component';
 import { MbannerlistComponent } from './pages/mbanner/mbannerlist/mbannerlist.component';
@@ -93,17 +91,10 @@ import { MactiveSurveyComponent } from './pages/survey/mactive-survey/mactive-su
 import { McompletedSurveyComponent } from './pages/survey/mcompleted-survey/mcompleted-survey.component';
 import { MmySurveyComponent } from './pages/survey/mmy-survey/mmy-survey.component';
 import { MsurveyComponent } from './pages/survey/msurvey/msurvey.component';
-import { MEmailComponent } from './shared/m-email/m-email.component';
 import { MLayoutComponent } from './shared/m-layout/m-layout.component';
 
 
 const routes: Routes = [
-    // {
-    //     path: 'login',
-    //     component: LoginComponent
-    // },
-    // { path: 'recover-password', component: RecoverPasswordComponent, data: { title: 'Recover Password' } },
-    { path: 'email', component: MEmailComponent, data: { title: 'Email' } },
 
     // mobile routing start
     {
@@ -220,16 +211,12 @@ const routes: Routes = [
 
         ]
     },
-    {
-        path: '**',
-        component: PageNotFoundComponent
-    }
-];
+    // { path: 'email', component: MEmailComponent, data: { title: 'Email' } },
+    { path: '**', component: PageNotFoundComponent }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
 export class MobileAppRoutingModule {
-
 }

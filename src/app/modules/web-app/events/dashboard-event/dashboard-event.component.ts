@@ -479,9 +479,9 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
     viewDetails() {
         $('#showPopup').trigger('click');
         if (this.newClickedEvent.extendedProps.isCourse) {
-            this.router.navigate(['/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
+            this.router.navigate(['/web/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
         } else {
-            this.router.navigate(['/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
+            this.router.navigate(['/web/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
         }
     }
 

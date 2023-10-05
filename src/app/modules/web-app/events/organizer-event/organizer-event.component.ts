@@ -743,11 +743,11 @@ export class OrganizerEventComponent implements OnInit {
         let formattedDate: any = '';
         formattedDate = this.datePipe.transform(this.newClickedEvent.start, 'yyyy-MM-dd');
         if (this.newClickedEvent.extendedProps.isCourse) {
-            this.router.navigate(['/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: formattedDate } });
-            // this.router.navigate(['/course-detail/' + this.newClickedEvent.extendedProps.event_id]);
+            this.router.navigate(['/web/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: formattedDate } });
+            // this.router.navigate(['/web/course-detail/' + this.newClickedEvent.extendedProps.event_id]);
         } else {
-            this.router.navigate(['/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: formattedDate } });
-            // this.router.navigate(['/event-detail/' + this.newClickedEvent.extendedProps.event_id]);
+            this.router.navigate(['/web/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: formattedDate } });
+            // this.router.navigate(['/web/event-detail/' + this.newClickedEvent.extendedProps.event_id]);
         }
     }
 
@@ -816,7 +816,7 @@ export class OrganizerEventComponent implements OnInit {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
     }
 
     ngOnDestroy(): void {

@@ -305,7 +305,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
                 self.notificationService.showSuccess(resp, null);
-                const url: string[] = ["/clubwall"];
+                const url: string[] = ["/web/clubwall"];
                 self.router.navigate(url);
             })
             .catch((err: any) => {
@@ -327,7 +327,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        const url: string[] = ["/clubwall"];
+                        const url: string[] = ["/web/clubwall"];
                         self.router.navigate(url);
                     }
                 )
@@ -340,7 +340,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     updateNews(newsId: number) {
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/web/update-news/" + newsId];
         this.router.navigate(url);
     }
 
@@ -357,7 +357,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'approve-news-by-id/' + newsId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        const url: string[] = ["/clubwall"];
+                        const url: string[] = ["/web/clubwall"];
                         self.router.navigate(url);
                     }
                 )
@@ -377,7 +377,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'approve-updatednews/' + newsId, null)
                 .subscribe(
                     (respData: any) => {
-                        const url: string[] = ["/clubwall"];
+                        const url: string[] = ["/web/clubwall"];
                         self.router.navigate(url);
                     }
                 )
@@ -452,7 +452,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.router.navigate(['/clubwall']);
+        this.router.navigate(['/web/clubwall']);
     }
 
 

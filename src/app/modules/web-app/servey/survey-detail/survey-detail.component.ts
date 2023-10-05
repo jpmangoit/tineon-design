@@ -196,7 +196,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.router.navigate(['/survey']);
+        this.router.navigate(['/web/survey']);
     }
 
     /**
@@ -212,7 +212,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'admin-approve-survey-by-id/' + survey_id + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        const url: string[] = ["/survey-vote/" + survey_id];
+                        const url: string[] = ["/web/survey-vote/" + survey_id];
                         self.router.navigate(url);
                         self.ngOnInit();
                     }
@@ -259,7 +259,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        const url: string[] = ["/survey-detail/" + survey_id];
+                        const url: string[] = ["/web/survey-detail/" + survey_id];
                         self.router.navigate(url);
                     }
                 )
@@ -283,7 +283,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             self.notificationService.showSuccess(respData['result']['message'], null);
-                            self.router.navigate(['survey'])
+                            self.router.navigate(['web/survey'])
                         } else if (respData['code'] == 400) {
                             self.notificationService.showError(respData['message'], null);
                         }

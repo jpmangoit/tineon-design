@@ -213,9 +213,9 @@ export class BirthdaysComponent implements OnInit {
     checkChatDetails(userId: any) {
         let chatUser = this.chatUserArr.filter(x => x.id == userId);
         if (chatUser?.length > 0) {
-            this.router.navigate(['/community/'], { queryParams: { id: userId } });
+            this.router.navigate(['/web/community/'], { queryParams: { id: userId } });
         } else {
-            this.router.navigate(['create-chat']);
+            this.router.navigate(['/web/create-chat']);
         }
     }
 

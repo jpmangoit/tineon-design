@@ -258,7 +258,7 @@ export class NewsListComponent implements OnInit {
    * @author  MangoIt Solutions
    */
     updateNews(newsId: number) {
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/web/update-news/" + newsId];
         this._router.navigate(url);
     }
 
@@ -276,7 +276,7 @@ export class NewsListComponent implements OnInit {
                 this.searchValue = '';
                 this.dataSource.filter = '';
                 this.getUserAllNews("");
-                // const url: string[] = ["/all-list"];
+                // const url: string[] = ["/web/all-list"];
                 // self._router.navigate(url);
 
             })

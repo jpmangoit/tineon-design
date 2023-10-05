@@ -231,10 +231,10 @@ export class MDashboardComponent implements OnInit {
     showAll() {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            this.router.navigate(['/mclub-all-news']);
+            this.router.navigate(['/mobile/mclub-all-news']);
         } else {
             //desktop
-            this.router.navigate(['/clubwall-news/1']);
+            this.router.navigate(['/mobile/clubwall-news/1']);
         }
     }
 
@@ -679,7 +679,7 @@ export class MDashboardComponent implements OnInit {
             .then((resp: any) => {
                 self.notificationService.showSuccess(resp, null);
                 self.getAllNews()
-                const url: string[] = ["/clubwall"];
+                const url: string[] = ["/mobile/clubwall"];
                 self.router.navigate(url);
             })
             .catch((err: any) => {
@@ -689,7 +689,7 @@ export class MDashboardComponent implements OnInit {
 
     updateNews(newsId: number) {
         $('#exModal').modal('hide');
-        this.router.navigate(["/update-news/" + newsId]);
+        this.router.navigate(["/mobile/update-news/" + newsId]);
     }
 
     /**
@@ -700,7 +700,7 @@ export class MDashboardComponent implements OnInit {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        this.router.navigate(['/mobile/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
     }
 
     ngOnDestroy(): void {

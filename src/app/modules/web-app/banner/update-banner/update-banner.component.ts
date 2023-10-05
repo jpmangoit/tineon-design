@@ -341,7 +341,7 @@ export class UpdateBannerComponent implements OnInit, OnDestroy {
                             this.notificationService.showSuccess(respData['result']['message'], null);
                             var self = this;
                             setTimeout(function () {
-                                self.router.navigate(['/banner-detail/' + respData['result']['banner']['id']]);
+                                self.router.navigate(['/web/banner-detail/' + respData['result']['banner']['id']]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

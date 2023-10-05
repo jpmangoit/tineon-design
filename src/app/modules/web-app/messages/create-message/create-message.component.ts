@@ -252,7 +252,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                 $(".message_title").click();
                                 setTimeout(() => {
                                     localStorage.setItem('backItem', 'personalMsg');
-                                    const url: string[] = ["/community"];
+                                    const url: string[] = ["/web/community"];
                                     this.router.navigate(url);
                                 }, 1000);
                             } else if (respData['code'] == 400) {
@@ -282,7 +282,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                 $(".message_title").click();
                                 setTimeout(() => {
                                     localStorage.setItem('backItem', 'groupMsg');
-                                    const url: string[] = ["/community"];
+                                    const url: string[] = ["/web/community"];
                                     this.router.navigate(url);
                                 }, 1000);
                             } else if (respData['code'] == 400) {
@@ -312,7 +312,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                 $(".message_title").click();
                                 setTimeout(() => {
                                     localStorage.setItem('backItem', 'clubMsg');
-                                    const url: string[] = ["/community"];
+                                    const url: string[] = ["/web/community"];
                                     this.router.navigate(url);
                                 }, 1000);
                             } else if (respData['code'] == 400) {
@@ -387,7 +387,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'personalMsg');
-                                        const url: string[] = ["/community"];
+                                        const url: string[] = ["/web/community"];
                                         self.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
@@ -415,7 +415,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'groupMsg');
-                                        const url: string[] = ["/community"];
+                                        const url: string[] = ["/web/community"];
                                         self.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
@@ -444,7 +444,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'clubMsg');
-                                        const url: string[] = ["/community"];
+                                        const url: string[] = ["/web/community"];
                                         self.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
@@ -458,10 +458,10 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                         );
                 }
             }, function () {
-                self.router.navigate(['community']);
+                self.router.navigate(['web/community']);
             });
         } else {
-            self.router.navigate(['community']);
+            self.router.navigate(['web/community']);
         }
     }
 

@@ -1080,7 +1080,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     */
     updateCourse(id: number) {
         $('#view-course').modal('hide');
-        var redirectUrl: string = 'update-course/' + id;
+        var redirectUrl: string = 'web/update-course/' + id;
         this.router.navigate([redirectUrl]);
     }
 

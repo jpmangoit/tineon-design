@@ -6,20 +6,20 @@
                 <div class="chat-navigation">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" *ngIf="participateAccess.chat == 'Yes'" routerLink='/community'
+                            <a class="nav-link" *ngIf="participateAccess.chat == 'Yes'" routerLink="/web/community"
                                 (click)="displayMessage('chat')"
                                 [ngStyle]="displayChats == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
                                 {{language.community_messages.all_active_chat}}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link per_ic" *ngIf="participateAccess.personal_message == 'Yes'" routerLink='./personal-msg'
+                            <a class="nav-link per_ic" *ngIf="participateAccess.personal_message == 'Yes'" routerLink="personal-msg"
                                 (click)="displayMessage('personal')"
                                 [ngStyle]="displayPersonal == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
                                 {{language.community_messages.personal_messages}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link clu_ic" *ngIf="participateAccess.club_message == 'Yes'" routerLink='club-msg'
+                            <a class="nav-link clu_ic" *ngIf="participateAccess.club_message == 'Yes'" routerLink="club-msg"
                                 (click)="displayMessage('club')"
                                 [ngStyle]="displayClub == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
                                <span *ngIf="headline_word_option == 0">{{language.community_messages.club_messages_stand}}</span>
@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link group_ic" *ngIf="participateAccess.group_message == 'Yes'" routerLink='group-msg'
+                            <a class="nav-link group_ic" *ngIf="participateAccess.group_message == 'Yes'" routerLink="group-msg"
                                 (click)="displayMessage('group')"
                                 [ngStyle]="displayGroup == true ? {'color':'#68759F'} : {'color':'#C4CBE0'}">
                                 {{language.community_messages.group_messages}}</a>

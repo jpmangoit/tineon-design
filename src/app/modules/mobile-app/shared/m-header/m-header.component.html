@@ -61,7 +61,7 @@
                         <img onContextMenu="return false;" src="../../../../assets/img/msg_close.svg" alt="logo" loading="lazy"/>
                     </button>
                     <div class="mob-he-top">
-                        <div class="club-logomenu" routerLink="/dashboard">
+                        <div class="club-logomenu" routerLink="/mobile/dashboard">
                             <img onContextMenu="return false;"
                                 src="{{(userDetails?.Club?.logourl) ? userDetails.Club.logourl: '../../../assets/img/new-design/club-logo.png'}}"
                                 alt="logo" loading="lazy" />
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <ul>
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/dashboard']" [routerLinkActive]="['is-active']">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/dashboard']" [routerLinkActive]="['is-active']">
                             <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path  d="M1.3866 1.59998L7.91304 8.12642C8.10831 8.32168 8.10831 8.63827 7.91304 8.83353L1.3866 15.36"
                                         stroke="#E93608" stroke-width="1.5" stroke-linecap="round" />
@@ -102,7 +102,7 @@
                                 <span>{{language.menu.dashboard}}</span>
                             </a>
                         </li>
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/clubwall']" [routerLinkActive]="['is-active']">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/clubwall']" [routerLinkActive]="['is-active']">
                             <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1.3866 1.59998L7.91304 8.12642C8.10831 8.32168 8.10831 8.63827 7.91304 8.83353L1.3866 15.36"
                                         stroke="#E93608" stroke-width="1.5" stroke-linecap="round" />
@@ -118,7 +118,7 @@
                                 <span>{{ language.menu.club_wall}}</span>
                             </a>
                         </li>
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/community']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light && !userDetails.isMember_light_admin">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/community']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light && !userDetails.isMember_light_admin">
                             <span class="menu_accordion">
                                 <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.3866 1.59998L7.91304 8.12642C8.10831 8.32168 8.10831 8.63827 7.91304 8.83353L1.3866 15.36"
@@ -145,7 +145,7 @@
                                 <span>{{ language.menu.community}}</span>
                             </a>
                         </li>
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/organizer']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/organizer']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
                             <span class="menu_accordion">
                                 <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.3866 1.59998L7.91304 8.12642C8.10831 8.32168 8.10831 8.63827 7.91304 8.83353L1.3866 15.36"
@@ -183,7 +183,7 @@
                             </a>
                             <ul>
                                 <li class="selected_menu" (click)="onClickToggleClass('community')"  (click)="drawer.toggle()"
-                                [routerLink]="['/survey']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
+                                [routerLink]="['/web/survey']" [routerLinkActive]="['is-active']" *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
                                     <span class="menu_accordion"> <svg width="9" height="17" viewBox="0 0 9 17"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -198,7 +198,7 @@
                                             </svg></span><span>{{language.Survey.survey}}</span>
                                     </a>
                                 </li>
-                                <li class="selected_menu" (click)="drawer.toggle()" (click)="onClickToggleClass('community')"  [routerLink]="['/course']" [routerLinkActive]="['is-active']"
+                                <li class="selected_menu" (click)="drawer.toggle()" (click)="onClickToggleClass('community')"  [routerLink]="['/web/course']" [routerLinkActive]="['is-active']"
                                     *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
                                     <span class="menu_accordion"> <svg width="9" height="17" viewBox="0 0 9 17"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -223,7 +223,7 @@
                                         <span>{{language.header.course}}</span>
                                     </a>
                                 </li>
-                                <li class="selected_menu" (click)="drawer.toggle()" (click)="onClickToggleClass('community')"  [routerLink]="['/vereins-faq']"  [routerLinkActive]="['is-active']"
+                                <li class="selected_menu" (click)="drawer.toggle()" (click)="onClickToggleClass('community')"  [routerLink]="['/web/vereins-faq']"  [routerLinkActive]="['is-active']"
                                     *ngIf="!userDetails.isMember_light  && !userDetails.isMember_light_admin">
                                     <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +249,7 @@
                             </ul>
                         </li>
                         <!-- academy -->
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/coming_soon']" [routerLinkActive]="['is-active']">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/coming_soon']" [routerLinkActive]="['is-active']">
                             <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -269,7 +269,7 @@
                                 </span><span>{{language.dashboard.academy}}</span>
                             </a>
                         </li>
-                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/profile']" [routerLinkActive]="['is-active']">
+                        <li class="selected_menu" (click)="drawer.toggle()" [routerLink]="['/web/profile']" [routerLinkActive]="['is-active']">
                             <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -291,7 +291,7 @@
                             </a>
                         </li>
                         <!-- appstore -->
-                        <li class="selected_menu" (click)="drawer.toggle()"  [routerLink]="['/app-store']" [routerLinkActive]="['is-active']"
+                        <li class="selected_menu" (click)="drawer.toggle()"  [routerLink]="['/web/app-store']" [routerLinkActive]="['is-active']"
                             *ngIf="!userDetails.isMember_light && !userDetails.isMember_light_admin">
                             <span class="menu_accordion"><svg width="9" height="17" viewBox="0 0 9 17" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -457,7 +457,7 @@
             </mat-drawer>
         </mat-drawer-container>
     </div>
-    <div class="brand-logo cgdfs" routerLink="/dashboard">
+    <div class="brand-logo cgdfs" routerLink="/mobile/dashboard">
         <!-- <img class="brand-red" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img.png"
             alt="brand-logo" loading="lazy">
         <img class="brand-green" onContextMenu="return false;" src="../../../../assets/img/mobile-img/brand_img_green.png"
@@ -469,7 +469,7 @@
                 <img src="../../../assets/img/verein_cloud_weiss (1) Kopie.png" onContextMenu="return false;" alt="logo" loading="lazy">
             </div>
     </div>
-    <div class="club-logo" routerLink="/profile-club">
+    <div class="club-logo" routerLink="/mobile/profile-club">
         <img onContextMenu="return false;"
             src="{{(userDetails?.Club?.logourl) ? userDetails.Club.logourl: '../../../assets/img/new-design/club-logo.png'}}"
             alt="logo" loading="lazy" />

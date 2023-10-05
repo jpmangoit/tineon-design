@@ -52,12 +52,12 @@
                     </button>
                     <mat-menu #menu="matMenu" xPosition="before">
                         <ng-container *ngIf="checkType(item.surveyResult,item); else notEqual">
-                            <button mat-menu-item routerLink="/view-survey/{{item.id}}">{{language.Survey.view_survey}}</button>
+                            <button mat-menu-item routerLink="/web/view-survey/{{item.id}}">{{language.Survey.view_survey}}</button>
                         </ng-container>
                         <ng-template #notEqual>
-                            <button mat-menu-item routerLink="/survey-vote/{{item.id}}">{{language.Survey.view_survey}}</button>
+                            <button mat-menu-item routerLink="/web/survey-vote/{{item.id}}">{{language.Survey.view_survey}}</button>
                         </ng-template>
-                        <button mat-menu-item *ngIf="userRole == 'admin' || item.user_id == userDetails.userId" routerLink="/update-survey/{{item.id}}">{{language.Survey.edit}}</button>
+                        <button mat-menu-item *ngIf="userRole == 'admin' || item.user_id == userDetails.userId" routerLink="/web/update-survey/{{item.id}}">{{language.Survey.edit}}</button>
                         <button mat-menu-item *ngIf="userRole == 'admin' && item.survey_status == 0" (click)="surveyClose(item.id)">{{language.Survey.close_survey}}</button>
                         <button mat-menu-item *ngIf="userRole == 'admin' && item.survey_status == 1" (click)="surveyClose(item.id)">{{language.Survey.active_survey}}</button>
                     </mat-menu>

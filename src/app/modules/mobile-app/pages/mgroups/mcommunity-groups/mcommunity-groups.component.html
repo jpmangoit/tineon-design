@@ -37,7 +37,7 @@
                                                     alt="" loading="lazy">
                                             </div>
                                             <div class="news-content">
-                                                <a routerLink="/group-detail/{{data.id}}">
+                                                <a routerLink="/mobile/group-detail/{{data.id}}">
                                                     <h5>{{data.name}}</h5>
                                                 </a>
                                                 <div class="membar-count-area">
@@ -72,7 +72,7 @@
                                                     <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.waitingApproval}} -->
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id  || userData.isAdmin == true">
-                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                    <button type="button" routerLink="/mobile/update-group/{{data.id}}"
                                                         class="edit-action"
                                                         [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
                                                         {{language.community_groups.Edit_group}}
@@ -84,13 +84,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <!-- group-col End -->
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
 
@@ -112,7 +112,7 @@
                                             alt="" loading="lazy">
                                     </div>
                                     <div class="news-content">
-                                        <a routerLink="/group-detail/{{data.id}}">
+                                        <a routerLink="/mobile/group-detail/{{data.id}}">
                                             <h5>{{data.name}}</h5>
                                         </a>
                                         <div class="membar-count-area">
@@ -131,7 +131,7 @@
                                                 </svg>&nbsp;&nbsp;{{data.posts | shortNumber}}+{{language.community_groups.posts_for_u}}</span>
                                         </div>
                                         <div class="new-action" *ngIf="data.created_by == user_Id || userData.isAdmin == true">
-                                            <button type="button" routerLink="/update-group/{{data.id}}"
+                                            <button type="button" routerLink="/mobile/update-group/{{data.id}}"
                                                 [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color}">
                                                 {{language.community_groups.Edit_group}}
                                             </button>
@@ -170,7 +170,7 @@
                                                     alt="" loading="lazy">
                                             </div>
                                             <div class="news-content">
-                                                <a routerLink="/group-detail/{{data.id}}">
+                                                <a routerLink="/mobile/group-detail/{{data.id}}">
                                                     <h5>{{data.name}}</h5>
                                                 </a>
                                                 <div class="membar-count-area">
@@ -195,7 +195,7 @@
                                                     {{language.community_groups.leave_group}}
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id || userData.isAdmin == true">
-                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                    <button type="button" routerLink="/mobile/update-group/{{data.id}}"
                                                         class="edit-action"
                                                         [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
                                                         {{language.community_groups.Edit_group}}

@@ -380,7 +380,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                         this.notificationService.showSuccess(respData['result']['message'], null);
                         var self = this;
                         setTimeout(function () {
-                            self.router.navigate(['room-detail/' + self.roomId]);
+                            self.router.navigate(['web/room-detail/' + self.roomId]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

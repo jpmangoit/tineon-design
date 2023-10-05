@@ -400,7 +400,7 @@ export class MclubAllNewsComponent implements OnInit, OnDestroy {
                 self.notificationService.showSuccess(resp, null);
                 setTimeout(function () {
                     self.getAllNews()
-                    const url: string[] = ["/clubwall"];
+                    const url: string[] = ["/mobile/clubwall"];
                     self.router.navigate(url);
                 }, 3000);
             })
@@ -415,7 +415,7 @@ export class MclubAllNewsComponent implements OnInit, OnDestroy {
     */
     updateNews(newsId: number) {
         $('#exModal').modal('hide');
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/mobile/update-news/" + newsId];
         this.router.navigate(url);
     }
 

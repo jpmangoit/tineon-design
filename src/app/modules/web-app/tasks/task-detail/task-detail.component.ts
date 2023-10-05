@@ -387,7 +387,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.ngOnInit();
-                        self.router.navigate(['task-detail/' + taskId])
+                        self.router.navigate(['web/task-detail/' + taskId])
                     }
                 )
         }, function () {
@@ -409,7 +409,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData.result.message, null);
-                        const url: string[] = ["/organizer/organizer-task"];
+                        const url: string[] = ["/web/organizer/organizer-task"];
                         self.router.navigate(url);
                     }
                 )
@@ -432,7 +432,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         setTimeout(() => {
                             self.ngOnInit()
-                            self.router.navigate(['task-detail/' + task_id])
+                            self.router.navigate(['web/task-detail/' + task_id])
                         }, 1000);
                     }
                 )
@@ -617,7 +617,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.router.navigate(['/organizer/organizer-task']);
+        this.router.navigate(['/web/organizer/organizer-task']);
     }
 
     ngOnDestroy(): void {

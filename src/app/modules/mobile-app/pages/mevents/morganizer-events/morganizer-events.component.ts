@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'app-morganizer-events',
     templateUrl: './morganizer-events.component.html',
-    styleUrls: ['./morganizer-events.component.css'], 
+    styleUrls: ['./morganizer-events.component.css'],
     providers: [DatePipe]
 })
 
@@ -435,7 +435,7 @@ export class MorganizerEventsComponent implements OnInit {
      */
     redirectCalendar() {
         var self = this;
-        self.router.navigate(['organizer']);
+        self.router.navigate(['mobile/organizer']);
     }
 
     /**
@@ -446,7 +446,7 @@ export class MorganizerEventsComponent implements OnInit {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        this.router.navigate(['/mobile/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
     }
 
     ngOnDestroy(): void {
@@ -458,7 +458,7 @@ export class MorganizerEventsComponent implements OnInit {
             return str.replace(/,/g, ".");
         }else{
             return str;
-        }        
+        }
     }
 
 }

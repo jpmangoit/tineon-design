@@ -517,7 +517,7 @@ export class CourseDetailComponent implements OnInit {
     }
 
     updateCourse(id: number) {
-        var redirectUrl: string = 'update-course/' + id;
+        var redirectUrl: string = 'web/update-course/' + id;
         this.router.navigate([redirectUrl]);
     }
 
@@ -595,7 +595,7 @@ export class CourseDetailComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/course']);
+        this.router.navigate(['/web/course']);
     }
 
     /**

@@ -2,7 +2,7 @@
 <div class="navigation-tools fixed-bottom">
     <!-- navigation start -->
     <div class="tool-main">
-        <button mat-icon-button class="page-action" routerLink="/dashboard" (click)="onClick(1)" [ngClass]="{'active': step ==='step1'}">
+        <button mat-icon-button class="page-action" routerLink="/mobile/dashboard" (click)="onClick(1)" [ngClass]="{'active': step ==='step1'}">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/home.svg" alt="" loading="lazy">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/home-ac.svg" alt="" loading="lazy">
         </button>
@@ -17,11 +17,11 @@
         <button mat-raised-button (click)="openBottomSheet()">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/add-ic.svg" alt="" loading="lazy">
         </button>
-        <button mat-icon-button class="page-action" routerLink="/profile" (click)="onClick(3)" [ngClass]="{'active': step==='step3'}">
+        <button mat-icon-button class="page-action" routerLink="/mobile/profile" (click)="onClick(3)" [ngClass]="{'active': step==='step3'}">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/setting.svg" alt="" loading="lazy">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/setting-ac.svg" alt="" loading="lazy">
         </button>
-        <button mat-icon-button class="page-action" routerLink="/general-information"  (click)="onClick(4)" [ngClass]="{'active': step==='step4'}">
+        <button mat-icon-button class="page-action" routerLink="/mobile/general-information"  (click)="onClick(4)" [ngClass]="{'active': step==='step4'}">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/profile.svg" alt="" loading="lazy">
             <img onContextMenu="return false;" src="../../../../assets/img/mobile-img/tool/profile-ac.svg" alt="" loading="lazy">
         </button>

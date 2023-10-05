@@ -2,7 +2,7 @@
     <div class="add_event_main event_main">
         <div class="page-action">
             <div class="page-heading">
-                <span routerLink="/organizer/organizer-event"><svg width="23" height="24" viewBox="0 0 23 24"
+                <span routerLink="/mobile/organizer/organizer-event"><svg width="23" height="24" viewBox="0 0 23 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.3071 6L8.58426 12L14.3071 18" stroke="#E93608" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -83,7 +83,7 @@
                                                                 aria-labelledby="dropdownMenuLink">
                                                                 <li>
                                                                     <a class="dropdown-item"
-                                                                        routerLink="/update-event/{{ eventDetails.id}}">{{
+                                                                        routerLink="/mobile/update-event/{{ eventDetails.id}}">{{
                                                                         language.organizer.Edit}}</a>
                                                                 </li>
                                                                 <li>
@@ -790,7 +790,7 @@
                                                         <li>
                                                             <a class="dropdown-item"
                                                                 *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                routerLink="/mobile/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"

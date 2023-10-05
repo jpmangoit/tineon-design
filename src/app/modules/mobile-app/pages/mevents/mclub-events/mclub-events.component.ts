@@ -396,7 +396,7 @@ export class MclubEventsComponent implements OnInit {
      */
     redirectCalendar() {
         var self = this;
-        self.router.navigate(['organizer']);
+        self.router.navigate(['mobile/organizer']);
     }
 
     /**
@@ -407,7 +407,7 @@ export class MclubEventsComponent implements OnInit {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        this.router.navigate(['/mobile/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
     }
 
     ngOnDestroy(): void {

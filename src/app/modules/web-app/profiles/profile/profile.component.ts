@@ -162,7 +162,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     inEdit() {
-        this._router.navigate(['/edit-profile']);
+        this._router.navigate(['/web/edit-profile']);
     }
 
     print() {

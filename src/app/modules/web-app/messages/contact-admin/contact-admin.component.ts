@@ -63,7 +63,7 @@ export class ContactAdminComponent implements OnInit,OnDestroy {
 			'message_type': new UntypedFormControl('inbox'),
 		});
 		if (userRole != 'guest') {
-			const url: string[] = ["/dashboard"];
+			const url: string[] = ["/web/dashboard"];
 			this.router.navigate(url);
 		}
 	}
@@ -86,7 +86,7 @@ export class ContactAdminComponent implements OnInit,OnDestroy {
                     this.messageSubmitted = false;
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result'], null);
-                        const url: string[] = ["/community"];
+                        const url: string[] = ["/web/community"];
                         this.router.navigate(url);
                     }else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

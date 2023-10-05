@@ -124,7 +124,7 @@ export class MprofileBankComponent implements OnInit {
     }
 
     inEdit() {
-        this.router.navigate(['/profile-edit-bank']);
+        this.router.navigate(['/mobile/profile-edit-bank']);
     }
 
     print() {

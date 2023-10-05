@@ -221,7 +221,7 @@ export class MprofileBankEditComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/profile-bank']);
+        this.router.navigate(['/mobile/profile-bank']);
     }
 
     onPaymentData() {

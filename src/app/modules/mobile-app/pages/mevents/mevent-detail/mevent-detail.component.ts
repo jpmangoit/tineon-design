@@ -510,7 +510,7 @@ export class MeventDetailComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData['result']['message'], null);
-                        const url: string[] = ["/organizer"];
+                        const url: string[] = ["/mobile/organizer"];
                         self.router.navigate(url);
                     }
                 )
@@ -557,7 +557,7 @@ export class MeventDetailComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/organizer']);
+        this.router.navigate(['/mobile/organizer']);
     }
 
     /**
@@ -689,9 +689,9 @@ export class MeventDetailComponent implements OnInit {
     checkChatDetails(userId: any) {
         let chatUser = this.chatUserArr.filter(x => x.id == userId);
         if (chatUser.length > 0) {
-            this.router.navigate(['/community/'], { queryParams: { id: userId } });
+            this.router.navigate(['/mobile/community/'], { queryParams: { id: userId } });
         } else {
-            this.router.navigate(['create-chat']);
+            this.router.navigate(['/mobile/create-chat']);
         }
     }
 

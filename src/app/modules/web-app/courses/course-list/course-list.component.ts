@@ -110,7 +110,7 @@ export class CourseListComponent implements OnInit {
     }
 
     updateCourse(id: number) {
-        var redirectUrl: string = 'update-course/' + id;
+        var redirectUrl: string = 'web/update-course/' + id;
         this.router.navigate([redirectUrl]);
     }
 

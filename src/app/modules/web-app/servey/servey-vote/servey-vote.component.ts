@@ -233,7 +233,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 								if (respData['isError'] == false) {
 									this.notificationService.showSuccess(respData['result']['message'], null);
 									var self = this;
-									setTimeout(function () { self.router.navigate(['survey']); }, 2000);
+									setTimeout(function () { self.router.navigate(['web/survey']); }, 2000);
 								} else if (respData['code'] == 400) {
 									this.btnDisable = "false";
 									this.notificationService.showError(respData['message'], null);
@@ -252,7 +252,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 								if (respData['isError'] == false) {
 									this.notificationService.showSuccess(respData['result']['message'], null);
 									var self = this;
-									setTimeout(function () { self.router.navigate(['survey']); }, 2000);
+									setTimeout(function () { self.router.navigate(['web/survey']); }, 2000);
 								} else if (respData['code'] == 400) {
 									this.btnDisable = "false";
 									this.notificationService.showError(respData['message'], null);

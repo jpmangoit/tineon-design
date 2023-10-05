@@ -26,7 +26,7 @@
             </div>
 
             <div class="profile-card-info ">
-                <div class="profile-card-details" routerLink="/clubwall">
+                <div class="profile-card-details" routerLink="/mobile/clubwall">
                     <span class="profile-count" *ngIf="clubNewsCount">{{clubNewsCount}}</span>
                     <span class="profile-count" *ngIf="clubNewsCount == 0 || clubNewsCount == null">0</span>
                     <!-- <span class="profile-label-content">{{language.dashboard.club_wall_subtext_new}}&nbsp;{{ language.dashboard.club_wall_subtext_news}}</span> -->
@@ -369,7 +369,7 @@
                                 </ng-container>
                             </owl-carousel-o>
                             <div class="show-all-button">
-                                <button routerLink="/organizer"> {{language.dashboard.dashboardNewsShowAll}}</button>
+                                <button routerLink="/mobile/organizer"> {{language.dashboard.dashboardNewsShowAll}}</button>
                             </div>
                         </div>
                         <div class="empty-data-image" *ngIf="upcomingEvent && upcomingEvent.length == 0">
@@ -394,20 +394,20 @@
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
-                                        <div class="news-image-area" routerLink="/group-detail/{{data.id}}">
+                                        <div class="news-image-area" routerLink="/mobile/group-detail/{{data.id}}">
                                             <img onContextMenu="return false;"
                                                 [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                 alt="" loading="lazy">
                                         </div>
                                         <div class="news-des-area">
                                             <div class="news-top-content">
-                                                <h3 routerLink="/group-detail/{{data.id}}">{{data.name}}</h3>
+                                                <h3 routerLink="/mobile/group-detail/{{data.id}}">{{data.name}}</h3>
                                             </div>
                                             <p
                                                 [innerHTML]=" data['description'].length > 0? (data[ 'description' ]| slice  : 0 : 100) + '...' : data[ 'description'] ">
                                             </p>
                                         </div>
-                                        <div class="news-des-area-right" routerLink="/group-detail/{{data.id}}">
+                                        <div class="news-des-area-right" routerLink="/mobile/group-detail/{{data.id}}">
                                             <span *ngIf="data.totalMembers">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12"
                                                     viewBox="0 0 15 12" fill="none">
@@ -431,7 +431,7 @@
                                     </div>
                                     <div class="show-all-button">
                                         <button
-                                            routerLink="/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
+                                            routerLink="/mobile/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
                                     </div>
                                 </ng-container>
                                 <!-- group item end -->
@@ -460,14 +460,14 @@
                                 </div>
                                 <ng-container *ngIf="groupJoinData && groupJoinData.length > 0">
                                     <div class="news-items" *ngFor='let data of groupJoinData'>
-                                        <div class="news-image-area" routerLink="/group-detail/{{data.id}}">
+                                        <div class="news-image-area" routerLink="/mobile/group-detail/{{data.id}}">
                                             <img onContextMenu="return false;"
                                                 [src]="data.group_images[0]?.['group_image'] != null ? data.group_images[0]?.['group_image'] : '../../assets/img/no_image.png'"
                                                 alt="" loading="lazy">
                                         </div>
                                         <div class="news-des-area">
                                             <div class="news-top-content">
-                                                <h3 routerLink="/group-detail/{{data.id}}">{{data.name}}</h3>
+                                                <h3 routerLink="/mobile/group-detail/{{data.id}}">{{data.name}}</h3>
                                                 <!-- <span class="news-badge">{{data.totalMembers}} {{language.organizer.collaborators}}</span> -->
                                                 <!-- <span class="news-date">
                                                     <img onContextMenu="return false;" src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt="" loading="lazy">&nbsp;
@@ -476,7 +476,7 @@
                                             </div>
                                             <p [innerHTML]="data.description"></p>
                                         </div>
-                                        <div class="news-des-area-right" routerLink="/group-detail/{{data.id}}">
+                                        <div class="news-des-area-right" routerLink="/mobile/group-detail/{{data.id}}">
                                             <span *ngIf="data.totalMembers">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12"
                                                     viewBox="0 0 15 12" fill="none">
@@ -500,7 +500,7 @@
                                     </div>
                                     <div class="show-all-button">
                                         <button
-                                            routerLink="/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
+                                            routerLink="/mobile/community/community-groups">{{language.dashboard.dashboardNewsShowAll}}</button>
                                     </div>
                                 </ng-container>
                                 <!-- group item end -->

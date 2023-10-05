@@ -590,7 +590,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.router.navigate(['/vereins-faq']);
+        this.router.navigate(['/web/vereins-faq']);
     }
 
     deleteFaqs(faqsId: number) {
@@ -603,7 +603,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
                         self.authService.setLoader(false);
                         self.responseMessage = respData.result.message;
                         self.notificationService.showSuccess(self.responseMessage, null);
-                        const url: string[] = ["/vereins-faq"];
+                        const url: string[] = ["/web/vereins-faq"];
                         self.router.navigate(url);
                     }
                 )
@@ -619,7 +619,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        const url: string[] = ["/vereins-faq"];
+                        const url: string[] = ["/web/vereins-faq"];
                         self.router.navigate(url);
                     }
                 )
@@ -628,7 +628,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
     }
 
     updateNews(newsId: number) {
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/web/update-news/" + newsId];
         this.router.navigate(url);
     }
 
@@ -639,7 +639,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        const url: string[] = ["/vereins-faq"];
+                        const url: string[] = ["/web/vereins-faq"];
                         self.router.navigate(url);
                     }
                 )
@@ -654,7 +654,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
             self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        const url: string[] = ["/vereins-faq"];
+                        const url: string[] = ["/web/vereins-faq"];
                         self.router.navigate(url);
                     }
                 )

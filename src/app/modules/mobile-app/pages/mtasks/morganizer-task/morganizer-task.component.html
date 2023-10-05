@@ -57,7 +57,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of toDoTask; let i = index">
-                <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -91,7 +91,7 @@
                                 </svg></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item
-                                    routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                                    routerLink="/mobile/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
                             </mat-menu>
                         </div> -->
                         </div>
@@ -138,7 +138,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of inProgress; let i = index">
-                <div class="task-item" *ngIf="inProgress && inProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="inProgress && inProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                     <img onContextMenu="return false;"
@@ -173,7 +173,7 @@
                             </svg></button>
                             <mat-menu #menu="matMenu">
                             <button mat-menu-item
-                            routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                            routerLink="/mobile/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
 
                     </mat-menu>
                 </div> -->
@@ -220,7 +220,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of completed; let i = index">
-                <div class="task-item" *ngIf="completed && completed.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="completed && completed.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -253,7 +253,7 @@
                                             fill="#D1D8EF" />
                                     </svg></button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                         {{language.Survey.view_detail}}</button>
                                 </mat-menu>
                             </div> -->
@@ -304,7 +304,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perToDoTask; let i = index">
-                <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -336,7 +336,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
@@ -385,7 +385,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perInProgress; let i = index">
-                <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0"  routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0"  routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -418,7 +418,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
@@ -467,7 +467,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of perCompleted; let i = index">
-                <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -500,7 +500,7 @@
                                 fill="#D1D8EF" />
                             </svg></button>
                             <mat-menu #menu="matMenu">
-                            <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                            <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                             {{language.Survey.view_detail}}</button>
                              </mat-menu>
                              </div> -->
@@ -567,7 +567,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupToDoTask; let i = index">
-                <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -600,7 +600,7 @@
                                             fill="#D1D8EF" />
                                     </svg></button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                         {{language.Survey.view_detail}}</button>
 
                                 </mat-menu>
@@ -652,7 +652,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupInProgress; let i = index">
-                <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -685,7 +685,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
@@ -735,7 +735,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of groupCompleted; let i = index">
-                <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -768,7 +768,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
                             </mat-menu>
                         </div> -->
@@ -835,7 +835,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdToDoTask; let i = index">
-                <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -868,7 +868,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
@@ -917,7 +917,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdInProgress; let i = index">
-                <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0" routerLink="/morganizer-task-detail/{{task.id}}">
+                <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                         <img onContextMenu="return false;"
@@ -950,7 +950,7 @@
                                         fill="#D1D8EF" />
                                 </svg></button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                     {{language.Survey.view_detail}}</button>
 
                             </mat-menu>
@@ -999,7 +999,7 @@
             <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
             <!-- task item start -->
             <ng-container *ngFor="let task of createdCompleted; let i = index">
-                <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0" routerLink="/morganizer-task-detail/{{task.id}}"> 
+                <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
                     <div class="survey-dates">
                         <!-- <div class="task-list-image">
                             <img onContextMenu="return false;"
@@ -1032,7 +1032,7 @@
                                             fill="#D1D8EF" />
                                     </svg></button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item routerLink="/task-detail/{{task.id}}">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
                                         {{language.Survey.view_detail}}</button>
                                 </mat-menu>
                             </div> -->

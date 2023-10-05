@@ -706,7 +706,7 @@ export class GroupDetailComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.notificationService.showSuccess(respData.result.message, null);
-                        self.router.navigate(['community/groups-joined']);
+                        self.router.navigate(['web/community/groups-joined']);
                     }
                 )
         }, function () {
@@ -727,7 +727,7 @@ export class GroupDetailComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        self.router.navigate(['group-detail/' + groupId]);
+                        self.router.navigate(['web/group-detail/' + groupId]);
                         self.getGroupDetails(groupId)
                     }
                 )
@@ -875,7 +875,7 @@ export class GroupDetailComponent implements OnInit {
 
     goBack() {
         localStorage.setItem('backItem', 'groups');
-        this.router.navigate(['/community/groups']);
+        this.router.navigate(['/web/community/groups']);
     }
 
     /**
@@ -922,15 +922,15 @@ export class GroupDetailComponent implements OnInit {
     }
 
     getNewsDetails(news_id: number) {
-        this.router.navigate(['clubnews-detail/' + news_id]);
+        this.router.navigate(['/web/clubnews-detail/' + news_id]);
     }
 
     getTasksDetails(task_id: number) {
-        this.router.navigate(['task-detail/' + task_id]);
+        this.router.navigate(['/web/task-detail/' + task_id]);
     }
 
     getEventsDetails(event_id: number) {
-        this.router.navigate(['event-detail/' + event_id]);
+        this.router.navigate(['/web/event-detail/' + event_id]);
     }
 
     toggleDisplay() {

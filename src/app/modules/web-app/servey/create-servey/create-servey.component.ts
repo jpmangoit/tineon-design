@@ -238,7 +238,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
                             var self = this;
                             this.socket.emit('pushNotify', 'surveyCreated')
                             setTimeout(function () {
-                                self.router.navigate(['/survey-detail/' + respData['result']['survey']['id']]);
+                                self.router.navigate(['/web/survey-detail/' + respData['result']['survey']['id']]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

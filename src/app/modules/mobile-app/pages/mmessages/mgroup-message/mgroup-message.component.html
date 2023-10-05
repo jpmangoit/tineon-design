@@ -121,7 +121,7 @@
                                                                     [src]=" msg.group.image ?  msg.group.image : 'assets/img/defaultProfile.jpeg'">
                                                             </div>
                                                             <div class="user-content">
-                                                               
+
                                                                 <h6>{{msg.user.firstName}}
                                                                     {{msg.user.lastName}}</h6>
                                                                 <p>{{msg.content}}</p>
@@ -314,7 +314,7 @@
                                                                         [src]=" msg.group.image ?  msg.group.image : 'assets/img/defaultProfile.jpeg'">
                                                                 </div>
                                                                 <div class="user-content">
-                                                                  
+
                                                                     <h6>{{msg.user.firstName}}
                                                                         {{msg.user.lastName}}</h6>
                                                                     <p>{{msg.content}}</p>
@@ -511,14 +511,14 @@
                                                             </div>
                                                             <div class="user-detail-info">
                                                                 <div class="chat-user-name"
-                                                                    *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                    *ngIf="selectedMessage && selectedMessage[0]?.user"
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
                                                                 <div class="group_name"
                                                                     *ngIf="selectedMessage[0].group.id"> <a
-                                                                        routerLink="/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
+                                                                        routerLink="/mobile/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
                                                                 </div>
                                                                 <div class="reply-date">{{selectedMessage[0].created_at
                                                                     | date: 'd. MMMM y' }} {{selectedMessage[0].created_at
@@ -662,14 +662,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user"
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
                                                                 <div class="group_name"
                                                                     *ngIf="selectedMessage[0].group.id"> <a
-                                                                        routerLink="/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
+                                                                        routerLink="/mobile/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
                                                                 </div>
                                                                 <div class="reply-date">{{selectedMessage[0].created_at | date: 'd. MMMM y' }} {{selectedMessage[0].created_at  | date: 'HH:mm': 'GMT+2' }}</div>
                                                             </div>
@@ -810,14 +810,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user"
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
                                                                 <div class="group_name"
                                                                     *ngIf="selectedMessage[0].group.id"> <a
-                                                                        routerLink="/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
+                                                                        routerLink="/mobile/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
                                                                 </div>
                                                                 <div class="reply-date">{{selectedMessage[0].created_at
                                                                     | date: 'd. MMMM y' }} {{selectedMessage[0].created_at
@@ -1096,14 +1096,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user"
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
                                                                 <div class="group_name"
                                                                     *ngIf="selectedMessage[0].group.id"> <a
-                                                                        routerLink="/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
+                                                                        routerLink="/mobile/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
                                                                 </div>
                                                                 <div class="reply-date">{{selectedMessage[0].created_at | date: 'd. MMMM y' }} {{selectedMessage[0].created_at  | date: 'HH:mm': 'GMT+2' }}</div>
                                                             </div>
@@ -1241,14 +1241,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="user-detail-info">
-                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user" 
+                                                                <div class="chat-user-name" *ngIf="selectedMessage && selectedMessage[0]?.user"
                                                                     tooltip="{{selectedMessage[0].user.email}}"
                                                                     placement="top" delay="500">
                                                                     "{{selectedMessage[0].user.firstName}}
                                                                     {{selectedMessage[0].user.lastName}}"</div>
                                                                 <div class="group_name"
                                                                     *ngIf="selectedMessage[0].group.id"> <a
-                                                                        routerLink="/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
+                                                                        routerLink="/mobile/group-detail/{{selectedMessage[0].group.id}}">({{selectedMessage[0].group.name}})</a>
                                                                 </div>
                                                                 <div class="reply-date">{{selectedMessage[0].created_at | date: 'd. MMMM y' }} {{selectedMessage[0].created_at | date: 'HH:mm': 'GMT+2' }}</div>
                                                             </div>

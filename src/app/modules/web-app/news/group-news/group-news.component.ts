@@ -178,7 +178,7 @@ export class GroupNewsComponent implements OnInit {
     */
     updateNews(newsId: number) {
         $('#exModal1').modal('hide');
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/web/update-news/" + newsId];
         this.router.navigate(url);
     }
 
@@ -195,7 +195,7 @@ export class GroupNewsComponent implements OnInit {
             .then((resp: any) => {
                 self.notificationService.showSuccess(resp, null);
                 self.getAllNews()
-                const url: string[] = ["/clubwall"];
+                const url: string[] = ["/web/clubwall"];
                 self.router.navigate(url);
             })
             .catch((err: any) => {

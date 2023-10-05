@@ -364,7 +364,7 @@ export class ClubEventsComponent implements OnInit, OnDestroy {
      */
     redirectCalendar() {
         var self = this;
-        self.router.navigate(['organizer']);
+        self.router.navigate(['web/organizer']);
     }
 
     /**
@@ -375,7 +375,7 @@ export class ClubEventsComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
     }
 
     ngOnDestroy(): void {

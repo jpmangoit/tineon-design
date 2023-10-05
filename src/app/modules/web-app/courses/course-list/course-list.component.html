@@ -76,9 +76,9 @@
                             <!-- {{language.header.view}} -->
                         </th>
                         <td class="odd table_action view" mat-cell *matCellDef="let row">
-                            <!-- <button class="btn btn-outline-secondary" routerLink="/course-detail/{{row.id}}">{{language.header.view}}</button> -->
+                            <!-- <button class="btn btn-outline-secondary" routerLink="/web/course-detail/{{row.id}}">{{language.header.view}}</button> -->
                             <a>
-                                <i class="fa fa-eye" aria-hidden="true"  routerLink="/course-detail/{{row.id}}"></i>
+                                <i class="fa fa-eye" aria-hidden="true"  routerLink="/web/course-detail/{{row.id}}"></i>
                             </a>&nbsp;&nbsp;
                             <a>
                                 <i class="fa fa-pencil" (click)="updateCourse(row.id)"></i>

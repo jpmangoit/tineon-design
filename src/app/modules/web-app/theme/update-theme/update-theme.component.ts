@@ -494,7 +494,7 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
                                 this.themes.getClubTheme(changeTheme)
                             }
                             setTimeout(() => {
-                                this.router.navigate(["/themes"]);
+                                this.router.navigate(["/web/themes"]);
                             }, 3000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

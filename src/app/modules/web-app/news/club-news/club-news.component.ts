@@ -98,11 +98,11 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
         this.url = this.router.url;
-        if (this.url == '/dashboard' || this.url == '/') {
+        if (this.url == '/web/dashboard' || this.url == '/') {
             this.displayPopup = true;
             this.newsDisplay = 4;
             this.showClubDash = true;
-        } else if (this.url == '/clubwall/club-news' || this.url == '/clubwall') {
+        } else if (this.url == '/web/clubwall/club-news' || this.url == '/web/clubwall') {
             this.displayPopup = false;
             this.newsDisplay = 4;
             this.showClubDash = false;
@@ -231,6 +231,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.dashboardNewsData = respData;
+                        console.log(this.dashboardNewsData);
+
                         if (this.dashboardNewsData && this.dashboardNewsData.length > 0) {
                             this.dashboardNewsData.forEach((element: any, index) => {
                                 if (element?.news_image[0]?.news_image) {
@@ -439,7 +441,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                 setTimeout(function () {
                     self.getAllNews()
                     self.getAllNewspagination()
-                    const url: string[] = ["/clubwall"];
+                    const url: string[] = ["/web/clubwall"];
                     self.router.navigate(url);
                 }, 3000);
             })
@@ -454,7 +456,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     */
     updateNews(newsId: number) {
         $('#exModal').modal('hide');
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/web/update-news/" + newsId];
         this.router.navigate(url);
     }
 

@@ -34,7 +34,7 @@
                                                                     aria-labelledby="dropdownMenuLink">
                                                                     <li>
                                                                         <a class="dropdown-item"
-                                                                            routerLink="/update-event/{{ eventDetails.id}}">{{
+                                                                            routerLink="/web/update-event/{{ eventDetails.id}}">{{
                                                                             language.organizer.Edit}}</a>
                                                                     </li>
                                                                     <li>
@@ -788,7 +788,7 @@
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                    routerLink="/web/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"

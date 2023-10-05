@@ -136,9 +136,9 @@
                                         <div class="card-body">
                                             <div class="row" style="margin-top: 1px;">
                                                 <div class="text-center col-md-6">
-                                                    <image-cropper 
+                                                    <image-cropper
                                                         [imageChangedEvent]="imageChangedEvent"
-                                                        [maintainAspectRatio]="true"  
+                                                        [maintainAspectRatio]="true"
                                                         [aspectRatio]="4/3"
                                                         autoCrop="false"
                                                         hideResizeSquares="true"
@@ -147,7 +147,7 @@
                                                         [roundCropper]="false"
                                                         format="webp"
                                                         (imageCropped)="imageCropped($event)"
-                                                        (imageLoaded)="imageLoaded()" 
+                                                        (imageLoaded)="imageLoaded()"
                                                         (cropperReady)="cropperReady()"
                                                         (loadImageFailed)="loadImageFailed()">
                                                     </image-cropper>
@@ -167,7 +167,7 @@
                                         </svg>&nbsp;  <span [ngStyle]="{'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.create_news.save}}</span>
                                     </span>
                                 </button>
-                                <button type="button" routerLink="/vereins-faq" class="Cancel_btn"
+                                <button type="button" routerLink="/web/vereins-faq" class="Cancel_btn"
                                     [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.cancel_button_bgcolor : setTheme.cancel_button_bgcolor,
                                         'background-color': setTheme.default_status == true ? setTheme.cancel_button_bgcolor : setTheme.cancel_button_bgcolor,
                                         'color': setTheme.default_status == true ? setTheme.cancel_button_text : setTheme.cancel_button_text}">

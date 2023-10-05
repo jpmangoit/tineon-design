@@ -260,7 +260,7 @@ export class RoomDetailsComponent implements OnInit {
 
 
     updateRoom(room_id: number) {
-        this.router.navigate(['update-room/' + room_id])
+        this.router.navigate(['/web/update-room/' + room_id])
     }
 
     approveRoom(roomId: number) {
@@ -319,7 +319,7 @@ export class RoomDetailsComponent implements OnInit {
                     (respData: any) => {
                         self.responseMessage = respData.result.message;
                         self.notificationService.showSuccess(self.responseMessage, null);
-                        self.router.navigate(['/room'])
+                        self.router.navigate(['/web/room'])
                     }
                 )
         }, function () {
@@ -332,7 +332,7 @@ export class RoomDetailsComponent implements OnInit {
             self.authService.memberSendRequest('get', 'get-reset-updatedroom/' + room_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.router.navigate(['room-detail/' + room_id]);
+                        self.router.navigate(['web/room-detail/' + room_id]);
                         setTimeout(() => {
                             self.ngOnInit();
                             self.getRoomDetail(room_id)
@@ -381,7 +381,7 @@ export class RoomDetailsComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/room']);
+        this.router.navigate(['/web/room']);
     }
 
     getDayName(id: any) {

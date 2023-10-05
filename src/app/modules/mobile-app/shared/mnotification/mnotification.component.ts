@@ -96,7 +96,7 @@ export class MnotificationComponent implements OnInit {
                             self.alreadyAcceptMsg = respData['result'];
                             self.ngOnInit();
                             self.toggleField();
-                            self._router.navigate(["/course-detail/" + CourseId]);
+                            self._router.navigate(["/mobile/course-detail/" + CourseId]);
                         }
                     }
                 )
@@ -132,7 +132,7 @@ export class MnotificationComponent implements OnInit {
                             self.ngOnInit();
                             self.toggleField();
 
-                            self._router.navigate(["/course-detail/" + courseId]);
+                            self._router.navigate(["/mobile/course-detail/" + courseId]);
                         }
                     }
                 )
@@ -165,7 +165,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/course-detail/" + courseId]);
+                        self._router.navigate(["/mobile/course-detail/" + courseId]);
                     }
                 )
         }, function () {
@@ -219,7 +219,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -240,7 +240,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -263,7 +263,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -287,7 +287,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -339,7 +339,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedgroupByUser/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/mobile/group-detail/" + groupId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -353,7 +353,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'getreadGroupInvitaion/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/mobile/group-detail/" + groupId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -367,7 +367,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedgroup-notification/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/group-detail/" + groupId]);
+                    self._router.navigate(["/mobile/group-detail/" + groupId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -385,7 +385,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/group-detail/" + groupId]);
+                        self._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
         }, function () {
@@ -402,7 +402,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/clubnews-detail/" + newsId]);
+                        self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     }
                 )
         }, function () {
@@ -418,7 +418,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/clubnews-detail/" + newsId]);
+                        self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     }
                 )
         }, function () {
@@ -455,7 +455,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/event-detail/" + eventId]);
+                        self._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
         }, function () {
@@ -472,7 +472,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/event-detail/" + eventId]);
+                        self._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
         }, function () {
@@ -509,7 +509,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/event-detail/" + eventId]);
+                        self._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
         }, function () {
@@ -543,7 +543,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/task-detail/" + taskId]);
+                        self._router.navigate(["/mobile/task-detail/" + taskId]);
                     }
                 )
         }, function () {
@@ -580,7 +580,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/task-detail/" + taskId]);
+                        self._router.navigate(["/mobile/task-detail/" + taskId]);
                     }
                 )
         }, function () {
@@ -593,7 +593,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'readtasknotification/' + taskId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/mobile/task-detail/" + taskId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -610,7 +610,7 @@ export class MnotificationComponent implements OnInit {
                     self.ngOnInit();
                     self.toggleField();
 
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/mobile/task-detail/" + taskId]);
                 }
             )
     }
@@ -621,7 +621,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedtaskByUser/' + taskId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/mobile/task-detail/" + taskId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -635,7 +635,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'readCompletedTasksNotification/' + taskId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + taskId]);
+                    self._router.navigate(["/mobile/task-detail/" + taskId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -683,7 +683,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/room-detail/" + roomId]);
+                        self._router.navigate(["/mobile/room-detail/" + roomId]);
                     }
                 )
         }, function () {
@@ -700,7 +700,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/room-detail/" + roomId]);
+                        self._router.navigate(["/mobile/room-detail/" + roomId]);
                     }
                 )
         }, function () {
@@ -741,7 +741,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/instructor-detail/" + instructor_id]);
+                        self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                     }
                 )
         }, function () {
@@ -761,7 +761,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/instructor-detail/" + instructor_id]);
+                        self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                     }
                 )
         }, function () {
@@ -798,7 +798,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/vereins-faq-detail/" + faqId]);
+                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
                     }
                 )
         }, function () {
@@ -819,7 +819,7 @@ export class MnotificationComponent implements OnInit {
                         self.ngOnInit();
                         self.toggleField();
 
-                        self._router.navigate(["/vereins-faq-detail/" + faqsId]);
+                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqsId]);
                     }
                 )
         }, function () {
@@ -834,7 +834,7 @@ export class MnotificationComponent implements OnInit {
     //                 (respData: any) => {
     //                  self.ngOnInit();
     //                     self.toggleField();
-    //                     self._router.navigate(["/vereins-faq-detail/" + faqId]);
+    //                     self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
     //                 }
     //             )
     //     }, function () {
@@ -849,7 +849,7 @@ export class MnotificationComponent implements OnInit {
                 (respData: any) => {
                     self.ngOnInit();
                     self.toggleField();
-                    this._router.navigate(["/vereins-faq"]);
+                    this._router.navigate(["/mobile/vereins-faq"]);
                 }
             );
     }
@@ -863,7 +863,7 @@ export class MnotificationComponent implements OnInit {
                     (respData: any) => {
                         self.ngOnInit();
                         self.toggleField();
-                        self._router.navigate(["/vereins-faq-detail/" + faqId]);
+                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
                     }
                 )
         }, function () {
@@ -943,7 +943,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/survey-detail/" + survey_id]);
+                    self._router.navigate(["/mobile/survey-detail/" + survey_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -985,7 +985,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedpublishednews/news_id/' + newsId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/clubnews-detail/" + newsId]);
+                    self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1000,7 +1000,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatednews/' + newsId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/clubnews-detail/" + newsId]);
+                    self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1030,7 +1030,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedtask-notification/' + task_id + '/organizer/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + task_id]);
+                    self._router.navigate(["/mobile/task-detail/" + task_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1044,7 +1044,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedtask/' + task_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/task-detail/" + task_id]);
+                    self._router.navigate(["/mobile/task-detail/" + task_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1065,7 +1065,7 @@ export class MnotificationComponent implements OnInit {
         let userId: string = localStorage.getItem('user-id');
         self.authService.memberSendRequest('get', 'read-approvedinstructor-notification/' + instructor_id + '/author/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/instructor-detail/" + instructor_id]);
+                self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                 self.ngOnInit();
                 self.toggleField();
 
@@ -1077,7 +1077,7 @@ export class MnotificationComponent implements OnInit {
         let userId: string = localStorage.getItem('user-id');
         self.authService.memberSendRequest('get', 'read-notification-updatedinstructor/' + instructor_id + '/user/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/instructor-detail/" + instructor_id]);
+                self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                 self.ngOnInit();
                 self.toggleField();
 
@@ -1089,7 +1089,7 @@ export class MnotificationComponent implements OnInit {
         let userId: string = localStorage.getItem('user-id');
         self.authService.memberSendRequest('get', 'read-approvedsurvey-notification/survey_id/' + survey_id + '/author/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/survey-detail/" + survey_id]);
+                self._router.navigate(["/mobile/survey-detail/" + survey_id]);
             })
     }
 
@@ -1098,7 +1098,7 @@ export class MnotificationComponent implements OnInit {
         let userId: string = localStorage.getItem('user-id');
         self.authService.memberSendRequest('get', 'read-notification-updatedsurvey/' + survey_id + '/user/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/survey-detail/" + survey_id]);
+                self._router.navigate(["/mobile/survey-detail/" + survey_id]);
             })
     }
 
@@ -1118,7 +1118,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedroom-notification/' + room_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/room-detail/" + room_id]);
+                    self._router.navigate(["/mobile/room-detail/" + room_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1132,7 +1132,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedroom/' + room_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/room-detail/" + room_id]);
+                    self._router.navigate(["/mobile/room-detail/" + room_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1162,7 +1162,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedevent-notification/' + event_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/mobile/event-detail/" + event_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1177,7 +1177,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedevent/' + event_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/mobile/event-detail/" + event_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1191,7 +1191,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedeventByUser/' + event_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/event-detail/" + event_id]);
+                    self._router.navigate(["/mobile/event-detail/" + event_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1212,7 +1212,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-approvedcourse-notification/' + course_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1226,7 +1226,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedcourses/' + course_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1240,7 +1240,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-notification-updatedCourseByUser/' + course_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1254,7 +1254,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1268,7 +1268,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'readupdate-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 
@@ -1282,7 +1282,7 @@ export class MnotificationComponent implements OnInit {
         self.authService.memberSendRequest('get', 'read-course-join-message/' + course_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/course-detail/" + course_id]);
+                    self._router.navigate(["/mobile/course-detail/" + course_id]);
                     self.ngOnInit();
                     self.toggleField();
 

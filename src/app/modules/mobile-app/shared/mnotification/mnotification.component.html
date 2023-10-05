@@ -29,7 +29,7 @@
                         </div>
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}
-                                </Span>{{language.header.want_to_join_a_group_called}}<a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                </Span>{{language.header.want_to_join_a_group_called}}<a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -52,7 +52,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.want_to_publish_update_an_Group_called}}<a
-                                    routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -74,7 +74,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.group_hasbeen_updated}}
-                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -96,7 +96,7 @@
                                 <p>
                                     <Span> {{notification.firstName}} {{notification.lastName}}</Span>
                                     {{language.header.invited_you_to}}<a
-                                        routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.group | lowercase}}
+                                        routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.group | lowercase}}
                                 </p>
                                 <div class="notification-btn-group">
                                     <button class="accept_btn" type="button"
@@ -120,7 +120,7 @@
                             <div class="notification_message">
                                 <p><Span>{{notification.firstName}}  {{notification.lastName}}</Span>
                                     {{language.header.want_to_publish_an_Group_calles}}
-                                    <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                    <a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{language.header.group | lowercase}}
                                 </p>
                                 <div class="notification-btn-group">
@@ -144,7 +144,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.deny_group_called}}
-                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button" (click)="viewGroup(notification.id)">{{language.header.view}} </button>
@@ -163,7 +163,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.added_group_called}}
-                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -184,7 +184,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.group_hasbeen_published}}
-                                <a routerLink="/group-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/group-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -205,7 +205,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}
                                 </Span>{{language.header.want_to_publish_an_Article_called}}<a
-                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button" (click)="acceptNews(notification.id)">{{language.header.accept}}</button>
@@ -225,7 +225,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.want_to_publish_update_an_Article_called}} <a
-                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -247,7 +247,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.deny_Article_called}} <a
-                                    routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"  (click)="viewNews(notification.id)">{{language.header.view}}
@@ -267,7 +267,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.news_hasbeen_published}}
-                                <a routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -288,7 +288,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.news_hasbeen_updated}}
-                                <a routerLink="/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/clubnews-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -310,7 +310,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.want_to_publish_an_Event_calles}} <a
-                                    routerLink="/event-detail/{{notification.id}}">{{notification.title}}
+                                    routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}
                                 </a>{{language.header.event | lowercase}}
                             </p>
                             <div class="notification-btn-group">
@@ -334,7 +334,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.want_to_publish_update_an_Event_called}} <a
-                                    routerLink="/event-detail/{{notification.id}}">{{notification.title}}
+                                    routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}
                                 </a>{{language.header.event | lowercase}}
                             </p>
                             <div class="notification-btn-group">
@@ -357,7 +357,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.deny_event_called}}
-                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -378,7 +378,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.event_hasbeen_published}}
-                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -399,7 +399,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.event_hasbeen_updated}}
-                                <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -423,7 +423,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails">
                                     <span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.invited_you_to}}
-                                    <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                    <a routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{ language.header.event | lowercase }}
                                 </p>
                                 <div class="notification-btn-group">
@@ -449,7 +449,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails">
                                     <span>{{notification.firstName}}{{notification.lastName}}</span>
-                                    {{language.header.event_hasbeen_updated}} <a routerLink="/event-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.event_hasbeen_updated}} <a routerLink="/mobile/event-detail/{{notification.id}}">{{notification.title}}</a>
                                 </p>
                                 <div class="notification-btn-group">
                                     <button class="accept_btn" type="button"
@@ -470,7 +470,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_an_Course_calles}}
-                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -491,7 +491,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_update_an_Course_calles}}
-                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}
+                                <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}
                                 </a>
                             </p>
                             <div class="notification-btn-group">
@@ -517,7 +517,7 @@
                                 <p *ngIf="notification.firstName">
                                     <span>{{notification.firstName}} {{notification.lastName}}</span>
                                     {{language.courses.wants_join_course}}
-                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{ language.courses.course | lowercase }}
                                 </p>
                                 <div class="notification-btn-group">
@@ -542,7 +542,7 @@
                                 <p *ngIf="notification.firstName">
                                     <span>{{notification.firstName}} {{notification.lastName}}</span>
                                     {{language.courses.creator_joined}}
-                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{ language.courses.course | lowercase }}
                                 </p>
                                 <div class="notification-btn-group">
@@ -567,7 +567,7 @@
                             <div class="notification_message">
                                 <p *ngIf="notification.firstName">
                                     <span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.invited_you_to}}
-                                    <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{ language.header.course | lowercase }}
                                 </p>
                                 <div class="notification-btn-group">
@@ -593,7 +593,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails">
                                    <span>{{notification.firstName}}{{notification.lastName}}</span>
-                                    {{language.header.course_hasbeen_updated}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.course_hasbeen_updated}} <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                  </p>
                                 <div class="notification-btn-group">
                                     <button class="accept_btn" type="button"
@@ -618,7 +618,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails">
                                    <span>{{notification.firstName}}{{notification.lastName}}</span>
-                                    {{language.header.course_hasbeen_published}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.course_hasbeen_published}} <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{language.header.internal_instructor_assigned}}
                                  </p>
                                 <div class="notification-btn-group">
@@ -644,7 +644,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails">
                                    <span>{{notification.firstName}}{{notification.lastName}}</span>
-                                    {{language.header.course_hasbeen_updated}} <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    {{language.header.course_hasbeen_updated}} <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                                     {{language.header.update_internal_instructor_assigned}}
                                  </p>
                                 <div class="notification-btn-group">
@@ -668,7 +668,7 @@
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.course_hasbeen_published}}
                                 <a
-                                    routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -688,7 +688,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}}  {{notification.lastName}}</span>
                                 {{language.header.course_hasbeen_updated}}
-                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -708,7 +708,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}}  {{notification.lastName}}</span>
                                 {{language.header.deny_course_called}}
-                                <a routerLink="/course-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/course-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -730,7 +730,7 @@
                         <div class="notification_message">
                             <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_a_Task_called}} {{language.header.task | lowercase}} <a
-                                    routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -753,7 +753,7 @@
                         <div class="notification_message">
                             <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_update_an_Task_called}} {{language.header.task | lowercase}} <a
-                                    routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
 
                             </p>
                             <div class="notification-btn-group">
@@ -777,7 +777,7 @@
                             </div>
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
-                                    {{language.header.invited_you_to}}<a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.task
+                                    {{language.header.invited_you_to}}<a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>{{language.header.task
                                     | lowercase}}</p>
 
                                 <div class="notification-btn-group">
@@ -801,7 +801,7 @@
                             <div class="notification_message">
                                 <p *ngIf="alluserDetails"><span>{{notification.firstName}} {{notification.lastName}}</span>
                                     {{language.header.invited_you_to}}  {{language.header.task | lowercase}} <a
-                                        routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                        routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                                 </p>
                                 <div class="notification-btn-group">
                                     <button class="accept_btn" type="button"
@@ -820,7 +820,7 @@
                         </div>
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.deny_task_called}}
-                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -841,7 +841,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.task_hasbeen_published}}
-                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -862,7 +862,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.task_hasbeen_updated}}
-                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -883,7 +883,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.task_hasbeen_updated}}
-                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -902,7 +902,7 @@
                         </div>
                         <div class="notification_message">
                             <p>
-                                <a routerLink="/task-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/task-detail/{{notification.id}}">{{notification.title}}</a>
                                 <span> {{language.header.task_completed }} </span>
                             </p>
                             <div class="notification-btn-group">
@@ -949,7 +949,7 @@
                         </div>
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span> {{language.header.want_to_publish_an_Survey_calles}}
-                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -972,7 +972,7 @@
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_update_an_Survey_called}}
                                 <a
-                                    routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button" (click)="approvedUpdatedSurvey(notification.id)">{{language.header.accept}}</button>
@@ -994,7 +994,7 @@
                             <div class="notification_message">
                                 <p *ngIf="notification.firstName"><span>{{notification.firstName}} {{notification.lastName}}</span>
                                     {{language.header.invited_you_to}}
-                                    <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a> {{language.Survey.survey | lowercase}}
+                                    <a routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a> {{language.Survey.survey | lowercase}}
                                 </p>
                                 <div class="notification-btn-group">
                                     <button class="accept_btn" type="button" (click)="acceptInvitedSurvey(notification.id)">{{language.Survey.view_survey}}</button>
@@ -1014,7 +1014,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.survey_hasbeen_published}}
-                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1034,7 +1034,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.survey_hasbeen_updated}}
-                                <a  routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a  routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1054,7 +1054,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.deny_survey_called}}
-                                <a routerLink="/survey-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/survey-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1076,7 +1076,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_an_Room_calles}}
-                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/room-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1099,7 +1099,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_update_an_Room_called}}
-                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/room-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1121,7 +1121,7 @@
                         <div class="notification_message">
                             <p><Span>{{notification.firstName}} {{notification.lastName}}</Span>
                                 {{language.header.room_hasbeen_published}}
-                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/room-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1142,7 +1142,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.room_hasbeen_updated}}
-                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/room-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1163,7 +1163,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.deny_room_called}}
-                                <a routerLink="/room-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/room-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1186,7 +1186,7 @@
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_an_Instructor_calles}}
                                 <a
-                                    routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/instructor-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1209,7 +1209,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.want_to_publish_update_an_Instructor_called}}
-                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/instructor-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1231,7 +1231,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.deny_instructor_called}}
-                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/instructor-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1252,7 +1252,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.instructor_hasbeen_published}}
-                                <a routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/instructor-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1274,7 +1274,7 @@
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.header.instructor_hasbeen_updated}}
                                 <a
-                                    routerLink="/instructor-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/instructor-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1295,7 +1295,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.want_to_publish_an_Faqs}} <a
-                                    routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                                    routerLink="/mobile/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1317,7 +1317,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.want_to_publish_an_update_Faqs}}
-                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1339,7 +1339,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.faqs_hasbeen_published}}
-                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1359,7 +1359,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.faqs_hasbeen_updated}}
-                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1379,7 +1379,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.faqs_hasbeen_deny}}
-                                <a routerLink="/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
+                                <a routerLink="/mobile/vereins-faq-detail/{{notification.id}}">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"
@@ -1398,7 +1398,7 @@
                         <div class="notification_message">
                             <p><span>{{notification.firstName}} {{notification.lastName}}</span>
                                 {{language.create_faq.want_to_publish_an_Faqs_category}} <a
-                                    routerLink="/faq-category">{{notification.title}}</a>
+                                    routerLink="/mobile/faq-category">{{notification.title}}</a>
                             </p>
                             <div class="notification-btn-group">
                                 <button class="accept_btn" type="button"

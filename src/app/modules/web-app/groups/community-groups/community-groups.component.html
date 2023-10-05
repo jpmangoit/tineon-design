@@ -66,7 +66,7 @@
                                                     alt="{{data.name}}" loading="lazy">
                                             </div>
                                             <div class="news-content">
-                                                <a routerLink="/group-detail/{{data.id}}">
+                                                <a routerLink="/web/group-detail/{{data.id}}">
                                                     <h5>{{data.name}}</h5>
                                                 </a>
                                                 <div class="membar-count-area">
@@ -105,7 +105,7 @@
                                                     <!-- *ngIf='data.participants.length > 0 && data.participants[0].approved_status == 2'>{{language.community_groups.waitingApproval}} -->
                                                 </button>
                                                 <div class="new-action" *ngIf="data.created_by == user_Id  || userDetails.isAdmin == true">
-                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                    <button type="button" routerLink="/web/update-group/{{data.id}}"
                                                         class="edit-action"
                                                         [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
                                                         {{language.community_groups.Edit_group}}
@@ -186,7 +186,7 @@
                                <!-- group-col start -->
                                 <div class="community-group-row">
                                     <!-- <div class="community-group-column" *ngFor='let data of groupJoinData | paginate:{itemsPerPage: itemPerPageOne,currentPage: currentPageNmuberOne, totalItems: totalJoinedGroupData}'> -->
-                                    <div class="community-group-column" *ngFor='let data of groupJoinData'>                                       
+                                    <div class="community-group-column" *ngFor='let data of groupJoinData'>
                                         <div class="news-widget com-g-widget">
                                             <div class="news-image"
                                                 [ngClass]="data.group_images[0]?.['group_image'] == null ? 'no_image' : ''">
@@ -195,7 +195,7 @@
                                                     alt="{{data.name}}" loading="lazy">
                                             </div>
                                             <div class="news-content">
-                                                <a routerLink="/group-detail/{{data.id}}">
+                                                <a routerLink="/web/group-detail/{{data.id}}">
                                                     <h5>{{data.name}}</h5>
                                                 </a>
                                                 <div class="membar-count-area">
@@ -227,7 +227,7 @@
                                                 </button> -->
 
                                                 <div class="new-action" *ngIf="data.created_by == user_Id">
-                                                    <button type="button" routerLink="/update-group/{{data.id}}"
+                                                    <button type="button" routerLink="/web/update-group/{{data.id}}"
                                                         class="edit-action"
                                                         [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color} ">
                                                         {{language.community_groups.Edit_group}}
@@ -303,7 +303,7 @@
                                     alt="{{data.name}}" loading="lazy">
                             </div>
                             <div class="gn-right">
-                                <a routerLink="/group-detail/{{data.id}}">
+                                <a routerLink="/web/group-detail/{{data.id}}">
                                     <h5>{{data.name}}</h5>
                                 </a>
                                 <span  class="manage_g_cat" *ngIf="data.participantsApprovedCount > 0">
@@ -318,7 +318,7 @@
                                 </span>
                             </div>
                             <div class="new-action" *ngIf="data.created_by == user_Id || userDetails.isAdmin == true">
-                                <button type="button" routerLink="/update-group/{{data.id}}"
+                                <button type="button" routerLink="/web/update-group/{{data.id}}"
                                     [ngStyle]="{'border-color':'#41AE4C','background-color':'#41AE4C','color':button_ic_color}">
                                     {{language.community_groups.Edit_group}}
                                 </button>

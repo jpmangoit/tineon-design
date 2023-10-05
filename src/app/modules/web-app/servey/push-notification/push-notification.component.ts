@@ -225,19 +225,19 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
     viewDetails() {
         $('#push-notification').modal('hide');
         this.getsurveypopclosed();
-        this.router.navigate(['/crm-survey']);
+        this.router.navigate(['/web/crm-survey']);
     }
 
     viewNewsDetails() {
         $('#push-notification').modal('hide');
         this.getpopclosed();
-        this.router.navigate(['/crm-news']);
+        this.router.navigate(['/web/crm-news']);
     }
 
     viewReadSurveyDetail() {
         $('#push-notification').modal('hide');
         this.readSurvey();
-        this.router.navigate(['survey']);
+        this.router.navigate(['/web/survey']);
     }
 
     redirectToDashboard() {
@@ -245,7 +245,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         this.getpopclosed();
         this.getsurveypopclosed();
         this.readSurvey();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/web/dashboard']);
     }
 
     closeModal() {

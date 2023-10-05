@@ -28,7 +28,7 @@
             <td class="crm-author">
                 <img onContextMenu="return false;" [src]="(item.picture != null && item.picture != '') ? item.picture : '../../../../assets/img/defaultProfile.jpeg'" alt="{{item.author}}" loading="lazy">
                 &nbsp;&nbsp;{{item.author}}
-                
+
             </td>
             <td class="active-from">{{item.created_at.split('T')[0] | date: 'dd. MMMM y'}}</td>
             <td class="remaining-time">
@@ -47,7 +47,7 @@
                     <button mat-button [matMenuTriggerFor]="menu">
                         <img onContextMenu="return false;"  src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="{{item.author}}" loading="lazy"></button>
                     <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item routerLink="/crm-view-survey/{{item.id}}">
+                        <button mat-menu-item routerLink="/web/crm-view-survey/{{item.id}}">
                             {{language.Survey.view_survey}}
                         </button>
                     </mat-menu>

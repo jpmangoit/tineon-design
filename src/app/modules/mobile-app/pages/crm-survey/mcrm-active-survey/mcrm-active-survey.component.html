@@ -19,12 +19,12 @@
                 </button>
                 <mat-menu #menu="matMenu" xPosition="before">
                     <ng-container *ngIf="checkType(item); else notEqual">
-                        <button mat-menu-item routerLink="/crm-view-survey/{{item.id}}">
+                        <button mat-menu-item routerLink="/mobile/crm-view-survey/{{item.id}}">
                             {{language.Survey.view_survey}}
                         </button>
                     </ng-container>
                     <ng-template #notEqual>
-                        <button mat-menu-item routerLink="/crm-survey-vote/{{item.id}}">
+                        <button mat-menu-item routerLink="/mobile/crm-survey-vote/{{item.id}}">
                             {{language.Survey.view_survey}}
                         </button>
                     </ng-template>

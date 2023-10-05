@@ -4,7 +4,7 @@
         <div class="page-action">
             <div class="page-action-left">
                 <div class="tab-button">
-                    <button type="button"  *ngIf="participateAccess.chat == 'Yes'"  [ngClass]="{'active': activeClass==='chatActive'}" routerLink="/community"
+                    <button type="button"  *ngIf="participateAccess.chat == 'Yes'"  [ngClass]="{'active': activeClass==='chatActive'}" routerLink="/mobile/community"
                         (click)="onClick(1)" (click)="chatList()"
                         [ngStyle]="displayChats == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
@@ -12,7 +12,7 @@
                             : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
                         <Span>{{language.community_messages.all_active_chat}}</Span>
                     </button>
-                    <button type="button" *ngIf="participateAccess.message == 'Yes'" [ngClass]="{'active': activeClass==='messageActive'}" routerLink="/community/community-messages"
+                    <button type="button" *ngIf="participateAccess.message == 'Yes'" [ngClass]="{'active': activeClass==='messageActive'}" routerLink="/mobile/community/community-messages"
                         (click)="onClick(2)"  (click)="Messages()"
                         [ngStyle]="displayMessages == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
@@ -20,7 +20,7 @@
                             : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
                         <Span>{{language.header.messages}}</Span>
                     </button>
-                    <button type="button" *ngIf="participateAccess.group == 'Yes'" [ngClass]="{'active': activeClass==='groupActive'}" routerLink="/community/community-groups"
+                    <button type="button" *ngIf="participateAccess.group == 'Yes'" [ngClass]="{'active': activeClass==='groupActive'}" routerLink="/mobile/community/community-groups"
                         (click)="onClick(3)" (click)="communityGroups()"
                         [ngStyle]="displayGroups == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                             'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,

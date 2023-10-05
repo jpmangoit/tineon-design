@@ -286,7 +286,7 @@ export class CreateGroupComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
                             var self = this;
-                            var redirectUrl: string = 'group-detail/' + respData['result']['group']['id'];
+                            var redirectUrl: string = 'web/group-detail/' + respData['result']['group']['id'];
                             self.router.navigate([redirectUrl]);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

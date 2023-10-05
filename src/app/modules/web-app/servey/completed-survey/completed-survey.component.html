@@ -39,8 +39,8 @@
 </svg>
                     </button>
                     <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item routerLink="/view-survey/{{item.id}}">{{language.Survey.view_survey}}</button>
-                        <button mat-menu-item *ngIf="userRole == 'admin'" routerLink="/update-survey/{{item.id}}">{{language.Survey.edit}}</button>
+                        <button mat-menu-item routerLink="/web/view-survey/{{item.id}}">{{language.Survey.view_survey}}</button>
+                        <button mat-menu-item *ngIf="userRole == 'admin'" routerLink="/web/update-survey/{{item.id}}">{{language.Survey.edit}}</button>
                         <button mat-menu-item *ngIf="userRole == 'admin'" (click)="surveyDelete(item.id)"> {{language.Survey.delete_survey}}</button>
                     </mat-menu>
                 </div>

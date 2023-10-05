@@ -735,7 +735,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
                         this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(function () {
                             $('#edit_instructor').modal('hide');
-                            self.router.navigate(['/instructor-detail/' + self.editId]);
+                            self.router.navigate(['/web/instructor-detail/' + self.editId]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

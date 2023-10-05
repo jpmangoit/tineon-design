@@ -10,7 +10,7 @@
                         <h1>{{language.banner.banner_detail}}</h1>
                     </div>
                     <div class="page-action-right">
-                        <button type="button" class="white_btn" routerLink="/banner-list"
+                        <button type="button" class="white_btn" routerLink="/web/banner-list"
                             [ngStyle]="{'border-color':this.setTheme.button_bgcolor,'color':this.setTheme.button_bgcolor}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M9.68969 13.75L5.96875 10L9.68969 6.25M6.48578 10H14.0312" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,7 +38,7 @@
                                                     <ul class="dropdown-menu bunch_drop"
                                                         aria-labelledby="dropdownMenuLink">
                                                         <li>
-                                                            <a class="dropdown-item" routerLink="/update-banner/{{bannerDetail.id}}">{{language.organizer.Edit}}</a>
+                                                            <a class="dropdown-item" routerLink="/web/update-banner/{{bannerDetail.id}}">{{language.organizer.Edit}}</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" *ngIf="bannerDetail" (click)="deleteBanner(bannerDetail.id)">{{language.organizer.Delete}}</a>

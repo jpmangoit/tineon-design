@@ -11,7 +11,7 @@
                                     : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
                             <Span>{{language.create_faq.faqs}}</Span>
                         </button>
-                        <button type="button" routerLink="/faq-category" *ngIf="userRole == 'admin'"
+                        <button type="button" routerLink="/web/faq-category" *ngIf="userRole == 'admin'"
                             (click)="onFaqCategory()"
                             [ngStyle]="displayFaqCategory == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
                                     'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
@@ -23,7 +23,7 @@
                 </div>
                 <div class="page-action-right"
                     *ngIf="userDetails.isAdmin || userDetails.isEditor || userDetails.isFunctionary  || userDetails.isSecretary">
-                    <!-- <button class="disabled" routerLink="/create-faq"
+                    <!-- <button class="disabled" routerLink="/web/create-faq"
                         [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.button_y_bgcolor : setTheme.button_bgcolor,
                         'background-color': setTheme.default_status == true ? setTheme.button_y_bgcolor : setTheme.button_bgcolor,
                         'color': setTheme.default_status == true ? setTheme.button_y_text : setTheme.button_text}">
@@ -34,7 +34,7 @@
                         </svg>&nbsp;<span
                         [ngStyle]="{'color': setTheme.default_status == true ? setTheme.button_y_text : setTheme.button_text}">{{language.create_faq.create_faqs}}</span></button> -->
 
-                    <button class="disabled button-create" routerLink="/create-faq">
+                    <button class="disabled button-create" routerLink="/web/create-faq">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
                             <path
                                 d="M20 5.58888C20 8.86343 20 12.1385 20 15.413C19.9208 15.5063 19.9312 15.6272 19.9015 15.7355C19.5321 17.086 18.3687 17.9592 16.9214 17.9597C12.3073 17.9613 7.69271 17.9603 3.07865 17.9603C3.00727 17.9603 2.93537 17.9592 2.86399 17.9561C1.56928 17.9019 0.461615 17.0214 0.108891 15.7731C0.0750254 15.6527 0.0854456 15.5178 0 15.413C0 11.1246 0 6.83618 0 2.54775C0.0729414 2.51023 0.0494959 2.43312 0.0625212 2.37633C0.384505 0.958666 1.5573 0.00573894 3.01925 0.00313389C6.3386 -0.00259722 9.65744 0.00157086 12.9768 0.000528842C13.3847 0.000528842 13.7823 0.060966 14.1543 0.229252C15.2375 0.720043 15.8653 1.55157 15.9788 2.74052C15.9992 2.95101 16.058 3.01249 16.2644 2.99477C16.5035 2.97445 16.7458 2.98748 16.9865 2.9906C18.3843 3.0078 19.5436 3.8982 19.9036 5.22574C19.937 5.34661 19.925 5.47947 20 5.58888ZM14.1564 15.9637C13.8938 15.0577 14.0058 14.1439 14.0021 13.2394C13.9902 9.86845 13.9881 6.497 14.0047 3.12607C14.0084 2.4102 13.503 1.98558 12.8705 1.98922C9.62305 2.00694 6.37507 2.00694 3.12762 1.98974C2.45291 1.9861 1.98869 2.45657 1.99078 3.12763C2.0038 7.03156 2.0038 10.9355 1.99078 14.8389C1.98869 15.4933 2.44093 15.9752 3.13283 15.9716C6.73197 15.9544 10.3311 15.9637 13.9302 15.9637C14.0011 15.9637 14.072 15.9637 14.1564 15.9637ZM16.0028 10.0753C16.0028 11.6607 16.0028 13.2462 16.0033 14.8316C16.0033 14.9676 15.9997 15.1041 16.0382 15.2375C16.1794 15.7246 16.6374 16.0231 17.1459 15.957C17.6367 15.8929 18.0014 15.4646 18.0019 14.9311C18.004 11.9619 18.0045 8.99264 18.0019 6.02288C18.0014 5.41643 17.5789 5.0017 16.9682 4.99232C16.7077 4.98816 16.4467 5.00274 16.1873 4.98763C16.0257 4.97826 15.9997 5.03765 15.9997 5.18301C16.0044 6.81325 16.0028 8.44453 16.0028 10.0753ZM7.99854 3.99042C8.96866 3.99042 9.93878 3.9899 10.9089 3.99042C11.5919 3.99094 11.9968 4.39629 11.9973 5.08194C11.9983 6.34903 11.9983 7.61613 11.9973 8.88322C11.9968 9.57721 11.5919 9.98047 10.8922 9.98099C8.96501 9.98203 7.03832 9.98203 5.11111 9.98099C4.40514 9.98047 3.99875 9.57304 3.99771 8.86707C3.99667 7.613 3.99667 6.35893 3.99771 5.10486C3.99823 4.39525 4.40253 3.99094 5.10798 3.99042C6.07133 3.99042 7.03467 3.99042 7.99854 3.99042ZM8.00323 7.97979C8.61437 7.97979 9.22604 7.97719 9.83718 7.98188C9.95389 7.98292 10.006 7.96781 10.0039 7.8287C9.99453 7.26445 9.99713 6.69967 10.0023 6.1349C10.0034 6.02184 9.98359 5.97964 9.85594 5.98016C8.62063 5.98537 7.38479 5.98537 6.14948 5.98068C6.02391 5.98016 5.99943 6.02184 6.00047 6.13646C6.00568 6.69446 6.00724 7.25298 5.99943 7.81099C5.99734 7.94593 6.03017 7.98552 6.16928 7.98344C6.78094 7.97562 7.39209 7.97979 8.00323 7.97979ZM10.9464 13.9719C11.1392 13.9724 11.3215 13.937 11.4893 13.8427C11.878 13.6239 12.078 13.1685 11.9728 12.747C11.8571 12.2839 11.4815 11.9801 10.9964 11.9796C8.99888 11.9765 7.00185 11.978 5.0043 11.9791C4.92667 11.9791 4.84747 11.9848 4.77245 12.0025C4.28531 12.1197 3.95342 12.5767 4.00448 13.0544C4.06023 13.5822 4.46662 13.9657 4.99336 13.9688C5.99526 13.9745 6.99716 13.9704 7.99906 13.9704C8.98169 13.9709 9.96431 13.9698 10.9464 13.9719Z"
@@ -56,7 +56,7 @@
                                 <div class="input-group-text">
                                     <button type="submit" class="save_btn">
                                         <span>{{language.create_faq.search}}</span>
-                                    </button> 
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                                 </a>
                                                 <div class="event-action" *ngIf="userDetails.userId == item.author || userRole == 'admin'">
                                                     <ul>
-                                                        <li><a routerLink="/vereins-faq-detail/{{item.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <li><a routerLink="/web/vereins-faq-detail/{{item.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7C3.869 14 10.131 14 14 7C10.131 0 3.869 0 0 7ZM7 9.15C6.57477 9.15 6.15909 9.0239 5.80552 8.78766C5.45196 8.55141 5.17639 8.21563 5.01366 7.82277C4.85093 7.42991 4.80835 6.99761 4.89131 6.58056C4.97427 6.1635 5.17904 5.7804 5.47972 5.47972C5.7804 5.17904 6.1635 4.97427 6.58056 4.89131C6.99761 4.80835 7.42991 4.85093 7.82277 5.01366C8.21563 5.17639 8.55141 5.45196 8.78766 5.80552C9.0239 6.15909 9.15 6.57477 9.15 7C9.14973 7.57013 8.92313 8.11684 8.51999 8.51999C8.11684 8.92313 7.57013 9.14973 7 9.15Z" fill="#68759F"/>
 </svg></a></li>
                                                         <li><a data-bs-toggle="modal" data-bs-target="#exModal"
@@ -124,7 +124,7 @@
                                                 data-bs-parent="#myAccordion">
                                                 <div class="card-body">
                                                     <p [innerHTML]="item.description"></p>
-                                                    <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && 
+                                                    <div class="attach_btn" *ngIf="item['faq_image'].length > 0 &&
                                                         (item['faq_image'][0]?.['faq_image'] != '' || item['faq_image'][0]?.['faq_document'] != '')">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                             viewBox="0 0 24 24" fill="none" stroke="#E12217"
@@ -151,7 +151,7 @@
                                                             (click)="downloadDoc(item['faq_image'][0]?.['faq_document'])">
                                                             {{language.create_event.download_attachment}}
                                                         </a>
-                                                        </span>                  
+                                                        </span>
                                                     </div>
 
                                                     <!-- <div class="attach_btn" *ngIf="item['faq_image'].length > 0 && item['faq_image'][0]?.['faq_image'] != ''">
@@ -222,7 +222,7 @@
                                                 <div class="event-action"
                                                     *ngIf="userDetails.userId == item.author || userRole == 'admin'">
                                                     <ul>
-                                                        <li><a routerLink="/vereins-faq-detail/{{item.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <li><a routerLink="/web/vereins-faq-detail/{{item.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7C3.869 14 10.131 14 14 7C10.131 0 3.869 0 0 7ZM7 9.15C6.57477 9.15 6.15909 9.0239 5.80552 8.78766C5.45196 8.55141 5.17639 8.21563 5.01366 7.82277C4.85093 7.42991 4.80835 6.99761 4.89131 6.58056C4.97427 6.1635 5.17904 5.7804 5.47972 5.47972C5.7804 5.17904 6.1635 4.97427 6.58056 4.89131C6.99761 4.80835 7.42991 4.85093 7.82277 5.01366C8.21563 5.17639 8.55141 5.45196 8.78766 5.80552C9.0239 6.15909 9.15 6.57477 9.15 7C9.14973 7.57013 8.92313 8.11684 8.51999 8.51999C8.11684 8.92313 7.57013 9.14973 7 9.15Z" fill="#68759F"/>
 </svg></a></li>
                                                         <li><a data-bs-toggle="modal" data-bs-target="#exModal"
@@ -333,14 +333,14 @@
                         <button type="button" (click)="onFaq()"
                             [ngStyle]="displayFaq == true ? {'border-color':setTheme.button_bgcolor,'background-color':'#68759F','color':'#fff'} : {'border-color':setTheme.button_bgcolor,'background-color':setTheme.button_bgcolor,'color':setTheme.button_text}">
                             <Span>{{language.create_faq.faqs}}</Span></button>
-                        <button type="button" routerLink="/faq-category" *ngIf="userRole == 'admin'"
+                        <button type="button" routerLink="/web/faq-category" *ngIf="userRole == 'admin'"
                             (click)="onFaqCategory()"
                             [ngStyle]="displayFaqCategory == true ? {'border-color':setTheme.button_bgcolor,'background-color':'#68759F','color':'#fff'} : {'border-color':setTheme.button_bgcolor,'background-color':setTheme.button_bgcolor,'color':setTheme.button_text}">
                             <Span>{{language.create_faq.faq_category}}</Span></button>
                     </div>
                 </div>
                 <div class="page-action-right" *ngIf="userRole == 'admin'">
-                    <button class="disabled button-create" routerLink="/create-faq">
+                    <button class="disabled button-create" routerLink="/web/create-faq">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
                             <path
                                 d="M20 5.58888C20 8.86343 20 12.1385 20 15.413C19.9208 15.5063 19.9312 15.6272 19.9015 15.7355C19.5321 17.086 18.3687 17.9592 16.9214 17.9597C12.3073 17.9613 7.69271 17.9603 3.07865 17.9603C3.00727 17.9603 2.93537 17.9592 2.86399 17.9561C1.56928 17.9019 0.461615 17.0214 0.108891 15.7731C0.0750254 15.6527 0.0854456 15.5178 0 15.413C0 11.1246 0 6.83618 0 2.54775C0.0729414 2.51023 0.0494959 2.43312 0.0625212 2.37633C0.384505 0.958666 1.5573 0.00573894 3.01925 0.00313389C6.3386 -0.00259722 9.65744 0.00157086 12.9768 0.000528842C13.3847 0.000528842 13.7823 0.060966 14.1543 0.229252C15.2375 0.720043 15.8653 1.55157 15.9788 2.74052C15.9992 2.95101 16.058 3.01249 16.2644 2.99477C16.5035 2.97445 16.7458 2.98748 16.9865 2.9906C18.3843 3.0078 19.5436 3.8982 19.9036 5.22574C19.937 5.34661 19.925 5.47947 20 5.58888ZM14.1564 15.9637C13.8938 15.0577 14.0058 14.1439 14.0021 13.2394C13.9902 9.86845 13.9881 6.497 14.0047 3.12607C14.0084 2.4102 13.503 1.98558 12.8705 1.98922C9.62305 2.00694 6.37507 2.00694 3.12762 1.98974C2.45291 1.9861 1.98869 2.45657 1.99078 3.12763C2.0038 7.03156 2.0038 10.9355 1.99078 14.8389C1.98869 15.4933 2.44093 15.9752 3.13283 15.9716C6.73197 15.9544 10.3311 15.9637 13.9302 15.9637C14.0011 15.9637 14.072 15.9637 14.1564 15.9637ZM16.0028 10.0753C16.0028 11.6607 16.0028 13.2462 16.0033 14.8316C16.0033 14.9676 15.9997 15.1041 16.0382 15.2375C16.1794 15.7246 16.6374 16.0231 17.1459 15.957C17.6367 15.8929 18.0014 15.4646 18.0019 14.9311C18.004 11.9619 18.0045 8.99264 18.0019 6.02288C18.0014 5.41643 17.5789 5.0017 16.9682 4.99232C16.7077 4.98816 16.4467 5.00274 16.1873 4.98763C16.0257 4.97826 15.9997 5.03765 15.9997 5.18301C16.0044 6.81325 16.0028 8.44453 16.0028 10.0753ZM7.99854 3.99042C8.96866 3.99042 9.93878 3.9899 10.9089 3.99042C11.5919 3.99094 11.9968 4.39629 11.9973 5.08194C11.9983 6.34903 11.9983 7.61613 11.9973 8.88322C11.9968 9.57721 11.5919 9.98047 10.8922 9.98099C8.96501 9.98203 7.03832 9.98203 5.11111 9.98099C4.40514 9.98047 3.99875 9.57304 3.99771 8.86707C3.99667 7.613 3.99667 6.35893 3.99771 5.10486C3.99823 4.39525 4.40253 3.99094 5.10798 3.99042C6.07133 3.99042 7.03467 3.99042 7.99854 3.99042ZM8.00323 7.97979C8.61437 7.97979 9.22604 7.97719 9.83718 7.98188C9.95389 7.98292 10.006 7.96781 10.0039 7.8287C9.99453 7.26445 9.99713 6.69967 10.0023 6.1349C10.0034 6.02184 9.98359 5.97964 9.85594 5.98016C8.62063 5.98537 7.38479 5.98537 6.14948 5.98068C6.02391 5.98016 5.99943 6.02184 6.00047 6.13646C6.00568 6.69446 6.00724 7.25298 5.99943 7.81099C5.99734 7.94593 6.03017 7.98552 6.16928 7.98344C6.78094 7.97562 7.39209 7.97979 8.00323 7.97979ZM10.9464 13.9719C11.1392 13.9724 11.3215 13.937 11.4893 13.8427C11.878 13.6239 12.078 13.1685 11.9728 12.747C11.8571 12.2839 11.4815 11.9801 10.9964 11.9796C8.99888 11.9765 7.00185 11.978 5.0043 11.9791C4.92667 11.9791 4.84747 11.9848 4.77245 12.0025C4.28531 12.1197 3.95342 12.5767 4.00448 13.0544C4.06023 13.5822 4.46662 13.9657 4.99336 13.9688C5.99526 13.9745 6.99716 13.9704 7.99906 13.9704C8.98169 13.9709 9.96431 13.9698 10.9464 13.9719Z"
@@ -384,7 +384,7 @@
                                     </a>
                                     <div class="event-action" *ngIf="userRole == 'admin'">
                                         <ul>
-                                            <li><a routerLink="/vereins-faq-detail/{{srchitem.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                            <li><a routerLink="/web/vereins-faq-detail/{{srchitem.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7C3.869 14 10.131 14 14 7C10.131 0 3.869 0 0 7ZM7 9.15C6.57477 9.15 6.15909 9.0239 5.80552 8.78766C5.45196 8.55141 5.17639 8.21563 5.01366 7.82277C4.85093 7.42991 4.80835 6.99761 4.89131 6.58056C4.97427 6.1635 5.17904 5.7804 5.47972 5.47972C5.7804 5.17904 6.1635 4.97427 6.58056 4.89131C6.99761 4.80835 7.42991 4.85093 7.82277 5.01366C8.21563 5.17639 8.55141 5.45196 8.78766 5.80552C9.0239 6.15909 9.15 6.57477 9.15 7C9.14973 7.57013 8.92313 8.11684 8.51999 8.51999C8.11684 8.92313 7.57013 9.14973 7 9.15Z" fill="#68759F"/>
 </svg></a></li>
                                             <li><a data-bs-toggle="modal" data-bs-target="#exModal"
@@ -602,8 +602,8 @@
                                                 </a>
                                             </span>
                                         </div> -->
-                                        
-                                        <!-- *ngIf="item['faq_image'].length > 0 && 
+
+                                        <!-- *ngIf="item['faq_image'].length > 0 &&
                                         (item['faq_image'][0]?.['faq_image'] != '' || item['faq_image'][0]?.['faq_document'] != '')" -->
 
                                         <!-- <div class="attach_btn preview_img"
@@ -655,7 +655,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile_sub_btn event_sub_btn "> 
+                    <div class="profile_sub_btn event_sub_btn ">
                         <button type="submit" class="save_btn"
                             [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
                                         'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,

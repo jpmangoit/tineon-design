@@ -725,10 +725,10 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                     setTimeout(() => {
                         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
                             //mobile
-                            var redirectUrl: string = 'morganizer-task-detail/' + this.taskid;
+                            var redirectUrl: string = 'web/morganizer-task-detail/' + this.taskid;
                         } else {
                             //desktop
-                            var redirectUrl: string = 'task-detail/' + this.taskid;
+                            var redirectUrl: string = 'web/task-detail/' + this.taskid;
                         }
 
                         this.router.navigate([redirectUrl]);

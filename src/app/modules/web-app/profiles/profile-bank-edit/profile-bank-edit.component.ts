@@ -202,7 +202,7 @@ export class ProfileBankEditComponent implements OnInit {
                     this.submitted = false;
                     setTimeout(() => {
                         this.getBankDetails();
-                        this.router.navigate(['profile-bank']);
+                        this.router.navigate(['/web/profile-bank']);
                     }, 2000);
                     if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'].message, null);
@@ -220,7 +220,7 @@ export class ProfileBankEditComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/profile-bank']);
+        this.router.navigate(['/web/profile-bank']);
     }
 
     onPaymentData() {

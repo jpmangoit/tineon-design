@@ -398,7 +398,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     viewDetails(id: any, date: any, type: any) {
         $('#view-rooms').modal('hide');
         if (type == 'course') {
-            // this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+            // this.router.navigate(['/web/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
             const url = '/course-detail/' + id;
             const queryParams = { date: new Date(date).toISOString().split('T')[0] };
             const queryString = Object.keys(queryParams).map(key => key + '=' + queryParams[key]).join('&');
@@ -406,7 +406,7 @@ export class RoomComponent implements OnInit, OnDestroy {
             // Use window.open() to redirect to the URL in a new tab
             window.open(fullUrl);
         } else {
-            // this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+            // this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
             const url = '/event-detail/' + id;
             const queryParams = { date: new Date(date).toISOString().split('T')[0] };
             const queryString = Object.keys(queryParams).map(key => key + '=' + queryParams[key]).join('&');
@@ -448,7 +448,7 @@ export class RoomComponent implements OnInit, OnDestroy {
 
     updateRooms(id: number) {
         $('#view-rooms').modal('hide');
-        var redirectUrl: string = 'update-room/' + id;
+        var redirectUrl: string = 'web/update-room/' + id;
         this.router.navigate([redirectUrl]);
     }
 

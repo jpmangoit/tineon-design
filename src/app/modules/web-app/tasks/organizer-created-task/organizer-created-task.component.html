@@ -17,7 +17,7 @@
                     </div>
                     <div class="task-category">
 
-                        <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 routerLink="/web/task-detail/{{task.id}}">{{task.title}}</h5>
                         <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
                                     width="8" height="24" viewBox="0 0 8 24" fill="none">
@@ -27,11 +27,11 @@
                                 </svg></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item
-                                    routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                                    routerLink="/web/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
                             </mat-menu>
                         </div>
                     </div>
-                    <div class="tag"> 
+                    <div class="tag">
                         <span class="individual-badge" *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
                         <span class="group-badge" *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span></div>
                     <div class="task-list-content">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="task-category">
 
-                        <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 routerLink="/web/task-detail/{{task.id}}">{{task.title}}</h5>
                         <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
                                     width="8" height="24" viewBox="0 0 8 24" fill="none">
@@ -89,7 +89,7 @@
                                 </svg></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item
-                                    routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                                    routerLink="/web/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
                             </mat-menu>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                             loading="lazy">
                     </div>
                     <div class="task-category">
-                        <h5 routerLink="/task-detail/{{task.id}}">{{task.title}}</h5>
+                        <h5 routerLink="/web/task-detail/{{task.id}}">{{task.title}}</h5>
 
                         <div class="event-action">
                             <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@
                                 </svg></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item
-                                    routerLink="/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                                    routerLink="/web/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
                             </mat-menu>
                         </div>
                     </div>

@@ -119,7 +119,7 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
   }
 
   inEdit() {
-    this.router.navigate(['/profile-edit-bank']);
+    this.router.navigate(['/web/profile-edit-bank']);
   }
 
   print() {

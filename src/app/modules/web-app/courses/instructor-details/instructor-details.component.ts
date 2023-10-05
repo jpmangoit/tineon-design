@@ -339,7 +339,7 @@ export class InstructorDetailsComponent implements OnInit {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        self.router.navigate(['instructor-detail/' + instructor_id]);
+                        self.router.navigate(['web/instructor-detail/' + instructor_id]);
                     }
                 )
         }, function () {
@@ -429,7 +429,7 @@ export class InstructorDetailsComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/instructor']);
+        this.router.navigate(['/web/instructor']);
     }
 
     /**

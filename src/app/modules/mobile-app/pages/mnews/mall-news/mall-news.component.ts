@@ -294,10 +294,10 @@ export class MallNewsComponent implements OnInit {
     showAll() {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            this.router.navigate(['/mclub-all-news']);
+            this.router.navigate(['/mobile/mclub-all-news']);
         } else {
             //desktop
-            this.router.navigate(['/clubwall-news/1']);
+            this.router.navigate(['/mobile/clubwall-news/1']);
         }
     }
 
@@ -314,7 +314,7 @@ export class MallNewsComponent implements OnInit {
             .then((resp: any) => {
                 self.notificationService.showSuccess(resp, null);
                 self.getAllNews()
-                const url: string[] = ["/clubwall"];
+                const url: string[] = ["/mobile/clubwall"];
                 self.router.navigate(url);
             })
             .catch((err: any) => {
@@ -328,7 +328,7 @@ export class MallNewsComponent implements OnInit {
     */
     updateNews(newsId: number) {
         $('#exModal').modal('hide');
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/mobile/update-news/" + newsId];
         this.router.navigate(url);
     }
 

@@ -17,7 +17,7 @@ declare var $: any;
 @Component({
     selector: 'app-mall-events',
     templateUrl: './mall-events.component.html',
-    styleUrls: ['./mall-events.component.css'], 
+    styleUrls: ['./mall-events.component.css'],
     providers: [DatePipe]
 })
 
@@ -498,9 +498,9 @@ export class MallEventsComponent implements OnInit {
     viewDetails() {
         $('#showPopup').trigger('click');
         if (this.newClickedEvent.extendedProps.isCourse) {
-            this.router.navigate(['/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
+            this.router.navigate(['/mobile/course-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
         } else {
-            this.router.navigate(['/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
+            this.router.navigate(['/mobile/event-detail/' + this.newClickedEvent.extendedProps.event_id], { queryParams: { date: new Date(this.newClickedEvent._instance.range.start).toISOString().split('T')[0] } });
         }
     }
 

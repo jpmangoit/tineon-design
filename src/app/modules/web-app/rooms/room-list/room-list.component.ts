@@ -109,7 +109,7 @@ export class RoomListComponent implements OnInit {
     }
 
     updateRoom(room_id: number) {
-        this.router.navigate(['update-room/' + room_id])
+        this.router.navigate(['/web/update-room/' + room_id])
     }
 
     deleteRoom(room_id: number) {
@@ -121,7 +121,7 @@ export class RoomListComponent implements OnInit {
                         self.responseMessage = respData.result.message;
                         self.notificationService.showSuccess(self.responseMessage, null);
                         self.getUserAllRooms("");
-                        // self.router.navigate(['/room'])
+                        // self.router.navigate(['/web/room'])
                     }
                 )
         }, function () {

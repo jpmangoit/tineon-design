@@ -345,7 +345,7 @@ export class MchatComponent implements OnInit {
     }
 
     back() {
-        this.router.navigate(['/community/']);
+        this.router.navigate(['/mobile/community/']);
         this.sidenav.close();
         this.finalMessages = []
         this.chat = undefined

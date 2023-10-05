@@ -18,7 +18,7 @@ export class PageNotFoundComponent implements OnInit {
     }
 
     goToDashboard() {
-        this._router.navigate(["/dashboard"]);
+        this._router.navigate(["/web/dashboard"]);
     }
 
 }

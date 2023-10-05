@@ -4,7 +4,7 @@
         <div class="page-action">
             <div class="page-action-left">
                 <div class="tab-button">
-                    <button type="button"  *ngIf="participateAccess.news == 'Yes'"  (click)="onNews()" (click)="onClick('1')" routerLink="./club-news"
+                    <button type="button"  *ngIf="participateAccess.news == 'Yes'"  (click)="onNews()" (click)="onClick('1')" routerLink="club-news"
                         [ngClass]="{'active': activeClass === 'newsActive'}" >
                         <Span>{{language.club_wall.club_news}}</Span>
                     </button>

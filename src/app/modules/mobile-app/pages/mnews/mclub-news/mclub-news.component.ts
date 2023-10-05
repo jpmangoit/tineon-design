@@ -67,13 +67,13 @@ export class MclubNewsComponent implements OnInit {
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.role = this.userData.roles[0];
         this.url = this.router.url;
-        if (this.url == '/dashboard' || this.url == '/') {
+        if (this.url == '/mobile/dashboard' || this.url == '/') {
             this.num = 4;
             this.num1 = 3;
             this.displayPopup = true;
             this.newsDisplay = 4;
 
-        } else if (this.url == '/clubwall/club-news' || this.url == '/clubwall') {
+        } else if (this.url == '/mobile/clubwall/club-news' || this.url == '/mobile/clubwall') {
             this.num = 3;
             this.num1 = 4;
             this.displayPopup = false;
@@ -178,10 +178,10 @@ export class MclubNewsComponent implements OnInit {
     showAll() {
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             //mobile
-            this.router.navigate(['/mclub-all-news']);
+            this.router.navigate(['/mobile/mclub-all-news']);
         } else {
             //desktop
-            this.router.navigate(['/clubwall-news/1']);
+            this.router.navigate(['/mobile/clubwall-news/1']);
         }
     }
 
@@ -218,7 +218,7 @@ export class MclubNewsComponent implements OnInit {
             .then((resp: any) => {
                 self.notificationService.showSuccess(resp, null);
                 self.getAllNews()
-                const url: string[] = ["/clubwall"];
+                const url: string[] = ["/mobile/clubwall"];
                 self.router.navigate(url);
             })
             .catch((err: any) => {
@@ -232,7 +232,7 @@ export class MclubNewsComponent implements OnInit {
     */
     updateNews(newsId: number) {
         $('#exModal').modal('hide');
-        const url: string[] = ["/update-news/" + newsId];
+        const url: string[] = ["/mobile/update-news/" + newsId];
         this.router.navigate(url);
     }
 

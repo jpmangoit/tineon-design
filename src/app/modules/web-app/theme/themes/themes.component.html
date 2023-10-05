@@ -7,7 +7,7 @@
                     <button (click)="DefaultTheme()" type="button" class="disabled" *ngIf="themeData?.length > 0"
                         [ngStyle]="{
                             'border-color': setTheme.default_status == true ? setTheme.button_y_bgcolor : setTheme.button_bgcolor,
-                            'background-color':setTheme.default_status == true ? setTheme.button_y_bgcolor: setTheme.button_bgcolor, 
+                            'background-color':setTheme.default_status == true ? setTheme.button_y_bgcolor: setTheme.button_bgcolor,
                              'color': setTheme.default_status == true  ? setTheme.button_y_text : setTheme.button_text}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
                             <path [ngStyle]="{fill:setTheme.default_status == true? setTheme.button_ic_y_color : setTheme.button_ic_color }"
@@ -16,7 +16,7 @@
                         </svg>&nbsp;<span [ngStyle]="{color: setTheme.default_status == true ? setTheme.button_y_text: setTheme.button_text }">{{ language.theme.default_theme }}</span>
                     </button>
 
-                    <!-- <button type="button" class="disabled" routerLink="/create-theme" [ngStyle]="{
+                    <!-- <button type="button" class="disabled" routerLink="/web/create-theme" [ngStyle]="{
                             'border-color':
                                 setTheme.default_status == true
                                     ? setTheme.button_r_bgcolor
@@ -30,7 +30,7 @@
                                     ? setTheme.button_r_text
                                     : setTheme.button_text
                         }"> -->
-                    <button type="button" class="disabled" routerLink="/create-theme" style="
+                    <button type="button" class="disabled" routerLink="/web/create-theme" style="
                             border-color:rgb(88, 191, 56); background-color:rgb(88, 191, 56);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path
@@ -94,7 +94,7 @@
                                             <td style="text-align: center" style="width: 75px">
                                                 <div class="email_img">
                                                     <!-- <img onContextMenu="return false;" src="{{
-                                                            item.logo_url 
+                                                            item.logo_url
                                                         }}" alt="" loading="lazy" /> -->
 
                                                     <img onContextMenu="return false;"
@@ -118,7 +118,7 @@
                                                                 {{language.theme.activated_theme}}
                                                             </button>
                                                         </ng-container>
-                                                        <button mat-menu-item routerLink="/update-theme/{{item.id}}">
+                                                        <button mat-menu-item routerLink="/web/update-theme/{{item.id}}">
                                                             {{language.theme.edit}}
                                                         </button>
                                                         <button mat-menu-item (click)="deleteTheme(item.id, item.status)">

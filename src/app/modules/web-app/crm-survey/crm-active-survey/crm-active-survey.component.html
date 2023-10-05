@@ -33,10 +33,10 @@
                             src="../../../../assets/img/new-design/dashboard/event-action.svg" alt="" loading="lazy"></button>
                     <mat-menu #menu="matMenu" xPosition="before">
                         <ng-container *ngIf="checkType(item); else notEqual">
-                            <button mat-menu-item routerLink="/crm-view-survey/{{item.id}}" > {{language.Survey.view_survey}} </button>
+                            <button mat-menu-item routerLink="/web/crm-view-survey/{{item.id}}" > {{language.Survey.view_survey}} </button>
                         </ng-container>
                         <ng-template #notEqual>
-                            <button mat-menu-item routerLink="/crm-survey-vote/{{item.id}}" > {{language.Survey.view_survey}}  </button>
+                            <button mat-menu-item routerLink="/web/crm-survey-vote/{{item.id}}" > {{language.Survey.view_survey}}  </button>
                         </ng-template>
                     </mat-menu>
                 </div>

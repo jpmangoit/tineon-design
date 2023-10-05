@@ -23,7 +23,7 @@ declare var $: any;
     styleUrls: ['./create-faq.component.css']
 })
 
-export class CreateFaqComponent implements OnInit ,OnDestroy{ 
+export class CreateFaqComponent implements OnInit ,OnDestroy{
     FAQForm: UntypedFormGroup;
     FAQSubmit: boolean = false;
     language:any;
@@ -226,7 +226,7 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
                         this.notificationService.showSuccess(respData['result']['message'],null);
                         setTimeout(() => {
                             let faqId = respData['result']['FAQ']['id'];
-                            const url: string[] = ["/vereins-faq-detail/"+faqId];
+                            const url: string[] = ["/web/vereins-faq-detail/"+faqId];
                             this.router.navigate(url);
                         }, 2000);
                     }else  if (respData['code'] == 400) {

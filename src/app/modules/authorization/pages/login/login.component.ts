@@ -59,9 +59,7 @@ export class LoginComponent implements OnInit {
                 $(".password").val(self.cookieService.get('password'));
             }, 300);
         }
-        if (this.authService.IsLoggedIn()) {
-            this.router.navigate(['/dashboard']);
-        }
+
     }
 
     loginProcess() {
@@ -119,7 +117,7 @@ export class LoginComponent implements OnInit {
                                         };
                                     }
                                 );
-                            const url: string[] = ["/dashboard"];
+                            const url: string[] = ["/web/dashboard"];
                             this.router.navigate(url);
                             this.authService.setLoader(false);
                         }

@@ -75,7 +75,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 		this.instructorForm = this.formbuilder.group({
 			first_name: ['', [Validators.required]],
 			last_name: ['', Validators.required],
-			emaill: ['', [Validators.required, Validators.email]], 
+			emaill: ['', [Validators.required, Validators.email]],
 			phone_no: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
 			address: ['', Validators.required],
 			add_img: ['', Validators.required],
@@ -202,7 +202,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 	createInstructor() {
 		this.formSubmit = true;
 
-		if (this.instructorForm.valid && (this.errorTime['isError'] == false)) { 
+		if (this.instructorForm.valid && (this.errorTime['isError'] == false)) {
 			for (let i = 0; i < this.instructorForm?.controls?.weekdays?.value?.length; i++) {
 				this.instructorForm.value.weekdays[i].day = this.instructorForm.controls.weekdays.value[i].day[0]?.id;
 				//this.instructorForm.value.weekdays[i].day = (this.instructorForm.controls?.weekdays?.value[i]?.day[0]?.length == 1) ? this.instructorForm.controls?.weekdays?.value[i]?.day : this.instructorForm.controls?.weekdays?.value[i]?.day[0];
@@ -257,7 +257,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 						if (respData['isError'] == false) {
 							this.notificationService.showSuccess(respData['result']['message'], null);
 							setTimeout(() => {
-								this.router.navigate(['/instructor-detail/' + respData['result']['instructor']['id']]);
+								this.router.navigate(['/web/instructor-detail/' + respData['result']['instructor']['id']]);
 							}, 2000);
 						} else if (respData['code'] == 400) {
 							this.notificationService.showError(respData['message'], null);
@@ -315,7 +315,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 					}
 				}
 			}
-		} 
+		}
 	}
 
 

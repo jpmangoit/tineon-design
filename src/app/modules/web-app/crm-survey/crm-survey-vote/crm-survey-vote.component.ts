@@ -209,7 +209,7 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
                                     this.notificationService.showSuccess(respData['result']['message']['messageList']['survey'], null);
                                     var self = this;
                                     setTimeout(function () {
-                                        self.router.navigate(['crm-survey']);
+                                        self.router.navigate(['web/crm-survey']);
                                     }, 2000);
                                 } else if (respData['code'] == 400) {
                                     this.notificationService.showError(respData['message'], null);
@@ -231,7 +231,7 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
                                     this.notificationService.showSuccess(respData['result']['message']['messageList']['survey'], null);
                                     var self = this;
                                     setTimeout(function () {
-                                        self.router.navigate(['crm-survey']);
+                                        self.router.navigate(['web/crm-survey']);
                                     }, 4000);
                                 } else if (respData['code'] == 400) {
                                     this.notificationService.showError(respData['message'], null);

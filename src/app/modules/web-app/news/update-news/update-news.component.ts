@@ -206,7 +206,7 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
                             if ((respData.result.user.id == userId) || (this.userDetails.roles[0] == 'admin')) {
                                 this.setNews(respData);
                             } else {
-                                var redirectUrl: string = 'clubwall/';
+                                var redirectUrl: string = 'web/clubwall/';
                                 this.router.navigate([redirectUrl]);
                             }
                         } else {

@@ -17,22 +17,8 @@ export class AppComponent implements OnInit {
     scrWidth: any;
     public isMobileResolution: boolean;
 
-    getScreenSize(event?) {
-        this.scrHeight = window.innerHeight;
-        this.scrWidth = window.innerWidth;
-        if (window.innerWidth < 768) {
-            this.applicationStateService.isMobileResolution = true;
-            // this.routerModule.changeRoute();
-            this.router.navigate([this.router.url]);
-        }
-    }
-
     constructor(
-        private authService: AuthServiceService,
         private router: Router,
-        private applicationStateService: ApplicationstateService,
-        private route: ActivatedRoute,
-        private routerModule: AppRoutingModule,
         private cdref: ChangeDetectorRef
     ) {
         // this.checkTimeOut();
@@ -78,4 +64,27 @@ export class AppComponent implements OnInit {
     ngAfterContentChecked() {
         this.cdref.detectChanges();
     }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+        this.detectViewChange();
+    }
+
+    private detectViewChange(): void {
+        // Check the viewport width here and define the threshold for mobile view
+        const isMobileView = window.innerWidth <= 768; // Adjust the threshold as needed
+
+        if (isMobileView) {
+            if (window.innerWidth < 768 && this.router.url.includes('web')) {
+                var currentUrl = this.router.url;
+                currentUrl = currentUrl.replace('web', 'mobile');
+                this.router.navigateByUrl(currentUrl);
+            } else if (this.router.url.includes('mobile')) {
+                var currentUrl = this.router.url;
+                currentUrl = currentUrl.replace('mobile', 'web');
+                this.router.navigateByUrl(currentUrl);
+            }
+        }
+    }
+
 }

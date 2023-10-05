@@ -206,7 +206,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
     }
 
     createRoomForm() {
-        this.formSubmit = true; 
+        this.formSubmit = true;
         if (this.roomForm.valid && (this.errorTime['isError'] == false)) {
             for (let i = 0; i < this.roomForm.controls.weekdays.value.length; i++) {
                 this.roomForm.value.weekdays[i].day = this.roomForm.controls.weekdays.value[i].day[0]?.id;
@@ -262,7 +262,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                         this.notificationService.showSuccess(respData['result']['message'], null);
                         var self = this;
                         setTimeout(function () {
-                            self.router.navigate(['room-detail/' + respData['result']['room']['id']]);
+                            self.router.navigate(['web/room-detail/' + respData['result']['room']['id']]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
