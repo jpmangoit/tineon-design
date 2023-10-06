@@ -207,9 +207,8 @@ export class CreateBannerComponent implements OnInit, OnDestroy {
                         this.formSubmit = false;
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
-                            setTimeout(function () {
-                                self.router.navigate(['/web/banner-detail/' + respData['result']['banner']['id']]);
+                            setTimeout( () => {
+                                this.router.navigate(['/web/banner-detail/' + respData['result']['banner']['id']]);
                             }, 1000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

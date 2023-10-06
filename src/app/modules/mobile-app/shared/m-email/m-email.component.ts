@@ -63,9 +63,8 @@ export class MEmailComponent implements OnInit {
                     this.emailsubmitted = false;
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message']['messageList']['tineon'], null);
-                        var self = this;
-                        setTimeout(function () {
-                            self.router.navigate(['/login']);
+                        setTimeout(() =>{
+                            this.router.navigate(['/login']);
                         }, 1000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

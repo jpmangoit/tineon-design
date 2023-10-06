@@ -559,7 +559,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
    * @return  {Array Of Object} all the Users
    */
     getCourseOtherInfo() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'courseCommonInfo/' + this.userDetails.team_id, null)
             .subscribe(
@@ -578,7 +577,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 }
                             })
                             this.alluserDetails = respData.result.users;
-                            self.userDropdownSettings = {
+                            this.userDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -587,7 +586,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                 unSelectAllText: 'UnSelect All',
                                 allowSearchFilter: true
                             };
-                            self.internalDropdownSettings = {
+                            this.internalDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
                                 textField: 'name',
@@ -611,8 +610,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         }
 
                         if (respData && respData?.result?.groups?.length > 0) {
-                            respData.result.groups.forEach(function (value, key) {
-                                self.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
+                            respData.result.groups.forEach((value, key) => {
+                                this.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
                             })
                         }
 
@@ -622,7 +621,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             Object(respData.result.rooms).forEach((val, key) => {
                                 this.roomDropdownList.push({ 'id': val.id, 'name': val.name });
                             });
-                            self.roomDropdownSettings = {
+                            this.roomDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
                                 textField: 'name',
@@ -657,22 +656,21 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
      * @param courseid
      */
     getCourseInfo(courseid: number) {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getCoursesById/' + courseid, null)
             .subscribe(
                 (respData: any) => {
                     if (respData['isError'] == false && Object.keys(respData.result).length > 0) {
-                        self.courseDetails = respData['result'][0];
+                        this.courseDetails = respData['result'][0];
                         if (respData?.result[0]?.courseUsers) {
-                            respData.result[0].courseUsers.forEach(function (value, key) {
-                                self.setEventParticipants.push({ 'id': value.users.id, 'name': value.users.firstname + ' ' + value.users.lastname });
-                                self.userSelected.push(value.users.id);
+                            respData.result[0].courseUsers.forEach( (value, key) => {
+                                this.setEventParticipants.push({ 'id': value.users.id, 'name': value.users.firstname + ' ' + value.users.lastname });
+                                this.userSelected.push(value.users.id);
                             })
-                            self.setEventParticipants = Object.assign(this.authService.uniqueObjData(self.setEventParticipants, 'id'));
-                            self.userSelected = this.authService.uniqueData(self.userSelected);
+                            this.setEventParticipants = Object.assign(this.authService.uniqueObjData(this.setEventParticipants, 'id'));
+                            this.userSelected = this.authService.uniqueData(this.userSelected);
                         }
-                        self.setCourseData();
+                        this.setCourseData();
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     } else {
@@ -979,11 +977,10 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                 type_dropdown = [{ id: 0, name: this.language.create_task.individual },];
                 this.setUsers(this.courseDetails?.courseTask?.id, type_dropdown)
             } else {
-                let self = this;
                 this.type_visibility = 1;
                 type_dropdown = [{ id: 1, name: this.language.create_task.group }];
-                if (self.group_dropdown && self.group_dropdown.length > 0) {
-                    self.group_dropdown.forEach((value, index) => {
+                if (this.group_dropdown && this.group_dropdown.length > 0) {
+                    this.group_dropdown.forEach((value, index) => {
                         if (value.group_id == this.courseDetails?.courseTask?.group_id) {
                             this.groups = [{ group_id: value.group_id, name: value.name }];
                         }
@@ -1240,13 +1237,12 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                 if (this.task.length > 0) {
                     this.task_user_selected = [];
                     this.task.removeAt(0);
-                    let self = this;
-                    if (self.taskId > 0) {
-                        self.authService.setLoader(true);
-                        self.authService.memberSendRequest('delete', 'DeleteTask/' + self.taskId, null)
+                    if (this.taskId > 0) {
+                        this.authService.setLoader(true);
+                        this.authService.memberSendRequest('delete', 'DeleteTask/' + this.taskId, null)
                             .subscribe(
                                 (respData: any) => {
-                                    self.authService.setLoader(false);
+                                    this.authService.setLoader(false);
                                     if (respData['isError'] == false) {
                                     } else if (respData['code'] == 400) {
                                         this.notificationService.showError(respData['message'], null);
@@ -1272,10 +1268,9 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
             this.fileAndimage = [];
             var formData: any = new FormData();
             this.authService.setLoader(false);
-            let self = this;
             for (const key in this.courseForm.value) {
-                if (Object.prototype.hasOwnProperty.call(self.courseForm.value, key)) {
-                    const element = self.courseForm.value[key];
+                if (Object.prototype.hasOwnProperty.call(this.courseForm.value, key)) {
+                    const element = this.courseForm.value[key];
 
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
@@ -1285,8 +1280,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         }
                     }
                     if (key == 'file' && (this.picVid1 || this.fileUrl)) {
-                        if (self.picVid1 && self.picVid1 != undefined) {
-                            formData.append('file', self.picVid1);
+                        if (this.picVid1 && this.picVid1 != undefined) {
+                            formData.append('file', this.picVid1);
 
                         } else if (this.fileUrl != '' && this.fileUrl != null) {
                             formData.append('course_document', this.fileUrl);
@@ -1317,13 +1312,13 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         } else if (this.finalCustomRecurrence != null || this.recurrenceString != null || this.courseDetails.recurrence == "" ||
                             this.courseDetails.recurrence == null || this.courseDetails.recurrence) {
                             if (element[0] && element[0]['item_id'] == 5 && this.recurrenceSelected == 5) {
-                                formData.append('recurrence', self.finalCustomRecurrence);
+                                formData.append('recurrence', this.finalCustomRecurrence);
                             } else if (element[0] && element[0]['item_id'] == 0 && this.recurrenceSelected == 0) {
                                 formData.append('recurrence', this.recurrenceString)
                             } else if (this.recurrenceString) {
                                 formData.append('recurrence', this.recurrenceString);
                             } else if (this.finalCustomRecurrence) {
-                                formData.append('recurrence', self.finalCustomRecurrence);
+                                formData.append('recurrence', this.finalCustomRecurrence);
 
                             } else if (this.courseDetails.recurrence && this.recurrenceSelected == undefined) {
                                 formData.append('recurrence', this.courseDetails.recurrence);
@@ -1350,7 +1345,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         var groupArray: number[] = [];
                         var grp_id: number;
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) => {
                                 grp_id = value.group_id;
                                 groupArray.push(value.group_id);
                             });
@@ -1365,38 +1360,36 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             formData.append('course_users', JSON.stringify(this.userObj));
                         }
                         if (this.visibility == 1 || this.visibility == 4) {
-                            let self = this;
                             if (element && element.length > 0) {
-                                element.forEach(function (value, key) {
+                                element.forEach( (value, key) => {
                                     var status: number = 0;
-                                    if (self.internalInstructor) {
-                                        self.internalInstructor.forEach((el: any, i: any) => {
+                                    if (this.internalInstructor) {
+                                        this.internalInstructor.forEach((el: any, i: any) => {
                                             if (value == el['user_id']) {
                                                 status = 1;
                                             }
                                         });
                                     }
-                                    if (value == self.courseForm.controls['author'].value) {
+                                    if (value == this.courseForm.controls['author'].value) {
                                         status = 1;
                                     }
-                                    self.userObj.push({ user_id: value, approved_status: status });
+                                    this.userObj.push({ user_id: value, approved_status: status });
                                 });
                             }
                             let ifAuthor = 0;
-                            if (self.userObj) {
-                                self.userObj.forEach((val: any) => {
+                            if (this.userObj) {
+                                this.userObj.forEach((val: any) => {
                                     if (val.user_id == this.courseDetails.author) {
                                         ifAuthor++;
                                     }
                                 });
                             }
                             if (ifAuthor == 0) {
-                                self.userObj.push({ 'user_id': this.courseDetails.author, 'approved_status': 1 });
+                                this.userObj.push({ 'user_id': this.courseDetails.author, 'approved_status': 1 });
                             }
                             formData.append("course_users", JSON.stringify(this.userObj));
                         }
                         if (this.visibility == 3 && this.groupUserList != null) {
-                            let self = this;
                             if (this.groupUserList && this.groupUserList.length > 0) {
                                 this.groupUserList.forEach((value: any, key: any) => {
                                     let status: number = 0;
@@ -1459,9 +1452,8 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         this.eventSubmitted = false;
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
-                            setTimeout(function () {
-                                self._router.navigate(["/web/course-detail/" + self.courseId]);
+                            setTimeout( () => {
+                                this._router.navigate(["/web/course-detail/" + this.courseId]);
                             }, 4000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -1718,11 +1710,10 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     onRecurrenceSelect(item: { item_id: number, item_text: string }) {
         this.recurrenceSelected = item.item_id;
         var today: number = (new Date()).getDay();
-        var self = this;
         if (this.weekDaysArr && this.weekDaysArr.length > 0) {
-            this.weekDaysArr.forEach(function (vals, keys) {
+            this.weekDaysArr.forEach( (vals, keys) => {
                 if (vals.item_id == today) {
-                    self.todayName = vals.description;
+                    this.todayName = vals.description;
                 }
             });
         }
@@ -2014,14 +2005,13 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         this.course_allDates = RRule.fromString(recurrenceData).all();
                     } else if (this.customRecurrenceTypeSelected == 2) {
                         //weekly
-                        var self = this;
                         recurrenceData = '';
                         let numberWeek: number = $('.custom_recurrence_weekly').val();
                         //interval
                         let byDay: any[] = [];
-                        if (self.weekDaysArr && self.weekDaysArr.length > 0) {
-                            self.weekDaysArr.forEach(function (weekName, weekIndex) {
-                                self.weekDayTypeSelected.forEach(function (weekSelected, key) {
+                        if (this.weekDaysArr && this.weekDaysArr.length > 0) {
+                            this.weekDaysArr.forEach( (weekName, weekIndex) => {
+                                this.weekDayTypeSelected.forEach( (weekSelected, key) => {
                                     if (weekName.item_id == weekSelected) {
                                         byDay.push(weekName.description);
                                     }
@@ -2110,7 +2100,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     recurrenceData = reccu + ';' + re;
                     this.course_allDates = RRule.fromString(recurrenceData).all();
                 } else if (this.typerecc == 'WEEKLY') {
-                    var self = this;
                     recurrenceData = '';
                     let numberWeek: string = this.interval;
                     let r_rule = {
@@ -2827,7 +2816,6 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onTaskGroupSelect(item: { group_id: number; user_name: string }) {
-        let self = this;
         this.courseForm.controls['task'].value[0].group_id = item.group_id;
         this.task_user_selected = [];
         this.authService.setLoader(true);
@@ -2838,9 +2826,9 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     if (respData[0]?.participants) {
                         var groupParticipants = respData[0]?.participants;
                         if (groupParticipants && groupParticipants.length > 0) {
-                            groupParticipants.forEach(function (value, key) {
+                            groupParticipants.forEach( (value, key) => {
                                 if (value.approved_status == 1) {
-                                    self.task_user_selected.push({
+                                    this.task_user_selected.push({
                                         'user_id': value.user_id,
                                         'approved_status': 1
                                     })
@@ -2899,27 +2887,26 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
    * @return  success message
    */
     deleteTask(taskId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'DeleteTask/' + taskId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'DeleteTask/' + taskId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         setTimeout(() => {
-                            self.taskStatus = 0
-                            self.isTaskField = false;
+                            this.taskStatus = 0
+                            this.isTaskField = false;
                             $("#isTask_check").prop("checked", false);
-                            self.task_user_selected = [];
-                            self.task.removeAt(0);
-                            self.getCourseInfo(self.courseId);
-                            self.taskStatus = null;
+                            this.task_user_selected = [];
+                            this.task.removeAt(0);
+                            this.getCourseInfo(this.courseId);
+                            this.taskStatus = null;
                         }, 2000);
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 

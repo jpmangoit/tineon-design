@@ -113,24 +113,23 @@ export class InstructorListComponent implements OnInit {
     * @returns {Object} message
     */
      deleteInstructor(instructor_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_instructor, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteInstructor/' + instructor_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_instructor, ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteInstructor/' + instructor_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage,null);
-                            self.getUserAllInstructor("")
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage,null);
+                            this.getUserAllInstructor("")
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage,null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage,null);
                         }
                     }
                 )
-        }, function () { }
+        }, ()=> { }
         )
     }
 

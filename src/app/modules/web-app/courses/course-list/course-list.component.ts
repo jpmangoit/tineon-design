@@ -72,7 +72,7 @@ export class CourseListComponent implements OnInit {
         var endPoint: string;
         if (search && search.target.value != '') {
             endPoint = 'getOwnerCourses/' + pageNo + '/' + this.pageSize + '?search=' + search.target.value;
-        }else{
+        } else {
             endPoint = 'getOwnerCourses/' + pageNo + '/' + this.pageSize;
         }
         this.authService.memberSendRequest('get', endPoint, null)
@@ -81,8 +81,8 @@ export class CourseListComponent implements OnInit {
                     this.authService.setLoader(false);
                     var url: string[] = [];
                     this.dataSource = new MatTableDataSource(respData.courses);
-                    this.dataSource.filteredData.forEach((element:any)=>{
-                        if (element?.course_image[0]?.course_image){
+                    this.dataSource.filteredData.forEach((element: any) => {
+                        if (element?.course_image[0]?.course_image) {
                             element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
                         }
                     })
@@ -114,36 +114,31 @@ export class CourseListComponent implements OnInit {
         this.router.navigate([redirectUrl]);
     }
 
-       /**
-     * Function to delete a course
-     * @author  MangoIt Solutions
-     * @param   {courseId}
-     * @return  Response Success or Error Message
-     */
-       deleteCourse(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_course, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
+    /**
+  * Function to delete a course
+  * @author  MangoIt Solutions
+  * @param   {courseId}
+  * @return  Response Success or Error Message
+  */
+    deleteCourse(id: number) {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_course, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            self.getUserAllCourse("");
-                            // setTimeout(function () {
-                            //     // $('#responseMessage').delay(1000).fadeOut();
-                            //     self.router.navigate(["/course"]);
-                            // }, 3000);
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            this.getUserAllCourse("");
 
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 

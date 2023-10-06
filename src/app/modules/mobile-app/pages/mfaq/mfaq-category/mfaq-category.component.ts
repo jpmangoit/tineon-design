@@ -189,18 +189,16 @@ export class MfaqCategoryComponent implements OnInit {
 
     editFAQcategoryById(id:number) {
       this.authService.setLoader(true);
-      this.authService
-        .memberSendRequest('get', 'categoriesById/' + id, null)
+      this.authService .memberSendRequest('get', 'categoriesById/' + id, null)
         .subscribe(
           (respData: any) => {
             this.authService.setLoader(false);
             this.editId = respData[0].id;
-            let self = this;
             if(respData && respData.length > 0){
-                respData.forEach(function (val:FAQCategory, key:number) {
-                  self.FaqCat = val;
-                  self.position = [];
-                  self.setEditFAQCategory();
+                respData.forEach((val:FAQCategory, key:number) => {
+                  this.FaqCat = val;
+                  this.position = [];
+                  this.setEditFAQCategory();
                 });
             }
           },
@@ -286,30 +284,26 @@ export class MfaqCategoryComponent implements OnInit {
     }
 
     deleteCategory(id:number) {
-      let self = this;
-      self.confirmDialogService.confirmThis(
-        self.language.confirmation_message.delete_category,
-        function () {
-          self.authService.setLoader(true);
-          self.authService.memberSendRequest('delete', 'category/' + id, null)
+      this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_category,() => {
+          this.authService.setLoader(true);
+          this.authService.memberSendRequest('delete', 'category/' + id, null)
             .subscribe((respData:any) => {
-              self.authService.setLoader(false);
+              this.authService.setLoader(false);
               if (respData['isError'] == false) {
                 // $('#responseMessage').show();
-                self.responseMessage = respData['result']['message'];
-                self.notificationService.showSuccess(self.responseMessage,null);
-                self.getAllFAQCategory();
+                this.responseMessage = respData['result']['message'];
+                this.notificationService.showSuccess(this.responseMessage,null);
+                this.getAllFAQCategory();
                 // setTimeout(function () {
                 //   $('#responseMessage').delay(1000).fadeOut();
                 // }, 4000);
 
               } else if (respData['code'] == 400) {
-                self.responseMessage = respData['message'];
-                self.notificationService.showError(self.responseMessage,null);
+                this.responseMessage = respData['message'];
+                this.notificationService.showError(this.responseMessage,null);
               }
             });
-        },
-        function () {}
+        },() => {}
       );
     }
 

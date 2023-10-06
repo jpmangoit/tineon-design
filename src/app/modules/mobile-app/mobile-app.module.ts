@@ -56,6 +56,7 @@ import { MorganizerTaskDetailsComponent } from '../mobile-app/pages/mtasks/morga
 import { MclubAllNewsComponent } from '../mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
 import { SharedModule } from 'src/app/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ShortNumberPipe } from 'src/app/pipe/short-number.pipe';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         MEmailComponent,
         MorganizerTaskDetailsComponent,
         MclubAllNewsComponent,
+        ShortNumberPipe
     ],
     imports: [
         CommonModule,

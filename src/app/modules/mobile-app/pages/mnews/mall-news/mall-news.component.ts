@@ -309,16 +309,15 @@ export class MallNewsComponent implements OnInit {
     */
     deleteNews(newsId: number) {
         $('#exModal').modal('hide');
-        let self = this;
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
-                self.notificationService.showSuccess(resp, null);
-                self.getAllNews()
+                this.notificationService.showSuccess(resp, null);
+                this.getAllNews()
                 const url: string[] = ["/mobile/clubwall"];
-                self.router.navigate(url);
+                this.router.navigate(url);
             })
             .catch((err: any) => {
-                self.notificationService.showError(err, null);
+                this.notificationService.showError(err, null);
             });
     }
 

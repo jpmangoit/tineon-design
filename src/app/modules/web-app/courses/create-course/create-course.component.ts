@@ -535,7 +535,6 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
      * @return  {Array Of Object} all the Users
      */
     getCourseOtherInfo() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'courseCommonInfo/' + this.userDetails.team_id, null)
             .subscribe(
@@ -559,7 +558,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                                 }
                             })
                             this.alluserDetails = respData.result.users;
-                            self.userDropdownSettings = {
+                            this.userDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -582,8 +581,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                         }
 
                         if (respData && respData?.result?.groups?.length > 0) {
-                            respData.result.groups.forEach(function (value, key) {
-                                self.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
+                            respData.result.groups.forEach((value, key) =>{
+                                this.group_dropdown.push({ 'group_id': value.id, 'name': value.name });
                             })
                         }
 
@@ -592,7 +591,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                             Object(respData.result.rooms).forEach((val, key) => {
                                 this.roomDropdownList.push({ 'id': val.id, 'name': val.name });
                             });
-                            self.roomDropdownSettings = {
+                            this.roomDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
                                 textField: 'name',
@@ -867,7 +866,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                     }
                     if (key == 'participant' && element[0] != null) {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) => {
                                 formData.append('participant[' + key + ']', JSON.stringify(value.id));
                             });
                         }
@@ -875,7 +874,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                         var groupArray: number[] = [];
                         var grp_id: number;
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) => {
                                 grp_id = value.group_id;
                                 groupArray.push(value.group_id);
                             });
@@ -892,7 +891,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                         }
                         if (this.visibility == 1 || this.visibility == 4) {
                             this.userObj.push({ user_id: JSON.parse(localStorage.getItem('user-id')), approved_status: 1 });
-                            let self = this;
+
                             if (element && element.length > 0) {
                                 element.forEach((value, key) => {
                                     if (value != localStorage.getItem('user-id')) {
@@ -967,9 +966,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                     this.eventSubmitted = false;
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message'], null);
-                        var self = this;
-                        setTimeout(function () {
-                            self.router.navigate(['web/course-detail/' + respData['result']['news']['id']]);
+                        setTimeout( ()=> {
+                            this.router.navigate(['web/course-detail/' + respData['result']['news']['id']]);
                         }, 2500);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -1240,11 +1238,10 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     onRecurrenceSelect(item: { item_id: number; item_text: string }) {
         this.recurrenceSelected = item.item_id;
         var today: number = new Date().getDay();
-        var self = this;
         if (this.weekDaysArr && this.weekDaysArr.length > 0) {
-            this.weekDaysArr.forEach(function (vals, keys) {
+            this.weekDaysArr.forEach((vals, keys)=> {
                 if (vals.item_id == today) {
-                    self.todayName = vals.description;
+                    this.todayName = vals.description;
                 }
             });
         }
@@ -1431,14 +1428,13 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 recurrenceData = reccu + ';' + re;
                 this.course_allDates = RRule.fromString(recurrenceData).all();
             } else if (this.customRecurrenceTypeSelected == 2) {
-                var self = this;
                 recurrenceData = '';
                 let numberWeek: number = $('.custom_recurrence_weekly').val();
                 //interval
                 let byDay: any[] = [];
-                if (self.weekDaysArr && self.weekDaysArr.length > 0) {
-                    self.weekDaysArr.forEach(function (weekName, weekIndex) {
-                        self.weekDayTypeSelected.forEach(function (weekSelected, key) {
+                if (this.weekDaysArr && this.weekDaysArr.length > 0) {
+                    this.weekDaysArr.forEach( (weekName, weekIndex) => {
+                        this.weekDayTypeSelected.forEach( (weekSelected, key) => {
                             if (weekName.item_id == weekSelected) {
                                 byDay.push(weekName.description);
                             }
@@ -1895,7 +1891,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 var groupParticipants: any = respData[0].participants;
                 var groupUsers: { user_id: string; approved_status: number }[] = [];
                 if (groupParticipants && groupParticipants.length > 0) {
-                    groupParticipants.forEach(function (value, key) {
+                    groupParticipants.forEach( (value, key) => {
                         if (value.approved_status == 1) {
                             var status: number = 0;
                             if (value.user_id == localStorage.getItem('user-id')) {
@@ -2257,8 +2253,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onTaskGroupSelect(item: { group_id: number; user_name: string }) {
-        let self = this;
-        self.task_user_selected = [];
+        this.task_user_selected = [];
         let control = this.courseForm.controls.task['controls'][0] as UntypedFormGroup;
         control.controls['group_id'].setValue('');
         control.controls['group_id'].setValue(item.group_id);
@@ -2270,8 +2265,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                     if (respData[0]?.participants) {
                         var groupParticipants = respData[0]?.participants;
                         if (groupParticipants?.length > 0) {
-                            groupParticipants.forEach(function (value, key) {
-                                self.task_user_selected.push({ 'user_id': value.user_id, 'approved_status': 1 })
+                            groupParticipants.forEach( (value, key) => {
+                                this.task_user_selected.push({ 'user_id': value.user_id, 'approved_status': 1 })
                             });
                         }
                     }

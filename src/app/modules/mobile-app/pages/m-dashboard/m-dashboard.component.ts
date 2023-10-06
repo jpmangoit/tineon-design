@@ -5,7 +5,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { EventsType } from 'src/app/models/events-type.model';
 import { LoginDetails } from 'src/app/models/login-details.model';
-import { NewsType } from 'src/app/models/news-type.model';
 import { ThemeType } from 'src/app/models/theme-type.model';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
@@ -174,7 +173,6 @@ export class MDashboardComponent implements OnInit {
         private router: Router,
         private notificationService: NotificationService,
         private datePipe: DatePipe,
-        private confirmDialogService: ConfirmDialogService,
         private commonFunctionService: CommonFunctionService,
     ) { }
 
@@ -414,9 +412,8 @@ export class MDashboardComponent implements OnInit {
                                     recurrence = recurrence.slice(0, -1);
                                     let rule: RRule = RRule.fromString(recurrence)
                                     let rules: Date[] = rule.all();
-                                    let self = this;
                                     if (rules && rules.length > 0) {
-                                        rules.forEach(function (val, index) {
+                                        rules.forEach((val, index) => {
                                             let yourDate: Date = new Date(val)
                                             let dt: string = yourDate.toISOString().split('T')[0];
 
@@ -424,8 +421,8 @@ export class MDashboardComponent implements OnInit {
                                             var recurring_time: any
                                             var recurring_etime: any
                                             if (recurring_dates) {
-                                                recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
-                                                recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
+                                                recurring_time = this.commonFunctionService.formatTime(recurring_dates[0].start_time);
+                                                recurring_etime = this.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                             } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
@@ -476,13 +473,13 @@ export class MDashboardComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents);
-                                            if (dt == self.todays_date) {
-                                                self.currentEvent.push(rrEvents);
-                                                self.currentEventList.push(rrEvents);
-                                            } else if (dt > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents);
-                                                self.upcomingEventList.push(rrEvents);
+                                            this.eventList.push(rrEvents);
+                                            if (dt == this.todays_date) {
+                                                this.currentEvent.push(rrEvents);
+                                                this.currentEventList.push(rrEvents);
+                                            } else if (dt > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents);
+                                                this.upcomingEventList.push(rrEvents);
                                             }
                                         })
                                     }
@@ -492,7 +489,6 @@ export class MDashboardComponent implements OnInit {
                                         dates?.forEach((dd: any, index: any) => {
                                             let yourDate1: Date = new Date(dd)
                                             let dt1: string = yourDate1.toISOString().split('T')[0];
-
                                             let recurring_dates = JSON.parse(element.recurring_dates);
                                             var recurring_time: any
                                             var recurring_etime: any
@@ -505,11 +501,8 @@ export class MDashboardComponent implements OnInit {
                                             }
                                             let rrDate1: string = dt1 + "T" + recurring_time;
                                             let rrDateEnd1: string = dt1 + "T" + recurring_etime;
-
-
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let self = this;
                                             let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
@@ -550,14 +543,14 @@ export class MDashboardComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
 
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
 
@@ -582,7 +575,6 @@ export class MDashboardComponent implements OnInit {
 
                                                 // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                                 // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                                let self = this;
                                                 let rrEvents1: any = {
                                                     "id": element.id,
                                                     "schedule": element.schedule,
@@ -623,14 +615,14 @@ export class MDashboardComponent implements OnInit {
                                                     "team_id": element.team_id,
                                                     "date_repeat": element.date_repeat
                                                 }
-                                                self.eventList.push(rrEvents1);
-                                                if (dt1 == self.todays_date) {
-                                                    self.currentEvent.push(rrEvents1);
-                                                    self.currentEventList.push(rrEvents1);
+                                                this.eventList.push(rrEvents1);
+                                                if (dt1 == this.todays_date) {
+                                                    this.currentEvent.push(rrEvents1);
+                                                    this.currentEventList.push(rrEvents1);
 
-                                                } else if (dt1 > self.todays_date) {
-                                                    self.upcomingEvent.push(rrEvents1);
-                                                    self.upcomingEventList.push(rrEvents1);
+                                                } else if (dt1 > this.todays_date) {
+                                                    this.upcomingEvent.push(rrEvents1);
+                                                    this.upcomingEventList.push(rrEvents1);
                                                 }
                                             });
                                         }
@@ -674,16 +666,15 @@ export class MDashboardComponent implements OnInit {
     */
     deleteNews(newsId: number) {
         $('#exModal').modal('hide');
-        let self = this;
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
-                self.notificationService.showSuccess(resp, null);
-                self.getAllNews()
+                this.notificationService.showSuccess(resp, null);
+                this.getAllNews()
                 const url: string[] = ["/mobile/clubwall"];
-                self.router.navigate(url);
+                this.router.navigate(url);
             })
             .catch((err: any) => {
-                self.notificationService.showError(err, null);
+                this.notificationService.showError(err, null);
             });
     }
 

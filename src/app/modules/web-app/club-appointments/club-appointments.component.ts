@@ -8,7 +8,6 @@ import { RRule } from 'rrule';
 import { Courses } from 'src/app/models/courses.model';
 import { ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { appSetting } from 'src/app/app-settings';
-// import { NotificationService } from 'src/app/service/notification.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
@@ -126,7 +125,6 @@ export class ClubAppointmentsComponent implements OnInit {
     * @return  {Array Of Object} all the Users
     */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -192,7 +190,6 @@ export class ClubAppointmentsComponent implements OnInit {
                             }
                         });
 
-                        let self = this;
                         if (element && element.recurrence != '' && element.recurrence != null) {
                             let recurrence: string = element.recurrence;
                             if (recurrence.includes('UNTIL') == false) {
@@ -239,13 +236,13 @@ export class ClubAppointmentsComponent implements OnInit {
                                         "isCourse": false,
                                         "users": element.eventUsers
                                     }
-                                    self.eventList.push(rrEvents);
-                                    if (dt == self.todays_date) {
-                                        self.currentEvent.push(rrEvents);
-                                        self.currentEventList.push(rrEvents);
-                                    } else if (dt > self.todays_date) {
-                                        self.upcomingEvent.push(rrEvents);
-                                        self.upcomingEventList.push(rrEvents);
+                                    this.eventList.push(rrEvents);
+                                    if (dt == this.todays_date) {
+                                        this.currentEvent.push(rrEvents);
+                                        this.currentEventList.push(rrEvents);
+                                    } else if (dt > this.todays_date) {
+                                        this.upcomingEvent.push(rrEvents);
+                                        this.upcomingEventList.push(rrEvents);
                                     }
 
                                 })
@@ -288,14 +285,14 @@ export class ClubAppointmentsComponent implements OnInit {
                                         "isCourse": false,
                                         "users": element.eventUsers
                                     }
-                                    self.eventList.push(rrEvents1);
-                                    if (dt1 == self.todays_date) {
-                                        self.currentEvent.push(rrEvents1);
-                                        self.currentEventList.push(rrEvents1);
+                                    this.eventList.push(rrEvents1);
+                                    if (dt1 == this.todays_date) {
+                                        this.currentEvent.push(rrEvents1);
+                                        this.currentEventList.push(rrEvents1);
 
-                                    } else if (dt1 > self.todays_date) {
-                                        self.upcomingEvent.push(rrEvents1);
-                                        self.upcomingEventList.push(rrEvents1);
+                                    } else if (dt1 > this.todays_date) {
+                                        this.upcomingEvent.push(rrEvents1);
+                                        this.upcomingEventList.push(rrEvents1);
                                     }
 
                                 });
@@ -340,14 +337,14 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "isCourse": false,
                                             "users": element.eventUsers
                                         }
-                                        self.eventList.push(rrEvents1);
-                                        if (dt1 == self.todays_date) {
-                                            self.currentEvent.push(rrEvents1);
-                                            self.currentEventList.push(rrEvents1);
+                                        this.eventList.push(rrEvents1);
+                                        if (dt1 == this.todays_date) {
+                                            this.currentEvent.push(rrEvents1);
+                                            this.currentEventList.push(rrEvents1);
 
-                                        } else if (dt1 > self.todays_date) {
-                                            self.upcomingEvent.push(rrEvents1);
-                                            self.upcomingEventList.push(rrEvents1);
+                                        } else if (dt1 > this.todays_date) {
+                                            this.upcomingEvent.push(rrEvents1);
+                                            this.upcomingEventList.push(rrEvents1);
                                         }
                                     });
                                 }
@@ -377,7 +374,6 @@ export class ClubAppointmentsComponent implements OnInit {
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
-            let self = this;
             if (this.courseData && this.courseData.length > 0) {
                 this.allCourses = this.courseData;
                 var element: any = null;
@@ -401,7 +397,7 @@ export class ClubAppointmentsComponent implements OnInit {
                                 let rule: RRule = RRule.fromString(recurrence)
                                 let rules: Date[] = rule.all();
                                 if (rules && rules.length > 0) {
-                                    rules.forEach(function (val, index) {
+                                    rules.forEach((val, index) => {
                                         let yourDate: Date = new Date(val)
                                         let dt: string = yourDate.toISOString().split('T')[0];
                                         let recurring_dates = JSON.parse(element.recurring_dates);
@@ -440,35 +436,35 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "isCourse": true,
                                             "show_guest_list": element.show_guest_list
                                         }
-                                        self.courseList.push(rrEvents);
-                                        if (dt == self.todays_date) {
+                                        this.courseList.push(rrEvents);
+                                        if (dt == this.todays_date) {
                                             if (rrEvents.visibility == 2) {
-                                                if (rrEvents.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                    self.currentEvent.push(rrEvents);
-                                                    self.currentEventList.push(rrEvents);
+                                                if (rrEvents.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                    this.currentEvent.push(rrEvents);
+                                                    this.currentEventList.push(rrEvents);
                                                 }
                                             } else {
-                                                if (self.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
-                                                    self.currentEvent.push(rrEvents);
-                                                    self.currentEventList.push(rrEvents);
-                                                } else if (self.userDetails.roles[0] != 'guest') {
-                                                    self.currentEvent.push(rrEvents);
-                                                    self.currentEventList.push(rrEvents);
+                                                if (this.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
+                                                    this.currentEvent.push(rrEvents);
+                                                    this.currentEventList.push(rrEvents);
+                                                } else if (this.userDetails.roles[0] != 'guest') {
+                                                    this.currentEvent.push(rrEvents);
+                                                    this.currentEventList.push(rrEvents);
                                                 }
                                             }
-                                        } else if (dt > self.todays_date) {
+                                        } else if (dt > this.todays_date) {
                                             if (rrEvents.visibility == 2) {
-                                                if (rrEvents.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                    self.upcomingEvent.push(rrEvents);
-                                                    self.upcomingEventList.push(rrEvents);
+                                                if (rrEvents.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                    this.upcomingEvent.push(rrEvents);
+                                                    this.upcomingEventList.push(rrEvents);
                                                 }
                                             } else {
-                                                if (self.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
-                                                    self.upcomingEvent.push(rrEvents);
-                                                    self.upcomingEventList.push(rrEvents);
-                                                } else if (self.userDetails.roles[0] != 'guest') {
-                                                    self.upcomingEvent.push(rrEvents);
-                                                    self.upcomingEventList.push(rrEvents);
+                                                if (this.userDetails.roles[0] == 'guest' && rrEvents.show_guest_list == 'true') {
+                                                    this.upcomingEvent.push(rrEvents);
+                                                    this.upcomingEventList.push(rrEvents);
+                                                } else if (this.userDetails.roles[0] != 'guest') {
+                                                    this.upcomingEvent.push(rrEvents);
+                                                    this.upcomingEventList.push(rrEvents);
                                                 }
                                             }
                                         }
@@ -516,35 +512,35 @@ export class ClubAppointmentsComponent implements OnInit {
                                             "isCourse": true,
                                             "show_guest_list": element.show_guest_list
                                         }
-                                        self.courseList.push(rrEvents1);
-                                        if (dt1 == self.todays_date) {
+                                        this.courseList.push(rrEvents1);
+                                        if (dt1 == this.todays_date) {
                                             if (rrEvents1.visibility == 2) {
-                                                if (rrEvents1.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                    self.currentEvent.push(rrEvents1);
-                                                    self.currentEventList.push(rrEvents1);
+                                                if (rrEvents1.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                    this.currentEvent.push(rrEvents1);
+                                                    this.currentEventList.push(rrEvents1);
                                                 }
                                             } else {
-                                                if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
-                                                    self.currentEvent.push(rrEvents1);
-                                                    self.currentEventList.push(rrEvents1);
-                                                } else if (self.userDetails.roles[0] != 'guest') {
-                                                    self.currentEvent.push(rrEvents1);
-                                                    self.currentEventList.push(rrEvents1);
+                                                if (this.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
+                                                    this.currentEvent.push(rrEvents1);
+                                                    this.currentEventList.push(rrEvents1);
+                                                } else if (this.userDetails.roles[0] != 'guest') {
+                                                    this.currentEvent.push(rrEvents1);
+                                                    this.currentEventList.push(rrEvents1);
                                                 }
                                             }
-                                        } else if (dt1 > self.todays_date) {
+                                        } else if (dt1 > this.todays_date) {
                                             if (rrEvents1.visibility == 2) {
-                                                if (rrEvents1.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                    self.upcomingEvent.push(rrEvents1);
-                                                    self.upcomingEventList.push(rrEvents1);
+                                                if (rrEvents1.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                    this.upcomingEvent.push(rrEvents1);
+                                                    this.upcomingEventList.push(rrEvents1);
                                                 }
                                             } else {
-                                                if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
-                                                    self.upcomingEvent.push(rrEvents1);
-                                                    self.upcomingEventList.push(rrEvents1);
-                                                } else if (self.userDetails.roles[0] != 'guest') {
-                                                    self.upcomingEvent.push(rrEvents1);
-                                                    self.upcomingEventList.push(rrEvents1);
+                                                if (this.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
+                                                    this.upcomingEvent.push(rrEvents1);
+                                                    this.upcomingEventList.push(rrEvents1);
+                                                } else if (this.userDetails.roles[0] != 'guest') {
+                                                    this.upcomingEvent.push(rrEvents1);
+                                                    this.upcomingEventList.push(rrEvents1);
                                                 }
                                             }
                                         }
@@ -592,35 +588,35 @@ export class ClubAppointmentsComponent implements OnInit {
                                                 "isCourse": true,
                                                 "show_guest_list": element.show_guest_list
                                             }
-                                            self.courseList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
+                                            this.courseList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
                                                 if (rrEvents1.visibility == 2) {
-                                                    if (rrEvents1.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                        self.currentEvent.push(rrEvents1);
-                                                        self.currentEventList.push(rrEvents1);
+                                                    if (rrEvents1.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                        this.currentEvent.push(rrEvents1);
+                                                        this.currentEventList.push(rrEvents1);
                                                     }
                                                 } else {
-                                                    if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
-                                                        self.currentEvent.push(rrEvents1);
-                                                        self.currentEventList.push(rrEvents1);
-                                                    } else if (self.userDetails.roles[0] != 'guest') {
-                                                        self.currentEvent.push(rrEvents1);
-                                                        self.currentEventList.push(rrEvents1);
+                                                    if (this.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
+                                                        this.currentEvent.push(rrEvents1);
+                                                        this.currentEventList.push(rrEvents1);
+                                                    } else if (this.userDetails.roles[0] != 'guest') {
+                                                        this.currentEvent.push(rrEvents1);
+                                                        this.currentEventList.push(rrEvents1);
                                                     }
                                                 }
-                                            } else if (dt1 > self.todays_date) {
+                                            } else if (dt1 > this.todays_date) {
                                                 if (rrEvents1.visibility == 2) {
-                                                    if (rrEvents1.author == self.userDetails.userId || self.userDetails.isAdmin == true) {
-                                                        self.upcomingEvent.push(rrEvents1);
-                                                        self.upcomingEventList.push(rrEvents1);
+                                                    if (rrEvents1.author == this.userDetails.userId || this.userDetails.isAdmin == true) {
+                                                        this.upcomingEvent.push(rrEvents1);
+                                                        this.upcomingEventList.push(rrEvents1);
                                                     }
                                                 } else {
-                                                    if (self.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
-                                                        self.upcomingEvent.push(rrEvents1);
-                                                        self.upcomingEventList.push(rrEvents1);
-                                                    } else if (self.userDetails.roles[0] != 'guest') {
-                                                        self.upcomingEvent.push(rrEvents1);
-                                                        self.upcomingEventList.push(rrEvents1);
+                                                    if (this.userDetails.roles[0] == 'guest' && rrEvents1.show_guest_list == 'true') {
+                                                        this.upcomingEvent.push(rrEvents1);
+                                                        this.upcomingEventList.push(rrEvents1);
+                                                    } else if (this.userDetails.roles[0] != 'guest') {
+                                                        this.upcomingEvent.push(rrEvents1);
+                                                        this.upcomingEventList.push(rrEvents1);
                                                     }
                                                 }
                                             }

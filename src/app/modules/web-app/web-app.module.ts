@@ -10,10 +10,7 @@ import { PageNotFoundComponent } from 'src/app/modules/web-app/common/page-not-f
 import { LazyImgDirective } from 'src/app/directives/lazyimg.directive';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 import { ComingSoonComponent } from 'src/app/shared/coming-soon/coming-soon.component';
-import { LoginComponent } from '../authorization/pages/login/login.component';
-import { RecoverPasswordComponent } from '../authorization/pages/recover-password/recover-password.component';
 import { LimitTextPipe } from 'src/app/pipe/limit-text.pipe';
-import { ShortNumberPipe } from 'src/app/pipe/short-number.pipe';
 import { AppStoreComponent } from './app-store/app-store.component';
 import { BannerDetailComponent } from './banner/banner-detail/banner-detail.component';
 import { BannerListComponent } from './banner/banner-list/banner-list.component';
@@ -127,8 +124,6 @@ import { UpdateThemeComponent } from './theme/update-theme/update-theme.componen
 import { SharedModule } from 'src/app/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
-
-
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -224,7 +219,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         UpdateThemeComponent,
         UploadCalendarComponent,
         ThemesComponent,
-        ShortNumberPipe,
         ThemeOptionComponent,
         InstructorDetailsComponent,
         RoomDetailsComponent,

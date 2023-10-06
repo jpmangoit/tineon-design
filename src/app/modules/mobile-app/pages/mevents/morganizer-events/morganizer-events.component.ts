@@ -11,7 +11,6 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
 import { appSetting } from 'src/app/app-settings';
-import { Extentions } from 'src/app/models/extentions.model';
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -95,7 +94,6 @@ export class MorganizerEventsComponent implements OnInit {
         private router: Router,
         private lang: LanguageService,
         private themes: ThemeService,
-        private route: ActivatedRoute,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
 
@@ -144,9 +142,9 @@ export class MorganizerEventsComponent implements OnInit {
             this.eventTypeList[4] = { name: this.language.create_event.courses, class: "courses-event-color" };
             this.eventTypeList[5] = { name: this.language.create_event.seminar, class: "seminar-event-color" };
             this.eventTypeVisibility[1] = { name: this.language.create_event.public },
-                this.eventTypeVisibility[2] = { name: this.language.create_event.private },
-                this.eventTypeVisibility[3] = { name: this.language.create_event.group },
-                this.eventTypeVisibility[4] = { name: this.language.create_event.club }
+            this.eventTypeVisibility[2] = { name: this.language.create_event.private },
+            this.eventTypeVisibility[3] = { name: this.language.create_event.group },
+            this.eventTypeVisibility[4] = { name: this.language.create_event.club }
             let cudate: Date = new Date()
             let cuday: string = cudate.getDate().toString().padStart(2, "0");
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
@@ -185,9 +183,9 @@ export class MorganizerEventsComponent implements OnInit {
                                     recurrence = recurrence.slice(0, -1);
                                     let rule: RRule = RRule.fromString(recurrence)
                                     let rules: Date[] = rule.all();
-                                    let self = this;
+
                                     if (rules && rules.length > 0) {
-                                        rules.forEach(function (val, index) {
+                                        rules.forEach( (val, index) => {
                                             let yourDate: Date = new Date(val)
                                             let dt: string = yourDate.toISOString().split('T')[0];
                                             let recurring_dates = JSON.parse(element.recurring_dates);
@@ -252,13 +250,13 @@ export class MorganizerEventsComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents);
-                                            if (dt == self.todays_date) {
-                                                self.currentEvent.push(rrEvents);
-                                                self.currentEventList.push(rrEvents);
-                                            } else if (dt > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents);
-                                                self.upcomingEventList.push(rrEvents);
+                                            this.eventList.push(rrEvents);
+                                            if (dt == this.todays_date) {
+                                                this.currentEvent.push(rrEvents);
+                                                this.currentEventList.push(rrEvents);
+                                            } else if (dt > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents);
+                                                this.upcomingEventList.push(rrEvents);
                                             }
 
                                         })
@@ -290,7 +288,7 @@ export class MorganizerEventsComponent implements OnInit {
                                             let rrDateEnd1: string = dt1 + "T" + recurring_etime;
                                             // let rrDate1: string = dt1 + "T" + dd.start_time + ':00.000Z'
                                             // let rrDateEnd1: string = dt1 + "T" + dd.end_time + ':00.000Z';
-                                            let self = this;
+
                                             let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
@@ -331,14 +329,14 @@ export class MorganizerEventsComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
 
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
 
@@ -368,7 +366,7 @@ export class MorganizerEventsComponent implements OnInit {
                                             let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let self = this;
+
                                             let rrEvents1: any = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
@@ -409,13 +407,13 @@ export class MorganizerEventsComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
                                     }
@@ -434,8 +432,7 @@ export class MorganizerEventsComponent implements OnInit {
      * @author  MangoIt Solutions
      */
     redirectCalendar() {
-        var self = this;
-        self.router.navigate(['mobile/organizer']);
+        this.router.navigate(['mobile/organizer']);
     }
 
     /**

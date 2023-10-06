@@ -210,7 +210,6 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 
 			this.instructorForm.value['team_id'] = this.teamId;
 			var formData: FormData = new FormData();
-			let self = this;
 			for (const key in this.instructorForm.value) {
 				if (Object.prototype.hasOwnProperty.call(this.instructorForm.value, key)) {
 					const element = this.instructorForm.value[key];
@@ -253,7 +252,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 			this.authService.memberSendRequest('post', 'createInstructor', formData)
 				.subscribe(
 					(respData: any) => {
-						self.authService.setLoader(false);
+						this.authService.setLoader(false);
 						if (respData['isError'] == false) {
 							this.notificationService.showSuccess(respData['result']['message'], null);
 							setTimeout(() => {
@@ -270,7 +269,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 		// 	this.authService.memberSendRequest('post', 'createInstructor', formData)
 		// 		.subscribe(
 		// 			(respData: any) => {
-		// 				self.authService.setLoader(false);
+		// 				this.authService.setLoader(false);
 		// 				if (respData['isError'] == false) {
 		// 					this.notificationService.showSuccess(respData['result']['message'], null);
 		// 					setTimeout(() => {

@@ -129,20 +129,19 @@ export class MbannerlistComponent implements OnInit {
     * @return  {}
     */
     deleteBanner(bannerId: any) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_banner, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteBanner/' + bannerId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_banner,() => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteBanner/' + bannerId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            self.ngOnInit();
+                            this.ngOnInit();
                         }, 2000);
                     }
-                )
-        }, function () {
+                 )
+        }, () => {
         })
     }
 

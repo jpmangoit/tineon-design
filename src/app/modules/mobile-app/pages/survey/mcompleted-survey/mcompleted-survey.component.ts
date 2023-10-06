@@ -62,7 +62,6 @@ export class McompletedSurveyComponent implements OnInit {
    * @return  {object} user object
    */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -185,24 +184,23 @@ export class McompletedSurveyComponent implements OnInit {
     * @return  {string} succes message
     */
     surveyDelete(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_survey, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            self.getCompletedData()
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            this.getCompletedData()
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 

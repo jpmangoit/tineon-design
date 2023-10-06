@@ -86,170 +86,160 @@ export class MnotificationComponent implements OnInit {
     }
 
     acceptInvitedCourse(CourseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_course_invitation, function () {
-            self.authService.memberSendRequest('put', 'acceptCourse/user/' + userId + '/course_id/' + CourseId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_course_invitation, () => {
+            this.authService.memberSendRequest('put', 'acceptCourse/user/' + userId + '/course_id/' + CourseId, null)
                 .subscribe(
                     (respData: any) => {
                         if (respData['isError'] == false) {
-                            self.alreadyAcceptMsg = respData['result'];
-                            self.ngOnInit();
-                            self.toggleField();
-                            self._router.navigate(["/mobile/course-detail/" + CourseId]);
+                            this.alreadyAcceptMsg = respData['result'];
+                            this.ngOnInit();
+                            this.toggleField();
+                            this._router.navigate(["/mobile/course-detail/" + CourseId]);
                         }
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyInvitedCourse(courseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_course_invitation, function () {
-            self.authService.memberSendRequest('delete', 'denyCourse/user/' + userId + '/course_id/' + courseId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_course_invitation, () => {
+            this.authService.memberSendRequest('delete', 'denyCourse/user/' + userId + '/course_id/' + courseId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptJoinUser(courseId: number, userIId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_course_invitation, function () {
-            self.authService.memberSendRequest('get', 'adminapprove-waitingtojoin-courserequests/course_id/' + courseId + '/user_id/' + userIId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_course_invitation, () => {
+            this.authService.memberSendRequest('get', 'adminapprove-waitingtojoin-courserequests/course_id/' + courseId + '/user_id/' + userIId, null)
                 .subscribe(
                     (respData: any) => {
                         if (respData['isError'] == false) {
-                            self.alreadyAcceptMsg = respData['result'];
+                            this.alreadyAcceptMsg = respData['result'];
                             $('#notification-message').modal('show');
-                            self.ngOnInit();
-                            self.toggleField();
+                            this.ngOnInit();
+                            this.toggleField();
 
-                            self._router.navigate(["/mobile/course-detail/" + courseId]);
+                            this._router.navigate(["/mobile/course-detail/" + courseId]);
                         }
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyJoinUser(courseId: number, userIId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_course_invitation, function () {
-            self.authService.memberSendRequest('delete', 'admindeny-waitingtojoin-courserequests/course_id/' + courseId + '/user_id/' + userIId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_course_invitation, () => {
+            this.authService.memberSendRequest('delete', 'admindeny-waitingtojoin-courserequests/course_id/' + courseId + '/user_id/' + userIId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedCourses(courseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, function () {
-            self.authService.memberSendRequest('get', 'set-approve-course-status/' + courseId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, () => {
+            this.authService.memberSendRequest('get', 'set-approve-course-status/' + courseId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/course-detail/" + courseId]);
+                        this._router.navigate(["/mobile/course-detail/" + courseId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedUpdateCourses(courseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedcourse/' + courseId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedcourse/' + courseId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
 
     unapprovedCourse(courseId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-course/course_id/' + courseId, postData)
+            this.authService.memberSendRequest('put', 'deny-course/course_id/' + courseId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, function () {
-            self.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, () => {
+            this.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/group-detail/" + groupId]);
+                        this._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapproveGroup(groupId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'adminDenyGroup/group_id/' + groupId, postData)
+            this.authService.memberSendRequest('put', 'adminDenyGroup/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/group-detail/" + groupId]);
+                        this._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     joinGroup(groupId: number, userId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, () => {
             let postData: object = {
                 "participants": {
                     "group_id": groupId,
@@ -257,23 +247,22 @@ export class MnotificationComponent implements OnInit {
                     "approved_status": 1
                 }
             };
-            self.authService.memberSendRequest('put', 'acceptGroup/user/' + userId + '/group_id/' + groupId, postData)
+            this.authService.memberSendRequest('put', 'acceptGroup/user/' + userId + '/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/group-detail/" + groupId]);
+                        this._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptGroup(groupId: number) {   //notification
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, () => {
             let postData: object = {
                 "participants": {
                     "group_id": groupId,
@@ -281,691 +270,652 @@ export class MnotificationComponent implements OnInit {
                     "approved_status": 1
                 }
             };
-            self.authService.memberSendRequest('put', 'acceptGroup/user/' + userId + '/group_id/' + groupId, postData)
+            this.authService.memberSendRequest('put', 'acceptGroup/user/' + userId + '/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/group-detail/" + groupId]);
+                        this._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyGroup(groupId: number, userId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
-            self.authService.memberSendRequest('delete', 'denyGroup/user/' + userId + '/group_id/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
+            this.authService.memberSendRequest('delete', 'denyGroup/user/' + userId + '/group_id/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     rejectGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
-            self.authService.memberSendRequest('delete', 'denyGroup/user/' + userId + '/group_id/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
+            this.authService.memberSendRequest('delete', 'denyGroup/user/' + userId + '/group_id/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     viewGroup(groupId: number) {
         let section = 'Group'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_group, groupId, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_group, groupId, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewUpdatedGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedgroupByUser/' + groupId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedgroupByUser/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/group-detail/" + groupId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/group-detail/" + groupId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewAcceptedGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'getreadGroupInvitaion/' + groupId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'getreadGroupInvitaion/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/group-detail/" + groupId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/group-detail/" + groupId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     readPublishedGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedgroup-notification/' + groupId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedgroup-notification/' + groupId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/group-detail/" + groupId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/group-detail/" + groupId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     acceptUpdatedGroup(groupId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/group-detail/" + groupId]);
+                        this._router.navigate(["/mobile/group-detail/" + groupId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptNews(newsId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, () => {
             let userId: string = localStorage.getItem('user-id');
-            self.authService.memberSendRequest('get', 'approve-news-by-id/' + newsId + '/' + userId, null)
+            this.authService.memberSendRequest('get', 'approve-news-by-id/' + newsId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
+                        this._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptUpdatedNews(newsId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-updatednews/' + newsId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, () => {
+            this.authService.memberSendRequest('get', 'approve-updatednews/' + newsId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
+                        this._router.navigate(["/mobile/clubnews-detail/" + newsId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyNews(newsId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-news/news_id/' + newsId, postData)
+            this.authService.memberSendRequest('put', 'deny-news/news_id/' + newsId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedEvents(eventId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, function () {
-            self.authService.memberSendRequest('get', 'set-approve-status/' + eventId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, () => {
+            this.authService.memberSendRequest('get', 'set-approve-status/' + eventId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/event-detail/" + eventId]);
+                        this._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedUpdateEvents(eventId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedevent/' + eventId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedevent/' + eventId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/event-detail/" + eventId]);
+                        this._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapprovedEvent(eventId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-event/event_id/' + eventId, postData)
+            this.authService.memberSendRequest('put', 'deny-event/event_id/' + eventId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptInvitedEvent(eventId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_event_invitation, function () {
-            self.authService.memberSendRequest('put', 'acceptEvent/user/' + userId + '/event_id/' + eventId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_event_invitation, () => {
+            this.authService.memberSendRequest('put', 'acceptEvent/user/' + userId + '/event_id/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/event-detail/" + eventId]);
+                        this._router.navigate(["/mobile/event-detail/" + eventId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyInvitedEvent(eventId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_event_invitation, function () {
-            self.authService.memberSendRequest('delete', 'denyEvent/user/' + userId + '/event_id/' + eventId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_event_invitation, () => {
+            this.authService.memberSendRequest('delete', 'denyEvent/user/' + userId + '/event_id/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     adminApprovedTasks(taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, () => {
 
-            self.authService.memberSendRequest('get', 'approve-task-as-admin/' + taskId + '/approvedby/' + userId, null)
+            this.authService.memberSendRequest('get', 'approve-task-as-admin/' + taskId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/task-detail/" + taskId]);
+                        this._router.navigate(["/mobile/task-detail/" + taskId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     adminUnapprovedTasks(taskId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-task/task_id/' + taskId, postData)
+            this.authService.memberSendRequest('put', 'deny-task/task_id/' + taskId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     adminApprovedUpdateTasks(taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedtask/' + taskId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedtask/' + taskId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/task-detail/" + taskId]);
+                        this._router.navigate(["/mobile/task-detail/" + taskId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     acceptInvitedTask(taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'readtasknotification/' + taskId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'readtasknotification/' + taskId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/task-detail/" + taskId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/task-detail/" + taskId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     acceptInvitedSubTask(subtaskId: number, taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'readsubtasknotification/' + subtaskId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'readsubtasknotification/' + subtaskId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self.ngOnInit();
-                    self.toggleField();
+                    this.ngOnInit();
+                    this.toggleField();
 
-                    self._router.navigate(["/mobile/task-detail/" + taskId]);
+                    this._router.navigate(["/mobile/task-detail/" + taskId]);
                 }
             )
     }
 
     viewUpdatedTask(taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedtaskByUser/' + taskId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedtaskByUser/' + taskId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/task-detail/" + taskId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/task-detail/" + taskId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewCompletedTask(taskId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'readCompletedTasksNotification/' + taskId, null)
+        this.authService.memberSendRequest('get', 'readCompletedTasksNotification/' + taskId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/task-detail/" + taskId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/task-detail/" + taskId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     acceptMessage(msgId: number, esdb_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.accept_msg, function () {
-            self.authService.memberSendRequest('get', 'message/approve-message/' + esdb_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_msg, () => {
+            this.authService.memberSendRequest('get', 'message/approve-message/' + esdb_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyMessage(msgId: number, esdb_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.deny_msg, function () {
-            self.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_msg, () => {
+            this.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedRooms(roomId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
-            self.authService.memberSendRequest('get', 'set-approve-room-status/' + roomId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_room, () => {
+            this.authService.memberSendRequest('get', 'set-approve-room-status/' + roomId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/room-detail/" + roomId]);
+                        this._router.navigate(["/mobile/room-detail/" + roomId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedUpdateRooms(roomId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedrooms/' + roomId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_room, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedrooms/' + roomId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/room-detail/" + roomId]);
+                        this._router.navigate(["/mobile/room-detail/" + roomId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapprovedRooms(roomId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-rooms/room_id/' + roomId, postData)
+            this.authService.memberSendRequest('put', 'deny-rooms/room_id/' + roomId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
 
         })
     }
 
     approvedInstructors(instructor_id: number) {
-        let self = this;
-        self.ngOnInit();
-        self.toggleField();
+        this.ngOnInit();
+        this.toggleField();
 
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_instructor, function () {
-            self.authService.memberSendRequest('get', 'set-approve-instructor-status/' + instructor_id + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_instructor, () => {
+            this.authService.memberSendRequest('get', 'set-approve-instructor-status/' + instructor_id + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
+                        this._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedUpdateInstructors(instructor_id: number) {
-        let self = this;
-        self.ngOnInit();
-        self.toggleField();
+        this.ngOnInit();
+        this.toggleField();
 
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_instructor, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedinstructor/' + instructor_id + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_instructor, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedinstructor/' + instructor_id + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
+                        this._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapprovedInstuctors(instructor_id: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-instructor/instructor_id/' + instructor_id, postData)
+            this.authService.memberSendRequest('put', 'deny-instructor/instructor_id/' + instructor_id, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedFaqs(faqId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, () => {
+            this.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
+                        this._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     denyFaqs(faqsId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
+            this.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
 
-                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqsId]);
+                        this._router.navigate(["/mobile/vereins-faq-detail/" + faqsId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     // unapprovedFaqs(faqId: number) {
-    //     let self = this;
-    //     self.confirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function () {
-    //         self.authService.memberSendRequest('delete', 'deleteFaq/' + faqId, null)
+    //
+    //     this.confirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, ()=> {
+    //         this.authService.memberSendRequest('delete', 'deleteFaq/' + faqId, null)
     //             .subscribe(
     //                 (respData: any) => {
-    //                  self.ngOnInit();
-    //                     self.toggleField();
-    //                     self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
+    //                  this.ngOnInit();
+    //                     this.toggleField();
+    //                     this._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
     //                 }
     //             )
-    //     }, function () {
+    //     }, ()=> {
     //     })
     // }
 
     readApprovedFaqs(faqId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedfaq-notification/' + faqId + '/author/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedfaq-notification/' + faqId + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self.ngOnInit();
-                    self.toggleField();
+                    this.ngOnInit();
+                    this.toggleField();
                     this._router.navigate(["/mobile/vereins-faq"]);
                 }
             );
     }
 
     readUpdatedFaqs(faqId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'read-notification-updatedfaq/' + faqId + '/user/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, () => {
+            this.authService.memberSendRequest('get', 'read-notification-updatedfaq/' + faqId + '/user/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
-                        self._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
+                        this.ngOnInit();
+                        this.toggleField();
+                        this._router.navigate(["/mobile/vereins-faq-detail/" + faqId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedFaqsCategory(faqCategoryId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.create_faq.approved_category, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-faqCategory-by-id/' + faqCategoryId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.approved_category, () => {
+            this.authService.memberSendRequest('get', 'admin-approve-faqCategory-by-id/' + faqCategoryId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapprovedFaqsCategory(faqCategoryId: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.create_faq.unapproved_category, function () {
-            self.authService.memberSendRequest('delete', 'category/' + faqCategoryId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.unapproved_category, () => {
+            this.authService.memberSendRequest('delete', 'category/' + faqCategoryId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
+                        this.ngOnInit();
+                        this.toggleField();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedSurvey(surveyId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-survey-by-id/' + surveyId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, () => {
+            this.authService.memberSendRequest('get', 'admin-approve-survey-by-id/' + surveyId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
-                        self._router.navigate(['/mobile/survey-detail/' + surveyId])
+                        this.ngOnInit();
+                        this.toggleField();
+                        this._router.navigate(['/mobile/survey-detail/' + surveyId])
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     unapprovedSurvey(surveyId: number) {
-        let self = this;
         var reason = '';
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey, () => {
             reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-survey/survey_id/' + surveyId, postData)
+            this.authService.memberSendRequest('put', 'deny-survey/survey_id/' + surveyId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.toggleField();
-                        self._router.navigate(['/mobile/survey-detail/' + surveyId]);
+                        this.ngOnInit();
+                        this.toggleField();
+                        this._router.navigate(['/mobile/survey-detail/' + surveyId]);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     approvedUpdatedSurvey(survey_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
-        self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + userId, null)
-            .subscribe(
-                (respData: any) => {
-                    self._router.navigate(["/mobile/survey-detail/" + survey_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + userId, null)
+                .subscribe(
+                    (respData: any) => {
+                        this._router.navigate(["/mobile/survey-detail/" + survey_id]);
+                        this.ngOnInit();
+                        this.toggleField();
 
-                }
-            )
-        }, function () {
+                    }
+                )
+        }, () => {
         })
     }
 
     acceptInvitedSurvey(surveyId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'getreadSurveyInvitation/' + surveyId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'getreadSurveyInvitation/' + surveyId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
                     if (respData['success'] == false) {
-                        self.alreadyAcceptMsg = respData['message'];
+                        this.alreadyAcceptMsg = respData['message'];
 
                     } else if (respData['isError'] == false) {
-                        self._router.navigate(['/mobile/survey-detail/' + surveyId])
-                        self.ngOnInit();
-                        self.toggleField();
+                        this._router.navigate(['/mobile/survey-detail/' + surveyId])
+                        this.ngOnInit();
+                        this.toggleField();
 
                     }
                 }
@@ -974,20 +924,19 @@ export class MnotificationComponent implements OnInit {
 
     viewNews(newsId: number) {
         let section = 'News'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_news, newsId, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_news, newsId, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewApprovePublishNewsByAdmin(newsId: number) {
-        let self = this;
-        self.authService.memberSendRequest('get', 'read-approvedpublishednews/news_id/' + newsId, null)
+        this.authService.memberSendRequest('get', 'read-approvedpublishednews/news_id/' + newsId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/clubnews-detail/" + newsId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
 
                 }
@@ -995,14 +944,13 @@ export class MnotificationComponent implements OnInit {
     }
 
     viewApproveUpdateNewsByAdmin(newsId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatednews/' + newsId + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatednews/' + newsId + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/clubnews-detail/" + newsId]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/clubnews-detail/" + newsId]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
@@ -1010,43 +958,41 @@ export class MnotificationComponent implements OnInit {
 
     viewFaqs(faqId: number) {
         let section = 'FAQS'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_faq, faqId, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_faq, faqId, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewDenyPublishTaskByAdmin(taskId: number) {
         let section = 'Task'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_task, taskId, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_task, taskId, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewAcceptPublishTaskByAdmin(task_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedtask-notification/' + task_id + '/organizer/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedtask-notification/' + task_id + '/organizer/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/task-detail/" + task_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/task-detail/" + task_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewAcceptUpdatedTaskByAdmin(task_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedtask/' + task_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedtask/' + task_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/task-detail/" + task_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/task-detail/" + task_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
@@ -1054,51 +1000,47 @@ export class MnotificationComponent implements OnInit {
 
     viewDenyPublishInstructorByAdmin(instructor_id: number) {
         let section = 'Instructor'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_instructor, instructor_id, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_instructor, instructor_id, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewApprovePublishInstructorByAdmin(instructor_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedinstructor-notification/' + instructor_id + '/author/' + userId, null).subscribe(
+        this.authService.memberSendRequest('get', 'read-approvedinstructor-notification/' + instructor_id + '/author/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
-                self.ngOnInit();
-                self.toggleField();
+                this._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
+                this.ngOnInit();
+                this.toggleField();
 
             })
     }
 
     viewApproveUpdateInstructorByAdmin(instructor_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedinstructor/' + instructor_id + '/user/' + userId, null).subscribe(
+        this.authService.memberSendRequest('get', 'read-notification-updatedinstructor/' + instructor_id + '/user/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
-                self.ngOnInit();
-                self.toggleField();
+                this._router.navigate(["/mobile/instructor-detail/" + instructor_id]);
+                this.ngOnInit();
+                this.toggleField();
 
             })
     }
 
     viewAcceptPublishSurveyByAdmin(survey_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedsurvey-notification/survey_id/' + survey_id + '/author/' + userId, null).subscribe(
+        this.authService.memberSendRequest('get', 'read-approvedsurvey-notification/survey_id/' + survey_id + '/author/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/mobile/survey-detail/" + survey_id]);
+                this._router.navigate(["/mobile/survey-detail/" + survey_id]);
             })
     }
 
     viewPublishUpdateSurveyByAdmin(survey_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedsurvey/' + survey_id + '/user/' + userId, null).subscribe(
+        this.authService.memberSendRequest('get', 'read-notification-updatedsurvey/' + survey_id + '/user/' + userId, null).subscribe(
             (respData: any) => {
-                self._router.navigate(["/mobile/survey-detail/" + survey_id]);
+                this._router.navigate(["/mobile/survey-detail/" + survey_id]);
             })
     }
 
@@ -1106,35 +1048,33 @@ export class MnotificationComponent implements OnInit {
 
     viewDenyPublishSurveyByAdmin(survey_id: number) {
         let section = 'Survey'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_survey, survey_id, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_survey, survey_id, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewApprovePublishRoomByAdmin(room_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedroom-notification/' + room_id + '/author/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedroom-notification/' + room_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/room-detail/" + room_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/room-detail/" + room_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewApproveUpdateRoomByAdmin(room_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedroom/' + room_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedroom/' + room_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/room-detail/" + room_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/room-detail/" + room_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
@@ -1142,29 +1082,28 @@ export class MnotificationComponent implements OnInit {
 
     viewDenyPublishRoomByAdmin(room_id: number) {
         let section = 'Room'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_room, room_id, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_room, room_id, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewDenyPublishEventByAdmin(event_id: number) {
         let section = 'Event'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_event, event_id, section, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_event, event_id, section, () => {
 
-        }, function () {
+        }, () => {
         })
     }
 
     viewApprovePublishEventByAdmin(event_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedevent-notification/' + event_id + '/author/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedevent-notification/' + event_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/event-detail/" + event_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/event-detail/" + event_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
@@ -1172,28 +1111,26 @@ export class MnotificationComponent implements OnInit {
 
 
     viewApproveUpdateEventByAdmin(event_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedevent/' + event_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedevent/' + event_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/event-detail/" + event_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/event-detail/" + event_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewUpdateEvent(event_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedeventByUser/' + event_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedeventByUser/' + event_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/event-detail/" + event_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/event-detail/" + event_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
@@ -1201,90 +1138,84 @@ export class MnotificationComponent implements OnInit {
 
     viewDenyPublishCourseByAdmin(course_id: number) {
         let section = 'Course'
-        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_course, course_id, section, function () {
-        }, function () {
+        this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_course, course_id, section, () => {
+        }, () => {
         })
     }
 
     viewApprovePublishCourseByAdmin(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-approvedcourse-notification/' + course_id + '/author/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-approvedcourse-notification/' + course_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewApproveUpdateCourseByAdmin(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedcourses/' + course_id + '/author/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedcourses/' + course_id + '/author/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewUpdateCourse(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-notification-updatedCourseByUser/' + course_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-notification-updatedCourseByUser/' + course_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewInternalCourse(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
+        this.authService.memberSendRequest('get', 'read-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewInternalUpdateCourse(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'readupdate-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
+        this.authService.memberSendRequest('get', 'readupdate-courseinternalinstructor-notification/internal-instructor/' + userId + '/course_id/' + course_id, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
                 }
             )
     }
 
     viewJoinedCourse(course_id: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        self.authService.memberSendRequest('get', 'read-course-join-message/' + course_id + '/user/' + userId, null)
+        this.authService.memberSendRequest('get', 'read-course-join-message/' + course_id + '/user/' + userId, null)
             .subscribe(
                 (respData: any) => {
-                    self._router.navigate(["/mobile/course-detail/" + course_id]);
-                    self.ngOnInit();
-                    self.toggleField();
+                    this._router.navigate(["/mobile/course-detail/" + course_id]);
+                    this.ngOnInit();
+                    this.toggleField();
 
 
                 }

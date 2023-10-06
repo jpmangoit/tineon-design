@@ -265,7 +265,7 @@ export class MchatComponent implements OnInit {
                     roomId: this.roomId
                 }
             }
-            let self = this;
+
             var formData: FormData = new FormData();
             for (const key in reqData) {
                 if (Object.prototype.hasOwnProperty.call(reqData, key)) {
@@ -296,7 +296,6 @@ export class MchatComponent implements OnInit {
                             this.imageSrc = null;
                             this.chatForm.reset();
                             this.chatFormSubmitted = false;
-                            var self = this;
                             this.required(this.selectedChat)
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -316,7 +315,6 @@ export class MchatComponent implements OnInit {
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
         var url: any;
-        let self = this
         reader.onload = function (_event) {
             url = reader.result;
             var imagee: HTMLImageElement = new Image();

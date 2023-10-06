@@ -344,10 +344,8 @@ export class McommunityGroupsComponent implements OnInit {
     }
 
     joinGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(
-            this.language.community_groups.join_group_popup,
-            function () {
+        this.confirmDialogService.confirmThis(this.language.community_groups.join_group_popup,
+             () => {
                 let userId: string = localStorage.getItem('user-id');
                 let postData: object = {
                     participants: {
@@ -356,63 +354,61 @@ export class McommunityGroupsComponent implements OnInit {
                         approved_status: 2,
                     },
                 };
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('post', 'joinGroup/user_id/' + userId + '/group_id/' + groupId, postData)
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('post', 'joinGroup/user_id/' + userId + '/group_id/' + groupId, postData)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData['result']['message'];
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData['result']['message'];
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         setTimeout(() => {
-                            // self.responseMessage = '';
-                            self.allGroups();
-                            self.joinAllGroups();
+                            // this.responseMessage = '';
+                            this.allGroups();
+                            this.joinAllGroups();
                         }, 3000);
                     });
             },
-            function () { }
+            () => { }
         );
     }
 
     leaveGroup(groupId: number) {
-        let self = this;
         this.confirmDialogService.confirmThis(
             this.language.community_groups.leave_group_popup,
-            function () {
+            () => {
                 let userId: string = localStorage.getItem('user-id');
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'leaveGroup/user/' + userId + '/group_id/' + groupId, null)
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('delete', 'leaveGroup/user/' + userId + '/group_id/' + groupId, null)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData['result']['message'];
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData['result']['message'];
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         setTimeout(() => {
-                            // self.responseMessage = '';
-                            self.allGroups();
-                            self.joinAllGroups();
+                            // this.responseMessage = '';
+                            this.allGroups();
+                            this.joinAllGroups();
                         }, 3000);
                     });
             },
-            function () { }
+            () => { }
         );
     }
 
     deleteGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData['result']['message'];
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData['result']['message'];
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         setTimeout(() => {
-                            // self.responseMessage = '';
-                            self.joinAllGroups();
+                            // this.responseMessage = '';
+                            this.joinAllGroups();
                         }, 2000);
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 

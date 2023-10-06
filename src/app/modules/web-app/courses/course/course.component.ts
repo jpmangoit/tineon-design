@@ -208,7 +208,6 @@ export class CourseComponent implements OnInit, OnDestroy {
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
-            let self = this;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'allCourses', null).subscribe(
                 (respData: any) => {
@@ -323,13 +322,13 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     "team_id": element.team_id,
                                                     "date_repeat": element.date_repeat
                                                 }
-                                                if (dt == self.todays_date) {
-                                                    self.currentCourse.push(rrEvents);
-                                                    self.currentCourseList.push(rrEvents);
+                                                if (dt == this.todays_date) {
+                                                    this.currentCourse.push(rrEvents);
+                                                    this.currentCourseList.push(rrEvents);
 
-                                                } else if (dt > self.todays_date) {
-                                                    self.upcomingCourse.push(rrEvents);
-                                                    self.upcomingCourseList.push(rrEvents);
+                                                } else if (dt > this.todays_date) {
+                                                    this.upcomingCourse.push(rrEvents);
+                                                    this.upcomingCourseList.push(rrEvents);
                                                 }
                                             });
 
@@ -410,13 +409,12 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                     "team_id": element.team_id,
                                                     "date_repeat": element.date_repeat
                                                 }
-                                                if (dt1 == self.todays_date) {
-                                                    self.currentCourse.push(rrEvents1);
-                                                    self.currentCourseList.push(rrEvents1);
-                                                } else if (dt1 > self.todays_date) {
-                                                    self.upcomingCourse.push(rrEvents1);
-                                                    self.upcomingCourseList.push(rrEvents1);
-
+                                                if (dt1 == this.todays_date) {
+                                                    this.currentCourse.push(rrEvents1);
+                                                    this.currentCourseList.push(rrEvents1);
+                                                } else if (dt1 > this.todays_date) {
+                                                    this.upcomingCourse.push(rrEvents1);
+                                                    this.upcomingCourseList.push(rrEvents1);
                                                 }
 
                                             });
@@ -494,12 +492,12 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                         "team_id": element.team_id,
                                                         "date_repeat": element.date_repeat
                                                     }
-                                                    if (dt1 == self.todays_date) {
-                                                        self.currentCourse.push(rrEvents1);
-                                                        self.currentCourseList.push(rrEvents1);
-                                                    } else if (dt1 > self.todays_date) {
-                                                        self.upcomingCourse.push(rrEvents1);
-                                                        self.upcomingCourseList.push(rrEvents1);
+                                                    if (dt1 == this.todays_date) {
+                                                        this.currentCourse.push(rrEvents1);
+                                                        this.currentCourseList.push(rrEvents1);
+                                                    } else if (dt1 > this.todays_date) {
+                                                        this.upcomingCourse.push(rrEvents1);
+                                                        this.upcomingCourseList.push(rrEvents1);
                                                     }
                                                 });
 
@@ -516,11 +514,10 @@ export class CourseComponent implements OnInit, OnDestroy {
                             arr.sort(sorter);
                         };
                         sortByDate(this.upcomingCourseList);
-
                         this.currentCourseList.forEach(element => {
-                            let self = this;
-                            if (self.allUsers?.length > 0) {
-                                self.allUsers.forEach(el => {
+
+                            if (this.allUsers?.length > 0) {
+                                this.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                         if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                             // element.CourseInternalInstructor[0].internalUsers.add_img = el;
@@ -543,8 +540,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                             }
                         });
                         this.upcomingCourseList.forEach(element => {
-                            if (self.allUsers?.length > 0) {
-                                self.allUsers.forEach(el => {
+                            if (this.allUsers?.length > 0) {
+                                this.allUsers.forEach(el => {
                                     if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                         if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                             // element.CourseInternalInstructor[0].internalUsers.add_img = el;
@@ -917,7 +914,6 @@ export class CourseComponent implements OnInit, OnDestroy {
      * @return  {Array Of Object} all the Users
      */
     getCourseOtherInfo() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'courseCommonInfo/' + this.userDetails.team_id, null)
             .subscribe(
@@ -927,16 +923,16 @@ export class CourseComponent implements OnInit, OnDestroy {
                         if (respData && respData?.result?.users?.length > 0) {
                             this.allUsers = respData.result.users;
                             Object(respData.result.users).forEach((val, key) => {
-                                self.alluserInformation[val.id] = { member_id: val.member_id };
-                                self.internalInstructorList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
+                                this.alluserInformation[val.id] = { member_id: val.member_id };
+                                this.internalInstructorList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
                             });
                         }
 
                         if (respData && respData?.result?.rooms?.length > 0) {
                             Object(respData.result.rooms).forEach((val, key) => {
-                                self.roomList.push({ 'id': val.id, 'name': val.name });
+                                this.roomList.push({ 'id': val.id, 'name': val.name });
                             });
-                            self.roomDropdownSettings = {
+                            this.roomDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -949,9 +945,9 @@ export class CourseComponent implements OnInit, OnDestroy {
 
                         if (respData && respData?.result?.instructors?.length > 0) {
                             Object(respData.result.instructors).forEach((val, key) => {
-                                self.externalInstructorList.push({ 'id': val.id, 'name': val.first_name + ' ' + val.last_name });
+                                this.externalInstructorList.push({ 'id': val.id, 'name': val.first_name + ' ' + val.last_name });
                             });
-                            self.externalDropdownSettings = {
+                            this.externalDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -1016,26 +1012,25 @@ export class CourseComponent implements OnInit, OnDestroy {
     */
     deleteCourse(id: number) {
         $('#view-course').modal('hide');
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_course, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_course, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'], null);
-                            setTimeout(function () {
-                                self.currentCourseList = [];
-                                self.upcomingCourseList = [];
-                                self.getAllCourses();
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            setTimeout(() => {
+                                this.currentCourseList = [];
+                                this.upcomingCourseList = [];
+                                this.getAllCourses();
                             }, 2000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 
@@ -1048,29 +1043,28 @@ export class CourseComponent implements OnInit, OnDestroy {
     CourseAcceptByUninviteUser(course_id: number) {
         $('#view-course').modal('hide');
         var userId = this.userDetails.userId
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.join_course, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('post', 'acceptCourseByUnInvited/user/' + userId + "/course_id/" + course_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.join_course, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('post', 'acceptCourseByUnInvited/user/' + userId + "/course_id/" + course_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result'], null);
-                            setTimeout(function () {
-                                self.currentCourseList = [];
-                                self.upcomingCourseList = [];
-                                self.getAllCourses();
+                            this.notificationService.showSuccess(respData['result'], null);
+                            setTimeout(() => {
+                                this.currentCourseList = [];
+                                this.upcomingCourseList = [];
+                                this.getAllCourses();
                             }, 2000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
-                            setTimeout(function () {
-                                self.getAllCourses();
+                            this.notificationService.showError(respData['message'], null);
+                            setTimeout(() => {
+                                this.getAllCourses();
                             }, 2000);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 
@@ -1172,7 +1166,6 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.formSubmit = true;
         var formData: FormData = new FormData();
         this.authService.setLoader(false);
-        let self = this;
         for (const key in this.getInTouchCourse.value) {
             if (Object.prototype.hasOwnProperty.call(this.getInTouchCourse.value, key)) {
                 const element = this.getInTouchCourse.value[key];
@@ -1205,7 +1198,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                         this.authService.setLoader(false)
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            setTimeout(function () {
+                            setTimeout(() => {
                                 $('#responseMessage1').delay(1000).fadeOut();
                                 $('#get-in-touch-instructor').modal('hide');
                             }, 2000);
@@ -1281,7 +1274,7 @@ export class CourseComponent implements OnInit, OnDestroy {
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
-            let self = this;
+
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'allCourses', this.getInstructorForm.value)
                 .subscribe(
@@ -1318,7 +1311,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                 let rule: RRule = RRule.fromString(recurrence)
                                                 let rules: Date[] = rule.all();
                                                 if (rules && rules.length > 0) {
-                                                    rules.forEach(function (val, index) {
+                                                    rules.forEach((val, index) => {
                                                         let yourDate: Date = new Date(val)
                                                         let dt: string = yourDate.toISOString().split('T')[0];
                                                         let rDate: string = dt + "T" + element.date_from.split("T")["1"];
@@ -1371,17 +1364,17 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "team_id": element.team_id,
                                                             "date_repeat": element.date_repeat
                                                         }
-                                                        if (dt == self.todays_date) {
-                                                            self.currentCourse.push(rrEvents); 46
-                                                            self.currentCourseList.push(rrEvents);
+                                                        if (dt == this.todays_date) {
+                                                            this.currentCourse.push(rrEvents); 46
+                                                            this.currentCourseList.push(rrEvents);
 
-                                                        } else if (dt > self.todays_date) {
-                                                            self.upcomingCourse.push(rrEvents);
-                                                            self.upcomingCourseList.push(rrEvents);
+                                                        } else if (dt > this.todays_date) {
+                                                            this.upcomingCourse.push(rrEvents);
+                                                            this.upcomingCourseList.push(rrEvents);
 
                                                         }
-                                                        if ((self.allCourses.length == 0)) {
-                                                            self.notificationService.showError(self.language.create_faq.search_not_found, null);
+                                                        if ((this.allCourses.length == 0)) {
+                                                            this.notificationService.showError(this.language.create_faq.search_not_found, null);
                                                         }
                                                     })
                                                 }
@@ -1439,16 +1432,16 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                             "team_id": element.team_id,
                                                             "date_repeat": element.date_repeat
                                                         }
-                                                        if (dt1 == self.todays_date) {
-                                                            self.currentCourse.push(rrEvents1);
-                                                            self.currentCourseList.push(rrEvents1);
+                                                        if (dt1 == this.todays_date) {
+                                                            this.currentCourse.push(rrEvents1);
+                                                            this.currentCourseList.push(rrEvents1);
 
-                                                        } else if (dt1 > self.todays_date) {
-                                                            self.upcomingCourse.push(rrEvents1);
-                                                            self.upcomingCourseList.push(rrEvents1);
+                                                        } else if (dt1 > this.todays_date) {
+                                                            this.upcomingCourse.push(rrEvents1);
+                                                            this.upcomingCourseList.push(rrEvents1);
                                                         }
-                                                        if ((self.allCourses.length == 0)) {
-                                                            self.notificationService.showError(self.language.create_faq.search_not_found, null);
+                                                        if ((this.allCourses.length == 0)) {
+                                                            this.notificationService.showError(this.language.create_faq.search_not_found, null);
                                                         }
                                                     });
                                                 } else {
@@ -1505,16 +1498,16 @@ export class CourseComponent implements OnInit, OnDestroy {
                                                                 "team_id": element.team_id,
                                                                 "date_repeat": element.date_repeat
                                                             }
-                                                            if (dt1 == self.todays_date) {
-                                                                self.currentCourse.push(rrEvents1);
-                                                                self.currentCourseList.push(rrEvents1);
+                                                            if (dt1 == this.todays_date) {
+                                                                this.currentCourse.push(rrEvents1);
+                                                                this.currentCourseList.push(rrEvents1);
 
-                                                            } else if (dt1 > self.todays_date) {
-                                                                self.upcomingCourse.push(rrEvents1);
-                                                                self.upcomingCourseList.push(rrEvents1);
+                                                            } else if (dt1 > this.todays_date) {
+                                                                this.upcomingCourse.push(rrEvents1);
+                                                                this.upcomingCourseList.push(rrEvents1);
                                                             }
-                                                            if ((self.allCourses.length == 0)) {
-                                                                self.notificationService.showError(self.language.create_faq.search_not_found, null);
+                                                            if ((this.allCourses.length == 0)) {
+                                                                this.notificationService.showError(this.language.create_faq.search_not_found, null);
                                                             }
                                                         });
                                                     }
@@ -1532,11 +1525,8 @@ export class CourseComponent implements OnInit, OnDestroy {
                                 };
                                 sortByDate(this.upcomingCourseList);
                                 this.currentCourseList.forEach(element => {
-                                    console.log(element);
-
-                                    let self = this;
-                                    if (self.allUsers?.length > 0) {
-                                        self.allUsers.forEach(el => {
+                                    if (this.allUsers?.length > 0) {
+                                        this.allUsers.forEach(el => {
                                             if (element?.CourseInternalInstructor != undefined) {
                                                 if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                     if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
@@ -1561,11 +1551,9 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         });
                                     }
                                 });
-                                console.log(this.currentCourseList);
-
                                 this.upcomingCourseList.forEach(element => {
-                                    if (self.allUsers?.length > 0) {
-                                        self.allUsers.forEach(el => {
+                                    if (this.allUsers?.length > 0) {
+                                        this.allUsers.forEach(el => {
                                             if (element?.CourseInternalInstructor != undefined) {
                                                 if (element?.CourseInternalInstructor[0]?.internalUsers.id) {
                                                     if (el.id == element?.CourseInternalInstructor[0]?.internalUsers.id) {
@@ -1654,25 +1642,24 @@ export class CourseComponent implements OnInit, OnDestroy {
     * @return  {string} success message
     */
     mainTaskMarkComplete(taskId: number) {
-        let self = this;
         var subtaskStatus: number = 0;
         if (this.courseByIdData[0]?.courseTask?.['id'] == taskId) {
-            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
+            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, () => {
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result'], null);
+                            this.notificationService.showSuccess(respData['result'], null);
                             setTimeout(() => {
-                                self.ngOnInit();
+                                this.ngOnInit();
                             }, 3000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['result'], null);
+                            this.notificationService.showError(respData['result'], null);
                         }
                     }
                 )
-            }, function () {
+            }, () => {
                 $('#styled-checkbox-' + taskId).prop('checked', false);
             })
         }

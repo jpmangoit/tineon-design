@@ -100,7 +100,6 @@ export class MdisplayMessagesComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        let self = this;
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.extensions = appSetting.extensions;
@@ -137,7 +136,7 @@ export class MdisplayMessagesComponent implements OnInit {
                         })
                     }
                     this.alluserInfo = respData;
-                    self.userDropdownSettings = {
+                    this.userDropdownSettings = {
                         singleSelection: false,
                         idField: 'id',
                         textField: 'name',
@@ -147,7 +146,7 @@ export class MdisplayMessagesComponent implements OnInit {
                         allowSearchFilter: true,
                         searchPlaceholderText: this.language.header.search
                     };
-                    self.userDropdownCCSettings = {
+                    this.userDropdownCCSettings = {
                         singleSelection: false,
                         idField: 'id',
                         textField: 'name',
@@ -287,46 +286,44 @@ export class MdisplayMessagesComponent implements OnInit {
     deleteMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
 
-        let self = this;
-        self.confirmDialogService.confirmThis(this.language.confirmation_message.send_msg_trash, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.send_msg_trash, () => {
 
-            self.selectedMessage = [];
-            self.authService.setLoader(true);
+            this.selectedMessage = [];
+            this.authService.setLoader(true);
             let msgMoveData: { id: number, esdb_id: string, to: string } = {
                 "id": messageId,
                 "esdb_id": esdb_id,
                 "to": "trash"
             };
-            self.authService.memberSendRequest('post', 'message/move', msgMoveData)
+            this.authService.memberSendRequest('post', 'message/move', msgMoveData)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = self.language.community_messages.move_trash;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = this.language.community_messages.move_trash;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         // setTimeout(() => {
-                        //     self.responseMessage = '';
+                        //     this.responseMessage = '';
                         // }, 2000);;
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
     deleteMessagesPermanently(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = this.language.community_messages.permanently_delete;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
@@ -551,20 +548,19 @@ export class MdisplayMessagesComponent implements OnInit {
 
     deleteDraftMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, function () {
-            self.selectedMessage = [];
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, () => {
+            this.selectedMessage = [];
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showError(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = this.language.community_messages.permanently_delete;
+                        this.notificationService.showError(this.responseMessage, null);
                         let selectedTab = $('.feature_tab .active a').text().trim();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 

@@ -143,10 +143,9 @@ export class BirthdaysComponent implements OnInit {
     * @return  {object} user age
     */
     getBirthDay(birthday) {
-        let self = this;
         this.birthdayData = birthday['result'];
         this.birthdayData?.forEach((val: any, key: any) => {
-            var age = self.calculateAge(val.bd_notification);
+            var age = this.calculateAge(val.bd_notification);
             Object.assign(val, { age: age });
             if (this.alluserInformation[val?.id]?.member_id != null) {
                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userData.database_id + '&club_id=' + this.userData.team_id + '&member_id=' + this.alluserInformation[val?.id].member_id, null)

@@ -356,20 +356,19 @@ export class MprofileEditComponent implements OnInit {
             let data = {
                 "image_file": this.croppedImage.split('base64,')[1]
             }
-            let self = this;
-            self.authService.setLoader(true);
-            this.authService.memberSendRequest('post', 'change-profile-picture/', data).subscribe(
-            (respData: any) => {
-                self.authService.setLoader(false);
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('post', 'change-profile-picture/', data)
+            .subscribe( (respData: any) => {
+                this.authService.setLoader(false);
                 this.memberPhotosuccess = respData;
                 if (this.memberPhotosuccess == 'OK') {
                     this.themes.getProfilePicture(this.memberPhotosuccess);
                     this.notificationService.showSuccess(this.language.profile.upload_profile,null);
                     setTimeout(() => {
-                        self._router.navigate(['/mobile/profile']);
+                        this._router.navigate(['/mobile/profile']);
                     }, 3000);
                 }else if (respData['code'] == 400) {
-                    self.authService.setLoader(false)
+                    this.authService.setLoader(false)
                     this.notificationService.showError(this.language.community_messages.code_error,null);
                 }
             });
@@ -434,9 +433,8 @@ export class MprofileEditComponent implements OnInit {
             localStorage.setItem('allowAdvertis', this.registrationForm.value['allowAdvertis']);
             this.notificationService.showSuccess(this.language.profile_bank.success_msg,null);
             this.registrationForm.reset();
-            let self = this;
-            setTimeout(function () {
-                self._router.navigate(['/mobile/profile']);
+            setTimeout(() =>{
+                this._router.navigate(['/mobile/profile']);
             }, 2000);
             return true;
         }

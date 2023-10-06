@@ -167,7 +167,6 @@ export class MorganizerTaskComponent implements OnInit {
       * @return  {object} user object
       */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -401,7 +400,6 @@ export class MorganizerTaskComponent implements OnInit {
     }
 
     closeModal() {
-        let self = this;
         $('#subtask').modal('hide')
         $('#styled-checkbox-' + this.task_id).prop('checked', false);
     }

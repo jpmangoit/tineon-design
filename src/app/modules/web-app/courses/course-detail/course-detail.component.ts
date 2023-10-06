@@ -124,7 +124,6 @@ export class CourseDetailComponent implements OnInit {
    * @return  {Array Of Object} all the Users
    */
     getAllUserInfo() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
@@ -453,16 +452,15 @@ export class CourseDetailComponent implements OnInit {
      * @param courseId
      */
     approvedCourses(courseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, function () {
-            self.authService.memberSendRequest('get', 'set-approve-course-status/' + courseId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, () => {
+            this.authService.memberSendRequest('get', 'set-approve-course-status/' + courseId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
@@ -472,24 +470,23 @@ export class CourseDetailComponent implements OnInit {
     * @param courseId
     */
     approvedUpdateCourses(courseId: number) {
-        let self = this;
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedcourse/' + courseId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_course, () => {
+            this.authService.memberSendRequest('get', 'approve-updatedcourse/' + courseId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         if (respData['isError'] == false) {
-                            self.ngOnInit();
-                            //self.getAllUserInfo();
-                            self.getCourseDetails(courseId);
+                            this.ngOnInit();
+                            //this.getAllUserInfo();
+                            this.getCourseDetails(courseId);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         } else {
-                            self.notificationService.showError(this.language.courses.no_course_found, null);
+                            this.notificationService.showError(this.language.courses.no_course_found, null);
                         }
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
@@ -499,20 +496,19 @@ export class CourseDetailComponent implements OnInit {
     * @param courseId
     */
     unapprovedCourse(courseId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-course/course_id/' + courseId, postData)
+            this.authService.memberSendRequest('put', 'deny-course/course_id/' + courseId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        }, () => {
         })
     }
 
@@ -528,28 +524,27 @@ export class CourseDetailComponent implements OnInit {
      * @return  Response Success or Error Message
      */
     deleteCourse(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_course, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_course, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteCourse/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            setTimeout(function () {
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            setTimeout(() => {
                                 // $('#responseMessage').delay(1000).fadeOut();
-                                self.router.navigate(["/course"]);
+                                this.router.navigate(["/course"]);
                             }, 3000);
 
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 
@@ -560,24 +555,23 @@ export class CourseDetailComponent implements OnInit {
     * @return  Response Success or Error Message
     */
     deleteUpdateCourse(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_course, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedCourses/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_course, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedCourses/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            self.router.navigate(["/course-detail/" + id]);
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            this.router.navigate(["/course-detail/" + id]);
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
                         }
                     }
                 )
-        }, function () { }, 'deleteUpdate'
+        }, () => { }, 'deleteUpdate'
         )
     }
 
@@ -660,26 +654,25 @@ export class CourseDetailComponent implements OnInit {
     * @return  {success and error message}
     */
     mainTaskMarkComplete(taskId: number) {
-        let self = this;
         var subtaskStatus: number = 0;
         if (this.courseDetails[0]?.courseTask?.['id'] == taskId) {
-            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
+            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, () => {
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result'], null);
+                            this.notificationService.showSuccess(respData['result'], null);
                             setTimeout(() => {
-                                self.ngOnInit();
+                                this.ngOnInit();
 
                             }, 3000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['result'], null);
+                            this.notificationService.showError(respData['result'], null);
                         }
                     }
                 )
-            }, function () {
+            }, () => {
                 $('#styled-checkbox-' + taskId).prop('checked', false);
             })
         }

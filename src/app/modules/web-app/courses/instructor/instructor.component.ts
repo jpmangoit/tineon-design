@@ -688,7 +688,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
                 this.editInstructorForm.value['add_img'] = this.instruct_img;
             }
             var formData: FormData = new FormData();
-            let self = this;
             for (const key in this.editInstructorForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.editInstructorForm.value, key)) {
                     const element = this.editInstructorForm.value[key];
@@ -733,9 +732,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message'], null);
-                        setTimeout(function () {
+                        setTimeout(() => {
                             $('#edit_instructor').modal('hide');
-                            self.router.navigate(['/web/instructor-detail/' + self.editId]);
+                            this.router.navigate(['/web/instructor-detail/' + this.editId]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -773,7 +772,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
         this.formSubmit = true;
         var formData: FormData = new FormData();
         this.authService.setLoader(false);
-        let self = this;
         for (const key in this.getInTouchInstructorForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.getInTouchInstructorForm.value, key)) {
                 const element = this.getInTouchInstructorForm.value[key];
@@ -806,15 +804,14 @@ export class InstructorComponent implements OnInit, OnDestroy {
 
         if (this.getInTouchInstructorForm.valid) {
             this.authService.setLoader(true);
-            let self = this
             this.authService.memberSendRequest('post', 'instructor/sendmail', this.getInTouchInstructorForm.value)
                 .subscribe((respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result'], null);
                         this.getAllInstructor(this.currentPageNmuber);
-                        setTimeout(function () {
-                            self.goBack();
+                        setTimeout( () => {
+                            this.goBack();
                             $('#get-in-touch-instructor').modal('hide');
                         }, 2000);
                     } else if (respData['code'] == 400) {
@@ -831,23 +828,22 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @return  {string} success message
     */
     deleteInstructor(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_instructor, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteInstructor/' + id, null).subscribe((respData: any) => {
-                self.authService.setLoader(false);
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_instructor, () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteInstructor/' + id, null).subscribe((respData: any) => {
+                this.authService.setLoader(false);
                 if (respData['isError'] == false) {
-                    self.responseMessage = respData['result']['message'];
-                    self.notificationService.showSuccess(self.responseMessage, null);
-                    setTimeout(function () {
-                        self.getAllInstructor(this.currentPageNmuber);
+                    this.responseMessage = respData['result']['message'];
+                    this.notificationService.showSuccess(this.responseMessage, null);
+                    setTimeout(() => {
+                        this.getAllInstructor(this.currentPageNmuber);
                     }, 3000);
                 } else if (respData['code'] == 400) {
-                    self.responseMessage = respData['message'];
-                    self.notificationService.showError(self.responseMessage, null);
+                    this.responseMessage = respData['message'];
+                    this.notificationService.showError(this.responseMessage, null);
                 }
             });
-        }, function () { }
+        }, () => { }
         );
     }
 

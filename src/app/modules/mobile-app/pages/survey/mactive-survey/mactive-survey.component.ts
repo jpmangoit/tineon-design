@@ -70,7 +70,6 @@ export class MactiveSurveyComponent implements OnInit {
      * @return  {Array Of Object} all the Users
      */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -202,8 +201,11 @@ export class MactiveSurveyComponent implements OnInit {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
                     this.notificationService.showSuccess(respData['result'], null);
-                    var self = this;
-                    setTimeout(function () { self.ngOnInit(); }, 2000);
+                    setTimeout(() =>
+                    {
+                        this.ngOnInit();
+                    },
+                     2000);
                 }
                 if (respData['code'] == 400) {
                     this.notificationService.showError(respData['message'], null);

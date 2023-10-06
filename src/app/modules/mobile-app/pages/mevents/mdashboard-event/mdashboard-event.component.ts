@@ -87,7 +87,6 @@ export class MdashboardEventComponent implements OnInit {
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
             let userId: string = localStorage.getItem('user-id');
-            let self = this;
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
             this.userRole = this.userDetails.roles[0];
             this.authService.setLoader(true);
@@ -140,15 +139,15 @@ export class MdashboardEventComponent implements OnInit {
                                     let rule: any = RRule.fromString(recurrence)
                                     let rules: Date[] = rule.all();
                                     if (rules && rules.length > 0) {
-                                        rules.forEach(function (val, index) {
+                                        rules.forEach((val, index) => {
                                             let yourDate: Date = new Date(val)
                                             let dt: string = yourDate.toISOString().split('T')[0];
                                             let recurring_dates = JSON.parse(element.recurring_dates);
                                             var recurring_time:any
                                             var recurring_etime:any
                                             if(recurring_dates){
-                                                recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
-                                                recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
+                                                recurring_time = this.commonFunctionService.formatTime(recurring_dates[0].start_time);
+                                                recurring_etime = this.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                             }else{
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
@@ -196,14 +195,14 @@ export class MdashboardEventComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents);
-                                            if (dt == self.todays_date) {
-                                                self.currentEvent.push(rrEvents);
-                                                self.currentEventList.push(rrEvents);
+                                            this.eventList.push(rrEvents);
+                                            if (dt == this.todays_date) {
+                                                this.currentEvent.push(rrEvents);
+                                                this.currentEventList.push(rrEvents);
 
-                                            } else if (dt > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents);
-                                                self.upcomingEventList.push(rrEvents);
+                                            } else if (dt > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents);
+                                                this.upcomingEventList.push(rrEvents);
                                             }
                                         })
                                     }
@@ -227,7 +226,6 @@ export class MdashboardEventComponent implements OnInit {
                                             let rrDateEnd1: string = dt1 + "T" + recurring_etime;
                                             // let rrDate1: string = dt1 + "T" + dd.start_time + ':00.000Z'
                                             // let rrDateEnd1: string = dt1 + "T" + dd.end_time + ':00.000Z';
-                                            let self = this;
                                             let rrEvents1: EventsType = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
@@ -267,14 +265,14 @@ export class MdashboardEventComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
 
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
 
@@ -297,7 +295,6 @@ export class MdashboardEventComponent implements OnInit {
                                             let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             // let rrDate1: string = dt1 + "T" + element.date_from.split("T")["1"];
                                             // let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + element.date_to.split("T")["1"];
-                                            let self = this;
                                             let rrEvents1: EventsType = {
                                                 "id": element.id,
                                                 "schedule": element.schedule,
@@ -337,14 +334,14 @@ export class MdashboardEventComponent implements OnInit {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
 
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
                                     }
@@ -375,7 +372,6 @@ export class MdashboardEventComponent implements OnInit {
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
-            let self = this;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'allCourses', null)
                 .subscribe(
@@ -399,7 +395,6 @@ export class MdashboardEventComponent implements OnInit {
                                         }
                                     }
                                     if (url && url.length > 0) {
-                                        let self = this;
                                         url.forEach(el => {
                                             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
                                                 element.picture_video = el;
@@ -422,7 +417,7 @@ export class MdashboardEventComponent implements OnInit {
                                         let rule: RRule = RRule.fromString(recurrence)
                                         let rules: Date[] = rule.all();
                                         if (rules && rules.length > 0) {
-                                            rules.forEach(function (val, index) {
+                                            rules.forEach((val, index)=> {
                                                 let yourDate: Date = new Date(val)
                                                 let dt: string = yourDate.toISOString().split('T')[0];
                                                 let rrDate: string = dt + "T" + element.date_from.split("T")["1"];
@@ -472,7 +467,7 @@ export class MdashboardEventComponent implements OnInit {
                                                     "date_repeat": element.date_repeat,
                                                     "isCourse": true
                                                 }
-                                                self.courseList.push(rrEvents);
+                                                this.courseList.push(rrEvents);
                                             })
                                         }
 
@@ -529,7 +524,7 @@ export class MdashboardEventComponent implements OnInit {
                                                     "date_repeat": element.date_repeat,
                                                     "isCourse": true
                                                 }
-                                                self.courseList.push(rrEvents1);
+                                                this.courseList.push(rrEvents1);
                                             });
                                         } else {
                                             const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
@@ -584,7 +579,7 @@ export class MdashboardEventComponent implements OnInit {
                                                         "date_repeat": element.date_repeat,
                                                         "isCourse": true
                                                     }
-                                                    self.courseList.push(rrEvents1);
+                                                    this.courseList.push(rrEvents1);
                                                 });
                                             }
                                         }

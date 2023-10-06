@@ -55,9 +55,6 @@ export function getCulture() {
         return 'de';
     }
 }
-
-
-
 @NgModule({
 	declarations: [
 		AppComponent,

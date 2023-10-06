@@ -157,7 +157,6 @@ export class MchatListComponent implements OnInit {
    * @return  {Array Of Object} all the Users
    */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {

@@ -302,26 +302,25 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     deleteInstructor(instructor_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_instructor, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteInstructor/' + instructor_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_instructor,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteInstructor/' + instructor_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage,null);
-                            setTimeout(function () {
-                                self.router.navigate(["/instructor"]);
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage,null);
+                            setTimeout( () => {
+                                this.router.navigate(["/instructor"]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage,null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage,null);
                         }
                     }
                 )
-        }, function () { }
+        },  () => { }
         )
     }
 
@@ -332,17 +331,16 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     deleteUpdateInstructor(instructor_id: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_instructor, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedinstructor/' + instructor_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_instructor,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedinstructor/' + instructor_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.router.navigate(['web/instructor-detail/' + instructor_id]);
+                        this.authService.setLoader(false);
+                        this.router.navigate(['web/instructor-detail/' + instructor_id]);
                     }
                 )
-        }, function () {
+        },  () => {
         }, 'deleteUpdate')
     }
 
@@ -353,17 +351,16 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     approveInstructor(instructor_id: number) {
-        let self = this;
-        self.ngOnInit();
+        this.ngOnInit();
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_instructor, function () {
-            self.authService.memberSendRequest('get', 'set-approve-instructor-status/' + instructor_id + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_instructor,  () => {
+            this.authService.memberSendRequest('get', 'set-approve-instructor-status/' + instructor_id + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 
@@ -374,18 +371,17 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     approvedUpdateInstructors(instructor_id: number) {
-        let self = this;
-        self.ngOnInit();
+        this.ngOnInit();
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_instructor, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedinstructor/' + instructor_id + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_instructor,  () => {
+            this.authService.memberSendRequest('get', 'approve-updatedinstructor/' + instructor_id + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.getInstructorDetail(instructor_id)
+                        this.ngOnInit();
+                        this.getInstructorDetail(instructor_id)
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 
@@ -396,21 +392,20 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     unapprovedInstuctors(instructor_id: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  () => {
             let reason = $("#message-text").val();
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-instructor/instructor_id/' + instructor_id, postData)
+            this.authService.memberSendRequest('put', 'deny-instructor/instructor_id/' + instructor_id, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.getInstructorDetail(instructor_id)
+                        this.ngOnInit();
+                        this.getInstructorDetail(instructor_id)
                     }
                 )
-        }, function () {
+        },  () => {
 
         })
     }
