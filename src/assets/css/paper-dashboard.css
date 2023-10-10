@@ -8550,6 +8550,10 @@ font-size: 14px;
 }
 }
 
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    margin-bottom:0px !important;
+}
+
 .news-dropdown .multiselect-dropdown .dropdown-btn .selected-item {
     background: #4fb96d !important;
     border: 1px solid #4fb96d !important;
@@ -8600,6 +8604,13 @@ font-size: 14px;
     padding: 0;
 }
 
+.club-news-date {
+  float: right;
+  color: #BDBDBD;
+  font-size: 11px;
+  font-weight: 700;
+}
+
 .event_field ul li {
     /* list-style: none;
     display: inline-block;
@@ -8612,6 +8623,11 @@ font-size: 14px;
 
 .event_field ul li img {
     height: 100%;
+}
+
+.col-md-3.appointment_widget .card-header h5 {
+  padding: 0;
+  margin-bottom: 22px !important;
 }
 
 span.event_uplod_overlay {

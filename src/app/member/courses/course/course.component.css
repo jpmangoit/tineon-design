@@ -518,11 +518,15 @@ span.participant_status {
     margin-bottom: 0;
 }
 
+.col-md-4.instructor-multi-inner.last-filter .ng-dirty {
+  width: 100% !important;
+}
+
 .col-md-4.instructor-multi-inner {
   padding-right: 0;
   width: 280px !important;
   max-width: 280px !important;
-  padding-left: 10px;
+  padding-left: 10px; 
 }
 
 .search-filter-wrapper .profile_sub_btn .Cancel_btn,

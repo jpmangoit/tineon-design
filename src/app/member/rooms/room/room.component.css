@@ -174,9 +174,9 @@ span.participant_status span {
 .Cancel_btn,
 .page-action-right button,
 button.reset_btn {
-    background: rgb(88, 191, 56) !important;
-    border-color: rgb(88, 191, 56) !important;
-    height: 46px !important;
+    background: #41AE4C !important;
+    border-color: #41AE4C !important;
+    height: 45px !important;
     line-height: 44px;
     padding: 0 20px !important;
 }
@@ -596,7 +596,8 @@ p.course-time span {
 .card.search-card {
     padding: 25px;
     border-radius: 20px;
-    box-shadow: none;
+    box-shadow: none; 
+    background: none !important;
 }
 
 .button-filter button {
