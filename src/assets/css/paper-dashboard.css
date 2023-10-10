@@ -8550,6 +8550,10 @@ font-size: 14px;
 }
 }
 
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    margin-bottom:0px !important;
+}
+
 .news-dropdown .multiselect-dropdown .dropdown-btn .selected-item {
     background: #4fb96d !important;
     border: 1px solid #4fb96d !important;
