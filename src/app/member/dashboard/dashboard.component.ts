@@ -116,6 +116,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
+        
         this.allowAdvertisment = localStorage.getItem('allowAdvertis')
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
@@ -161,6 +162,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
             );
         this.getUserImage();
+        console.log(this.allowAdvertisment);
+        
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
         }

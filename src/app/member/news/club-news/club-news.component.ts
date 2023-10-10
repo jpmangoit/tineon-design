@@ -155,6 +155,8 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
     * @return  {all the records of Banners} array of object
     */
     getDesktopDeshboardBanner() {
+        console.log(this.bannerData);
+        
         if (this.bannerData?.length > 0) {
             this.newsDisplay = 3;
         } else {
@@ -188,6 +190,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
                         }
                     }
                 )
+                
         }
     }
 
