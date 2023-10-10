@@ -808,7 +808,7 @@ max-width: none;
 /* new card design */
 .purple-card .card.card-stats {
     border-radius: 1.25rem;
-background: #FB0E3A;
+background: rgba(251, 14, 58,0.7);
 box-shadow: 0px 5px 10px 5px #ECEEF4, 0px 1px 1px 0px #FFF inset;
 }
 .yellow-card .card.card-stats {

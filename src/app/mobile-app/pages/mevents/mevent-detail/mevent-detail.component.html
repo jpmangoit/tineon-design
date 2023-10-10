@@ -193,14 +193,16 @@
                                                                                     <!-- <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
                                                                                         {{participant?.users?.firstname.charAt(0)}}{{participant?.users?.lastname.charAt(0)}}
                                                                                     </div> -->
-                                                                                    <div class="author-img"
+                                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                                    data-bs-target="#view-participants"
                                                                                         *ngIf="participant.image == null || participant.image == ''">
                                                                                         <img onContextMenu="return false;"
                                                                                             [src]="'assets/img/defaultProfile.jpeg'"
                                                                                             style="width: 100px;" alt=""
                                                                                             loading="lazy">
                                                                                     </div>
-                                                                                    <div class="author-img"
+                                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                                    data-bs-target="#view-participants"
                                                                                         *ngIf="participant.image != null">
                                                                                         <img onContextMenu="return false;"
                                                                                             [src]="participant.image"
@@ -340,14 +342,16 @@
                                                                             <!-- <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
                                                                                 {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
                                                                             </div> -->
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-task-participants"
                                                                                 *ngIf="participant.image == null || participant.image == ''">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="'assets/img/defaultProfile.jpeg'"
                                                                                     style="width: 100px;" alt=""
                                                                                     loading="lazy">
                                                                             </div>
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-task-participants"
                                                                                 *ngIf="participant.image != null">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="participant.image"
@@ -362,7 +366,7 @@
                                                             </div>
                                                             <button class="btn-yellow" data-bs-toggle="modal"
                                                                 data-bs-target="#view-task-participants">
-                                                                {{language.community_groups.participants}}</button>
+                                                               {{language.community_groups.participants}}</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -545,7 +549,7 @@
                                                             </div>
                                                             <div class="card-body top-box"
                                                                 *ngIf="updateEventData?.users">
-                                                                <div class="widget-appointment widget">
+                                                                <div class="widget-appointment widget" >
                                                                     <div class="widget-app-content">
                                                                         <div class="widget-appointment widget"
                                                                             *ngFor="let participant of updateEventData.users">
@@ -555,14 +559,16 @@
                                                                                         {{participant.user?.firstname.charAt(0)}}
                                                                                         {{participant.user?.lastname.charAt(0)}}
                                                                                     </div> -->
-                                                                                    <div class="author-img"
+                                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                                    data-bs-target="#view-update-participants"
                                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                                         <img onContextMenu="return false;"
                                                                                             [src]="'assets/img/defaultProfile.jpeg'"
                                                                                             style="width: 100px;" alt=""
                                                                                             loading="lazy">
                                                                                     </div>
-                                                                                    <div class="author-img"
+                                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                                    data-bs-target="#view-update-participants"
                                                                                         *ngIf="participant.user && participant.user.image && participant.user.image != null">
                                                                                         <img onContextMenu="return false;"
                                                                                             [src]="participant.user.image"
@@ -692,14 +698,16 @@
                                                                                 {{participant.user?.firstname.charAt(0)}}
                                                                                 {{participant.user?.lastname.charAt(0)}}
                                                                             </div> -->
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-update-task-participants"
                                                                                 *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="'assets/img/defaultProfile.jpeg'"
                                                                                     style="width: 100px;" alt=""
                                                                                     loading="lazy">
                                                                             </div>
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-update-task-participants"
                                                                                 *ngIf="participant.user && participant.user.image && participant.user.image != null">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="participant.user.image"
@@ -715,7 +723,7 @@
                                                             </div>
                                                             <button class="btn-yellow" data-bs-toggle="modal"
                                                                 data-bs-target="#view-update-task-participants">
-                                                                {{language.community_groups.participants}}</button>
+                                                               {{language.community_groups.participants}}</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -883,14 +891,16 @@
                                                                             <!-- <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
                                                                                 {{participant?.users?.firstname.charAt(0)}}{{participant?.users?.lastname.charAt(0)}}
                                                                             </div> -->
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-participants"
                                                                                 *ngIf="participant.image == null || participant.image == ''">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="'assets/img/defaultProfile.jpeg'"
                                                                                     style="width: 100px;" alt=""
                                                                                     loading="lazy">
                                                                             </div>
-                                                                            <div class="author-img"
+                                                                            <div class="author-img" data-bs-toggle="modal"
+                                                                            data-bs-target="#view-participants"
                                                                                 *ngIf="participant.image != null">
                                                                                 <img onContextMenu="return false;"
                                                                                     [src]="participant.image"
@@ -1023,13 +1033,15 @@
                                                                     <!-- <div class="parti_name" *ngIf="participant.image == null || participant.image == ''">
                                                                         {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
                                                                     </div> -->
-                                                                    <div class="author-img"
+                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                    data-bs-target="#view-task-participants"
                                                                         *ngIf="participant.image == null || participant.image == ''">
                                                                         <img onContextMenu="return false;"
                                                                             [src]="'assets/img/defaultProfile.jpeg'"
                                                                             style="width: 100px;" alt="" loading="lazy">
                                                                     </div>
-                                                                    <div class="author-img"
+                                                                    <div class="author-img" data-bs-toggle="modal"
+                                                                    data-bs-target="#view-task-participants"
                                                                         *ngIf="participant.image != null">
                                                                         <img onContextMenu="return false;"
                                                                             [src]="participant.image"
