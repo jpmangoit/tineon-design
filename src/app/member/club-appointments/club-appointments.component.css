@@ -57,7 +57,7 @@
 }
 
 .all-news-column {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .news-image img {
@@ -1220,7 +1220,7 @@ span.carousel-badge {
 .card.club-widget-appointment.banner-area {
     padding: 0;
     background: none;
-    margin-bottom: 0px;
+    margin-bottom: 0px; 
 }
 
 /* .news-widget {
@@ -1256,7 +1256,10 @@ span.carousel-badge {
 }
 
 .card.club-widget-appointment.banner-area {
-    padding-bottom: 0;
+    padding-bottom: 0; 
+    border: 3px solid #FB5F5F;
+  margin-bottom: 18px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .card.club-widget-appointment.main-club.active-club-appointment {
