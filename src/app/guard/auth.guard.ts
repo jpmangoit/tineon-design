@@ -15,11 +15,12 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-        if (window.innerWidth < 768 && state.url.includes('web')) {
+        if (window.innerWidth <= 768 && state.url.includes('web')) {
             var currentUrl = state.url;
             currentUrl = currentUrl.replace('web', 'mobile');
             this._router.navigateByUrl(currentUrl);
-        } else if (this._router.url.includes('mobile')){
+
+        } else if (window.innerWidth > 768 && state.url.includes('mobile')){
             var currentUrl = state.url;
             currentUrl = currentUrl.replace('mobile', 'web');
             this._router.navigateByUrl(currentUrl);

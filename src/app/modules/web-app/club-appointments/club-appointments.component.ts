@@ -200,7 +200,7 @@ export class ClubAppointmentsComponent implements OnInit {
                             let rule: RRule = RRule.fromString(recurrence)
                             let rules: Date[] = rule.all();
                             if (rules && rules.length > 0) {
-                                rules.forEach(function (val, index) {
+                                rules?.forEach( (val, index) => {
                                     let yourDate: Date = new Date(val)
                                     let dt: string = yourDate.toISOString().split('T')[0];
                                     let recurring_dates = JSON.parse(element.recurring_dates);

@@ -326,7 +326,7 @@ export const appSetting = {
                 category:'Yes',
                 crm_survey:'Yes',
                 crm_news:'Yes',
-                banner: 'No'
+                banner: 'Yes'
             },
             authorization: {
                 event: 'No',

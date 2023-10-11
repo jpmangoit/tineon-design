@@ -74,16 +74,17 @@ export class AppComponent implements OnInit {
         // Check the viewport width here and define the threshold for mobile view
         const isMobileView = window.innerWidth <= 768; // Adjust the threshold as needed
 
-        if (isMobileView) {
-            if (window.innerWidth < 768 && this.router.url.includes('web')) {
-                var currentUrl = this.router.url;
-                currentUrl = currentUrl.replace('web', 'mobile');
-                this.router.navigateByUrl(currentUrl);
-            } else if (this.router.url.includes('mobile')) {
-                var currentUrl = this.router.url;
-                currentUrl = currentUrl.replace('mobile', 'web');
-                this.router.navigateByUrl(currentUrl);
-            }
+        if (isMobileView  && this.router.url.includes('web')) {
+            var currentUrl = this.router.url;
+            currentUrl = currentUrl.replace('web', 'mobile');
+            this.router.navigateByUrl(currentUrl);
+
+        }else if (this.router.url.includes('mobile')) {
+            var currentUrl = this.router.url;
+            currentUrl = currentUrl.replace('mobile', 'web');
+            console.log(currentUrl);
+
+            this.router.navigateByUrl(currentUrl);
         }
     }
 

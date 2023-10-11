@@ -176,17 +176,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
             this.authService.memberInfoRequest('get', 'member-photo?database_id=' + userData.database_id + '&club_id=' + userData.team_id + '&member_id=' + userData.member_id, null)
-                .subscribe(
-                    (respData: any) => {
-                        if (respData['code'] == 400) {
-                            this.notificationService.showError(respData['message'].message, null);
-                        } else {
-                            this.userRespData = respData;
-                            this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(respData.changingThisBreaksApplicationSecurity) as string;
-                            localStorage.setItem('profile-image', JSON.stringify(respData.changingThisBreaksApplicationSecurity));
-                        }
+            .subscribe(
+                (respData: any) => {
+                    if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'].message, null);
+                    } else {
+                        this.userRespData = respData;
+                        this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(respData.changingThisBreaksApplicationSecurity) as string;
+                        localStorage.setItem('profile-image', JSON.stringify(respData.changingThisBreaksApplicationSecurity));
                     }
-                );
+                }
+            );
         }
     }
 
@@ -234,21 +234,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
             refresh_token: refreshToken
         }
         this.authService.memberSendRequest('post', 'refresh-token', data)
-            .subscribe(
-                (respData: any) => {
-                    if (respData['isError'] == false) {
-                        sessionStorage.setItem('token', respData['result']['access_token']);
-                        localStorage.setItem('token', respData['result']['access_token']);
-                        sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                        localStorage.setItem('refresh_token', respData['result']['refresh_token']);
-                    } else if (respData['isError'] == true || respData['code'] == 400 || respData['code'] == 404) {
-                        // this.authService.setLoader(false);
-                    };
-                },
-                (error: any) => {
-                    // Handle error if token refresh fails
-                }
-            );
+        .subscribe(
+            (respData: any) => {
+                if (respData['isError'] == false) {
+                    sessionStorage.setItem('token', respData['result']['access_token']);
+                    localStorage.setItem('token', respData['result']['access_token']);
+                    sessionStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                    localStorage.setItem('refresh_token', respData['result']['refresh_token']);
+                } else if (respData['isError'] == true || respData['code'] == 400 || respData['code'] == 404) {
+                    // this.authService.setLoader(false);
+                };
+            },
+            (error: any) => {
+                // Handle error if token refresh fails
+            }
+        );
     }
 
 

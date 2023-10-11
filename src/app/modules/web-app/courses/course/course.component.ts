@@ -252,7 +252,7 @@ export class CourseComponent implements OnInit, OnDestroy {
                                         let rules: Date[] = rule.all();
 
                                         if (rules && rules.length > 0) {
-                                            rules.forEach(function (val, index) {
+                                            rules.forEach((val, index) => {
                                                 let yourDate: Date = new Date(val)
                                                 let dt: string = yourDate.toISOString().split('T')[0];
                                                 let recurring_dates = element.recurring_dates;
