@@ -15,7 +15,7 @@
         <tbody>
             <tr *ngFor="let item of myVoteParam| paginate: {itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalMyVotes  }">
                 <td class="survey-title survey-title-new">
-                    <p [innerHTML]="item.title.length> 0 ?(item.title | slice : 0 : 30) + '...' : item.title"></p>
+                    <p [innerHTML]="item.title?.length> 0 ?(item.title | slice : 0 : 30) + '...' : item.title"></p>
                 </td>
                 <td class="crm-author">
                     <img onContextMenu="return false;" [src]="item && item?.userImage != null ? item.userImage : '../../../../assets/img/defaultProfile.jpeg'" alt="{{item?.user_name?.firstname}}" loading="lazy">

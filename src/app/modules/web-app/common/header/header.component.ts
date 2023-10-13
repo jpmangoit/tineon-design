@@ -925,6 +925,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     viewNews(newsId: number) {
+        console.log(newsId);
+
         let section = 'News'
         this.denyReasonService.confirmThis(this.language.confirmation_message.admin_denied_news, newsId, section,  () => {
 

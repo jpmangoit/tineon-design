@@ -34,6 +34,8 @@ export class DenyReasonConfirmDialogComponent implements OnInit {
         this.denyReasonService.getMessage().subscribe(message => {
             this.message = message;
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+            console.log(this.message);
+
             if (this.message && this.message.section) {
                 if (this.message.section == 'Group') {
                     this.endPoints = 'getAdminDenyGroups/'

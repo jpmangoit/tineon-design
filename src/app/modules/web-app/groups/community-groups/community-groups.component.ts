@@ -279,7 +279,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         this.authService.memberSendRequest('get', 'pagination/get-groups-by-user-id/' + this.user_Id + '/', null)
             .subscribe((respData: any) => {
                 this.groupJoinData = respData['groups'].reverse();
-
                 this.groupJoinData.forEach((element: any) => {
                     if (element.group_images[0]?.['group_image']) {
                         element.group_images[0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.group_images[0]?.['group_image'].substring(20)));

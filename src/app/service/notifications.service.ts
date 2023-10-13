@@ -73,7 +73,7 @@ export class NotificationsService {
                                 self.getBanners();
                             }
                         } else if (userRole == 'member_light_admin' || userRole == 'member_light') {
-                        } else {
+                        } else if(userRole != 'guest'){
                             // ----------Group---------
                             self.getAllGroupsUsersNotifications();
                             // ----------News----------
@@ -395,6 +395,9 @@ export class NotificationsService {
                     }
                 }
             );
+
     }
+
+
 
 }

@@ -8,10 +8,13 @@ import { Subject } from 'rxjs';
     remove_deny_update = new Subject<any>();
 
     confirmThis(message: string,sectionId:number,section, yesFn: () => void, noFn: () => void): any {
+
         this.setConfirmation(message,sectionId,section, yesFn, noFn);
     }
 
     setConfirmation(message: string, sectionId:number,section:string ,yesFn: () => void, noFn: () => void): any {
+        console.log('innnnn');
+
         const that:this = this;
         this.subject.next({type: 'confirm', text: message, id:sectionId, section:section,
             yesFn(): any {

@@ -349,7 +349,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
                             var self = this;
-                            var redirectUrl = 'group-detail/' + this.groupid;
+                            var redirectUrl = '/web/group-detail/' + this.groupid;
                             self.router.navigate([redirectUrl]);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
