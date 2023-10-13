@@ -16,7 +16,7 @@ Style css start
 /*dashboard.css.map */
 
 .dashboard-row{
-    margin-top: 20px !important;
+    margin-top: 0px !important;
 }
 
 .page-title h2 {
@@ -185,6 +185,10 @@ nav.navbar .container-fluid {
     padding: 0 15px;
 }
 
+ ::ng-deep .col-md-3, ::ng-deep .col-md-9, ::ng-deep .col-md-12, ::ng-deep .col-lg-3 {
+    padding: 0 10px !important;
+}
+
 @media only screen and (max-width: 990px) {
     .navbar .navbar-collapse .nav-item.active a {
         background: transparent;
@@ -327,6 +331,8 @@ span.user-designation {
     margin-bottom: 30px;
 }
 
+
+
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
     .col-lg-3.col-md-6.col-sm-6.top-card {
         max-width: 33.3%;
@@ -356,6 +362,14 @@ span.user-designation {
     .widget-top-sub-text {
         font-size: 11px !important;
     }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1260px) {
+    .col-lg-3.col-md-6.col-sm-6.top-card {
+        max-width: 25%;
+        flex: 0 0 25%;
+    }
+    
 }
 
 @media only screen and (min-width: 1261px) and (max-width: 1480px) {
@@ -697,6 +711,7 @@ padding: 6px;
   border: 5px solid #fff;
   overflow: hidden;
   justify-content: center;
+  min-width: 60px;
 }
 .profile-image span img {
   width: auto !important;
@@ -947,6 +962,15 @@ color: #fff;
     left: 44%;
     position: absolute;
     top: 39%;
+}
+
+@media(min-width:1450px) and (max-width:1610px) {
+    .profile-image {
+  
+  width: 5rem;
+  height: 5rem;
+ 
+}
 }
 
 /* Safari */
