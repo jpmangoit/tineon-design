@@ -6966,7 +6966,7 @@ span.user-designation {
     font-size: 20px;
     color: #677180;
     margin-bottom: 10px;
-    display: inline-block;
+    display: inline-block; 
 }
 
 .profile_btns button {
@@ -6981,7 +6981,7 @@ span.user-designation {
 
 .profile_btns.sign_out_btn button {
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 30px; 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
@@ -7935,12 +7935,14 @@ span.manage_g_cat {
 
 @media only screen and (min-width:1025px) and (max-width:1780px){
     .col-md-9.club_widget.club-wall-news {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%;
+        flex: 0 0 75%;
+        max-width:75%;
+        padding: 0 10px;
     }
     .col-md-3.appointment_widget {
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding: 0 10px;
     }
 }
 @media only screen and (min-width:768px) and (max-width:1024px){
@@ -7980,7 +7982,7 @@ span.manage_g_cat {
     height: 44px;
     border-radius: 10px;
     border: none;
-    padding: 0 25px 0 15px;
+    padding: 0 17px 0 15px;
     font-weight: 600;
     font-family: 'Gellix', sans-serif;
     display: flex;
@@ -7989,14 +7991,14 @@ span.manage_g_cat {
     color:#fff !important;
 }
 .page-action-right button:first-child {
-    margin-right: 25px;
+    margin-right: 26px;
     background: #FFBE00;
 }
 .page-action-right button:last-child {
     background: #FB5F5F;
 }
 .page-action-right button svg {
-    margin-right: 5px;
+    margin-right: 2px;
 }
 .page-action-right {
     display: flex;
@@ -8008,7 +8010,7 @@ span.manage_g_cat {
 .page-action-left {
     width: 50%;
     justify-content: flex-start;
-    margin-bottom: 30px;
+    margin-bottom: 22px; 
 }
 .page-heading h1 {
     font-size: 24px;
@@ -8027,10 +8029,10 @@ span.manage_g_cat {
 }
 .page-action {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap; 
 }
 .page-action {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 .tab-button button span {
     position: relative;

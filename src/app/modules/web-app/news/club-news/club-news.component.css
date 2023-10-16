@@ -164,7 +164,8 @@ span.news-category {
 .author-des {
     color: #424d5c;
     line-height: 17px;
-    display: grid;
+    display: inline-block;
+    width: calc(100% - 40px);
 }
 
 span.author-date {
@@ -265,6 +266,19 @@ span.author-date {
 .club_widget .card .card-header {
     padding: 0;
     border: 0;
+    border-bottom: 1px solid #EFF2FD;
+  padding-bottom: 12px;
+  margin-bottom: 17px;
+}
+
+::ng-deep .row.dash-widget.dashboard_w_m  .club_widget .card .card-header {
+    border: none !important;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+::ng-deep .row.dash-widget.dashboard_w_m  .club_widget .card .card-header h5 {
+    padding-bottom: 20px;
 }
 
 
@@ -324,7 +338,7 @@ span.author-date {
 
 
 ::ng-deep body .club_widget .card {
-    padding: 35px 12px !important;
+    padding: 35px 17px !important;
 }
 
 ::ng-deep body .news-item.large-item {
@@ -387,10 +401,14 @@ span.author-date {
     border-radius: 15px;
     background: #F2F2F5;
     box-shadow: 0 4px 4px #00000040;
-    margin: 10px auto;
+    margin: 0px auto;
     display: flex;
     flex-wrap: wrap;
     align-content: baseline;
+}
+
+.row.dash-widget.dashboard_w_m .news-item.large-item {
+    margin: 10px auto;
 }
 
 .news-item.large-item .news-description {
@@ -409,7 +427,7 @@ span.author-date {
 .news-top-content {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
     align-items: center;
@@ -417,6 +435,7 @@ span.author-date {
 
 .news-item-content {
     font-family: "Gellix", sans-serif;
+    /* height: calc(100% - 511px); */
 }
 
 .news-description h5 {
@@ -458,11 +477,16 @@ span.author-date {
 .news-author {
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: center; 
+    width: 58% !important;
 }
 
 .news-item.multi-item  .dashboard-slider > div:nth-child(2n + 0) {
   margin-right: 0;
+}
+
+.multi-item-carousel + .multi-item-single {
+    margin-bottom: 30px;
 }
 
 .card-header.clubwall-ne {
@@ -540,7 +564,7 @@ span.news-date img {
 
 .club_widget .card-body {
     padding: 0;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .news-item.multi-item {
@@ -558,7 +582,7 @@ span.news-date img {
     cursor: pointer;
     border-radius: 15px;
     background: #F2F2F5;
-    margin: 10px 3%;
+    margin: 0px 3% 0;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -749,7 +773,7 @@ owl-carousel-o.ng-star-inserted {
     border-radius: 15px;
     background: #F2F2F5;
     box-shadow: 0 4px 4px #00000040;
-    margin: 10px 3%;
+    margin: 0px 3% 30px;
 }
 
 .multi-item-car-single h5 {
@@ -862,3 +886,60 @@ owl-carousel-o.ng-star-inserted {
     background: #fff !important;
     border-radius: 1.25rem !important;
   }
+
+  @media(max-width:1550px) {
+    .news-author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+  }
+
+  @media(min-width:1200px) and (max-width:1400px) {
+    .news-author img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.news-author {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 50%;
+}
+
+.author-des {
+ 
+  display: inline-block;
+  width: calc(100% - 35px);
+}
+.author-des span br {
+  display: none;
+}
+
+.author-des span {
+    line-height: normal;
+}
+  }
+
+ @media(min-width:1200px) and (max-width:1300px) {
+
+  .news-read-more a {
+    font-size: 9px;
+  }
+
+    .author-des {
+    display: inline-block;
+    width: calc(100% - 32px);
+  }
+
+  .news-read-more {
+  margin-top: 17px;
+  cursor: pointer;
+}
+}

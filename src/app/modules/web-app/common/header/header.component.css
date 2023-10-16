@@ -103,8 +103,8 @@ button.navbar-toggler.open {
 .navbar {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
-    min-height: 82px;
-    margin-bottom: 20px;
+    min-height: 66px;
+    margin-bottom: 0px;
 }
 
 .navbar a {
