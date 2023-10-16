@@ -12,24 +12,24 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ThemeService } from 'src/app/service/theme.service';
 
 @Component({
-  selector: 'app-headline-wording',
-  templateUrl: './headline-wording.component.html',
-  styleUrls: ['./headline-wording.component.css']
+    selector: 'app-headline-wording',
+    templateUrl: './headline-wording.component.html',
+    styleUrls: ['./headline-wording.component.css']
 })
-export class HeadlineWordingComponent implements OnInit ,OnDestroy {
-    language:any;
-    headlineForm:UntypedFormGroup;
+export class HeadlineWordingComponent implements OnInit, OnDestroy {
+    language: any;
+    headlineForm: UntypedFormGroup;
     headlineControl: FormControl<string>;
-    headline_options:any;
+    headline_options: any;
     setTheme: ThemeType
     private activatedSub: Subscription;
     userDetails: LoginDetails;
-    defaultSelected:any;
+    defaultSelected: any;
     dropdownSettings: IDropdownSettings;
-    position:  {item_id: number, item_text: string }[]=[];
+    position: { item_id: number, item_text: string }[] = [];
 
-    constructor(private lang: LanguageService,  private themes: ThemeService, private router: Router,
-        private authService: AuthServiceService,private notificationService: NotificationService,
+    constructor(private lang: LanguageService, private themes: ThemeService, private router: Router,
+        private authService: AuthServiceService, private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService) { }
 
     ngOnInit(): void {
@@ -46,7 +46,7 @@ export class HeadlineWordingComponent implements OnInit ,OnDestroy {
         this.defaultSelected = parseInt(localStorage.getItem('headlineOption'));
 
         this.headlineForm = new UntypedFormGroup({
-            select_options: new UntypedFormControl('',Validators.required),
+            select_options: new UntypedFormControl('', Validators.required),
         });
 
         this.headline_options = [
@@ -63,7 +63,7 @@ export class HeadlineWordingComponent implements OnInit ,OnDestroy {
             closeDropDownOnSelection: true
         }
 
-        if(this.headline_options?.length > 0){
+        if (this.headline_options?.length > 0) {
             this.headline_options.forEach((val, key) => {
                 if (val.item_id == this.defaultSelected) {
                     this.position.push({ 'item_id': val.item_id, 'item_text': val.item_text });
@@ -73,33 +73,33 @@ export class HeadlineWordingComponent implements OnInit ,OnDestroy {
         }
     }
 
-    onItemSelect(item:any){
+    onItemSelect(item: any) {
         this.defaultSelected = item.item_id;
     }
 
-    onItemDeSelect(item:any){
+    onItemDeSelect(item: any) {
         this.defaultSelected = '';
     }
 
-    changeHeadlines(){
-        if(this.headlineForm.valid){
+    changeHeadlines() {
+        if (this.headlineForm.valid) {
             let data = {
                 headline_options: this.defaultSelected,
                 user_id: this.userDetails.userId
             }
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('post', 'setHeadlineOption/',data)
-            .subscribe((respData: any) => {
-                this.authService.setLoader(false);
-                if (respData['isError'] == false) {
+            this.authService.memberSendRequest('post', 'setHeadlineOption/', data)
+                .subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    if (respData['isError'] == false) {
                         localStorage.removeItem('headlineOption');
                         localStorage.setItem('headlineOption', respData['result']['user']['headlineOption']);
-                        this.notificationService.showSuccess(respData['result']['message'] , null);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         this.commonFunctionService.getChangeHeadline(respData['result']['user']['headlineOption'])
-                } else if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
-                }
-            });
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                    }
+                });
         }
     }
 

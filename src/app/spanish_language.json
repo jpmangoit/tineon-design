@@ -106,7 +106,8 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
 
     },
     "club_wall": {
@@ -213,8 +214,7 @@
         "delete_chat":"Borrar chat",
         "media_link_doc":"Medios, enlaces y documentos",
         "email_draft": "Correo electrónico guardado como borrador",
-        "message_to_me" : "nachrichten an mich"
-
+        "message_to_me" : "Nachrichten an mich"
     },
     "group_news": {
         "title": "Noticias del grupo",
@@ -245,7 +245,9 @@
         "groupNewsDetails": "Detalles de noticias del grupo",
         "currentNews":"Actualidad",
         "updatedNews": "Noticias actualizadas",
-        "deleteNews":"Eliminar noticias"
+        "deleteNews":"Eliminar noticias",
+        "author": "Author"
+
     },
     "profile": {
         "profile_nav": {
@@ -444,8 +446,8 @@
         "updatedTask": "Tarea actualizada",
         "viewTask":"Ver tarea",
         "task_created_by": "Task Created by:",
-        "days": "Días"
-
+        "days": "Días",
+        "task-details": "Task - Details"
     },
     "club_document": {
         "title": "Documentos",
@@ -663,7 +665,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message": {
         "accept_group": "¿Está seguro de que desea aceptar este grupo?",
@@ -887,7 +891,8 @@
         "currentRoom":"Habitación actual",
         "updateRoom":"Actualizar Sala",
         "deleteRoom":"Borrar Sala",
-        "search_result": "Resultado de la búsqueda"
+        "search_result": "Resultado de la búsqueda",
+        "room_overview" : "Rooms"
     },
     "instructor": {
         "create_instructor": "Crear Instructor",

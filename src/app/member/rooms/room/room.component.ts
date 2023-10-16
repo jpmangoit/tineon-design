@@ -138,24 +138,22 @@ export class RoomComponent implements OnInit, OnDestroy {
     * @param   {id}
     * @return  {object array}
     */
-    getAllRooms(item:any) {
+    getAllRooms(item: any) {
         if (sessionStorage.getItem('token')) {
-        this.currentPageNmuber = item;
+            this.currentPageNmuber = item;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'getAllRooms/' + this.currentPageNmuber + '/' + this.itemPerPage, null)
                 .subscribe((respData: Room) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.allRooms = respData['result']['room'];
-                        
                         this.allRooms.forEach((element: any) => {
                             if (element?.room_image[0]?.room_image) {
                                 element.room_image[0].room_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.room_image?.[0].room_image.substring(20))) as string;
                             }
                         })
-                        this.totalRoomData = respData['result'].pagination.rowCount; 
+                        this.totalRoomData = respData['result'].pagination.rowCount;
                         this.totalPages = Math.ceil(this.totalRoomData / this.itemPerPage);
-
 
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -229,7 +227,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     //     }
     // }
 
-    pageChanged(event: number) { 
+    pageChanged(event: number) {
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;

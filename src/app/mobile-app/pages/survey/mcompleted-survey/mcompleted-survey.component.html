@@ -9,7 +9,8 @@
                         fill="#999" />
                 </svg>&nbsp;&nbsp; 
                 <!-- {{item.surveyStartDate.split('T')[0] | date: "d. MMMM y,HH:mm" : "UTC"}} -->
-                {{ item.surveyStartDate | date: "d. MMMM y - HH:mm 'Uhr'" : "UTC" }}
+                {{ item.surveyStartDate | date: "d. MMMM y - HH:mm" : "UTC" }} {{language.login.o_clock}}
+
 
             </Span>
             <div class="event-action">
@@ -35,9 +36,14 @@
             <span>{{item.user_name.firstname}} {{item.user_name.lastname}}</span>
         </div>
         <div class="survey-timeline">
-            <div class="timeline-label">
+            <!-- <div class="timeline-label">
                 <span>{{language.Survey.remaining_time}}</span>
                 <span>{{item.surveyEndDate.split('T')[0] | date: "d. MMMM y,HH:mm" : "UTC"}}</span>
+            </div> -->
+            <div class="timeline-label">
+                <span>{{language.Survey.remaining_time}}</span>
+                <span *ngIf="item && item.dayCount">{{item.dayCount}}</span>
+                <span *ngIf="item && item.completed">{{item.completed.split('T')[0] | date: "dd. MMMM yyyy,HH:mm" : "UTC"}}</span>
             </div>
             <br>
             <div class="timeline">

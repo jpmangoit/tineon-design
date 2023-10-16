@@ -64,8 +64,8 @@ export class MgroupMessageComponent implements OnInit {
     private activatedSub: Subscription;
     isGroupList: boolean = true;
     selected = '1';
-    selectedValue :any;
-    todayDate:any
+    selectedValue: any;
+    todayDate: any
     // select: { value: string; viewValue: any; }[];
 
     constructor(
@@ -92,7 +92,7 @@ export class MgroupMessageComponent implements OnInit {
             this.selectedValue = value;
             this.onSelect(this.selectedValue);
             // Do something with the value
-          });
+        });
 
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
@@ -134,15 +134,6 @@ export class MgroupMessageComponent implements OnInit {
                     };
                 });
             });
-
-        // this.select = [
-        //     { value: '1', viewValue: this.language.community_messages.inbox },
-        //     { value: '2', viewValue: this.language.community_messages.starred },
-        //     { value: '3', viewValue: this.language.community_messages.sent },
-        //     { value: '4', viewValue: this.language.community_messages.drafts },
-        //     { value: '5', viewValue: this.language.community_messages.allmail },
-        //     { value: '6', viewValue: this.language.community_messages.trash },
-        // ];
         this.onSelect('1')
     }
 
@@ -191,7 +182,7 @@ export class MgroupMessageComponent implements OnInit {
                 if (this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -201,7 +192,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -210,7 +201,7 @@ export class MgroupMessageComponent implements OnInit {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -220,7 +211,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -252,7 +243,7 @@ export class MgroupMessageComponent implements OnInit {
                 if (this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -262,7 +253,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -271,7 +262,7 @@ export class MgroupMessageComponent implements OnInit {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -281,7 +272,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -317,7 +308,7 @@ export class MgroupMessageComponent implements OnInit {
                 if (this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -327,7 +318,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -336,7 +327,7 @@ export class MgroupMessageComponent implements OnInit {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -346,7 +337,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -378,7 +369,7 @@ export class MgroupMessageComponent implements OnInit {
                 if (this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -388,7 +379,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -397,7 +388,7 @@ export class MgroupMessageComponent implements OnInit {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -407,7 +398,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -437,7 +428,7 @@ export class MgroupMessageComponent implements OnInit {
                 this.groupAllMail = false;
                 this.groupTrash = false;
                 this.authService.setLoader(false);
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -447,7 +438,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -464,59 +455,59 @@ export class MgroupMessageComponent implements OnInit {
         this.selectedMessage = [];
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'message/get-group-allmails', null)
-        .subscribe((respData: any) => {
-            // this.responseMessage = null;
-            this.groupMessage = [];
-            this.groupMessage = respData.reverse();
-            this.groupInbox = false;
-            this.groupStarred = false;
-            this.groupSent = false;
-            this.groupDrafts = false;
-            this.groupAllMail = true;
-            this.groupTrash = false;
-            this.authService.setLoader(false);
-            if (this.groupMessage.length > 0) {
-                this.selectedMessage.push(this.groupMessage[0]);
-            }
-            if(this.groupMessage && this.groupMessage.length > 0){
-                this.groupMessage.forEach(element => {
-                    if (element.user) {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
+            .subscribe((respData: any) => {
+                // this.responseMessage = null;
+                this.groupMessage = [];
+                this.groupMessage = respData.reverse();
+                this.groupInbox = false;
+                this.groupStarred = false;
+                this.groupSent = false;
+                this.groupDrafts = false;
+                this.groupAllMail = true;
+                this.groupTrash = false;
+                this.authService.setLoader(false);
+                if (this.groupMessage.length > 0) {
+                    this.selectedMessage.push(this.groupMessage[0]);
+                }
+                if (this.groupMessage && this.groupMessage.length > 0) {
+                    this.groupMessage.forEach(element => {
+                        if (element.user) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            this.thumb = resppData;
+                                            element.user.image = this.thumb;
+                                        },
+                                        (error: any) => {
+                                            element.user.image = null;
+                                        });
+                            } else {
+                                element.user.image = null;
+                            }
                         }
-                    }
-                })
-            }
-            if(this.selectedMessage && this.selectedMessage.length > 0){
-                this.selectedMessage.forEach(element => {
-                    if (element.user) {
-                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                        } else {
-                            element.user.image = null;
+                    })
+                }
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
+                    this.selectedMessage.forEach(element => {
+                        if (element.user) {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            this.thumb = resppData;
+                                            element.user.image = this.thumb;
+                                        },
+                                        (error: any) => {
+                                            element.user.image = null;
+                                        });
+                            } else {
+                                element.user.image = null;
+                            }
                         }
-                    }
-                })
-            }
-        });
+                    })
+                }
+            });
     }
 
     groupTrashMessages() {
@@ -539,7 +530,7 @@ export class MgroupMessageComponent implements OnInit {
                 if (this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -549,7 +540,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -558,7 +549,7 @@ export class MgroupMessageComponent implements OnInit {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -568,7 +559,7 @@ export class MgroupMessageComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -623,7 +614,7 @@ export class MgroupMessageComponent implements OnInit {
         this.authService.memberSendRequest('post', 'message/move', msgMoveData)
             .subscribe((respData: any) => {
                 this.authService.setLoader(false);
-                this.notificationService.showSuccess(this.language.community_messages.move_inbox,null);
+                this.notificationService.showSuccess(this.language.community_messages.move_inbox, null);
                 let selectedTab: any = $('.feature_tab .active a').text().trim();
                 setTimeout(() => {
                     this.groupStarredMessages();
@@ -638,7 +629,7 @@ export class MgroupMessageComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $('.widget-app-content').removeClass('highlight');
         this.selectedMessage = [];
-        if(this.groupMessage && this.groupMessage.length > 0){
+        if (this.groupMessage && this.groupMessage.length > 0) {
             this.groupMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val);
@@ -654,13 +645,13 @@ export class MgroupMessageComponent implements OnInit {
         if (this.selectedMessage) {
             if (this.selectedMessage[0].is_read == 0) {
                 this.authService.memberSendRequest('get', 'message/read-message/' + id, null)
-                .subscribe((respData: any) => {
-                    setTimeout(() => {
-                        $('#envelope-' + id)
-                            .removeClass('fa-envelope-o')
-                            .addClass('fa-envelope-open-o');
-                    }, 500);
-                });
+                    .subscribe((respData: any) => {
+                        setTimeout(() => {
+                            $('#envelope-' + id)
+                                .removeClass('fa-envelope-o')
+                                .addClass('fa-envelope-open-o');
+                        }, 500);
+                    });
             }
         }
     }
@@ -687,7 +678,7 @@ export class MgroupMessageComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $('.widget-app-content').removeClass('highlight');
         this.selectedMessage = [];
-        if(this.groupMessage && this.groupMessage.length > 0){
+        if (this.groupMessage && this.groupMessage.length > 0) {
             this.groupMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val);
@@ -763,8 +754,8 @@ export class MgroupMessageComponent implements OnInit {
                     .memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
                     .subscribe((respData: any) => {
                         self.authService.setLoader(false);
-                        self.responseMessage =  self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.responseMessage = self.language.community_messages.permanently_delete;
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.groupTrashMessages();
@@ -780,14 +771,14 @@ export class MgroupMessageComponent implements OnInit {
         this.singleParticipent = true;
         this.multipleParticipent = false;
         this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + groupId, null)
-        .subscribe((respData: any) => {
-            this.receipientUsers = respData[0].participants;
-            setTimeout(() => {
-                $('#reply-heading').text('Reply');
-                $('#replyMsgType').val('reply');
-                $('#replyToMsgId').val(esdb_id);
-            }, 500);
-        });
+            .subscribe((respData: any) => {
+                this.receipientUsers = respData[0].participants;
+                setTimeout(() => {
+                    $('#reply-heading').text('Reply');
+                    $('#replyMsgType').val('reply');
+                    $('#replyToMsgId').val(esdb_id);
+                }, 500);
+            });
     }
 
     replyMessage() {
@@ -806,9 +797,9 @@ export class MgroupMessageComponent implements OnInit {
                         this.authService.setLoader(false);
                         this.replyMsgSubmitted = false;
                         if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
+                            this.notificationService.showSuccess(respData.result, null);
                         } else {
-                            this.notificationService.showError(respData.result,null);
+                            this.notificationService.showError(respData.result, null);
                         }
                         this.replyMsgForm.reset();
                         this.isReplyMsgForm = false;
@@ -831,13 +822,13 @@ export class MgroupMessageComponent implements OnInit {
             } else {
                 this.authService.setLoader(true);
                 this.authService
-                    .memberSendRequest('post', 'message/reply-to-all/' + esdb_id,formData ).subscribe((respData: any) => {
+                    .memberSendRequest('post', 'message/reply-to-all/' + esdb_id, formData).subscribe((respData: any) => {
                         this.authService.setLoader(false);
                         this.replyMsgSubmitted = false;
                         if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
+                            this.notificationService.showSuccess(respData.result, null);
                         } else {
-                            this.notificationService.showError(respData.result,null);
+                            this.notificationService.showError(respData.result, null);
                         }
                         this.replyMsgForm.reset();
                         this.isReplyMsgForm = false;
@@ -978,14 +969,14 @@ export class MgroupMessageComponent implements OnInit {
                     if (key == 'file') {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append('receiver_id[' + key + ']', value);
                             });
                         }
 
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append('cc[' + key + ']', value);
                             });
@@ -1001,7 +992,7 @@ export class MgroupMessageComponent implements OnInit {
                     (respData: any) => {
                         this.messageSubmitted = false;
                         if (respData['isError'] == false) {
-                            this.notificationService.showSuccess(respData['result'],null);
+                            this.notificationService.showSuccess(respData['result'], null);
                             this.messageForm.reset();
                             this.messageForm.controls['kind'].setValue([]);
                             this.messageForm.controls['receiver_id'].setValue([]);
@@ -1014,12 +1005,12 @@ export class MgroupMessageComponent implements OnInit {
                                 )
                                 .subscribe((respData: any) => {
                                     this.authService.setLoader(false);
-                                    this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
+                                    this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
                                     setTimeout(() => {
                                         this.groupDraftsMessages();
                                     }, 500);
                                 });
-                        }else if (respData['code'] == 400) {
+                        } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
                     },
@@ -1047,7 +1038,7 @@ export class MgroupMessageComponent implements OnInit {
                     .subscribe((respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.groupDraftsMessages();

@@ -94,11 +94,11 @@ export class McrmCompletedSurveyComponent implements OnInit {
                             }
                         });
                         this.Completed = respData['result']['survey'];
-                        this.Completed.forEach((element:any) =>{
+                        this.Completed.forEach((element: any) => {
                             if (element?.picture) {
                                 element.picture = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.picture.substring(20))) as string;
-                            } 
-                        }) 
+                            }
+                        })
 
                         this.totalCompletedSurvey = respData.result['pagination']['rowCount'];
                     }

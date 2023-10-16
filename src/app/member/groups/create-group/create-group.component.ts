@@ -12,7 +12,7 @@ import { ThemeType } from 'src/app/models/theme-type.model';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NavigationService } from 'src/app/service/navigation.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 declare var $: any;
 
@@ -22,23 +22,23 @@ declare var $: any;
     styleUrls: ['./create-group.component.css']
 })
 
-export class CreateGroupComponent implements OnInit ,OnDestroy{
-    language:any;
-    submitted:boolean = false; 
-    userDetails:LoginDetails;
+export class CreateGroupComponent implements OnInit, OnDestroy {
+    language: any;
+    submitted: boolean = false;
+    userDetails: LoginDetails;
     createGroupForm: UntypedFormGroup;
-    showParticipants:boolean = false;
+    showParticipants: boolean = false;
     imageChangedEvent: Event = null;
     croppedImage: string = '';
     file: File;
     fileToReturn: File;
     setTheme: ThemeType;
-    participantDropdownSettings:IDropdownSettings;
-    receiveData:UserDetails[] = [];
-    participant:{id: number,user_email: string,user_name: string}[] = [];
-    participantList:{ user_id:number,approved_status: number}[] = [];
-    participantSelectedItem:number[] = [];
-    participantSelectedToShow:{id: number, user_name:string}[] = [];
+    participantDropdownSettings: IDropdownSettings;
+    receiveData: UserDetails[] = [];
+    participant: { id: number, user_email: string, user_name: string }[] = [];
+    participantList: { user_id: number, approved_status: number }[] = [];
+    participantSelectedItem: number[] = [];
+    participantSelectedToShow: { id: number, user_name: string }[] = [];
     private activatedSub: Subscription;
     isImage: boolean = false;
     imgHeight: any;
@@ -68,7 +68,7 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
         defaultFontSize: '2',
         defaultParagraphSeparator: 'p',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -140,12 +140,12 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
 
     noWhitespace(control: UntypedFormControl) {
         if (control.value && control.value.length != 0) {
-            let isWhitespace:boolean = (control.value || '').trim().length === 0;
-            let isValid:boolean = !isWhitespace;
+            let isWhitespace: boolean = (control.value || '').trim().length === 0;
+            let isValid: boolean = !isWhitespace;
             return isValid ? null : { 'whitespace': true }
         }
         else {
-            let isValid:boolean = true;
+            let isValid: boolean = true;
             return isValid ? null : { 'whitespace': true }
         }
     }
@@ -159,24 +159,24 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
     getUsers() {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'teamUsers/team/'+ this.userDetails.team_id, null)
-            .subscribe(
-                (respData: any) => {
-                    this.authService.setLoader(false);
-                    this.receiveData = respData;
-                    if(respData?.length > 0){
-                        Object(respData).forEach((val, key) => {
-                            if(val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
-                                this.participant.push({
-                                    'id': val.id,
-                                    'user_email': val.email,
-                                    'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
-                                });
-                            }
-                        })
+            this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        this.receiveData = respData;
+                        if (respData?.length > 0) {
+                            Object(respData).forEach((val, key) => {
+                                if (val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
+                                    this.participant.push({
+                                        'id': val.id,
+                                        'user_email': val.email,
+                                        'user_name': val.firstname + " " + val.lastname + " (" + val.email + " )"
+                                    });
+                                }
+                            })
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -186,7 +186,7 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
     * @param   {}
     * @return {}
     */
-    onParticipantSelect(item: {id: number, user_name:string}) {
+    onParticipantSelect(item: { id: number, user_name: string }) {
         this.showParticipants = true;
         this.participantSelectedToShow.push(item);
         this.participantSelectedItem.push(item.id);
@@ -198,13 +198,13 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
     * @param   {}
     * @return {}
     */
-    onParticipantDeSelect(item: {id: number, user_name:string}) {
+    onParticipantDeSelect(item: { id: number, user_name: string }) {
         this.participantSelectedToShow.forEach((value, index) => {
             if (value.id == item.id) {
                 this.participantSelectedToShow.splice(index, 1);
             }
         });
-        if(this.participantSelectedItem && this.participantSelectedItem.length > 0){
+        if (this.participantSelectedItem && this.participantSelectedItem.length > 0) {
             this.participantSelectedItem.forEach((value, index) => {
                 if (value == item.id) {
                     this.participantSelectedItem.splice(index, 1);
@@ -223,45 +223,45 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
         this.submitted = true;
         var self = this;
         if ((sessionStorage.getItem('token')) && (this.createGroupForm.valid) && (!this.errorImage.isError)) {
-            let status:number = 0;
+            let status: number = 0;
             if (this.userDetails.roles[0] == 'admin') {
                 status = 1;
             }
-            if(this.participantSelectedItem?.length > 0){
+            if (this.participantSelectedItem?.length > 0) {
                 this.participantSelectedItem.forEach((value, index) => {
-                    this.participantList.push({'user_id': value,  'approved_status': status })
+                    this.participantList.push({ 'user_id': value, 'approved_status': status })
                 });
             }
 
             if (this.participantList && this.participantList.length > 0) {
-                this.participantList.push({ 'user_id': parseInt(this.userDetails.userId),'approved_status': 1 })
+                this.participantList.push({ 'user_id': parseInt(this.userDetails.userId), 'approved_status': 1 })
             }
             this.createGroupForm.get('participants').setValue(this.participantList);
             this.createGroupForm.controls["team_id"].setValue(this.userDetails.team_id);
             var formData: FormData = new FormData();
             for (const key in this.createGroupForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.createGroupForm.value, key)) {
-                    const element:any = this.createGroupForm.value[key];
+                    const element: any = this.createGroupForm.value[key];
                     if (key == 'add_image') {
                         formData.append('file', element);
                     }
 
                     if (key == 'participants') {
-                        var userArr: { user_id: string, approved_status: number, keycloak_id:string }[] = [];
-                        if(element && element.length > 0){
+                        var userArr: { user_id: string, approved_status: number, keycloak_id: string }[] = [];
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
-                                var status:number = 0;
+                                var status: number = 0;
                                 if (value.user_id == localStorage.getItem('user-id')) {
                                     status = 1;
-                                }else {
+                                } else {
                                     status = 0;
                                 }
-                                let res:UserDetails = self.receiveData.find(x => x.id ==  value.user_id)
-                                if(res){
-                                    var userObj:{ user_id: string, approved_status: number, keycloak_id:string } = {
+                                let res: UserDetails = self.receiveData.find(x => x.id == value.user_id)
+                                if (res) {
+                                    var userObj: { user_id: string, approved_status: number, keycloak_id: string } = {
                                         'user_id': value.user_id,
                                         'approved_status': status,
-                                        'keycloak_id':res.keycloak_id
+                                        'keycloak_id': res.keycloak_id
                                     };
                                     userArr.push(userObj);
                                 }
@@ -277,22 +277,22 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                     }
                 }
             }
-            
+
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'createGroup', formData)
-            .subscribe(
-                (respData:any) => {
-                    this.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
-                        var self = this;
-                        var redirectUrl:string = 'group-detail/' + respData['result']['group']['id'];
+                .subscribe(
+                    (respData: any) => {
+                        this.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            var self = this;
+                            var redirectUrl: string = 'group-detail/' + respData['result']['group']['id'];
                             self.router.navigate([redirectUrl]);
-                    }else  if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
                     }
-                }
-            );
+                );
         }
     }
 
@@ -302,11 +302,11 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
     * @param   {}
     * @return  error message if file type is not image
     */
-    errorImage:  { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
-    uploadFile(event:Event) {
-        var file:File = (event.target as HTMLInputElement).files[0];
-        if(file){
-            const mimeType:string = file.type;
+    errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
+    uploadFile(event: Event) {
+        var file: File = (event.target as HTMLInputElement).files[0];
+        if (file) {
+            const mimeType: string = file.type;
             if (mimeType.match(/image\/*/) == null) {
                 this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
                 this.croppedImage = '';
@@ -314,10 +314,10 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
                 $('.preview_txt').hide();
                 $('.preview_txt').text('');
                 setTimeout(() => {
-                    this.errorImage = { isError: false, errorMessage: ''};
-                },3000);
-            }else{
-                this.errorImage = { isError: false, errorMessage: ''};
+                    this.errorImage = { isError: false, errorMessage: '' };
+                }, 3000);
+            } else {
+                this.errorImage = { isError: false, errorMessage: '' };
                 this.fileChangeEvent(event)
             }
         }
@@ -334,14 +334,14 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -354,16 +354,16 @@ export class CreateGroupComponent implements OnInit ,OnDestroy{
     imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
-            (compressedImage) => {
-                this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
-                this.createGroupForm.patchValue({ add_image: this.fileToReturn });
-                this.createGroupForm.get('add_image').updateValueAndValidity();
-                $('.preview_txt').show(this.fileToReturn.name);
-                $('.preview_txt').text(this.fileToReturn.name);
-            }
-        );
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
+                (compressedImage) => {
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.createGroupForm.patchValue({ add_image: this.fileToReturn });
+                    this.createGroupForm.get('add_image').updateValueAndValidity();
+                    $('.preview_txt').show(this.fileToReturn.name);
+                    $('.preview_txt').text(this.fileToReturn.name);
+                }
+            );
     }
 
     imageLoaded() {

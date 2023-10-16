@@ -67,7 +67,7 @@ export class MdisplayMessagesComponent implements OnInit {
         private lang: LanguageService,
         private authService: AuthServiceService,
         public formBuilder: UntypedFormBuilder, private themes: ThemeService,
-        private confirmDialogService: ConfirmDialogService,private notificationService: NotificationService
+        private confirmDialogService: ConfirmDialogService, private notificationService: NotificationService
     ) {
 
     }
@@ -126,39 +126,39 @@ export class MdisplayMessagesComponent implements OnInit {
             'cc': new UntypedFormControl('')
         })
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
-                        this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
-                        this.userDropdownList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
-                        this.userDropdownCCList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
-                    })
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
+                            this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
+                            this.userDropdownList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
+                            this.userDropdownCCList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
+                        })
+                    }
+                    this.alluserInfo = respData;
+                    self.userDropdownSettings = {
+                        singleSelection: false,
+                        idField: 'id',
+                        textField: 'name',
+                        selectAllText: 'Select All',
+                        enableCheckAll: false,
+                        unSelectAllText: 'UnSelect All',
+                        allowSearchFilter: true,
+                        searchPlaceholderText: this.language.header.search
+                    };
+                    self.userDropdownCCSettings = {
+                        singleSelection: false,
+                        idField: 'id',
+                        textField: 'name',
+                        selectAllText: 'Select All',
+                        enableCheckAll: false,
+                        unSelectAllText: 'UnSelect All',
+                        allowSearchFilter: true,
+                        searchPlaceholderText: this.language.header.search
+                    };
                 }
-                this.alluserInfo = respData;
-                self.userDropdownSettings = {
-                    singleSelection: false,
-                    idField: 'id',
-                    textField: 'name',
-                    selectAllText: 'Select All',
-                    enableCheckAll: false,
-                    unSelectAllText: 'UnSelect All',
-                    allowSearchFilter: true,
-                    searchPlaceholderText: this.language.header.search
-                };
-                self.userDropdownCCSettings = {
-                    singleSelection: false,
-                    idField: 'id',
-                    textField: 'name',
-                    selectAllText: 'Select All',
-                    enableCheckAll: false,
-                    unSelectAllText: 'UnSelect All',
-                    allowSearchFilter: true,
-                    searchPlaceholderText: this.language.header.search
-                };
-            }
-        )
+            )
     }
 
     searchSentence() {
@@ -182,12 +182,12 @@ export class MdisplayMessagesComponent implements OnInit {
             "to": "starred"
         };
         this.authService.memberSendRequest('post', 'message/move', msgMoveData)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                this.notificationService.showSuccess(this.language.community_messages.move_starreds,null);
-            }
-        )
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.notificationService.showSuccess(this.language.community_messages.move_starreds, null);
+                }
+            )
     }
 
     unmarkedStarredMessages(messageId: number, esdb_id: string) {
@@ -200,13 +200,13 @@ export class MdisplayMessagesComponent implements OnInit {
             "to": "inbox"
         };
         this.authService.memberSendRequest('post', 'message/move', msgMoveData)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                this.notificationService.showSuccess(this.language.community_messages.move_inbox,null);
-                let selectedTab = $('.feature_tab .active a').text().trim();
-            }
-        )
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.notificationService.showSuccess(this.language.community_messages.move_inbox, null);
+                    let selectedTab = $('.feature_tab .active a').text().trim();
+                }
+            )
     }
 
     clickMessages(id: number, data: any) {
@@ -215,7 +215,7 @@ export class MdisplayMessagesComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(data && data.length > 0){
+        if (data && data.length > 0) {
             data.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -250,7 +250,7 @@ export class MdisplayMessagesComponent implements OnInit {
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(data && data.length > 0){
+        if (data && data.length > 0) {
             data.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -302,7 +302,7 @@ export class MdisplayMessagesComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.move_trash;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         // setTimeout(() => {
                         //     self.responseMessage = '';
                         // }, 2000);;
@@ -322,7 +322,7 @@ export class MdisplayMessagesComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                     }
                 )
@@ -370,38 +370,38 @@ export class MdisplayMessagesComponent implements OnInit {
             if (msgType == 'reply') {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/reply/' + esdb_id, formData)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.replyMsgSubmitted = false;
-                        if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
-                        } else {
-                            this.notificationService.showError(respData.result,null);
+                    .subscribe(
+                        (respData: any) => {
+                            this.authService.setLoader(false);
+                            this.replyMsgSubmitted = false;
+                            if (respData.isError == false) {
+                                this.notificationService.showSuccess(respData.result, null);
+                            } else {
+                                this.notificationService.showError(respData.result, null);
+                            }
+                            this.replyMsgForm.reset();
+                            this.isReplyMsgForm = false;
+                            let selectedTab: any = $('.feature_tab .active a').text().trim();
                         }
-                        this.replyMsgForm.reset();
-                        this.isReplyMsgForm = false;
-                        let selectedTab: any = $('.feature_tab .active a').text().trim();
-                    }
-                )
+                    )
             } else {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/reply-to-all/' + esdb_id, formData)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.replyMsgSubmitted = false;
-                        if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
-                        } else {
-                            this.notificationService.showError(respData.result,null);
-                        }
-                        this.replyMsgForm.reset();
-                        this.isReplyMsgForm = false;
-                        let selectedTab: any = $('.feature_tab .active a').text().trim();
+                    .subscribe(
+                        (respData: any) => {
+                            this.authService.setLoader(false);
+                            this.replyMsgSubmitted = false;
+                            if (respData.isError == false) {
+                                this.notificationService.showSuccess(respData.result, null);
+                            } else {
+                                this.notificationService.showError(respData.result, null);
+                            }
+                            this.replyMsgForm.reset();
+                            this.isReplyMsgForm = false;
+                            let selectedTab: any = $('.feature_tab .active a').text().trim();
 
-                    }
-                )
+                        }
+                    )
             }
         }
 
@@ -505,13 +505,13 @@ export class MdisplayMessagesComponent implements OnInit {
                     if (key == 'file') {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("cc[" + key + "]", value);
                             });
@@ -522,30 +522,30 @@ export class MdisplayMessagesComponent implements OnInit {
                 }
             };
             this.authService.memberSendRequest('post', 'message/send', formData)
-            .subscribe(
-                (respData: any) => {
-                    this.messageSubmitted = false;
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result'],null);
-                        this.messageForm.reset();
-                        this.messageForm.controls["kind"].setValue([]);
-                        this.messageForm.controls["receiver_id"].setValue([]);
-                        this.messageForm.controls["cc"].setValue([]);
-                        this.authService.memberSendRequest('delete', 'message/delete-draft/' + this.selectedMessage[0].id, null)
-                            .subscribe(
-                                (respData: any) => {
-                                    this.authService.setLoader(false);
-                                    this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
-                                }
-                            )
-                    }else if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+                .subscribe(
+                    (respData: any) => {
+                        this.messageSubmitted = false;
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result'], null);
+                            this.messageForm.reset();
+                            this.messageForm.controls["kind"].setValue([]);
+                            this.messageForm.controls["receiver_id"].setValue([]);
+                            this.messageForm.controls["cc"].setValue([]);
+                            this.authService.memberSendRequest('delete', 'message/delete-draft/' + this.selectedMessage[0].id, null)
+                                .subscribe(
+                                    (respData: any) => {
+                                        this.authService.setLoader(false);
+                                        this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
+                                    }
+                                )
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
+                    },
+                    (err) => {
+                        console.log(err);
                     }
-                },
-                (err) => {
-                    console.log(err);
-                }
-            );
+                );
         }
     }
 
@@ -560,7 +560,7 @@ export class MdisplayMessagesComponent implements OnInit {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showError(self.responseMessage,null);
+                        self.notificationService.showError(self.responseMessage, null);
                         let selectedTab = $('.feature_tab .active a').text().trim();
                     }
                 )

@@ -95,7 +95,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     recurrenceType: { item_id: number; description: string }[] = [];
     group_dropdown: { group_id: number; name: string }[] = [];
     userObj: { user_id: any; approved_status: number }[] = [];
-    
+
     private activatedSub: Subscription;
 
     editorConfig: AngularEditorConfig = {
@@ -105,7 +105,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -167,7 +167,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     calendarRooms: any[] = [];
     roomsByIdData: any
     date_end: string;
-    course_allDates: Date[]=[];
+    course_allDates: Date[] = [];
     imgHeight: any;
     imgWidth: any;
     todays_date: string;
@@ -175,10 +175,10 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     matchDateError: any = { isError: false, errorMessage: '' };
     matchInstrctDateError: any = { isError: false, errorMessage: '' };
     instructorCalendar: any[];
-    calendarOptionsExternal:CalendarOptions
+    calendarOptionsExternal: CalendarOptions
     instructorById: any;
     selectedInstructorValue: any;
-    allExternlCalndr:any[];
+    allExternlCalndr: any[];
     allRoomCalndr: any[];
     customReccDateError: { isError: boolean; errorMessage: string; } = { isError: false, errorMessage: '' };
 
@@ -219,7 +219,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         this.teamId = this.userDetails.team_id;
         this.language = this.lang.getLanguaageFile();
         this.selectLanguage = localStorage.getItem('language');
-        if(this.selectLanguage  == 'sp'){
+        if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'
         }
 
@@ -378,7 +378,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             type: new UntypedFormControl('course'),
             date_from: new UntypedFormControl('', Validators.required),
             date_to: new UntypedFormControl('', Validators.required),
-            date_repeat: new UntypedFormControl('',Validators.required),
+            date_repeat: new UntypedFormControl('', Validators.required),
             start_time: new UntypedFormControl('', Validators.required),
             end_time: new UntypedFormControl('', Validators.required),
             room: new UntypedFormControl(''),
@@ -413,7 +413,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             task: this.formBuilder.array([]),
             courseReccurance: new UntypedFormControl(''),
             instructorReccurance: new UntypedFormControl(''),
-            in_instructorReccurance:new UntypedFormControl('')
+            in_instructorReccurance: new UntypedFormControl('')
         });
     }
 
@@ -470,7 +470,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                     end_time: ['', Validators.required],
                 });
                 this.courseDate.push(newAvailableTimes);
-                if(this.courseForm.controls['courseDate'].value.length > 1){
+                if (this.courseForm.controls['courseDate'].value.length > 1) {
                     this.recurrenceDropdownField = false;
                     this.courseForm.controls['recurrence'].setValue('');
                     this.courseForm.get('recurrence').clearValidators();
@@ -660,22 +660,22 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @return  {string} message
     */
     courseProcess() {
-        if(this.recurrenceSelected == 0){
+        if (this.recurrenceSelected == 0) {
             let endDate = ((<UntypedFormArray>this.courseForm.get('courseDate')).controls.slice(-1));
             this.courseForm.controls["date_to"].setValue(endDate[0].value.date_from);
             this.courseForm.controls["date_repeat"].setValue(this.courseForm.controls["date_to"].value);
         }
         this.eventSubmitted = true;
         this.endRepeat();
-        if((this.recurrenceSelected == 5)){
-            if(this.finalCustomRecurrence == 'undefined' || this.finalCustomRecurrence == '' || this.finalCustomRecurrence == null){
-                    this.customReccDateError = { isError: true, errorMessage: this.language.create_event.select_custom_recc };
-            }else{
+        if ((this.recurrenceSelected == 5)) {
+            if (this.finalCustomRecurrence == 'undefined' || this.finalCustomRecurrence == '' || this.finalCustomRecurrence == null) {
+                this.customReccDateError = { isError: true, errorMessage: this.language.create_event.select_custom_recc };
+            } else {
                 this.customReccDateError = { isError: false, errorMessage: this.language.create_event.select_custom_recc };
             }
         }
 
-        if(this.courseForm.valid ){
+        if (this.courseForm.valid) {
             if (this.courseForm.controls['task']?.value?.length > 0 && this.task_user_selected?.length > 0) {
                 let count = 0;
                 this.task_user_selected.forEach((elem: any) => {
@@ -695,90 +695,90 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             this.mustMatchs = this.courseForm.value.allowed_persons;
             if (this.selectedRoom != null && this.mustMatchs != null) {
                 if ((new Date(this.courseForm.value['date_from']) >= new Date(this.roomsByIdData.active_from.split('T')[0])) &&
-                (new Date(this.courseForm.value['date_to']) <= new Date(this.roomsByIdData.active_to.split('T')[0]))) {
+                    (new Date(this.courseForm.value['date_to']) <= new Date(this.roomsByIdData.active_to.split('T')[0]))) {
                     this.matchDateError = { isError: false, errorMessage: '' };
-                    var roomsData:any[]=[];
-                    var course_recuu:any = '';
-                    var course_startTime:any
-                    var course_endTime:any
+                    var roomsData: any[] = [];
+                    var course_recuu: any = '';
+                    var course_startTime: any
+                    var course_endTime: any
                     this.date = new Date(); // Today's date
                     this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-                    this.calendarRooms.forEach((elem:any) =>{
-                        if(elem.date_start >= this.todays_date){
+                    this.calendarRooms.forEach((elem: any) => {
+                        if (elem.date_start >= this.todays_date) {
                             roomsData.push(elem);
                         }
                     })
                     roomsData.sort((a: any, b: any) => Number(new Date(a.date_start)) - Number(new Date(b.date_start)));
-                    if(this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)){
+                    if (this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)) {
                         course_recuu = this.recurrenceString;
-                    }else if(this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)){
+                    } else if (this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)) {
                         course_recuu = this.finalCustomRecurrence;
                     }
-                    if(course_recuu && (course_recuu != ' ' || course_recuu != null)){   //if the recurrence
+                    if (course_recuu && (course_recuu != ' ' || course_recuu != null)) {   //if the recurrence
                         course_startTime = this.courseForm.value['start_time'];
                         course_endTime = this.courseForm.value['end_time'];
-                        this.checkRoomAvailability(course_startTime,course_endTime,this.course_allDates,roomsData);
+                        this.checkRoomAvailability(course_startTime, course_endTime, this.course_allDates, roomsData);
 
-                    }else if(this.courseForm.value.courseDate.length > 1){  /// if the multiple dates
-                        this.checkRoomAvailability(course_startTime,course_endTime,this.course_allDates,roomsData);
+                    } else if (this.courseForm.value.courseDate.length > 1) {  /// if the multiple dates
+                        this.checkRoomAvailability(course_startTime, course_endTime, this.course_allDates, roomsData);
 
-                    }else{// no recurrence & no multiple dates
+                    } else {// no recurrence & no multiple dates
                         course_startTime = this.courseForm.value['start_time'];
                         course_endTime = this.courseForm.value['end_time'];
-                        this.checkRoomAvailability(course_startTime,course_endTime,this.course_allDates,roomsData);
+                        this.checkRoomAvailability(course_startTime, course_endTime, this.course_allDates, roomsData);
                     }
                 } else {
                     this.notificationService.showError(this.language.courses.not_room, null);
                     this.matchDateError = { isError: true, errorMessage: this.language.courses.not_room };
                 }
             }
-            if(this.courseForm?.controls['instructor_external']?.value?.length > 0){
+            if (this.courseForm?.controls['instructor_external']?.value?.length > 0) {
                 this.matchInstrctDateError = { isError: false, errorMessage: '' };
                 if ((new Date(this.courseForm.value['date_from']) >= new Date(this.instructorById.active_from.split('T')[0])) &&
-                (new Date(this.courseForm.value['date_to']) <= new Date(this.instructorById.active_to.split('T')[0]))) {
+                    (new Date(this.courseForm.value['date_to']) <= new Date(this.instructorById.active_to.split('T')[0]))) {
                     this.matchInstrctDateError = { isError: false, errorMessage: '' };
-                    var instructorData:any[]=[];
-                    var course_recuu:any = '';
-                    var course_startTime:any
-                    var course_endTime:any
+                    var instructorData: any[] = [];
+                    var course_recuu: any = '';
+                    var course_startTime: any
+                    var course_endTime: any
                     this.date = new Date(); // Today's date
                     this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-                    this.instructorCalendar.forEach((elem:any) =>{
-                        if(elem.date_start >= this.todays_date){
+                    this.instructorCalendar.forEach((elem: any) => {
+                        if (elem.date_start >= this.todays_date) {
                             instructorData.push(elem);
                         }
                     })
                     instructorData.sort((a: any, b: any) => Number(new Date(a.date_start)) - Number(new Date(b.date_start)));
-                    if(this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)){
+                    if (this.recurrenceString && (this.recurrenceString != ' ' || this.recurrenceString != null)) {
                         course_recuu = this.recurrenceString;
-                    }else if(this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)){
+                    } else if (this.finalCustomRecurrence && (this.finalCustomRecurrence != ' ' || this.finalCustomRecurrence != null)) {
                         course_recuu = this.finalCustomRecurrence;
                     }
 
-                    if(course_recuu && (course_recuu != ' ' || course_recuu != null)){   //if the recurrence
+                    if (course_recuu && (course_recuu != ' ' || course_recuu != null)) {   //if the recurrence
                         course_startTime = this.courseForm.value['start_time'];
                         course_endTime = this.courseForm.value['end_time'];
-                        this.checkInstructorAvailability(course_startTime,course_endTime,this.course_allDates,instructorData);
+                        this.checkInstructorAvailability(course_startTime, course_endTime, this.course_allDates, instructorData);
 
-                    }else if(this.courseForm.value.courseDate.length > 1){  /// if the multiple dates
-                        this.checkInstructorAvailability(course_startTime,course_endTime,this.course_allDates,instructorData);
+                    } else if (this.courseForm.value.courseDate.length > 1) {  /// if the multiple dates
+                        this.checkInstructorAvailability(course_startTime, course_endTime, this.course_allDates, instructorData);
 
-                    }else{
+                    } else {
                         course_startTime = this.courseForm.value['start_time'];
                         course_endTime = this.courseForm.value['end_time'];                                           // no recurrence & no multiple dates
-                        this.checkInstructorAvailability(course_startTime,course_endTime,this.course_allDates,instructorData);
+                        this.checkInstructorAvailability(course_startTime, course_endTime, this.course_allDates, instructorData);
                     }
-                }else{
-                    this.notificationService.showError (this.language.courses.not_instruct, null);
+                } else {
+                    this.notificationService.showError(this.language.courses.not_instruct, null);
                     this.matchInstrctDateError = { isError: true, errorMessage: this.language.courses.not_instruct };
                 }
 
-            }else if(this.courseForm?.controls['instructor_internal']?.value?.length > 0){
-                if(this.courseForm?.value?.courseDate.length > 1){
-                    var intr_instructorRecc:any[]=[];
-                    this.courseForm?.value?.courseDate?.forEach((element:any,index:any) =>{
+            } else if (this.courseForm?.controls['instructor_internal']?.value?.length > 0) {
+                if (this.courseForm?.value?.courseDate.length > 1) {
+                    var intr_instructorRecc: any[] = [];
+                    this.courseForm?.value?.courseDate?.forEach((element: any, index: any) => {
                         element.start_time = this.commonFunctionService.formatTime(element.start_time);
-                        element.end_time =  this.commonFunctionService.formatTime(element.end_time);
+                        element.end_time = this.commonFunctionService.formatTime(element.end_time);
                         intr_instructorRecc[index] = {
                             date_from: element.date_from,
                             start_time: element.start_time,
@@ -786,12 +786,12 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                         };
                     });
                     this.courseForm.controls['in_instructorReccurance'].setValue(intr_instructorRecc)
-                }else if(this.course_allDates){
+                } else if (this.course_allDates) {
                     let course_startTime = this.commonFunctionService.formatTime(this.courseForm.value['start_time']);
-                        let course_endTime =  this.commonFunctionService.formatTime(this.courseForm.value['end_time']);
-                    var intr_instructorRecc:any[]=[];
-                    if(course_startTime && course_endTime){
-                        this.course_allDates.forEach((element:any,index:any) =>{
+                    let course_endTime = this.commonFunctionService.formatTime(this.courseForm.value['end_time']);
+                    var intr_instructorRecc: any[] = [];
+                    if (course_startTime && course_endTime) {
+                        this.course_allDates.forEach((element: any, index: any) => {
                             intr_instructorRecc[index] = {
                                 date_from: this.datePipe.transform(new Date(element), 'YYYY-MM-dd'),
                                 start_time: course_startTime,
@@ -804,12 +804,12 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             }
         }
         if ((this.courseForm.valid) && (!this.errorTime.isError) && (!this.errorDate.isError) && (!this.errorImage.isError) && (!this.customReccDateError.isError)
-             && (!this.matchDateError.isError) && (!this.matchInstrctDateError.isError) && (!this.errorMatch.isError) &&
+            && (!this.matchDateError.isError) && (!this.matchInstrctDateError.isError) && (!this.errorMatch.isError) &&
             (this.courseForm.value['allowed_persons'] != '') && (this.courseForm.value['allowed_persons'] > 0)) {
             this.authService.setLoader(true);
-            if(this.roomSelected){
+            if (this.roomSelected) {
                 this.courseForm.controls['room'].setValue(this.roomSelected);
-            }else{
+            } else {
                 this.courseForm.controls['room'].setValue(null);
             }
             this.courseForm.controls['visibility'].setValue(this.visibility);
@@ -820,7 +820,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             var end_time: number = this.courseForm.controls['end_time'].value;
             this.courseForm.controls['date_from'].setValue(date_from + ' ' + start_time);
             var date_to: Date = this.courseForm.controls['date_to'].value;
-            if(date_to){
+            if (date_to) {
                 this.courseForm.controls['date_to'].setValue(date_to + ' ' + end_time);
                 this.courseForm.controls["date_repeat"].setValue(date_to + " " + end_time);
             }
@@ -936,13 +936,13 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                             formData.append('course_users', JSON.stringify(uniqueGroupUsers));
                         }
                     }
-                    if(key == 'in_instructorReccurance'){
+                    if (key == 'in_instructorReccurance') {
                         formData.append('in_instructorReccurance', JSON.stringify(element));
                     }
-                    if(key == 'instructorReccurance'){
+                    if (key == 'instructorReccurance') {
                         formData.append('instructorReccurance', JSON.stringify(element));
                     }
-                    if(key == 'courseReccurance'){
+                    if (key == 'courseReccurance') {
                         formData.append('courseReccurance', JSON.stringify(element));
                     }
                     if (key == 'courseDate') {
@@ -952,7 +952,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                         formData.append('task', JSON.stringify(element));
                     } else {
                         if (key != 'add_image' && key != 'add_docfile' && key != 'course_users' && key != 'participant' && key != 'chargeable' && key != 'recurrence' && key != 'customRecurrence' &&
-                            key != 'instructor_internal' && key != 'instructor_external' && key != 'course_groups' && key != 'show_guest_list' && (key != 'courseDate')  &&
+                            key != 'instructor_internal' && key != 'instructor_external' && key != 'course_groups' && key != 'show_guest_list' && (key != 'courseDate') &&
                             key != 'courseReccurance' && key != 'instructorReccurance' && key != 'in_instructorReccurance') {
                             formData.append(key, element);
                         }
@@ -962,28 +962,28 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
 
             this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'createCourse', formData)
-            .subscribe((respData: any) => {
-                this.authService.setLoader(false);
-                this.eventSubmitted = false;
-                if (respData['isError'] == false) {
-                    this.notificationService.showSuccess(respData['result']['message'], null);
-                    var self = this;
-                    setTimeout(function () {
-                        self.router.navigate(['course-detail/' + respData['result']['news']['id']]);
-                    }, 2500);
-                } else if (respData['code'] == 400) {
-                    this.notificationService.showError(respData['message'], null);
-                    this.setVisibilityOnError(this.visibility);
-                    this.setInstructorTypeOnError(this.instrucType);
-                    this.courseForm.controls['date_to'].setValue(date_to);
-                    this.courseForm.controls['room'].setValue(date_to);
-                    if(this.selectedRoom){
-                        let room_data = [];
-                        room_data.push( { id: this.selectedRoom.id, name: this.selectedRoom.name });
-                        this.courseForm.controls["room"].setValue(room_data);
+                .subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    this.eventSubmitted = false;
+                    if (respData['isError'] == false) {
+                        this.notificationService.showSuccess(respData['result']['message'], null);
+                        var self = this;
+                        setTimeout(function () {
+                            self.router.navigate(['course-detail/' + respData['result']['news']['id']]);
+                        }, 2500);
+                    } else if (respData['code'] == 400) {
+                        this.notificationService.showError(respData['message'], null);
+                        this.setVisibilityOnError(this.visibility);
+                        this.setInstructorTypeOnError(this.instrucType);
+                        this.courseForm.controls['date_to'].setValue(date_to);
+                        this.courseForm.controls['room'].setValue(date_to);
+                        if (this.selectedRoom) {
+                            let room_data = [];
+                            room_data.push({ id: this.selectedRoom.id, name: this.selectedRoom.name });
+                            this.courseForm.controls["room"].setValue(room_data);
+                        }
                     }
-                }
-            });
+                });
         }
     }
 
@@ -992,16 +992,16 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * Function is used to set visibility when error is coming
     * @author  MangoIt Solutions
     */
-    setVisibilityOnError(id:number) {
+    setVisibilityOnError(id: number) {
         let visibility_data = [];
-        if(id == 1){
-            visibility_data.push( { item_id: 1, item_text: this.language.create_event.public });
-        }else if(id == 2){
-            visibility_data.push( { item_id: 2, item_text: this.language.create_event.private });
-        }else if(id == 3){
-            visibility_data.push( { item_id: 3, item_text: this.language.create_event.group });
-        }else if(id == 4){
-            visibility_data.push( { item_id:4, item_text: this.language.create_event.club });
+        if (id == 1) {
+            visibility_data.push({ item_id: 1, item_text: this.language.create_event.public });
+        } else if (id == 2) {
+            visibility_data.push({ item_id: 2, item_text: this.language.create_event.private });
+        } else if (id == 3) {
+            visibility_data.push({ item_id: 3, item_text: this.language.create_event.group });
+        } else if (id == 4) {
+            visibility_data.push({ item_id: 4, item_text: this.language.create_event.club });
         }
         this.courseForm.controls["visibility"].setValue(visibility_data);
     }
@@ -1010,12 +1010,12 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * Function is used to set visibility when error is coming
     * @author  MangoIt Solutions
     */
-     setInstructorTypeOnError(id:number) {
+    setInstructorTypeOnError(id: number) {
         let type_data = [];
-        if(id == 1){
-            type_data.push({item_id: 1, item_text: this.language.courses.internal });
-        }else if(id == 2){
-            type_data.push({item_id: 2, item_text: this.language.courses.external });
+        if (id == 1) {
+            type_data.push({ item_id: 1, item_text: this.language.courses.internal });
+        } else if (id == 2) {
+            type_data.push({ item_id: 2, item_text: this.language.courses.external });
         }
         this.courseForm.controls["instructor_type"].setValue(type_data);
     }
@@ -1026,67 +1026,67 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @param   {startTime,endTime,course all dates,instructor dates}
     * @return  {Array Of Object} if test pass then instructorRecurrence booking dates else error
     */
-    checkInstructorAvailability(course_startTime:any,course_endTime:any,course_allDates:any,instructorData:any){
-        var count:number = 0;
-        var finalInstructorData:any[]=[]
-        var instructorRecc:any[] = [];
-        var course_dates_length:any;
-            if(this.courseForm?.value?.courseDate.length > 1){
-                course_dates_length = this.courseForm.value.courseDate.length;
-                this.courseForm.value.courseDate.forEach((elem:any,index:any) =>{
-                    instructorData.forEach((element:any,idn:any) => {
-                        if(element.classNames == 'exInstruct-availability'){
-                            elem.start_time = this.commonFunctionService.formatTime(elem.start_time);
-                            elem.end_time = this.commonFunctionService.formatTime( elem.end_time);
-                            if((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
-                            (elem.start_time  >= element.start.split('T')[1]) &&
-                            (elem.end_time  <= element.end.split('T')[1])){
-                                finalInstructorData.push(elem);
-                                count ++;
-                            }
+    checkInstructorAvailability(course_startTime: any, course_endTime: any, course_allDates: any, instructorData: any) {
+        var count: number = 0;
+        var finalInstructorData: any[] = []
+        var instructorRecc: any[] = [];
+        var course_dates_length: any;
+        if (this.courseForm?.value?.courseDate.length > 1) {
+            course_dates_length = this.courseForm.value.courseDate.length;
+            this.courseForm.value.courseDate.forEach((elem: any, index: any) => {
+                instructorData.forEach((element: any, idn: any) => {
+                    if (element.classNames == 'exInstruct-availability') {
+                        elem.start_time = this.commonFunctionService.formatTime(elem.start_time);
+                        elem.end_time = this.commonFunctionService.formatTime(elem.end_time);
+                        if ((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
+                            (elem.start_time >= element.start.split('T')[1]) &&
+                            (elem.end_time <= element.end.split('T')[1])) {
+                            finalInstructorData.push(elem);
+                            count++;
                         }
-                    })
+                    }
                 })
-            }else if(course_allDates){
-                course_dates_length = course_allDates.length;
-                course_allDates.forEach((elem:any,index:any) =>{
-                    instructorData.forEach((element:any,idn:any) => {
-                        if(element.classNames == 'exInstruct-availability'){
-                            course_startTime = this.commonFunctionService.formatTime(course_startTime);
-                            course_endTime = this.commonFunctionService.formatTime(course_endTime);
-                            if((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd'))
+            })
+        } else if (course_allDates) {
+            course_dates_length = course_allDates.length;
+            course_allDates.forEach((elem: any, index: any) => {
+                instructorData.forEach((element: any, idn: any) => {
+                    if (element.classNames == 'exInstruct-availability') {
+                        course_startTime = this.commonFunctionService.formatTime(course_startTime);
+                        course_endTime = this.commonFunctionService.formatTime(course_endTime);
+                        if ((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd'))
                             && (course_startTime >= element.start.split('T')[1])
                             && (course_endTime <= element.end.split('T')[1])
-                            ){
-                                finalInstructorData.push(elem);
-                                count ++;
-                            }
+                        ) {
+                            finalInstructorData.push(elem);
+                            count++;
                         }
-                    });
-                });
-            }
-            finalInstructorData = this.authService.uniqueData(finalInstructorData);
-            if(count >= course_dates_length){
-                this.matchInstrctDateError = { isError: false, errorMessage: '' };
-                    if(course_startTime && course_endTime){
-                        finalInstructorData.forEach((element:any,index:any) =>{
-                            course_startTime = this.commonFunctionService.formatTime(course_startTime);
-                            course_endTime = this.commonFunctionService.formatTime(course_endTime);
-                            let el_date = (element?.date_from) ? element.date_from : element;
-                            instructorRecc[index] = {
-                                date_from: this.datePipe.transform(new Date(el_date), 'YYYY-MM-dd'),
-                                start_time: course_startTime,
-                                end_time: course_endTime
-                            };
-                        });
-                        this.courseForm.controls['instructorReccurance'].setValue(instructorRecc);
-                    }else{
-                        this.courseForm.controls['instructorReccurance'].setValue(this.courseForm.value.courseDate);
                     }
-            }else{
-                this.notificationService.showError(this.language.courses.instruct_not_avail, null);
-                this.matchInstrctDateError = { isError: true, errorMessage: this.language.courses.instruct_not_avail };
+                });
+            });
+        }
+        finalInstructorData = this.authService.uniqueData(finalInstructorData);
+        if (count >= course_dates_length) {
+            this.matchInstrctDateError = { isError: false, errorMessage: '' };
+            if (course_startTime && course_endTime) {
+                finalInstructorData.forEach((element: any, index: any) => {
+                    course_startTime = this.commonFunctionService.formatTime(course_startTime);
+                    course_endTime = this.commonFunctionService.formatTime(course_endTime);
+                    let el_date = (element?.date_from) ? element.date_from : element;
+                    instructorRecc[index] = {
+                        date_from: this.datePipe.transform(new Date(el_date), 'YYYY-MM-dd'),
+                        start_time: course_startTime,
+                        end_time: course_endTime
+                    };
+                });
+                this.courseForm.controls['instructorReccurance'].setValue(instructorRecc);
+            } else {
+                this.courseForm.controls['instructorReccurance'].setValue(this.courseForm.value.courseDate);
             }
+        } else {
+            this.notificationService.showError(this.language.courses.instruct_not_avail, null);
+            this.matchInstrctDateError = { isError: true, errorMessage: this.language.courses.instruct_not_avail };
+        }
     }
 
     /**
@@ -1095,77 +1095,77 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @param   {startTime,endTime,course all dates,rooms dates}
     * @return  {Array Of Object} if test pass then courseRecurrence booking dates else error
     */
-    checkRoomAvailability(course_startTime:any,course_endTime:any,course_allDates:any,roomsData:any){
-        var count:number = 0;
-        var finalCourseData:any[]=[]
-        var courseRecu:any[] = [];
-        var course_dates_length:any;
-        if(this.courseForm?.value?.courseDate.length > 1){
+    checkRoomAvailability(course_startTime: any, course_endTime: any, course_allDates: any, roomsData: any) {
+        var count: number = 0;
+        var finalCourseData: any[] = []
+        var courseRecu: any[] = [];
+        var course_dates_length: any;
+        if (this.courseForm?.value?.courseDate.length > 1) {
             course_dates_length = this.courseForm.value.courseDate.length;
-            this.courseForm.value.courseDate.forEach((elem:any,index:any) =>{
-                roomsData.forEach((element:any,idn:any) => {
-                    if(element.classNames == 'room-availability'){
+            this.courseForm.value.courseDate.forEach((elem: any, index: any) => {
+                roomsData.forEach((element: any, idn: any) => {
+                    if (element.classNames == 'room-availability') {
                         elem.start_time = this.commonFunctionService.formatTime(elem.start_time);
-                        elem.end_time = this.commonFunctionService.formatTime( elem.end_time);
-                        if((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
-                        (elem.start_time  >= element.start.split('T')[1]) &&
-                        (elem.end_time <= element.end.split('T')[1])){
+                        elem.end_time = this.commonFunctionService.formatTime(elem.end_time);
+                        if ((element.date_start == this.datePipe.transform(elem.date_from, 'yyyy-MM-dd')) &&
+                            (elem.start_time >= element.start.split('T')[1]) &&
+                            (elem.end_time <= element.end.split('T')[1])) {
                             finalCourseData.push(elem);
-                            count ++;
+                            count++;
                         }
                     }
                 })
             })
-        }else if(course_allDates){
+        } else if (course_allDates) {
             course_dates_length = course_allDates.length;
-            course_allDates.forEach((elem:any,index:any) =>{
-                roomsData.forEach((element:any,idn:any) => {
+            course_allDates.forEach((elem: any, index: any) => {
+                roomsData.forEach((element: any, idn: any) => {
                     course_startTime = this.commonFunctionService.formatTime(course_startTime);
                     course_endTime = this.commonFunctionService.formatTime(course_endTime);
-                    if(element.classNames == 'room-availability'){
-                        if((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd')) &&
-                        (course_startTime >= element.start.split('T')[1]) && (course_endTime <= element.end.split('T')[1])){
+                    if (element.classNames == 'room-availability') {
+                        if ((element.date_start == this.datePipe.transform(elem, 'yyyy-MM-dd')) &&
+                            (course_startTime >= element.start.split('T')[1]) && (course_endTime <= element.end.split('T')[1])) {
                             finalCourseData.push(elem);
-                            count ++;
+                            count++;
                         }
                     }
                 });
             });
         }
         finalCourseData = this.authService.uniqueData(finalCourseData);
-        if(count >= course_dates_length){
+        if (count >= course_dates_length) {
             this.matchDateError = { isError: false, errorMessage: '' };
             if (this.mustMatchs > this.selectedRoom.no_of_persons) {
                 this.errorMatch = { isError: true, errorMessage: this.language.courses.room_error, };
             } else {
                 this.errorMatch = { isError: false, errorMessage: '' };
-                if(course_startTime && course_endTime){
-                    finalCourseData.forEach((element:any,index:any) =>{
+                if (course_startTime && course_endTime) {
+                    finalCourseData.forEach((element: any, index: any) => {
                         course_startTime = this.commonFunctionService.formatTime(course_startTime);
                         course_endTime = this.commonFunctionService.formatTime(course_endTime);
                         let el_date = (element?.date_from) ? element.date_from : element;
-                            courseRecu[index] = {
-                                date_from: this.datePipe.transform(new Date(el_date), 'YYYY-MM-dd'),
-                                start_time: course_startTime,
-                                end_time: course_endTime
-                            };
+                        courseRecu[index] = {
+                            date_from: this.datePipe.transform(new Date(el_date), 'YYYY-MM-dd'),
+                            start_time: course_startTime,
+                            end_time: course_endTime
+                        };
                     });
                     this.courseForm.controls['courseReccurance'].setValue(courseRecu);
-                }else{
+                } else {
                     this.courseForm.controls['courseReccurance'].setValue(this.courseForm.value.courseDate);
                 }
             }
-        }else{
+        } else {
             this.notificationService.showError(this.language.courses.room_not_avail, null);
             this.matchDateError = { isError: true, errorMessage: this.language.courses.room_not_avail };
         }
     }
 
-        /**
-    * Function is used to check event
-    * @author  MangoIt Solutions
-    */
-      eventCheck(event: Event) {
+    /**
+* Function is used to check event
+* @author  MangoIt Solutions
+*/
+    eventCheck(event: Event) {
         if (event.target['checked']) {
             this.eventPriceDisplay = true;
         } else {
@@ -1204,8 +1204,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     compareTwoTimes(i: any) {
         if ((this.courseForm?.controls?.['courseDate']?.value[i]?.start_time != '') &&
             (this.courseForm?.controls?.['courseDate']?.value[i]?.end_time != '')) {
-            if ( (this.courseForm.controls['courseDate'].value[i]?.start_time >= this.courseForm.controls['courseDate'].value[i]?.end_time)
-            ){
+            if ((this.courseForm.controls['courseDate'].value[i]?.start_time >= this.courseForm.controls['courseDate'].value[i]?.end_time)
+            ) {
                 this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, index: i };
             } else {
                 this.errorTime = { isError: false, errorMessage: '', index: '' };
@@ -1258,8 +1258,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         }
     }
 
-    onRecurrenceDeSelect(){ this.recurrenceSelected = null;    }
-
+    onRecurrenceDeSelect() { this.recurrenceSelected = null; }
 
 
     /**
@@ -1268,7 +1267,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     */
     dateSubmit() {
         if ((this.courseForm.controls['courseDate'].value[0] && this.courseForm.controls['courseDate'].value[0]?.start_time != '')) {
-            if(this.courseForm.controls['courseDate'].value.length == 1){
+            if (this.courseForm.controls['courseDate'].value.length == 1) {
                 this.recurrenceDropdownField = true;
             }
         } else {
@@ -1308,7 +1307,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     onRecurrence() {
-        if(this.recurrenceSelected != 5){
+        if (this.recurrenceSelected != 5) {
             this.courseForm.controls["date_repeat"].setValue(this.courseForm.controls["date_to"].value);
             let monthDates: any = []
             this.recurrenceString = '';
@@ -1324,47 +1323,47 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                     let rule = new RRule({
                         freq: RRule.DAILY,
                         dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
-                        until: new Date( Date.UTC( new Date( this.courseForm.controls.date_repeat.value).getFullYear(), new Date( this.courseForm.controls.date_repeat.value).getMonth(), new Date( this.courseForm.controls.date_repeat.value ).getDate(),0o0,0o0,0o0)),
+                        until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                     });
                     let recc: string = rule.toString();
                     let re: string = recc.slice(0, 25).replace(':', '=');
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.course_allDates = 	 RRule.fromString(this.recurrenceString).all()
+                    this.course_allDates = RRule.fromString(this.recurrenceString).all()
                 } else if (this.courseForm.controls.recurrence.value[0].item_id == 2) {
                     let rule = new RRule({
                         freq: RRule.WEEKLY,
-                        dtstart: new Date( Date.UTC(new Date(this.courseForm.controls.date_from.value ).getFullYear(), new Date(this.courseForm.controls.date_from.value ).getMonth(), new Date( this.courseForm.controls.date_from.value ).getDate(),0o0, 0o0, 0o0)),
-                        until: new Date( Date.UTC(new Date(  this.courseForm.controls.date_repeat.value ).getFullYear(),new Date(this.courseForm.controls.date_repeat.value ).getMonth(), new Date( this.courseForm.controls.date_repeat.value ).getDate(), 0o0, 0o0, 0o0) ),
+                        dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                        until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                     });
                     let recc: string = rule.toString();
                     let re: string = recc.slice(0, 25).replace(':', '=');
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.course_allDates = 	 RRule.fromString(this.recurrenceString).all()
+                    this.course_allDates = RRule.fromString(this.recurrenceString).all()
                 } else if (this.courseForm.controls.recurrence.value[0].item_id == 3) {
                     let rule = new RRule({
                         freq: RRule.MONTHLY,
-                        dtstart: new Date(  Date.UTC(  new Date( this.courseForm.controls.date_from.value ).getFullYear(),  new Date(this.courseForm.controls.date_from.value ).getMonth(), new Date( this.courseForm.controls.date_from.value ).getDate(), 0o0,  0o0,  0o0 )),
-                        until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value ).getFullYear(), new Date( this.courseForm.controls.date_repeat.value ).getMonth(), new Date( this.courseForm.controls.date_repeat.value  ).getDate(), 0o0, 0o0,  0o0  ) ),
+                        dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                        until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                         bymonthday: monthDates
                     });
                     let recc: string = rule.toString();
                     let re: string = recc.slice(0, 25).replace(':', '=');
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.course_allDates = 	 RRule.fromString(this.recurrenceString).all()
+                    this.course_allDates = RRule.fromString(this.recurrenceString).all()
                 } else if (this.courseForm.controls.recurrence.value[0].item_id == 4) {
                     let rule = new RRule({
                         freq: RRule.YEARLY,
-                        dtstart: new Date( Date.UTC( new Date( this.courseForm.controls.date_from.value  ).getFullYear(), new Date(  this.courseForm.controls.date_from.value  ).getMonth(), new Date( this.courseForm.controls.date_from.value).getDate(), 0o0,0o0, 0o0)),
-                        until: new Date( Date.UTC( new Date(  this.courseForm.controls.date_repeat.value ).getFullYear(), new Date( this.courseForm.controls.date_repeat.value ).getMonth(),new Date( this.courseForm.controls.date_repeat.value ).getDate(),  0o0, 0o0, 0o0 ) ),
+                        dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                        until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                     });
                     let recc: string = rule.toString();
                     let re: string = recc.slice(0, 25).replace(':', '=');
                     let reccu: string = recc.slice(25);
                     this.recurrenceString = reccu + ';' + re;
-                    this.course_allDates = 	 RRule.fromString(this.recurrenceString).all()
+                    this.course_allDates = RRule.fromString(this.recurrenceString).all()
                 } else {
                     this.recurrenceString = '';
                     this.getCourseAllDates();
@@ -1373,8 +1372,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 this.recurrenceString = '';
                 this.getCourseAllDates();
             }
-        }else{
-            this. setCustomRecurrence();
+        } else {
+            this.setCustomRecurrence();
         }
     }
 
@@ -1398,10 +1397,10 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     setCustomRecurrence() {
-        if(this.recurrenceSelected == 5 && this.customRecurrenceTypeSelected ){
-            if(this.courseForm.controls["date_to"].value){
+        if (this.recurrenceSelected == 5 && this.customRecurrenceTypeSelected) {
+            if (this.courseForm.controls["date_to"].value) {
                 this.courseForm.controls["date_repeat"].setValue(this.courseForm.controls["date_to"].value);
-            }else{
+            } else {
                 this.courseForm.controls["date_to"].setValue(this.courseForm.controls["date_from"].value);
                 this.courseForm.controls["date_repeat"].setValue(this.courseForm.controls["date_to"].value);
             }
@@ -1419,8 +1418,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 let numberWeek: number = $('.custom_recurrence_daily').val();
                 let r_rule = {
                     freq: RRule.DAILY,
-                    dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value ).getFullYear(), new Date(this.courseForm.controls.date_from.value ).getMonth(),new Date( this.courseForm.controls.date_from.value).getDate(), 0o0,0o0,0o0)),
-                    until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(),new Date(this.courseForm.controls.date_repeat.value).getMonth(),new Date(this.courseForm.controls.date_repeat.value).getDate(),0o0,0o0,0o0)),
+                    dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                    until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                 };
                 if (numberWeek > 0) {
                     r_rule['interval'] = numberWeek;
@@ -1449,8 +1448,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 //byWeekDay
                 let r_rule = {
                     freq: RRule.WEEKLY,
-                    dtstart: new Date(Date.UTC(  new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(),new Date(this.courseForm.controls.date_from.value).getDate(),0o0,0o0,0o0)),
-                    until: new Date( Date.UTC( new Date( this.courseForm.controls.date_repeat.value ).getFullYear(), new Date( this.courseForm.controls.date_repeat.value).getMonth(), new Date( this.courseForm.controls.date_repeat.value).getDate(), 0o0,  0o0, 0o0 )),
+                    dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                    until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                 };
                 if (numberWeek > 0) {
                     r_rule['interval'] = numberWeek;
@@ -1480,8 +1479,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 let numberWeek: number = $('.custom_recurrence_monthly').val();
                 let r_rule = {
                     freq: RRule.MONTHLY,
-                    dtstart: new Date(Date.UTC( new Date( this.courseForm.controls.date_from.value).getFullYear(),new Date(this.courseForm.controls.date_from.value ).getMonth(),new Date( this.courseForm.controls.date_from.value).getDate(),   0o0,  0o0,0o0)),
-                    until: new Date(  Date.UTC( new Date( this.courseForm.controls.date_repeat.value).getFullYear(), new Date( this.courseForm.controls.date_repeat.value ).getMonth(),  new Date(  this.courseForm.controls.date_repeat.value ).getDate(),0o0,0o0,0o0)),
+                    dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                    until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                     bymonthday: monthDates
                 };
                 if (numberWeek > 0) {
@@ -1499,8 +1498,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 let numberWeek: number = $('.custom_recurrence_yearly').val();
                 let r_rule = {
                     freq: RRule.YEARLY,
-                    dtstart: new Date( Date.UTC( new Date(this.courseForm.controls.date_from.value ).getFullYear(),  new Date( this.courseForm.controls.date_from.value ).getMonth(),    new Date(  this.courseForm.controls.date_from.value  ).getDate(),   0o0,   0o0,    0o0    ) ),
-                    until: new Date(  Date.UTC(  new Date( this.courseForm.controls.date_repeat.value  ).getFullYear(), new Date( this.courseForm.controls.date_repeat.value ).getMonth(),  new Date(  this.courseForm.controls.date_repeat.value ).getDate(),     0o0,   0o0,0o0 ) ),
+                    dtstart: new Date(Date.UTC(new Date(this.courseForm.controls.date_from.value).getFullYear(), new Date(this.courseForm.controls.date_from.value).getMonth(), new Date(this.courseForm.controls.date_from.value).getDate(), 0o0, 0o0, 0o0)),
+                    until: new Date(Date.UTC(new Date(this.courseForm.controls.date_repeat.value).getFullYear(), new Date(this.courseForm.controls.date_repeat.value).getMonth(), new Date(this.courseForm.controls.date_repeat.value).getDate(), 0o0, 0o0, 0o0)),
                 };
                 if (numberWeek > 0) {
                     r_rule['interval'] = numberWeek;
@@ -1517,24 +1516,24 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         }
     }
 
-    customReccModalClose(){
+    customReccModalClose() {
         $('#showPopup').trigger('click');
         this.closeModal();
     }
 
-    getCourseAllDates(){
-        var alldates:any[] = [];
+    getCourseAllDates() {
+        var alldates: any[] = [];
         this.course_allDates = [];
-        if(this.courseForm.controls.courseDate.value.length > 1){
-            var cour_dates:any[] = [];
+        if (this.courseForm.controls.courseDate.value.length > 1) {
+            var cour_dates: any[] = [];
             alldates = this.courseForm.controls.courseDate.value;
             alldates.forEach(element => {
                 cour_dates.push(new Date(element.date_from));
             });
-            this.course_allDates =  this.authService.uniqueData(cour_dates);
-        }else{
+            this.course_allDates = this.authService.uniqueData(cour_dates);
+        } else {
             this.courseForm.controls["date_repeat"].setValue(this.courseForm.controls["date_to"].value);
-            alldates = this.commonFunctionService.getDates(new Date(this.courseForm.controls.date_from.value),new Date(this.courseForm.controls.date_to.value))
+            alldates = this.commonFunctionService.getDates(new Date(this.courseForm.controls.date_from.value), new Date(this.courseForm.controls.date_to.value))
             this.course_allDates = alldates;
         }
     }
@@ -1584,15 +1583,15 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
   */
     roomsById(id: number) {
         this.commonFunctionService.roomsById(id)
-        .then((resp: any) => {
-            this.roomsByIdData = resp;
-            setTimeout(() => {
-                this.getRoomCalendar(this.roomsByIdData);
-            }, 500);
+            .then((resp: any) => {
+                this.roomsByIdData = resp;
+                setTimeout(() => {
+                    this.getRoomCalendar(this.roomsByIdData);
+                }, 500);
             })
-        .catch((erro: any) => {
-            this.notificationService.showError(erro, null);
-        });
+            .catch((erro: any) => {
+                this.notificationService.showError(erro, null);
+            });
     }
 
     /**
@@ -1621,7 +1620,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
                 minute: '2-digit',
                 hour12: false
             },
-            firstDay:1,
+            firstDay: 1,
             weekends: true,
             editable: false,
             selectable: false,
@@ -1648,8 +1647,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     }
 
     handleEventClick(arg) {
-        if(arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']){
-            this.viewDetails(arg.event['_def'].publicId,arg.event['_def']['extendedProps']['date_start'] ,arg.event['_def']['extendedProps']['type'])
+        if (arg.event['_def'].publicId && arg.event['_def']['extendedProps']['date_start'] && arg.event['_def']['extendedProps']['type']) {
+            this.viewDetails(arg.event['_def'].publicId, arg.event['_def']['extendedProps']['date_start'], arg.event['_def']['extendedProps']['type'])
         };
     }
 
@@ -1661,7 +1660,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         const input = event.target as HTMLInputElement;
         const value = input.value;
         // Handle the date value as needed
-      }
+    }
 
 
     /**
@@ -1671,7 +1670,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @param   {id , date}
     * @return  {}
     */
-    viewDetails(id: any, date: any ,type:any) {
+    viewDetails(id: any, date: any, type: any) {
         if (type == 'course') {
             const url = '/course-detail/' + id;
             const queryParams = { date: new Date(date).toISOString().split('T')[0] };
@@ -1720,7 +1719,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         }
     }
 
-    onInstructorTypeDeSelect(item: { item_id: number; item_text: string }){
+    onInstructorTypeDeSelect(item: { item_id: number; item_text: string }) {
         this.instrucType = null;
     }
 
@@ -1763,49 +1762,49 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             });
     }
 
-    externalInstructorCalendar(instructorById:any){
+    externalInstructorCalendar(instructorById: any) {
         this.allExternlCalndr = this.commonFunctionService.externalInstructorCalendar(instructorById);
         this.instructorCalendar = this.allExternlCalndr[0].cal;
         this.calendarOptionsExternal = {
-         plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
-         initialView: 'timeGridWeek',
-         headerToolbar: {
-           left: 'prev,next today',
-           center: 'title',
-           right: ''
-         },
-         slotDuration: '00:02:30', // length of time slots
-         allDaySlot: false, // display all-day events in a separate all-day slot
-         slotLabelFormat: {
-             hour: '2-digit',
-             minute: '2-digit',
-             hour12: false
-         },
-         firstDay:1,
-         weekends: true,
-         editable: false,
-         selectable: false,
-         selectMirror: false,
-         eventClick: this.handleEventClickExtnl.bind(this),
-         dateClick: this.handleDateClickExtnl.bind(this),
-         events: this.instructorCalendar,
-         locale: this.selectLanguage,
-         eventTextColor: 'black',
-         eventDisplay: 'list-item',
-         expandRows: true,
-         displayEventTime: true,
-         displayEventEnd: true,
-         height: 500,
-         dayMaxEventRows: 2,
-         eventOverlap: true,
-         eventTimeFormat: { // like '14:30:00'
-            hour: '2-digit',
-            minute: '2-digit',
-            meridiem: false,
-            hour12: false
-        }
-       };
-       this.authService.setLoader(false);
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            slotDuration: '00:02:30', // length of time slots
+            allDaySlot: false, // display all-day events in a separate all-day slot
+            slotLabelFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            firstDay: 1,
+            weekends: true,
+            editable: false,
+            selectable: false,
+            selectMirror: false,
+            eventClick: this.handleEventClickExtnl.bind(this),
+            dateClick: this.handleDateClickExtnl.bind(this),
+            events: this.instructorCalendar,
+            locale: this.selectLanguage,
+            eventTextColor: 'black',
+            eventDisplay: 'list-item',
+            expandRows: true,
+            displayEventTime: true,
+            displayEventEnd: true,
+            height: 500,
+            dayMaxEventRows: 2,
+            eventOverlap: true,
+            eventTimeFormat: { // like '14:30:00'
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: false,
+                hour12: false
+            }
+        };
+        this.authService.setLoader(false);
 
     }
 
@@ -1817,7 +1816,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     }
 
     handleDateClickExtnl(arg) {
-         console.log(arg.date);
+        console.log(arg.date);
     }
 
     /**
@@ -1827,9 +1826,9 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
      * @param   {id , date}
      * @return  {}
      */
-    viewDetailsExternal(id: any, date: any ,type:any) {
-         $('#view-rooms').modal('hide');
-         if (type == 'course') {
+    viewDetailsExternal(id: any, date: any, type: any) {
+        $('#view-rooms').modal('hide');
+        if (type == 'course') {
             const url = '/course-detail/' + id;
             const queryParams = { date: new Date(date).toISOString().split('T')[0] };
             const queryString = Object.keys(queryParams).map(key => key + '=' + queryParams[key]).join('&');
@@ -1883,32 +1882,32 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         }
     }
 
-     /**
-    * Function to get all approved Group Users list
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {Array Of Object} all  approved Group Users list
-    */
-     onGroupSelect(item: { group_id: number; name: string }) {
+    /**
+   * Function to get all approved Group Users list
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {Array Of Object} all  approved Group Users list
+   */
+    onGroupSelect(item: { group_id: number; name: string }) {
         this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + item.group_id, null)
-        .subscribe((respData: any) => {
-            this.authService.setLoader(false);
-            var groupParticipants: any = respData[0].participants;
-            var groupUsers: { user_id: string; approved_status: number }[] = [];
-            if (groupParticipants && groupParticipants.length > 0) {
-                groupParticipants.forEach(function (value, key) {
-                    if (value.approved_status == 1) {
-                        var status: number = 0;
-                        if (value.user_id == localStorage.getItem('user-id')) {
-                            status = 1;
+            .subscribe((respData: any) => {
+                this.authService.setLoader(false);
+                var groupParticipants: any = respData[0].participants;
+                var groupUsers: { user_id: string; approved_status: number }[] = [];
+                if (groupParticipants && groupParticipants.length > 0) {
+                    groupParticipants.forEach(function (value, key) {
+                        if (value.approved_status == 1) {
+                            var status: number = 0;
+                            if (value.user_id == localStorage.getItem('user-id')) {
+                                status = 1;
+                            }
+                            var userGroupObj: { user_id: string; approved_status: number; } = { user_id: value.user_id, approved_status: status };
+                            groupUsers.push(userGroupObj);
                         }
-                        var userGroupObj: { user_id: string; approved_status: number; } = { user_id: value.user_id, approved_status: status };
-                        groupUsers.push(userGroupObj);
-                    }
-                });
-            }
-            this.groupUserList = groupUsers;
-        });
+                    });
+                }
+                this.groupUserList = groupUsers;
+            });
     }
 
     /**
@@ -2088,8 +2087,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         this.errorImage = { isError: false, errorMessage: '' };
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
-        .then(
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+            .then(
                 (compressedImage) => {
                     this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.courseForm.patchValue({ add_image: this.fileToReturn });
@@ -2293,17 +2292,17 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     taskDateValidate(date: any) {
-        var date_from:any;
-        var date_to :any;
-        if(this.courseForm?.value?.courseDate?.length == 1 ){
-            if(this.courseForm.controls?.date_to?.value != ""){
+        var date_from: any;
+        var date_to: any;
+        if (this.courseForm?.value?.courseDate?.length == 1) {
+            if (this.courseForm.controls?.date_to?.value != "") {
                 if (this.courseForm.controls.date_from.value <= date.target.value && this.courseForm.controls.date_to.value >= date.target.value) {
                     this.errorDateTask = { isError: false, errorMessage: '' };
                 } else {
-                        this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
+                    this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
                 }
-            }else{
-                if(this.courseForm.controls.date_from.value >= date.target.value){
+            } else {
+                if (this.courseForm.controls.date_from.value >= date.target.value) {
                     this.errorDateTask = { isError: false, errorMessage: '' };
                 } else {
                     this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
@@ -2314,12 +2313,12 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             // } else {
             //         this.errorDateTask = { isError: true, errorMessage: this.language.error_message.courseTaskDate };
             // }
-        }else{
-            this.courseForm?.value?.courseDate?.forEach((element:any,index:any) =>{
-                if(index == 0){
+        } else {
+            this.courseForm?.value?.courseDate?.forEach((element: any, index: any) => {
+                if (index == 0) {
                     date_from = element.date_from;
                 }
-                if(this.courseForm?.value?.courseDate.length - 1 === index){
+                if (this.courseForm?.value?.courseDate.length - 1 === index) {
                     date_to = element.date_from
                 }
                 if (date_from <= date.target.value && date_to >= date.target.value) {

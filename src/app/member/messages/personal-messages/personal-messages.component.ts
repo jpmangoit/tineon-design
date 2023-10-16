@@ -21,60 +21,60 @@ declare var $: any;
     styleUrls: ['./personal-messages.component.css']
 })
 
-export class PersonalMessagesComponent implements OnInit,OnDestroy {
-    language:any;
+export class PersonalMessagesComponent implements OnInit, OnDestroy {
+    language: any;
     searchSentenceForm: UntypedFormGroup;
     replyMsgForm: UntypedFormGroup;
     messageForm: UntypedFormGroup;
     replyMsgFormError: any = [];
-    replyMsgSubmitted:boolean = false;
+    replyMsgSubmitted: boolean = false;
     responseMessage: string = null;
-    personalInbox:boolean = true;
-    personalStarred:boolean = false;
-    personalSent:boolean = false;
-    personalDrafts:boolean = false;
-    personalAllMail:boolean = false;
-    personalTrash:boolean = false;
-    isReplyMsgForm:boolean = false;
-    singleParticipent:boolean = false;
-    multipleParticipent:boolean = false;
-    messageSubmitted:boolean = false;
-    personalVisiable:boolean = true;
-    groupVisiable:boolean = false;
-    clubVisiable:boolean = false;
-    userDetails:LoginDetails;
-    visiblityDropdownSettings:IDropdownSettings;
-    groupDropdownSettings:IDropdownSettings;
-    userDropdownCCSettings:IDropdownSettings;
-    userDropdownSettings:IDropdownSettings;
-    userDropdownList:{ 'id': string, 'name': string }[] = [];
-    userDropdownCCList:{ 'id': string, 'name': string }[]  = [];
-    alluserDetails: { firstname: string, lastname: string, email:string }[] = [];
-    alluserInfo:UserDetails;
+    personalInbox: boolean = true;
+    personalStarred: boolean = false;
+    personalSent: boolean = false;
+    personalDrafts: boolean = false;
+    personalAllMail: boolean = false;
+    personalTrash: boolean = false;
+    isReplyMsgForm: boolean = false;
+    singleParticipent: boolean = false;
+    multipleParticipent: boolean = false;
+    messageSubmitted: boolean = false;
+    personalVisiable: boolean = true;
+    groupVisiable: boolean = false;
+    clubVisiable: boolean = false;
+    userDetails: LoginDetails;
+    visiblityDropdownSettings: IDropdownSettings;
+    groupDropdownSettings: IDropdownSettings;
+    userDropdownCCSettings: IDropdownSettings;
+    userDropdownSettings: IDropdownSettings;
+    userDropdownList: { 'id': string, 'name': string }[] = [];
+    userDropdownCCList: { 'id': string, 'name': string }[] = [];
+    alluserDetails: { firstname: string, lastname: string, email: string }[] = [];
+    alluserInfo: UserDetails;
     setTheme: ThemeType;
-    extensions:any;
-    imageType:string[];
-    ccUser:number[] = [];
+    extensions: any;
+    imageType: string[];
+    ccUser: number[] = [];
     alluserInformation: { member_id: number }[] = [];
     thumb: string;
-    personalMessage:PersonalMessagesType[];
-    selectedMessage:any[] = [];
-    receiverUser:any[] = [];
+    personalMessage: PersonalMessagesType[];
+    selectedMessage: any[] = [];
+    receiverUser: any[] = [];
     private activatedSub: Subscription;
 
     constructor(
         private lang: LanguageService,
         private authService: AuthServiceService,
-        public formBuilder: UntypedFormBuilder,private themes: ThemeService,
+        public formBuilder: UntypedFormBuilder, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService, private notificationService: NotificationService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         if (localStorage.getItem('club_theme') != null) {
-            let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
         let self = this;
@@ -105,7 +105,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
-                    if(respData && respData.length > 0){
+                    if (respData && respData.length > 0) {
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
                             this.alluserDetails[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
@@ -169,43 +169,43 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     if (this.personalMessage && this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0]);
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
-                          if(element.user){
-                              if (this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                              .subscribe(
-                                (resppData: any) => {
-                                  this.thumb = resppData;
-                                  element.user.image = this.thumb;
-                                },
-                                (error:any) => {
+                            if (element.user) {
+                                if (this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
                                     element.user.image = null;
-                                });
-                              } else {
-                                    element.user.image = null;
-                              }
-                          }
+                                }
+                            }
 
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
-                          if(element.user){
-                            if (this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                  .subscribe(
-                                    (resppData: any) => {
-                                      this.thumb = resppData;
-                                      element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                              } else {
+                            if (element.user) {
+                                if (this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
                                     element.user.image = null;
-                              }
-                          };
+                                }
+                            };
                         })
                     }
                 }
@@ -217,61 +217,61 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.selectedMessage = [];
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'message/get-inbox', null)
-        .subscribe(
-            (respData: any) => {
-                // this.responseMessage = null;
-                this.personalMessage = [];
-                this.personalMessage = respData.reverse();
-                this.personalInbox = true;
-                this.personalStarred = false;
-                this.personalSent = false;
-                this.personalDrafts = false;
-                this.personalAllMail = false;
-                this.personalTrash = false;
-                this.authService.setLoader(false);
-                if (this.personalMessage && this.personalMessage.length > 0) {
-                    this.selectedMessage.push(this.personalMessage[0])
-                }
-                if(this.personalMessage && this.personalMessage.length > 0){
-                    this.personalMessage.forEach(element => {
-                        if (element.user) {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
+            .subscribe(
+                (respData: any) => {
+                    // this.responseMessage = null;
+                    this.personalMessage = [];
+                    this.personalMessage = respData.reverse();
+                    this.personalInbox = true;
+                    this.personalStarred = false;
+                    this.personalSent = false;
+                    this.personalDrafts = false;
+                    this.personalAllMail = false;
+                    this.personalTrash = false;
+                    this.authService.setLoader(false);
+                    if (this.personalMessage && this.personalMessage.length > 0) {
+                        this.selectedMessage.push(this.personalMessage[0])
+                    }
+                    if (this.personalMessage && this.personalMessage.length > 0) {
+                        this.personalMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
+                        this.selectedMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
+                            };
+                        })
+                    }
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
-                    this.selectedMessage.forEach(element => {
-                        if (element.user) {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
-                        };
-                    })
-                }
-            }
-        )
+            )
     }
 
     personalStarredMessages() {
@@ -294,43 +294,43 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     if (this.personalMessage && this.personalMessage.length > 0) {
                         this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
-                            if(element.user){
-                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                  this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                  (resppData: any) => {
-                                    this.thumb = resppData;
-                                    element.user.image = this.thumb;
-                                  },
-                                  (error:any) => {
-                                      element.user.image = null;
-                                  });
-                                } else {
-                                      element.user.image = null;
-                                }
-                            }
-                          })
-                    }
-                      if(this.selectedMessage && this.selectedMessage.length > 0){
-                          this.selectedMessage.forEach(element => {
-                              if(element.user){
+                            if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                      .subscribe(
-                                        (resppData: any) => {
-                                          this.thumb = resppData;
-                                          element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                                  } else {
-                                        element.user.image = null;
-                                  }
-                              };
-                          })
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
+                            }
+                        })
+                    }
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
+                        this.selectedMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
+                            };
+                        })
                     }
                 }
             )
@@ -354,42 +354,42 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     this.personalTrash = false;
                     this.authService.setLoader(false);
                     if (this.personalMessage && this.personalMessage.length > 0) {
-                      this.selectedMessage.push(this.personalMessage[0])
+                        this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
-                          if(element.user){
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                              this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                              .subscribe(
-                                (resppData: any) => {
-                                  this.thumb = resppData;
-                                  element.user.image = this.thumb;
-                                },
-                                (error:any) => {
-                                    element.user.image = null;
-                                });
-                              } else {
-                                element.user.image = null;
-                              }
-                          }
-                        })
-                    }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                            if(element.user){
+                            if (element.user) {
                                 if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
                                     this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                        this.thumb = resppData;
-                                        element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
                                 } else {
-                                        element.user.image = null;
+                                    element.user.image = null;
+                                }
+                            }
+                        })
+                    }
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
+                        this.selectedMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
                                 }
                             }
                         })
@@ -416,19 +416,19 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     this.personalTrash = false;
                     this.authService.setLoader(false);
                     this.personalMessage.forEach(element => {
-                      if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                        this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                          .subscribe(
-                            (resppData: any) => {
-                              this.thumb = resppData;
-                              element.user.image = this.thumb;
-                            },
-                            (error:any) => {
-                                element.user.image = null;
-                            });
-                      } else {
+                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                .subscribe(
+                                    (resppData: any) => {
+                                        this.thumb = resppData;
+                                        element.user.image = this.thumb;
+                                    },
+                                    (error: any) => {
+                                        element.user.image = null;
+                                    });
+                        } else {
                             element.user.image = null;
-                      }
+                        }
                     })
                 }
             )
@@ -452,42 +452,42 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     this.personalTrash = false;
                     this.authService.setLoader(false);
                     if (this.personalMessage && this.personalMessage.length > 0) {
-                      this.selectedMessage.push(this.personalMessage[0])
+                        this.selectedMessage.push(this.personalMessage[0])
                     }
-                    if(this.personalMessage && this.personalMessage.length > 0){
+                    if (this.personalMessage && this.personalMessage.length > 0) {
                         this.personalMessage.forEach(element => {
-                          if(element.user){
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                              this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                  (resppData: any) => {
-                                    this.thumb = resppData;
-                                    element.user.image = this.thumb;
-                                  },
-                                  (error:any) => {
-                                      element.user.image = null;
-                                  });
-                            } else {
-                                  element.user.image = null;
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
                             }
-                          }
                         })
                     }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
                         this.selectedMessage.forEach(element => {
-                          if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                              .subscribe(
-                                (resppData: any) => {
-                                  this.thumb = resppData;
-                                  element.user.image = this.thumb;
-                                },
-                                (error:any) => {
-                                    element.user.image = null;
-                                });
-                          } else {
+                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                    .subscribe(
+                                        (resppData: any) => {
+                                            this.thumb = resppData;
+                                            element.user.image = this.thumb;
+                                        },
+                                        (error: any) => {
+                                            element.user.image = null;
+                                        });
+                            } else {
                                 element.user.image = null;
-                          }
+                            }
                         })
                     }
                 }
@@ -499,68 +499,68 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.selectedMessage = [];
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'message/get-trash', null)
-        .subscribe(
-            (respData: any) => {
-                // this.responseMessage = null;
-                this.personalMessage = [];
-                this.personalMessage = respData.reverse();
-                this.personalInbox = false;
-                this.personalStarred = false;
-                this.personalSent = false;
-                this.personalDrafts = false;
-                this.personalAllMail = false;
-                this.personalTrash = true;
-                this.authService.setLoader(false);
-                if (this.personalMessage && this.personalMessage.length > 0) {
-                    this.selectedMessage.push(this.personalMessage[0])
-                }
-                if(this.personalMessage && this.personalMessage.length > 0){
-                    this.personalMessage.forEach(element => {
-                        if(element.user){
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                            .subscribe(
-                                (resppData: any) => {
-                                this.thumb = resppData;
-                                element.user.image = this.thumb;
-                                },
-                                (error:any) => {
-                                    element.user.image = null;
-                                });
-                            } else {
-                                    element.user.image = null;
-                            }
-                        }
-                        })
-                }
-                    if(this.selectedMessage && this.selectedMessage.length > 0){
-                        this.selectedMessage.forEach(element => {
-                        if(element.user){
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                .subscribe(
-                                    (resppData: any) => {
-                                    this.thumb = resppData;
-                                    element.user.image = this.thumb;
-                                    },
-                                    (error:any) => {
-                                        element.user.image = null;
-                                    });
-                            } else {
-                                    element.user.image = null;
-                            }
-                        };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    // this.responseMessage = null;
+                    this.personalMessage = [];
+                    this.personalMessage = respData.reverse();
+                    this.personalInbox = false;
+                    this.personalStarred = false;
+                    this.personalSent = false;
+                    this.personalDrafts = false;
+                    this.personalAllMail = false;
+                    this.personalTrash = true;
+                    this.authService.setLoader(false);
+                    if (this.personalMessage && this.personalMessage.length > 0) {
+                        this.selectedMessage.push(this.personalMessage[0])
                     }
-            }
-        )
+                    if (this.personalMessage && this.personalMessage.length > 0) {
+                        this.personalMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
+                            }
+                        })
+                    }
+                    if (this.selectedMessage && this.selectedMessage.length > 0) {
+                        this.selectedMessage.forEach(element => {
+                            if (element.user) {
+                                if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                                    this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                        .subscribe(
+                                            (resppData: any) => {
+                                                this.thumb = resppData;
+                                                element.user.image = this.thumb;
+                                            },
+                                            (error: any) => {
+                                                element.user.image = null;
+                                            });
+                                } else {
+                                    element.user.image = null;
+                                }
+                            };
+                        })
+                    }
+                }
+            )
     }
 
-    markedStarredMessages(messageId:number, esdb_id:string) {
+    markedStarredMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         this.selectedMessage = [];
         this.authService.setLoader(true);
-        let msgMoveData:{id: number, esdb_id: string,to: string} =  {
+        let msgMoveData: { id: number, esdb_id: string, to: string } = {
             "id": messageId,
             "esdb_id": esdb_id,
             "to": "starred"
@@ -569,9 +569,9 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
             .subscribe(
                 (respData: any) => {
                     this.authService.setLoader(false);
-                    this.notificationService.showSuccess( this.language.community_messages.move_starreds,null);
-                    if ( this.personalInbox == true) {
-                      this.personalMessages();
+                    this.notificationService.showSuccess(this.language.community_messages.move_starreds, null);
+                    if (this.personalInbox == true) {
+                        this.personalMessages();
                     } else if (this.personalStarred == true) {
                         this.personalStarredMessages();
                     } else if (this.personalSent == true) {
@@ -581,7 +581,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     } else if (this.personalAllMail == true) {
                         this.personalAllMailMessages();
                     } else if (this.personalTrash == true) {
-                      this.personalTrashMessages();
+                        this.personalTrashMessages();
                     }
                     setTimeout(() => {
                     }, 500);
@@ -589,35 +589,35 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
             )
     }
 
-    unmarkedStarredMessages(messageId:number, esdb_id:string) {
+    unmarkedStarredMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         this.selectedMessage = [];
         this.authService.setLoader(true);
-        let msgMoveData:{id: number, esdb_id: string,to: string} = {
+        let msgMoveData: { id: number, esdb_id: string, to: string } = {
             "id": messageId,
             "esdb_id": esdb_id,
             "to": "inbox"
         };
         this.authService.memberSendRequest('post', 'message/move', msgMoveData)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                this.notificationService.showSuccess(this.language.community_messages.move_inbox,null);
-                let selectedTab = $('.feature_tab .active a').text().trim();
-                setTimeout(() => {
-                    this.personalStarredMessages();
-                }, 1000);
-            }
-        )
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    this.notificationService.showSuccess(this.language.community_messages.move_inbox, null);
+                    let selectedTab = $('.feature_tab .active a').text().trim();
+                    setTimeout(() => {
+                        this.personalStarredMessages();
+                    }, 1000);
+                }
+            )
     }
 
-    clickMessages(id:number, esdb_id:string) {
+    clickMessages(id: number, esdb_id: string) {
         this.selectedMessage = [];
         this.authService.setLoader(true);
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(this.personalMessage && this.personalMessage.length > 0){
+        if (this.personalMessage && this.personalMessage.length > 0) {
             this.personalMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -630,18 +630,18 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         if (this.selectedMessage) {
             if (this.selectedMessage[0].is_read == 0) {
                 this.authService.memberSendRequest('get', 'message/read-message/' + id, null)
-                .subscribe(
-                    (respData: any) => {
-                        setTimeout(() => {
-                            $("#envelope-" + id).removeClass("fa-envelope-o").addClass("fa-envelope-open-o");
-                        }, 500);
-                    }
-                )
+                    .subscribe(
+                        (respData: any) => {
+                            setTimeout(() => {
+                                $("#envelope-" + id).removeClass("fa-envelope-o").addClass("fa-envelope-open-o");
+                            }, 500);
+                        }
+                    )
             }
         }
     }
 
-    clickDraftMessages(id:number, esdb_id:string) {
+    clickDraftMessages(id: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         this.visiblityDropdownSettings = {};
         this.language = this.lang.getLanguaageFile();
@@ -651,7 +651,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.replyMsgSubmitted = false;
         $(".widget-app-content").removeClass("highlight");
         this.selectedMessage = [];
-        if(this.personalMessage && this.personalMessage.length > 0){
+        if (this.personalMessage && this.personalMessage.length > 0) {
             this.personalMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val)
@@ -684,13 +684,13 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.messageForm.controls["cc"].setValue(ccUsers);
     }
 
-    deleteMessages(messageId:number, esdb_id:string) {
+    deleteMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         let self = this;
         self.confirmDialogService.confirmThis(this.language.confirmation_message.send_msg_trash, function () {
             self.selectedMessage = [];
             self.authService.setLoader(true);
-            let msgMoveData:{id: number, esdb_id: string,to: string} = {
+            let msgMoveData: { id: number, esdb_id: string, to: string } = {
                 "id": messageId,
                 "esdb_id": esdb_id,
                 "to": "trash"
@@ -700,11 +700,11 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.move_trash;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         // setTimeout(() => {
                         //   self.responseMessage = '';
                         // }, 2000);;
-                        if ( self.personalInbox == true) {
+                        if (self.personalInbox == true) {
                             self.personalMessages();
                         } else if (self.personalStarred == true) {
                             self.personalStarredMessages();
@@ -723,34 +723,34 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         })
     }
 
-    deleteMessagesPermanently(messageId:number, esdb_id:string) {
+    deleteMessagesPermanently(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, function () {
             self.authService.setLoader(true);
             self.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
-            .subscribe(
-                (respData: any) => {
-                    self.authService.setLoader(false);
-                    self.responseMessage = self.language.community_messages.permanently_delete;
-                    self.notificationService.showSuccess(self.responseMessage,null);
-                    let selectedTab:any = $('.feature_tab .active a').text().trim();
-                    setTimeout(() => {
-                        self.personalTrashMessages();
-                    }, 500);
-                }
-            )
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        self.responseMessage = self.language.community_messages.permanently_delete;
+                        self.notificationService.showSuccess(self.responseMessage, null);
+                        let selectedTab: any = $('.feature_tab .active a').text().trim();
+                        setTimeout(() => {
+                            self.personalTrashMessages();
+                        }, 500);
+                    }
+                )
         }, function () {
         })
     }
 
-    stringifiedData(data:string) {
-        if(data){
+    stringifiedData(data: string) {
+        if (data) {
             return JSON.parse(data)
         }
     }
 
-    replyToMessages(messageId:number, esdb_id:string) {
+    replyToMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = true;
         this.singleParticipent = true;
         this.multipleParticipent = false;
@@ -761,7 +761,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         }, 500)
     }
 
-    replayToAllMessages(messageId:number, esdb_id:string) {
+    replayToAllMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = true;
         this.singleParticipent = false;
         this.multipleParticipent = true;
@@ -773,8 +773,8 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
     }
 
     replyMessage() {
-        let msgType:any = $("#replyMsgType").val();
-        let esdb_id:any = $("#replyToMsgId").val();
+        let msgType: any = $("#replyMsgType").val();
+        let esdb_id: any = $("#replyToMsgId").val();
         this.replyMsgSubmitted = true;
         if ((this.replyMsgForm.valid)) {
             var formData: FormData = new FormData();
@@ -788,70 +788,70 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                             this.authService.setLoader(false);
                             this.replyMsgSubmitted = false;
                             if (respData.isError == false) {
-                                this.notificationService.showSuccess(respData.result,null);
+                                this.notificationService.showSuccess(respData.result, null);
                             } else {
-                                this.notificationService.showError(respData.result,null);
+                                this.notificationService.showError(respData.result, null);
                             }
                             this.replyMsgForm.reset();
                             this.isReplyMsgForm = false;
-                            let selectedTab:any = $('.feature_tab .active a').text().trim();
+                            let selectedTab: any = $('.feature_tab .active a').text().trim();
                             setTimeout(() => {
-                              if ( this.personalInbox == true) {
-                                this.personalMessages();
-                              } else if (this.personalStarred == true) {
-                                  this.personalStarredMessages();
-                              } else if (this.personalSent == true) {
-                                  this.personalSentMessages();
-                              } else if (this.personalDrafts == true) {
-                                  this.personalDraftsMessages();
-                              } else if (this.personalAllMail == true) {
-                                  this.personalAllMailMessages();
-                              } else if (this.personalTrash == true) {
-                                this.personalTrashMessages();
-                              }
+                                if (this.personalInbox == true) {
+                                    this.personalMessages();
+                                } else if (this.personalStarred == true) {
+                                    this.personalStarredMessages();
+                                } else if (this.personalSent == true) {
+                                    this.personalSentMessages();
+                                } else if (this.personalDrafts == true) {
+                                    this.personalDraftsMessages();
+                                } else if (this.personalAllMail == true) {
+                                    this.personalAllMailMessages();
+                                } else if (this.personalTrash == true) {
+                                    this.personalTrashMessages();
+                                }
                             }, 500);
                         }
                     )
             } else {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/reply-to-all/' + esdb_id, formData)
-                .subscribe(
-                    (respData: any) => {
-                        this.authService.setLoader(false);
-                        this.replyMsgSubmitted = false;
-                        if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
-                        } else {
-                            this.notificationService.showError(respData.result,null);
-                        }
-                        this.replyMsgForm.reset();
-                        this.isReplyMsgForm = false;
-                        let selectedTab:any = $('.feature_tab .active a').text().trim();
-                        setTimeout(() => {
-                            if ( this.personalInbox == true) {
-                            this.personalMessages();
-                            } else if (this.personalStarred == true) {
-                                this.personalStarredMessages();
-                            } else if (this.personalSent == true) {
-                                this.personalSentMessages();
-                            } else if (this.personalDrafts == true) {
-                                this.personalDraftsMessages();
-                            } else if (this.personalAllMail == true) {
-                                this.personalAllMailMessages();
-                            } else if (this.personalTrash == true) {
-                            this.personalTrashMessages();
+                    .subscribe(
+                        (respData: any) => {
+                            this.authService.setLoader(false);
+                            this.replyMsgSubmitted = false;
+                            if (respData.isError == false) {
+                                this.notificationService.showSuccess(respData.result, null);
+                            } else {
+                                this.notificationService.showError(respData.result, null);
                             }
-                        }, 500);
-                    }
-                )
+                            this.replyMsgForm.reset();
+                            this.isReplyMsgForm = false;
+                            let selectedTab: any = $('.feature_tab .active a').text().trim();
+                            setTimeout(() => {
+                                if (this.personalInbox == true) {
+                                    this.personalMessages();
+                                } else if (this.personalStarred == true) {
+                                    this.personalStarredMessages();
+                                } else if (this.personalSent == true) {
+                                    this.personalSentMessages();
+                                } else if (this.personalDrafts == true) {
+                                    this.personalDraftsMessages();
+                                } else if (this.personalAllMail == true) {
+                                    this.personalAllMailMessages();
+                                } else if (this.personalTrash == true) {
+                                    this.personalTrashMessages();
+                                }
+                            }, 500);
+                        }
+                    )
             }
         }
     }
 
     errorImage: any = { isError: false, errorMessage: '' };
-    uploadFile(event:Event) {
-        const file:File = (event.target as HTMLInputElement).files[0];
-        const mimeType:string = file.type;
+    uploadFile(event: Event) {
+        const file: File = (event.target as HTMLInputElement).files[0];
+        const mimeType: string = file.type;
         this.errorImage = { Error: true, errorMessage: '' };
         this.replyMsgForm.patchValue({
             add_image: file
@@ -859,7 +859,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         this.replyMsgForm.get('add_image').updateValueAndValidity();
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
-        var url:any;
+        var url: any;
         reader.onload = (_event) => {
             url = reader.result;
             $('.message-upload-list').show();
@@ -873,16 +873,16 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         $('.preview_txt').text(file.name);
     }
 
-    uploadDraftFile(event:Event) {
-        const file:File = (event.target as HTMLInputElement).files[0];
-        const mimeType:string = file.type;
+    uploadDraftFile(event: Event) {
+        const file: File = (event.target as HTMLInputElement).files[0];
+        const mimeType: string = file.type;
         this.messageForm.patchValue({
             file: file
         });
         this.messageForm.get('file').updateValueAndValidity();
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
-        var url:any;
+        var url: any;
         reader.onload = (_event) => {
             url = reader.result;
             $('.message-upload-list').show();
@@ -925,7 +925,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
     messageProcess() {
         this.messageSubmitted = true;
         if (this.messageForm.valid) {
-            var formData:FormData = new FormData();
+            var formData: FormData = new FormData();
             this.receiverUser = [];
             this.ccUser = [];
             if (this.messageForm.controls["receiver_id"].value.length > 0) {
@@ -942,17 +942,17 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
             this.messageForm.controls["cc"].setValue(this.ccUser);
             for (const key in this.messageForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.messageForm.value, key)) {
-                    const element:any = this.messageForm.value[key];
+                    const element: any = this.messageForm.value[key];
                     if (key == 'file') {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("cc[" + key + "]", value);
                             });
@@ -963,37 +963,37 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                 }
             };
             this.authService.memberSendRequest('post', 'message/send', formData)
-            .subscribe(
-                (respData:any) => {
-                    this.messageSubmitted = false;
-                    if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result'],null);
-                        this.messageForm.reset();
-                        this.messageForm.controls["kind"].setValue([]);
-                        this.messageForm.controls["receiver_id"].setValue([]);
-                        this.messageForm.controls["cc"].setValue([]);
-                        this.authService.memberSendRequest('delete', 'message/delete-draft/' + this.selectedMessage[0].id, null)
-                            .subscribe(
-                                (respData: any) => {
-                                    this.authService.setLoader(false);
-                                    this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
-                                    setTimeout(() => {
-                                        this.personalDraftsMessages();
-                                    }, 500);
-                                }
-                            )
-                    }else  if (respData['code'] == 400) {
-                        this.notificationService.showError(respData['message'], null);
+                .subscribe(
+                    (respData: any) => {
+                        this.messageSubmitted = false;
+                        if (respData['isError'] == false) {
+                            this.notificationService.showSuccess(respData['result'], null);
+                            this.messageForm.reset();
+                            this.messageForm.controls["kind"].setValue([]);
+                            this.messageForm.controls["receiver_id"].setValue([]);
+                            this.messageForm.controls["cc"].setValue([]);
+                            this.authService.memberSendRequest('delete', 'message/delete-draft/' + this.selectedMessage[0].id, null)
+                                .subscribe(
+                                    (respData: any) => {
+                                        this.authService.setLoader(false);
+                                        this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
+                                        setTimeout(() => {
+                                            this.personalDraftsMessages();
+                                        }, 500);
+                                    }
+                                )
+                        } else if (respData['code'] == 400) {
+                            this.notificationService.showError(respData['message'], null);
+                        }
+                    },
+                    (err) => {
+                        console.log(err);
                     }
-                },
-                (err) => {
-                    console.log(err);
-                }
-            );
+                );
         }
     }
 
-    deleteDraftMessages(messageId:number, esdb_id:string) {
+    deleteDraftMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         let self = this;
         this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, function () {
@@ -1004,7 +1004,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
                     (respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.personalDraftsMessages();
@@ -1015,7 +1015,7 @@ export class PersonalMessagesComponent implements OnInit,OnDestroy {
         })
     }
 
-    onReceiverSelect(item: { 'id': string, 'name': string } ) {
+    onReceiverSelect(item: { 'id': string, 'name': string }) {
         this.receiverUser.push(item.id);
     }
 

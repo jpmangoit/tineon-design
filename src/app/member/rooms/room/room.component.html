@@ -21,8 +21,8 @@
 						</button>
 						<button type="button" class="selected" (click)='onRoom()' routerLink="/room"
 							*ngIf="createAccess.room == 'Yes'"
-							[ngStyle]="displayRoom == true ?  {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
-                                'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+							[ngStyle]="displayRoom == true ?  {'border-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
+                                'background-color': setTheme.default_status == true ? '#FBC52D' : setTheme.button_bgcolor,
                                 'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
                                 : {'border-color':setTheme.button_bgcolor,'background-color':'#fff','color':'#68759F'}">
 							<span>{{language.courses.rooms}}</span>
@@ -88,8 +88,7 @@
 			<div class="main-card">
 				<div class="card  room-card" *ngIf="allRooms">
 					<div class="card-body club_all_news">
-						<h3 class="inst-title">{{language.instructor.instructor_overview}}</h3>
-
+						<h3 class="inst-title">{{language.room.room_overview}}</h3>
 						<div class="room-main-grid">
 							<div class="room-grid-list"
 								*ngFor="let item of allRooms  | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: totalRoomData}">

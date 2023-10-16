@@ -102,19 +102,19 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
             kind_id: new UntypedFormControl('', Validators.required),
             cc: new UntypedFormControl(''),
         });
-        this.authService.memberSendRequest('get','teamUsers/team/' + this.userDetails.team_id,null)
-        .subscribe((respData: any) => {
-            if(respData && respData.length > 0){
-                Object(respData).forEach((val, key) => {
-                    this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
-                    this.alluserDetails[val.keycloak_id] = {
-                        firstname: val.firstname,
-                        lastname: val.lastname,
-                        email: val.email,
-                    };
-                });
-            }
-        });
+        this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
+            .subscribe((respData: any) => {
+                if (respData && respData.length > 0) {
+                    Object(respData).forEach((val, key) => {
+                        this.alluserInformation[val.keycloak_id] = { member_id: val.member_id };
+                        this.alluserDetails[val.keycloak_id] = {
+                            firstname: val.firstname,
+                            lastname: val.lastname,
+                            email: val.email,
+                        };
+                    });
+                }
+            });
     }
 
     getGroupMessage() {
@@ -137,7 +137,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 if (this.groupMessage && this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -147,7 +147,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -156,7 +156,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -166,7 +166,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -198,7 +198,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 if (this.groupMessage && this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -208,7 +208,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -217,7 +217,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -227,7 +227,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -248,59 +248,59 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         this.selectedMessage = [];
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'message/get-group-starred', null).subscribe((respData: any) => {
-                // this.responseMessage = null;
-                this.groupMessage = [];
-                this.groupMessage = respData.reverse();
-                this.groupInbox = false;
-                this.groupStarred = true;
-                this.groupSent = false;
-                this.groupDrafts = false;
-                this.groupAllMail = false;
-                this.groupTrash = false;
-                this.authService.setLoader(false);
-                if (this.groupMessage && this.groupMessage.length > 0) {
-                    this.selectedMessage.push(this.groupMessage[0]);
-                }
-                if(this.groupMessage && this.groupMessage.length > 0){
-                    this.groupMessage.forEach(element => {
-                        if (element.user) {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
+            // this.responseMessage = null;
+            this.groupMessage = [];
+            this.groupMessage = respData.reverse();
+            this.groupInbox = false;
+            this.groupStarred = true;
+            this.groupSent = false;
+            this.groupDrafts = false;
+            this.groupAllMail = false;
+            this.groupTrash = false;
+            this.authService.setLoader(false);
+            if (this.groupMessage && this.groupMessage.length > 0) {
+                this.selectedMessage.push(this.groupMessage[0]);
+            }
+            if (this.groupMessage && this.groupMessage.length > 0) {
+                this.groupMessage.forEach(element => {
+                    if (element.user) {
+                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                .subscribe(
+                                    (resppData: any) => {
+                                        this.thumb = resppData;
+                                        element.user.image = this.thumb;
+                                    },
+                                    (error: any) => {
+                                        element.user.image = null;
+                                    });
+                        } else {
+                            element.user.image = null;
                         }
-                    })
-                }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
-                    this.selectedMessage.forEach(element => {
-                        if (element.user) {
-                            if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
-                                this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
-                                    .subscribe(
-                                        (resppData: any) => {
-                                            this.thumb = resppData;
-                                            element.user.image = this.thumb;
-                                        },
-                                        (error:any) => {
-                                            element.user.image = null;
-                                        });
-                            } else {
-                                element.user.image = null;
-                            }
+                    }
+                })
+            }
+            if (this.selectedMessage && this.selectedMessage.length > 0) {
+                this.selectedMessage.forEach(element => {
+                    if (element.user) {
+                        if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
+                            this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user.id].member_id, null)
+                                .subscribe(
+                                    (resppData: any) => {
+                                        this.thumb = resppData;
+                                        element.user.image = this.thumb;
+                                    },
+                                    (error: any) => {
+                                        element.user.image = null;
+                                    });
+                        } else {
+                            element.user.image = null;
                         }
-                    })
-                }
+                    }
+                })
+            }
 
-            });
+        });
     }
 
     groupSentMessages() {
@@ -323,7 +323,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 if (this.groupMessage && this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -333,7 +333,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -342,7 +342,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -352,7 +352,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -381,7 +381,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 this.groupAllMail = false;
                 this.groupTrash = false;
                 this.authService.setLoader(false);
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -391,7 +391,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -424,7 +424,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 if (this.groupMessage && this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -434,7 +434,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -443,7 +443,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -453,7 +453,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -485,7 +485,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                 if (this.groupMessage && this.groupMessage.length > 0) {
                     this.selectedMessage.push(this.groupMessage[0]);
                 }
-                if(this.groupMessage && this.groupMessage.length > 0){
+                if (this.groupMessage && this.groupMessage.length > 0) {
                     this.groupMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -495,7 +495,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -504,7 +504,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         }
                     })
                 }
-                if(this.selectedMessage && this.selectedMessage.length > 0){
+                if (this.selectedMessage && this.selectedMessage.length > 0) {
                     this.selectedMessage.forEach(element => {
                         if (element.user) {
                             if (this.alluserInformation && this.alluserInformation[element.user.id] && this.alluserInformation[element.user.id].member_id != null) {
@@ -514,7 +514,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                             this.thumb = resppData;
                                             element.user.image = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.user.image = null;
                                         });
                             } else {
@@ -566,7 +566,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         };
         this.authService.memberSendRequest('post', 'message/move', msgMoveData).subscribe((respData: any) => {
             this.authService.setLoader(false);
-            this.notificationService.showSuccess(this.language.community_messages.move_inbox,null);
+            this.notificationService.showSuccess(this.language.community_messages.move_inbox, null);
             let selectedTab: any = $('.feature_tab .active a').text().trim();
             setTimeout(() => {
                 this.groupStarredMessages();
@@ -580,7 +580,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         this.replyMsgSubmitted = false;
         $('.widget-app-content').removeClass('highlight');
         this.selectedMessage = [];
-        if(this.groupMessage && this.groupMessage.length > 0){
+        if (this.groupMessage && this.groupMessage.length > 0) {
             this.groupMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val);
@@ -625,7 +625,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         this.replyMsgSubmitted = false;
         $('.widget-app-content').removeClass('highlight');
         this.selectedMessage = [];
-        if(this.groupMessage && this.groupMessage.length > 0){
+        if (this.groupMessage && this.groupMessage.length > 0) {
             this.groupMessage.forEach((val, index) => {
                 if (val.id == id) {
                     this.selectedMessage.push(val);
@@ -703,7 +703,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                     .subscribe((respData: any) => {
                         self.authService.setLoader(false);
                         self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage,null);
+                        self.notificationService.showSuccess(self.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
                             self.groupTrashMessages();
@@ -719,13 +719,13 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         this.singleParticipent = true;
         this.multipleParticipent = false;
         this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + groupId, null).subscribe((respData: any) => {
-                this.receipientUsers = respData[0].participants;
-                setTimeout(() => {
-                    $('#reply-heading').text('Reply');
-                    $('#replyMsgType').val('reply');
-                    $('#replyToMsgId').val(esdb_id);
-                }, 500);
-            });
+            this.receipientUsers = respData[0].participants;
+            setTimeout(() => {
+                $('#reply-heading').text('Reply');
+                $('#replyMsgType').val('reply');
+                $('#replyToMsgId').val(esdb_id);
+            }, 500);
+        });
     }
 
     replyMessage() {
@@ -744,10 +744,10 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         this.authService.setLoader(false);
                         this.replyMsgSubmitted = false;
                         if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
+                            this.notificationService.showSuccess(respData.result, null);
                         } else {
-                            this.notificationService.showError(respData.result,null);
-                       }
+                            this.notificationService.showError(respData.result, null);
+                        }
                         this.replyMsgForm.reset();
                         this.isReplyMsgForm = false;
                         setTimeout(() => {
@@ -768,14 +768,14 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                     });
             } else {
                 this.authService.setLoader(true);
-                this.authService.memberSendRequest('post',    'message/reply-to-all/' + esdb_id,formData)
+                this.authService.memberSendRequest('post', 'message/reply-to-all/' + esdb_id, formData)
                     .subscribe((respData: any) => {
                         this.authService.setLoader(false);
                         this.replyMsgSubmitted = false;
                         if (respData.isError == false) {
-                            this.notificationService.showSuccess(respData.result,null);
+                            this.notificationService.showSuccess(respData.result, null);
                         } else {
-                            this.notificationService.showError(respData.result,null);
+                            this.notificationService.showError(respData.result, null);
                         }
                         this.replyMsgForm.reset();
                         this.isReplyMsgForm = false;
@@ -878,21 +878,21 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'teamgroups/' + this.teamId, null)
-            .subscribe((respData: any) => {
-                this.authService.setLoader(false);
-                this.groups = respData;
-                this.groupDropdownSettings = {
-                    singleSelection: true,
-                    idField: 'id',
-                    textField: 'name',
-                    selectAllText: 'Select All',
-                    enableCheckAll: false,
-                    unSelectAllText: 'UnSelect All',
-                    allowSearchFilter: true,
-                    searchPlaceholderText: this.language.header.search,
-                    closeDropDownOnSelection: true
-                };
-            });
+                .subscribe((respData: any) => {
+                    this.authService.setLoader(false);
+                    this.groups = respData;
+                    this.groupDropdownSettings = {
+                        singleSelection: true,
+                        idField: 'id',
+                        textField: 'name',
+                        selectAllText: 'Select All',
+                        enableCheckAll: false,
+                        unSelectAllText: 'UnSelect All',
+                        allowSearchFilter: true,
+                        searchPlaceholderText: this.language.header.search,
+                        closeDropDownOnSelection: true
+                    };
+                });
         }
     }
 
@@ -915,13 +915,13 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                     if (key == 'file') {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append('receiver_id[' + key + ']', value);
                             });
                         }
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append('cc[' + key + ']', value);
                             });
@@ -938,7 +938,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         this.messageSubmitted = false;
                         if (respData['isError'] == false) {
                             this.responseMessage = respData['result'];
-                            this.notificationService.showSuccess(this.responseMessage,null);
+                            this.notificationService.showSuccess(this.responseMessage, null);
 
                             this.messageForm.reset();
                             this.messageForm.controls['kind'].setValue([]);
@@ -952,12 +952,12 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                                 )
                                 .subscribe((respData: any) => {
                                     this.authService.setLoader(false);
-                                    this.notificationService.showSuccess(this.language.community_messages.message_sent,null);
+                                    this.notificationService.showSuccess(this.language.community_messages.message_sent, null);
                                     setTimeout(() => {
                                         this.groupDraftsMessages();
                                     }, 500);
                                 });
-                        }else  if (respData['code'] == 400) {
+                        } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }
                     },
@@ -976,16 +976,16 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
             function () {
                 self.selectedMessage = [];
                 self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete','message/delete-draft/' + messageId, null)
-                .subscribe((respData: any) => {
-                    self.authService.setLoader(false);
-                    self.responseMessage = self.language.community_messages.permanently_delete;
-                    self.notificationService.showSuccess(self.responseMessage,null);
-                    let selectedTab: any = $('.feature_tab .active a').text().trim();
-                    setTimeout(() => {
-                        self.groupDraftsMessages();
-                    }, 500);
-                });
+                self.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
+                    .subscribe((respData: any) => {
+                        self.authService.setLoader(false);
+                        self.responseMessage = self.language.community_messages.permanently_delete;
+                        self.notificationService.showSuccess(self.responseMessage, null);
+                        let selectedTab: any = $('.feature_tab .active a').text().trim();
+                        setTimeout(() => {
+                            self.groupDraftsMessages();
+                        }, 500);
+                    });
             },
             function () { }
         );

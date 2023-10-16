@@ -12,20 +12,20 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {NgxImageCompressService} from "ngx-image-compress";
+import { NgxImageCompressService } from "ngx-image-compress";
 import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
-import { saveAs } from 'file-saver'; 
+import { saveAs } from 'file-saver';
 
 declare var $: any;
 
 @Component({
     selector: 'app-mvereins-faq',
-    templateUrl: './mvereins-faq.component.html', 
+    templateUrl: './mvereins-faq.component.html',
     styleUrls: ['./mvereins-faq.component.css']
 })
-export class MvereinsFaqComponent implements OnInit { 
+export class MvereinsFaqComponent implements OnInit {
     displayFaqdiv: boolean = true;
     displayFaqcategorydiv: boolean = false;
     activeClass: string = 'faqActive';
@@ -36,7 +36,7 @@ export class MvereinsFaqComponent implements OnInit {
     docErrorMsg: boolean = false;
     hasPicture: boolean = false;
     hasDoc: boolean = false;
-    selectPos: boolean =  false;
+    selectPos: boolean = false;
     deletePos: boolean = false;
     tenCategoryFAQ: boolean = false;
     allCategoryFAQ: boolean = false;
@@ -50,35 +50,35 @@ export class MvereinsFaqComponent implements OnInit {
     file: File;
     fileToReturn: File
     imgName: string;
-    positionDeSelectedItem:number;
-    categoryDeSelectedItem:number;
-    categorySelectedItem:number;
-    positionSelectedItem:number;
+    positionDeSelectedItem: number;
+    categoryDeSelectedItem: number;
+    categorySelectedItem: number;
+    positionSelectedItem: number;
     categoryDropdownSettings: IDropdownSettings;
     positionDropdownSettings: IDropdownSettings;
-    image:File
+    image: File
     userDetails: LoginDetails;
-    userRole:string
+    userRole: string
     noSearchData: number = 0;
     imageUrl: string;
     docUrl: string;
     teamId: number
-    count:number = 0;
+    count: number = 0;
     showFile: string;
     faqId: number;
     editId: number;
-    catListArray: { id: number, name:string }[] = [];
-    positionList: { id: number, name:number }[] = [];
+    catListArray: { id: number, name: string }[] = [];
+    positionList: { id: number, name: number }[] = [];
     positionn: { id: number, name: number }[] = []
-    categoryShow: { id: number, name:string }[] = []
+    categoryShow: { id: number, name: string }[] = []
     categoryData: FAQCategory[] = [];
-    faqDataById:FAQ;
-    faqDataByCat:FAQ[] = [];
+    faqDataById: FAQ;
+    faqDataByCat: FAQ[] = [];
     searchData: FAQ[] = [];
     categoryAllFaq: FAQ[];
     setTheme: ThemeType;
     private activatedSub: Subscription;
-    searchFilter:boolean = false;
+    searchFilter: boolean = false;
     imgHeight: any;
     imgWidth: any;
     dowloading: boolean = false;
@@ -93,7 +93,7 @@ export class MvereinsFaqComponent implements OnInit {
         maxHeight: '15rem',
         translate: 'no',
         fonts: [
-            {class: 'gellix', name: 'Gellix'},
+            { class: 'gellix', name: 'Gellix' },
         ],
         toolbarHiddenButtons: [
             [
@@ -142,27 +142,27 @@ export class MvereinsFaqComponent implements OnInit {
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,
-        private confirmDialogService: ConfirmDialogService ,
+        private confirmDialogService: ConfirmDialogService,
         private imageCompress: NgxImageCompressService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
-        ) { }
+    ) { }
 
     ngOnInit() {
-        if(localStorage.getItem('club_theme') != null){
-            let theme:ThemeType =  JSON.parse(localStorage.getItem('club_theme'));
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
             this.setTheme = theme;
         }
-        this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
-          this.setTheme = resp;
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
         });
 
         $('#individualFAQ').show();
         $('#searchId').hide();
         $("#imageCrope").hide();
         this.language = this.lang.getLanguaageFile();
-        let userData:LoginDetails = JSON.parse(localStorage.getItem('user-data'));
+        let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = userData.team_id;
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];
@@ -208,12 +208,12 @@ export class MvereinsFaqComponent implements OnInit {
     getCategoryName() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'category', null).subscribe(
-            (respData:any) => {
+            (respData: any) => {
                 this.authService.setLoader(false)
                 this.categoryData = respData
                 let self = this;
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((key:FAQCategory, value:number) => {
+                if (respData && respData.length > 0) {
+                    Object(respData).forEach((key: FAQCategory, value: number) => {
                         if (value == 0) {
                             self.getFaqByCategory(key.id);
                         }
@@ -227,20 +227,20 @@ export class MvereinsFaqComponent implements OnInit {
     getFaqByCategory(id: number) {
         this.faqId = id
         this.authService.setLoader(true)
-        this.authService.memberSendRequest('get', 'getFaqbyCategory/'+ id + '/0/',null).subscribe(
-            (respData:any) => {
+        this.authService.memberSendRequest('get', 'getFaqbyCategory/' + id + '/0/', null).subscribe(
+            (respData: any) => {
                 this.authService.setLoader(false)
                 this.tenCategoryFAQ = true;
                 this.allCategoryFAQ = false;
                 this.faqDataByCat = respData;
-                this.faqDataByCat.forEach((element:any) => {
+                this.faqDataByCat.forEach((element: any) => {
                     if (element['faq_image'][0]?.['faq_image']) {
-                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                     }
+                        element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                    }
                 })
-                if(this.faqDataByCat.length == 10){
+                if (this.faqDataByCat.length == 10) {
                     this.showButton = true;
-                }else{
+                } else {
                     this.showButton = false;
                 }
             }
@@ -250,15 +250,15 @@ export class MvereinsFaqComponent implements OnInit {
     showAllFAQs() {
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'getFaqbyCategory/' + this.faqId + '/1/', null).subscribe(
-            (respData:any) => {
+            (respData: any) => {
                 this.authService.setLoader(false)
-                if(respData.length > 10){
+                if (respData.length > 10) {
                     this.tenCategoryFAQ = false;
                     this.allCategoryFAQ = true;
                     this.categoryAllFaq = respData;
-                    this.categoryAllFaq.forEach((element:any) => {
+                    this.categoryAllFaq.forEach((element: any) => {
                         if (element['faq_image'][0]?.['faq_image']) {
-                            element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20)))as string;
+                            element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                         }
                     })
                 }
@@ -266,7 +266,7 @@ export class MvereinsFaqComponent implements OnInit {
         )
     }
 
-    editFAQById(id:number) {
+    editFAQById(id: number) {
         this.getFaqByCategory(this.faqId);
         $("#imageCrope").hide();
         $('.preview_txt').text('');
@@ -279,7 +279,7 @@ export class MvereinsFaqComponent implements OnInit {
                 this.authService.setLoader(false);
                 this.editId = respData.result[0].id;
                 let self = this;
-                if(respData && respData['result'].length > 0){
+                if (respData && respData['result'].length > 0) {
                     respData.result.forEach(function (val, key) {
                         self.faqDataById = val;
                     })
@@ -294,7 +294,7 @@ export class MvereinsFaqComponent implements OnInit {
         this.positionn = [];
         if (this.faqDataById.position) {
             let self = this
-            if(this.positionList && this.positionList.length > 0){
+            if (this.positionList && this.positionList.length > 0) {
                 this.positionList.forEach((val, key) => {
                     if (val.id == self.faqDataById.position) {
                         self.positionn.push({ id: val.id, name: val.name })
@@ -302,10 +302,10 @@ export class MvereinsFaqComponent implements OnInit {
                     }
                 });
             }
-        }else{
+        } else {
             this.FAQForm.controls["position"].setValue(this.positionn);
         }
-        if( this.catListArray &&  this.catListArray.length > 0){
+        if (this.catListArray && this.catListArray.length > 0) {
             this.catListArray.forEach((val, key) => {
                 if (val.id == this.faqDataById.category) {
                     this.categoryShow = []
@@ -327,15 +327,15 @@ export class MvereinsFaqComponent implements OnInit {
                 this.faq_image = this.faqDataById['faq_image'][0]?.['faq_image'];
                 this.hasDoc = false;
                 this.hasPicture = true;
-                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                this.imageUrl =  this.faqDataById['faq_image'][0]['faq_image'];
+                this.faqDataById['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.faqDataById['faq_image'][0]?.['faq_image'].substring(20))) as string;
+                this.imageUrl = this.faqDataById['faq_image'][0]['faq_image'];
             }
         }
-        if(this.faqDataById['faq_image'][0]?.['faq_document'] != ''){
+        if (this.faqDataById['faq_image'][0]?.['faq_document'] != '') {
             // this.imageUrl =  this.faqDataById['faq_image'][0]?.['faq_document'];
             this.hasPicture = false;
             this.hasDoc = true;
-            this.faq_document =  this.faqDataById['faq_image'][0]?.['faq_document'];
+            this.faq_document = this.faqDataById['faq_image'][0]?.['faq_document'];
         }
         // if (this.faqDataById.image) {
         //     if ((this.faqDataById.image.endsWith(".jpg")) || (this.faqDataById.image.endsWith(".jpeg")) || (this.faqDataById.image.endsWith(".png")) ||
@@ -369,7 +369,7 @@ export class MvereinsFaqComponent implements OnInit {
             this.FAQForm.controls["category"].setValue(this.categorySelectedItem)
 
         } else if (this.faqDataById.category) {
-            if(this.categoryShow && this.categoryShow.length > 0){
+            if (this.categoryShow && this.categoryShow.length > 0) {
                 this.categoryShow.forEach((val, key) => {
                     let categoryShow = val.id
                     this.FAQForm.controls["category"].setValue(categoryShow);
@@ -382,7 +382,7 @@ export class MvereinsFaqComponent implements OnInit {
         this.authService.setLoader(false);
         for (const key in this.FAQForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.FAQForm.value, key)) {
-                const element:any = this.FAQForm.value[key];
+                const element: any = this.FAQForm.value[key];
                 if (key == 'title') {
                     formData.append('title', element);
                 }
@@ -390,18 +390,18 @@ export class MvereinsFaqComponent implements OnInit {
                     formData.append('category', element);
                 }
                 if (key == 'position') {
-                    if(this.positionSelectedItem && this.selectPos == true){
-                        formData.append("position",this.positionSelectedItem);
+                    if (this.positionSelectedItem && this.selectPos == true) {
+                        formData.append("position", this.positionSelectedItem);
 
-                    }else if(this.positionDeSelectedItem && this.deletePos == true){
+                    } else if (this.positionDeSelectedItem && this.deletePos == true) {
                         this.positionSelectedItem = null;
-                        formData.append("position",this.positionSelectedItem);
+                        formData.append("position", this.positionSelectedItem);
                         this.positionDeSelectedItem = null;
-                    }else if(this.faqDataById.position) {
+                    } else if (this.faqDataById.position) {
                         formData.append('position', this.positionn[0].id);
 
-                    }else if(this.faqDataById.position == null){
-                        formData.append("position",'');
+                    } else if (this.faqDataById.position == null) {
+                        formData.append("position", '');
                     }
                 }
 
@@ -412,15 +412,15 @@ export class MvereinsFaqComponent implements OnInit {
                 if (key == 'image') {
                     if (this.fileToReturn) {
                         formData.append('file', this.fileToReturn);
-                    }else{
-                        if(this.faq_image ){
-                           formData.append('faq_image', this.faq_image);
-                        }else{
+                    } else {
+                        if (this.faq_image) {
+                            formData.append('faq_image', this.faq_image);
+                        } else {
                             formData.append('faq_image', '');
                         }
-                        if(this.faq_document){
-                           formData.append('faq_document', this.faq_document);
-                        }else{
+                        if (this.faq_document) {
+                            formData.append('faq_document', this.faq_document);
+                        } else {
                             formData.append('faq_document', '');
                         }
                     }
@@ -430,24 +430,24 @@ export class MvereinsFaqComponent implements OnInit {
                     //     formData.append('imageUrl', JSON.stringify(this.imageUrl));
                     // }
                 }
-                if (key == 'team_id'){
+                if (key == 'team_id') {
                     formData.append('team_id', element);
                 }
             }
         }
-        if(this.FAQForm.valid){
+        if (this.FAQForm.valid) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('put', 'updateFaq/' + this.editId, formData).subscribe(
-                (respData:any) => {
+                (respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'],null);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         this.getFaqByCategory(this.faqId);
                         setTimeout(() => {
                             $('#exModal').modal('hide');
                             this.getFaqByCategory(this.faqId);
                             this.fileToReturn = null;
-                            const url: string[] = ["/vereins-faq-detail/"+this.editId];
+                            const url: string[] = ["/vereins-faq-detail/" + this.editId];
                             this.router.navigate(url);
                         }, 2000);
                     } else if (respData['code'] == 400) {
@@ -458,21 +458,21 @@ export class MvereinsFaqComponent implements OnInit {
         }
     }
 
-    deleteFAQ(id:number) {
+    deleteFAQ(id: number) {
         let self = this;
         self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_faq, function () {
             self.authService.setLoader(true);
             self.authService.memberSendRequest('delete', 'deleteFaq/' + id, null)
                 .subscribe(
-                    (respData:any) => {
+                    (respData: any) => {
                         self.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'],null);
+                            self.notificationService.showSuccess(respData['result']['message'], null);
                             setTimeout(function () {
                                 self.getFaqByCategory(self.faqId)
                             }, 3000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['result']['message'],null);
+                            self.notificationService.showError(respData['result']['message'], null);
                         }
                     }
                 )
@@ -483,36 +483,33 @@ export class MvereinsFaqComponent implements OnInit {
     onSearch() {
         this.searchSubmit = true;
         this.searchForm.get('search').setValidators(Validators.required);
-	    this.searchForm.get('search').updateValueAndValidity();
+        this.searchForm.get('search').updateValueAndValidity();
         this.searchData = null;
         let searchValue = this.searchForm.value.search
-        if(searchValue){
+        if (searchValue) {
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'getFaqbytitle/' + searchValue, null).subscribe(
-                (respData:any) => {
+                (respData: any) => {
                     this.authService.setLoader(false)
                     if (respData) {
                         $('#individualFAQ').hide();
                         $('#searchId').show();
                         this.searchData = respData;
 
-                        
+
                         this.searchFilter = true;
-                        this.searchData.forEach((element:any) =>{
+                        this.searchData.forEach((element: any) => {
                             if (element['faq_image'][0]?.['faq_image']) {
                                 element['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['faq_image'][0]?.['faq_image'].substring(20))) as string;
                             }
                         })
-                        // if (this.searchData['faq_image'][0]?.['faq_image']) {
-                        //     this.searchData['faq_image'][0]['faq_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.searchData['faq_image'][0]?.['faq_image'].substring(20)))as string;
-                        // }
                     }
                     if (respData['success'] == false) {
                         this.notificationService.showError(respData['message'], null);
                     }
                 }
             )
-        }else{
+        } else {
             this.searchSubmit = true;
         }
     }
@@ -532,26 +529,26 @@ export class MvereinsFaqComponent implements OnInit {
         this.activeClass = check == 1 ? "faqActive" : check == 2 ? "faqcategoryActive" : "faqActive";
     }
 
-    onCategoryItemSelect(item: { id: number, name:string }) {
+    onCategoryItemSelect(item: { id: number, name: string }) {
         this.categorySelectedItem = item.id;
     }
 
-    onCategoryItemDeSelect(item: { id: number, name:string }) {
+    onCategoryItemDeSelect(item: { id: number, name: string }) {
         this.categorySelectedItem = null;
         this.categoryShow = []
         this.FAQForm.value.category = '';
     }
 
-    onPositionItemSelect(item: { id: number, name:number }) {
+    onPositionItemSelect(item: { id: number, name: number }) {
         this.positionSelectedItem = item.id;
         this.selectPos = true;
-        this.deletePos =  false
+        this.deletePos = false
     }
 
-    onPositionItemDeSelect(item: { id: number, name:number }) {
+    onPositionItemDeSelect(item: { id: number, name: number }) {
         this.positionDeSelectedItem = item.id;
         this.selectPos = false;
-        this.deletePos =  true;
+        this.deletePos = true;
     }
 
     backToVerein() {
@@ -572,25 +569,25 @@ export class MvereinsFaqComponent implements OnInit {
         $('#searchId').hide();
     }
 
-    categoryFaq(i:Number){
+    categoryFaq(i: Number) {
     }
 
-    onTabClick(event:any) {
-        var catId:number = $("#tab-"+event.index).attr("name");
+    onTabClick(event: any) {
+        var catId: number = $("#tab-" + event.index).attr("name");
         this.getFaqByCategory(catId);
     }
 
-     /**
-    * Function is used to validate file type is image and upload images
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  error message if file type is not image
-    */
-    errorFile:  { isError: boolean, errorMessage: string }  = { isError: false, errorMessage: '' };
-    uploadFile(event:Event) {
-        var file:File = (event.target as HTMLInputElement).files[0];
-        const mimeType:string = file.type;
-        const mimeSize:number = file.size;
+    /**
+   * Function is used to validate file type is image and upload images
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  error message if file type is not image
+   */
+    errorFile: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
+    uploadFile(event: Event) {
+        var file: File = (event.target as HTMLInputElement).files[0];
+        const mimeType: string = file.type;
+        const mimeSize: number = file.size;
         this.imgName = file.name
         if ((mimeType.match(/image\/*/) != null) || (mimeType.match(/application\/*/) != null)) {
             if ((mimeType.match(/application\/*/))) {
@@ -599,7 +596,7 @@ export class MvereinsFaqComponent implements OnInit {
                     this.errorFile = { isError: true, errorMessage: this.language.create_message.file_size };
                 } else {
                     this.fileToReturn = null;
-                    this.errorFile = { isError: false,errorMessage: '' };
+                    this.errorFile = { isError: false, errorMessage: '' };
                     this.docErrorMsg = false;
                     this.fileToReturn = file;
                     this.FAQForm.patchValue({
@@ -607,10 +604,10 @@ export class MvereinsFaqComponent implements OnInit {
                     });
                     this.FAQForm.get('image').updateValueAndValidity();
 
-                    this.fileToReturn =  file;
+                    this.fileToReturn = file;
                     const reader: FileReader = new FileReader();
                     reader.readAsDataURL(file);
-                    var url:any;
+                    var url: any;
                     let self = this
                     reader.onload = (_event) => {
                         url = reader.result;
@@ -627,25 +624,25 @@ export class MvereinsFaqComponent implements OnInit {
         }
     }
 
-    errorImage: { isError: boolean, errorMessage: string} = { isError: false, errorMessage: '' };
+    errorImage: { isError: boolean, errorMessage: string } = { isError: false, errorMessage: '' };
     fileChangeEvent(event: Event): void {
         $("#imageCrope").show();
         this.fileToReturn = null;
         this.imageChangedEvent = event;
         this.file = (event.target as HTMLInputElement).files[0];
-        var mimeType:string = this.file.type;
+        var mimeType: string = this.file.type;
         if (mimeType.match(/image\/*/) == null) {
             this.errorImage = { isError: true, errorMessage: this.language.error_message.common_valid };
         }
         const reader = new FileReader();
-            reader.onload = () => {
-                const img = new Image();
-                img.onload = () => {
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
                 this.imgWidth = img.width;
                 this.imgHeight = img.height;
-                };
-                img.src = reader.result as string;
             };
+            img.src = reader.result as string;
+        };
         reader.readAsDataURL(this.file);
     }
 
@@ -656,13 +653,13 @@ export class MvereinsFaqComponent implements OnInit {
     * @return  {object} file object
     */
 
-	imageCropped(event: ImageCroppedEvent) {
+    imageCropped(event: ImageCroppedEvent) {
         let imgData = this.commonFunctionService.getAspectRatio(this.imgHeight, this.imgWidth);
         this.croppedImage = event.base64;
-        this.imageCompress.compressFile(this.croppedImage,-1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
+        this.imageCompress.compressFile(this.croppedImage, -1, imgData[2], 100, imgData[0], imgData[1]) // 50% ratio, 50% quality
             .then(
                 (compressedImage) => {
-                    this.fileToReturn = this.commonFunctionService.base64ToFile( compressedImage, this.imageChangedEvent.target['files'][0].name,);
+                    this.fileToReturn = this.commonFunctionService.base64ToFile(compressedImage, this.imageChangedEvent.target['files'][0].name,);
                     this.FAQForm.patchValue({ image: this.fileToReturn });
                     this.FAQForm.get('image').updateValueAndValidity();
                     $('.preview_txt').show(this.fileToReturn.name);
@@ -682,12 +679,12 @@ export class MvereinsFaqComponent implements OnInit {
         /* show message */
     }
 
-      /**
-  * Function is used to download document
-  * @author  MangoIt Solutions
-  * @param   {path}
-  */
-      downloadDoc(path: any) {
+    /**
+* Function is used to download document
+* @author  MangoIt Solutions
+* @param   {path}
+*/
+    downloadDoc(path: any) {
         let data = {
             name: path
         }

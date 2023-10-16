@@ -83,23 +83,6 @@ export class EventListComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     var url: string[] = [];
-                    respData.events && respData.events.forEach(element => {
-                        if (element && element.picture_video && element.picture_video != null && element.picture_video != '') {
-                            if (element.picture_video) {
-                                url = element.picture_video.split('"');
-                                if (url && url.length > 0) {
-                                    url.forEach((el) => {
-                                        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                            element.picture_video = el;
-                                        }
-                                    });
-                                } else {
-                                    element['picture_video'] = '';
-                                }
-                            }
-                        }
-                    });
-
                     respData.events.forEach((element: any) => {
                         if (element?.event_images[0]?.event_image) {
                             element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.event_images[0]?.event_image.substring(20)));
@@ -151,8 +134,6 @@ export class EventListComponent implements OnInit {
     }
 
     // deleteNews(newsId: number) {
-    //     // console.log(this.searchValue);
-
     //     let self = this;
     //     this.commonFunctionService.deleteNews(newsId)
     //         .then((resp: any) => {

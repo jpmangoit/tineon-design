@@ -149,21 +149,6 @@ export class EventsCalendarComponent implements OnInit {
                         for (var key in this.all_events) {
                             if (this.all_events.hasOwnProperty(key)) {
                                 element = this.all_events[key];
-                                // var url: string[] = [];
-                                // if (element?.picture_video != null && element?.picture_video != '') {
-                                //     if (element.picture_video) {
-                                //         url = element.picture_video.split('"');
-                                //         if (url && url.length > 0) {
-                                //             url.forEach((el) => {
-                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                //                     element.picture_video = el;
-                                //                 }
-                                //             });
-                                //         } else {
-                                //             element.picture_video = '';
-                                //         }
-                                //     }
-                                // }
                                 if (element?.recurrence && element?.recurrence != '' && element?.recurrence != null) {
                                     let recurrence: string = element.recurrence;
                                     if (recurrence.includes('UNTIL') == false) {
@@ -329,26 +314,7 @@ export class EventsCalendarComponent implements OnInit {
                                     if (this.allCourses.hasOwnProperty(key)) {
                                         element = this.allCourses[key];
                                         var url: string[] = [];
-                                        // if(element){
-                                        //     for (const key in element) {
-                                        //         if (Object.prototype.hasOwnProperty.call(element, key)) {
-                                        //             const value: string = element[key]
-                                        //             if (key == 'picture_video' && value != null) {
-                                        //                 url = value.split('\"');
-                                        //             }
-                                        //         }
-                                        //     }
-                                        // }
-                                        // if (url && url.length > 0) {
-                                        //     let self = this;
-                                        //     url.forEach(el => {
-                                        //         if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                        //             element.picture_video = el;
-                                        //         }
-                                        //     });
-                                        // } else {
-                                        //     element['picture_video'] = '';
-                                        // }
+                            
                                         this.allData[key] = element;
                                         if (element && element.recurrence != '' && element.recurrence != null) {
                                             let recurrence: string = element.recurrence;

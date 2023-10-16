@@ -106,7 +106,9 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
+
 
     },
     "club_wall":{
@@ -212,8 +214,9 @@
         "group_in_common":"Groupe en commun",
         "delete_chat":"Supprimer discussion",
         "media_link_doc":"Médias, liens et documents",
-        "email_draft":"E-mail enregistré comme brouillon",
-        "message_to_me" : "nachrichten an mich"
+        "email_draft":"E-mail enregistré comme brouillon", 
+        "message_to_me" : "Nachrichten an mich"
+
 
     },
     "group_news":{
@@ -245,7 +248,8 @@
         "groupNewsDetails":"Détails des actualités du groupe",
         "currentNews":"Actualités actuelles",
         "updatedNews":"Nouvelles mises à jour",
-        "deleteNews":"Supprimer le Détail"
+        "deleteNews":"Supprimer le Détail",
+        "author": "Author"
     },
     "profile":{
         "profile_nav":{
@@ -446,8 +450,8 @@
 
         "viewTask":"Afficher la tâche",
         "task_created_by": "Task Created by:",
-        "days":"Jours"
-
+        "days":"Jours",
+        "task-details": "Task - Details"
     },
     "club_document":{
         "title":"Documents",
@@ -667,7 +671,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message":{
         "accept_group":"Êtes-vous sûr de vouloir accepter ce groupe ?",
@@ -892,7 +898,8 @@
         "currentRoom":"Salle en cours",
         "updateRoom":"Mettre à jour la salle",
         "deleteRoom":"Supprimer salle",
-        "search_result":"Résultat de la recherche"
+        "search_result":"Résultat de la recherche",
+        "room_overview" : "Rooms"
     },
     "instructor":{
         "create_instructor":"Créer un instructeur",

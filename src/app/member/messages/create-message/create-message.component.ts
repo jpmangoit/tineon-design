@@ -22,40 +22,40 @@ declare var $: any;
     styleUrls: ['./create-message.component.css']
 })
 
-export class CreateMessageComponent implements OnInit ,OnDestroy{
-  language: any;
+export class CreateMessageComponent implements OnInit, OnDestroy {
+    language: any;
 
-  userDetails: LoginDetails;
-  userAccess: UserAccess ;
-  createAccess: CreateAccess;
-  participateAccess: ParticipateAccess;
-  authorizationAccess: AuthorizationAccess;
-  visiblityDropdownSettings:IDropdownSettings;
-  groupDropdownSettings:IDropdownSettings;
-  userDropdownCCSettings:IDropdownSettings;
-  userDropdownSettings:IDropdownSettings;
-  userDropdownList:{ 'id': string, 'name': string }[] = [];
-  userDropdownCCList:{ 'id': string, 'name': string }[]  = [];
-  alluserDetails: { firstname: string, lastname: string, email:string }[] = [];
-  ccUser:number[] = [];
-  responseMessage:string = null;
-  messageForm: UntypedFormGroup;
-  messageSubmitted:boolean = false;
-  personalVisiable:boolean = true;
-  groupVisiable:boolean = false;
-  clubVisiable:boolean = false;
-  groups: CommunityGroup[];
-  teamId: number;
-  setTheme: ThemeType;
-  receiverUser:any[] = [];
-  visiblity: { id: string, name: string }[] = [];
-  alluserInformation:{ firstname: string, lastname: string, email:string }[] = [];
-  kindIds:number[] = [];
-  selectedVisiblity:string;
-  selectedKindId:number;
-  files: string[] = [];
-  receipientUsers:{approved_status:number,group_id: number,groupusers: {email: string,firstname: string, id: number, lastname: string, username: string}[],id: number,user_id: number}[] = [];
-  alluserInfo:any;
+    userDetails: LoginDetails;
+    userAccess: UserAccess;
+    createAccess: CreateAccess;
+    participateAccess: ParticipateAccess;
+    authorizationAccess: AuthorizationAccess;
+    visiblityDropdownSettings: IDropdownSettings;
+    groupDropdownSettings: IDropdownSettings;
+    userDropdownCCSettings: IDropdownSettings;
+    userDropdownSettings: IDropdownSettings;
+    userDropdownList: { 'id': string, 'name': string }[] = [];
+    userDropdownCCList: { 'id': string, 'name': string }[] = [];
+    alluserDetails: { firstname: string, lastname: string, email: string }[] = [];
+    ccUser: number[] = [];
+    responseMessage: string = null;
+    messageForm: UntypedFormGroup;
+    messageSubmitted: boolean = false;
+    personalVisiable: boolean = true;
+    groupVisiable: boolean = false;
+    clubVisiable: boolean = false;
+    groups: CommunityGroup[];
+    teamId: number;
+    setTheme: ThemeType;
+    receiverUser: any[] = [];
+    visiblity: { id: string, name: string }[] = [];
+    alluserInformation: { firstname: string, lastname: string, email: string }[] = [];
+    kindIds: number[] = [];
+    selectedVisiblity: string;
+    selectedKindId: number;
+    files: string[] = [];
+    receipientUsers: { approved_status: number, group_id: number, groupusers: { email: string, firstname: string, id: number, lastname: string, username: string }[], id: number, user_id: number }[] = [];
+    alluserInfo: any;
     private activatedSub: Subscription;
     constructor(
         private lang: LanguageService,
@@ -71,17 +71,17 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
     ) { }
 
     ngOnInit(): void {
-      if (localStorage.getItem('club_theme') != null) {
-        let theme :ThemeType = JSON.parse(localStorage.getItem('club_theme'));
-        this.setTheme = theme;
-      }
-      this.activatedSub = this.themes.club_theme.subscribe((resp:ThemeType) => {
-        this.setTheme = resp;
-      });
+        if (localStorage.getItem('club_theme') != null) {
+            let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
+            this.setTheme = theme;
+        }
+        this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
+            this.setTheme = resp;
+        });
         this.language = this.lang.getLanguaageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
-        let userRole:string = this.userDetails.roles[0];
+        let userRole: string = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
@@ -134,7 +134,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
-                    if(respData && respData.length > 0){
+                    if (respData && respData.length > 0) {
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.keycloak_id] = { firstname: val.firstname, lastname: val.lastname, email: val.email };
                             this.userDropdownList.push({ 'id': val.keycloak_id, 'name': val.firstname + ' ' + val.lastname });
@@ -202,26 +202,26 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
             var uniqueCcUser = this.authService.uniqueData(this.ccUser);
             this.messageForm.controls["cc"].setValue(uniqueCcUser);
 
-            if(this.selectedKindId){
+            if (this.selectedKindId) {
                 //var uniqueKindUser = this.authService.uniqueData(this.selectedKindId);
-              this.messageForm.controls["kind_id"].setValue(this.selectedKindId);
-            }else{
-              this.messageForm.controls["kind_id"].setValue('');
+                this.messageForm.controls["kind_id"].setValue(this.selectedKindId);
+            } else {
+                this.messageForm.controls["kind_id"].setValue('');
             }
             for (const key in this.messageForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.messageForm.value, key)) {
-                    const element:any = this.messageForm.value[key];
+                    const element: any = this.messageForm.value[key];
                     if (key == 'file') {
                         formData.append('file', element);
 
                     } else if (key == 'receiver_id') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
-                        if(element && element.length > 0){
+                        if (element && element.length > 0) {
                             element.forEach(function (value, key) {
                                 formData.append("cc[" + key + "]", value);
                             });
@@ -231,20 +231,20 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                     }
                 }
             };
-            let kindValue:string = this.messageForm.controls["kind"].value;
+            let kindValue: string = this.messageForm.controls["kind"].value;
 
             if (kindValue == 'personal') {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/send', formData)
                     .subscribe(
-                        (respData:any) => {
+                        (respData: any) => {
                             this.authService.setLoader(false);
                             this.messageSubmitted = false;
                             if (respData['isError'] == false) {
                                 this.receipientUsers = [];
                                 this.receiverUser = [];
                                 this.ccUser = [];
-                                this.notificationService.showSuccess(respData['result']['message'],null);
+                                this.notificationService.showSuccess(respData['result']['message'], null);
                                 this.messageForm.reset();
                                 this.messageForm.controls["kind"].setValue([]);
                                 this.messageForm.controls["receiver_id"].setValue([]);
@@ -255,8 +255,8 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                     const url: string[] = ["/community"];
                                     this.router.navigate(url);
                                 }, 1000);
-                            }else  if (respData['code'] == 400) {
-                                this.notificationService.showError(respData['message']['message'],null)
+                            } else if (respData['code'] == 400) {
+                                this.notificationService.showError(respData['message']['message'], null)
                             }
                         },
                         (err) => {
@@ -267,7 +267,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/send-group-message', formData)
                     .subscribe(
-                        (respData:any) => {
+                        (respData: any) => {
                             this.authService.setLoader(false);
                             this.messageSubmitted = false;
 
@@ -275,7 +275,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                 this.receipientUsers = [];
                                 this.receiverUser = [];
                                 this.ccUser = [];
-                                this.notificationService.showSuccess(respData['result'],null);
+                                this.notificationService.showSuccess(respData['result'], null);
                                 this.messageForm.controls["kind"].setValue([]);
                                 this.messageForm.controls["kind_id"].setValue([]);
                                 this.messageForm.reset();
@@ -285,7 +285,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                     const url: string[] = ["/community"];
                                     this.router.navigate(url);
                                 }, 1000);
-                            }else  if (respData['code'] == 400) {
+                            } else if (respData['code'] == 400) {
                                 this.notificationService.showError(respData['message'], null);
                             }
                         },
@@ -296,33 +296,33 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
             } else if (kindValue == 'club') {
                 this.authService.setLoader(true);
                 this.authService.memberSendRequest('post', 'message/send-club-message', formData)
-                .subscribe(
-                    (respData:any) => {
-                        this.authService.setLoader(false);
-                        this.messageSubmitted = false;
-                        if (respData['isError'] == false) {
-                            this.receipientUsers = [];
-                            this.receiverUser = [];
-                            this.ccUser = [];
-                             this.notificationService.showSuccess(respData['result'],null);
-                            this.messageForm.controls["kind"].setValue([]);
-                            this.messageForm.controls["receiver_id"].setValue([]);
-                            this.messageForm.controls["cc"].setValue([]);
-                            this.messageForm.reset();
-                            $(".message_title").click();
-                            setTimeout(() => {
-                                localStorage.setItem('backItem', 'clubMsg');
-                                const url: string[] = ["/community"];
-                                this.router.navigate(url);
-                            }, 1000);
-                        }else  if (respData['code'] == 400) {
-                            this.notificationService.showError(respData['message'], null);
+                    .subscribe(
+                        (respData: any) => {
+                            this.authService.setLoader(false);
+                            this.messageSubmitted = false;
+                            if (respData['isError'] == false) {
+                                this.receipientUsers = [];
+                                this.receiverUser = [];
+                                this.ccUser = [];
+                                this.notificationService.showSuccess(respData['result'], null);
+                                this.messageForm.controls["kind"].setValue([]);
+                                this.messageForm.controls["receiver_id"].setValue([]);
+                                this.messageForm.controls["cc"].setValue([]);
+                                this.messageForm.reset();
+                                $(".message_title").click();
+                                setTimeout(() => {
+                                    localStorage.setItem('backItem', 'clubMsg');
+                                    const url: string[] = ["/community"];
+                                    this.router.navigate(url);
+                                }, 1000);
+                            } else if (respData['code'] == 400) {
+                                this.notificationService.showError(respData['message'], null);
+                            }
+                        },
+                        (err) => {
+                            console.log(err);
                         }
-                    },
-                    (err) => {
-                        console.log(err);
-                    }
-                );
+                    );
             }
         }
     }
@@ -336,28 +336,26 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                 self.messageForm.controls["receiver_id"].setValue(self.receiverUser);
                 self.messageForm.controls["cc"].setValue(self.ccUser);
 
-                if(self.selectedKindId){
-                  self.messageForm.controls["kind_id"].setValue(self.selectedKindId);
-                }else{
-                  self.messageForm.controls["kind_id"].setValue(1);
+                if (self.selectedKindId) {
+                    self.messageForm.controls["kind_id"].setValue(self.selectedKindId);
+                } else {
+                    self.messageForm.controls["kind_id"].setValue(1);
                 }
 
                 self.messageForm.controls["message_type"].setValue('draft');
                 for (const key in self.messageForm.value) {
                     if (Object.prototype.hasOwnProperty.call(self.messageForm.value, key)) {
-                        const element:any = self.messageForm.value[key];
+                        const element: any = self.messageForm.value[key];
                         if (key == 'file') {
                             formData.append('file', element);
                         } else if (key == 'receiver_id') {
-                            if(element && element.length > 0){
+                            if (element && element.length > 0) {
                                 element.forEach(function (value, key) {
                                     formData.append("receiver_id[" + key + "]", value);
                                 });
                             }
-
                         } else if (key == 'cc') {
-                            if(element && element.length > 0){
-
+                            if (element && element.length > 0) {
                                 element.forEach(function (value, key) {
                                     formData.append("cc[" + key + "]", value);
                                 });
@@ -368,20 +366,20 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                     }
                 };
 
-                let kindValue:string = self.messageForm.controls["kind"].value;
+                let kindValue: string = self.messageForm.controls["kind"].value;
                 if (kindValue == 'personal') {
                     self.authService.setLoader(true);
                     self.authService.memberSendRequest('post', 'message/send', formData)
                         .subscribe(
-                            (respData:any) => {
+                            (respData: any) => {
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
                                     self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage,null);
+                                    self.notificationService.showSuccess(self.responseMessage, null);
                                     setTimeout(() => {
-                                    //   self.responseMessage = ''
-                                      self.messageForm.reset();
+                                        //   self.responseMessage = ''
+                                        self.messageForm.reset();
                                     }, 3000);
                                     self.messageForm.controls["kind"].setValue([]);
                                     self.messageForm.controls["receiver_id"].setValue([]);
@@ -392,9 +390,9 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                         const url: string[] = ["/community"];
                                         self.router.navigate(url);
                                     }, 1000);
-                                }else  if (respData['code'] == 400) {
+                                } else if (respData['code'] == 400) {
                                     self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage,null);
+                                    self.notificationService.showError(self.responseMessage, null);
                                 }
                             },
                             (err) => {
@@ -405,12 +403,12 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                     self.authService.setLoader(true);
                     self.authService.memberSendRequest('post', 'message/send-group-message', formData)
                         .subscribe(
-                            (respData:any) => {
+                            (respData: any) => {
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
                                     self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage,null);
+                                    self.notificationService.showSuccess(self.responseMessage, null);
                                     self.messageForm.controls["kind"].setValue([]);
                                     self.messageForm.controls["kind_id"].setValue([]);
                                     self.messageForm.reset();
@@ -420,9 +418,9 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                         const url: string[] = ["/community"];
                                         self.router.navigate(url);
                                     }, 1000);
-                                }else  if (respData['code'] == 400) {
+                                } else if (respData['code'] == 400) {
                                     self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage,null);
+                                    self.notificationService.showError(self.responseMessage, null);
                                 }
                             },
                             (err) => {
@@ -433,12 +431,12 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                     self.authService.setLoader(true);
                     self.authService.memberSendRequest('post', 'message/send-club-message', formData)
                         .subscribe(
-                            (respData:any) => {
+                            (respData: any) => {
                                 self.authService.setLoader(false);
                                 self.messageSubmitted = false;
                                 if (respData['isError'] == false) {
                                     self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage,null);
+                                    self.notificationService.showSuccess(self.responseMessage, null);
                                     self.messageForm.controls["kind"].setValue([]);
                                     self.messageForm.controls["receiver_id"].setValue([]);
                                     self.messageForm.controls["cc"].setValue([]);
@@ -449,9 +447,9 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
                                         const url: string[] = ["/community"];
                                         self.router.navigate(url);
                                     }, 1000);
-                                }else  if (respData['code'] == 400) {
+                                } else if (respData['code'] == 400) {
                                     self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage,null)
+                                    self.notificationService.showError(self.responseMessage, null)
                                 }
                             },
                             (err) => {
@@ -467,7 +465,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         }
     }
 
-    onVisiblityDeSelect(item: {id: string, name: string}) {
+    onVisiblityDeSelect(item: { id: string, name: string }) {
         this.receipientUsers = [];
         this.receiverUser = [];
         this.ccUser = [];
@@ -476,7 +474,7 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         this.messageForm.controls["kind_id"].setValue('');
     }
 
-    onVisiblitySelect(item: {id: string, name: string}) {
+    onVisiblitySelect(item: { id: string, name: string }) {
         this.selectedVisiblity = item.id;
         this.receipientUsers = [];
         this.receiverUser = [];
@@ -513,30 +511,30 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         }
     }
 
-    onKindIdSelect(item: {id: number, name: string}) {
+    onKindIdSelect(item: { id: number, name: string }) {
         this.kindIds = [];
         this.selectedKindId = item.id;
         this.kindIds.push(this.selectedKindId);
         this.authService.memberSendRequest('get', 'approvedGroupUsers/group/' + this.selectedKindId, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData[0].participants){
-                    respData[0].participants.forEach((element:any) => {
-                            if(element.approved_status == 1){
+            .subscribe(
+                (respData: any) => {
+                    if (respData[0].participants) {
+                        respData[0].participants.forEach((element: any) => {
+                            if (element.approved_status == 1) {
                                 this.receipientUsers.push(element);
                                 let obj = this.alluserInfo.find(o => o.id == element.user_id);
                                 this.receiverUser.push(obj.keycloak_id);
                             }
-                    })
+                        })
+                    }
                 }
-            }
-        )
+            )
     }
 
-    onKindIdDeSelect(item:  {id: number, name: string}) {
+    onKindIdDeSelect(item: { id: number, name: string }) {
         this.selectedKindId = item.id;
         this.receipientUsers = [];
-        const index:number = this.kindIds.indexOf(this.selectedKindId);
+        const index: number = this.kindIds.indexOf(this.selectedKindId);
         if (index > -1) {
             this.kindIds.splice(index, 1);
         }
@@ -577,33 +575,33 @@ export class CreateMessageComponent implements OnInit ,OnDestroy{
         }
     }
 
-    uploadFile(event:Event) {
-        const file:File = (event.target as HTMLInputElement).files[0];
-        if(file){
-          const mimeType:string = file.type;
-          this.messageForm.patchValue({
-              file: file
-          });
-          this.messageForm.get('file').updateValueAndValidity();
+    uploadFile(event: Event) {
+        const file: File = (event.target as HTMLInputElement).files[0];
+        if (file) {
+            const mimeType: string = file.type;
+            this.messageForm.patchValue({
+                file: file
+            });
+            this.messageForm.get('file').updateValueAndValidity();
 
-          const reader: FileReader = new FileReader();
-          reader.readAsDataURL(file);
-          var url:any;
-          reader.onload = (_event) => {
-              url = reader.result;
-              if (mimeType.match(/image\/*/)) {
-                  $('.preview_img').attr('src', url);
-              } else {
-                  $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');
-              }
-          }
-          $('.message-upload-list').show();
-          $('.preview_txt').show();
-          $('.preview_txt').text(file.name);
+            const reader: FileReader = new FileReader();
+            reader.readAsDataURL(file);
+            var url: any;
+            reader.onload = (_event) => {
+                url = reader.result;
+                if (mimeType.match(/image\/*/)) {
+                    $('.preview_img').attr('src', url);
+                } else {
+                    $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');
+                }
+            }
+            $('.message-upload-list').show();
+            $('.preview_txt').show();
+            $('.preview_txt').text(file.name);
         }
     }
 
-    onFileChange(event:Event) {
+    onFileChange(event: Event) {
         for (var i = 0; i < event.target['files'].length; i++) {
             this.files.push(event.target['files'][i]);
         }

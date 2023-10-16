@@ -8,7 +8,8 @@
                     fill="#999" />
                 </svg>&nbsp;&nbsp;
                 <!-- {{item.surveyStartDate.split('T')[0] | date: "d. MMMM y,HH:mm" : "UTC" }} -->
-                {{ item.surveyStartDate | date: "d. MMMM y - HH:mm 'Uhr'" : "UTC" }}
+                {{ item.surveyStartDate | date: "d. MMMM y - HH:mm" : "UTC" }} {{language.login.o_clock}}
+
 
             </Span>
             <div class="event-action">

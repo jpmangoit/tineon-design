@@ -94,6 +94,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
     allWeekDayArray: any[];
     allWeekDayArrayName: any[];
     instruct_img: any;
+    idx: number;
+
     constructor(
         private formbuilder: UntypedFormBuilder,
         private lang: LanguageService,
@@ -391,8 +393,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     // pageChanged(event: number) {
-    //     console.log(event);
-
     //     this.currentPageNmuber = event;
     //     if (this.searchData?.length > 0) {
     //         this.onSearch();
@@ -677,8 +677,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
         // for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
         //     this.editInstructorForm.value.weekdays[i].day = (this.editInstructorForm.controls.weekdays.value[i].day[0].length == 1) ? this.editInstructorForm.controls.weekdays.value[i].day : this.editInstructorForm.controls.weekdays.value[i].day[0];
         // }
-        console.log(this.editInstructorForm.controls.weekdays.value);
-
         if (this.editInstructorForm.valid && this.errorTime['isError'] == false) {
             for (let i = 0; i < this.editInstructorForm.controls.weekdays.value.length; i++) {
                 this.editInstructorForm.value.weekdays[i].day = this.editInstructorForm.controls.weekdays.value[i].day[0].id;
@@ -860,17 +858,42 @@ export class InstructorComponent implements OnInit, OnDestroy {
     * @return  {string} success message
     */
     errorTime: { isError: boolean; errorMessage: string } = { isError: false, errorMessage: '' };
-    compareTwoTimes(item: number) {
+    // compareTwoTimes(item: number) {
+    //     this.indax = item;
+    //     this.errorTime = { isError: false, errorMessage: '' };
+    //     for (let i = 0; i < this.editInstructorForm?.controls?.weekdays?.value?.length; i++) {
+    //         if (this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] > this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to'] ||
+    //             this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] == this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to']
+    //         ) {
+    //             this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, };
+    //             return this.indax;
+    //         } else {
+    //             this.errorTime = { isError: false, errorMessage: '' };
+    //         }
+    //     }
+    // }
+
+    compareTwoTimes(item: any) {
         this.indax = item;
+        this.idx = item
         this.errorTime = { isError: false, errorMessage: '' };
-        for (let i = 0; i < this.editInstructorForm?.controls?.weekdays?.value?.length; i++) {
-            if (this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] > this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to'] ||
-                this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] == this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to']
-            ) {
-                this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same, };
+
+        for (let i = 0; i < this.editInstructorForm?.controls?.weekdays?.value.length; i++) {
+            if ((this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] != "" && this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to'] != "") &&
+                (this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] > this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to']) ||
+                (this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] == this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_to'])) {
+                this.errorTime = { isError: true, errorMessage: this.language.error_message.end_time_same };
                 return this.indax;
             } else {
                 this.errorTime = { isError: false, errorMessage: '' };
+            }
+            for (let j = 0; j < this.editInstructorForm.value?.weekdays?.length; j++) {
+                if (this.editInstructorForm?.controls?.weekdays?.value[i]?.['day'][0] == this.editInstructorForm.controls.weekdays.value[j]['day'][0]) {
+                    if (((i != j) && this.editInstructorForm?.controls?.weekdays?.value[i]?.['time_from'] < this.editInstructorForm.controls.weekdays.value[j]['time_to'])) {
+                        this.errorTime = { isError: true, errorMessage: this.language.error_message.sameTimeNotSelect };
+                        return this.idx;
+                    }
+                }
             }
         }
     }

@@ -304,7 +304,6 @@ export class MDashboardComponent implements OnInit {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.newsData = respData;
-
                         this.newsData.forEach(val => {
                             if (this.alluserInformation[val?.user?.id]?.member_id != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.user?.id].member_id, null)
@@ -406,23 +405,6 @@ export class MDashboardComponent implements OnInit {
                                 if (element?.event_images[0]?.event_image) {
                                     element.event_images[0].event_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.event_images[0]?.event_image.substring(20)));
                                 }
-
-                                // var url: string[] = [];
-                                // if (element.picture_video != null && element.picture_video != '') {
-                                //     if (element.picture_video) {
-                                //         url = element.picture_video.split('"');
-                                //         if (url && url.length > 0) {
-                                //             url.forEach((el) => {
-                                //                 if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
-                                //                     element.picture_video = el;
-                                //                 }
-                                //             });
-                                //         } else {
-                                //             element.picture_video = '';
-                                //         }
-                                //     }
-                                // }
-
                                 if (element && element.recurrence != '' && element.recurrence != null) {
                                     let recurrence: string = element.recurrence;
                                     if (recurrence.includes('UNTIL') == false) {

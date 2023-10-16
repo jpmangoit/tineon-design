@@ -254,7 +254,6 @@ export class MprofileComponent implements OnInit {
 
     logout() {
         this.authService.sendRequest('put', 'setLoginStatus/' + this.userData.userId, null).subscribe((resp) => {
-            console.log(resp);
             if (resp['isError'] == false) {
                 sessionStorage.clear();
                 localStorage.clear();

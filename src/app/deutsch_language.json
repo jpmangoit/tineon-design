@@ -107,7 +107,9 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Aktuelles aus dem Verein"
+
     },
     "club_wall": {
         "title": "News",
@@ -215,7 +217,7 @@
         "delete_chat": "Chat löschen",
         "media_link_doc": "Medien, Links and Dokumente",
         "email_draft": "E-Mail wurde als Entwurf gespeichert.",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me" : "Nachrichten an mich"
 
     },
     "group_news": {
@@ -248,7 +250,8 @@
         "RestUpdateNews": "Update-News löschen",
         "PublishNews": "News veröffentlichen",
         "DenyNews": "News ablehnen",
-        "salesPartnerNews": "Vertriebspartner News"
+        "salesPartnerNews": "Vertriebspartner News",
+        "author": "Verfasser"
     },
     "profile": {
         "profile_nav": {
@@ -416,7 +419,7 @@
         "calendar": "Kalender",
         "event_list": "Event Liste"
     },
-    "organizer_task": {
+    "organizer_task": { 
         "title": "Aufgaben",
         "all_task": "Alle Aufgaben",
         "no_task_available": "Keine Aufgaben vorhanden",
@@ -427,7 +430,7 @@
         "completed": "Erledigt",
         "personal_task": "Meine Aufgaben",
         "created_task": "Von mir erstellte Aufgaben",
-        "group_task": "Gruppen Aufgaben",
+        "group_task": "Gruppen - Aufgaben",
         "uncomplete_subtask": "Unvollständig Unteraufgabe",
         "uncomplete_heading": "Diese Aufgabe hat eine unvollständige Teilaufgabe. Bitte zuerst die Teilaufgabe vervollständigen",
         "close_subtask": "Nah dran",
@@ -448,7 +451,8 @@
         "updatedTask": "Aktualisierte Aufgabe",
         "viewTask": "Aufgabe ansehen",
         "task_created_by": "Aufgabe erstellt von:",
-        "days": "Tage"
+        "days": "Tage",
+        "task_details": "Aufgaben - Details"
     },
     "club_document": {
         "title": "Dokumente",
@@ -665,7 +669,9 @@
         "anniversary": "Jubiläum",
         "years": "Jahre",
         "years_in_club": "Jahre im Verein",
-        "all_events_new": "Alle Ereignisse"
+        "all_events_new": "Alle wichtigen Ereignisse",
+        "anniversaries_birthday_new": "Geburstage und Jubiläen im Verein"
+
     },
     "confirmation_message": {
         "accept_group": "Möchten Sie diese Gruppe akzeptieren?",
@@ -889,7 +895,8 @@
         "currentRoom": "Aktueller Raum",
         "updateRoom": "Raum aktualisieren",
         "deleteRoom": "Raum löschen",
-        "search_result": "Suchergebnis"
+        "search_result": "Suchergebnis",
+        "room_overview" : "Räume - Übersicht"
     },
     "instructor": {
         "create_instructor": "Kursleiter erstellen",

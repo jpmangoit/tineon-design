@@ -9,7 +9,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-organizer-all-task',
-    templateUrl: './organizer-all-task.component.html',
+    templateUrl: './organizer-all-task.component.html', 
     styleUrls: ['./organizer-all-task.component.css']
 })
 

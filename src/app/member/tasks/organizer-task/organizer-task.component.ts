@@ -14,8 +14,8 @@ declare var $: any;
     styleUrls: ['./organizer-task.component.css']
 })
 
-export class OrganizerTaskComponent implements OnInit,OnDestroy {
-    language:any;
+export class OrganizerTaskComponent implements OnInit, OnDestroy {
+    language: any;
     displayAllTasks: boolean = true;
     displayPersonalTasks: boolean = false;
     displayGroupTasks: boolean = false;
@@ -26,7 +26,7 @@ export class OrganizerTaskComponent implements OnInit,OnDestroy {
     organizerTask: any;
 
     constructor(
-        private themes: ThemeService, private authService: AuthServiceService,private notificationService: NotificationService,
+        private themes: ThemeService, private authService: AuthServiceService, private notificationService: NotificationService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer
@@ -51,7 +51,7 @@ export class OrganizerTaskComponent implements OnInit,OnDestroy {
                         this.organizerTask = respData['result'];
                         this.organizerTask?.forEach((element) => {
                             if (element?.['task_image'] && element?.['task_image'][0] && element?.['task_image'][0]?.['task_image']) {
-                                element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20)))as string;
+                                element['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element['task_image'][0]?.['task_image'].substring(20))) as string;
                             }
                         })
                     } else if (respData['code'] == 400) {
@@ -64,7 +64,7 @@ export class OrganizerTaskComponent implements OnInit,OnDestroy {
     * Function is used to active task tab
     * @author  MangoIt Solutions
     */
-    onTasks(id:number) {
+    onTasks(id: number) {
         $('.tab-pane').removeClass('active');
         $('.nav-link').removeClass('active');
         if (id == 1) {

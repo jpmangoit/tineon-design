@@ -57,7 +57,7 @@
 }
 
 .all-news-column {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .news-image img {
@@ -887,7 +887,7 @@ span.user-status img {
 /* new design css start */
 
 .club-widget-appointment {
-    padding: 25px 15px;
+    padding: 25px 10px;
     border-radius: 20px;
     box-shadow: none;
     /* max-height: 707px; */
@@ -1065,7 +1065,7 @@ span.club-badge {
     border-radius: 10px;
   overflow: hidden; 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  margin-bottom: 2.2rem;
+  margin-bottom: 37px;
 }
 
 .event-groups span.club-badge {
@@ -1151,6 +1151,8 @@ span.club-badge {
 
 .club-widget-des-inner {
     padding-bottom: 0px;
+    margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* .card .card-header {
@@ -1220,7 +1222,7 @@ span.carousel-badge {
 .card.club-widget-appointment.banner-area {
     padding: 0;
     background: none;
-    margin-bottom: 0px;
+    margin-bottom: 0px; 
 }
 
 /* .news-widget {
@@ -1256,7 +1258,10 @@ span.carousel-badge {
 }
 
 .card.club-widget-appointment.banner-area {
-    padding-bottom: 0;
+    padding-bottom: 0; 
+    border: 3px solid #FB5F5F;
+  margin-bottom: 18px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .card.club-widget-appointment.main-club.active-club-appointment {
@@ -1500,4 +1505,26 @@ span.carousel-badge {
     width: 40px !important;
     height: 40px !important;
     flex: 0 0 40px;
+}
+
+@media(max-width:1400px) {
+    .card-body.top-box .widget-app-content > div {
+  display: none;
+  width: 6px;
+}
+
+.club-widget-appointment .club-right-area .card-body {
+  padding: 0 0 0 10px;
+}
+
+.card-body.top-box.ng-star-inserted .widget-app-content span {
+  white-space: nowrap;
+  margin-left: 22px;
+  font-size: 11px;
+  color: #BDBDBD;
+  font-weight: 700;
+}
+.card .card-header .card-title {
+    font-size: 17px;
+}
 }

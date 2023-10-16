@@ -36,14 +36,14 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     approvedParticipants: { email: string, firstname: string, id: number, image: SafeUrl, lastname: string, username: string }[] = [];
     memImg: { email: string, firstname: string, id: number, image: SafeUrl, lastname: string, username: string }[] = [];
     member_id: number;
-    un_id: number; 
+    un_id: number;
     profile_data: ProfileDetails;
     memberStartDateStatus: Date;
     birthdateStatus: boolean;
     getclubInfo: ProfileDetails;
     thumbnail: string;
     alluserInformation: { member_id: number }[] = [];
-    thumb: SafeUrl; 
+    thumb: SafeUrl;
     docFile: string;
     fileArray: string[] = [];
     updateFileArray: string[] = [];
@@ -200,36 +200,13 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                     this.showImage = false;
                                     this.imageurl = '';
                                 }
-                                
-                                // if (this.eventDetails?.document_url) {
-                                //     this.docFile = this.eventDetails.document_url;
-                                // }
+
                                 if (this.eventDetails?.event_images[0]?.event_document) {
                                     this.docFile = this.eventDetails?.event_images[0]?.event_document;
                                 }
-
-
-                                // if (this.eventDetails.picture_video != null) {
-                                //     var url: string[] = this.eventDetails.picture_video.split('\"');
-                                //     let self = this;
-                                //     self.fileArray = [];
-                                //     if (url && url.length > 0) {
-                                //         url.forEach(element => {
-                                //             self.showImage = true;
-                                //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                //                 self.showImage = true;
-                                //                 self.fileArray.push(element);
-                                //                 self.imageurl = self.fileArray[0];
-                                //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                //                 self.docFile = element;
-                                //             }
-                                //         });
-                                //     }
-                                // }
                                 this.getOrganizerDetails(eventid);
                                 this.getParticipantDetails(eventid);
 
-                                
                                 if (this.eventDetails['author'] == JSON.parse(this.userDetails.userId) || this.userDetails.roles[0] == 'admin') {
                                     if (this.eventDetails['updated_record'] != null && this.eventDetails['updated_record'] != "") {
                                         this.updateEventData = JSON.parse(this.eventDetails['updated_record']);
@@ -247,31 +224,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                             this.showUpdateImage = false;
                                             this.updateImageurl = '';
                                         }
-
-                                        // if (this.updateEventData?.updateDocumentUrl) {
-                                        //     this.docFile = this.updateEventData.updateDocumentUrl;
-                                        // }
-                                        if(this.updateEventData?.baseImage[0]?.documentUrl){
+                                        if (this.updateEventData?.baseImage[0]?.documentUrl) {
                                             this.docFile = this.updateEventData?.baseImage[0]?.documentUrl;
                                         }
-
-                                        // if (this.updateEventData.image != null) {
-                                        //     var url: string[] = this.updateEventData.image.split('\"');
-                                        //     let self = this;
-                                        //     self.updateFileArray = [];
-                                        //     if (url && url.length > 0) {
-                                        //         url.forEach(element => {
-                                        //             self.showUpdateImage = true;
-                                        //             if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => element.endsWith(char))) {
-                                        //                 self.showUpdateImage = true;
-                                        //                 self.updateFileArray.push(element);
-                                        //                 self.updateImageurl = self.updateFileArray[0];
-                                        //             } else if (['.pdf', '.doc', '.zip', '.docx', '.docm', '.dot', '.odt', '.txt', '.xml', '.wps', '.xps', '.html', '.htm', '.rtf'].some(char => element.endsWith(char))) {
-                                        //                 self.docFile = element;
-                                        //             }
-                                        //         });
-                                        //     }
-                                        // }
                                         if (this.updateEventData && this.updateEventData.users.length > 0) {
                                             // this.updateEventData.date_from = this.eventDate ? this.eventDate + 'T' + this.updateEventData.date_from.split(' ')[1] : this.updateEventData.date_from
                                             this.updateEventData.users.forEach(element => {
@@ -741,11 +696,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         this.removeUpdate.unsubscribe();
     }
 
-   hasComma(str: string) {
-        if(str){
+    hasComma(str: string) {
+        if (str) {
             return str.replace(/,/g, ".");
-        }else{
+        } else {
             return str;
-        }        
+        }
     }
 }

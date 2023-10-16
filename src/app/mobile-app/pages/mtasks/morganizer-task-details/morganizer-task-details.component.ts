@@ -214,10 +214,6 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 									if (this.taskDetails['updated_record'] != null && this.taskDetails['updated_record'] != "") {
 										this.updatedTaskData = JSON.parse(this.taskDetails?.['updated_record']);
 									}
-									console.log(this.taskDetails);
-									console.log(this.updatedTaskData);
-
-
 									if (this.updatedTaskData != null) {
 
 										if (this.updatedTaskData?.file != 'undefined' && this.updatedTaskData?.file != '' && this.updatedTaskData?.file != null) {

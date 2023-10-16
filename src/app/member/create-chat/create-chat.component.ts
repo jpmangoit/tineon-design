@@ -178,9 +178,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     this.chatUserArr = resp;
                     // let chatgroupData = this.chatUserArr.filter(item => {
-                    //     console.log(item);
                     //     return item.type == 'group'
-
                     // } );
                     this.userDropdownList = [];
                     var userData: UserDetails[];
@@ -193,7 +191,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     if (userData && userData.length > 0) {
                         Object(userData).forEach((val, key) => {
                             this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
-
                             self.userDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',

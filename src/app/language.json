@@ -35,7 +35,8 @@
 
         "organizer_subtext_new_desk": "Aufgaben",
         "organizer_subtext_tasks_desk": "Events",
-        "congratulate": "Congratulate"
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
 
     },
     "club_document": {
@@ -54,7 +55,8 @@
     },
     "organizer_task":{
         "no_task": "No Tasks Found",
-        "task_created_by": "Task Created by:"
+        "task_created_by": "Task Created by:",
+        "task-details": "Task - Details"
 
     },
     "club": {
@@ -62,7 +64,8 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
     },
     "error_message" : {
         "specialChar_validation" : "Please only enter the amount without special characters"
@@ -81,7 +84,14 @@
     },
     "courses": {
         "extern": "Extern"
+    },
+    "room":{
+        "room_overview" : "Rooms"
+    },
+    "club_news":{
+        "author": "Author"
     }
+   
 }
 
 

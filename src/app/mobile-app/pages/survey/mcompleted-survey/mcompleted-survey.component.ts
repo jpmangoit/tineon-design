@@ -37,7 +37,7 @@ export class McompletedSurveyComponent implements OnInit {
     alluserInformation: { member_id: number }[] = [];
     thumb: any;
 
-    constructor(private authService: AuthServiceService, private themes: ThemeService,private notificationService: NotificationService,
+    constructor(private authService: AuthServiceService, private themes: ThemeService, private notificationService: NotificationService,
         private lang: LanguageService, private confirmDialogService: ConfirmDialogService) { }
 
     ngOnInit(): void {
@@ -55,45 +55,45 @@ export class McompletedSurveyComponent implements OnInit {
         this.getCompletedData();
     }
 
-     /**
-    * Function is used to get all user list
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {object} user object
-    */
-     getAllUserInfo() {
+    /**
+   * Function is used to get all user list
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {object} user object
+   */
+    getAllUserInfo() {
         let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
-        .subscribe(
-            (respData: any) => {
-                if(respData && respData.length > 0){
-                    Object(respData).forEach((val, key) => {
-                        this.alluserInformation[val.id] = { member_id: val.member_id };
-                    })
+            .subscribe(
+                (respData: any) => {
+                    if (respData && respData.length > 0) {
+                        Object(respData).forEach((val, key) => {
+                            this.alluserInformation[val.id] = { member_id: val.member_id };
+                        })
+                    }
+                    this.getCompletedData();
                 }
-                this.getCompletedData();
-            }
-        );
+            );
     }
 
-     /**
-    * Function is used to get complete survey list
-    * @author  MangoIt Solutions
-    * @param   {}
-    * @return  {object} survey object
-    */
-     getCompletedData() {
-        var endPoints:any;
+    /**
+   * Function is used to get complete survey list
+   * @author  MangoIt Solutions
+   * @param   {}
+   * @return  {object} survey object
+   */
+    getCompletedData() {
+        var endPoints: any;
         if (this.userRole == 'admin') {
-            endPoints =   'getCompletedSurvey/' + this.currentPageNmuber + '/' + this.itemPerPage;
-        }else if(this.userRole != 'admin'){
-            endPoints =  'getCompletedSurveyUser/user/'  + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage;
+            endPoints = 'getCompletedSurvey/' + this.currentPageNmuber + '/' + this.itemPerPage;
+        } else if (this.userRole != 'admin') {
+            endPoints = 'getCompletedSurveyUser/user/' + this.userDetails.userId + '/' + this.currentPageNmuber + '/' + this.itemPerPage;
         }
         this.authService.memberSendRequest('get', endPoints, null).subscribe(
             (respData: any) => {
                 this.authService.setLoader(false);
                 if (respData['isError'] == false) {
-                    if(respData?.['result']?.['survey']?.length > 0){
+                    if (respData?.['result']?.['survey']?.length > 0) {
                         respData['result']['survey'].forEach((element, index) => {
                             if (this.alluserInformation[element.user_name.id] != null) {
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[element.user_name.id].member_id, null)
@@ -102,7 +102,7 @@ export class McompletedSurveyComponent implements OnInit {
                                             this.thumb = resppData;
                                             element.userImage = this.thumb;
                                         },
-                                        (error:any) => {
+                                        (error: any) => {
                                             element.userImage = null;
                                         });
                             } else {
@@ -122,10 +122,9 @@ export class McompletedSurveyComponent implements OnInit {
 
                             if (days > 31) {
                                 if (days > 1) {
-                                    element.dayCount = this.language.Survey.expired + month + this.language.Survey.months_ago;
-
+                                    element.dayCount = this.language.Survey.expired + " " + month + " " + this.language.Survey.months_ago;
                                 } else if (days == 1 || days == 0) {
-                                    element.dayCount = this.language.Survey.expired + month + this.language.Survey.month_ago;
+                                    element.dayCount = this.language.Survey.expired + " " + month + " " + this.language.Survey.months_ago;
                                 }
                             } else if (days < 31) {
                                 if (days > 1) {
@@ -161,8 +160,8 @@ export class McompletedSurveyComponent implements OnInit {
             eve = this.currentPageNmuber;
         } else {
             if (eve > Math.round(this.totalCompletedSurvey / this.itemPerPage)) {
-                this.notificationService.showError(this.language.error_message.invalid_pagenumber,null);
-             } else {
+                this.notificationService.showError(this.language.error_message.invalid_pagenumber, null);
+            } else {
                 this.currentPageNmuber = this.curntPgNum;
                 this.getCompletedData()
             }
@@ -190,19 +189,19 @@ export class McompletedSurveyComponent implements OnInit {
         self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_survey, function () {
             self.authService.setLoader(true);
             self.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
-            .subscribe(
-                (respData: any) => {
-                    self.authService.setLoader(false);
-                    if (respData['isError'] == false) {
-                        self.responseMessage = respData['result']['message'];
-                        self.notificationService.showSuccess(self.responseMessage,null);
-                        self.getCompletedData()
-                    } else if (respData['code'] == 400) {
-                        self.responseMessage = respData['message'];
-                        self.notificationService.showError(self.responseMessage,null);
+                .subscribe(
+                    (respData: any) => {
+                        self.authService.setLoader(false);
+                        if (respData['isError'] == false) {
+                            self.responseMessage = respData['result']['message'];
+                            self.notificationService.showSuccess(self.responseMessage, null);
+                            self.getCompletedData()
+                        } else if (respData['code'] == 400) {
+                            self.responseMessage = respData['message'];
+                            self.notificationService.showError(self.responseMessage, null);
+                        }
                     }
-                }
-            )
+                )
         }, function () { }
         )
     }

@@ -116,6 +116,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
+        
         this.allowAdvertisment = localStorage.getItem('allowAdvertis')
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;
@@ -160,18 +161,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
                     });
                 }
             );
-        // this.authService.memberSendRequest('post', 'allCourses', null)
-        //     .subscribe(
-        //         (respData: any) => {
-        //             this.courseData = respData['result'];
-        //             this.courseData.forEach((element: any) => {
-        //                 if (element?.course_image[0]?.course_image) {
-        //                     element.course_image[0].course_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.course_image[0]?.course_image.substring(20)));
-        //                 }
-        //             });
-        //         }
-        //     );
         this.getUserImage();
+        console.log(this.allowAdvertisment);
+        
         if (this.allowAdvertisment == 0) {
             this.getDesktopDeshboardBanner();
         }
@@ -219,8 +211,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                                 element['category'] = JSON.parse(element.category);
                                 element['placement'] = JSON.parse(element.placement);
                                 element['display'] = JSON.parse(element.display);
-                                // element['image'] = JSON.parse(element.image);
-
                                 if (element.banner_image[0]?.banner_image) {
                                     element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
                                 }

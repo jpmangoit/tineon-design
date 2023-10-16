@@ -12,9 +12,9 @@ import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.serv
 import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
-  selector: 'app-group-list',
-  templateUrl: './group-list.component.html',
-  styleUrls: ['./group-list.component.css']
+    selector: 'app-group-list',
+    templateUrl: './group-list.component.html',
+    styleUrls: ['./group-list.component.css']
 })
 export class GroupListComponent implements OnInit {
 
@@ -38,48 +38,48 @@ export class GroupListComponent implements OnInit {
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
 
-  constructor(private authService: AuthServiceService, private lang: LanguageService,private commonFunctionService: CommonFunctionService,
-    private notificationService: NotificationService,
-    private confirmDialogService: ConfirmDialogService,
+    constructor(private authService: AuthServiceService, private lang: LanguageService, private commonFunctionService: CommonFunctionService,
+        private notificationService: NotificationService,
+        private confirmDialogService: ConfirmDialogService,
 
-    private sanitizer: DomSanitizer) { }
+        private sanitizer: DomSanitizer) { }
 
-  ngOnInit(): void {
-    this.language = this.lang.getLanguaageFile();
-    this.userData = JSON.parse(localStorage.getItem('user-data'));
-    this.getUserAllGroup("");
-  }
-
-   /**
-     * Function for get All the login user Task
-     * @author  MangoIt Solutions(M)
-     * @param   {}
-     * @return  {all the records of Task} array of object
-     */
-   getUserAllGroup(search: any) {
-    var pageNo = this.currentPage + 1
-    this.authService.setLoader(true);
-    var endPoint: string;
-    if (search && search.target.value != '') {
-        endPoint = 'getOwnerGroups/' + pageNo + '/' + this.pageSize + '?search=' + search.target.value;
-    }else{
-        endPoint = 'getOwnerGroups/' + pageNo + '/' + this.pageSize;
+    ngOnInit(): void {
+        this.language = this.lang.getLanguaageFile();
+        this.userData = JSON.parse(localStorage.getItem('user-data'));
+        this.getUserAllGroup("");
     }
-    this.authService.memberSendRequest('get', endPoint, null)
-        .subscribe(
-            (respData: any) => {
-                this.authService.setLoader(false);
-                respData?.groups?.forEach(element => {
-                    if (element?.['group_images'][0]?.['group_image']) {
-                        element['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['group_images'][0]?.['group_image'].substring(20)))as string;
-                    }
-                });
-                this.dataSource = new MatTableDataSource(respData.groups);
-                this.totalRows = respData.pagination.rowCount;
-                this.dataSource.sort = this.matsort;
-                this.isData = true;
-            }
-        )
+
+    /**
+      * Function for get All the login user Task
+      * @author  MangoIt Solutions(M)
+      * @param   {}
+      * @return  {all the records of Task} array of object
+      */
+    getUserAllGroup(search: any) {
+        var pageNo = this.currentPage + 1
+        this.authService.setLoader(true);
+        var endPoint: string;
+        if (search && search.target.value != '') {
+            endPoint = 'getOwnerGroups/' + pageNo + '/' + this.pageSize + '?search=' + search.target.value;
+        } else {
+            endPoint = 'getOwnerGroups/' + pageNo + '/' + this.pageSize;
+        }
+        this.authService.memberSendRequest('get', endPoint, null)
+            .subscribe(
+                (respData: any) => {
+                    this.authService.setLoader(false);
+                    respData?.groups?.forEach(element => {
+                        if (element?.['group_images'][0]?.['group_image']) {
+                            element['group_images'][0]['group_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.['group_images'][0]?.['group_image'].substring(20))) as string;
+                        }
+                    });
+                    this.dataSource = new MatTableDataSource(respData.groups);
+                    this.totalRows = respData.pagination.rowCount;
+                    this.dataSource.sort = this.matsort;
+                    this.isData = true;
+                }
+            )
     }
 
     /**
@@ -98,13 +98,13 @@ export class GroupListComponent implements OnInit {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
 
-     /**
-   * Function is used to delete group
-   * @author  MangoIt Solutions
-   * @param   {GroupId}
-   * @return  {}
-   */
-     deleteGroup(groupId: number) {
+    /**
+  * Function is used to delete group
+  * @author  MangoIt Solutions
+  * @param   {GroupId}
+  * @return  {}
+  */
+    deleteGroup(groupId: number) {
         let self = this;
         this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
             self.authService.setLoader(true);

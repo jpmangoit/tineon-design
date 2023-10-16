@@ -117,7 +117,8 @@ span.news-category {
 .author-des {
     color: #424d5c;
     line-height: 17px;
-    display: grid;
+    display: inline-block;
+    width: calc(100% - 40px);
 }
 
 span.author-id {

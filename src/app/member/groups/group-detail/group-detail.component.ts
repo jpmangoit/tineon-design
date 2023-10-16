@@ -35,7 +35,7 @@ export class GroupDetailComponent implements OnInit {
         { value: '8' },
         { value: '16' },
         { value: '24' },
-        { value: '32' }, 
+        { value: '32' },
         { value: '40' }
     ];
     displayError: boolean;
@@ -220,7 +220,6 @@ export class GroupDetailComponent implements OnInit {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -255,7 +254,6 @@ export class GroupDetailComponent implements OnInit {
                             element['category'] = JSON.parse(element.category);
                             element['placement'] = JSON.parse(element.placement);
                             element['display'] = JSON.parse(element.display);
-                            // element['image'] = JSON.parse(element.image);
                             if (element.banner_image[0]?.banner_image) {
                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20)));
                             }
@@ -325,7 +323,6 @@ export class GroupDetailComponent implements OnInit {
                         this.allUser = respData;
                         Object(respData).forEach((val, key) => {
                             this.alluserInformation[val.id] = { member_id: val.member_id };
-                            
                         })
                         this.getGroupDetails(this.groupId);
                     }
@@ -351,18 +348,18 @@ export class GroupDetailComponent implements OnInit {
                         this.authService.setLoader(false);
                         this.groupDetails = respData[0];
                         // this.groupDetails.groupTaskCount = 0
-                        
-                        if(this.groupDetails?.groupEventCount != 0){
+
+                        if (this.groupDetails?.groupEventCount != 0) {
                             this.onTabChange(3);
                         }
-                        if(this.groupDetails?.groupTaskCount != 0){
+                        if (this.groupDetails?.groupTaskCount != 0) {
                             this.onTabChange(2);
                         }
 
-                        if(this.groupDetails?.groupNewsCount != 0){
+                        if (this.groupDetails?.groupNewsCount != 0) {
                             this.onTabChange(1);
-                        } 
-                     
+                        }
+
                         this.groupAction = 0;
                         let count = 0;
                         if (this.groupDetails?.['group_images'][0]?.['group_image']) {
@@ -555,7 +552,6 @@ export class GroupDetailComponent implements OnInit {
                                 val['task_image'][0]['task_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['task_image'][0]?.['task_image'].substring(20)));
                             }
                             if (this.alluserInformation[val?.userstask?.id]?.member_id != null) {
-
                                 this.authService.memberInfoRequest('get', 'profile-photo?database_id=' + this.userDetails.database_id + '&club_id=' + this.userDetails.team_id + '&member_id=' + this.alluserInformation[val?.userstask?.id].member_id, null)
                                     .subscribe(
                                         (resppData: any) => {
@@ -618,7 +614,6 @@ export class GroupDetailComponent implements OnInit {
                     .subscribe(
                         (resppData: any) => {
                             val.user.imagePro = resppData;
-
                         },
                         (error: any) => {
                             val.user.imagePro = null;
@@ -628,9 +623,6 @@ export class GroupDetailComponent implements OnInit {
             else {
                 val.user.imagePro = null;
             }
-            // if (val?.['news_image'][0]?.['news_image']) {
-            //     val['news_image'][0]['news_image'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(val?.['news_image'][0]?.['news_image'].substring(20)));
-            // }
         });
 
         return usersAllData;

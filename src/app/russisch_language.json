@@ -148,7 +148,7 @@
         "permanently_delete": "Сообщение удалено навсегда успешно",
         "message_sent": "Сообщение отправлено успешно",
         "code_error": "Что-то пошло не так, пожалуйста, попробуйте еще раз",
-        "message_to_me" : "nachrichten an mich"
+        "message_to_me" : "Nachrichten an mich"
 
     },
     "group_news": {
@@ -168,7 +168,9 @@
     "club_news": {
         "Edit": "Редактировать",
         "Delete": "Удалить",
-        "Back": "Назад"
+        "Back": "Назад",
+        "author": "Author"
+
     },
     "profile": {
         "profile_nav": {
@@ -299,8 +301,8 @@
         "close_subtask":"Закрывать",
         "viewTask": "Visualizza l'attività",
         "task_created_by": "Task Created by:",
-        "days": "Дни"
-
+        "days": "Дни",
+        "task-details": "Task - Details"
     },
     "club_document": {
         "title": "Документы",
@@ -474,7 +476,9 @@
         "anniversary": "Anniversary",
         "years": "Years",
         "years_in_club": "Years in the Club",
-        "all_events_new": "All events"
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+
     },
     "confirmation_message": {
         "accept_group": "Вы уверены, что хотите принять эту группу?",
@@ -649,7 +653,8 @@
         "search_by_name": "Поиск по имени",
         "angular_editor_text": "Введите текст здесь...",
         "search_atleast": "Поиск хотя бы одного фильтра",
-        "number_of_person_error":"Number of Persons must be greater than Zero"
+        "number_of_person_error":"Number of Persons must be greater than Zero",
+        "room_overview" : "Rooms"
     },
     "instructor":{
         "create_instructor": "Создать инструктора",

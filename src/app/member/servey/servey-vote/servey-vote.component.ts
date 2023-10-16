@@ -39,15 +39,15 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 	showImage: any;
 	showFile: any;
 
-	responseMessage:string = null;
+	responseMessage: string = null;
 	result: any;
-    documentData: any;
-    dowloading: boolean = false;
+	documentData: any;
+	dowloading: boolean = false;
 
 	constructor(private authService: AuthServiceService, private themes: ThemeService,
 		private router: Router, public formBuilder: UntypedFormBuilder, private notificationService: NotificationService,
-		private lang: LanguageService, private route: ActivatedRoute,private commonFunctionService: CommonFunctionService,
-        private sanitizer: DomSanitizer,) { }
+		private lang: LanguageService, private route: ActivatedRoute, private commonFunctionService: CommonFunctionService,
+		private sanitizer: DomSanitizer,) { }
 
 	ngOnInit(): void {
 		if (localStorage.getItem('club_theme') != null) {
@@ -95,7 +95,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 					} else {
 						this.btnDisable = "true";
 					}
-					
+
 					if (this.surveyData[0]?.surevyImage[0]?.survey_image) {
 						this.surveyData[0].surevyImage[0].survey_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.surveyData[0]?.surevyImage[0]?.survey_image.substring(20))) as string;
 						this.showImage = this.surveyData[0]?.surevyImage[0]?.survey_image;
@@ -103,15 +103,6 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 						this.showFile = this.surveyData[0]?.surevyImage[0]?.surevy_document;
 						$('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
 					}
-
-					// if (this.surveyData[0].image != null) {
-					//     if (['.jpg','.jpeg','.png','.gif','.svg','.webp','.avif','.apng','.jfif','.pjpeg', '.pjp'].some(char => this.surveyData[0].image.endsWith(char))) {
-					//         this.showImage = this.surveyData[0].image;
-					//     } else if (['.pdf','.doc','.zip','.docx','.docm','.dot','.odt','.txt','.xml','.wps', '.xps', '.html','.htm','.rtf'].some(char => this.surveyData[0].image.endsWith(char))) {
-					//         this.showFile = this.surveyData[0].image;
-					//         $('.preview_img').attr('src', '../../../../assets/img/doc-icons/folder.svg');
-					//     }
-					// }
 				}
 				if (this.surveyVoteResult && this.surveyVoteResult['answerCount'] && this.surveyVoteResult['answerCount'].length > 0) {
 					this.surveyVoteResult['answerCount'].forEach(element => {
@@ -321,44 +312,44 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-    * Function is used to download document
-    * @author  MangoIt Solutions
-    * @param   {path}
-    */
-    downloadDoc(path: any) {
-        let data = {
-            name: path
-        }
-        this.dowloading = true;
-        var endPoint = 'download-survey-document';
-        if (data && data.name) {
-            let filename = data.name.split('/').reverse()[0];
-            this.authService.downloadDocument('post', endPoint, data).toPromise()
-                .then((blob: any) => {
-                    saveAs(blob, filename);
-                    this.authService.setLoader(false);
-                    this.dowloading = false;
-                    setTimeout(() => {
-                        this.authService.sendRequest('post', 'delete-survey-document/uploads', data).subscribe((result: any) => {
-                            this.result = result;
-                            this.authService.setLoader(false);
-                            if (this.result.success == false) {
-                                this.notificationService.showError(this.result['result']['message'], null);
-                            } else if (this.result.success == true) {
-                                this.documentData = this.result['result']['message'];
-                            }
-                        })
-                    }, 7000);
-                })
-                .catch(err => {
-                    this.responseMessage = err;
-                })
-        }
-    }
+	* Function is used to download document
+	* @author  MangoIt Solutions
+	* @param   {path}
+	*/
+	downloadDoc(path: any) {
+		let data = {
+			name: path
+		}
+		this.dowloading = true;
+		var endPoint = 'download-survey-document';
+		if (data && data.name) {
+			let filename = data.name.split('/').reverse()[0];
+			this.authService.downloadDocument('post', endPoint, data).toPromise()
+				.then((blob: any) => {
+					saveAs(blob, filename);
+					this.authService.setLoader(false);
+					this.dowloading = false;
+					setTimeout(() => {
+						this.authService.sendRequest('post', 'delete-survey-document/uploads', data).subscribe((result: any) => {
+							this.result = result;
+							this.authService.setLoader(false);
+							if (this.result.success == false) {
+								this.notificationService.showError(this.result['result']['message'], null);
+							} else if (this.result.success == true) {
+								this.documentData = this.result['result']['message'];
+							}
+						})
+					}, 7000);
+				})
+				.catch(err => {
+					this.responseMessage = err;
+				})
+		}
+	}
 
-    downloadImage(blobUrl: any) {
-        window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
-    }
+	downloadImage(blobUrl: any) {
+		window.open(blobUrl.changingThisBreaksApplicationSecurity, '_blank');
+	}
 	ngOnDestroy(): void {
 		this.activatedSub.unsubscribe();
 	}

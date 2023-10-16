@@ -28,6 +28,7 @@
                                     (click)="getNewsDetails(data.id)">
 
                                 <div class="new-action">
+                                    <span class="club-news-date">{{data.created_at | date: 'dd.MM.YYYY'}}</span><br>
                                     <a class="green"
                                         *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"
                                         (click)="updateNews(data.id)">
@@ -132,6 +133,7 @@
                                             (click)="getNewsDetails(data.id)">
 
                                         <div class="new-action">
+                                            <span class="club-news-date">{{data.created_at | date: 'dd.MM.YYYY'}}</span><br>
                                             <a class="green"
                                                 *ngIf="((data?.user?.id == userData['userId']) || (role == 'admin'))"
                                                 (click)="updateNews(data.id)">
@@ -237,7 +239,7 @@
             <br>
             <div *ngIf="dashboardData?.length > 0 && dashboardData.length > newsDisplay">
                 <div class="show_more_btn">
-                    <a routerLink="/clubwall-news/1">
+                    <a routerLink="/clubwall">
                         <button class="red_more_btn"> {{language.dashboard.dashboardNewsShowAll}}</button>
                     </a>
                 </div>
@@ -253,7 +255,7 @@
         <div class="card ">
             <div class="card-header clubwall-ne">
                 <h5 class="card-title" *ngIf="headline_word_option == 0">
-                    {{language.dashboard.dashboardNewsTitle_stand}}
+                    {{language.dashboard.dashboardNewsTitle_new}}
                 </h5>
                 <h5 class="card-title" *ngIf="headline_word_option == 1">
                     {{language.dashboard.dashboardNewsTitle_untern}}
@@ -617,12 +619,13 @@
                                                         alt="" loading="lazy" style="width: 100px;">
                                                 </div>
                                                 <div class="author-des">
-                                                   <div> <span class="author-id">
-                                                        {{language.dashboard.dashboardNewsAuthor}}
-                                                    </span>
-                                                    <span class="author-id">
-                                                        {{newsData?.user?.firstname}} {{newsData?.user?.lastname}}
-                                                    </span></div>
+                                                    <div> <span class="author-id">
+                                                            {{language.dashboard.dashboardNewsAuthor}}
+                                                        </span>
+                                                        <span class="author-id">
+                                                            {{newsData?.user?.firstname}} {{newsData?.user?.lastname}}
+                                                        </span>
+                                                    </div>
                                                     <!-- <span class="author-date">
                                                         {{newsData.created_at | date: 'd. MMMM y'}}
                                                     </span> -->

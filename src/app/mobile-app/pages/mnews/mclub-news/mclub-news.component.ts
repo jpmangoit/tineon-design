@@ -99,7 +99,6 @@ export class MclubNewsComponent implements OnInit {
                         this.dashboardData = respData;
                         if (this.dashboardData?.length > 0) {
                             this.dashboardData.forEach((element, index) => {
-
                                 if (element?.news_image[0]?.news_image) {
                                     element.news_image[0].news_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element?.news_image[0]?.news_image.substring(20))) as string;
                                 }
