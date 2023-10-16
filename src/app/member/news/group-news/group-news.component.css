@@ -1308,8 +1308,13 @@ span.manage_g_cat {
 /* new design css start */
 
 .club-widget-appointment {
-    padding: 35px 25px;
+    padding: 35px 14px; 
     border-radius: 20px;
+}
+
+.club-widget-item-inner {
+ 
+  padding: 0 7px;
 }
 
 .card-header h5 {
@@ -1377,7 +1382,7 @@ span.club-schedule {
     margin-left: 8px;
 } */
 .club-w-image {
-    width: 128px;
+    width: 118px;
     height: 100%;
     overflow: hidden;
     object-fit: cover;
@@ -1400,7 +1405,7 @@ span.club-schedule {
 } */
 .club-left-area {
     margin-right: 0px;
-    width: 128px;
+    width: 11 8px;
     display: inline-block;
 }
 
@@ -1492,7 +1497,7 @@ width: auto;
 .club-widget-des-inner {
     display: flex;
     flex-wrap: nowrap;
-    gap: 15px;
+    gap: 10px;
 }
 
 .event-groups span.club-badge {
@@ -1503,7 +1508,7 @@ width: auto;
 .event-groups .club-category {
     background: #e7345d;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 15px; 
     text-align: center;
 }
 
@@ -1545,8 +1550,9 @@ width: auto;
 }
 
 .card.club-widget-appointment .card-header {
-    padding: 0 !important;
-    margin-bottom: 21px !important;
+  padding: 0 0 22px 5px !important;
+  margin-bottom: 17px !important;
+  border-bottom: 1px solid #EFF2FD;
 }
 
 .club-right-area {
