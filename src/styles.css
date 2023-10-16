@@ -1,9 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+    font-family: 'Gellix', sans-serif;
+    src:  url("./assets/fonts/Gellix-LightItalic.woff") format("woff");
+    src: local("./assets/fonts/Gellix Light Italic"),
+        local("Gellix-LightItalic"),
+        url("./assets/fonts/Gellix-LightItalic.eot?#iefix")
+            format("embedded-opentype"),
+        url("./assets/fonts/Gellix-LightItalic.woff2") format("woff2"),
+        url("./assets/fonts/Gellix-LightItalic.eot") format("eot"),
+        url("./assets/fonts/Gellix-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
 .mat-body,
 .mat-body-1,
 .mat-typography{
-  font-family: "Gellix", sans-serif !important;
+  font-family: 'Gellix' !important;
 }
 
 .toast-top-right {

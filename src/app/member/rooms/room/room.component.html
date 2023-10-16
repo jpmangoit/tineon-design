@@ -169,16 +169,24 @@
                             </div>
                         </div>
                     </div> -->
-					<div *ngIf="allRooms && allRooms?.length > 0">
+					<div class="room_pagination_buttons" *ngIf="allRooms && allRooms?.length > 0">
 						<button (click)="pageChanged(-1);"
-							[disabled]="currentPageNmuber === 1">{{language.pagination.previous}}</button>
+							[disabled]="currentPageNmuber === 1">
+							<span><svg xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 7 9" fill="none">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M0.459119 4.137C0.236096 4.28799 0.102539 4.53975 0.102539 4.80904C0.102539 5.07833 0.236096 5.33009 0.459119 5.48108L4.83389 8.72766C5.08248 8.89567 5.40349 8.91284 5.66852 8.77229C5.93365 8.63178 6.09951 8.35647 6.1 8.05643V1.56328C6.1 1.26263 5.93405 0.986749 5.66852 0.84601C5.40309 0.70527 5.08158 0.722708 4.8329 0.891338L0.459119 4.137Z" fill="#68759F"/>
+								</svg></span>
+							{{language.pagination.previous}}
+						</button>
 						<button (click)="pageChanged(1);"
 							[disabled]="currentPageNmuber === totalPages ">{{language.pagination.next}}</button>
 					</div>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="allRooms && allRooms.length == 0">
 					<!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"  alt="{{language.room.no_rooms}}" loading="lazy"><br> -->
-					<span>{{language.room.no_rooms}}</span>
+					<span><svg xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 7 9" fill="none">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M6.42116 3.94852C6.64418 4.09951 6.77774 4.35127 6.77774 4.62056C6.77774 4.88986 6.64418 5.14161 6.42116 5.29261L2.04639 8.53918C1.7978 8.70719 1.47679 8.72436 1.21176 8.58382C0.946625 8.4433 0.780769 8.16799 0.780273 7.86796V1.37481C0.780273 1.07415 0.946228 0.798273 1.21176 0.657533C1.47719 0.516793 1.79869 0.534231 2.04738 0.702861L6.42116 3.94852Z" fill="#68759F"/>
+						</svg></span>
+						{{language.room.no_rooms}}
 				</div>
 			</div>
 			<!-- main content section End -->

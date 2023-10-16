@@ -10,7 +10,7 @@
                         fill="#999999" />
                 </svg>
             </mat-label>
-            <mat-select matNativeControl [(value)]="selected" (selectionChange)="taskFilter($event.value)">
+            <mat-select matNativeControl [(value)]="selected" (selectionChange)="taskFilter($event.value)" disableOptionCentering panelClass="myPanelClass">
                 <mat-option value="1">{{language.organizer_task.all_task}}</mat-option>
                 <mat-option value="2">{{language.organizer_task.personal_task}}</mat-option>
                 <mat-option value="3">{{language.organizer_task.group_task}}</mat-option>
@@ -27,7 +27,7 @@
                 </svg>
             </mat-label>
             <mat-select matNativeControl [(value)]="selectedProgress"
-                (selectionChange)="taskProgressFilter($event.value)">
+                (selectionChange)="taskProgressFilter($event.value)" disableOptionCentering panelClass="myPanelClass">
                 <mat-option value="5">{{language.organizer_task.toDoTask}}</mat-option>
                 <mat-option value="6">{{language.organizer_task.inProgress}}</mat-option>
                 <mat-option value="7">{{language.organizer_task.completed}}</mat-option>

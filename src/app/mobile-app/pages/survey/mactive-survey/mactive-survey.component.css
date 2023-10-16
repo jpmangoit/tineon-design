@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: -10px;
 }
 span.survey-dates-inner {
     font-family: 'Gellix', sans-serif;
@@ -22,7 +23,6 @@ span.survey-dates-inner {
     color: #999;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 .survey-title h5 {
     font-family: 'Gellix', sans-serif;
@@ -45,7 +45,17 @@ span.survey-author-img {
   max-width: none;
   width: 100%;
 } 
-
+.event-action {
+    width: 30px;
+    text-align: right;
+}
+.event-action button {
+    padding: 0;
+}
+span.survey-author-img img {
+    height: 100%;
+    object-fit: fill;
+}
 /* .survey-author-img img {
   max-width: none;
 } */
@@ -100,6 +110,9 @@ button.mat-menu-item {
 }
 ::ng-deep .mat-progress-bar-fill::after {
     background-color: #FBC52D !important;
+}
+::ng-deep body.mobile-red .event-action span.mat-button-wrapper svg path {
+    fill: #E8E5FF;
 }
 @media only screen and (max-width: 576px) {
     .searchRefine {

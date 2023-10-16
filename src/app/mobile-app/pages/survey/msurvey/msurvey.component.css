@@ -88,6 +88,20 @@
     justify-content: flex-end;
 }
 
+span.survey-author-img img {
+    height: 100%;
+    object-fit: fill;
+}
+.event-action {
+    width: 30px;
+    text-align: right;
+}
+.event-action button {
+    padding: 0;
+}
+body.mobile-red .event-action span.mat-button-wrapper svg path {
+    fill: #E8E5FF;
+}
 @media (max-width:767px) {
 
     .event-time,

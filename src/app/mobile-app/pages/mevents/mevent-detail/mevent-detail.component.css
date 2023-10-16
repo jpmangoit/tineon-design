@@ -713,6 +713,8 @@ ul.bunch_drop.show li {
     font-weight: 700;
     color: #fff;
     font-size: 12px;
+    text-transform: uppercase;
+    font-family: 'Gellix' !important;
 }
 
 .card-body.top-box .widget-appointment {
@@ -1071,6 +1073,10 @@ span.deny-reason {
     stroke: #20AE80 !important;
 }
 
+.app-right-content svg {
+    width: 30px !important;
+}
+
 @media (max-width:767px) {
     .widget-app-content {
         justify-content: left;
@@ -1092,7 +1098,7 @@ span.deny-reason {
     }
 
     .page-heading {
-        margin-bottom: 23px;
+        margin-bottom: 15px !important;
         margin-top: 0;
         padding-top: 25px;
     }
