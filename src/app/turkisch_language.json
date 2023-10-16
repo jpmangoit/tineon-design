@@ -236,7 +236,8 @@
         "to_event": "Zur Veranstaltung",
         "approved_paticipants": " Teilnehmer haben zugesagt",
         "list_view": "Listenansicht",
-        "tile_view": "Kachelansicht"
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Items per page:"
     },
     "club_news": {
         "Edit": "Düzenlemek",

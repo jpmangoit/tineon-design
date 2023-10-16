@@ -771,7 +771,7 @@ a:hover {
     margin-top: 20px;
 }
 
-button {
+.next-prev-button button {
     padding: 10px;
     background-color: #4CAF50;
     color: white;
@@ -780,7 +780,7 @@ button {
     cursor: pointer;
 }
 
-button:disabled {
+.next-prev-button button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
 }
@@ -789,7 +789,7 @@ button:disabled {
     display: flex;
 }
 
-span {
+.next-prev-button span {
     margin: 0 5px;
     padding: 8px;
     border: 1px solid #ddd;
@@ -798,11 +798,11 @@ span {
     transition: background-color 0.3s;
 }
 
-span:hover {
+.next-prev-button span:hover {
     background-color: #ddd;
 }
 
-span.active {
+.next-prev-button span.active {
     background-color: #4CAF50;
     color: white;
 }

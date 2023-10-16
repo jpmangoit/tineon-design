@@ -238,7 +238,8 @@
         "to_event": "Zur Veranstaltung",
         "approved_paticipants": " Teilnehmer haben zugesagt",
         "list_view": "Listenansicht",
-        "tile_view": "Kachelansicht"
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Anzeigen pro Seite:"
     },
     "club_news": {
         "Edit": "Bearbeiten",

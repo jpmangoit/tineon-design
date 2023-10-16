@@ -169,8 +169,6 @@ export class EventsCalendarComponent implements OnInit {
                         })
                         var element: any = null;
                         let self = this;
-                        console.log(this.all_events);
-
                         for (var key in this.all_events) {
                             if (this.all_events.hasOwnProperty(key)) {
                                 element = this.all_events[key];
@@ -519,7 +517,6 @@ export class EventsCalendarComponent implements OnInit {
         if (rrEvents1?.picture_video) {
             rrEvents1.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(rrEvents1?.picture_video.substring(20)));
         }
-        // console.log(rrEvents1); 
         self.eventList.push(rrEvents1);
         if (dt1 == self.todays_date) {
             self.currentEvent.push(rrEvents1);
@@ -530,12 +527,20 @@ export class EventsCalendarComponent implements OnInit {
         }
         //New array combining currentEvent and upcomingEvent
         this.allEventsList = [...self.currentEvent, ...self.upcomingEvent];
+        this.allEventsList.sort((a, b) => {
+            const dateA = new Date(a.date_from).getTime();
+            const dateB = new Date(b.date_from).getTime();
+            return dateA - dateB;
+        });
         let newsTotalRecords = this.allEventsList.length
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
         this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
-        this.allEventsList = [...self.currentEvent, ...self.upcomingEvent];
+    }
+
+    applyFilter(){
+        
     }
 
 
@@ -570,11 +575,7 @@ export class EventsCalendarComponent implements OnInit {
 
     updatePagesArray() {
         this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-        console.log(this.pagesArray);
-        
     }
-
-
 
 
     /**
