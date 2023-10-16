@@ -107,7 +107,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
         this.displayEvents = true;
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy(): void { 
         this.activatedSub.unsubscribe();
     }
 }
