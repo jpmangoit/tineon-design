@@ -230,8 +230,11 @@
         "currentEvent": "Evento actual",
         "updateEvent":"Actualizar evento",
         "image_wid_heig": "Cargue la imagen con una resolución de al menos ancho = 800 y alto = 500",
-        "today_course_offer": "Hoy"
-
+        "today_course_offer": "Hoy",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht"
     },
     "club_news": {
         "Edit": "Editar",

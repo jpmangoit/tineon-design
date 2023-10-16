@@ -162,8 +162,11 @@
         "today": "Сегодня",
         "show_calendar": "Показать календарь",
         "upcoming": "Скоро будет",
-        "today_course_offer": "Сегодня"
-
+        "today_course_offer": "Сегодня",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht"
     },
     "club_news": {
         "Edit": "Редактировать",

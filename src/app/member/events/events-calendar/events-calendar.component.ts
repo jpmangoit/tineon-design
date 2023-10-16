@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { element } from 'protractor';
 declare var $: any;
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export const MY_DATE_FORMATS = {
     display: {
@@ -65,11 +66,16 @@ export class EventsCalendarComponent implements OnInit {
     headline_word_option: number = 0;
     minDate: Date;
     maxDate: Date;
-    selectedView: string = 'list-view';
+    selectedView: string = 'tile-view';
     selectedYear: number = new Date().getFullYear();
     selectedMonth: number = new Date().getMonth() + 1; // Default to the current month
     selectedEventType: number = 1; // Set a default value if needed
     eventTypeDropdownList: { item_id: number, item_text: string }[] = [];
+    allEventsList: any[] = [];
+    currentPageNumber: number = 1;
+    totalPages: any;
+    itemPerPage: number = 8;
+    pagesArray: number[] = [];
 
 
     // Generate years for the second dropdown (current year and upcoming 10 years)
@@ -88,7 +94,7 @@ export class EventsCalendarComponent implements OnInit {
         private lang: LanguageService, private themes: ThemeService, private route: ActivatedRoute,
         private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,
-
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit(): void {
@@ -152,21 +158,23 @@ export class EventsCalendarComponent implements OnInit {
                         this.date = new Date(); // Today's date
                         this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
                         respData.forEach((elem: any) => {
-                            
-                            if (this.filterOpt == false) {
-                                if (elem.type == 1) {
-                                    this.all_events.push(elem);
-                                }
-                            } else {
-                                this.all_events.push(elem);
-                            }
+                            this.all_events.push(elem);
+                            // if (this.filterOpt == false) {
+                            //     if (elem.type == 1) {
+                            //         this.all_events.push(elem);
+                            //     }
+                            // } else {
+                            //     this.all_events.push(elem);
+                            // }
                         })
                         var element: any = null;
                         let self = this;
+                        console.log(this.all_events);
+
                         for (var key in this.all_events) {
                             if (this.all_events.hasOwnProperty(key)) {
                                 element = this.all_events[key];
-                                
+
                                 if (element?.recurrence && element?.recurrence != '' && element?.recurrence != null) {
                                     let recurrence: string = element.recurrence;
                                     if (recurrence.includes('UNTIL') == false) {
@@ -284,10 +292,9 @@ export class EventsCalendarComponent implements OnInit {
                                 }
                             }
                         }
-                        console.log(this.currentEvent);
                         this.currentEventList.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
                         this.currentEvent.sort((a: any, b: any) => Number(new Date(a.date_from)) - Number(new Date(b.date_from)));
-                        
+
                         if ((this.participateAccess.course == 'Yes') && (this.filterOpt == true)) {
                             this.getAllCourses();
                         } else {
@@ -492,11 +499,12 @@ export class EventsCalendarComponent implements OnInit {
     */
     pushCommonFunction(element: any, rrDate: any, rrDateEnd: any, dt1: any, type: any) {
         let self = this;
+        const approvedEventUsers = element.eventUsers.filter((user: any) => user.approved_status === 1);
         let rrEvents1: any = {
             "id": element.id,
             "type": type,
             "name": element.name,
-            "picture_video": element.picture_video,
+            "picture_video": element.event_images[0]?.event_image,
             "date_from": rrDate,
             "date_to": rrDateEnd,
             "description": element.description,
@@ -504,8 +512,14 @@ export class EventsCalendarComponent implements OnInit {
             "end_time": element.end_time,
             "isCourse": false,
             "show_guest_list": element.show_guest_list,
-            "visibility": element.visibility
+            "visibility": element.visibility,
+            "place": element.place,
+            "approvedEventUsers": approvedEventUsers
         };
+        if (rrEvents1?.picture_video) {
+            rrEvents1.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(rrEvents1?.picture_video.substring(20)));
+        }
+        // console.log(rrEvents1); 
         self.eventList.push(rrEvents1);
         if (dt1 == self.todays_date) {
             self.currentEvent.push(rrEvents1);
@@ -514,7 +528,54 @@ export class EventsCalendarComponent implements OnInit {
             self.upcomingEvent.push(rrEvents1);
             self.upcomingEventList.push(rrEvents1);
         }
+        //New array combining currentEvent and upcomingEvent
+        this.allEventsList = [...self.currentEvent, ...self.upcomingEvent];
+        let newsTotalRecords = this.allEventsList.length
+        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+
+        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        this.updatePagesArray();
+        this.allEventsList = [...self.currentEvent, ...self.upcomingEvent];
     }
+
+
+    get pagedEvents() {
+        const startIndex = (this.currentPageNumber - 1) * this.itemPerPage;
+        const endIndex = startIndex + this.itemPerPage;
+        return this.allEventsList.slice(startIndex, endIndex);
+    }
+
+    nextPage() {
+        if (this.currentPageNumber < this.totalPages) {
+            this.currentPageNumber++;
+        }
+    }
+
+    previousPage() {
+        if (this.currentPageNumber > 1) {
+            this.currentPageNumber--;
+        }
+    }
+
+    goToPage(pageNumber: number) {
+        if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+            this.currentPageNumber = pageNumber;
+        }
+    }
+
+    changeItemsPerPage() {
+        this.currentPageNumber = 1; // Reset to the first page when changing items per page
+        this.updatePagesArray();
+    }
+
+    updatePagesArray() {
+        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        console.log(this.pagesArray);
+        
+    }
+
+
+
 
     /**
     * Function to get events of the  given date
