@@ -266,6 +266,19 @@ span.author-date {
 .club_widget .card .card-header {
     padding: 0;
     border: 0;
+    border-bottom: 1px solid #EFF2FD;
+  padding-bottom: 12px;
+  margin-bottom: 17px;
+}
+
+::ng-deep .row.dash-widget.dashboard_w_m  .club_widget .card .card-header {
+    border: none !important;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+::ng-deep .row.dash-widget.dashboard_w_m  .club_widget .card .card-header h5 {
+    padding-bottom: 20px;
 }
 
 
@@ -388,10 +401,14 @@ span.author-date {
     border-radius: 15px;
     background: #F2F2F5;
     box-shadow: 0 4px 4px #00000040;
-    margin: 10px auto;
+    margin: 0px auto;
     display: flex;
     flex-wrap: wrap;
     align-content: baseline;
+}
+
+.row.dash-widget.dashboard_w_m .news-item.large-item {
+    margin: 10px auto;
 }
 
 .news-item.large-item .news-description {
@@ -410,7 +427,7 @@ span.author-date {
 .news-top-content {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
     align-items: center;
@@ -461,7 +478,7 @@ span.author-date {
     display: flex;
     flex-wrap: nowrap;
     align-items: center; 
-    width: 58%;
+    width: 58% !important;
 }
 
 .news-item.multi-item  .dashboard-slider > div:nth-child(2n + 0) {
@@ -469,7 +486,7 @@ span.author-date {
 }
 
 .multi-item-carousel + .multi-item-single {
-    margin-bottom: 26px;
+    margin-bottom: 30px;
 }
 
 .card-header.clubwall-ne {
@@ -565,7 +582,7 @@ span.news-date img {
     cursor: pointer;
     border-radius: 15px;
     background: #F2F2F5;
-    margin: 10px 3%;
+    margin: 0px 3% 0;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -756,7 +773,7 @@ owl-carousel-o.ng-star-inserted {
     border-radius: 15px;
     background: #F2F2F5;
     box-shadow: 0 4px 4px #00000040;
-    margin: 10px 3% 26px;
+    margin: 0px 3% 30px;
 }
 
 .multi-item-car-single h5 {
@@ -868,6 +885,16 @@ owl-carousel-o.ng-star-inserted {
 .card {
     background: #fff !important;
     border-radius: 1.25rem !important;
+  }
+
+  @media(max-width:1550px) {
+    .news-author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
   }
 
   @media(min-width:1200px) and (max-width:1400px) {

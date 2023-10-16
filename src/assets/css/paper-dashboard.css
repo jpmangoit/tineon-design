@@ -8635,10 +8635,17 @@ font-size: 14px;
     height: 100%;
 }
 
-.col-md-3.appointment_widget .card-header h5 {
+.dash-widget.dashboard_w_m .col-md-3.appointment_widget .card-header h5 {
   padding: 0;
   margin-bottom: 22px !important;
 }
+
+.col-md-3.appointment_widget .card-header h5  {
+    padding:0px;
+}
+
+
+
 
 span.event_uplod_overlay {
     position: absolute;
