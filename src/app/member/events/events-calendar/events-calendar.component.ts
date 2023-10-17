@@ -17,6 +17,7 @@ import { element } from 'protractor';
 declare var $: any;
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectorRef } from '@angular/core';
 
 export const MY_DATE_FORMATS = {
     display: {
@@ -32,6 +33,7 @@ export const MY_DATE_FORMATS = {
 })
 
 export class EventsCalendarComponent implements OnInit {
+    private cdr: ChangeDetectorRef;
     language: any;
     setTheme: ThemeType;
     userRole: string;
@@ -80,12 +82,14 @@ export class EventsCalendarComponent implements OnInit {
     selectedYear: number | null = null;
     selectedMonth: number = null;
     selectedEventType: number = null;
+    isData: boolean = true;
 
     // Generate months for the third dropdown
     months: { name: string; value: number }[] = Array.from({ length: 12 }, (_, index) => ({
         name: new Date(0, index).toLocaleString('en-US', { month: 'long' }),
         value: index + 1
     }));
+    actualAllEventsList: any[];
 
     constructor(
         private authService: AuthServiceService,
@@ -529,14 +533,14 @@ export class EventsCalendarComponent implements OnInit {
             self.upcomingEventList.push(rrEvents1);
         }
         //New array combining currentEvent and upcomingEvent
-        this.allEventsList = [...self.currentEvent, ...self.upcomingEvent];
+        this.allEventsList = this.actualAllEventsList = [...self.currentEvent, ...self.upcomingEvent];
         this.allEventsList.sort((a, b) => {
             const dateA = new Date(a.date_from).getTime();
             const dateB = new Date(b.date_from).getTime();
             return dateA - dateB;
         });
         console.log(this.allEventsList);
-
+        
         let newsTotalRecords = this.allEventsList.length
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
@@ -547,6 +551,7 @@ export class EventsCalendarComponent implements OnInit {
 
     filteredEventsList: any[] = []; // Array to store filtered events
     applyFilters() {
+        this.allEventsList = this.actualAllEventsList;
         this.filteredEventsList = this.allEventsList.filter(event => {
             // Filter by Year
             if (this.selectedYear && new Date(event.date_from).getFullYear() !== +this.selectedYear) {
@@ -566,15 +571,38 @@ export class EventsCalendarComponent implements OnInit {
             // All filters passed, include this event in the filtered list
             return true;
         });
-        this.allEventsList = this.filteredEventsList
+        this.allEventsList = this.filteredEventsList;
         console.log(this.filteredEventsList);
+        
+        if(this.filteredEventsList.length == 0){
+            this.isData = false
+        }
+
         let newsTotalRecords = this.allEventsList.length
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
         this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
-        
+
     }
+
+
+
+    //     applyFilters() {
+    //     if (this.selectedYear) {
+    //         console.log(this.selectedYear);
+    //         this.filteredEventsList = [];
+            
+    //         this.filteredEventsList = this.allEventsList.filter(event => {
+    //             const eventYear: any = new Date(event.date_from).getFullYear().toString();
+    //             console.log(eventYear);
+                
+    //             return eventYear == this.selectedYear;
+    //         });
+    //     }
+
+    //     this.allEventsList =  this.filteredEventsList ;
+    // }
 
 
 
@@ -599,6 +627,7 @@ export class EventsCalendarComponent implements OnInit {
 
     //     if (this.allEventsList) {
     //         // Filter by year
+
     //         if (this.selectedYear) {
     //             filteredEvents = filteredEvents.filter(event => {
     //                 const eventYear: any = new Date(event.date_from).getFullYear();

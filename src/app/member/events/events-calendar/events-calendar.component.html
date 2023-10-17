@@ -11,7 +11,7 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl placeholder="Year" [(value)]="selectedYear" (selectionChange)="applyFilters()"> 
+                    <mat-select matNativeControl placeholder="Year" [(value)]="selectedYear" (selectionChange)="applyFilters()" > 
                         <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="next-prev-button" *ngIf="pagedEvents ">
+            <div class="next-prev-button" *ngIf="allEventsList && isData">
                 <div class="items-per-page">
                     <span>{{language.club_events.items_per_page}}</span>
                     <select [(ngModel)]="itemPerPage" (change)="changeItemsPerPage()">
@@ -142,10 +142,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <div class="next-prev-button" *ngIf="pagedEvents ">
+            <div class="next-prev-button" *ngIf="pagedEvents && isData">
                 <div class="items-per-page">
                     <span>{{language.club_events.items_per_page}}</span>
                     <select [(ngModel)]="itemPerPage" (change)="changeItemsPerPage()">
@@ -181,6 +179,10 @@
 
                     </svg></button>
             </div>
+        </div>
+
+        <div class="empty-data" *ngIf="isData == false">
+            <span>{{language.club_events.no_events}}</span>
         </div>
         <!-- LIST VIEW END-->
     </div>
