@@ -214,6 +214,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
+                                        console.log( this.updateEventData );
+                                        
 
                                         if (this.updateEventData?.baseImage[0]?.image != null) {
                                             this.showUpdateImage = true;
@@ -381,10 +383,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             });
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
                             this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
-
+                            
                             this.approvedParticipantsNew = this.approvedParticipants.filter((item:any) => item.approved_status === 1);
 
-                            this.deniedParticipants = this.approvedParticipants.filter((item:any) => item.approved_status === 3);
+                            this.deniedParticipants = this.approvedParticipants.filter((item:any) => item.approved_status === 3);   
                         }
                     }
                 );
