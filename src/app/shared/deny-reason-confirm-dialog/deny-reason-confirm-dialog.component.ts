@@ -95,7 +95,7 @@ export class DenyReasonConfirmDialogComponent implements OnInit {
                     .subscribe(
                         (respData: any) => {
                             self.authService.setLoader(false);
-                            const url: string[] = ["/clubnews-detail/" + this.delete_id];
+                            const url: string[] = ["/web/clubnews-detail/" + this.delete_id];
                             self._router.navigate(url);
                             this.ngOnInit();
                             setTimeout(() => {
@@ -110,7 +110,7 @@ export class DenyReasonConfirmDialogComponent implements OnInit {
                     .subscribe(
                         (respData: any) => {
                             self.authService.setLoader(false);
-                            const url: string[] = ["/clubwall"];
+                            const url: string[] = ["/web/clubwall"];
                             self._router.navigate(url);
                             this.message.noFn();
                         }

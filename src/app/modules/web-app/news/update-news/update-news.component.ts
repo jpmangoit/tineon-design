@@ -330,7 +330,6 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
             } else {
                 formData.append("highlighted", false);
             }
-
             formData.append("publication_date_to", new Date().toISOString());
             formData.append("publication_date_from", new Date().toISOString());
             this.authService.setLoader(true);
@@ -343,7 +342,7 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
                             this.notificationService.showSuccess(respData.result.message, null);
                             var self = this;
                             setTimeout(function () {
-                                const url: string[] = ['clubnews-detail/' + self.newsData.id];
+                                const url: string[] = ['/web/clubnews-detail/' + self.newsData.id];
                                 self.router.navigate(url);
                             }, 1500);
                         } else if (respData['code'] == 400) {

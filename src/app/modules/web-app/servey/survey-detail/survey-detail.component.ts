@@ -307,7 +307,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (respData: any) => {
                         self.authService.setLoader(false);
-                        const url: string[] = ['survey-detail/' + id];
+                        const url: string[] = ['/web/survey-detail/' + id];
                         self.router.navigate(url);
                     }
                 )
