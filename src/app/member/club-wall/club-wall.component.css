@@ -7930,6 +7930,27 @@ span.manage_g_cat {
     flex: 0 0 50%;
 }
 
+.club-wall-top-heading{
+  display: flex;
+  justify-content: space-between;
+}
+
+.club-wall-top-heading h1 {
+   color: #3D475C;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 34px;
+  letter-spacing: 0.485px;
+  margin-bottom: 6px;
+}
+
+.button-box > div.page-action-right {
+  width: auto;
+  display: flex;
+  width: 100%;
+}
+
 
 /* new design css start */
 
@@ -7991,7 +8012,7 @@ span.manage_g_cat {
     color:#fff !important;
 }
 .page-action-right button:first-child {
-    margin-right: 26px;
+    margin-right: 10px;
     background: #FFBE00;
 }
 .page-action-right button:last-child {
@@ -8011,6 +8032,8 @@ span.manage_g_cat {
     width: 50%;
     justify-content: flex-start;
     margin-bottom: 22px; 
+    position: relative;
+    z-index: 500;
 }
 .page-heading h1 {
     font-size: 24px;
@@ -8033,6 +8056,10 @@ span.manage_g_cat {
 }
 .page-action {
     margin-top: 20px;
+    
+}
+.width-50 {
+    width: 50%;
 }
 .tab-button button span {
     position: relative;
