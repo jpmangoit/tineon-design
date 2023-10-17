@@ -71,7 +71,13 @@
         "specialChar_validation" : "Please only enter the amount without special characters"
     },
     "club_events": {
-        "today_course_offer": "Heutige Kurs-Angebote"
+        "today_course_offer": "Heutige Kurs-Angebote",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Items per page:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
     },
     "community_messages" : {
         "message_to_me" : "nachrichten an mich"

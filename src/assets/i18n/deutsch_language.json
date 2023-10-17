@@ -234,8 +234,13 @@
         "currentEvent": "Aktuelles Event",
         "updateEvent": "Event aktualisieren",
         "image_wid_heig": "Bitte laden Sie das Bild mit einer Auflösung von mindestens Breite = 800 und Höhe = 500 hoch",
-        "today_course_offer": "Heutige Kurs-Angebote"
-
+        "today_course_offer": "Heutige Kurs-Angebote",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Anzeigen pro Seite:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
     },
     "club_news": {
         "Edit": "Bearbeiten",

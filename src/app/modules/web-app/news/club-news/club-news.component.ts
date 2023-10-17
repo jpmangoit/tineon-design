@@ -463,7 +463,7 @@ export class ClubNewsComponent implements OnInit, OnDestroy {
         this.router.navigate(url);
     }
 
-    pageChanged(event: number) {
+    pageChanged(event: number) { 
         if (event === -1) {
             // Previous button clicked
             this.currentPageNmuber--;
