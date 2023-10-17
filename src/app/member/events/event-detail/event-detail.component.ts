@@ -69,10 +69,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     allUsers: any;
     eventId: any;
     eventDate: any;
-
     result: any;
     documentData: any;
     dowloading: boolean = false;
+    approvedParticipantsNew: any[] = [];
+    deniedParticipants: any[] = [];
 
     constructor(
         private authService: AuthServiceService,
@@ -380,6 +381,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             });
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
                             this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
+
+                            this.approvedParticipantsNew = this.approvedParticipants.filter((item:any) => item.approved_status === 1);
+
+                            this.deniedParticipants = this.approvedParticipants.filter((item:any) => item.approved_status === 3);
                         }
                     }
                 );
@@ -422,6 +427,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 this.memImg.push(val);
                             });
                             this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg, 'id'));
+                            // console.log(this.memImg);
+
                         }
                         this.authService.setLoader(false);
                     }
@@ -612,6 +619,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 }
                             })
                             this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
+
                         }
                     }
                 );

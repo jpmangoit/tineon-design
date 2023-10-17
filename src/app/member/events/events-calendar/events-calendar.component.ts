@@ -547,7 +547,6 @@ export class EventsCalendarComponent implements OnInit {
 
     filteredEventsList: any[] = []; // Array to store filtered events
     applyFilters() {
-        
         this.filteredEventsList = this.allEventsList.filter(event => {
             // Filter by Year
             if (this.selectedYear && new Date(event.date_from).getFullYear() !== +this.selectedYear) {
