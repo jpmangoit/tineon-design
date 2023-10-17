@@ -1094,7 +1094,7 @@
                                     <div class="all-participant-card">
                                         <div class="card-header "
                                             *ngIf="(approvedParticipants && approvedParticipants.length) || (memImg && memImg.length)">
-                                            <h5 class="card-title">{{language.organizer.approved}}</h5>
+                                            <h5 class="card-title">{{language.organizer.all_participants}}</h5>
                                         </div>
                                         <div class="card-body" *ngIf="approvedParticipants">
                                             <div class="widget-appointment widget"
@@ -1132,24 +1132,16 @@
                                                                 class="status_badge approved"></span>{{language.organizer.approved}}
                                                         </span>
                                                     </div>
-                                                    <!-- <div class="app-right-content"
+                                                    <div class="app-right-content"
                                                         *ngIf="participant.approved_status == 3">
                                                         <span class="participant_status">
                                                             <span
                                                                 class="status_badge denied"></span>{{language.create_event.denied}}
                                                         </span>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="card-body" *ngIf="approvedParticipants">
-                                        <div class="widget-appointment widget" *ngFor="let participant of memImg">
-                                             <div class="card-header "
-                                            *ngIf="(approvedParticipants && approvedParticipants.length) || (memImg && memImg.length)">
-                                            <h5 class="card-title">{{language.organizer.pending}}</h5>
-                                        </div>
+                                            <div class="widget-appointment widget" *ngFor="let participant of memImg">
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
                                                     <div class="app-left-content">
@@ -1180,55 +1172,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
-
-                                       <div class="card-body" *ngIf="participant.approved_status == 3">
-                                            <div class="widget-appointment widget"
-                                                *ngFor="let participant of approvedParticipants">
-                                                <div class="widget-app-content" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.users.id)">
-                                                    <div class="app-left-content">
-                                                        <!-- <div class="parti_name"
-                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                            {{participant.users?.firstname.charAt(0)}}{{participant.users?.lastname.charAt(0)}}
-                                                        </div> -->
-                                                        <div class="author-img"
-                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="'assets/img/defaultProfile.jpeg'"
-                                                                style="width: 100px;" alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="author-img" *ngIf="participant.users.image != null">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="participant.users.image" style="width: 100px;"
-                                                                alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="user-content">
-                                                            <span class="user-name">{{participant.users.firstname}}
-                                                                {{participant.users.lastname}}</span>
-                                                            <span
-                                                                class="participant_email">{{participant.users.email}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="app-right-content"
-                                                        *ngIf="participant.approved_status == 1">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge approved"></span>{{language.organizer.approved}}
-                                                        </span>
-                                                    </div>
-                                                    <!-- <div class="app-right-content"
-                                                        *ngIf="participant.approved_status == 3">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge denied"></span>{{language.create_event.denied}}
-                                                        </span>
-                                                    </div> -->
-                                                </div>
-                                            </div>
-                                            
                                         </div>
+                                    </div>
                                     <div class="event-content">
                                                 <div class="event-title">
                                                     <div class="sub-title">
