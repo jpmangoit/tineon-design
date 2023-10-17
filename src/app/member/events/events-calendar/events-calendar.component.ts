@@ -67,19 +67,19 @@ export class EventsCalendarComponent implements OnInit {
     minDate: Date;
     maxDate: Date;
     selectedView: string = 'tile-view';
-    selectedYear: number = new Date().getFullYear();
-    selectedMonth: number = new Date().getMonth() + 1; // Default to the current month
-    selectedEventType: number = 1; // Set a default value if needed
+
     eventTypeDropdownList: { item_id: number, item_text: string }[] = [];
     allEventsList: any[] = [];
     currentPageNumber: number = 1;
     totalPages: any;
     itemPerPage: number = 8;
     pagesArray: number[] = [];
-
-
-    // Generate years for the second dropdown (current year and upcoming 10 years)
-    years: number[] = Array.from({ length: 11 }, (_, index) => this.selectedYear + index);
+    years: number[] = [];
+    // selectedYear: number = new Date().getFullYear();
+    // selectedMonth: number = new Date().getMonth() + 1; // Default to the current month
+    selectedYear: number | null = null;
+    selectedMonth: number = null;
+    selectedEventType: number = null;
 
     // Generate months for the third dropdown
     months: { name: string; value: number }[] = Array.from({ length: 12 }, (_, index) => ({
@@ -101,7 +101,10 @@ export class EventsCalendarComponent implements OnInit {
         const currentYear = new Date().getFullYear();
         this.minDate = new Date(currentYear - 1, 0, 1);
         this.maxDate = new Date(currentYear + 1, 11, 2);
-
+        // for year's dropdown
+        for (let i = 0; i < 5; i++) {
+            this.years.push(currentYear + i);
+        }
 
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
@@ -532,6 +535,8 @@ export class EventsCalendarComponent implements OnInit {
             const dateB = new Date(b.date_from).getTime();
             return dateA - dateB;
         });
+        console.log(this.allEventsList);
+
         let newsTotalRecords = this.allEventsList.length
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
@@ -539,9 +544,89 @@ export class EventsCalendarComponent implements OnInit {
         this.updatePagesArray();
     }
 
-    applyFilter(){
+
+    filteredEventsList: any[] = []; // Array to store filtered events
+    applyFilters() {
+        
+        this.filteredEventsList = this.allEventsList.filter(event => {
+            // Filter by Year
+            if (this.selectedYear && new Date(event.date_from).getFullYear() !== +this.selectedYear) {
+                return false;
+            }
+
+            // Filter by Month
+            if (this.selectedMonth && new Date(event.date_from).getMonth() !== +this.selectedMonth - 1) {
+                return false;
+            }
+
+            // Filter by Event Type
+            if (this.selectedEventType && event.type != this.selectedEventType) {
+                return false;
+            }
+
+            // All filters passed, include this event in the filtered list
+            return true;
+        });
+        this.allEventsList = this.filteredEventsList
+        console.log(this.filteredEventsList);
+        let newsTotalRecords = this.allEventsList.length
+        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+
+        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        this.updatePagesArray();
         
     }
+
+
+
+    // applyFilter() {
+    //     const filteredEvents = this.filterEvents();
+    //     this.allEventsList = filteredEvents;
+    //     this.allEventsList.sort((a, b) => {
+    //         const dateA = new Date(a.date_from).getTime();
+    //         const dateB = new Date(b.date_from).getTime();
+    //         return dateA - dateB;
+    //     });
+    //     let newsTotalRecords = this.allEventsList.length;
+    //     this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+    //     this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    //     this.updatePagesArray();
+    // }
+
+
+    // filterEvents(): any[] {
+    //     // Implement your filtering logic based on selected filters
+    //     let filteredEvents = this.allEventsList;
+
+    //     if (this.allEventsList) {
+    //         // Filter by year
+    //         if (this.selectedYear) {
+    //             filteredEvents = filteredEvents.filter(event => {
+    //                 const eventYear: any = new Date(event.date_from).getFullYear();
+    //                 return eventYear.toString() === this.selectedYear;
+    //             });
+    //         }
+
+    //         // Filter by month
+    //         if (this.selectedMonth) {
+    //             filteredEvents = filteredEvents.filter(event => {
+    //                 console.log('--in--');
+    //                 const eventMonth: any = new Date(event.date_from).getUTCMonth() + 1; // Month is 0-indexed
+    //                 return eventMonth.toString() === this.selectedMonth;
+    //             });
+    //         }
+
+    //         // Filter by event type
+    //         if (this.selectedEventType) {
+    //             filteredEvents = filteredEvents.filter(event => {
+    //                 return event.type === this.selectedEventType;
+    //             });
+    //         }
+    //     }
+
+    //     return filteredEvents;
+    // }
+
 
 
     get pagedEvents() {

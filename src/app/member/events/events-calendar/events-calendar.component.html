@@ -3,7 +3,7 @@
         <div class="date-bar">
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedView" >
+                    <mat-select matNativeControl placeholder="View" [(value)]="selectedView" >
                         <mat-option value="tile-view">{{language.club_events.tile_view}}</mat-option>
                         <mat-option value="list-view">{{language.club_events.list_view}}</mat-option>
                     </mat-select>
@@ -11,14 +11,14 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedYear" onchange="applyFilter()">
+                    <mat-select matNativeControl placeholder="Year" [(value)]="selectedYear" (selectionChange)="applyFilters()"> 
                         <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedMonth" onchange="applyFilter()">
+                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="Month">
                         <mat-option *ngFor="let month of months" [value]="month.value">
                             {{ month.name }}
                         </mat-option>
@@ -27,7 +27,7 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedEventType" onchange="applyFilter()">
+                    <mat-select matNativeControl [(value)]="selectedEventType" (selectionChange)="applyFilters()"  placeholder="Event-type">
                         <mat-option *ngFor="let eventType of eventTypeDropdownList" [value]="eventType.item_id">
                             {{ eventType.item_text }}
                         </mat-option>

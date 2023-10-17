@@ -229,7 +229,8 @@
         "approved_paticipants": " Teilnehmer haben zugesagt",
         "list_view": "Listenansicht",
         "tile_view": "Kachelansicht",
-        "items_per_page" : "Items per page:"
+        "items_per_page" : "Items per page:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
 
     },
     "club_news": {

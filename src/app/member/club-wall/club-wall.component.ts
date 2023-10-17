@@ -75,6 +75,11 @@ export class ClubWallComponent implements OnInit, OnDestroy {
         this.createAccess = this.userAccess[this.userRole].create;
         this.participateAccess = this.userAccess[this.userRole].participate;
     }
+    
+    isClubEventsRoute(): boolean {
+        // Check if the current route is '/clubwall/club-events'
+        return this.router.url === '/clubwall/club-events';
+    }
 
     /**
     * Function is used to display news tab

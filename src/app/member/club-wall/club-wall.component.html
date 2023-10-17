@@ -1,6 +1,7 @@
 <div class="content">
-    <div class="page_heading">
-        <h1>Aktuelle Veranstaltungen im Verein</h1>
+    <div class="page_heading"  *ngIf="isClubEventsRoute()">
+        <h1>{{language.club_events.current_events}}</h1>
+        <span>Clubwall > Events</span>
     </div>
     <div class="row">
         <div class="col-md-12 page-main">
