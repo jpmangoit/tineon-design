@@ -79,32 +79,25 @@
                         <option value="50">50</option>
                     </select>
                 </div>
-                <button (click)="previousPage()" [disabled]="currentPageNumber === 1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39" fill="none">
-                        <rect width="39" height="39" rx="10" fill="#DCE0EC" />
-                        <rect x="2" y="2" width="35" height="35" rx="8" fill="white" />
-                        <path
-                            d="M17.2581 19.253C17.2581 19.1632 17.2581 19.0735 17.2573 18.9844C17.3387 18.2826 17.6322 17.6764 18.143 17.1772C18.8462 16.4905 19.5567 15.8117 20.2694 15.1358C20.7433 14.6869 21.4109 14.679 21.8545 15.1049C22.3062 15.5388 22.3003 16.2032 21.8242 16.6665C21.1662 17.3072 20.4956 17.9364 19.8339 18.5742C19.2735 19.1144 19.2742 19.7882 19.8339 20.3262C20.503 20.9697 21.1787 21.6061 21.8434 22.2533C22.199 22.5995 22.2781 23.0442 22.0866 23.4651C21.9018 23.8716 21.4834 24.1259 21.0272 24.1051C20.7388 24.0921 20.4926 23.9794 20.2879 23.7833C19.5589 23.0844 18.8232 22.3912 18.1046 21.6823C17.6122 21.196 17.3387 20.5969 17.2573 19.916C17.2573 19.8262 17.2581 19.7364 17.2581 19.6474C17.2581 19.5159 17.2581 19.3845 17.2581 19.253Z"
-                            fill="#98A2C3" />
-
-                    </svg>
-                </button>
-                <div class="pagination">
-                    <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
-                        [class.active]="currentPageNumber === page">
-                        {{ page }}
-                    </span>
+                <div class="pagination-area">
+                    <button (click)="previousPage()" [disabled]="currentPageNumber === 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                            <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="pagination">
+                        <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
+                            [class.active]="currentPageNumber === page">
+                            {{ page }}
+                        </span>
+                    </div>
+                    <button style="transform: rotate(180deg);" (click)="nextPage()"
+                        [disabled]="currentPageNumber === totalPages">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                            <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                <button style="transform: rotate(180deg);" (click)="nextPage()"
-                    [disabled]="currentPageNumber === totalPages">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39" fill="none">
-                        <rect width="39" height="39" rx="10" fill="#DCE0EC" />
-                        <rect x="2" y="2" width="35" height="35" rx="8" fill="white" />
-                        <path
-                            d="M17.2581 19.253C17.2581 19.1632 17.2581 19.0735 17.2573 18.9844C17.3387 18.2826 17.6322 17.6764 18.143 17.1772C18.8462 16.4905 19.5567 15.8117 20.2694 15.1358C20.7433 14.6869 21.4109 14.679 21.8545 15.1049C22.3062 15.5388 22.3003 16.2032 21.8242 16.6665C21.1662 17.3072 20.4956 17.9364 19.8339 18.5742C19.2735 19.1144 19.2742 19.7882 19.8339 20.3262C20.503 20.9697 21.1787 21.6061 21.8434 22.2533C22.199 22.5995 22.2781 23.0442 22.0866 23.4651C21.9018 23.8716 21.4834 24.1259 21.0272 24.1051C20.7388 24.0921 20.4926 23.9794 20.2879 23.7833C19.5589 23.0844 18.8232 22.3912 18.1046 21.6823C17.6122 21.196 17.3387 20.5969 17.2573 19.916C17.2573 19.8262 17.2581 19.7364 17.2581 19.6474C17.2581 19.5159 17.2581 19.3845 17.2581 19.253Z"
-                            fill="#98A2C3" />
-
-                    </svg></button>
             </div>
         </div>
         <!-- GRID VIEW START-->
@@ -152,32 +145,25 @@
                         <option value="50">50</option>
                     </select>
                 </div>
-
-                <button (click)="previousPage()" [disabled]="currentPageNumber === 1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39" fill="none">
-                        <rect width="39" height="39" rx="10" fill="#DCE0EC" />
-                        <rect x="2" y="2" width="35" height="35" rx="8" fill="white" />
-                        <path
-                            d="M17.2581 19.253C17.2581 19.1632 17.2581 19.0735 17.2573 18.9844C17.3387 18.2826 17.6322 17.6764 18.143 17.1772C18.8462 16.4905 19.5567 15.8117 20.2694 15.1358C20.7433 14.6869 21.4109 14.679 21.8545 15.1049C22.3062 15.5388 22.3003 16.2032 21.8242 16.6665C21.1662 17.3072 20.4956 17.9364 19.8339 18.5742C19.2735 19.1144 19.2742 19.7882 19.8339 20.3262C20.503 20.9697 21.1787 21.6061 21.8434 22.2533C22.199 22.5995 22.2781 23.0442 22.0866 23.4651C21.9018 23.8716 21.4834 24.1259 21.0272 24.1051C20.7388 24.0921 20.4926 23.9794 20.2879 23.7833C19.5589 23.0844 18.8232 22.3912 18.1046 21.6823C17.6122 21.196 17.3387 20.5969 17.2573 19.916C17.2573 19.8262 17.2581 19.7364 17.2581 19.6474C17.2581 19.5159 17.2581 19.3845 17.2581 19.253Z"
-                            fill="#98A2C3" />
-                    </svg>
-                </button>
-                <div class="pagination">
-                    <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
-                        [class.active]="currentPageNumber === page">
-                        {{ page }}
-                    </span>
+                <div class="pagination-area">
+                    <button (click)="previousPage()" [disabled]="currentPageNumber === 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                            <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="pagination">
+                        <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
+                            [class.active]="currentPageNumber === page">
+                            {{ page }}
+                        </span>
+                    </div>
+                    <button style="transform: rotate(180deg);" (click)="nextPage()"
+                        [disabled]="currentPageNumber === totalPages">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                            <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                <button style="transform: rotate(180deg);" (click)="nextPage()"
-                    [disabled]="currentPageNumber === totalPages">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39" fill="none">
-                        <rect width="39" height="39" rx="10" fill="#DCE0EC" />
-                        <rect x="2" y="2" width="35" height="35" rx="8" fill="white" />
-                        <path
-                            d="M17.2581 19.253C17.2581 19.1632 17.2581 19.0735 17.2573 18.9844C17.3387 18.2826 17.6322 17.6764 18.143 17.1772C18.8462 16.4905 19.5567 15.8117 20.2694 15.1358C20.7433 14.6869 21.4109 14.679 21.8545 15.1049C22.3062 15.5388 22.3003 16.2032 21.8242 16.6665C21.1662 17.3072 20.4956 17.9364 19.8339 18.5742C19.2735 19.1144 19.2742 19.7882 19.8339 20.3262C20.503 20.9697 21.1787 21.6061 21.8434 22.2533C22.199 22.5995 22.2781 23.0442 22.0866 23.4651C21.9018 23.8716 21.4834 24.1259 21.0272 24.1051C20.7388 24.0921 20.4926 23.9794 20.2879 23.7833C19.5589 23.0844 18.8232 22.3912 18.1046 21.6823C17.6122 21.196 17.3387 20.5969 17.2573 19.916C17.2573 19.8262 17.2581 19.7364 17.2581 19.6474C17.2581 19.5159 17.2581 19.3845 17.2581 19.253Z"
-                            fill="#98A2C3" />
-
-                    </svg></button>
             </div>
         </div>
 

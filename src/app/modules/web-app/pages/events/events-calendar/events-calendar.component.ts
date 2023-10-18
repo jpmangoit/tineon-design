@@ -70,8 +70,6 @@ export class EventsCalendarComponent implements OnInit {
     itemPerPage: number = 8;
     pagesArray: number[] = [];
     years: number[] = [];
-    // selectedYear: number = new Date().getFullYear();
-    // selectedMonth: number = new Date().getMonth() + 1; // Default to the current month
     selectedYear: number | null = null;
     selectedMonth: number = null;
     selectedEventType: number = null;
@@ -83,6 +81,8 @@ export class EventsCalendarComponent implements OnInit {
         value: index + 1
     }));
     actualAllEventsList: any[];
+    filteredEventsList: any[] = []; // Array to store filtered events
+
 
     constructor(
         private authService: AuthServiceService,
@@ -192,24 +192,12 @@ export class EventsCalendarComponent implements OnInit {
                                             var recurring_time: any
                                             var recurring_etime: any
                                             if (recurring_dates) {
-                                                // if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                //     recurring_dates[0].start_time ;
-                                                //     recurring_dates[0].end_time;
-                                                // }else{
-                                                //     recurring_dates[0].start_time + ':00.000Z';
-                                                //     recurring_dates[0].end_time + ':00.000Z'
-                                                // }
-                                                // recurring_time = recurring_dates[0].start_time;
-                                                // recurring_etime = recurring_dates[0].end_time;
                                                 recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                 recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                             } else {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
-
-                                            // let recurring_time = (recurring_dates) ? recurring_dates[0].start_time + ':00.000Z' : element.date_from.split("T")["1"];
-                                            // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time + ':00.000Z' : element.date_to.split("T")["1"];
                                             let rrDate: string = dt + "T" + recurring_time;
                                             let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                             if (element.visibility != 2) {
@@ -226,16 +214,6 @@ export class EventsCalendarComponent implements OnInit {
                                             var recurring_time: any
                                             var recurring_etime: any
                                             if (recurring_dates) {
-                                                // if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                //     recurring_dates[0].start_time ;
-                                                //     recurring_dates[0].end_time;
-                                                // }else{
-                                                //     recurring_dates[0].start_time + ':00.000Z';
-                                                //     recurring_dates[0].end_time + ':00.000Z'
-                                                // }
-                                                // recurring_time = recurring_dates[0].start_time;
-                                                // recurring_etime = recurring_dates[0].end_time;
-
                                                 recurring_time = self.commonFunctionService.formatTime(recurring_dates[index].start_time);
                                                 recurring_etime = self.commonFunctionService.formatTime(recurring_dates[index].end_time);
 
@@ -243,8 +221,6 @@ export class EventsCalendarComponent implements OnInit {
                                                 recurring_time = element.date_from.split("T")["1"]
                                                 recurring_etime = element.date_to.split("T")["1"];
                                             }
-                                            // let recurring_time = (recurring_dates) ? recurring_dates[index].start_time + ':00.000Z' : dd.start_time + ':00.000Z';
-                                            // let recurring_etime = (recurring_dates) ? recurring_dates[index].end_time + ':00.000Z' : dd.end_time + ':00.000Z';
                                             let rrDate1: string = dt1 + "T" + recurring_time;
                                             let rrDateEnd1: string = dt1 + "T" + recurring_etime;
                                             if (element.visibility != 2) {
@@ -261,24 +237,12 @@ export class EventsCalendarComponent implements OnInit {
                                                 var recurring_time: any
                                                 var recurring_etime: any
                                                 if (recurring_dates) {
-                                                    // if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                    //     recurring_dates[0].start_time ;
-                                                    //     recurring_dates[0].end_time;
-                                                    // }else{
-                                                    //     recurring_dates[0].start_time + ':00.000Z';
-                                                    //     recurring_dates[0].end_time + ':00.000Z'
-                                                    // }
-                                                    // recurring_time = recurring_dates[0].start_time;
-                                                    // recurring_etime = recurring_dates[0].end_time;
-
                                                     recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                     recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                                 } else {
                                                     recurring_time = element.date_from.split("T")["1"]
                                                     recurring_etime = element.date_to.split("T")["1"];
                                                 }
-                                                // let recurring_time = (recurring_dates) ? recurring_dates[0].start_time + ':00.000Z' : element.date_from.split("T")["1"];
-                                                // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time + ':00.000Z' : element.date_to.split("T")["1"];
                                                 let rrDate1: string = dt1 + "T" + recurring_time;
                                                 let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                                 if (element.visibility != 2) {
@@ -369,23 +333,12 @@ export class EventsCalendarComponent implements OnInit {
                                                     var recurring_time: any;
                                                     var recurring_etime: any;
                                                     if (recurring_dates) {
-                                                        // if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                        //     recurring_dates[0].start_time ;
-                                                        //     recurring_dates[0].end_time;
-                                                        // }else{
-                                                        //     recurring_dates[0].start_time + ':00.000Z';
-                                                        //     recurring_dates[0].end_time + ':00.000Z'
-                                                        // }
-                                                        // recurring_time = recurring_dates[0].start_time;
-                                                        // recurring_etime = recurring_dates[0].end_time;
                                                         recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                         recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                                     } else {
                                                         recurring_time = element.date_from.split("T")["1"];
                                                         recurring_etime = element.date_to.split("T")["1"];
                                                     }
-                                                    // let recurring_time =  (recurring_dates) ? recurring_dates[0].start_time+':00.000Z' : element.date_from.split("T")["1"];
-                                                    // let recurring_etime =  (recurring_dates) ? recurring_dates[0].end_time+':00.000Z' : element.date_to.split("T")["1"];
                                                     let rrDate: string = dt + "T" + recurring_time;
                                                     let rrDateEnd: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                                     if (element.visibility != 2) {
@@ -407,23 +360,12 @@ export class EventsCalendarComponent implements OnInit {
                                                     var recurring_time: any
                                                     var recurring_etime: any
                                                     if (recurring_dates) {
-                                                        // if(recurring_dates[index].start_time.includes(':00:00') && recurring_dates[index].end_time.includes(':00:00')){
-                                                        //     recurring_dates[index].start_time ;
-                                                        //     recurring_dates[index].end_time;
-                                                        // }else{
-                                                        //     recurring_dates[index].start_time + ':00.000Z';
-                                                        //     recurring_dates[index].end_time + ':00.000Z'
-                                                        // }
-                                                        // recurring_time = recurring_dates[index].start_time;
-                                                        // recurring_etime = recurring_dates[index].end_time;
                                                         recurring_time = self.commonFunctionService.formatTime(recurring_dates[index].start_time);
                                                         recurring_etime = self.commonFunctionService.formatTime(recurring_dates[index].end_time);
                                                     } else {
                                                         recurring_time = element.date_from.split("T")["1"]
                                                         recurring_etime = element.date_to.split("T")["1"];
                                                     }
-                                                    // let recurring_time =  (recurring_dates) ? recurring_dates[index].start_time+':00.000Z' : dd.date_from.split("T")["1"];
-                                                    // let recurring_etime = (recurring_dates) ? recurring_dates[index].end_time+':00.000Z' : dd.date_to.split("T")["1"]
                                                     let rrDate1: string = dt1 + "T" + recurring_time;
                                                     let rrDateEnd1: string = dt1 + "T" + recurring_etime;
                                                     if (element.visibility != 2) {
@@ -444,23 +386,12 @@ export class EventsCalendarComponent implements OnInit {
                                                         var recurring_time: any
                                                         var recurring_etime: any
                                                         if (recurring_dates) {
-                                                            // if(recurring_dates[0].start_time.includes(':00:00') && recurring_dates[0].end_time.includes(':00:00')){
-                                                            //     recurring_dates[0].start_time ;
-                                                            //     recurring_dates[0].end_time;
-                                                            // }else{
-                                                            //     recurring_dates[0].start_time + ':00.000Z';
-                                                            //     recurring_dates[0].end_time + ':00.000Z'
-                                                            // }
-                                                            // recurring_time = recurring_dates[0].start_time;
-                                                            // recurring_etime = recurring_dates[0].end_time;
                                                             recurring_time = self.commonFunctionService.formatTime(recurring_dates[0].start_time);
                                                             recurring_etime = self.commonFunctionService.formatTime(recurring_dates[0].end_time);
                                                         } else {
                                                             recurring_time = element.date_from.split("T")["1"]
                                                             recurring_etime = element.date_to.split("T")["1"];
                                                         }
-                                                        // let recurring_time =  (recurring_dates) ? recurring_dates[0].start_time+':00.000Z' : element.date_from.split("T")["1"];
-                                                        // let recurring_etime = (recurring_dates) ? recurring_dates[0].end_time+':00.000Z' : element.date_to.split("T")["1"]
                                                         let rrDate1: string = dt1 + "T" + recurring_time;
                                                         let rrDateEnd1: string = element.date_to.split("T")["0"] + "T" + recurring_etime;
                                                         if (element.visibility != 2) {
@@ -534,16 +465,14 @@ export class EventsCalendarComponent implements OnInit {
         });
         console.log(this.allEventsList);
 
-        let newsTotalRecords = this.allEventsList.length
-        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-
-        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        // let newsTotalRecords = this.allEventsList.length
+        // this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+        // this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
     }
 
-
-    filteredEventsList: any[] = []; // Array to store filtered events
     applyFilters() {
+        this.currentPageNumber = 1; // Reset to the first page when changing items per page
         this.allEventsList = this.actualAllEventsList;
         this.filteredEventsList = this.allEventsList.filter(event => {
             // Filter by Year
@@ -565,21 +494,18 @@ export class EventsCalendarComponent implements OnInit {
             return true;
         });
         this.allEventsList = this.filteredEventsList;
-        console.log(this.filteredEventsList);
-
         if(this.filteredEventsList.length == 0){
             this.isData = false
+        }else{
+            this.isData = true;
         }
 
-        let newsTotalRecords = this.allEventsList.length
-        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-
-        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        // let newsTotalRecords = this.allEventsList.length
+        // this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+        // this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
 
     }
-
-
 
     //     applyFilters() {
     //     if (this.selectedYear) {
@@ -596,58 +522,6 @@ export class EventsCalendarComponent implements OnInit {
 
     //     this.allEventsList =  this.filteredEventsList ;
     // }
-
-
-
-    // applyFilter() {
-    //     const filteredEvents = this.filterEvents();
-    //     this.allEventsList = filteredEvents;
-    //     this.allEventsList.sort((a, b) => {
-    //         const dateA = new Date(a.date_from).getTime();
-    //         const dateB = new Date(b.date_from).getTime();
-    //         return dateA - dateB;
-    //     });
-    //     let newsTotalRecords = this.allEventsList.length;
-    //     this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-    //     this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    //     this.updatePagesArray();
-    // }
-
-
-    // filterEvents(): any[] {
-    //     // Implement your filtering logic based on selected filters
-    //     let filteredEvents = this.allEventsList;
-
-    //     if (this.allEventsList) {
-    //         // Filter by year
-
-    //         if (this.selectedYear) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 const eventYear: any = new Date(event.date_from).getFullYear();
-    //                 return eventYear.toString() === this.selectedYear;
-    //             });
-    //         }
-
-    //         // Filter by month
-    //         if (this.selectedMonth) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 console.log('--in--');
-    //                 const eventMonth: any = new Date(event.date_from).getUTCMonth() + 1; // Month is 0-indexed
-    //                 return eventMonth.toString() === this.selectedMonth;
-    //             });
-    //         }
-
-    //         // Filter by event type
-    //         if (this.selectedEventType) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 return event.type === this.selectedEventType;
-    //             });
-    //         }
-    //     }
-
-    //     return filteredEvents;
-    // }
-
 
 
     get pagedEvents() {
@@ -676,10 +550,12 @@ export class EventsCalendarComponent implements OnInit {
 
     changeItemsPerPage() {
         this.currentPageNumber = 1; // Reset to the first page when changing items per page
-        this.updatePagesArray();
+        this.updatePagesArray(); 
     }
 
     updatePagesArray() {
+        let newsTotalRecords = this.allEventsList.length
+        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
         this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     }
 
