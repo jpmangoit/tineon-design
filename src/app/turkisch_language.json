@@ -232,8 +232,13 @@
         "currentEvent": "Geçerli Etkinlik",
         "updateEvent":"Etkinliği Güncelle",
         "image_wid_heig": "Lütfen en az Genişlik = 800 ve Yükseklik = 500 çözünürlükteki Resmi yükleyin",
-        "today_course_offer": "bugün"
-
+        "today_course_offer": "bugün",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Items per page:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
     },
     "club_news": {
         "Edit": "Düzenlemek",

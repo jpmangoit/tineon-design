@@ -6966,7 +6966,7 @@ span.user-designation {
     font-size: 20px;
     color: #677180;
     margin-bottom: 10px;
-    display: inline-block;
+    display: inline-block; 
 }
 
 .profile_btns button {
@@ -6981,7 +6981,7 @@ span.user-designation {
 
 .profile_btns.sign_out_btn button {
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 30px; 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
@@ -7930,6 +7930,27 @@ span.manage_g_cat {
     flex: 0 0 50%;
 }
 
+.club-wall-top-heading{
+  display: flex;
+  justify-content: space-between;
+}
+
+.club-wall-top-heading h1 {
+   color: #3D475C;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 34px;
+  letter-spacing: 0.485px;
+  margin-bottom: 6px;
+}
+
+.button-box > div.page-action-right {
+  width: auto;
+  display: flex;
+  width: 100%;
+}
+
 
 /* new design css start */
 
@@ -7937,10 +7958,12 @@ span.manage_g_cat {
     .col-md-9.club_widget.club-wall-news {
         flex: 0 0 75%;
         max-width:75%;
+        padding: 0 10px;
     }
     .col-md-3.appointment_widget {
         flex: 0 0 25%;
         max-width: 25%;
+        padding: 0 10px;
     }
 }
 @media only screen and (min-width:768px) and (max-width:1024px){
@@ -7989,7 +8012,7 @@ span.manage_g_cat {
     color:#fff !important;
 }
 .page-action-right button:first-child {
-    margin-right: 26px;
+    margin-right: 10px;
     background: #FFBE00;
 }
 .page-action-right button:last-child {
@@ -8008,7 +8031,9 @@ span.manage_g_cat {
 .page-action-left {
     width: 50%;
     justify-content: flex-start;
-    margin-bottom: 30px;
+    margin-bottom: 22px; 
+    position: relative;
+    z-index: 500;
 }
 .page-heading h1 {
     font-size: 24px;
@@ -8027,10 +8052,14 @@ span.manage_g_cat {
 }
 .page-action {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap; 
 }
 .page-action {
-    margin-top: 25px;
+    margin-top: 20px;
+    
+}
+.width-50 {
+    width: 50%;
 }
 .tab-button button span {
     position: relative;

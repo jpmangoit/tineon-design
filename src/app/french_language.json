@@ -233,8 +233,13 @@
         "currentEvent":"Événement en cours",
         "updateEvent":"Mettre à jour le Événement",
         "image_wid_heig": "Veuillez télécharger l'image de résolution au moins largeur = 800 et hauteur = 500",
-        "today_course_offer": "Aujourd'hui"
-
+        "today_course_offer": "Aujourd'hui",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Items per page:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
     },
     "club_news":{
         "Edit":"Modifier",

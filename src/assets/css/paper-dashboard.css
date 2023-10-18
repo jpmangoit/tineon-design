@@ -2,11 +2,12 @@
 /* Gellix font family start */
 @font-face {
     font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-Light.eot');
-    src: url('../../assets/fonts/Gellix-Light.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-Light.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-Light.woff') format('woff'),
-        url('../../assets/fonts/Gellix-Light.svg#Gellix-Light') format('svg');
+    src: url('../fonts/Gellix-Light.eot');
+    src: url('../fonts/Gellix-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Light.woff2') format('woff2'),
+        url('../fonts/Gellix-Light.woff') format('woff'),
+        url('../fonts/Gellix-Light.ttf') format('truetype'),
+        url('../fonts/Gellix-Light.svg#Gellix-Light') format('svg');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -14,35 +15,77 @@
 
 @font-face {
     font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-LightItalic.eot');
-    src: url('../../assets/fonts/Gellix-LightItalic.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-LightItalic.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-LightItalic.woff') format('woff'),
-        url('../../assets/fonts/Gellix-LightItalic.svg#Gellix-LightItalic') format('svg');
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-ExtraBoldItalic.eot');
-    src: url('../../assets/fonts/Gellix-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-ExtraBoldItalic.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-ExtraBoldItalic.woff') format('woff'),
-        url('../../assets/fonts/Gellix-ExtraBoldItalic.svg#Gellix-ExtraBoldItalic') format('svg');
+    src: url('../fonts/Gellix-Bold.eot');
+    src: url('../fonts/Gellix-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Bold.woff2') format('woff2'),
+        url('../fonts/Gellix-Bold.woff') format('woff'),
+        url('../fonts/Gellix-Bold.ttf') format('truetype'),
+        url('../fonts/Gellix-Bold.svg#Gellix-Bold') format('svg');
     font-weight: bold;
-    font-style: italic;
+    font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-Regular.eot');
-    src: url('../../assets/fonts/Gellix-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-Regular.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-Regular.woff') format('woff'),
-        url('../../assets/fonts/Gellix-Regular.svg#Gellix-Regular') format('svg');
+    src: url('../fonts/Gellix-Black.eot');
+    src: url('../fonts/Gellix-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Black.woff2') format('woff2'),
+        url('../fonts/Gellix-Black.woff') format('woff'),
+        url('../fonts/Gellix-Black.ttf') format('truetype'),
+        url('../fonts/Gellix-Black.svg#Gellix-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gellix';
+    src: url('../fonts/Gellix-ExtraBold.eot');
+    src: url('../fonts/Gellix-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Gellix-ExtraBold.woff') format('woff'),
+        url('../fonts/Gellix-ExtraBold.ttf') format('truetype'),
+        url('../fonts/Gellix-ExtraBold.svg#Gellix-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gellix';
+    src: url('../fonts/Gellix-SemiBold.eot');
+    src: url('../fonts/Gellix-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-SemiBold.woff2') format('woff2'),
+        url('../fonts/Gellix-SemiBold.woff') format('woff'),
+        url('../fonts/Gellix-SemiBold.ttf') format('truetype'),
+        url('../fonts/Gellix-SemiBold.svg#Gellix-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gellix';
+    src: url('../fonts/Gellix-Thin.eot');
+    src: url('../fonts/Gellix-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Thin.woff2') format('woff2'),
+        url('../fonts/Gellix-Thin.woff') format('woff'),
+        url('../fonts/Gellix-Thin.ttf') format('truetype'),
+        url('../fonts/Gellix-Thin.svg#Gellix-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gellix';
+    src: url('../fonts/Gellix-Regular.eot');
+    src: url('../fonts/Gellix-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Regular.woff2') format('woff2'),
+        url('../fonts/Gellix-Regular.woff') format('woff'),
+        url('../fonts/Gellix-Regular.ttf') format('truetype'),
+        url('../fonts/Gellix-Regular.svg#Gellix-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -50,85 +93,14 @@
 
 @font-face {
     font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-BlackItalic.eot');
-    src: url('../../assets/fonts/Gellix-BlackItalic.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-BlackItalic.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-BlackItalic.woff') format('woff'),
-        url('../../assets/fonts/Gellix-BlackItalic.svg#Gellix-BlackItalic') format('svg');
-    font-weight: 900;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-Black.eot');
-    src: url('../../assets/fonts/Gellix-Black.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-Black.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-Black.woff') format('woff'),
-        url('../../assets/fonts/Gellix-Black.svg#Gellix-Black') format('svg');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-Medium.eot');
-    src: url('../../assets/fonts/Gellix-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-Medium.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-Medium.woff') format('woff'),
-        url('../../assets/fonts/Gellix-Medium.svg#Gellix-Medium') format('svg');
+    src: url('../fonts/Gellix-Medium.eot');
+    src: url('../fonts/Gellix-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Gellix-Medium.woff2') format('woff2'),
+        url('../fonts/Gellix-Medium.woff') format('woff'),
+        url('../fonts/Gellix-Medium.ttf') format('truetype'),
+        url('../fonts/Gellix-Medium.svg#Gellix-Medium') format('svg');
     font-weight: 500;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-MediumItalic.eot');
-    src: url('../../assets/fonts/Gellix-MediumItalic.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-MediumItalic.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-MediumItalic.woff') format('woff'),
-        url('../../assets/fonts/Gellix-MediumItalic.svg#Gellix-MediumItalic') format('svg');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-Bold.eot');
-    src: url('../../assets/fonts/Gellix-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-Bold.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-Bold.woff') format('woff'),
-        url('../../assets/fonts/Gellix-Bold.svg#Gellix-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-ExtraBold.eot');
-    src: url('../../assets/fonts/Gellix-ExtraBold.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-ExtraBold.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-ExtraBold.woff') format('woff'),
-        url('../../assets/fonts/Gellix-ExtraBold.svg#Gellix-ExtraBold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gellix';
-    src: url('../../assets/fonts/Gellix-BoldItalic.eot');
-    src: url('../../assets/fonts/Gellix-BoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('../../assets/fonts/Gellix-BoldItalic.woff2') format('woff2'),
-        url('../../assets/fonts/Gellix-BoldItalic.woff') format('woff'),
-        url('../../assets/fonts/Gellix-BoldItalic.svg#Gellix-BoldItalic') format('svg');
-    font-weight: bold;
-    font-style: italic;
     font-display: swap;
 }
 
@@ -148,7 +120,9 @@ a {
   margin-left: 15px !important;
 } */
 
-
+.mat-body, .mat-body-1, .mat-typography {
+  font-family: 'Gellix' !important;
+}
 
 /* MS supports */
 @supports (-ms-overflow-style: none) {
@@ -282,7 +256,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 h1,
@@ -292,12 +266,12 @@ h4,
 h5,
 h6 {
     font-weight: 400;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 a {
     color: #51cbce;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 a:hover,
@@ -427,7 +401,7 @@ body {
 
 .text-box-cont a {
     color: #ffbe00;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -467,7 +441,7 @@ body {
         float: left;
         margin-bottom: 26px;
         color: #e12217;
-        font-family: "Gellix", sans-serif !important;
+        font-family: 'Gellix' !important;
         font-weight: 600;
     }
 
@@ -597,7 +571,7 @@ body {
     font-size: 24px;
     line-height: 45px;
     margin-bottom: 40px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -685,7 +659,7 @@ body {
     height: 52px;
     background: #ffbe00;
     border-radius: 4px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -693,7 +667,7 @@ body {
 .text-box-cont .input-group label {
     font-size: 14px;
     color: #252631;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: bold;
 }
 
@@ -723,21 +697,21 @@ body {
     font-size: 15px;
     font-weight: 300;
     color: #c0ccda;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 ::ng-deep  body .mat-body, ::ng-deep  body .mat-body-1, ::ng-deep  body .mat-typography .mat-body, ::ng-deep  body .mat-typography .mat-body-1, ::ng-deep  body .mat-typography {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 ::ng-deep .mat-body, ::ng-deep .mat-body-1, ::ng-deep .mat-typography ::ng-deep .mat-body, ::ng-deep .mat-typography ::ng-deep .mat-body-1, ::ng-deep .mat-typography {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 .login-heading h2 {
     font-size: 26px;
     margin-bottom: 20px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -1082,13 +1056,13 @@ a.text-gray:hover {
 body {
     color: #2c2c2c;
     font-size: 14px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
 
 p {
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 .main {
@@ -3262,7 +3236,7 @@ img {
     padding: 6px 8px 6px 25px;
     line-height: 30px;
     opacity: 1;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 500;
 }
 
@@ -4523,7 +4497,7 @@ button.navbar-toggler.open {
     margin-top: 0px;
     font-size: 20px;
     color: #555555;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -5531,13 +5505,13 @@ button.navbar-toggler.open {
 
 p.course-time span {
     color: #95a0c6;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
 .page-title h2 {
     font-size: 24px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #424d5c;
     display: inline-block;
@@ -5583,7 +5557,7 @@ span.news-category {
     text-overflow: ellipsis;
     overflow: hidden;
     height: calc(1 * 2.8rem);
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 .news-content p {
@@ -5699,7 +5673,7 @@ min-height: 70%;
 .empty-data-image span {
     color: #b5b5b5;
     font-size: 15px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 500;
     /* text-transform: uppercase; */
 }
@@ -5736,7 +5710,7 @@ span.user-name {
     font-size: 14px;
     font-weight: 600;
     color: #414141;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 
@@ -5747,7 +5721,7 @@ span.user-name {
 span.participant_email,
 span.participant_status {
     font-size: 12px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 400;
     word-break: break-all;
 
@@ -5768,7 +5742,7 @@ span.participant_status {
 
 .club-name {
     font-size: 15px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #fff;
     text-transform: uppercase;
@@ -6155,7 +6129,7 @@ span.user-designation {
     padding: 12px 20px !important;
     border-radius: 10px;
     font-size: 14px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     background-color: rgb(88,191,56);
     color: #fff;
@@ -6178,7 +6152,7 @@ span.user-designation {
     color: #292929;
     margin-top: 0;
     margin-bottom: 0;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -6263,7 +6237,7 @@ span.group-name {
     font-size: 14px;
     color: #424d5c;
     line-height: 20px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -6289,7 +6263,7 @@ span.group-name {
 .event-detail h6 {
     text-transform: uppercase;
     color: #192838;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     font-size: 14px;
     margin-top: 5px;
@@ -6320,7 +6294,7 @@ span.event-day {
 span.event-time {
     font-size: 20px;
     color: #192838;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -6447,7 +6421,7 @@ span.event-r-time {
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 .widget-chat.widget .widget-app-content:hover,
@@ -6525,7 +6499,7 @@ span.event-r-time {
     color: #414141;
     font-size: 14px;
     margin-bottom: 2px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -6534,7 +6508,7 @@ span.seen-time {
     font-size: 12px;
     font-weight: 600;
     color: #98a9bc;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     overflow: hidden;
     white-space: normal;
     display: -webkit-box;
@@ -6556,7 +6530,7 @@ span.seen-time {
 .widget-chat.widget .user-content p {
     font-size: 12px;
     color: #989EB2;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     margin-bottom: 0;
     text-transform: capitalize;
@@ -6642,7 +6616,7 @@ span.seen-time {
 }
 
 .chat-user-name span {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-size: 13px;
     cursor: pointer;
 }
@@ -6728,7 +6702,7 @@ span.seen-time {
 
 .chat-content h2 {
     font-size: 18px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     color: #192838;
     margin: 15px 0px;
     text-transform: capitalize;
@@ -6737,7 +6711,7 @@ span.seen-time {
 .chat-content p {
     font-size: 15px;
     line-height: 21px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     color: #424d5c;
     font-weight: 500;
 }
@@ -6784,7 +6758,7 @@ span.seen-time {
 
 .single-participent-reply span,
 .multipl-participent-reply span {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #7c8ba0;
 }
@@ -6794,14 +6768,14 @@ span.seen-time {
 .multipl-participent-reply span.cc-username {
     font-size: 13px;
     color: #7c8ba0;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     cursor: pointer;
 }
 
 .chat-text-area textarea::placeholder {
     color: #95a2b4;
     font-size: 14px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 .chat-text-area textarea:focus {
@@ -7058,7 +7032,7 @@ span.group-mem-count {
     margin-bottom: 0;
     margin-top: 10px;
     width: 100%;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     text-transform: uppercase;
 }
 
@@ -7120,7 +7094,7 @@ span.manage_g_cat {
     font-size: 13px;
     /* color: #aabdd9; */
     color: #6781a9;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -7215,7 +7189,7 @@ span.upload_ol {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     font-weight: bold;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-size: 15px;
     text-transform: uppercase;
 }
@@ -7229,7 +7203,7 @@ span.event_month {
     font-size: 9px;
     color: #fb5f5f;
     padding-top: 7px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -7251,13 +7225,13 @@ span.event_month {
 
 .event_box_right span.event_date {
     font-size: 13px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 span.event_date {
     font-size: 16px;
     color: #fb5f5f;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -7297,7 +7271,7 @@ span.event_year {
   overflow: hidden;
   text-overflow: ellipsis; */
     line-height: 15px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 .event_sub_date {
@@ -7306,7 +7280,7 @@ span.event_year {
 
 .event_box_right h6 {
     font-size: 14px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #192838;
     margin-bottom: 5px;
@@ -7315,7 +7289,7 @@ span.event_year {
 .event_box_right h6 a,
 .event_box_right h6 a:hover {
     color: #353535;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -7417,7 +7391,7 @@ span.event_year {
     font-size: 14px;
     margin-right: 20px;
     font-weight: 600;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 li.success_mark label {
@@ -7461,7 +7435,7 @@ span.priority_status.success {
     padding: 5px 15px;
     border-radius: 5px;
     font-weight: 600;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 span.priority_status.success {
@@ -7506,7 +7480,7 @@ button.btn.btn-yes {
 }
 
 .confirm-message {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600 !important;
     margin-bottom: 0px !important;
     margin-top: 5px !important;
@@ -7529,7 +7503,7 @@ button.btn.btn-yes {
     cursor: pointer;
     padding: 0px 10px;
     margin-right: 20px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     border-left: 0px;
     border-right: 0px;
     border-top: 0px;
@@ -7584,7 +7558,7 @@ span.docu_name {
     text-overflow: ellipsis;
     overflow: hidden;
     padding: 0px 10px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     cursor: pointer;
 }
 
@@ -7894,7 +7868,7 @@ right: 0;
     color: #292929 !important;
     display: flex;
     align-items: center;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -8000,7 +7974,7 @@ a.info_detail {
     color: #3d567c;
     font-weight: 400;
     padding: 8px 10px !important;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     border-radius: 5px;
 }
 
@@ -8012,7 +7986,7 @@ a.info_detail {
 .profile_field label {
     font-size: 14px;
     color: #1d202f;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -8022,7 +7996,7 @@ a.info_detail {
     color: #e12217;
     border-radius: 5px;
     border: 1px solid #e12217;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     font-size: 14px;
 }
@@ -8039,7 +8013,7 @@ a.info_detail {
     font-size: 20px;
     color: #555555;
     margin: 0px 0px 30px 0px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -8049,7 +8023,7 @@ a.info_detail {
     font-size: 17px;
     color: #313131;
     margin-bottom: 15px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 span.info_detail a {
@@ -8065,7 +8039,7 @@ span.info_detail a {
     padding-left: 30px;
   border-radius: 15px;
   font-size: 12px;
-  font-family: "Gellix", sans-serif;
+  font-family: 'Gellix';
   font-weight: 400;
   height: 55px;
   background: #fff;
@@ -8074,7 +8048,7 @@ span.info_detail a {
 .profile_field input::placeholder {
   color: #666;
   font-size: 12px;
-  font-family: "Gellix", sans-serif;
+  font-family: 'Gellix';
   font-weight: 400px;
 }
 
@@ -8116,7 +8090,7 @@ span.info_detail a {
     align-items: center;
     font-size: 14px;
     font-weight: 600;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 .profile_content .card-body {
     padding: 0px;
@@ -8227,7 +8201,7 @@ span.info_label {
     font-size: 17px;
     color: #68759f;
     margin-bottom: 15px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -8239,7 +8213,7 @@ span.info_detail {
     padding: 13px 30px;
     border-radius: 15px;
     font-size: 17px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 400;
     height: 51px;
 }
@@ -8389,7 +8363,7 @@ span.info_detail {
     font-size: 17px;
     color: #68759f;
     margin-bottom: 8px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -8403,7 +8377,7 @@ div#showSubtask input {
     border-radius: 13px;
     padding: 15px;
     color: #313131;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-size: 12px;
     font-weight: 400;
     padding: 14px 30px;
@@ -8553,10 +8527,17 @@ font-size: 14px;
     height: 100%;
 }
 
-.col-md-3.appointment_widget .card-header h5 {
+.dash-widget.dashboard_w_m .col-md-3.appointment_widget .card-header h5 {
   padding: 0;
   margin-bottom: 22px !important;
 }
+
+.col-md-3.appointment_widget .card-header h5  {
+    padding:0px;
+}
+
+
+
 
 span.event_uplod_overlay {
     position: absolute;
@@ -8601,7 +8582,7 @@ span.event_uplod_overlay img {
     font-size: 17px;
     color: #68759f;
     text-transform: capitalize;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     position: relative;
 }
@@ -8688,7 +8669,7 @@ span.message_upload_overlay .upload_label {
     font-size: 14px;
     font-weight: 600;
     color: #677180;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 
 .upload_label span {
@@ -8704,7 +8685,7 @@ span.message_upload_overlay .upload_label {
 
 .message_title {
     font-size: 24px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #1d202f;
     margin: 30px 0px;
@@ -8901,7 +8882,7 @@ html hr {
 .pagintHeadLeft ul {
     padding: 0;
     margin: 0;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     color: #414141;
 }
@@ -9176,7 +9157,7 @@ ul.bunch_drop.show li a {
 }
 ul.bunch_drop.show li a {
     color: #9ea5bd !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     font-size: 15px;
 }
@@ -9222,7 +9203,7 @@ th.fc-col-header-cell.fc-day {
 
 a.fc-daygrid-day-number {
     font-size: 17px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -9242,7 +9223,7 @@ button.fc-today-button.fc-button.fc-button-primary {
 h2.fc-toolbar-title {
     font-size: 20px !important;
     color: #555555;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
 }
 
@@ -9364,7 +9345,7 @@ button.fc-next-button.fc-button.fc-button-primary:focus {
 
 .feature_tab ul li a {
     color: #68759f;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -9500,7 +9481,7 @@ button.fc-next-button.fc-button.fc-button-primary:focus {
 }
 
 .participent_sec_to span {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
 }
 
@@ -9539,7 +9520,7 @@ button.fc-next-button.fc-button.fc-button-primary:focus {
 
 h4#reply-heading {
     font-size: 16px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     margin-bottom: 5px;
     padding-left: 15px;
@@ -9599,7 +9580,7 @@ h4#reply-heading {
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     font-size: 16px;
     box-shadow: 0px 0px 5px 1px #e0e0ff;
@@ -9699,7 +9680,7 @@ ul.bunch_drop.show li a {
 
 .fc-daygrid-event.club-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #ffd2d2 !important;
     padding: 0px 5px;
 }
@@ -9710,7 +9691,7 @@ ul.bunch_drop.show li a {
 
 .fc-daygrid-event.courses-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #cce0ff !important;
     padding: 0px 5px;
 }
@@ -9721,14 +9702,14 @@ ul.bunch_drop.show li a {
 
 .fc-daygrid-event.group-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #e0deff !important;
     padding: 0px 5px;
 }
 
 .fc-daygrid-event.seminar-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #ffd2d2 !important;
     padding: 0px 5px;
 }
@@ -9739,7 +9720,7 @@ ul.bunch_drop.show li a {
 
 .fc-daygrid-event.functionaries-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #ffd2d2 !important;
     padding: 0px 5px;
 }
@@ -9980,7 +9961,7 @@ a.nav-link.dropdown-toggle.toggle_btn:after {
     height: 27px;
     width: 35px;
     color: #192838;
-     font-family: "Gellix", sans-serif !important;
+     font-family: 'Gellix' !important;
      font-weight: bold;
 }
 
@@ -9996,7 +9977,7 @@ a.nav-link.dropdown-toggle.toggle_btn:after {
 
 .searchRefine {
     font-size: 13px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     color: #647895;
     display: flex;
     align-items: center;
@@ -10134,13 +10115,13 @@ span.custom_repeat_inner {
     color: #3a3a3a;
     text-transform: capitalize;
     font-weight: 600;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     margin-bottom: 10px;
 }
 .class_description {
     font-size: 16px;
     color: #414141;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 500;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -10398,7 +10379,7 @@ span.custom_repeat_inner {
 
 .col-news-content h5 {
     font-size: 15px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     color: #192838;
     margin: 0px;
@@ -10617,7 +10598,7 @@ li.nav-item.dropdown.add_dropdown
 
 .group-event-color {
     color: #fff !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     background: #e0deff !important;
     border-radius: 6px !important;
 }
@@ -10828,7 +10809,7 @@ li.nav-item.dropdown.add_dropdown
     position: relative;
     top: 2px;
     font-size: 14px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 .attach_btn svg path,
 .attach_btn svg polyline,
@@ -10953,7 +10934,7 @@ body .sidebar.sidebar-hr a.sidebar-expand:hover .nav-logo .club-name {
     padding: 8px 10px;
     border-bottom: 1px solid #eff2fd !important;
     color: #68759f;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
 }
 
@@ -11056,13 +11037,13 @@ body .sidebar.sidebar-hr a.sidebar-expand:hover .nav-logo .club-name {
 .news_detail_popup .news_heading h2 {
     font-size: 20px !important;
     margin-bottom: 15px !important;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 700;
     color: #353535;
     line-height: 22px;
 }
 .news_content_text {
-  font-family: "Gellix", sans-serif;
+  font-family: 'Gellix';
   font-weight: 500;
   max-height: 280px;
   overflow: auto;
@@ -11255,7 +11236,7 @@ span.message_upload_overlay svg {
 }
 
 ::ng-deep .mat-tab-group {
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
 }
 
 .club-define .mat-tab-group.mat-primary .mat-ink-bar {
@@ -11324,7 +11305,7 @@ a.sidebar-expand .club-logo-title {
 
 a.sidebar-expand .club-logo-title h1 {
     font-size: 15px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 600;
     /* text-transform: uppercase; */
     margin-top: 0px;
@@ -11480,7 +11461,7 @@ table.fc-scrollgrid-sync-table tbody tr {
 
 button.mat-menu-item {
     width: 100%;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 600;
     color: #a2acca;
     padding: 0px 25px 0px 20px;
@@ -11488,7 +11469,7 @@ button.mat-menu-item {
 
 .page-heading h1 {
     font-size: 24px;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 700;
     color: #68759f;
     text-transform: uppercase;
@@ -11538,7 +11519,7 @@ button.mat-menu-item {
     text-transform: uppercase;
     font-size: 17px !important;
     color: #98a5c6 !important;
-    font-family: "Gellix", sans-serif !important;
+    font-family: 'Gellix' !important;
     font-weight: 700 !important;
     margin-bottom: 0;
 }
@@ -11550,7 +11531,7 @@ button.btn-close {
 span.author-id {
     display: inline-block;
     width: 100%;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-size: 13px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -11564,7 +11545,7 @@ span.author-date {
     font-size: 12px;
     /* color: #b1c2ce; */
     color: #444;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 .modal-header {
     /* background: #e5ebff; */
@@ -11658,7 +11639,7 @@ span.author-date {
 }
 .event-calendar-section a.fc-daygrid-day-number {
     font-size: 13px;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     font-weight: 500;
 }
 .event-calendar-section
@@ -11735,7 +11716,7 @@ height: 24px
     line-height: 23px;
     color: #677180;
     text-align: justify;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
 }
 .mat-menu-panel {
     min-height: 38px !important;
@@ -12191,7 +12172,7 @@ body .profile_sub_btn.event_sub_btn {
 .download-overlay .loading:before {
     color: rgb(255 255 255) !important;
     content: attr(data-loading-text);
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     text-transform: uppercase;
     font-weight: 900;
 }
@@ -12205,7 +12186,7 @@ body .profile_sub_btn.event_sub_btn {
     position: absolute;
     content: attr(data-loading-text);
     animation: loading 5s infinite;
-    font-family: "Gellix", sans-serif;
+    font-family: 'Gellix';
     text-transform: uppercase;
     font-weight: 900;
 }
