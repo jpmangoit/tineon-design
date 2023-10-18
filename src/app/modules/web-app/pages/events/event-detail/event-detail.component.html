@@ -13,6 +13,7 @@
                             <div class="card-body">
                                 <div class="profile_details" *ngIf="eventDetails">
                                     <div class="row">
+                                        <!-- event-details left box -->
                                         <div class="col-md-6 left-side-box">
                                             <div class="group_detail_main">
                                                 <div class="group_img_sec testt">
@@ -213,7 +214,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- event-details left box End -->
                                         <div class="col-md-6 all_participants">
                                             <div class="page-action-right"
                                                 *ngIf="eventDetails.deny_by_id == null &&  eventDetails.approved_by == null">
@@ -279,7 +280,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="all-participant-card">
                                                 <div class="card-header"
                                                     *ngIf="(approvedParticipants && approvedParticipants.length) || (memImg && memImg.length)">
@@ -420,6 +420,7 @@
                             <div class="card-body">
                                 <div class="profile_details" *ngIf="updateEventData">
                                     <div class="row">
+                                        <!-- event-details left box -->
                                         <div class="col-md-6 left-side-box">
                                             <div class="group_detail_main">
                                                 <div class="group_img_sec sd">
@@ -636,7 +637,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- event-details left box End -->
                                         <div class="col-md-6 all_participants">
                                             <div class="page-action-right">
                                                 <button

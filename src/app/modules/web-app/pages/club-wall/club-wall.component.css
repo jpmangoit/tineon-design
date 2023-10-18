@@ -7993,9 +7993,10 @@ span.manage_g_cat {
 }
 .tab-button {
     background: #fff;
-    display: inline-block;
+    display: flex;
     padding: 3px;
     border-radius: 10px;
+    justify-content: space-between;
 
 }
 .page-action-right button {
@@ -8029,7 +8030,6 @@ span.manage_g_cat {
     margin-bottom: 30px;
 }
 .page-action-left {
-    width: 50%;
     justify-content: flex-start;
     margin-bottom: 22px; 
     position: relative;
@@ -8064,6 +8064,11 @@ span.manage_g_cat {
 .tab-button button span {
     position: relative;
     top: -2px;
+}
+.heading-box span {
+    color: #68759F;
+    font-size: 14px;
+    font-weight: 500;
 }
 @media only screen and (max-width:1260px){
     .page-action {
