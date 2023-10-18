@@ -23,21 +23,16 @@
                                                 <div class="group_img_sec testt">
                                                     <div class="group_detail_img news_image_container">
                                                         <div class="image-section">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="showImage ? imageurl: '../../../assets/img/no_image.png'"
-                                                                alt="" loading="lazy" />
+                                                            <img onContextMenu="return false;" [src]="showImage ? imageurl: '../../..assets/img/no_image.png'" alt="" loading="lazy" />
                                                         </div>
                                                         <div class="overbar-section">
                                                             <div class="dropdown action_group" *ngIf=" role != 'guest'">
-                                                                <button class="dropdown-toggle" type="button"
-                                                                    (click)="onShow()"><i
-                                                                        class="fa fa-pencil"></i></button>
-                                                                <ul class="dropdown-menu bunch_drop"
-                                                                    aria-labelledby="dropdownMenuLink">
+                                                                <button class="dropdown-toggle" type="button" (click)="onShow()">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu bunch_drop" aria-labelledby="dropdownMenuLink">
                                                                     <li>
-                                                                        <a class="dropdown-item"
-                                                                            routerLink="/web/update-event/{{ eventDetails.id}}">{{
-                                                                            language.organizer.Edit}}</a>
+                                                                        <a class="dropdown-item" routerLink="/web/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                                     </li>
                                                                     <li>
                                                                         <a class="dropdown-item" *ngIf=" eventDetails"
