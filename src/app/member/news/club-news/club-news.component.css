@@ -783,7 +783,10 @@ owl-carousel-o.ng-star-inserted {
     display: inline-block;
     width: 60%;
 }
-
+.dashboard-slider .multi-item-single:first-child, 
+.dashboard-slider .multi-item-single:nth-child(2) {
+    margin-bottom: 24px;
+}
 @media (min-width: 1400px) {
     .multi-item-car-single .news-item-image {
         height: 260px;

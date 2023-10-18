@@ -482,12 +482,12 @@ a:hover {
 
 .event-date span {
     color: #FFF;
-
     text-align: center;
     font-family: 'Gellix', sans-serif;
     font-size: 8px;
     font-style: normal;
     font-weight: 700;
+    text-transform: uppercase;
 
 }
 
@@ -812,7 +812,7 @@ line-height: normal;
 
 .next-prev-button button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: transparent;
     color: white;
     border: none;
     border-radius: 4px;
@@ -820,7 +820,7 @@ line-height: normal;
 }
 
 .next-prev-button button:disabled {
-    background-color: #ddd;
+    background-color: transparent;
     cursor: not-allowed;
 }
 
@@ -841,7 +841,26 @@ line-height: normal;
     background-color: #ddd;
 }
 
-.next-prev-button span.active {
-    background-color: #4CAF50;
+.next-prev-button .pagination span.active {
+    background-color: #ef4968;
     color: white;
+}
+html body .filter-box .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: transparent !important;
+}
+.next-prev-button .pagination span {
+    margin: 0 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    background: #fff;
+    color: #5E6C84;
 }

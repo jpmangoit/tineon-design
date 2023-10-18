@@ -15,16 +15,12 @@ body.login-page {
     margin-bottom: 30px;
 }
 
-
-
 .inner-title h2 {
     width: 100%;
     text-align: center;
     font-size: 2rem;
     font-family: 'Gellix', sans-serif;
 }
-
-
 
 .inner-title p {
     width: 100%;
@@ -7950,7 +7946,12 @@ span.manage_g_cat {
   display: flex;
   width: 100%;
 }
-
+.heading-box span {
+    font-family: 'Gellix';
+    font-size: 14px;
+    font-weight: 500;
+    color: #68759F;
+}
 
 /* new design css start */
 
