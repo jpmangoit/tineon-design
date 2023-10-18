@@ -558,7 +558,17 @@ export class EventDetailComponent implements OnInit, OnDestroy {
             el[0].className = "bunch_drop";
         }
     }
+    onShowTask() {
+        let el: HTMLCollectionOf<Element> = document.getElementsByClassName("Task-toggle");
+        if (!this.showToggle) {
+            this.showToggle = true;
+            el[0].className = "Task-toggle show";
 
+        } else {
+            this.showToggle = false;
+            el[0].className = "Task-toggle";
+        }
+    }
     goBack() {
         this.router.navigate(['/web/organizer']);
     }
