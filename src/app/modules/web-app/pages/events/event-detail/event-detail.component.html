@@ -21,9 +21,6 @@
                                                             <img onContextMenu="return false;"
                                                                 [src]="showImage ? imageurl: '../../../assets/img/no_image.png'"
                                                                 alt="" loading="lazy" />
-                                                            <!-- <img onContextMenu="return false;" alt="" loading="lazy"
-                                                                [src]="eventDetails.event_images[0].event_image ? eventDetails.event_images[0].event_image : '../../assets/img/no_image.png'"> -->
-
                                                         </div>
                                                         <div class="overbar-section">
                                                             <div class="dropdown action_group" *ngIf=" role != 'guest'">
@@ -93,8 +90,6 @@
                                                                                 ) :
                                                                                 (eventDetails.date_from | date: 'HH:mm')
                                                                                 }} {{language.login.o_clock}}</span>
-                                                                            <!-- {{ eventDetails?.recurring_dates? ( (eventDetails?.recurring_dates[0]?.date_from | date: 'EEEE' + ' - ' +eventDetails?.recurring_dates[0]?.start_time ) ) :
-                                                                            (eventDetails.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -126,13 +121,6 @@
                                                                                 *ngIf="eventDetails.price_per_participant == null">{{language.organizer.free}}</span>
                                                                         </div>
                                                                     </li>
-
-                                                                    <!-- <li class="duration">
-                                                                        <span class="img-icon">
-                                                                            <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo" loading="lazy" />
-                                                                        </span>
-                                                                        {{eventDetails?.recurring_dates[0].start_time}} - {{eventDetails ?.recurring_dates[0].end_time}}
-                                                                    </li> -->
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -154,7 +142,6 @@
                                                         <line x1="12" y1="15" x2="12" y2="3" />
                                                     </svg>
                                                     <span> {{language.create_event.download_attachment}} </span>
-                                                    <!-- <a href="{{docFile}}"><span> {{language.create_event.download_attachment}} </span></a> -->
                                                 </div>
                                             </div>
                                             <div class="card_task" *ngIf="isTaskDetails">
@@ -194,22 +181,17 @@
                                                     <p [innerHTML]="eventDetails.eventTask.description"></p>
                                                 </div>
                                                 <div class="all-participant-card">
-                                                    <div class="card-header"
+                                                    <!-- <div class="card-header"
                                                         *ngIf="(collaborators && collaborators.length)">
                                                         <h5 class="card-title">{{language.organizer.collaborators}}</h5>
-                                                    </div>
-                                                    <div class="card-body" *ngIf="collaborators">
+                                                    </div> -->
+                                                    <!-- <div class="card-body" *ngIf="collaborators">
                                                         <div class="widget-appointment widget"
                                                             *ngFor="let participant of collaborators">
                                                             <div class="widget-app-content" data-bs-toggle="modal"
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(participant.id)">
                                                                 <div class="app-left-content">
-                                                                    <!-- <div class="parti_name"
-                                                                        *ngIf="participant.image == null || participant.image == ''">
-                                                                        {{participant.user[0]?.firstname.charAt(0)}}
-                                                                        {{participant.user[0]?.lastname.charAt(0)}}
-                                                                    </div> -->
                                                                     <div class="author-img"
                                                                         *ngIf="participant.image == null || participant.image == ''">
                                                                         <img onContextMenu="return false;"
@@ -232,7 +214,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -274,10 +256,6 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.id)">
                                                             <div class="app-left-content">
-                                                                <!-- <div class="parti_name"
-                                                                    *ngIf="organizer.image == null || organizer.image == ''">
-                                                                    {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
-                                                                </div> -->
                                                                 <div class="author-img"
                                                                     *ngIf="organizer.image == null || organizer.image == ''">
                                                                     <img onContextMenu="return false;"
@@ -409,10 +387,6 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(participant.id)">
                                                             <div class="app-left-content">
-                                                                <!-- <div class="parti_name"
-                                                                    *ngIf="participant && participant.image && participant.image == null || participant.image == ''">
-                                                                    {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
-                                                                </div> -->
                                                                 <div class="author-img"
                                                                     *ngIf="participant && participant.image && participant.image == null || participant.image == ''">
                                                                     <img onContextMenu="return false;"
@@ -534,8 +508,6 @@
                                                                                 (updateEventData.start_time) + ' - ' +
                                                                                 (updateEventData.end_time) }}
                                                                                 {{language.login.o_clock}} </span>
-                                                                            <!-- {{ updateEventData?.recurring_dates? ( (updateEventData?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +updateEventData?.recurring_dates[0].start_time ) ) :
-                                                                            (updateEventData.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
                                                                         </div>
                                                                     </li>
                                                                     <li>
@@ -591,7 +563,6 @@
                                                         <line x1="12" y1="15" x2="12" y2="3" />
                                                     </svg>
                                                     <span>{{language.create_event.download_attachment}} </span>
-                                                    <!-- <a href="{{docFile}}"><span>{{language.create_event.download_attachment}} </span></a> -->
                                                 </div>
                                             </div>
                                             <div class="author-des">
@@ -631,11 +602,11 @@
                                                 </div>
 
                                                 <div class="all-participant-card">
-                                                    <div class="card-header"
+                                                    <!-- <div class="card-header"
                                                         *ngIf=" updateEventData?.task[0]?.taskCollaborators.length">
                                                         <h5 class="card-title">{{language.organizer.collaborators}}</h5>
-                                                    </div>
-                                                    <div class="card-body"
+                                                    </div> -->
+                                                    <!-- <div class="card-body"
                                                         *ngIf="updateEventData?.task[0]?.taskCollaborators">
                                                         <div class="widget-appointment widget"
                                                             *ngFor="let participant of updateEventData?.task[0]?.taskCollaborators">
@@ -644,11 +615,6 @@
                                                                 *ngIf="participant.user_id != this.updateEventData?.task[0]?.['organizer_id']"
                                                                 (click)="getMemId(participant.user_id)">
                                                                 <div class="app-left-content">
-                                                                    <!-- <div class="parti_name"
-                                                                        *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
-                                                                        {{participant.user?.firstname.charAt(0)}}
-                                                                        {{participant.user?.lastname.charAt(0)}}
-                                                                    </div> -->
                                                                     <div class="author-img"
                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                         <img onContextMenu="return false;"
@@ -671,7 +637,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -724,10 +690,7 @@
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(organizer.id)">
                                                             <div class="app-left-content">
-                                                                <!-- <div class="parti_name"
-                                                                    *ngIf="organizer.image == null || organizer.image == ''">
-                                                                    {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
-                                                                </div> -->
+                                                             
                                                                 <div class="author-img"
                                                                     *ngIf="organizer.image == null || organizer.image == ''">
                                                                     <img onContextMenu="return false;"
@@ -762,10 +725,7 @@
                                                                 data-bs-target="#exampleModal"
                                                                 (click)="getMemId(participant.users.id)">
                                                                 <div class="app-left-content">
-                                                                    <!-- <div class="parti_name"
-                                                                        *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
-                                                                        {{participant.user?.firstname.charAt(0)}}{{participant.user?.lastname.charAt(0)}}
-                                                                    </div> -->
+                                                                  
                                                                     <div class="author-img"
                                                                         *ngIf="participant && participant.user && participant.user.image && (participant.user.image == null || participant.user.image == '')">
                                                                         <img onContextMenu="return false;"
@@ -841,48 +801,11 @@
                                                                 ( (eventDetails.start_time) + ' - ' +
                                                                 (eventDetails.end_time) )}}
                                                                 {{language.login.o_clock}}</span>
-                                                            <!-- {{ eventDetails?.recurring_dates? ( (eventDetails?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +eventDetails?.recurring_dates[0].start_time ) ) :
-                                                                    (eventDetails?.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
                                                         </div>
                                                     </div>
                                                 </div>
 
-
-
-
                                                 <div class="overbar-section">
-                                                    <!-- <div class="dropdown action_group" *ngIf="role != 'guest'">
-                                                        <button class="dropdown-toggle" type="button"
-                                                            (click)="onShow()">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu bunch_drop"
-                                                            aria-labelledby="dropdownMenuLink">
-                                                            <li
-                                                                *ngIf="userDetails.isAdmin && eventDetails.author != userDetails.userId  && eventDetails.approved_status == 0 && eventDetails.deny_by_id == null &&  eventDetails.approved_by == null">
-                                                                <a class="dropdown-item"
-                                                                    (click)="approvedEvents(eventDetails.id)">{{language.create_event.PublishEvent}}</a>
-                                                            </li>
-                                                            <li
-                                                                *ngIf="userDetails.isAdmin && eventDetails.author != userDetails.userId  && eventDetails.approved_status == 0 && eventDetails.deny_by_id == null &&  eventDetails.approved_by == null">
-                                                                <a class="dropdown-item"
-                                                                    (click)="unapprovedEvent(eventDetails.id)">{{language.create_event.DenyEvent}}</a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    routerLink="/web/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    (click)="deleteEvents(eventDetails.id)">{{language.organizer.Delete}}</a>
-                                                            </li>
-                                                            <li><a class="dropdown-item"
-                                                                    (click)="goBack()">{{language.organizer.Back}}</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div> -->
                                                     <div class="overimage-bar">
                                                         <ul>
                                                             <li>
@@ -924,8 +847,6 @@
                                                                         ( (eventDetails.start_time) + ' - ' +
                                                                         (eventDetails.end_time) )}}
                                                                         {{language.login.o_clock}}</span>
-                                                                    <!-- {{ eventDetails?.recurring_dates? ( (eventDetails?.recurring_dates[0].date_from | date: 'EEEE' + ' - ' +eventDetails?.recurring_dates[0].start_time ) ) :
-                                                                    (eventDetails?.date_from | date: 'EEEE, - HH:mm') }}  {{language.login.o_clock}} -->
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -955,14 +876,6 @@
                                                                         .free}}</span>
                                                                 </div>
                                                             </li>
-
-                                                            <!-- <li class="duration">
-                                                                <span class="img-icon">
-                                                                    <img src="../../../assets/img/duration.svg" onContextMenu="return false;" alt="logo"
-                                                                        loading="lazy" />
-                                                                    </span>
-                                                                {{eventDetails ?.recurring_dates[0].start_time}} - {{ eventDetails ?.recurring_dates[0].end_time}}
-                                                            </li> -->
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -1059,32 +972,6 @@
                                                 </ul>
                                             </div>
                                         </ng-template>
-                                        <!-- <div class="attach_btn" *ngIf="docFile" (click)="download(docFile)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-                                                viewBox="0 0 24 24" fill="none" stroke="#E12217" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-download">
-                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                                <polyline points="7 10 12 15 17 10" />
-                                                <line x1="12" y1="15" x2="12" y2="3" />
-                                            </svg>
-                                            <span> {{language.create_event.download_attachment}} </span> -->
-                                        <!-- <a href="{{docFile}}"><span> {{language.create_event.download_attachment}} </span></a> -->
-                                        <!-- </div> -->
-
-                                        <!-- <div class="author-des">
-                                            <span class="author-status"
-                                                *ngIf="eventDetails.approved_status == 0  && !eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.waitingApproval}}</span>
-                                            <span class="author-status"
-                                                *ngIf="eventDetails.approved_status == 0 && eventDetails.deny_by_id">{{language.theme.status}}:-{{language.community_groups.admin_deny}}</span>
-                                            <span class="author-id" *ngIf="eventDetails.deny_by_id >= 1">
-                                                {{language.dashboard.denyBy}}:- {{eventDetails.denybyuser.firstname}}
-                                                {{eventDetails.denybyuser.lastname}}
-                                            </span>
-                                            <span class="deny-reason" *ngIf="eventDetails.deny_by_id >= 1">
-                                                {{language.dashboard.denyReason}}:- {{eventDetails.deny_reason}}
-                                            </span>
-                                        </div> -->
 
                                         <!-- Start Veranstalter -->
                                         <div class="organizer_card">
@@ -1097,10 +984,6 @@
                                                     <div class="widget-app-content" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal" (click)="getMemId(organizer.id)">
                                                         <div class="app-left-content">
-                                                            <!-- <div class="parti_name"
-                                                            *ngIf="organizer.image == null || organizer.image == ''">
-                                                            {{organizer?.firstname.charAt(0)}}{{organizer?.lastname.charAt(0)}}
-                                                        </div> -->
                                                             <div class="author-img"
                                                                 *ngIf="organizer.image == null || organizer.image == ''">
                                                                 <img onContextMenu="return false;"
@@ -1117,12 +1000,6 @@
                                                                     class="participant_email">{{organizer.email}}</span>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="app-right-content">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge approved"></span>{{language.organizer.approved}}
-                                                        </span>
-                                                    </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1171,10 +1048,6 @@
                                                     data-bs-target="#exampleModal"
                                                     (click)="getMemId(participant.users.id)">
                                                     <div class="app-left-content">
-                                                        <!-- <div class="parti_name"
-                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                            {{participant.users?.firstname.charAt(0)}}{{participant.users?.lastname.charAt(0)}}
-                                                        </div> -->
                                                         <div class="author-img"
                                                             *ngIf="participant.users.image == null || participant.users.image == ''">
                                                             <img onContextMenu="return false;"
@@ -1213,10 +1086,6 @@
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
                                                     <div class="app-left-content">
-                                                        <!-- <div class="parti_name"
-                                                            *ngIf="participant.image == null || participant.image == ''">
-                                                            {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
-                                                        </div> -->
                                                         <div class="author-img"
                                                             *ngIf="participant.image == null || participant.image == ''">
                                                             <img onContextMenu="return false;"
@@ -1270,20 +1139,16 @@
                                     </div>
 
                                     <div class="all-participant-card">
-                                        <div class="card-header " *ngIf="(collaborators && collaborators.length)">
+                                        <!-- <div class="card-header " *ngIf="(collaborators && collaborators.length)">
                                             <h5 class="card-title">{{language.organizer.collaborators}}</h5>
-                                        </div>
-                                        <div class="card-body" *ngIf="collaborators">
+                                        </div> -->
+                                        <!-- <div class="card-body" *ngIf="collaborators">
                                             <div class="widget-appointment widget"
                                                 *ngFor="let participant of collaborators">
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
                                                     (click)="getMemId(participant.user_id)">
                                                     <div class="app-left-content">
-                                                        <!-- <div class="parti_name"
-                                                                    *ngIf="participant.image == null || participant.image == ''">
-                                                                    {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
-                                                                </div> -->
                                                         <div class="author-img"
                                                             *ngIf="participant.image == null || participant.image == ''">
                                                             <img onContextMenu="return false;"
@@ -1304,15 +1169,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                         <div class="empty-data-image" *ngIf="!eventDetails || eventDetails?.length == 0">
-                            <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
-                                alt="{{ language.club_events.no_events }}" loading="lazy" /><br /> -->
                             <span>{{ language.club_events.no_events }}</span>
                         </div>
                     </div>
@@ -1382,8 +1245,7 @@
                                     <div class="profile_field info_field" style="margin-bottom: 20px;">
                                         <span class="info_label">{{language.profile.membership_date}}</span>
                                         <span class="info_detail"
-                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM
-                                            y'}}</span>
+                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM y'}}</span>
                                     </div>
                                 </div>
                             </div>

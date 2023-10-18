@@ -70,8 +70,6 @@ export class EventsCalendarComponent implements OnInit {
     itemPerPage: number = 8;
     pagesArray: number[] = [];
     years: number[] = [];
-    // selectedYear: number = new Date().getFullYear();
-    // selectedMonth: number = new Date().getMonth() + 1; // Default to the current month
     selectedYear: number | null = null;
     selectedMonth: number = null;
     selectedEventType: number = null;
@@ -83,6 +81,8 @@ export class EventsCalendarComponent implements OnInit {
         value: index + 1
     }));
     actualAllEventsList: any[];
+    filteredEventsList: any[] = []; // Array to store filtered events
+
 
     constructor(
         private authService: AuthServiceService,
@@ -534,16 +534,15 @@ export class EventsCalendarComponent implements OnInit {
         });
         console.log(this.allEventsList);
 
-        let newsTotalRecords = this.allEventsList.length
-        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+        // let newsTotalRecords = this.allEventsList.length
+        // this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
-        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        // this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
     }
 
-
-    filteredEventsList: any[] = []; // Array to store filtered events
     applyFilters() {
+        this.currentPageNumber = 1; // Reset to the first page when changing items per page
         this.allEventsList = this.actualAllEventsList;
         this.filteredEventsList = this.allEventsList.filter(event => {
             // Filter by Year
@@ -569,17 +568,17 @@ export class EventsCalendarComponent implements OnInit {
 
         if(this.filteredEventsList.length == 0){
             this.isData = false
+        }else{
+            this.isData = true;
         }
 
-        let newsTotalRecords = this.allEventsList.length
-        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+        // let newsTotalRecords = this.allEventsList.length
+        // this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
-        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        // this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
 
     }
-
-
 
     //     applyFilters() {
     //     if (this.selectedYear) {
@@ -596,58 +595,6 @@ export class EventsCalendarComponent implements OnInit {
 
     //     this.allEventsList =  this.filteredEventsList ;
     // }
-
-
-
-    // applyFilter() {
-    //     const filteredEvents = this.filterEvents();
-    //     this.allEventsList = filteredEvents;
-    //     this.allEventsList.sort((a, b) => {
-    //         const dateA = new Date(a.date_from).getTime();
-    //         const dateB = new Date(b.date_from).getTime();
-    //         return dateA - dateB;
-    //     });
-    //     let newsTotalRecords = this.allEventsList.length;
-    //     this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-    //     this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    //     this.updatePagesArray();
-    // }
-
-
-    // filterEvents(): any[] {
-    //     // Implement your filtering logic based on selected filters
-    //     let filteredEvents = this.allEventsList;
-
-    //     if (this.allEventsList) {
-    //         // Filter by year
-
-    //         if (this.selectedYear) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 const eventYear: any = new Date(event.date_from).getFullYear();
-    //                 return eventYear.toString() === this.selectedYear;
-    //             });
-    //         }
-
-    //         // Filter by month
-    //         if (this.selectedMonth) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 console.log('--in--');
-    //                 const eventMonth: any = new Date(event.date_from).getUTCMonth() + 1; // Month is 0-indexed
-    //                 return eventMonth.toString() === this.selectedMonth;
-    //             });
-    //         }
-
-    //         // Filter by event type
-    //         if (this.selectedEventType) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 return event.type === this.selectedEventType;
-    //             });
-    //         }
-    //     }
-
-    //     return filteredEvents;
-    // }
-
 
 
     get pagedEvents() {
@@ -676,10 +623,12 @@ export class EventsCalendarComponent implements OnInit {
 
     changeItemsPerPage() {
         this.currentPageNumber = 1; // Reset to the first page when changing items per page
-        this.updatePagesArray();
+        this.updatePagesArray(); 
     }
 
     updatePagesArray() {
+        let newsTotalRecords = this.allEventsList.length
+        this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
         this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     }
 
