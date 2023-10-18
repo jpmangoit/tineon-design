@@ -1,0 +1,163 @@
+<div class="row" *ngIf="participateAccess.event == 'Yes'">
+    <div class="col-md-12 event_list_widget">
+        <div class="card ">
+            <div class="card-body ">
+                <div class="event-list-area">
+                    <div class="card-header ">
+                        <h5 class="card-title">{{language.club_events.title}}</h5>
+                        <button type="button" class="redirect_organizer" (click)="redirectCalendar()"
+                            *ngIf="calendarBtn == true"
+                            [ngStyle]="{'border-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                            'background-color': setTheme.default_status == true ? setTheme.create_button_bgcolor : setTheme.create_button_bgcolor,
+                            'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20"
+                                fill="none">
+                                <path d="M1.57721 7.83688H16.4305" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.7017 11.0915H12.7094" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9.00385 11.0915H9.01157" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5.29825 11.0915H5.30597" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.7017 14.3303H12.7094" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9.00385 14.3303H9.01157" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5.29825 14.3303H5.30597" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.3698 1.66675V4.40906" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5.63791 1.66675V4.40906" stroke="white"
+                                     [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.5319 2.98267H5.4758C3.02856 2.98267 1.5 4.34594 1.5 6.85185V14.3932C1.5 16.9385 3.02856 18.3333 5.4758 18.3333H12.5242C14.9791 18.3333 16.5 16.9622 16.5 14.4563V6.85185C16.5077 4.34594 14.9868 2.98267 12.5319 2.98267Z"
+                                    stroke="white"  [ngStyle]="{'fill': setTheme.default_status == true ? setTheme.create_button_ic_color : setTheme.create_button_ic_color}" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>&nbsp;<span button_text
+                            [ngStyle]="{'color': setTheme.default_status == true ? setTheme.create_button_text : setTheme.create_button_text}">{{language.club_events.show_calendar}}</span>
+                        </button>
+                    </div>
+                    <div class="event-list-d">
+                        <div class="row">
+                            <div class="active_list col-md-6">
+                                <div class="event_list_title">{{language.club_events.today}}</div>
+                                <div class="event-content-area">
+                                    <div class="empty-data-image" *ngIf="currentEvent && currentEvent.length == 0">
+                                        <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
+                                            alt="{{language.club_events.no_events}}" loading="lazy"><br> -->
+                                        <span>{{language.club_events.no_events}}</span>
+                                    </div>
+                                    <div class="event_box active" *ngFor='let today of currentEvent'>
+                                        <div class="event-box-inner">
+                                            <div class="event_box_left">
+                                                <span class="event_month">{{todays_date | date: 'EEEE'}}</span>
+                                                <span class="event_date">{{today.date_from | date: 'HH:mm':'UTC'}}</span> 
+                                            </div>
+                                            <div class="event_box_right">
+                                                <h6><a (click)="eventDetails(today.id,todays_date)">{{today.name}}</a>
+                                                </h6>
+                                                <div class="event-summery">
+                                                    <span class="event-cat">{{eventTypeList[today.type].name}}</span>
+                                                    <span class="event_location">{{
+                                                        eventTypeVisibility[today.visibility].name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="event-action text-center" *ngIf="role != 'guest'">
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <img onContextMenu="return false;"
+                                                        src="../../../../assets/img/new-design/dashboard/event-action.svg"
+                                                        alt="" loading="lazy">
+                                                </button>
+                                                <mat-menu #menu="matMenu" xPosition="before">
+                                                    <button mat-menu-item
+                                                        (click)="eventDetails(today.id,todays_date)">{{language.header.event_details}}
+                                                    </button>
+                                                </mat-menu>
+                                            </div>
+                                        </div>
+                                        <div class="event-with-image">
+                                            <div class="event-time-line"></div>
+                                            <div class="img-content">
+                                                <div class="event-image-des">
+                                                    <img onContextMenu="return false;"
+                                                        [src]="today.picture_video ? today.picture_video :'../../../../assets/img/new-design/dashboard/event-img.png'"
+                                                        alt="" loading="lazy">
+                                                </div>
+                                                <p [innerHTML]="today.description"></p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- statick content -->
+                                    <!-- statick content -->
+                                </div>
+                            </div>
+                            <div class="upcoming_list col-md-6">
+                                <div class="event_list_title">{{language.club_events.upcoming}}</div>
+                                <div class="event-content-area">
+                                    <div class="empty-data-image" *ngIf="upcomingEvent && upcomingEvent.length == 0">
+                                        <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png"
+                                            alt="{{language.club_events.no_events}}" loading="lazy"><br> -->
+                                        <span>{{language.club_events.no_events}}</span>
+                                    </div>
+                                    <div class="event_box" *ngFor='let upcoming of upcomingEvent'>
+                                        <div class="event-box-inner">
+                                            <div class="event_box_left">
+                                                <span class="event_date"> {{upcoming.date_from | date: 'dd'}}<br> {{upcoming.date_from | date: 'MMM'}}</span>
+                                            </div>
+                                            <div class="event_box_right">
+                                                <h6><a
+                                                        (click)="eventDetails(upcoming.id,upcoming.date_from)">{{upcoming.name}}</a>
+                                                </h6>
+                                                <div class="event-summery">
+                                                    <span class="event-cat">{{eventTypeList[upcoming.type].name}}</span>
+                                                    <span class="event_location">{{
+                                                        eventTypeVisibility[upcoming.visibility].name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="event-action text-center" *ngIf="role != 'guest'">
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <img onContextMenu="return false;" onContextMenu="return false;"
+                                                        src="../../../../assets/img/new-design/dashboard/event-action.svg"
+                                                        alt="" loading="lazy"></button>
+                                                <mat-menu #menu="matMenu" xPosition="before">
+                                                    <button mat-menu-item
+                                                        (click)="eventDetails(upcoming.id,upcoming.date_from)">{{language.header.event_details}}</button>
+                                                </mat-menu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="not-f-main" *ngIf="participateAccess.event == 'No'">
+    <div class="page-not-available">
+        <div class="not-available-user">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" id="IconChangeColor" height="50"
+                width="50"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                    d="M592 288H576V212.7c0-41.84-30.03-80.04-71.66-84.27C456.5 123.6 416 161.1 416 208V288h-16C373.6 288 352 309.6 352 336v128c0 26.4 21.6 48 48 48h192c26.4 0 48-21.6 48-48v-128C640 309.6 618.4 288 592 288zM496 432c-17.62 0-32-14.38-32-32s14.38-32 32-32s32 14.38 32 32S513.6 432 496 432zM528 288h-64V208c0-17.62 14.38-32 32-32s32 14.38 32 32V288zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM320 336c0-8.672 1.738-16.87 4.303-24.7C308.6 306.6 291.9 304 274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512h301.7C326.3 498.6 320 482.1 320 464V336z"
+                    id="mainIconPathAttribute" fill="blue"></path>
+            </svg>
+            <h1>{{language.genral_message.feature_locked}}</h1>
+            <span>{{language.genral_message.not_available_msg}}</span>
+        </div>
+    </div>
+</div>

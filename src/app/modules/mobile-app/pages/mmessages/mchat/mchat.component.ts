@@ -1,21 +1,23 @@
 import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { appSetting } from 'src/app/app-settings';
-import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { serverUrl } from 'src/environments/environment';
 import { io, Socket } from "socket.io-client";
-import { Extentions } from 'src/app/models/extentions.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { CommunityGroup } from 'src/app/models/community-group.model';
-import { ChatUsers, UserMessages } from 'src/app/models/chat-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { MatSidenav } from '@angular/material/sidenav';
-import { NotificationService } from 'src/app/service/notification.service';
+import {
+  AuthorizationAccess, ChatUsers,
+  CommunityGroup,
+  CreateAccess,
+  LoginDetails,
+  ParticipateAccess,
+  ThemeType,
+  UserAccess,
+  UserMessages
+} from '@core/models';
+import {MatSidenav} from '@angular/material/sidenav';
+import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({

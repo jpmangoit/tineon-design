@@ -3,22 +3,25 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RRule } from 'rrule';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs'
-import { Courses } from 'src/app/models/courses.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { appSetting } from 'src/app/app-settings';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
+import {Courses} from '@core/models/courses.model';
+import {
+  AuthorizationAccess,
+  CreateAccess,
+  LoginDetails,
+  ParticipateAccess,
+  TaskCollaboratorDetails,
+  ThemeType,
+  UserAccess
+} from '@core/models';
+import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+import {appSetting} from '@core/constants';
+
+
 declare var $: any
 
 @Component({

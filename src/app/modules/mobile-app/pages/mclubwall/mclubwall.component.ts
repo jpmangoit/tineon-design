@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs'
-import { LoginDetails } from 'src/app/models/login-details.model';
-import {  ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LanguageService } from 'src/app/service/language.service';
-import { appSetting } from 'src/app/app-settings';
+import {LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
+import {Subscription} from 'rxjs';
+import {LanguageService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
+
 declare var $: any;
 
 @Component({

@@ -1,15 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs'
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { Extentions } from 'src/app/models/extentions.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { appSetting } from 'src/app/app-settings';
-import { LanguageService } from 'src/app/service/language.service';
+import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({
@@ -80,7 +76,7 @@ export class MorganizerComponent implements OnInit {
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
         if (localStorage.getItem("trigger-doc") !== null) {
-            setTimeout(function () { 
+            setTimeout(function () {
                 let triggered = localStorage.getItem("trigger-doc");
                 $('#organizer_doc').trigger('click');
                 localStorage.removeItem("trigger-doc");

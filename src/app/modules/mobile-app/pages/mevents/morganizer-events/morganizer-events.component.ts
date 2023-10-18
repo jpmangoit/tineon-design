@@ -3,16 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { EventsType } from 'src/app/models/events-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { appSetting } from 'src/app/app-settings';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {CreateAccess, EventsType, LoginDetails, ThemeType, UserAccess} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 
 @Component({
     selector: 'app-morganizer-events',

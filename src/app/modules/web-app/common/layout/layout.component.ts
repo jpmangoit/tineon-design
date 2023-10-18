@@ -1,10 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { AuthServiceService } from '../../../../service/auth-service.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
+import {LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, ThemeService} from '@core/services';
 
 @Component({
     selector: 'app-layout',

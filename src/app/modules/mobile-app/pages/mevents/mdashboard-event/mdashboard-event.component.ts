@@ -4,13 +4,9 @@ import { Router } from '@angular/router';
 import { CalendarOptions, EventApi } from '@fullcalendar/core';
 import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { CalendarEvents, EventsType } from 'src/app/models/events-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {EventsType, LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+
 declare var $: any;
 
 @Component({

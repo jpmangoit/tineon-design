@@ -1,64 +1,62 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MobileAppRoutingModule } from './mobile-app-routing.module';
-import { MHeaderComponent } from '../mobile-app/shared/m-header/m-header.component';
-import { NavigationToolComponent } from '../mobile-app/shared/navigation-tool/navigation-tool.component';
-import { MLayoutComponent } from '../mobile-app/shared/m-layout/m-layout.component';
-import { SideNavigationComponent } from '../mobile-app/shared/side-navigation/side-navigation.component';
-import { MDashboardComponent } from '../mobile-app/pages/m-dashboard/m-dashboard.component';
-import { MclubwallComponent } from '../mobile-app/pages/mclubwall/mclubwall.component';
-import { MclubNewsComponent } from '../mobile-app/pages/mnews/mclub-news/mclub-news.component';
-import { MclubDatesComponent } from '../mobile-app/pages/mnews/mclub-dates/mclub-dates.component';
-import { MclubEventsComponent } from '../mobile-app/pages/mevents/mclub-events/mclub-events.component';
-import { McommunityComponent } from '../mobile-app/pages/mcommunity/mcommunity.component';
-import { McommunityGroupsComponent } from '../mobile-app/pages/mgroups/mcommunity-groups/mcommunity-groups.component';
-import { McommunityMessagesComponent } from '../mobile-app/pages/mmessages/mcommunity-messages/mcommunity-messages.component';
-import { MchatComponent } from '../mobile-app/pages/mmessages/mchat/mchat.component';
-import { MactiveSurveyComponent } from '../mobile-app/pages/survey/mactive-survey/mactive-survey.component';
-import { MmySurveyComponent } from '../mobile-app/pages/survey/mmy-survey/mmy-survey.component';
-import { McompletedSurveyComponent } from '../mobile-app/pages/survey/mcompleted-survey/mcompleted-survey.component';
-import { MsurveyComponent } from '../mobile-app/pages/survey/msurvey/msurvey.component';
-import { MorganizerComponent } from '../mobile-app/pages/morganizer/morganizer.component';
-import { MorganizerEventsComponent } from '../mobile-app/pages/mevents/morganizer-events/morganizer-events.component';
-import { MorganizerTaskComponent } from '../mobile-app/pages/mtasks/morganizer-task/morganizer-task.component';
-import { MorganizerDocumentsComponent } from '../mobile-app/pages/mdocuments/morganizer-documents/morganizer-documents.component';
-import { McourseComponent } from '../mobile-app/pages/mcourses/mcourse/mcourse.component';
-import { ActionToolComponent } from '../mobile-app/shared/action-tool/action-tool.component';
-import { SettingToolComponent } from '../mobile-app/shared/setting-tool/setting-tool.component';
-import { MdashboardEventComponent } from '../mobile-app/pages/mevents/mdashboard-event/mdashboard-event.component';
-import { MeventDetailComponent } from '../mobile-app/pages/mevents/mevent-detail/mevent-detail.component';
-import { MallNewsComponent } from '../mobile-app/pages/mnews/mall-news/mall-news.component';
-import { MallEventsComponent } from '../mobile-app/pages/mevents/mall-events/mall-events.component';
-import { McrmActiveSurveyComponent } from '../mobile-app/pages/crm-survey/mcrm-active-survey/mcrm-active-survey.component';
-import { McrmCompletedSurveyComponent } from '../mobile-app/pages/crm-survey/mcrm-completed-survey/mcrm-completed-survey.component';
-import { McrmMySurveyComponent } from '../mobile-app/pages/crm-survey/mcrm-my-survey/mcrm-my-survey.component';
-import { McrmSurveyComponent } from '../mobile-app/pages/crm-survey/mcrm-survey/mcrm-survey.component';
-import { MnotificationComponent } from '../mobile-app/shared/mnotification/mnotification.component';
-import { MvereinsFaqComponent } from '../mobile-app/pages/mfaq/mvereins-faq/mvereins-faq.component';
-import { MfaqCategoryComponent } from '../mobile-app/pages/mfaq/mfaq-category/mfaq-category.component';
-import { MprofileQrComponent } from '../mobile-app/pages/mprofile-qr/mprofile-qr.component';
-import { MchatListComponent } from '../mobile-app/pages/mmessages/mchat-list/mchat-list.component';
-import { MpersonalMessageComponent } from '../mobile-app/pages/mmessages/mpersonal-message/mpersonal-message.component';
-import { MclubMessageComponent } from '../mobile-app/pages/mmessages/mclub-message/mclub-message.component';
-import { MgroupMessageComponent } from '../mobile-app/pages/mmessages/mgroup-message/mgroup-message.component';
-import { MdisplayMessagesComponent } from '../mobile-app/pages/mmessages/mdisplay-messages/mdisplay-messages.component';
-import { MprofileComponent } from '../mobile-app/pages/mprofile/mprofile/mprofile.component';
-import { MgeneralInformationComponent } from '../mobile-app/pages/mprofile/mgeneral-information/mgeneral-information.component';
-import { MprofileBankComponent } from '../mobile-app/pages/mprofile/mprofile-bank/mprofile-bank.component';
-import { MprofileBankEditComponent } from '../mobile-app/pages/mprofile/mprofile-bank-edit/mprofile-bank-edit.component';
-import { MprofileClubComponent } from '../mobile-app/pages/mprofile/mprofile-club/mprofile-club.component';
-import { MprofileEditComponent } from '../mobile-app/pages/mprofile/mprofile-edit/mprofile-edit.component';
-import { MprofileMyClubComponent } from '../mobile-app/pages/mprofile/mprofile-my-club/mprofile-my-club.component';
-import { MmemberProfileComponent } from '../mobile-app/pages/mprofile/mmember-profile/mmember-profile.component';
-import { MbannerlistComponent } from '../mobile-app/pages/mbanner/mbannerlist/mbannerlist.component';
-import { MEmailComponent } from '../mobile-app/shared/m-email/m-email.component';
-import { MorganizerTaskDetailsComponent } from '../mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
-import { MclubAllNewsComponent } from '../mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
-import { SharedModule } from 'src/app/shared.module';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { ShortNumberPipe } from 'src/app/pipe/short-number.pipe';
-import { BirthdaysComponent } from './pages/birthdays/birthdays.component';
-
+import {MHeaderComponent, MLayoutComponent, SideNavigationComponent} from '@modules/mobile-app/common';
+import {
+  ActionToolComponent,
+  MEmailComponent,
+  MnotificationComponent,
+  NavigationToolComponent,
+  SettingToolComponent
+} from '@modules/mobile-app/shared';
+import {MDashboardComponent} from '@modules/mobile-app/pages/m-dashboard/m-dashboard.component';
+import {MclubwallComponent} from '@modules/mobile-app/pages/mclubwall/mclubwall.component';
+import {MclubNewsComponent} from '@modules/mobile-app/pages/mnews/mclub-news/mclub-news.component';
+import {MclubDatesComponent} from '@modules/mobile-app/pages/mnews/mclub-dates/mclub-dates.component';
+import {MclubEventsComponent} from '@modules/mobile-app/pages/mevents/mclub-events/mclub-events.component';
+import {McommunityComponent} from '@modules/mobile-app/pages/mcommunity/mcommunity.component';
+import {McommunityGroupsComponent} from '@modules/mobile-app/pages/mgroups/mcommunity-groups/mcommunity-groups.component';
+import {McommunityMessagesComponent} from '@modules/mobile-app/pages/mmessages/mcommunity-messages/mcommunity-messages.component';
+import {MchatComponent} from '@modules/mobile-app/pages/mmessages/mchat/mchat.component';
+import {MactiveSurveyComponent} from '@modules/mobile-app/pages/survey/mactive-survey/mactive-survey.component';
+import {MmySurveyComponent} from '@modules/mobile-app/pages/survey/mmy-survey/mmy-survey.component';
+import {McompletedSurveyComponent} from '@modules/mobile-app/pages/survey/mcompleted-survey/mcompleted-survey.component';
+import {MsurveyComponent} from '@modules/mobile-app/pages/survey/msurvey/msurvey.component';
+import {MorganizerComponent} from '@modules/mobile-app/pages/morganizer/morganizer.component';
+import {MorganizerEventsComponent} from '@modules/mobile-app/pages/mevents/morganizer-events/morganizer-events.component';
+import {MorganizerTaskComponent} from '@modules/mobile-app/pages/mtasks/morganizer-task/morganizer-task.component';
+import {MorganizerDocumentsComponent} from '@modules/mobile-app/pages/mdocuments/morganizer-documents/morganizer-documents.component';
+import {McourseComponent} from '@modules/mobile-app/pages/mcourses/mcourse/mcourse.component';
+import {MdashboardEventComponent} from '@modules/mobile-app/pages/mevents/mdashboard-event/mdashboard-event.component';
+import {MeventDetailComponent} from '@modules/mobile-app/pages/mevents/mevent-detail/mevent-detail.component';
+import {MallNewsComponent} from '@modules/mobile-app/pages/mnews/mall-news/mall-news.component';
+import {MallEventsComponent} from '@modules/mobile-app/pages/mevents/mall-events/mall-events.component';
+import {McrmActiveSurveyComponent} from '@modules/mobile-app/pages/crm-survey/mcrm-active-survey/mcrm-active-survey.component';
+import {McrmCompletedSurveyComponent} from '@modules/mobile-app/pages/crm-survey/mcrm-completed-survey/mcrm-completed-survey.component';
+import {McrmMySurveyComponent} from '@modules/mobile-app/pages/crm-survey/mcrm-my-survey/mcrm-my-survey.component';
+import {McrmSurveyComponent} from '@modules/mobile-app/pages/crm-survey/mcrm-survey/mcrm-survey.component';
+import {MvereinsFaqComponent} from '@modules/mobile-app/pages/mfaq/mvereins-faq/mvereins-faq.component';
+import {MfaqCategoryComponent} from '@modules/mobile-app/pages/mfaq/mfaq-category/mfaq-category.component';
+import {MprofileQrComponent} from '@modules/mobile-app/pages/mprofile-qr/mprofile-qr.component';
+import {MchatListComponent} from '@modules/mobile-app/pages/mmessages/mchat-list/mchat-list.component';
+import {MpersonalMessageComponent} from '@modules/mobile-app/pages/mmessages/mpersonal-message/mpersonal-message.component';
+import {MclubMessageComponent} from '@modules/mobile-app/pages/mmessages/mclub-message/mclub-message.component';
+import {MgroupMessageComponent} from '@modules/mobile-app/pages/mmessages/mgroup-message/mgroup-message.component';
+import {MdisplayMessagesComponent} from '@modules/mobile-app/pages/mmessages/mdisplay-messages/mdisplay-messages.component';
+import {MprofileComponent} from '@modules/mobile-app/pages/mprofile/mprofile/mprofile.component';
+import {MgeneralInformationComponent} from '@modules/mobile-app/pages/mprofile/mgeneral-information/mgeneral-information.component';
+import {MprofileBankComponent} from '@modules/mobile-app/pages/mprofile/mprofile-bank/mprofile-bank.component';
+import {MprofileBankEditComponent} from '@modules/mobile-app/pages/mprofile/mprofile-bank-edit/mprofile-bank-edit.component';
+import {MprofileClubComponent} from '@modules/mobile-app/pages/mprofile/mprofile-club/mprofile-club.component';
+import {MprofileEditComponent} from '@modules/mobile-app/pages/mprofile/mprofile-edit/mprofile-edit.component';
+import {MprofileMyClubComponent} from '@modules/mobile-app/pages/mprofile/mprofile-my-club/mprofile-my-club.component';
+import {MmemberProfileComponent} from '@modules/mobile-app/pages/mprofile/mmember-profile/mmember-profile.component';
+import {MbannerlistComponent} from '@modules/mobile-app/pages/mbanner/mbannerlist/mbannerlist.component';
+import {MorganizerTaskDetailsComponent} from '@modules/mobile-app/pages/mtasks/morganizer-task-details/morganizer-task-details.component';
+import {MclubAllNewsComponent} from '@modules/mobile-app/pages/mnews/mclub-all-news/mclub-all-news.component';
+import {BirthdaysComponent} from '@modules/mobile-app/pages/birthdays/birthdays.component';
+import {SharedModule} from '@shared/shared.module';
+import {MobileAppRoutingModule} from '@modules/mobile-app/mobile-app-routing.module';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 @NgModule({
     declarations: [
@@ -115,7 +113,6 @@ import { BirthdaysComponent } from './pages/birthdays/birthdays.component';
         MEmailComponent,
         MorganizerTaskDetailsComponent,
         MclubAllNewsComponent,
-        ShortNumberPipe,
         BirthdaysComponent
     ],
     imports: [

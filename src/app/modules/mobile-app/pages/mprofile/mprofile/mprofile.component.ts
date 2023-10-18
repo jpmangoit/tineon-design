@@ -2,17 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SettingToolComponent } from 'src/app/modules/mobile-app/shared/setting-tool/setting-tool.component';
+import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
+import {Subscription} from 'rxjs';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+
+
 declare var $: any;
 
 @Component({

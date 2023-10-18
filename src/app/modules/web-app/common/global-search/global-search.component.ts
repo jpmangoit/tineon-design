@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ActivatedRoute } from '@angular/router';
-import { UntypedFormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { Room } from 'src/app/models/room.model';
-import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormGroup} from '@angular/forms';
+import {CreateAccess, LoginDetails, Room, ThemeType, UserAccess} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {ActivatedRoute} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
+
 declare var $: any;
 
 @Component({

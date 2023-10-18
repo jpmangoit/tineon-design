@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationsService } from 'src/app/service/notifications.service';
-import { ActionToolComponent } from '../action-tool/action-tool.component';
-import { MnotificationComponent } from '../mnotification/mnotification.component';
-import { SettingToolComponent } from '../setting-tool/setting-tool.component';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { NotificationService } from 'src/app/service/notification.service';
-import { Router } from '@angular/router';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {LoginDetails} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, NotificationsService} from '@core/services';
+import {Router} from '@angular/router';
+import {ActionToolComponent, MnotificationComponent, SettingToolComponent} from '@modules/mobile-app/shared';
+
+
 @Component({
     selector: 'app-navigation-tool',
     templateUrl: './navigation-tool.component.html',

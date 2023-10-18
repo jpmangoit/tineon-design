@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from '../../../../service/auth-service.service';
-import { LanguageService } from '../../../../service/language.service';
+import {AuthServiceService, LanguageService} from '@core/services';
+
 
 @Component({
 	selector: 'app-recover-password',

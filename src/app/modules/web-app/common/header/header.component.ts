@@ -1,25 +1,24 @@
-import { CommonFunctionService } from '../../../../service/common-function.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { appSetting } from '../../../../app-settings';
-import { AuthServiceService } from '../../../../service/auth-service.service';
-import { ConfirmDialogService } from '../../../../shared/confirm-dialog/confirm-dialog.service';
-import { UpdateConfirmDialogService } from '../../../../shared/update-confirm-dialog/update-confirm-dialog.service';
-import { LanguageService } from '../../../../service/language.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { DenyReasonConfirmDialogService } from '../../../../shared/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { NotificationsService } from 'src/app/service/notifications.service';
 import { serverUrl } from 'src/environments/environment';
 import { io, Socket } from "socket.io-client";
-import { NotificationService } from 'src/app/service/notification.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import {AuthorizationAccess, ClubDetail, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
+import {
+  AuthServiceService,
+  CommonFunctionService,
+  LanguageService,
+  NotificationService,
+  NotificationsService,
+  ThemeService
+} from '@core/services';
+import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({

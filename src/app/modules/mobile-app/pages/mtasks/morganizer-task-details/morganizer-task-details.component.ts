@@ -1,19 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { UpdateConfirmDialogService } from '../../../../../shared/update-confirm-dialog/update-confirm-dialog.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { DenyReasonConfirmDialogService } from '../../../../../shared/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {ClubDetail, LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
+
 declare var $: any;
 
 

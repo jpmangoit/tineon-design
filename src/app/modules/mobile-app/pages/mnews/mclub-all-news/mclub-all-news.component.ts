@@ -2,16 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { NewsType } from 'src/app/models/news-type.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { DomSanitizer } from '@angular/platform-browser';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { ThemeService } from 'src/app/service/theme.service';
-import { LanguageService } from 'src/app/service/language.service';
+import {LoginDetails, NewsType, ThemeType} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+import {DomSanitizer} from '@angular/platform-browser';
+
 declare var $: any;
 
 

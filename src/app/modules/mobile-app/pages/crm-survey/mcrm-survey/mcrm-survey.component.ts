@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { appSetting } from 'src/app/app-settings';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { LanguageService } from 'src/app/service/language.service';
+import {LoginDetails, ParticipateAccess, UserAccess} from '@core/models';
+import {LanguageService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 @Component({
     selector: 'app-mcrm-survey',
     templateUrl: './mcrm-survey.component.html',
@@ -19,7 +19,7 @@ export class McrmSurveyComponent implements OnInit {
     userAccess: UserAccess;
     userDetails: LoginDetails;
     userRole: string;
-    Activesurvey() { 
+    Activesurvey() {
         this.displaySurvey = true;
         this.displayVotes = false;
         this.displayComvotes = false;

@@ -1,16 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { NewsType } from 'src/app/models/news-type.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {LoginDetails, NewsType, ThemeType} from '@core/models';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+
 declare var $: any;
 
 @Component({

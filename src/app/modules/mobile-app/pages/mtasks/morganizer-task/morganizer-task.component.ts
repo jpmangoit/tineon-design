@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskType } from 'src/app/models/task-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { Extentions } from 'src/app/models/extentions.model';
-import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { appSetting } from 'src/app/app-settings';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { TaskType } from '@core/models/task-type.model';
+import {CreateAccess, ThemeType, UserAccess} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({

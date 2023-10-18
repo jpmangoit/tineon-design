@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import { appSetting } from 'src/app/app-settings';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { CreateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { LanguageService } from 'src/app/service/language.service';
+import {CreateAccess, LoginDetails, UserAccess} from '@core/models';
+import {LanguageService} from '@core/services';
+import {appSetting} from '@core/constants';
 
 @Component({
   selector: 'app-action-tool',

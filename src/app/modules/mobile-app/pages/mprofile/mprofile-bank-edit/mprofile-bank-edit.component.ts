@@ -3,14 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ThemeService } from 'src/app/service/theme.service';
-import { NavigationService } from 'src/app/service/navigation.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
+import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+
 
 @Component({
     selector: 'app-mprofile-bank-edit',

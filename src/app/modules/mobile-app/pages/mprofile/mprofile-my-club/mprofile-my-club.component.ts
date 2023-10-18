@@ -1,16 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { ThemeService } from 'src/app/service/theme.service';
-LanguageService
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { DomSanitizer } from '@angular/platform-browser';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NavigationService } from 'src/app/service/navigation.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {DomSanitizer} from '@angular/platform-browser';
+
 @Component({
   selector: 'app-mprofile-my-club',
   templateUrl: './mprofile-my-club.component.html',

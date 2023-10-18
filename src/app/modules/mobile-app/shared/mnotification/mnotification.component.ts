@@ -2,16 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { appSetting } from 'src/app/app-settings';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { DenyReasonConfirmDialogService } from '../../../../shared/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationsService } from 'src/app/service/notifications.service';
-import { ThemeService } from 'src/app/service/theme.service';
-import { UpdateConfirmDialogService } from '../../../../shared/update-confirm-dialog/update-confirm-dialog.service';
+import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, UserAccess} from '@core/models';
+import {AuthServiceService, LanguageService, NotificationsService, ThemeService} from '@core/services';
+import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({

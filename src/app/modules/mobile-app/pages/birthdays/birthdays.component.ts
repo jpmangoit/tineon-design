@@ -1,8 +1,7 @@
-import { CommonFunctionService } from '../../../../service/common-function.service';
-import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from '../../../../service/auth-service.service';
-import { LanguageService } from '../../../../service/language.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/services';
+import {Router} from '@angular/router';
+
 
 @Component({
     selector: 'app-birthdays',

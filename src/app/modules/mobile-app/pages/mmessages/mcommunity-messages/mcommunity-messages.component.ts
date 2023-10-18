@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageService } from 'src/app/service/language.service';
-import { DropdownService } from 'src/app/service/dropdown.service';
+import {DropdownService, LanguageService} from '@core/services';
+
+
 @Component({
     selector: 'app-mcommunity-messages',
     templateUrl: './mcommunity-messages.component.html',
@@ -64,7 +65,7 @@ export class McommunityMessagesComponent implements OnInit {
         this.displayGroupMsg = true;
     }
 
-    
+
 
     // active class functions
     onClick(check) {

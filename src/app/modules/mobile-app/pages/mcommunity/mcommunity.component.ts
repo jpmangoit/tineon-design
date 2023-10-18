@@ -1,13 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs'
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LanguageService } from 'src/app/service/language.service';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { appSetting } from 'src/app/app-settings';
+import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 
 @Component({
     selector: 'app-mcommunity',

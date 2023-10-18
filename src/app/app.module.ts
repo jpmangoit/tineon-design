@@ -9,26 +9,29 @@ import myLocaleRu from '@angular/common/locales/ru';
 import localeIt from '@angular/common/locales/it';
 import localeFr from '@angular/common/locales/fr';
 import localeSp from '@angular/common/locales/es';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthGuard } from './guard/auth.guard';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
-import { LanguageService } from './service/language.service';
-import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
-import { ConfirmDialogService } from './shared/confirm-dialog/confirm-dialog.service';
-import { UpdateConfirmDialogComponent } from '../app/shared/update-confirm-dialog/update-confirm-dialog.component';
-import { UpdateConfirmDialogService } from '../app/shared/update-confirm-dialog/update-confirm-dialog.service';
-
-import { AuthServiceService } from './service/auth-service.service';
-import { DenyReasonConfirmDialogService } from '../app/shared/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { NgxImageCompressService } from 'ngx-image-compress';
-import { ToastrModule } from 'ngx-toastr';
-import { CustomDateAdapter } from './service/custom.date.adapter';
-import { DateAdapter } from '@angular/material/core';
-import { SharedModule } from './shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DateAdapter } from '@angular/material/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { NgxImageCompressService } from 'ngx-image-compress';
+import { ToastrModule } from 'ngx-toastr';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogService,
+  DenyReasonConfirmDialogService,
+  UpdateConfirmDialogComponent,
+  UpdateConfirmDialogService
+} from '@shared/components';
+import {SharedModule} from '@shared/shared.module';
+import {AuthServiceService, LanguageService} from '@core/services';
+import {AuthGuard} from '@core/guards';
+import {CustomDateAdapter} from '@core/helpers';
+
+
 
 export function getCulture() {
     let language = localStorage.getItem('language');
@@ -57,9 +60,7 @@ export function getCulture() {
 }
 @NgModule({
 	declarations: [
-		AppComponent,
-        ConfirmDialogComponent,
-        UpdateConfirmDialogComponent,
+		AppComponent
 	],
 	imports: [
         HttpClientModule,

@@ -1,13 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LanguageService } from '../../../../service/language.service';
-import { appSetting } from '../../../../app-settings';
-import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
-import { ThemeType } from '../../../../models/theme-type.model'
-import { ClubDetail, LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {AuthorizationAccess, ClubDetail, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
+import {CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 
 @Component({

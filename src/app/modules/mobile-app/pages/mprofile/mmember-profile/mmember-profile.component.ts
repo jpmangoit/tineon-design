@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
+import {LoginDetails} from '@core/models';
+import {AuthServiceService, LanguageService} from '@core/services';
+
 declare var $: any;
 
 @Component({

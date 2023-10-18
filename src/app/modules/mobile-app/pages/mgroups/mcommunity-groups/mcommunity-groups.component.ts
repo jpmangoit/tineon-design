@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { CommunityGroup, } from 'src/app/models/community-group.model';
-import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {CommunityGroup, ThemeType} from '@core/models';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+import {Router} from '@angular/router';
+
 declare var $: any;
 
 @Component({

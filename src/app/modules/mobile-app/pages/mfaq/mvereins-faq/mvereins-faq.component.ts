@@ -2,21 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs'
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { FAQ, FAQCategory } from 'src/app/models/faq.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
 import { NgxImageCompressService } from "ngx-image-compress";
-import { CommonFunctionService } from 'src/app/service/common-function.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
+import {FAQ, FAQCategory, LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
 

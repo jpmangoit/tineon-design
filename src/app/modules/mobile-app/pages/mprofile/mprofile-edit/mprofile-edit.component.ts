@@ -5,17 +5,18 @@ import { DatePipe } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NavigationService } from 'src/app/service/navigation.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { NgxImageCompressService } from 'ngx-image-compress';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {
+  AuthServiceService,
+  CommonFunctionService,
+  LanguageService,
+  NavigationService,
+  NotificationService,
+  ThemeService
+} from '@core/services';
+import {NgxImageCompressService} from 'ngx-image-compress';
+
 declare var $: any;
 
 @Component({

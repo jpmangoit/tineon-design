@@ -3,17 +3,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
-import { EventsType } from 'src/app/models/events-type.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ThemeService } from 'src/app/service/theme.service';
 import { DatePipe } from '@angular/common';
 import { RRule } from 'rrule';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {EventsType, LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+
+
 declare var $: any;
 
 @Component({

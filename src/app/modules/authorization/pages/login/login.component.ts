@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../../../../service/auth-service.service';
-import { LanguageService } from '../../../../service/language.service';
-import { CookieService } from 'ngx-cookie-service';
-import { ThemeService } from 'src/app/service/theme.service';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
+import {LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {CookieService} from 'ngx-cookie-service';
+
 declare var $: any;
 @Component({
     selector: 'app-login',

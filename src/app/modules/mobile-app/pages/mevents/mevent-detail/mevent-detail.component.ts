@@ -1,22 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ProfileDetails } from 'src/app/models/profile-details.model';
-import { LoginDetails, UserDetails } from 'src/app/models/login-details.model';
-import { EventsType } from 'src/app/models/events-type.model';
-import { LanguageService } from 'src/app/service/language.service';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { UpdateConfirmDialogService } from '../../../../../shared/update-confirm-dialog/update-confirm-dialog.service';
-import { DenyReasonConfirmDialogService } from '../../../../../shared/deny-reason-confirm-dialog/deny-reason-confirm-dialog.service';
-import { TaskCollaboratorDetails } from 'src/app/models/task-type.model';
-import { NotificationService } from 'src/app/service/notification.service';
 import { saveAs } from 'file-saver';
+import {LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 
 declare var $: any;
 

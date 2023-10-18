@@ -1,22 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { appSetting } from 'src/app/app-settings';
-import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { serverUrl } from 'src/environments/environment';
 import { io, Socket } from "socket.io-client";
-import { Extentions } from 'src/app/models/extentions.model';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess, UserAccess } from 'src/app/models/user-access.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { CommunityGroup } from 'src/app/models/community-group.model';
-import { ChatUsers, UserMessages } from 'src/app/models/chat-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
+import {
+  AuthorizationAccess,
+  ChatUsers,
+  CommunityGroup,
+  CreateAccess,
+  LoginDetails,
+  ParticipateAccess,
+  ThemeType,
+  UserAccess, UserMessages
+} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
 
 declare var $: any;
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import {AuthServiceService, LanguageService, NotificationService} from '@core/services';
+
 
 @Component({
   selector: 'app-m-email',

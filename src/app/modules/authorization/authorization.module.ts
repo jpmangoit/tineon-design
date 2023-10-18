@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { AuthorizationRoutingModule } from './authorization-routing.module';
-import { SharedModule } from 'src/app/shared.module';
-import { LoginComponent } from './pages/login/login.component';
-import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LoginComponent} from '@modules/authorization/pages/login/login.component';
+import {RecoverPasswordComponent} from '@modules/authorization/pages/recover-password/recover-password.component';
+import {SharedModule} from '@shared/shared.module';
+import {AuthorizationRoutingModule} from '@modules/authorization/authorization-routing.module';
 
 
 @NgModule({
-    declarations: [
-        LoginComponent,
-        RecoverPasswordComponent
-    ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        AuthorizationRoutingModule,
-    ]
+  declarations: [
+    LoginComponent,
+    RecoverPasswordComponent
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    AuthorizationRoutingModule,
+  ]
 })
-export class AuthorizationModule { }
+export class AuthorizationModule {
+}

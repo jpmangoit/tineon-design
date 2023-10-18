@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from 'src/app/service/theme.service';
-import { Subscription } from 'rxjs';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { Survey } from 'src/app/models/survey.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import {LoginDetails, ThemeType} from '@core/models';
+import {Survey} from '@core/models/survey.model';
+import {Subscription} from 'rxjs';
+import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+
 declare var $: any;
+
 @Component({
     selector: 'app-mcompleted-survey',
     templateUrl: './mcompleted-survey.component.html',

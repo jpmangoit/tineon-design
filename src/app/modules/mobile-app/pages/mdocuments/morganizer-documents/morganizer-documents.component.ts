@@ -2,15 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { appSetting } from 'src/app/app-settings';
-import { UploadDocVisibility } from 'src/app/models/documents-type.model';
-import { Extentions } from 'src/app/models/extentions.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthorizationAccess, CreateAccess, ParticipateAccess } from 'src/app/models/user-access.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { ThemeService } from 'src/app/service/theme.service';
+import {AuthorizationAccess, CreateAccess, ParticipateAccess, ThemeType, UploadDocVisibility} from '@core/models';
+import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {appSetting} from '@core/constants';
+
 declare var $: any;
 @Component({
     selector: 'app-morganizer-documents',

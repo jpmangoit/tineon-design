@@ -2,12 +2,10 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { CommonFunctionService } from 'src/app/service/common-function.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import {LoginDetails} from '@core/models';
+import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+
 
 @Component({
     selector: 'app-mprofile-qr',

@@ -1,18 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { ThemeService } from 'src/app/service/theme.service';
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
-import { Extentions } from 'src/app/models/extentions.model';
-import { LoginDetails, UserDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { ClubMessagesType } from 'src/app/models/messages-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { appSetting } from 'src/app/app-settings';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { NotificationService } from 'src/app/service/notification.service';
-import { DropdownService } from 'src/app/service/dropdown.service';
+import {ClubMessagesType, LoginDetails, ThemeType, UserDetails} from '@core/models';
+import {AuthServiceService, DropdownService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+import {appSetting} from '@core/constants';
+
+
 declare var $: any;
 
 @Component({

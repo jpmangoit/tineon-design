@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { LanguageService } from 'src/app/service/language.service';
+import {LanguageService} from '@core/services';
 
 @Component({
     selector: 'app-setting-tool',

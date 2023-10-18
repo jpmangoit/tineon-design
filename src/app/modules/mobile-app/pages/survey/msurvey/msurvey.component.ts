@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/service/theme.service';
-import { LoginDetails } from 'src/app/models/login-details.model';
-import { ThemeType } from 'src/app/models/theme-type.model';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { LanguageService } from 'src/app/service/language.service';
-import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
+import {LoginDetails, ThemeType} from '@core/models';
+import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {ConfirmDialogService} from '@shared/components';
+
 declare var $: any;
 
 @Component({
