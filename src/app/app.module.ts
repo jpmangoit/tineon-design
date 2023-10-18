@@ -22,6 +22,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {
   ConfirmDialogComponent,
   ConfirmDialogService,
+  DenyReasonConfirmDialogComponent,
   DenyReasonConfirmDialogService,
   UpdateConfirmDialogComponent,
   UpdateConfirmDialogService
@@ -60,7 +61,10 @@ export function getCulture() {
 }
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+        ConfirmDialogComponent,
+        DenyReasonConfirmDialogComponent,
+        UpdateConfirmDialogComponent
 	],
 	imports: [
         HttpClientModule,
@@ -92,6 +96,10 @@ export function getCulture() {
 		NgxImageCompressService,
         { provide: LOCALE_ID, useValue: getCulture()},
         { provide: DateAdapter, useClass: CustomDateAdapter },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     multi: true,
+        // },
     ],
 
     bootstrap: [AppComponent],
