@@ -552,6 +552,8 @@ export class EventsCalendarComponent implements OnInit {
     filteredEventsList: any[] = []; // Array to store filtered events
     applyFilters() {
         this.allEventsList = this.actualAllEventsList;
+        this.currentPageNumber = 1; // Reset to the first page when changing items per page
+
         this.filteredEventsList = this.allEventsList.filter(event => {
             // Filter by Year
             if (this.selectedYear && new Date(event.date_from).getFullYear() !== +this.selectedYear) {
@@ -586,8 +588,6 @@ export class EventsCalendarComponent implements OnInit {
 
     }
 
-
-
     //     applyFilters() {
     //     if (this.selectedYear) {
     //         console.log(this.selectedYear);
@@ -603,59 +603,6 @@ export class EventsCalendarComponent implements OnInit {
 
     //     this.allEventsList =  this.filteredEventsList ;
     // }
-
-
-
-    // applyFilter() {
-    //     const filteredEvents = this.filterEvents();
-    //     this.allEventsList = filteredEvents;
-    //     this.allEventsList.sort((a, b) => {
-    //         const dateA = new Date(a.date_from).getTime();
-    //         const dateB = new Date(b.date_from).getTime();
-    //         return dateA - dateB;
-    //     });
-    //     let newsTotalRecords = this.allEventsList.length;
-    //     this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-    //     this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    //     this.updatePagesArray();
-    // }
-
-
-    // filterEvents(): any[] {
-    //     // Implement your filtering logic based on selected filters
-    //     let filteredEvents = this.allEventsList;
-
-    //     if (this.allEventsList) {
-    //         // Filter by year
-
-    //         if (this.selectedYear) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 const eventYear: any = new Date(event.date_from).getFullYear();
-    //                 return eventYear.toString() === this.selectedYear;
-    //             });
-    //         }
-
-    //         // Filter by month
-    //         if (this.selectedMonth) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 console.log('--in--');
-    //                 const eventMonth: any = new Date(event.date_from).getUTCMonth() + 1; // Month is 0-indexed
-    //                 return eventMonth.toString() === this.selectedMonth;
-    //             });
-    //         }
-
-    //         // Filter by event type
-    //         if (this.selectedEventType) {
-    //             filteredEvents = filteredEvents.filter(event => {
-    //                 return event.type === this.selectedEventType;
-    //             });
-    //         }
-    //     }
-
-    //     return filteredEvents;
-    // }
-
-
 
     get pagedEvents() {
         const startIndex = (this.currentPageNumber - 1) * this.itemPerPage;

@@ -447,6 +447,8 @@
                                 </div>
                             </div>
                         </mat-tab>
+
+                        <!-- UPDATE EVENT DATA START -->
                         <mat-tab label="{{ language.club_wall.updateEvent }}">
                             <div class="card-body">
                                 <div class="profile_details" *ngIf="updateEventData">
@@ -798,7 +800,10 @@
                                 </div>
                             </div>
                         </mat-tab>
+                        <!-- UPDATE EVENT DATA END -->
                     </mat-tab-group>
+
+                    <!-- CURRENT EVENT DATA START -->
                     <div class="card-body" *ngIf="!updateEventData">
                         <div class="profile_details" *ngIf="eventDetails">
                             <div class="row">
@@ -1165,8 +1170,9 @@
                                             <h5 class="card-title">{{language.organizer.all_participants}}</h5>
                                         </div>
                                         <div class="card-body" *ngIf="approvedParticipants">
+                                            <!-- APPROVED PARTICIPANTS NEW START -->
                                             <div class="widget-appointment widget"
-                                                *ngFor="let participant of approvedParticipants">
+                                                *ngFor="let participant of approvedParticipantsNew">
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
                                                     (click)="getMemId(participant.users.id)">
@@ -1193,15 +1199,56 @@
                                                                 class="participant_email">{{participant.users.email}}</span>
                                                         </div>
                                                     </div>
-                                                    <div class="app-right-content"
-                                                        *ngIf="participant.approved_status == 1">
+                                                    <div class="app-right-content">
                                                         <span class="participant_status">
                                                             <span
                                                                 class="status_badge approved"></span>{{language.organizer.approved}}
                                                         </span>
                                                     </div>
-                                                    <div class="app-right-content"
+                                                    <!-- <div class="app-right-content"
                                                         *ngIf="participant.approved_status == 3">
+                                                        <span class="participant_status">
+                                                            <span
+                                                                class="status_badge denied"></span>{{language.create_event.denied}}
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <!-- APPROVED PARTICIPANTS NEW END -->
+
+                                            <!-- DENIED PARTICIPANTS START -->
+                                            <div class="widget-appointment widget"
+                                                *ngFor="let participant of deniedParticipants">
+                                                <div class="widget-app-content" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal"
+                                                    (click)="getMemId(participant.users.id)">
+                                                    <div class="app-left-content">
+                                                        <div class="author-img"
+                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="'assets/img/defaultProfile.jpeg'"
+                                                                style="width: 100px;" alt="" loading="lazy">
+                                                        </div>
+                                                        <div class="author-img" *ngIf="participant.users.image != null">
+                                                            <img onContextMenu="return false;"
+                                                                [src]="participant.users.image" style="width: 100px;"
+                                                                alt="" loading="lazy">
+                                                        </div>
+                                                        <div class="user-content">
+                                                            <span class="user-name">{{participant.users.firstname}}
+                                                                {{participant.users.lastname}}</span>
+                                                            <span
+                                                                class="participant_email">{{participant.users.email}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="app-right-content"
+                                                    *ngIf="participant.approved_status == 1">
+                                                    <span class="participant_status">
+                                                        <span
+                                                            class="status_badge approved"></span>{{language.organizer.approved}}
+                                                    </span>
+                                                    </div> -->
+                                                    <div class="app-right-content">
                                                         <span class="participant_status">
                                                             <span
                                                                 class="status_badge denied"></span>{{language.create_event.denied}}
@@ -1209,6 +1256,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- DENIED PARTICIPANTS END -->
+
+                                            <!-- PENDING PARTICIPANTS START -->
                                             <div class="widget-appointment widget" *ngFor="let participant of memImg">
                                                 <div class="widget-app-content" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
@@ -1240,6 +1290,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- PENDING PARTICIPANTS END -->
+
                                         </div>
                                     </div>
                                     <div class="event-content">
@@ -1316,6 +1368,8 @@
                             <span>{{ language.club_events.no_events }}</span>
                         </div>
                     </div>
+                    <!-- CURRENT EVENT DATA END -->
+
                 </div>
             </div>
         </div>
