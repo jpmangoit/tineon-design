@@ -75,7 +75,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
 
     isClubEventsRoute(): boolean {
         // Check if the current route is '/clubwall/club-events'
-        return this.router.url === '/clubwall/club-events';
+        return this.router.url === '/web/clubwall/club-events';
     }
 
     /**

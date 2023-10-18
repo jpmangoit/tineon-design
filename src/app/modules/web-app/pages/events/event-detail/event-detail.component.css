@@ -609,9 +609,9 @@ ul.bunch_drop.show {
 
 
 ul.bunch_drop.show {
-    position: relative;
+    position: absolute;
     min-width: 150px;
-    left: 0;
+    right: 0;
     padding: 0;
     margin: 0;
     top: 37px;
@@ -623,6 +623,9 @@ ul.bunch_drop.show li a {
     padding: 8px 10px;
     border-bottom: 1px solid #f7f7f9;
     color: #424d5c;
+}
+.event-title > div .dropdown-item.delet-icon {
+    padding: 3px;
 }
 .dropdown-item.active,
 .dropdown-item:active {
@@ -746,11 +749,6 @@ ul.bunch_drop.show li {
    border-radius: 5px;
    border: 1px solid #FB5F5F;
    background: #FFF;
-   width: 28px;
-   height: 28px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
 }
 
 .event-title > div {
@@ -764,7 +762,7 @@ ul.bunch_drop.show li {
 }
 
 .dropdown.action_group .dropdown-toggle {
-   position: static;
+   position: relative;
 }
 
 .dropdown.action_group .dropdown-toggle:after {
