@@ -539,8 +539,6 @@ export class EventsCalendarComponent implements OnInit {
             const dateB = new Date(b.date_from).getTime();
             return dateA - dateB;
         });
-        console.log(this.allEventsList);
-        
         let newsTotalRecords = this.allEventsList.length
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
 
