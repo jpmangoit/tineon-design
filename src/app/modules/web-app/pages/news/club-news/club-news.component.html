@@ -20,7 +20,8 @@
                     </div>
                     <ng-container *ngFor='let data of dashboardNewsData; let i=index'>
                         <div class="news-item large-item"
-                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1">
+                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" data-bs-toggle="modal" data-bs-target="#exModal"
+                            (click)="getNewsDetails(data.id)">
 
                             <div class="news-item-image">
                                 <img onContextMenu="return false;"
@@ -125,7 +126,8 @@
                             <ng-container *ngFor='let data of dashboardNewsData; let i=index'>
                                 <div class="multi-item-single"
                                     [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
-                                    *ngIf="i >= 1 && i <= newsDisplay">
+                                    *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal" data-bs-target="#exModal"
+                                    (click)="getNewsDetails(data.id)">
 
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
                                         <img onContextMenu="return false;"
@@ -294,7 +296,8 @@
                     <ng-container
                         *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
                         <div class="news-item large-item"
-                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1">
+                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" data-bs-toggle="modal"
+                            data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
 
                             <div class="news-item-image">
                                 <img onContextMenu="return false;" alt="" loading="lazy" data-bs-toggle="modal"
@@ -399,7 +402,8 @@
                                 *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
                                 <div class="multi-item-single"
                                     [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
-                                    *ngIf="i >= 1 && i <= newsDisplay">
+                                    *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal"
+                                    data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
 
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
                                         <img onContextMenu="return false;"

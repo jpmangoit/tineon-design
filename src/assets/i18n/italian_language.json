@@ -237,7 +237,9 @@
         "list_view": "Listenansicht",
         "tile_view": "Kachelansicht",
         "items_per_page" : "Items per page:",
-        "current_events": "Aktuelle Veranstaltungen im Verein"
+        "current_events": "Aktuelle Veranstaltungen im Verein",
+        "clubwall": "Clubwall",
+        "events":"Events"
     },
     "club_news": {
         "Edit": "Modifica",
