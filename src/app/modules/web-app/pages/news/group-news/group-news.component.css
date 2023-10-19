@@ -1754,9 +1754,12 @@ width: auto;
         height: 100%;
     }
     .club-right-area {
-        width: calc(100% - 76px);
+        width: calc(100% - 60px);
     }
     .club-w-image img {
         object-fit: cover;
+    }
+    span.club-schedule {
+        font-size: 10px;
     }
 }

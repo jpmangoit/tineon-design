@@ -743,11 +743,16 @@ ul.bunch_drop.show li {
     margin-bottom: 0px;
 }
 
-.event-title > div .dropdown-item  {
+.event-title > div .dropdown-item.delet-icon  {
    padding: 0;
    border-radius: 5px;
-   /* border: 1px solid #FB5F5F; */
+   border: 1px solid #FB5F5F;
    background: #FFF;
+   width: 28px;
+   height: 28px;
+   display: flex;
+   align-items: center; 
+   justify-content: center;
 }
 
 .event-title > div {
@@ -1106,6 +1111,7 @@ font-weight: 700;
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
+    width: 94%;
 }
 .club-wall-top-heading h1 {
     color: #3D475C;
@@ -1161,7 +1167,7 @@ font-weight: 700;
     flex: 0 0 31%;
 }
 .content.detail-component {
-    max-width: 97%;
+    max-width: 100%;
 }
 .membar-list-main-zone {
     display: flex;
@@ -1170,11 +1176,11 @@ font-weight: 700;
     flex-wrap: nowrap;
 }
 .membar-list-zone-inner {
-    width: 100%;
+    width: 94%;
 }
 .membar-modal-action {
     position: absolute;
-    right: -52px;
+    right: 0px;
 }
 .membar-badge {
     position: absolute;
@@ -1296,6 +1302,9 @@ font-weight: 700;
 }
 .event-details-inner .organizer_card .app-left-content {
     width: 100% !important;
+}
+::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
 }
 ul.Task-toggle.show {
     display: block;
