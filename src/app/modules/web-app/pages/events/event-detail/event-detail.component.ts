@@ -207,6 +207,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
+                                        
 
                                         if (this.updateEventData?.baseImage[0]?.image != null) {
                                             this.showUpdateImage = true;
@@ -248,6 +249,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                 }
                                             });
                                             this.updateEventData.users = Object.assign(this.authService.uniqueObjData(this.updateEventData.users, 'user_id'));
+                                            this.updateEventData.users = this.updateEventData.users.filter(item => item.user !== undefined);
+                                        
                                         }
                                         if (this.updateEventData?.task?.length > 0) {
                                             this.isTaskDetailsUpdate = true
@@ -279,6 +282,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                 }
                                             });
                                         }
+                                        console.log(this.updateEventData?.task);
+                                        
 
                                         if (this.updateEventData.room != 'null') {
                                             this.commonFunctionService.roomsById(this.updateEventData.room)
