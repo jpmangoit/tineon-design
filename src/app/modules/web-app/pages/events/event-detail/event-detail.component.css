@@ -1318,6 +1318,16 @@ ul.Task-toggle.show li a {
     min-width: 109px;
     font-weight: 600;
 }
+@media (max-width:1500px){
+    .event-img-bottom > div .event-time span {
+        font-size: 18px;
+    }
+    span.img-icon svg {
+        width: 40px;
+        height: 28px;
+    }
+}
+
 @media(max-width:767px) {
     ::ng-deep body .all-participant-card .card-body > div{
   width: 100% !important;
