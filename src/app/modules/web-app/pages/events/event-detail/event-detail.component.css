@@ -746,7 +746,7 @@ ul.bunch_drop.show li {
 .event-title > div .dropdown-item  {
    padding: 0;
    border-radius: 5px;
-   border: 1px solid #FB5F5F;
+   /* border: 1px solid #FB5F5F; */
    background: #FFF;
 }
 
@@ -1095,7 +1095,6 @@ svg {
 font-size: 25px;
 font-style: normal;
 font-weight: 700;
-line-height: normal;
 }
 
 .event-img-bottom > div .event-time {
@@ -1280,6 +1279,24 @@ line-height: normal;
     gap: 18px;
     align-items: center;
 }
+.image-badge {
+    position: absolute;
+    top: 19px;
+    padding: 3px 18px;
+    border-radius: 25px;
+    color: #FFF;
+    text-align: center;
+    font-family: Gellix;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: #EF4968;
+    left: 16px;
+}
+.event-details-inner .organizer_card .app-left-content {
+    width: 100% !important;
+}
 ul.Task-toggle.show {
     display: block;
     position: absolute;
@@ -1318,6 +1335,16 @@ ul.Task-toggle.show li a {
     min-width: 109px;
     font-weight: 600;
 }
+@media (max-width:1550px){
+    .event-img-bottom > div .event-time span {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    span.img-icon svg {
+        height: 24px;
+    }
+}
+
 @media(max-width:767px) {
     ::ng-deep body .all-participant-card .card-body > div{
   width: 100% !important;

@@ -240,7 +240,14 @@
         "list_view": "Listenansicht",
         "tile_view": "Kachelansicht",
         "items_per_page" : "Anzeigen pro Seite:",
-        "current_events": "Aktuelle Veranstaltungen im Verein"
+        "current_events": "Aktuelle Veranstaltungen im Verein",
+        "clubwall": "Clubwall",
+        "events":"Events",
+        "approved": "Zugesagt:",
+        "pending": "Ausstehend:",
+        "denied" : "Abgesagt:",
+        "assigned_task": "Zugewiesene Aufgaben",
+        "orgainzer" : "Für die Veranstaltung verantwortlich:"
     },
     "club_news": {
         "Edit": "Bearbeiten",

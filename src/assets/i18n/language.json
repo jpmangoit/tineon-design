@@ -77,7 +77,12 @@
         "list_view": "Listenansicht",
         "tile_view": "Kachelansicht",
         "items_per_page" : "Items per page:",
-        "current_events": "Aktuelle Veranstaltungen im Verein"
+        "current_events": "Aktuelle Veranstaltungen im Verein",
+        "approved": "Zugesagt:",
+        "pending": "Ausstehend:",
+        "denied" : "Abgesagt:",
+        "assigned_task": "Zugewiesene Aufgaben",
+        "orgainzer" : "Für die Veranstaltung verantwortlich:"
     },
     "community_messages" : {
         "message_to_me" : "nachrichten an mich"
