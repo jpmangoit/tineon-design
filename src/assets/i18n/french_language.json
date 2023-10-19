@@ -241,7 +241,12 @@
         "items_per_page" : "Items per page:",
         "current_events": "Aktuelle Veranstaltungen im Verein",
         "clubwall": "Clubwall",
-        "events":"Events"
+        "events":"Events",
+        "approved": "Zugesagt:",
+        "pending": "Ausstehend:",
+        "denied" : "Abgesagt:",
+        "assigned_task": "Zugewiesene Aufgaben",
+        "orgainzer" : "Für die Veranstaltung verantwortlich:"
     },
     "club_news":{
         "Edit":"Modifier",

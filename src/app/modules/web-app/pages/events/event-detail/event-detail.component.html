@@ -2,7 +2,7 @@
     <div class="page_heading club-wall-top-heading">
         <div class="heading-box">
             <h1>{{ language.header.event_details }}</h1>
-            <span>{{language.club_events.clubwall}} &nbsp; >&nbsp;  {{language.club_events.events}}</span>
+            <span>{{language.club_events.clubwall}} &nbsp; >&nbsp;  {{language.club_events.events}}</span> 
         </div>
         <div class="button-box">
 
@@ -247,7 +247,7 @@
                                             </div>
                                             <div class="organizer_card">
                                                 <div class="card-header ">
-                                                    <h5 class="card-title">{{language.organizer.organizer}}</h5>
+                                                    <h5 class="card-title">{{language.club_events.orgainzer}}</h5> 
                                                 </div>
                                                 <div class="card-body" *ngIf="organizerDetails">
                                                     <div class="widget-appointment widget"
@@ -681,7 +681,7 @@
 
                                             <div class="organizer_card">
                                                 <div class="card-header ">
-                                                    <h5 class="card-title">{{language.organizer.organizer}}</h5>
+                                                    <h5 class="card-title">{{language.club_events.orgainzer}}</h5>
                                                 </div>
                                                 <div class="card-body" *ngIf="organizerDetails">
                                                     <div class="widget-appointment widget"
@@ -976,7 +976,7 @@
                                         <!-- Start Veranstalter -->
                                         <div class="organizer_card">
                                             <div class="card-header ">
-                                                <h5 class="card-title">{{language.organizer.organizer}}</h5>
+                                                <h5 class="card-title">{{language.club_events.orgainzer}}</h5>
                                             </div>
                                             <div class="card-body" *ngIf="organizerDetails">
                                                 <div class="widget-appointment widget"
@@ -1037,7 +1037,7 @@
                                     <!-- approved membar list area -->
                                     <div class="membar-list-main-zone approved-area">
                                         <div class="membar-list-zone-inner">
-                                            <h2 class="widget-heading">Approved:</h2>
+                                            <h2 class="widget-heading">{{language.club_events.approved}}</h2> 
                                             <div class="membar-zone" *ngIf="approvedParticipantsNew">
                                                 <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" 
                                                     data-bs-toggle="modal"
@@ -1090,7 +1090,7 @@
                                     <!-- Pending membar list area -->
                                     <div class="membar-list-main-zone pending-area">
                                         <div class="membar-list-zone-inner">
-                                            <h2 class="widget-heading">Pending:</h2>
+                                            <h2 class="widget-heading">{{language.club_events.pending}}</h2>
                                             <div class="membar-zone">
                                                 <div class="membar-list" *ngFor="let participant of memImg" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
@@ -1139,7 +1139,7 @@
                                       <!-- Denied membar list area -->
                                     <div class="membar-list-main-zone denied-area">
                                         <div class="membar-list-zone-inner">
-                                            <h2 class="widget-heading">Cancelled:</h2>
+                                            <h2 class="widget-heading">{{language.club_events.denied}}</h2>
                                             <div class="membar-zone" *ngFor="let participant of deniedParticipants">
                                                 <div class="membar-list" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
@@ -1192,7 +1192,7 @@
                                      <!-- Assigned task section start -->
 
                                         <div class="event-task-zone">
-                                            <h2 class="widget-heading">Assigned Task:</h2>
+                                            <h2 class="widget-heading">{{language.club_events.assigned_task}}</h2>
                                             <div class="event-task-list-zone">
                                                 <div class="event-task-list">
                                                         <div class="event-task-header">

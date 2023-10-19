@@ -2,7 +2,7 @@
     <div class="page_heading club-wall-top-heading"  *ngIf="isClubEventsRoute()">
         <div class="heading-box">
             <h1>{{language.club_events.current_events}}</h1>
-            <span>Clubwall &nbsp; >&nbsp;  Events</span>
+            <span>{{language.club_events.clubwall}} &nbsp; >&nbsp;  {{language.club_events.events}}</span> 
         </div>
         <div class="button-box">
                 <div class="page-action-right" *ngIf="createAccess.news == 'Yes' || createAccess.event == 'Yes'">
