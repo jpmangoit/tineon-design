@@ -1,16 +1,8 @@
 export const environment = {
-  production: true,
+  production: true
 };
-// export const baseUrl = 'http://dev.app.verein.cloud:5000/api/';
-// export const serverUrl = 'http://dev.app.verein.cloud:5000/';
-// export const backendBaseUrl = 'http://103.127.29.85'
-
-export const baseUrl = 'http://103.127.29.85:9001/api/';
-export const serverUrl = 'http://103.127.29.85:9001/';
-export const backendBaseUrl = 'http://103.127.29.85/'
-
-
-
+export const baseUrl = 'http://dev.app.verein.cloud:5000/api/';
+export const serverUrl = 'http://dev.app.verein.cloud:5000/';
 
 // export const fireStore = {
 //   apiKey: "AIzaSyC8iOcxDzuq-RdRufPOq9hSDeDurg7nEjE",

@@ -1,0 +1,30 @@
+.page-heading {
+    margin-bottom: 30px;
+}
+.card .card-body {
+    padding: 35px;
+}
+.news-dropdown {
+    margin-bottom: 20px;
+}
+.search-filter-wrapper
+    .news-dropdown
+    .multiselect-dropdown
+    div
+    span.dropdown-btn {
+    padding: 5px 15px !important;
+    height: 45px !important;
+    border-radius: 25px !important;
+}
+
+.multiselect-dropdown .dropdown-btn {
+    line-height: 32px !important;
+}
+
+.news-dropdown
+    .multiselect-dropdown
+    div
+    span.dropdown-btn
+    span.dropdown-multiselect__caret {
+    top: 16px !important;
+}

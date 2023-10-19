@@ -1,0 +1,785 @@
+<div class="app-action-toggle">
+    <!-- mobile toggle button header -->
+    <div class="page-action">
+        <div class="page-action-left">
+            <div class="tab-button">
+                <button type="button" (click)="onCoursediv()" (click)="onClick('1')"
+                    [ngClass]="{'active': activeClass==='courseActive'}"
+                    [ngStyle]="displayCoursediv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                            'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                            : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                    <Span>{{language.courses.courses}}</Span>
+                </button>
+                <button type="button" *ngIf="createAccess.instructor == 'Yes'" (click)="onInstructordiv()"
+                    (click)="onClick('2')" [ngClass]="{'active': activeClass==='instructorActive'}"
+                    [ngStyle]="displayInstructordiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                        'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                        'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                        : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                    <Span>{{language.courses.instructor}}</Span>
+                </button>
+                <button type="button" *ngIf="createAccess.room == 'Yes'" (click)="onRoomdiv()" (click)="onClick('3')"
+                    [ngClass]="{'active': activeClass==='roomActive'}"
+                    [ngStyle]="displayRoomdiv == true ? {'border-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                        'background-color': setTheme.default_status == true ? '#68759F' : setTheme.button_bgcolor,
+                        'color': setTheme.default_status == true ? '#fff' : setTheme.button_text}
+                        : {'border-color':setTheme.button_bgcolor,'background-color':'rgb(234 240 254 / 0%)','color':'#68759F'}">
+                    <span>{{language.courses.rooms}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- mobile toggle button header -->
+</div>
+<div class="app-content-area" *ngIf="displayCoursediv == true">
+    <div class="page-action">
+        <div class="page-heading">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="34" height="38" viewBox="0 0 34 38" fill="none">
+                <path
+                    d="M3.96696 0C7.75633 0 11.5457 0 15.3341 0C15.4017 0.203761 15.2008 0.23756 15.1101 0.325437C11.3786 3.92167 10.017 8.2721 11.2531 13.284C13.0039 20.3847 20.3866 24.598 27.4419 22.6503C27.7703 22.5595 27.8137 22.628 27.8118 22.9361C27.8002 24.9708 27.7731 27.0065 27.8185 29.0412C27.8446 30.2058 27.0479 30.8625 26.0108 30.848C23.6825 30.8152 21.3542 30.8354 19.025 30.8393C18.4591 30.8403 18.5412 30.7611 18.5392 31.3057C18.5354 32.763 18.5296 34.2202 18.5421 35.6764C18.5469 36.2211 18.376 36.6479 17.8661 36.8835C17.3389 37.1269 16.8927 36.9685 16.4804 36.5919C15.7059 35.885 14.9111 35.2004 14.1376 34.4925C13.9561 34.3264 13.8547 34.3341 13.675 34.4983C12.8755 35.2303 12.0633 35.9497 11.2463 36.6643C10.7741 37.0767 10.2275 37.1086 9.75724 36.7744C9.38931 36.5127 9.26764 36.139 9.2686 35.7054C9.27053 34.1999 9.26281 32.6954 9.27536 31.1898C9.27729 30.9214 9.22804 30.8248 8.92964 30.8287C7.59023 30.847 6.25082 30.8238 4.91237 30.8403C3.3692 30.8586 2.09932 30.2676 1.06217 29.159C0.467305 28.5226 0.00570522 27.8003 0.00570522 26.8906C0.000876771 19.4741 -0.00684875 12.0566 0.0105337 4.63917C0.0153621 2.89417 0.827507 1.56538 2.31177 0.635424C2.82648 0.313849 3.41169 0.201829 3.96696 0ZM21.5976 27.7491C22.5507 27.7491 23.5029 27.7452 24.456 27.752C24.6385 27.753 24.739 27.7375 24.7351 27.5077C24.7216 26.6414 24.7225 25.7743 24.7341 24.908C24.737 24.6859 24.6453 24.655 24.456 24.655C22.5748 24.6608 20.6937 24.6627 18.8115 24.6531C18.5798 24.6521 18.5305 24.7294 18.5334 24.9438C18.544 25.7858 18.546 26.6289 18.5325 27.471C18.5286 27.6921 18.5856 27.7568 18.8115 27.7539C19.7396 27.7414 20.6686 27.7491 21.5976 27.7491ZM6.7974 27.7481C7.53326 27.7481 8.26911 27.7433 9.00497 27.752C9.19231 27.7539 9.28019 27.7269 9.27633 27.5057C9.26281 26.6395 9.26667 25.7723 9.27439 24.9051C9.27633 24.7226 9.22804 24.6541 9.03297 24.655C7.57382 24.6627 6.11369 24.6463 4.65454 24.6647C3.75355 24.6763 3.08915 25.3687 3.09977 26.2291C3.1104 27.0847 3.79604 27.7404 4.69992 27.7472C5.39812 27.753 6.09824 27.7481 6.7974 27.7481ZM24.964 0C25.2556 0.143888 25.581 0.126505 25.8901 0.189275C30.197 1.06129 33.3993 4.52136 33.9294 8.88435C34.56 14.074 30.8595 19.0251 25.7114 19.8797C20.3064 20.7768 15.338 17.4461 14.1299 12.1146C12.8861 6.63139 16.7353 0.989832 22.2967 0.136162C22.4628 0.111054 22.655 0.144853 22.7921 0C23.5164 0 24.2407 0 24.964 0ZM25.4893 7.61253C25.4883 7.61253 25.4874 7.61253 25.4874 7.61253C25.4874 7.11906 25.4989 6.6256 25.4845 6.13213C25.4594 5.27749 24.7921 4.62758 23.9558 4.62565C23.1176 4.62276 22.431 5.27073 22.4194 6.12151C22.402 7.43291 22.4136 8.74529 22.4145 10.0577C22.4145 10.4623 22.5652 10.8099 22.8481 11.0948C23.6303 11.8809 24.4068 12.6718 25.2044 13.4405C25.8273 14.0402 26.7495 14.0189 27.3521 13.425C27.9566 12.8292 27.9644 11.8847 27.3637 11.2513C27.1483 11.0233 26.9204 10.808 26.7003 10.5859C26.3024 10.1842 25.7529 9.84424 25.5511 9.36043C25.3493 8.87758 25.4951 8.24989 25.4883 7.68592C25.4893 7.66082 25.4893 7.63667 25.4893 7.61253Z"
+                    fill="#68759F" />
+            </svg>
+            <h1>{{language.courses.courses}}</h1> -->
+        </div>
+        <div class="page-action-right" *ngIf="createAccess.course == 'Yes'">
+            <button class="disabled" routerLink="/mobile/create-course">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M5.97189 11.3126C5.81901 10.8625 5.96101 10.3781 6.33376 10.0781C6.53932 9.91259 6.78439 9.82842 7.06037 9.82842C7.06152 9.82842 7.06324 9.82842 7.06438 9.82842C7.26078 9.82899 7.4566 9.82842 7.653 9.82784C8.03549 9.8267 8.43114 9.82555 8.8205 9.833C8.84569 9.83357 8.8623 9.83242 8.87318 9.83071C8.87432 9.81983 8.87489 9.80265 8.87375 9.77517C8.86459 9.56045 8.86688 9.34344 8.8686 9.1333C8.86917 9.04569 8.87031 8.95866 8.87031 8.87105L8.87089 8.72791C8.87089 8.68496 8.87031 8.64259 8.87031 8.59965C8.86917 8.40096 8.86745 8.19541 8.8726 7.99214C8.88864 7.356 9.37075 6.87903 9.99544 6.87903C9.99773 6.87903 10 6.87903 10.0023 6.87903C10.615 6.88247 11.104 7.36745 11.1154 7.98355C11.1252 8.50116 11.1252 9.05657 11.116 9.78433C11.116 9.80609 11.1166 9.82097 11.1177 9.83128C11.1269 9.83242 11.1406 9.833 11.1595 9.83242C11.6536 9.82384 12.1552 9.82613 12.6402 9.82784L12.8933 9.82899C13.5701 9.83128 14.0665 10.2979 14.074 10.9392C14.0774 11.2576 13.9612 11.5479 13.7464 11.7569C13.5329 11.9647 13.2323 12.081 12.9002 12.0844C12.2835 12.0907 11.7161 12.0901 11.1658 12.0827C11.1429 12.0821 11.128 12.0833 11.1177 12.0844C11.1166 12.0936 11.116 12.1079 11.116 12.1279C11.1263 12.8654 11.1257 13.4283 11.1143 13.9522C11.1022 14.5099 10.6894 14.9513 10.11 15.0263C10.0664 15.0321 10.0235 15.0344 9.98055 15.0344C9.5076 15.0344 9.06327 14.7063 8.91497 14.2276C8.87203 14.0884 8.87146 13.9545 8.87089 13.8251C8.87031 13.6871 8.86974 13.5531 8.86917 13.4197C8.86688 13.0068 8.86459 12.5797 8.87547 12.1594C8.87661 12.1193 8.87318 12.0976 8.87089 12.0873C8.85943 12.085 8.83596 12.0815 8.78786 12.0827C8.21413 12.0924 7.63009 12.093 7.05236 12.0838C6.53646 12.0747 6.13221 11.7867 5.97189 11.3126ZM19.9767 15.0057C19.963 16.3118 19.4454 17.5411 18.5189 18.4676C17.5942 19.3917 16.3637 19.9133 15.0542 19.9363C14.4124 19.9471 13.7648 19.9506 13.1218 19.9506C12.5967 19.9506 12.0745 19.9483 11.5603 19.946C11.0856 19.9437 10.6104 19.942 10.1357 19.9414L9.99487 19.9448C9.49271 19.9448 8.98998 19.9454 8.48783 19.946C7.38446 19.9471 6.24387 19.9483 5.12217 19.9437C2.60452 19.9345 0.579287 18.274 0.0834288 15.8125C0.0273155 15.5337 0.00212177 15.2353 0.00212177 14.8448C0.00212177 13.9155 0.00154919 12.9856 0.000976604 12.0563C-0.000168566 10.0992 -0.00131374 8.07631 0.00383953 6.08658C0.010138 3.64278 1.61051 1.63702 3.98674 1.09535C4.31998 1.0192 4.62174 0.983701 4.91032 0.983701C4.92234 0.983701 4.9315 0.983128 4.9378 0.982555C4.94009 0.976257 4.94238 0.96595 4.94525 0.951636C5.06205 0.364164 5.48691 0 6.05377 0C6.05491 0 6.05606 0 6.0572 0C6.63036 0.00171775 7.06553 0.379624 7.16573 0.963087C7.16687 0.969386 7.16802 0.975112 7.16916 0.979692C7.18062 0.980265 7.19264 0.980265 7.19951 0.980265C8.98025 0.978547 10.8784 0.977402 12.7885 0.981983C12.8005 0.981983 12.8097 0.98141 12.8166 0.980838C12.8189 0.972821 12.8217 0.959652 12.8252 0.940757C12.9259 0.380196 13.3697 0.00229034 13.9297 0C13.9314 0 13.9331 0 13.9348 0C14.4925 0 14.9363 0.372753 15.0393 0.929305C15.0445 0.957362 15.0496 0.972249 15.0519 0.97912C15.0594 0.980838 15.0754 0.983701 15.1063 0.984846C17.8106 1.08161 19.9498 3.25114 19.9773 5.92282C20.0077 8.94835 20.0077 12.0042 19.9767 15.0057ZM4.9252 3.30152C4.9275 3.2706 4.92635 3.25171 4.9252 3.24026C4.91719 3.23911 4.90459 3.23797 4.88627 3.23797C4.87539 3.23797 4.86279 3.23854 4.84791 3.23911C3.39526 3.31527 2.25524 4.56923 2.25238 6.09402C2.24837 8.40383 2.24952 10.7526 2.25066 13.0234L2.25123 14.8271C2.25123 15.118 2.28559 15.3808 2.35602 15.6298C2.7093 16.8832 3.80008 17.6952 5.13534 17.698C6.25417 17.7003 7.3919 17.6997 8.49183 17.6992C8.98941 17.6992 9.48641 17.6986 9.98399 17.6986H11.1904C12.3969 17.6986 13.6033 17.6986 14.8097 17.6986C15.131 17.6986 15.4092 17.6642 15.6612 17.5938C16.9209 17.2422 17.7356 16.1457 17.7368 14.8007C17.7397 11.8159 17.7379 8.80406 17.7362 6.25148C17.7362 6.05279 17.7248 5.84952 17.7036 5.64626C17.5684 4.37684 16.3735 3.27289 15.0949 3.23625C15.0823 3.23568 15.0726 3.23568 15.0651 3.23625C15.0645 3.24426 15.0645 3.25457 15.0645 3.26717C15.0651 3.35248 15.0674 3.4378 15.0703 3.52311C15.0777 3.76245 15.0851 4.00924 15.0434 4.25774C14.9431 4.84979 14.4456 5.23285 13.8323 5.18819C13.2741 5.14754 12.8252 4.66828 12.8103 4.09799C12.8028 3.82315 12.7977 3.55403 12.8126 3.28034C12.8137 3.25858 12.8131 3.24369 12.8126 3.23396C12.8011 3.23224 12.7822 3.23052 12.7542 3.2311C11.9216 3.23682 11.0748 3.23625 10.256 3.23568C9.7916 3.2351 9.32724 3.2351 8.86287 3.23625C8.32865 3.23739 7.7761 3.23854 7.23272 3.2311C7.20638 3.2311 7.1892 3.23224 7.17833 3.23339C7.17775 3.24369 7.17718 3.25972 7.17833 3.2832C7.1892 3.48017 7.18634 3.67828 7.18405 3.8701C7.18348 3.92335 7.18233 3.9766 7.18176 4.02985C7.17604 4.6929 6.7111 5.18189 6.07725 5.19277C5.42736 5.20594 4.94181 4.7244 4.92291 4.05275L4.92234 4.03672C4.9149 3.79624 4.90803 3.54773 4.9252 3.30152Z"
+                        fill="white" />
+                </svg>
+                &nbsp;<span [ngStyle]="{'color':'#ffffff'}">{{language.courses.create_course}}</span>
+            </button>
+        </div>
+    </div>
+    <div class="course-contents">
+        <!-- <div class="alert alert-danger" id="responseMessage" *ngIf="responseMessage">{{responseMessage}}</div> -->
+        <!-- course filter start -->
+        <div class="course-filter">
+            <mat-drawer-container class="example-container" autosize>
+                <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
+                    <button type="button" class="close-icon" (click)="drawer.toggle()">
+                        <img onContextMenu="return false;" src="../../../../assets/img/msg_close.svg" alt="logo"
+                            loading="lazy" />
+                    </button>
+                    <div class="filter-title">
+                        <h5>{{language.courses.filter}}</h5>
+                    </div>
+                    <form [formGroup]="getInstructorForm" (ngSubmit)='getInstructor()'>
+                        <div class="large-select">
+                            <ng-multiselect-dropdown formControlName="instructor_type"
+                                [placeholder]="language.courses.instructor_type"
+                                [settings]="instuctorTypeDropdownSettings" [data]="instuctorTypeDropdownList"
+                                (onSelect)="onInstructorTypeSelect($event)"
+                                (onDeSelect)="onInstructorTypeDeSelect($event)" (click)="changeInstructor()">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <div class="large-select" *ngIf="instrucType == 1">
+                            <ng-multiselect-dropdown formControlName="instructor_internal"
+                                [placeholder]="language.courses.internal" [settings]="internalDropdownSettings"
+                                [data]="internalInstructorList" (onSelect)="onInternalInstructorSelect($event)"
+                                (onDeSelect)="onInternalInstructorDeSelect($event)"
+                                (onSelectAll)="onSelectAllInstructor($event)"
+                                (onDeSelectAll)="onDeSelectAllInstructor($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <div class="large-select" *ngIf="instrucType == 2">
+                            <ng-multiselect-dropdown formControlName="instructor_external"
+                                [placeholder]="language.courses.external" [settings]="externalDropdownSettings"
+                                [data]="externalInstructorList" (onSelect)="onExternalInstructorTypeSelect($event)"
+                                (onDeSelect)="onExternalInstructorTypeDeSelect($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <div class="small-select">
+                            <ng-multiselect-dropdown *ngIf="roomList && roomList.length > 0" formControlName="room_id"
+                                [placeholder]="language.courses.rooms" [settings]="roomDropdownSettings"
+                                [data]="roomList" (onSelect)="onRoomSelect($event)"
+                                (onDeSelect)="onRoomDeSelect($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <div class="profile_sub_btn event_sub_btn">
+                            <button type="submit" class="save_btn"
+                                (click)="drawer.toggle()">{{language.community_messages.search}}</button>
+                            <button type="button" (click)="reSet()" class="Cancel_btn" (click)="drawer.toggle()">
+                                {{language.courses.reset}}
+                            </button>
+                        </div>
+                    </form>
+                </mat-drawer>
+            </mat-drawer-container>
+        </div>
+        <!-- course filter end -->
+        <!-- course listing start -->
+        <div class="course-listing today-course">
+            <div class="course_list_title">
+                <Span>{{language.club_events.today}}</Span>
+                <button type="button" class="filter-btn" mat-button (click)="drawer.toggle()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M13.9987 24C13.8704 23.9999 13.743 23.9759 13.6212 23.929L9.61376 22.3904C9.37544 22.298 9.16841 22.1212 9.02211 21.8853C8.8758 21.6494 8.79765 21.3663 8.79877 21.0761V14.1986C8.79767 14.1959 8.79615 14.1933 8.79427 14.1912L0.361812 2.85808C0.174832 2.60674 0.0542861 2.29876 0.0144865 1.97072C-0.0253132 1.64268 0.0173051 1.30835 0.137281 1.00743C0.257257 0.706505 0.449552 0.451626 0.691335 0.273052C0.933118 0.0944782 1.21423 -0.000289259 1.50131 6.63231e-07H22.4987C22.7858 -0.000289259 23.0669 0.0944782 23.3087 0.273052C23.5504 0.451626 23.7427 0.706505 23.8627 1.00743C23.9827 1.30835 24.0253 1.64268 23.9855 1.97072C23.9457 2.29876 23.8252 2.60674 23.6382 2.85808L15.2032 14.1923C15.2015 14.1946 15.2 14.1971 15.1987 14.1998V22.6154C15.1992 22.7974 15.1685 22.9776 15.1083 23.1459C15.0482 23.3141 14.9598 23.467 14.8483 23.5956C14.7368 23.7243 14.6043 23.8263 14.4585 23.8957C14.3127 23.9651 14.1565 24.0005 13.9987 24V24Z"
+                            fill="white" />
+                    </svg>&nbsp; {{language.courses.filter}}
+                </button>
+            </div>
+            <ng-container *ngFor="let item of currentCourseList ">
+                <div class="course-item" *ngIf="checkType(item)">
+                    <div class="course-top-area">
+                        <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course"
+                            (click)="courseById(item.id)">
+                            <img onContextMenu="return false;"
+                                [src]="item.course_image != null ? item.course_image : '../../../../assets/img/no_image.png'"
+                                alt="" loading="lazy">
+                        </div>
+                        <div class="coruse-description">
+                            <div class="course-category">
+                                <span class="instructor-badge"
+                                    *ngIf="item.instructor_type == '1'">{{language.courses.internal}}</span>
+                                <span class="instructor-badge"
+                                    *ngIf="item.instructor_type == '2'">{{language.courses.external}}</span>
+                                <div class="event-action">
+                                    <button mat-button [matMenuTriggerFor]="menu"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="6" height="22" viewBox="0 0 6 22"
+                                            fill="none">
+                                            <path
+                                                d="M2.59961 21.0132C2.28307 20.9075 1.95371 20.8458 1.64957 20.6957C0.485027 20.1222 -0.164477 18.852 0.044821 17.5328C0.238912 16.3089 1.30901 15.281 2.5628 15.1148C4.47089 14.8622 6.08284 16.3208 5.9948 18.2215C5.93277 19.5621 4.89148 20.7179 3.52084 20.9689C3.47882 20.9768 3.4236 20.955 3.39999 21.0132C3.13306 21.0132 2.86654 21.0132 2.59961 21.0132ZM2.63963 0.755024C2.62603 0.796585 2.58921 0.788273 2.55799 0.792233C1.17575 0.980639 0.0680318 2.1756 0.00480233 3.5471C-0.0828386 5.4474 1.52871 6.90598 3.4372 6.65305C4.69019 6.4872 5.76109 5.45888 5.95478 4.23502C6.16368 2.91538 5.51457 1.64561 4.35003 1.07207C4.04589 0.922455 3.71653 0.860706 3.39999 0.754629C3.14667 0.755024 2.89335 0.755024 2.63963 0.755024ZM3.0006 7.91728C1.35183 7.91689 0.000400276 9.25276 8.89075e-08 10.8839C-0.000400098 12.5147 1.35023 13.8513 2.9994 13.8517C4.64817 13.8521 5.9996 12.5162 6 10.8851C6 9.25394 4.64937 7.91768 3.0006 7.91728Z"
+                                                fill="#D1D8EF" />
+                                        </svg>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item data-bs-toggle="modal" data-bs-target="#view-course"
+                                            (click)="courseById(item.id)">{{language.Survey.view_detail}}</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                            <h5 data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
+                                {{item.name}}</h5>
+                        </div>
+                    </div>
+                    <div class="coruse-bottom-description">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319408 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09384 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04587 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94102 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.39309 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                    fill="#95A0C6" />
+                            </svg>&nbsp;&nbsp;{{item.date_from |date: 'dd. MMMM yyyy'}}
+
+                            <div class="course-footer-left">
+                                <div class="instructor-detail"
+                                    *ngIf="item.CourseExternalInstructor && item.CourseExternalInstructor.length > 0">
+                                    <div class="instructor-list"
+                                        *ngFor="let val of item.CourseExternalInstructor;let i=index">
+                                        <ng-container *ngIf="i < 2">
+                                            <div class="instructor-image"
+                                                *ngIf="((val.externalIns) && (val.externalIns.add_img == null || val.externalIns.add_img == ''))">
+                                                <img onContextMenu="return false;"
+                                                    src="../../../../assets/img/defaultProfile.jpeg" alt=""
+                                                    loading="lazy">
+                                            </div>
+                                            <div class="instructor-image" *ngIf="val.externalIns.add_img != null">
+                                                <img onContextMenu="return false;" [src]="val.externalIns.add_img"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <span *ngIf="val.externalIns">
+                                                {{val.externalIns.first_name}}
+                                                {{val.externalIns.last_name}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="instructor-detail"
+                                    *ngIf="item.CourseInternalInstructor && item.CourseInternalInstructor.length > 0">
+                                    <div class="instructor-list"
+                                        *ngFor="let val of item.CourseInternalInstructor;let i=index">
+                                        <ng-container *ngIf="i < 2">
+                                            <div class="instructor-image"
+                                                *ngIf="((val.internalUsers) && (val.internalUsers.add_img == null || val.internalUsers.add_img == ''))">
+                                                <img onContextMenu="return false;"
+                                                    src="../../../../assets/img/defaultProfile.jpeg" alt=""
+                                                    loading="lazy">
+                                            </div>
+                                            <div class="instructor-image" *ngIf="val.internalUsers.add_img != null">
+                                                <img onContextMenu="return false;" [src]="val.internalUsers.add_img"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <span *ngIf="val.internalUsers">{{val.internalUsers.firstname}}
+                                                {{val.internalUsers.lastname}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                        <div class="course-venue">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21"
+                                    fill="none">
+                                    <path
+                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp; {{item.start_time.split(":").slice(0,2).join(":")}} -
+                                {{item.end_time.split(":").slice(0,2).join(":")}}
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20"
+                                    fill="none">
+                                    <path
+                                        d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp;{{item.place}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="course-price-section">
+                        <div class="course-price">
+                            <span>{{language.courses.availability}}<ng-container
+                                    *ngIf="availabilityCount(item.courseUsers)">
+                                    {{count}}/{{item.allowed_persons}}</ng-container>
+                            </span>
+                            <span>
+                                <ng-container *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) <= 0"> {{language.organizer.free}}</ng-container>
+                            </span>
+                        </div>
+                        <div class="course-join-btn"
+                            *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                            <button type="button" class="sold-btn"
+                                *ngIf="count < item.allowed_persons">{{language.courses.already_joined}}</button>
+                            <button type="button" class="sold-btn"
+                                *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                        </div>
+                        <ng-template #notEqual>
+                            <div class="course-join-btn">
+                                <ng-container *ngIf="checkFor(item.courseUsers);">
+                                    <button *ngIf="count < item.allowed_persons" type="button"
+                                        (click)="CourseAcceptByUninviteUser(item.id)">{{language.courses.join}}</button>
+                                    <button type="button" class="sold-btn"
+                                        *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                </ng-container>
+                                <ng-container *ngIf="checkForWaiting (item.courseUsers)">
+                                    <button *ngIf="count < item.allowed_persons" type="button"
+                                        class="sold-btns">{{language.community_groups.waitingApproval}}</button>
+                                    <button type="button" class="sold-btn"
+                                        *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                </ng-container>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="currentCourseList  && currentCourseList .length == 0 ">
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.courses.no_course_found}}" loading="lazy"><br> -->
+                <span>{{language.courses.no_course_found}}</span>
+            </div>
+        </div>
+        <!-- course listing end -->
+        <!-- course listing start -->
+        <div class="course-listing">
+            <div class="course_list_title">{{language.club_events.upcoming}}</div>
+            <ng-container *ngFor="let item of upcomingCourseList ">
+                <div class="course-item" *ngIf="checkType(item)">
+                    <div class="course-top-area">
+                        <div class="course-image" data-bs-toggle="modal" data-bs-target="#view-course"
+                            (click)="courseById(item.id)">
+                            <img onContextMenu="return false;"
+                                [src]="item.course_image != null ? item.course_image : '../../../../assets/img/no_image.png'"
+                                alt="" loading="lazy">
+                        </div>
+                        <div class="coruse-description">
+                            <div class="course-category">
+                                <span class="instructor-badge"
+                                    *ngIf="item.instructor_type == '1'">{{language.courses.internal}}</span>
+                                <span class="instructor-badge"
+                                    *ngIf="item.instructor_type == '2'">{{language.courses.external}}</span>
+                                <div class="event-action">
+                                    <button mat-button [matMenuTriggerFor]="menu"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="6" height="22" viewBox="0 0 6 22"
+                                            fill="none">
+                                            <path
+                                                d="M2.59961 21.0132C2.28307 20.9075 1.95371 20.8458 1.64957 20.6957C0.485027 20.1222 -0.164477 18.852 0.044821 17.5328C0.238912 16.3089 1.30901 15.281 2.5628 15.1148C4.47089 14.8622 6.08284 16.3208 5.9948 18.2215C5.93277 19.5621 4.89148 20.7179 3.52084 20.9689C3.47882 20.9768 3.4236 20.955 3.39999 21.0132C3.13306 21.0132 2.86654 21.0132 2.59961 21.0132ZM2.63963 0.755024C2.62603 0.796585 2.58921 0.788273 2.55799 0.792233C1.17575 0.980639 0.0680318 2.1756 0.00480233 3.5471C-0.0828386 5.4474 1.52871 6.90598 3.4372 6.65305C4.69019 6.4872 5.76109 5.45888 5.95478 4.23502C6.16368 2.91538 5.51457 1.64561 4.35003 1.07207C4.04589 0.922455 3.71653 0.860706 3.39999 0.754629C3.14667 0.755024 2.89335 0.755024 2.63963 0.755024ZM3.0006 7.91728C1.35183 7.91689 0.000400276 9.25276 8.89075e-08 10.8839C-0.000400098 12.5147 1.35023 13.8513 2.9994 13.8517C4.64817 13.8521 5.9996 12.5162 6 10.8851C6 9.25394 4.64937 7.91768 3.0006 7.91728Z"
+                                                fill="#D1D8EF" />
+                                        </svg>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item data-bs-toggle="modal" data-bs-target="#view-course"
+                                            (click)="courseById(item.id)">{{language.Survey.view_detail}}</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                            <h5 data-bs-toggle="modal" data-bs-target="#view-course" (click)="courseById(item.id)">
+                                {{item.name}}</h5>
+                        </div>
+                    </div>
+                    <div class="coruse-bottom-description">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319408 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09384 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04587 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94102 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.39309 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                    fill="#95A0C6" />
+                            </svg>&nbsp;&nbsp;{{item.date_from |date: 'dd. MMMM yyyy'}}
+
+                            <div class="course-footer-left">
+                                <div class="instructor-detail"
+                                    *ngIf="item.CourseExternalInstructor && item.CourseExternalInstructor.length > 0">
+                                    <div class="instructor-list"
+                                        *ngFor="let val of item.CourseExternalInstructor;let i=index">
+                                        <ng-container *ngIf="i < 2">
+                                            <div class="instructor-image"
+                                                *ngIf="((val.externalIns) && (val.externalIns.add_img == null || val.externalIns.add_img == ''))">
+                                                <img onContextMenu="return false;"
+                                                    src="../../../../assets/img/defaultProfile.jpeg" alt=""
+                                                    loading="lazy">
+                                            </div>
+                                            <div class="instructor-image" *ngIf="val.externalIns.add_img != null">
+                                                <img onContextMenu="return false;" [src]="val.externalIns.add_img"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <span *ngIf="val.externalIns">{{val.externalIns.first_name}}
+                                                {{val.externalIns.last_name}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="instructor-detail"
+                                    *ngIf="item.CourseInternalInstructor && item.CourseInternalInstructor.length > 0">
+                                    <div class="instructor-list"
+                                        *ngFor="let val of item.CourseInternalInstructor;let i=index">
+                                        <ng-container *ngIf="i < 2">
+                                            <div class="instructor-image"
+                                                *ngIf="((val.internalUsers) && (val.internalUsers.add_img == null || val.internalUsers.add_img == ''))">
+                                                <img onContextMenu="return false;"
+                                                    src="../../../../assets/img/defaultProfile.jpeg" alt=""
+                                                    loading="lazy">
+                                            </div>
+                                            <div class="instructor-image" *ngIf="val.internalUsers.add_img != null">
+                                                <img onContextMenu="return false;" [src]="val.internalUsers.add_img"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <span *ngIf="val.internalUsers">{{val.internalUsers.firstname}}
+                                                {{val.internalUsers.lastname}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+                        <div class="course-venue">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21"
+                                    fill="none">
+                                    <path
+                                        d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp; {{item.start_time.split(":").slice(0,2).join(":")}} -
+                                {{item.end_time.split(":").slice(0,2).join(":")}}
+                            </span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20"
+                                    fill="none">
+                                    <path
+                                        d="M0 8.20461C0.107715 5.39839 1.25625 2.98295 3.74183 1.30586C7.0265 -0.910431 11.4835 -0.239719 14.0198 2.81762C15.5554 4.66819 16.2067 6.80369 15.9925 9.1897C15.8522 10.7534 15.2742 12.18 14.4814 13.5227C13.3172 15.4941 11.7872 17.1524 10.0657 18.6467C9.61729 19.0362 9.15763 19.4119 8.67479 19.7583C8.23078 20.077 7.80994 20.0839 7.3772 19.7589C5.21727 18.1369 3.31598 16.2657 1.85056 13.9836C0.996987 12.6535 0.364476 11.2306 0.114603 9.65688C0.0457161 9.22351 0.0206662 8.78827 0 8.20461ZM7.89636 1.98785C7.58449 2.02417 7.29516 2.04671 7.01022 2.09368C6.73342 2.1394 6.46225 2.21392 6.1961 2.30535C3.76688 3.14327 2.07413 5.51174 2.01527 8.13384C1.97957 9.72451 2.49622 11.1517 3.28718 12.495C4.47955 14.5203 6.10091 16.168 7.90701 17.6491C8.01472 17.7374 8.06921 17.7073 8.15876 17.6347C8.86329 17.0623 9.53651 16.4567 10.1703 15.8073C11.4929 14.4527 12.6533 12.9816 13.4023 11.2256C14.2835 9.16152 14.3029 7.10617 13.1857 5.12785C12.0302 3.08002 10.2392 2.03544 7.89636 1.98785ZM4.02302 7.99231C4.02615 5.7779 5.81784 3.9956 8.03664 4.00061C10.2423 4.00499 12.024 5.78854 12.0258 7.99356C12.0277 10.2061 10.2348 12.0022 8.02349 12.0016C5.81346 12.0009 4.01989 10.2036 4.02302 7.99231ZM8.02036 9.99756C9.12005 9.99944 10.0193 9.10954 10.03 8.00922C10.0406 6.90702 9.13132 6.00147 8.0166 6.0046C6.91378 6.00836 6.01637 6.90452 6.01824 8.00108C6.02075 9.09576 6.92317 9.99568 8.02036 9.99756Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp;{{item.place}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="course-price-section">
+                        <div class="course-price">
+                            <span>{{language.courses.availability}}<ng-container
+                                    *ngIf="availabilityCount(item.courseUsers)">
+                                    {{count}}/{{item.allowed_persons}}</ng-container>
+                            </span>
+                            <span>
+                                <ng-container *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</ng-container>
+                                <ng-container *ngIf="hasComma(item.chargeable) <= 0"> {{language.organizer.free}}</ng-container>
+                            </span>
+                        </div>
+                        <div class="course-join-btn"
+                            *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                            <button type="button" class="sold-btn"
+                                *ngIf="count < item.allowed_persons">{{language.courses.already_joined}}</button>
+                            <button type="button" class="sold-btn"
+                                *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                        </div>
+                        <ng-template #notEqual>
+                            <div class="course-join-btn">
+                                <ng-container *ngIf="checkFor(item.courseUsers);">
+                                    <button *ngIf="count < item.allowed_persons" type="button"
+                                        (click)="CourseAcceptByUninviteUser(item.id)">{{language.courses.join}}</button>
+                                    <button type="button" class="sold-btn"
+                                        *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                </ng-container>
+                                <ng-container *ngIf="checkForWaiting (item.courseUsers)">
+                                    <button *ngIf="count < item.allowed_persons" type="button"
+                                        class="sold-btns">{{language.community_groups.waitingApproval}}</button>
+                                    <button type="button" class="sold-btn"
+                                        *ngIf="count >= item.allowed_persons">{{language.courses.sold_out}}</button>
+                                </ng-container>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="upcomingCourseList  && upcomingCourseList .length == 0 ">
+                <!-- <img onContextMenu="return false;" src="assets/img/no-event-img.png" alt="{{language.courses.no_course_found}}" loading="lazy"><br> -->
+                <span>{{language.courses.no_course_found}}</span>
+            </div>
+            <!-- course listing end -->
+        </div>
+    </div>
+</div>
+<div class="app-content-area" *ngIf="displayInstructordiv == true">
+    <app-instructor></app-instructor>
+</div>
+<div class="app-content-area" *ngIf="displayRoomdiv == true">
+    <app-room></app-room>
+</div>
+<!-- filter slider start -->
+<div class="modal fade change_pass_section faq_edit all_news instructor-details-modal view-course-modal"
+    id="view-course" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{language.courses.course_details}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path
+                            d="M32 3.72111L28.2789 0L16 12.2789L3.72111 0L0 3.72111L12.2789 16L0 28.2789L3.72111 32L16 19.7211L28.2789 32L32 28.2789L19.7211 16L32 3.72111Z"
+                            fill="#98A5C6" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" *ngFor="let item of courseByIdData">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ins-image img-fluid">
+                            <div class="ins_img_inner">
+                                <label class="preview_txt" style="display: none;"></label>
+                                <img onContextMenu="return false;"
+                                    [src]="hasPicture == true ? eventImage : '../../../../assets/img/no_image.png'"
+                                    alt="" loading="lazy">
+
+                                <div class="avail_detail">
+                                    <div class="event_pricing FREE">
+                                        <span>{{language.courses.availability}}</span>
+                                        <br>
+                                        <span class="avail_count"
+                                            *ngIf="availabilityCount(item.courseUsers)">{{count}}/</span>
+                                        <span> {{item.allowed_persons}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-action dropdown action_group"
+                                *ngIf="(item.author == userDetails.userId) || (userRole == 'admin')">
+                                <button class="dropdown-toggle" type="button" (click)="onShow()"><i
+                                        class="fa fa-pencil"></i></button>
+                                <ul class="dropdown-menu bunch_drop" aria-labelledby="dropdownMenuLink">
+                                    <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                        <a class="dropdown-item"
+                                            (click)="updateCourse(item.id)">{{language.organizer.Edit}}</a>
+                                    </li>
+                                    <li *ngIf="(item.author == userDetails.userId) || userDetails.isAdmin">
+                                        <a class="dropdown-item"
+                                            (click)="deleteCourse(item.id)">{{language.organizer.Delete}}</a>
+                                    </li>
+                                    <li><a class="dropdown-item" (click)="goBack()">{{language.organizer.Back}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- course detail start -->
+                        <div class="course-details-content">
+                            <div class="event-top-description">
+                                <div class="event-time">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21"
+                                        fill="none">
+                                        <path
+                                            d="M10.0003 20.124C4.46845 20.1233 -0.0168427 15.6047 4.75464e-05 10.0494C0.0169378 4.48082 4.47658 -0.000630502 10.0003 6.65356e-08C15.5341 0.000630635 20.0162 4.51613 20 10.074C19.9837 15.6425 15.5247 20.124 10.0003 20.124ZM1.99372 10.062C1.99435 14.4974 5.58133 18.1087 9.99531 18.1181C14.398 18.127 17.99 14.5207 18.0075 10.0727C18.0251 5.63981 14.4037 1.99449 9.99406 2.00521C5.5782 2.01656 1.99309 5.62656 1.99372 10.062ZM8.99003 8.01516C8.99003 8.68293 8.9894 9.3507 8.99065 10.0185C8.99128 10.3035 9.0726 10.5614 9.27591 10.7657C9.94401 11.4385 10.6146 12.1082 11.2852 12.7778C11.4691 12.9613 11.6912 13.0673 11.9521 13.0799C12.3643 13.1001 12.7403 12.8674 12.9104 12.4909C13.085 12.1031 13.0174 11.6838 12.7046 11.3616C12.1917 10.8332 11.6706 10.3129 11.147 9.79462C11.0388 9.68742 10.9925 9.5796 10.9937 9.42448C11 8.3399 10.9981 7.25532 10.9956 6.17137C10.9956 6.03896 10.995 5.90149 10.9631 5.77412C10.8455 5.30876 10.385 4.98464 9.92775 5.03068C9.40916 5.08238 9.01943 5.47397 9.00942 5.98851C8.99691 6.66385 9.00629 7.33982 9.00629 8.01579C9.00066 8.01516 8.99503 8.01516 8.99003 8.01516Z"
+                                            fill="#95A0C6"></path>
+                                    </svg>
+                                    &nbsp;&nbsp;{{item.date_from |date:'MMM'}} {{item.date_from | date: 'dd'}} -
+                                    {{item.date_from | date: 'EEEE':locale}}
+                                    {{item.start_time.split(":").slice(0,2).join(":")}}
+                                </div>
+                                <div class="course-price"><span>{{language.organizer.price}}</span>
+                                    <span *ngIf="hasComma(item.chargeable) > 0">€{{item.chargeable}}</span>
+                                    <span *ngIf="hasComma(item.chargeable) <= 0"> {{language.organizer.free}}</span>
+                                </div>
+                            </div>
+                            <h3>{{item.name}}</h3>
+                            <p [innerHTML]="item.description"></p>
+                        </div>
+                        <div class="schedule">
+                            <h5>{{language.courses.course_duration}}</h5>
+                            <div class="schedule_list"
+                                *ngIf="item && item.recurring_dates && item.recurring_dates.length; else noRecurrence">
+                                <ul *ngFor="let date of item.recurring_dates">
+                                    <li>{{language.create_event.date}}</li>
+                                    <li>{{date.date_from | date: 'd. MMMM y'}}</li>
+                                    <li> {{date.start_time}} - {{date.end_time}}</li>
+                                </ul>
+                            </div>
+                            <ng-template #noRecurrence>
+                                <div class="schedule_list">
+                                    <ul>
+                                        <li>{{language.courses.start_date}}</li>
+                                        <li>{{item.date_from | date: 'd. MMMM y'}} </li>
+                                        <li> {{item.date_from | date:' H:mm'}} - {{item.date_to | date:'H:mm'}}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>{{language.courses.end_date}}</li>
+                                        <li>{{item.date_to | date: 'd. MMMM y'}} </li>
+                                        <li> {{item.date_from | date:' H:mm'}} - {{item.date_to | date:'H:mm'}}</li>
+                                    </ul>
+                                </div>
+                            </ng-template>
+                            <!-- <div class="schedule_list">
+                                <ul>
+                                    <li>{{language.courses.start_date}}</li>
+                                    <li>{{item.date_from | date: 'd. MMMM y'}}</li>
+                                </ul>
+                                <ul>
+                                    <li>{{language.courses.end_date}}</li>
+                                    <li>{{item.date_to | date: 'd. MMMM y'}}</li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="attach_btn" *ngIf="eventFile" (click)="download(eventFile)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="#E12217" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-download">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            <span> {{language.create_event.download_attachment}} </span>
+                            <!-- <a href="{{eventFile}}"> <span [ngStyle]="{'color':setTheme.button_bgcolor}"> {{language.create_event.download_attachment}} </span></a> -->
+                        </div>
+                        <!-- course detail end -->
+                        <!-- course availability -->
+                        <div class="join_status"
+                            *ngIf="checkAcceptOrNot(item.courseUsers,item.CourseInternalInstructor); else notEqual">
+                            <span>{{language.courses.already_joined}}</span>
+                        </div>
+                        <ng-template #notEqual>
+                            <div class="jc_button inner_btn">
+                                <button
+                                    (click)="CourseAcceptByUninviteUser(item.id)">{{language.courses.join_course}}</button>
+                            </div>
+                        </ng-template>
+                        <!-- course availability end -->
+                    </div>
+                    <div class="col-md-5">
+                        <div class="ins-courses">
+                            <h5>{{language.courses.organizer}}</h5>
+                            <div class="widget-app-content" *ngIf="organizerDetails">
+                                <div class="app-left-content" *ngFor="let organizer of organizerDetails">
+                                    <!-- <div class="parti_name"
+                                        *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                        {{organizer.users?.firstname.charAt(0)}}{{organizer.users?.lastname.charAt(0)}}
+                                    </div> -->
+                                    <div class="author-img"
+                                        *ngIf="organizer.users.image == null || organizer.users.image == ''">
+                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                                            style="width: 100px;" alt="" loading="lazy">
+                                    </div>
+                                    <div class="author-img" *ngIf="organizer.users.image != null">
+                                        <img onContextMenu="return false;" [src]="organizer.users.image" alt=""
+                                            loading="lazy">
+                                    </div>
+                                    <div class="user-content">
+                                        <span class="user-name">{{organizer.users.firstname}}
+                                            {{organizer.users.lastname}}</span>
+                                        <span class="participant_email">{{organizer.users.email}}</span>
+                                        <span class="participant_status"><span
+                                                class="status_badge approved"></span>{{language.organizer.approved}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ins-courses"
+                            *ngIf="(memImg && memImg.length > 0) || (approvedParticipants && approvedParticipants.length > 0)">
+                            <h5>{{language.courses.participants}}</h5>
+                            <div class="app_widget_sc">
+                                <div class="widget-app-content" *ngFor="let participant of memImg">
+                                    <div class="app-left-content">
+                                        <!-- <div class="parti_name"
+                                            *ngIf="participant.image == null || participant.image == ''">
+                                            {{participant?.firstname.charAt(0)}}{{participant?.lastname.charAt(0)}}
+                                        </div> -->
+                                        <div class="author-img"
+                                            *ngIf="participant.image == null || participant.image == ''">
+                                            <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                                                style="width: 100px;" alt="" loading="lazy">
+                                        </div>
+                                        <div class="author-img" *ngIf="participant.image != null">
+                                            <img onContextMenu="return false;" [src]="participant.image"
+                                                style="width: 100px;" alt="" loading="lazy">
+                                        </div>
+                                        <div class="user-content">
+                                            <span
+                                                class="user-name">{{participant.firstname}}{{participant.lastname}}</span>
+                                            <span class="participant_email">{{participant.email}}</span>
+
+                                            <span class="participant_status"><span class="status_badge pending"></span>
+                                                {{language.organizer.pending}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="app-left-content" *ngFor="let approved of approvedParticipants">
+                                    <div class="author-img" *ngIf="approved.users.image != null">
+                                        <img onContextMenu="return false;" [src]="approved.users.image"
+                                            style="width: 100px;" alt="" loading="lazy">
+                                    </div>
+                                    <div class="user-content">
+                                        <!-- <div class="parti_name"
+                                            *ngIf="approved.users.image == null || approved.users.image == ''">
+                                            {{approved.users?.firstname.charAt(0)}}{{approved.users?.lastname.charAt(0)}}
+                                        </div> -->
+                                        <div class="author-img"
+                                            *ngIf="approved.users.image == null || approved.users.image == ''">
+                                            <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'"
+                                                style="width: 100px;" alt="" loading="lazy">
+                                        </div>
+                                        <span class="user-name">{{approved.users.firstname}}
+                                            {{approved.users.lastname}}</span>
+                                        <span class="participant_email">{{approved.users.email}}</span>
+                                        <span class="participant_status" *ngIf="approved.approved_status == 1">
+                                            <span class="status_badge approved"></span>{{language.organizer.approved}}
+                                        </span>
+                                        <span class="participant_status" *ngIf="approved.approved_status == 3">
+                                            <span class="status_badge denied"></span>{{language.create_event.denied}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- all instructor start -->
+                        <div class="ins-courses">
+                            <h5>{{language.courses.all_instructor}}</h5>
+                            <div class="app_widget_sc">
+                                <div class="widget-app-content">
+                                    <div *ngIf="item?.CourseExternalInstructor?.length > 0">
+                                        <div class="widget-app-content"
+                                            *ngFor="let val of item.CourseExternalInstructor;let i=index">
+                                            <!-- <div class="parti_name"
+                                                *ngIf="val.externalIns.add_img == null || val.externalIns.add_img == ''">
+                                                {{val.externalIns?.first_name.charAt(0)}}{{val.externalIns?.last_name.charAt(0)}}
+                                            </div> -->
+                                            <div class="author-img"
+                                                *ngIf="val?.externalIns?.instructor_iml?.instructor_image == null || val?.externalIns?.instructor_image[0]?.instructor_image  == ''">
+                                                <img onContextMenu="return false;"
+                                                    [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <div class="author-img" *ngIf="val?.externalIns?.instructor_image[0]?.instructor_image != null">
+                                                <img onContextMenu="return false;" [src]="val?.externalIns?.instructor_image[0]?.instructor_image"
+                                                    style="width: 100px;" alt="" loading="lazy">
+                                            </div>
+                                            <div class="user-content">
+                                                <span class="user-name">{{val.externalIns.first_name}}
+                                                    {{val.externalIns.last_name}}</span>
+                                                <span class="participant_email">{{val?.externalIns.email}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.CourseInternalInstructor.length> 0">
+                                        <div class="widget-app-content"
+                                            *ngFor="let val of item.CourseInternalInstructor;let i=index">
+                                            <!-- <div class="parti_name"
+                                                *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                {{val?.internalUsers?.firstname.charAt(0)}}{{val?.internalUsers?.lastname.charAt(0)}}
+                                            </div> -->
+                                            <div class="author-img"
+                                                *ngIf="val?.internalUsers?.add_img == null || val?.internalUsers?.add_img == ''">
+                                                <img onContextMenu="return false;"
+                                                    [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                    alt="" loading="lazy">
+                                            </div>
+                                            <div class="author-img" *ngIf="val?.internalUsers?.add_img != null">
+                                                <img [src]="val?.internalUsers?.add_img" style="width: 100px;"
+                                                    onContextMenu="return false;"
+                                                    alt="{{val?.internalUsers?.first_name}}" loading="lazy">
+                                            </div>
+                                            <div class="user-content">
+                                                <span class="user-name">{{val?.internalUsers.firstname}}
+                                                    {{val?.internalUsers.lastname}}</span>
+                                                <span class="participant_email">{{val?.internalUsers.email}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- all instructor end -->
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="card_task" *ngIf="isTaskDetails">
+                            <h2 class="task-heading">{{language.organizer_task.taskDetail}}</h2> <br>
+                            <br>
+                            <div class="course-details-content">
+                                <div class="event-top-description">
+                                    <div class="course-price">
+                                        <input *ngIf="item.courseTask.status == 0" class="check-style"
+                                            id="styled-checkbox-{{item.courseTask.id}}" type="checkbox"
+                                            style="opacity: 1;margin-top: 5px;" type="checkbox"
+                                            (change)="mainTaskMarkComplete(item.courseTask.id)">
+                                        <input *ngIf="item.courseTask.status == 1" class="check-style"
+                                            id="styled-checkbox-{{item.courseTask.id}}" type="checkbox"
+                                            style="opacity: 1;margin-top: 5px;" type="checkbox" checked="checked"
+                                            disabled="disabled">
+                                        <h3 *ngIf="item.courseTask.status != 2" class="" style="margin-left: 35px;">
+                                            {{item.courseTask.title}}</h3>
+                                        <h3 *ngIf="item.courseTask.status == 2" class="">{{item.courseTask.title}}</h3>
+                                    </div>
+                                    <span class="event-time"><img onContextMenu="return false;"
+                                            src="../../../../assets/img/new-design/dashboard/gray-clock.svg" alt=""
+                                            loading="lazy">&nbsp;
+                                        {{language.organizer.due_date}} :- {{item.courseTask.date | date: 'd. MMMM y'}}</span>
+                                </div>
+                                <p [innerHTML]="item.courseTask.description"></p>
+                            </div>
+                            <div class="all-participant-card">
+                                <div class="card-header " *ngIf="(collaborators && collaborators.length)">
+                                    <h5 class="card-title">{{language.organizer.collaborators}}</h5>
+                                </div>
+                                <div class="card-body" *ngIf="collaborators">
+                                    <div class="widget-appointment widget" *ngFor="let participant of collaborators">
+                                        <div class="widget-app-content">
+                                            <div class="app-left-content">
+                                                <!-- <div class="parti_name"
+                                                    *ngIf="participant.image == null || participant.image == ''">
+                                                    {{participant.user[0]?.firstname.charAt(0)}}{{participant.user[0]?.lastname.charAt(0)}}
+                                                </div> -->
+                                                <div class="author-img"
+                                                    *ngIf="participant.image == null || participant.image == ''">
+                                                    <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;" alt="" loading="lazy">
+                                                </div>
+                                                <div class="author-img" *ngIf="participant.image != null">
+                                                    <img onContextMenu="return false;" [src]="participant.image"
+                                                        style="width: 100px;" alt="" loading="lazy">
+                                                </div>
+                                                <div class="user-content">
+                                                    <span class="user-name">
+                                                        {{participant.user[0]?.firstname}}
+                                                        {{participant.user[0]?.lastname}}</span>
+                                                    <span
+                                                        class="participant_email">{{participant?.user[0]?.email}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- top section end -->
+                <div class="row inst-bottom">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+{
+    "login": {
+        "name": "Name",
+        "club_name": "Veriensname",
+        "email": "E-mail",
+        "association_purpose": "Vereinszweck",
+        "number_of_members": "Mitgliedszahl",
+        "club_Website": "Vereinswebsite",
+        "send": "Abschicken",
+        "infos": "Infos"
+    },
+    "profile_nav": {
+        "digital_card":"Digital membership card"
+    },
+    "qr_page": {
+        "member_ship_card":"Mitgliederausweis",
+        "member_pay":"BEZAHLEN",
+        "member_active":"AKTIVES MITGLIED",
+        "member_number":"Mitgliedsnummer:",
+        "member_since":"Im Verein Seit:",
+        "member_card":"Mitgliedsausweis"
+    },
+    "menu":{
+         "club_tools": "Verein Tools",
+         "setup": "Aufstellen",
+         "more": "More"
+    },
+    "dashboard":{
+        "Coming_soon": "Coming Soon",
+        "club_wall_subtext_new_desk": "News",
+        "club_wall_subtext_news_desk": "Beiträge",
+
+        "community_subtext_msg_desk": "Nachrichten",
+        "community_subtext_chat_desk": "Chats",
+
+        "organizer_subtext_new_desk": "Aufgaben",
+        "organizer_subtext_tasks_desk": "Events",
+        "congratulate": "Congratulate",
+        "dashboardNewsTitle_new" : "Current Club-News"
+
+    },
+    "club_document": {
+        "all": "All",
+        "documents":"Documents",
+        "tables":"Tables",
+        "pictures":"Pictures",
+        "asending":"Ascending",
+        "descending":"Descending"
+    },
+    "profile": {
+        "request_approval": " Your current Request is wating for the Approval"
+    },
+    "create_news":{
+        "news_highlight": "News Highlight"
+    },
+    "organizer_task":{
+        "no_task": "No Tasks Found",
+        "task_created_by": "Task Created by:",
+        "task-details": "Task - Details"
+
+    },
+    "club": {
+        "birthday": "Birthday",
+        "anniversary": "Anniversary",
+        "years": "Years",
+        "years_in_club": "Years in the Club",
+        "all_events_new": "All important Events",
+        "anniversaries_birthday_new": "Birthdays and Anniversaries in Club"
+    },
+    "error_message" : {
+        "specialChar_validation" : "Please only enter the amount without special characters"
+    },
+    "club_events": {
+        "today_course_offer": "Heutige Kurs-Angebote",
+        "to_event": "Zur Veranstaltung",
+        "approved_paticipants": " Teilnehmer haben zugesagt",
+        "list_view": "Listenansicht",
+        "tile_view": "Kachelansicht",
+        "items_per_page" : "Items per page:",
+        "current_events": "Aktuelle Veranstaltungen im Verein"
+    },
+    "community_messages" : {
+        "message_to_me" : "nachrichten an mich"
+    },
+    "instructor" : {
+        "instructor_overview" : "Instructor"
+    },
+    "community_groups":{
+        "close_news": "Close News"
+    },
+    "courses": {
+        "extern": "Extern"
+    },
+    "room":{
+        "room_overview" : "Rooms"
+    },
+    "club_news":{
+        "author": "Author"
+    }
+   
+}
+
+

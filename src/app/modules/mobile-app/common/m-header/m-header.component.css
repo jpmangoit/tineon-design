@@ -1,0 +1,302 @@
+.responsive-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 5%);
+    width: 100%;
+}
+.club-logo {
+    width: 43px;
+    height: 43px;
+    background: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 5%);
+    overflow: hidden;
+    padding: 10px;
+}
+.navigation-toggle button {
+    background: transparent;
+    border: transparent;
+    padding: 0;
+}
+.mobile-nav > ul {
+
+    background: #F8F8F8;
+}
+
+.mobile-nav ul li ul li .menu_accordion svg {
+   transform: scale(0.8);
+}
+
+.mobile-nav  ul {
+    padding: 0;
+    margin: 0;
+
+}
+.mobile-nav ul li {
+    list-style: none;
+    position: relative;
+}
+
+.mobile-nav ul li  > ul {
+    display: none;
+    padding-left: 25px;
+}
+
+.mobile-nav ul li  > ul > li > a > span {
+    padding: 10px 0;
+}
+
+.mobile-nav ul li  > ul .menu_accordion {
+    top: 14px;
+}
+
+
+.mobile-nav.ng-star-inserted > button {
+  width: 15%;
+  border: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  opacity: 0;
+}
+
+::ng-deep body .mat-button {
+    min-width: auto;
+}
+
+::ng-deep .mat-drawer-inner-container {
+   background: #f8f8f8;
+}
+span.menu_accordion {
+    transform: rotate(0deg);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.mobile-nav ul li.community_open > span.menu_accordion {
+    transform: rotate(90deg);
+    transition: all 0.5s ease;
+}
+
+.mobile-nav ul li.is-active   > a span {
+    color: #E93608;
+}
+
+.mobile-nav ul li.is-active   > a svg path {
+    stroke: #E93608;
+}
+
+
+.mobile-nav ul li.community_open  > a span {
+    color: #E93608;
+}
+
+.mobile-nav ul li.community_open  > a svg path {
+    stroke:#E93608
+}
+
+/* green */
+
+::ng-deep body.mobile-green .mobile-nav ul li.is-active   > a span {
+    color: #20AE80 !important ;
+}
+
+::ng-deep .mobile-green .mobile-nav ul li.is-active   > a svg path {
+    stroke: #20AE80!important ;
+}
+
+::ng-deep .mobile-nav ul li.community_open  > a span {
+    color: #20AE80 !important;
+}
+
+
+::ng-deep .mobile-red .mobile-nav ul li.community_open  > a span {
+    color: #E93608 !important;
+}
+
+::ng-deep .mobile-green .mobile-nav ul li.is-active   span svg path {
+   stroke: #20AE80!important ;
+}
+
+::ng-deep .mobile-green .mobile-nav ul li  span svg path {
+   stroke: #20AE80!important ;
+}
+
+
+::ng-deep body.mobile-nav ul li.community_open  > a span {
+    color: #20AE80 !important;
+}
+
+::ng-deep body.mobile-green .mobile-nav ul li.community_open  > a svg path {
+    stroke:#20AE80!important
+}
+
+.mobile-nav ul li.community_open > ul {
+    display: block;
+}
+.mobile-nav ul li a {
+    color: #1C2D57;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0px 23px 0px 23px;
+    line-height: 30px;
+    opacity: 1;
+    font-family: 'Gellix', sans-serif;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-nav ul li a span:first-child {
+    width: 35px;
+    text-align: center;
+    margin-right: 20px;
+    border:none
+}
+
+.mobile-nav ul li a span {
+    color: #1C2D57;
+    width: calc(100% - 35px);
+    border-bottom: 1px solid #E8EAF1;
+    padding: 17px 0;
+    margin-bottom: 5px;
+}
+
+.club-logomenu {
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    background: #fff;
+    line-height: 64px;
+text-align: center;
+margin: 0 auto;
+}
+
+.menu_accordion {
+  position: absolute;
+  right: 20px;
+  top: 22px;
+}
+
+.club-logomenu img {
+    width: 37px;
+}
+
+::ng-deep .mobile-red .mob-he-top {
+    width: 100%;
+    padding: 23px 18px 32px;
+    background: linear-gradient(150.13deg, #E93608 -65.32%, rgba(233, 54, 8, 0.8) 185.6%);
+}
+
+::ng-deep .mobile-green .mob-he-top {
+    width: 100%;
+    padding: 23px 18px 32px;
+    background: linear-gradient(150.13deg, #20AE80 -65.32%, #20AE80 185.6%);
+
+}
+
+
+.menu-profile-data {
+  margin-top: 20px;
+}
+
+.profile-card-content .profile-image {
+    width: 67px;
+    height: 67px;
+    border-radius: 100%;
+    overflow: hidden;
+    justify-content: center;
+    display: flex;
+}
+
+.mobile-nav .profile-image img {
+    max-width: none;
+}
+
+.profile-card-description ul li {
+  font-size: 14px;
+  color: #EEEEEE;
+  text-transform: none;
+}
+
+.profile-card-description ul li:last-child {
+    text-transform: uppercase;
+}
+
+.profile-card-description li::after {
+  content: "|";
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.profile-card-description li:last-child::after {
+  display: none;
+}
+
+.profile-card-content {
+  margin-right: 20px;
+}
+
+.profile-card-description h3 {
+  margin-bottom: 0;
+  font-size: 18px;
+font-weight: 700;
+color: #fff;
+}
+
+::ng-deep mat-drawer-container.mat-drawer-container.example-container.mat-drawer-transition.mat-drawer-container-has-open {
+    position: inherit;
+}
+::ng-deep .mat-drawer{
+    left: 0px;
+    margin-top: 0px;
+    box-shadow: none !important;
+    width: 100%;
+    z-index: 9999 !important;
+    position: fixed !important;
+    top: 0;
+    background: rgba(255,255,255,0.5);
+}
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: transparent;
+}
+
+.menu-profile-data {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+::ng-deep .mat-drawer-inner-container{
+    max-width: 85%;
+}
+
+
+
+.profile_btns.sign_out_btn button {
+    width: 100%;
+    margin-bottom: 0;
+    font-family: 'Gellix', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    background: #dee6ff;
+    color: #68759F;
+    height: 50px;
+    border-radius: 0;
+}
+.profile_btns.sign_out_btn {
+    padding: 0 20px;
+}
+.club-logo-title{
+    margin-left: 97px;
+    font-size: 23px;
+}

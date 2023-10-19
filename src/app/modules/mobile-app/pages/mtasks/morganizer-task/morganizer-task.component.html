@@ -1,0 +1,1134 @@
+<div class="page-action"></div>
+<!-- tab area start -->
+<div class="tabs-content-section">
+    <div class="horizontal-tabs">
+        <mat-form-field appearance="fill">
+            <mat-label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path
+                        d="M0.00910226 7.48914C-0.000382009 7.26109 0.051783 7.04806 0.155162 6.84441C0.576267 6.01199 1.57307 5.74734 2.38683 6.27382C3.53349 7.01615 4.67161 7.77068 5.80593 8.53178C5.98993 8.65566 6.11133 8.66317 6.30007 8.53647C7.41353 7.78757 8.53458 7.049 9.66037 6.31793C10.3613 5.86277 11.2566 6.0439 11.7261 6.71772C12.1955 7.3906 12.0523 8.31312 11.3675 8.7739C9.88325 9.77337 8.38852 10.7569 6.88904 11.7338C6.35792 12.0792 5.78222 12.0933 5.2511 11.7479C3.70041 10.7419 2.16205 9.718 0.625586 8.69038C0.206377 8.40978 0.0128959 7.99028 0.00910226 7.48914ZM1.54841 0.00203327C1.86045 -0.0186128 2.16774 0.120281 2.45796 0.312667C3.56763 1.04655 4.68299 1.77293 5.78507 2.51807C5.99562 2.66072 6.13409 2.64476 6.33611 2.50962C7.42017 1.78043 8.51371 1.06344 9.60726 0.347392C10.347 -0.136858 11.2575 0.0273732 11.7308 0.722778C12.2192 1.43977 12.0267 2.33507 11.2708 2.83621C9.85764 3.7728 8.43784 4.70001 7.02941 5.64411C6.37499 6.08238 5.74618 6.09082 5.08987 5.64974C4.02477 4.93369 2.94925 4.23359 1.87847 3.52598C1.44598 3.24069 1.00401 2.9676 0.588596 2.65978C0.0688542 2.27594 -0.122728 1.61245 0.0783396 1.0259C0.290789 0.410267 0.849417 0.00766371 1.54841 0.00203327Z"
+                        fill="#999999" />
+                </svg>
+            </mat-label>
+            <mat-select matNativeControl [(value)]="selected" (selectionChange)="taskFilter($event.value)">
+                <mat-option value="1">{{language.organizer_task.all_task}}</mat-option>
+                <mat-option value="2">{{language.organizer_task.personal_task}}</mat-option>
+                <mat-option value="3">{{language.organizer_task.group_task}}</mat-option>
+                <mat-option value="4">{{language.organizer_task.created_task}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path
+                        d="M0.00910226 7.48914C-0.000382009 7.26109 0.051783 7.04806 0.155162 6.84441C0.576267 6.01199 1.57307 5.74734 2.38683 6.27382C3.53349 7.01615 4.67161 7.77068 5.80593 8.53178C5.98993 8.65566 6.11133 8.66317 6.30007 8.53647C7.41353 7.78757 8.53458 7.049 9.66037 6.31793C10.3613 5.86277 11.2566 6.0439 11.7261 6.71772C12.1955 7.3906 12.0523 8.31312 11.3675 8.7739C9.88325 9.77337 8.38852 10.7569 6.88904 11.7338C6.35792 12.0792 5.78222 12.0933 5.2511 11.7479C3.70041 10.7419 2.16205 9.718 0.625586 8.69038C0.206377 8.40978 0.0128959 7.99028 0.00910226 7.48914ZM1.54841 0.00203327C1.86045 -0.0186128 2.16774 0.120281 2.45796 0.312667C3.56763 1.04655 4.68299 1.77293 5.78507 2.51807C5.99562 2.66072 6.13409 2.64476 6.33611 2.50962C7.42017 1.78043 8.51371 1.06344 9.60726 0.347392C10.347 -0.136858 11.2575 0.0273732 11.7308 0.722778C12.2192 1.43977 12.0267 2.33507 11.2708 2.83621C9.85764 3.7728 8.43784 4.70001 7.02941 5.64411C6.37499 6.08238 5.74618 6.09082 5.08987 5.64974C4.02477 4.93369 2.94925 4.23359 1.87847 3.52598C1.44598 3.24069 1.00401 2.9676 0.588596 2.65978C0.0688542 2.27594 -0.122728 1.61245 0.0783396 1.0259C0.290789 0.410267 0.849417 0.00766371 1.54841 0.00203327Z"
+                        fill="#999999" />
+                </svg>
+            </mat-label>
+            <mat-select matNativeControl [(value)]="selectedProgress"
+                (selectionChange)="taskProgressFilter($event.value)">
+                <mat-option value="5">{{language.organizer_task.toDoTask}}</mat-option>
+                <mat-option value="6">{{language.organizer_task.inProgress}}</mat-option>
+                <mat-option value="7">{{language.organizer_task.completed}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <nav class="scroll-navigation">
+            <ul class="tabs__items">
+                <li><a (click)="All()" (click)="onClick('1')"
+                        [ngClass]="{'active': activeClass==='all'}">{{language.organizer_task.all_task}}</a></li>
+                <li><a (click)="personalTask()" (click)="onClick('2')"
+                        [ngClass]="{'active': activeClass==='personalActive'}">{{language.organizer_task.personal_task}}</a>
+                </li>
+                <li><a (click)="groupTask()" (click)="onClick('3')"
+                        [ngClass]="{'active': activeClass==='groupActive'}">{{language.organizer_task.group_task}}</a>
+                </li>
+                <li><a (click)="createdTask()" (click)="onClick('4')"
+                        [ngClass]="{'active': activeClass==='createdActive'}">{{language.organizer_task.created_task}}</a>
+                </li>
+            </ul>
+        </nav> -->
+    </div>
+</div>
+<!-- tab area end -->
+<div class="app-content-area" *ngIf="displayAll == true">
+    <div class="task-listing">
+        <div *ngIf="displayAll == true && displayToDo == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of toDoTask; let i = index">
+                <div class="task-item" *ngIf="toDoTask && toDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                            [src]="task && task?.['task_image'] &&
+                             (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'"
+                            alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item
+                                    routerLink="/mobile/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <!-- <h5>{{task.title}}</h5> -->
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}}:
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}}: {{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="toDoTask && toDoTask.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayAll == true && displayInProgress == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of inProgress; let i = index">
+                <div class="task-item" *ngIf="inProgress && inProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                    <img onContextMenu="return false;"
+                    [src]="task && task?.['task_image'] &&
+                    (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                    ? task['task_image'][0]?.['task_image']
+                    : '../../../../assets/img/no_image.png'"
+                    alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="5" height="19" viewBox="0 0 5 19" fill="none">
+                            <path
+                                d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                fill="#D1D8EF" />
+                            </svg></button>
+                            <mat-menu #menu="matMenu">
+                            <button mat-menu-item
+                            routerLink="/mobile/task-detail/{{task.id}}">{{language.Survey.view_detail}}</button>
+
+                    </mat-menu>
+                </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5 >{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="inProgress && inProgress.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayAll == true && displayCompleted == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of completed; let i = index">
+                <div class="task-item" *ngIf="completed && completed.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                            <img onContextMenu="return false;"
+                            [src]="task && task?.['task_image'] &&
+                             (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'"
+                            alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                                <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                        <path
+                                            d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                            fill="#D1D8EF" />
+                                    </svg></button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                        {{language.Survey.view_detail}}</button>
+                                </mat-menu>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5 >{{task.title}}</h5>
+                        <!-- <p
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <div class="progress-task  survey-timeline">
+                        <div class="progress-content timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline"> <mat-progress-bar mode="determinate"
+                                [value]="task.progressVal"></mat-progress-bar></div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="completed && completed.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+    </div>
+</div>
+
+<div class="app-content-area" *ngIf="displayPersonal == true">
+    <div class="task-listing">
+        <div *ngIf="displayPersonal == true && displayToDo == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of perToDoTask; let i = index">
+                <div class="task-item" *ngIf="perToDoTask && perToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                         (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span *ngIf="task.group_id > 0 ">{{language.community_groups.group}}</span>
+                            <span
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}}:{{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image" *ngIf="perToDoTask && perToDoTask.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayPersonal == true && displayInProgress == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of perInProgress; let i = index">
+                <div class="task-item" *ngIf="perInProgress && perInProgress.length > 0"  routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                         (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+
+                            </mat-menu>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                    </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}}: {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="perInProgress && perInProgress.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayPersonal == true && displayCompleted == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of perCompleted; let i = index">
+                <div class="task-item" *ngIf="perCompleted && perCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                        (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="5" height="19" viewBox="0 0 5 19" fill="none">
+                            <path
+                                d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                fill="#D1D8EF" />
+                            </svg></button>
+                            <mat-menu #menu="matMenu">
+                            <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                            {{language.Survey.view_detail}}</button>
+                             </mat-menu>
+                             </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+
+                    <!-- <div class="progress-task">
+                        <div class="progress-content">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
+                                    fill="none">
+                                    <path
+                                        d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="perCompleted && perCompleted.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+    </div>
+</div>
+
+<div class="app-content-area" *ngIf="displayGroup == true">
+    <div class="task-listing">
+        <div *ngIf="displayGroup == true && displayToDo ==true">
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of groupToDoTask; let i = index">
+                <div class="task-item" *ngIf="groupToDoTask && groupToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                            <img onContextMenu="return false;"
+                            [src]="task && task?.['task_image'] &&
+                             (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'"
+                            alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                                <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                        <path
+                                            d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                            fill="#D1D8EF" />
+                                    </svg></button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                        {{language.Survey.view_detail}}</button>
+
+                                </mat-menu>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <div class="user-info">
+                                <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                                <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupToDoTask && groupToDoTask.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayGroup == true && displayInProgress ==true">
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of groupInProgress; let i = index">
+                <div class="task-item" *ngIf="groupInProgress && groupInProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                            [src]="task && task?.['task_image'] &&
+                             (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'"
+                            alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5 >{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                    </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupInProgress && groupInProgress.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+
+        <div *ngIf="displayGroup == true && displayCompleted ==true">
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of groupCompleted; let i = index">
+                <div class="task-item" *ngIf="groupCompleted && groupCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                         (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                    </p> -->
+                    </div>
+                    <!-- <div class="progress-task">
+                        <div class="progress-content">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
+                                    fill="none">
+                                    <path
+                                        d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="groupCompleted && groupCompleted.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+    </div>
+</div>
+
+<div class="app-content-area" *ngIf="displayCreated == true">
+    <div class="task-listing">
+
+        <div *ngIf="displayCreated == true && displayToDo == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.toDoTask}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of createdToDoTask; let i = index">
+                <div class="task-item" *ngIf="createdToDoTask && createdToDoTask.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                        [src]="task && task?.['task_image'] &&
+                         (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                        ? task['task_image'][0]?.['task_image']
+                        : '../../../../assets/img/no_image.png'"
+                        alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                    </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdToDoTask && createdToDoTask.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayCreated == true && displayInProgress == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.inProgress}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of createdInProgress; let i = index">
+                <div class="task-item" *ngIf="createdInProgress && createdInProgress.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                        <img onContextMenu="return false;"
+                            [src]="task && task?.['task_image'] &&
+                             (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                            ? task['task_image'][0]?.['task_image']
+                            : '../../../../assets/img/no_image.png'"
+                            alt="" loading="lazy">
+                    </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                    <path
+                                        d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                        fill="#D1D8EF" />
+                                </svg></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                    {{language.Survey.view_detail}}</button>
+
+                            </mat-menu>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                        [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                    </p> -->
+                    </div>
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdInProgress && createdInProgress.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+        <div *ngIf="displayCreated == true && displayCompleted == true">
+            <!-- <div class="task_list_title">{{language.organizer_task.completed}}</div> -->
+            <!-- task item start -->
+            <ng-container *ngFor="let task of createdCompleted; let i = index">
+                <div class="task-item" *ngIf="createdCompleted && createdCompleted.length > 0" routerLink="/mobile/morganizer-task-detail/{{task.id}}">
+                    <div class="survey-dates">
+                        <!-- <div class="task-list-image">
+                            <img onContextMenu="return false;"
+                                [src]="task && task?.['task_image'] &&
+                                 (task['task_image'][0]?.['task_image'] != null && task['task_image'][0]?.['task_image'] != '' )
+                                ? task['task_image'][0]?.['task_image']
+                                : '../../../../assets/img/no_image.png'"
+                                alt="" loading="lazy">
+                        </div> -->
+                        <div>
+                            <Span class="survey-dates-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M9.97077 19.946C8.33064 19.946 6.69051 19.951 5.051 19.9447C2.56393 19.9353 0.570021 18.2977 0.0812318 15.8688C0.0181018 15.5544 0.00185048 15.2356 0.00185048 14.9156C0.00247553 11.9535 -0.00377496 8.99197 0.00372563 6.02986C0.00997613 3.61092 1.58823 1.64076 3.93154 1.10697C4.22844 1.03947 4.53096 0.996337 4.83598 0.997587C4.95224 0.998212 4.991 0.963835 5.01412 0.848201C5.12038 0.313783 5.49479 -0.00124194 5.99983 8.16411e-06C6.49987 0.00125826 6.89115 0.330659 6.98115 0.856951C7.00428 0.990712 7.05741 0.994462 7.15867 0.994462C9.04882 0.993212 10.9383 0.991962 12.8285 0.996337C12.9573 0.996337 12.9866 0.956959 13.0085 0.834449C13.0991 0.33191 13.496 0.00188331 13.9873 8.16411e-06C14.4843 -0.00186698 14.8755 0.319409 14.9693 0.824449C14.9937 0.957584 15.0368 0.993837 15.1749 0.998837C17.8226 1.09385 19.9491 3.22151 19.9766 5.8661C20.0078 8.93697 20.0078 12.0078 19.9766 15.0787C19.9491 17.7427 17.7901 19.891 15.1249 19.9372C13.4073 19.9666 11.689 19.9428 9.97077 19.9428C9.97077 19.9441 9.97077 19.9447 9.97077 19.946ZM9.99889 17.9583C11.6465 17.9583 13.2942 17.9633 14.9418 17.9571C16.6388 17.9502 17.9739 16.6807 17.9877 14.9981C18.0114 11.9822 18.0089 8.96572 17.9889 5.94986C17.9783 4.37536 16.7294 3.079 15.2287 2.99525C15.0205 2.98337 14.9837 3.04588 14.9924 3.23276C15.0055 3.52029 15.0124 3.81156 14.9799 4.09658C14.9155 4.65725 14.4655 5.01228 13.9061 4.97478C13.3929 4.94103 13.0016 4.51162 12.9941 3.97032C12.9904 3.7053 12.9823 3.43966 12.9973 3.17589C13.0066 3.01337 12.9448 2.989 12.8004 2.98962C10.934 2.994 9.06757 2.99587 7.20117 2.98775C7.01491 2.98712 6.98303 3.04525 6.99116 3.20964C7.00428 3.46591 6.99803 3.72405 6.99366 3.98095C6.98428 4.51974 6.58737 4.94603 6.07171 4.97603C5.52166 5.00791 5.08038 4.6585 5.00912 4.11033C4.97912 3.88032 4.99287 3.64405 4.99225 3.41028C4.99037 2.93837 4.99162 2.93837 4.51783 3.0265C3.00146 3.30715 1.99576 4.50662 1.99388 6.05299C1.99013 8.99885 1.99201 11.9453 1.99513 14.8912C1.99513 15.1006 2.01013 15.3137 2.05139 15.5181C2.34704 16.9757 3.55026 17.9533 5.05538 17.9577C6.70363 17.9621 8.35126 17.9583 9.99889 17.9583ZM5.07413 6.97994C4.45033 6.98056 4.00154 7.3931 3.99654 7.96627C3.99154 8.55069 4.44033 8.97385 5.076 8.97885C5.52854 8.98197 5.9817 8.97947 6.43486 8.97947C9.24571 8.97947 12.0566 8.97822 14.8674 8.98072C15.2024 8.98072 15.5056 8.90572 15.7312 8.6457C16.0056 8.33005 16.0756 7.96814 15.905 7.58123C15.7306 7.1862 15.4124 6.98306 14.9824 6.98181C13.3192 6.97744 11.6559 6.97994 9.99327 6.97994C8.35314 6.97931 6.71363 6.97869 5.07413 6.97994ZM14.9799 15.9588C15.5293 15.9494 15.9606 15.55 15.9906 15.0243C16.0212 14.4912 15.6525 14.0286 15.1049 13.978C14.703 13.9411 14.2924 13.9411 13.8898 13.9761C13.3335 14.0242 12.9573 14.498 12.9954 15.0387C13.0323 15.5619 13.4654 15.9519 14.0198 15.9594C14.1761 15.9613 14.3317 15.96 14.488 15.9594C14.6518 15.9588 14.8155 15.9613 14.9799 15.9588Z"
+                                        fill="#647895" />
+                                </svg>&nbsp;&nbsp;{{task.date.split('T')[0] | date: "d. MMMM y" : "UTC"}}
+                            </Span>
+                        </div>
+                        <div class="task-category">
+                            <span class="group-task-category"
+                                *ngIf="task.group_id > 0 ">{{language.create_task.group}}</span>
+                            <span class="individual-task-category"
+                                *ngIf="task.group_id == null || task.group_id == 0 ">{{language.create_task.individual}}</span>
+                            <!-- <div class="event-action">
+                                <button mat-button [matMenuTriggerFor]="menu"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="5" height="19" viewBox="0 0 5 19" fill="none">
+                                        <path
+                                            d="M2.16634 18.1296C1.90255 18.0365 1.62809 17.982 1.37464 17.8498C0.404189 17.3442 -0.137064 16.2245 0.0373508 15.0615C0.199093 13.9826 1.09084 13.0764 2.13566 12.9299C3.72574 12.7073 5.06903 13.9931 4.99567 15.6686C4.94397 16.8505 4.07624 17.8693 2.93404 18.0906C2.89902 18.0975 2.853 18.0783 2.83332 18.1296C2.61089 18.1296 2.38878 18.1296 2.16634 18.1296ZM2.19969 0.271059C2.18835 0.307697 2.15767 0.300371 2.13166 0.30386C0.979791 0.46995 0.0566932 1.52337 0.00400194 2.73241C-0.0690321 4.40762 1.27393 5.69343 2.86434 5.47046C3.90849 5.32426 4.80091 4.41774 4.96232 3.33885C5.1364 2.17552 4.59548 1.05615 3.62503 0.550552C3.37157 0.418657 3.09711 0.364223 2.83332 0.27071C2.62222 0.271059 2.41113 0.271059 2.19969 0.271059ZM2.5005 6.58495C1.12653 6.5846 0.000333563 7.76223 7.40896e-08 9.20017C-0.000333415 10.6378 1.12519 11.8161 2.4995 11.8165C3.87347 11.8168 4.99967 10.6392 5 9.20122C5 7.76328 3.87448 6.58529 2.5005 6.58495Z"
+                                            fill="#D1D8EF" />
+                                    </svg></button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item routerLink="/mobile/task-detail/{{task.id}}">
+                                        {{language.Survey.view_detail}}</button>
+                                </mat-menu>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="task-title">
+                        <h5>{{task.title}}</h5>
+                        <!-- <p
+                            [innerHTML]="(task.description.length > 0 )? (task.description | slice:0:200)+'...':(task.description)">
+                        </p> -->
+                    </div>
+                    <!-- <div class="progress-task">
+                        <div class="progress-content">
+                            <span>{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
+                                    fill="none">
+                                    <path
+                                        d="M6.50696 13.9192C2.92478 13.9306 0.0192001 11.0344 8.97199e-05 7.43345C-0.018614 3.84802 2.88941 0.930628 6.49313 0.919223C10.0822 0.907817 13.0004 3.82358 13 7.4196C12.9988 11.0115 10.1058 13.9073 6.50696 13.9192ZM1.29593 7.41837C1.29471 10.2824 3.62658 12.6165 6.49598 12.6234C9.35684 12.6303 11.692 10.3007 11.7046 7.42693C11.7172 4.56412 9.36375 2.20887 6.49679 2.21457C3.62739 2.22068 1.29675 4.55231 1.29593 7.41837ZM5.85233 5.7886C5.85233 6.32181 5.85395 6.85502 5.85151 7.38823C5.8507 7.5752 5.90356 7.73977 6.0353 7.87215C6.57974 8.41921 7.12377 8.96709 7.67309 9.50886C7.88209 9.71497 8.16834 9.75041 8.4184 9.62373C8.82053 9.41965 8.899 8.90599 8.57047 8.57075C8.13337 8.12471 7.68976 7.68478 7.24535 7.24607C7.17501 7.17641 7.14573 7.10676 7.14614 7.00737C7.1498 6.09329 7.14858 5.17962 7.14817 4.26554C7.14817 4.1743 7.15224 4.08305 7.12662 3.99344C7.03879 3.68752 6.74604 3.48752 6.43214 3.52011C6.11337 3.55351 5.86046 3.81665 5.85599 4.14375C5.84867 4.69203 5.85395 5.24031 5.85395 5.789L5.85233 5.7886Z"
+                                        fill="#95A0C6" />
+                                </svg>&nbsp;&nbsp;{{task.dayCount}} {{task.remain}}</span>
+                        </div>
+                        <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                    </div> -->
+
+                    <div class="survey-timeline">
+                        <div class="timeline-label">
+                            <span *ngIf="task.subtasks.length > 0">{{language.organizer_task.progress}} :
+                                {{task.approvedCount}}/{{task.subtasks.length}}</span>
+                            <span>{{language.Survey.remaining_time}} : {{task.dayCount}} {{task.remain}}</span>
+
+                        </div>
+                        <div class="timeline">
+                            <mat-progress-bar mode="determinate" [value]="task.progressVal"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="survey-author">
+                        <span class="survey-author-img">
+                            <img onContextMenu="return false;"
+                                [src]="task && task.userstask.userImage != null ? task.userstask.userImage : '../../../../assets/img/defaultProfile.jpeg'"
+                                alt="" loading="lazy">
+                        </span>
+                        <div class="user-info">
+                            <span class="created-lable">{{language.organizer_task.task_created_by}}</span>
+                            <span class="user-lable">{{task.userstask.firstname}} {{task.userstask.lastname}}</span>
+                        </div>
+                    </div>
+                    <!-- survey item end -->
+                </div>
+            </ng-container>
+            <div class="col-lg-12 col-md-12 col-sm-12 empty-data-image"
+                *ngIf="createdCompleted && createdCompleted.length == 0">
+                <span>{{language.organizer_task.no_task_available}}</span>
+            </div>
+            <!-- task item end -->
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" tabindex="-1" aria-labelledby="exampleModalLabel" id="subtask">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{language.organizer_task.uncomplete_subtask}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{language.organizer_task.uncomplete_heading}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()"
+                    data-dismiss="modal">{{language.organizer_task.close_subtask}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" tabindex="-1" aria-labelledby="exampleModalLabel" id="subtask1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{language.organizer_task.uncomplete_subtask}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModals()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{language.organizer_task.completeByAdmin}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModals()"
+                    data-dismiss="modal">{{language.organizer_task.close_subtask}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+.survey_action {
+  display: inline-block;
+}
+.survey_action .btn{
+  background-color: #e12217;
+  color: #fff;
+  padding: 8px 12px;
+  text-transform: capitalize;
+}
+
+.survey_action .btn:hover{
+  color: #fff;
+}
+.survey_action_main {
+  float: right;
+}
+.survey_action_main .btn {
+  margin-right: 5px;
+}
+
+
+
+/* new design css start */
+
+.vote-survey-data thead tr th {
+  padding: 20px 35px !important;
+  background: #EAEDF5;
+  color: #98A5C6;
+  text-transform: uppercase;
+  font-family: 'Gellix', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  position: relative;
+}
+.vote-survey-data thead tr th:first-child {
+  border-top-left-radius: 20px;
+}
+.vote-survey-data thead tr th:last-child {
+  border-top-right-radius: 20px;
+}
+table.table.vote-survey-data th:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1px;
+  height: 25px;
+  background: #fff;
+  display: inline-block;
+  top: 20px;
+}
+table.table.vote-survey-data td {
+  font-weight: 600 !important;
+  font-size: 16px;
+  padding: 20px 35px;
+  font-family: 'Gellix', sans-serif;
+  text-transform: capitalize;
+}
+td.survey-title {
+  color: #414141;
+  font-weight: 700 !important;
+}
+td.crm-author {
+  color: #9EACC1;
+}
+td.active-from {
+  color: #647895;
+}
+table.table.vote-survey-data tr th span {
+  display: flex;
+  align-items: center;
+}
+.mat-progress-bar {
+  height: 13px;
+  border-radius: 25px;
+}
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #E8E5FF;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #6E63EE;
+}
+td.remaining-time div span {
+  width: auto;
+  white-space: nowrap;
+  
+}
+
+.survey-title {
+  width: 30%;
+}
+
+td.remaining-time div span.date-left  {
+  margin-right: 15px;
+}
+td.remaining-time div span.date-right  {
+  margin-left: 15px;
+}
+td.remaining-time div {
+  /* display: flex; */
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #647895;
+}
+.table-responsive {
+  display: table;
+}
+
+@media only screen and (max-width:767px){
+  .table-responsive {
+    display: block;
+  }
+  .survey-view-wrapper .card {
+    padding: 15px;
+    border: 1px solid #eaedf5;
+}
+.survey-main {
+  display: inline-block;
+  padding: 0 15px;
+}
+.title-survey-wrap{
+  display: inline-block;
+}
+.page-heading {
+  width: 40% !important;
+}
+.page-action-right {
+  width: 64%;
+}
+}
+@media only screen and (max-width:1024px){
+  .survey-tabs-wrapper .card, .survey-tabs-wrapper .card-body {
+    padding: 0;
+}
+}
+td.crm-author img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
