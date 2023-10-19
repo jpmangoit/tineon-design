@@ -461,7 +461,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
        }
 
        reloadCurrentRoute() {
-           let currentUrl = '/profile';
+           let currentUrl = '/web/profile';
            this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
                this._router.navigate([currentUrl]);
            });

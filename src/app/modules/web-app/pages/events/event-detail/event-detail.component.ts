@@ -533,7 +533,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                         if (respData['isError'] == false) {
                             self.responseMessage = respData['result']['message'];
                             self.notificationService.showSuccess(self.responseMessage, null);
-                            self.router.navigate(["/event-detail/" + eventId]);
+                            self.router.navigate(["/web/event-detail/" + eventId]);
                         } else if (respData['code'] == 400) {
                             self.responseMessage = respData['message'];
                             self.notificationService.showError(self.responseMessage, null);
