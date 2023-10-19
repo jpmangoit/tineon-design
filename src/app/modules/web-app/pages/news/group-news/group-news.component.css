@@ -25,10 +25,8 @@ Style css start
     margin-bottom: 6px;
 }
 .club-widget-inner {
-  max-height: 850px;
-  overflow-y: scroll;
+  max-height: 873px;
 }
-
 .page-title i {
     font-size: 28px;
     margin-right: 10px;
@@ -1310,6 +1308,7 @@ span.manage_g_cat {
 .club-widget-appointment {
     padding: 35px 14px; 
     border-radius: 20px;
+    margin-bottom: 0;
 }
 
 .club-widget-item-inner {
@@ -1436,6 +1435,7 @@ span.club-schedule {
     font-size: 8px;
     font-weight: 500;
     cursor: pointer;
+    justify-content: flex-end;
 }
 
 .right-group-inner-left span div.small-text {
@@ -1744,4 +1744,19 @@ width: auto;
     text-transform: uppercase;
     float: right;
     margin-top: 5px;
+}
+.right-group-inner-right {
+    width: 80px;
+}
+@media (max-width:1600px){
+    .club-w-image {
+        width: 100%;
+        height: 100%;
+    }
+    .club-right-area {
+        width: calc(100% - 76px);
+    }
+    .club-w-image img {
+        object-fit: cover;
+    }
 }
