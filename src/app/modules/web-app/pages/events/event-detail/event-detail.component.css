@@ -1280,6 +1280,24 @@ line-height: normal;
     gap: 18px;
     align-items: center;
 }
+.image-badge {
+    position: absolute;
+    top: 19px;
+    padding: 3px 18px;
+    border-radius: 25px;
+    color: #FFF;
+    text-align: center;
+    font-family: Gellix;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: #EF4968;
+    left: 16px;
+}
+.event-details-inner .organizer_card .app-left-content {
+    width: 100%;
+}
 ul.Task-toggle.show {
     display: block;
     position: absolute;
@@ -1318,13 +1336,13 @@ ul.Task-toggle.show li a {
     min-width: 109px;
     font-weight: 600;
 }
-@media (max-width:1500px){
+@media (max-width:1550px){
     .event-img-bottom > div .event-time span {
         font-size: 18px;
+        margin-right: 5px;
     }
     span.img-icon svg {
-        width: 40px;
-        height: 28px;
+        height: 24px;
     }
 }
 
