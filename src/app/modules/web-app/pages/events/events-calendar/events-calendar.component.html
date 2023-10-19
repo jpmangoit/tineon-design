@@ -41,7 +41,7 @@
         <div class="box-section grid" *ngIf="selectedView === 'tile-view'">
             <div class="row">
                 <div class="col-md-3" *ngFor="let today of pagedEvents">
-                    <div class="events-box">
+                    <div class="events-box" (click)="viewDetails(today.id,todays_date,today.type)">
                         <div class="event-img-box">
                             <div class="event-img">
                                 <img onContextMenu="return false;"
@@ -106,7 +106,7 @@
         <div class="box-section list" *ngIf="selectedView === 'list-view'">
             <div class="row" *ngFor="let today of pagedEvents">
                 <div class="col-md-12">
-                    <div class="events-box">
+                    <div class="events-box" (click)="viewDetails(today.id,todays_date,today.type)">
                         <div class="event-img-box">
                             <div class="date_time">
                                 <span class="date">{{today.date_from | date: "d. MMMM y"}}</span>
