@@ -746,7 +746,7 @@ ul.bunch_drop.show li {
 .event-title > div .dropdown-item  {
    padding: 0;
    border-radius: 5px;
-   border: 1px solid #FB5F5F;
+   /* border: 1px solid #FB5F5F; */
    background: #FFF;
 }
 
@@ -1095,7 +1095,6 @@ svg {
 font-size: 25px;
 font-style: normal;
 font-weight: 700;
-line-height: normal;
 }
 
 .event-img-bottom > div .event-time {
@@ -1296,7 +1295,7 @@ line-height: normal;
     left: 16px;
 }
 .event-details-inner .organizer_card .app-left-content {
-    width: 100%;
+    width: 100% !important;
 }
 ul.Task-toggle.show {
     display: block;

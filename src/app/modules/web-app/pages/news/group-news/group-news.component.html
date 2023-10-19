@@ -9,7 +9,7 @@
                 loading="lazy" /><br /><span>{{ language.group_news.no_news }}</span>
         </div>
         <div class="club-widget-main" *ngIf="groupNewsData?.length > 0">
-            <div class="club-widget-inner">
+            <div class="club-widget-inner scrollbox">
                 <!-- item start -->
                 <div class="club-widget-item" *ngFor="let data of groupNewsData">
                     <div class="club-widget-item-inner event-groups">

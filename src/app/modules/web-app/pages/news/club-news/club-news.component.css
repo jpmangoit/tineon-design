@@ -204,22 +204,24 @@ span.author-date {
 }
 
 .change_pass_section .modal-dialog .modal-body {
-  padding: 28px;
+  padding: 27px 27px 19px 27px;
 }
 
 .author-info.club-new-popup .author-des {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items:flex-end;
 }
 
-.author-info.club-new-popup .author-des > span {
+.author-info.club-new-popup .author-des > span > span {
     font-size: 11px;
     font-weight: 500;
     color: #5293F4;
+    position: relative;
+    top: 3px;
+    padding-right: 5px;
 }
-
 .author-info.club-new-popup .author-des > div  {
   line-height: normal;
 }
