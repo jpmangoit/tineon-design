@@ -12784,7 +12784,7 @@ background: #FBC52D;
     margin-top: 20px;
 }
 
-.next-prev-button button {
+.next-prev-button .pagination-area button {
     background-color: transparent;
     color: white;
     border: none;
@@ -12793,8 +12793,14 @@ background: #FBC52D;
     width: 38px;
     height: 38px;
 }
-
-.next-prev-button button:disabled {
+.next-prev-button .pagination-area button {
+    border: none;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+.next-prev-button .pagination-area button:disabled {
     background-color: transparent;
     cursor: not-allowed;
 }
