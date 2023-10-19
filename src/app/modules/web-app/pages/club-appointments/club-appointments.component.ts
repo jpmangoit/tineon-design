@@ -678,7 +678,7 @@ export class ClubAppointmentsComponent implements OnInit {
     * @return  {}
     */
     eventDetails(id: any, date: any) {
-        // this.router.navigate(['/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        // this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
         this.router.navigate(['/web/event-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 
@@ -690,7 +690,7 @@ export class ClubAppointmentsComponent implements OnInit {
     * @return  {}
     */
     courseDetails(id: any, date: any) {
-        // this.router.navigate(['/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
+        // this.router.navigate(['/web/course-detail/' + id], { queryParams: { date: new Date(date).toISOString().split('T')[0] } });
         this.router.navigate(['/web/course-detail/' + id], { queryParams: { date: date.split('T')[0] } });
     }
 

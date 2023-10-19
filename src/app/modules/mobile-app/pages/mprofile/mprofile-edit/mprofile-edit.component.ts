@@ -338,7 +338,7 @@ export class MprofileEditComponent implements OnInit {
     }
 
     reloadCurrentRoute() {
-        let currentUrl = '/profile';
+        let currentUrl = 'mobile/profile';
         this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this._router.navigate([currentUrl]);
         });

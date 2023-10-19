@@ -20,10 +20,10 @@ export const environment = {
 // export const backendBaseUrl = window["env"]["backendBaseUrl"];
 
 export const memberUrl = 'https://vcloud.dev.comciencia.cl/api/';
-export const serverUrl = 'http://103.127.29.85:9001/'
-export const baseUrl = 'http://103.127.29.85:9001/api/';
-// export const baseUrl = 'http://localhost:9001/api/';
-// export const serverUrl = 'http://localhost:9001/';
+// export const serverUrl = 'http://103.127.29.85:9001/'
+// export const baseUrl = 'http://103.127.29.85:9001/api/';
+export const baseUrl = 'http://localhost:9001/api/';
+export const serverUrl = 'http://localhost:9001/';
 
 
 // export const serverUrl = 'http://localhost:5001'

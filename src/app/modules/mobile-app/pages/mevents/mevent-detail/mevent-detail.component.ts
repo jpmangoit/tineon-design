@@ -514,7 +514,7 @@ export class MeventDetailComponent implements OnInit {
                         if (respData['isError'] == false) {
                             this.responseMessage = respData['result']['message'];
                             this.notificationService.showSuccess(this.responseMessage, null);
-                            this.router.navigate(["/event-detail/" + eventId]);
+                            this.router.navigate(["/mobile/event-detail/" + eventId]);
                         } else if (respData['code'] == 400) {
                             this.responseMessage = respData['message'];
                             this.notificationService.showError(this.responseMessage, null);
