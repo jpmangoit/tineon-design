@@ -7718,6 +7718,7 @@ span.manage_g_cat {
     border: 2px solid #DCE0EC;
     padding: 0.89rem 1.0rem 0.89rem 1.69rem;
     border-radius: 0.6875rem;
+    width: 276px;
 }
 
 ::ng-deep .filter-box  .mat-form-field-wrapper {
@@ -7747,7 +7748,7 @@ span.manage_g_cat {
 }
 
 ::ng-deep .filter-box  .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
-   transform: translateY(0%);
+   transform: translate(50px, 0px);
 }
 
 
@@ -7823,22 +7824,30 @@ span.user-status img {
     font-size: 11px;
     font-weight: 700;
     background: #FBC52D;
-    display: inline-block;
+    display: flex;
     padding: 0 0.81rem;
     border-radius: 25px;
     color: #fff;
     text-transform: capitalize;
+    height: 26px;
+    width: 92px;
+    align-items: center;
+    justify-content: center;
 }
 
 .jubilee-badge {
     font-size: 11px;
     font-weight: 700;
     background: #FB5F5F;
-    display: inline-block;
+    display: flex;
     padding: 0 0.81rem;
     border-radius: 25px;
     color: #fff;
     text-transform: capitalize;
+    height: 26px;
+    width: 92px;
+    align-items: center;
+    justify-content: center;
 }
 /* ========New css====== */
 .card-body-new{
@@ -7849,17 +7858,16 @@ span.user-status img {
     justify-content: space-between;
     align-items: center;
 }
-.widget-appointment-new.widget.ng-star-inserted {
+.widget-appointment-new.widget {
     background: #F2F2F5;
     box-shadow: 0 4px 4px #00000040;
     display: inline-block;
     padding: 0.59rem;
     border-radius: 10px;
-    margin-right: 64px;
     width: 429px;
-  height: 100px;
-  box-shadow: 0 4px 4px #00000040;
-  margin-bottom: 2.44rem;
+    height: 100px;
+    box-shadow: 0 4px 4px #00000040;
+    margin-bottom: 2.44rem;
   }
   .widget-appointment-new .app-left-content {
     width: 100% !important;
@@ -7877,6 +7885,24 @@ span.user-status img {
     color: #41AE4C !important;
     font-size: 11px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 3px;
   }
-
-
+  .widget-appointment-new.widget:nth-of-type(odd) {
+    margin-right: 64px;
+}
+@media (max-width:1497px){
+.card-body-new {
+    display: flex;
+    justify-content: space-between;
+}
+.widget-appointment-new.widget:nth-of-type(odd) {
+    margin-right: 0px;
+}
+.widget-appointment-new.widget{
+    max-width: 46%;
+    flex: 0 0 46%;
+    width: 100%;
+}
+}

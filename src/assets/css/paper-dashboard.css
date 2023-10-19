@@ -12867,3 +12867,28 @@ background: #FBC52D;
     background-color: #EF4968;
     color: white;
 }
+
+/* new scrollbar design for all */
+.scrollbox {
+    overflow-y: scroll;
+  }
+  .scrollbox::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0px;
+  }
+  
+  .scrollbox:hover::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbox:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (hover: none) {
+    .scrollbox::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrollbox::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
