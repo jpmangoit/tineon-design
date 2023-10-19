@@ -26,6 +26,7 @@
                                                             <img onContextMenu="return false;"
                                                                 [src]="showImage ? imageurl: '../../../assets/img/no_image.png'"
                                                                 alt="" loading="lazy" />
+                                                            <div class="image-badge"><span>VORSTAND</span></div>
                                                         </div>
                                                         <div class="event-img-bottom">
                                                             <div>
@@ -174,10 +175,8 @@
                                                                     <li>
                                                                         <a class="dropdown-item"
                                                                             *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                            routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                            routerLink="/web/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                                     </li>
-        
-        
                                                                 </ul>
                                                             </div>
                                                             <a class="dropdown-item delet-icon"
@@ -289,10 +288,10 @@
                                                 </button>
                                             </div>
                                             <!-- approved membar list area -->
-                                            <div class="membar-list-main-zone approved-area">
+                                            <div class="membar-list-main-zone approved-area" *ngIf="approvedParticipantsNew?.length > 0">
                                                 <div class="membar-list-zone-inner">
                                                     <h2 class="widget-heading">{{language.club_events.approved}}</h2>
-                                                    <div class="membar-zone" *ngIf="approvedParticipantsNew">
+                                                    <div class="membar-zone" >
                                                         <div class="membar-list"
                                                             *ngFor="let participant of approvedParticipantsNew"
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -357,7 +356,7 @@
                                             <!-- approved membar list area End-->
         
                                             <!-- Pending membar list area -->
-                                            <div class="membar-list-main-zone pending-area">
+                                            <div class="membar-list-main-zone pending-area" *ngIf="memImg?.length > 0">
                                                 <div class="membar-list-zone-inner">
                                                     <h2 class="widget-heading">{{language.club_events.pending}}</h2>
                                                     <div class="membar-zone">
@@ -421,7 +420,7 @@
                                             <!-- Pending membar list area End-->
         
                                             <!-- Denied membar list area -->
-                                            <div class="membar-list-main-zone denied-area">
+                                            <div class="membar-list-main-zone denied-area" *ngIf="deniedParticipants?.length > 0">
                                                 <div class="membar-list-zone-inner">
                                                     <h2 class="widget-heading">{{language.club_events.denied}}</h2>
                                                     <div class="membar-zone" *ngFor="let participant of deniedParticipants">
@@ -490,7 +489,7 @@
         
                                             <!-- Assigned task section start -->
         
-                                            <div class="event-task-zone">
+                                            <div class="event-task-zone" *ngIf="eventDetails.eventTask && eventDetails.eventTask.id">
                                                 <h2 class="widget-heading">{{language.club_events.assigned_task}}</h2>
                                                 <div class="event-task-list-zone">
                                                     <div class="event-task-list">
@@ -524,12 +523,10 @@
                                                                 <ul class="dropdown-menu Task-toggle"
                                                                     aria-labelledby="dropdownMenuLink">
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            {{language.organizer.Edit}}</a>
+                                                                        <a class="dropdown-item">{{language.organizer.Edit}}</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a
-                                                                            class="dropdown-item">{{language.organizer.Delete}}</a>
+                                                                        <a class="dropdown-item">{{language.organizer.Delete}}</a>
                                                                     </li>
                                                                     <li>
                                                                         <a class="dropdown-item"
@@ -539,7 +536,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="event-task-description">
-                                                            <div class="event-task-badge">Group</div>
+                                                            <div class="event-task-badge" *ngIf="eventDetails.eventTask.group_id == 0">{{language.create_news.chairman}}</div>
+                                                            <div class="event-task-badge"  *ngIf="eventDetails.eventTask.group_id != 0">{{language.header.group}}</div>
                                                             <p [innerHTML]="eventDetails.eventTask.description"></p>
                                                         </div>
                                                     </div>
@@ -603,6 +601,7 @@
                                                     <div class="group_detail_img news_image_container">
                                                         <div class="image-section">
                                                             <img onContextMenu="return false;" [src]="showUpdateImage ? updateImageurl : '../../../assets/img/no_image.png'" alt="" loading="lazy">
+                                                            <div class="image-badge"><span>VORSTAND</span></div>
                                                         </div>
                                                         <div class="event-img-bottom">
                                                             <div>
@@ -751,7 +750,7 @@
                                                                     <li>
                                                                         <a class="dropdown-item"
                                                                             *ngIf="userDetails.userId == updateEventData.author || userDetails.isAdmin"
-                                                                            routerLink="/update-event/{{updateEventData.id}}">{{language.organizer.Edit}}</a>
+                                                                            routerLink="/web/update-event/{{updateEventData.id}}">{{language.organizer.Edit}}</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -864,7 +863,7 @@
                                                 </button>
                                             </div>
                                             <!-- approved membar list area -->
-                                            <div class="membar-list-main-zone approved-area">
+                                            <div class="membar-list-main-zone approved-area" *ngIf=" updateEventData.users">
                                                 <div class="membar-list-zone-inner">
                                                     <h2 class="widget-heading">{{language.organizer.all_participants}}</h2>
                                                     <div class="membar-zone">
@@ -956,8 +955,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="event-task-description">
-                                                            <div class="event-task-badge">Group</div>
-                                                            <p [innerHTML]="eventDetails.eventTask.description"></p>
+                                                            <div class="event-task-badge" *ngIf="eventDetails.group_id == 0">{{language.create_news.chairman}}</div>
+                                                            <div class="event-task-badge"  *ngIf="eventDetails.group_id != 0">{{language.header.group}}</div>
+                                                        
+                                                            <p [innerHTML]="updateEventData.description"></p>
                                                         </div>
                                                     </div>
                                                     <div class="membar-modal-action">
@@ -1168,7 +1169,7 @@
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     *ngIf="userDetails.userId == eventDetails.author || userDetails.isAdmin"
-                                                                    routerLink="/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
+                                                                    routerLink="/web/update-event/{{eventDetails.id}}">{{language.organizer.Edit}}</a>
                                                             </li>
 
 
@@ -1284,7 +1285,7 @@
                                         </button>
                                     </div>
                                     <!-- approved membar list area -->
-                                    <div class="membar-list-main-zone approved-area">
+                                    <div class="membar-list-main-zone approved-area" *ngIf="approvedParticipantsNew?.length > 0">
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.approved}}</h2>
                                             <div class="membar-zone" *ngIf="approvedParticipantsNew">
@@ -1352,7 +1353,7 @@
                                     <!-- approved membar list area End-->
 
                                     <!-- Pending membar list area -->
-                                    <div class="membar-list-main-zone pending-area">
+                                    <div class="membar-list-main-zone pending-area" *ngIf="memImg?.length > 0">
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.pending}}</h2>
                                             <div class="membar-zone">
@@ -1416,7 +1417,7 @@
                                     <!-- Pending membar list area End-->
 
                                     <!-- Denied membar list area -->
-                                    <div class="membar-list-main-zone denied-area">
+                                    <div class="membar-list-main-zone denied-area" *ngIf="deniedParticipants?.length > 0">
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.denied}}</h2>
                                             <div class="membar-zone" *ngFor="let participant of deniedParticipants">
@@ -1485,7 +1486,7 @@
 
                                     <!-- Assigned task section start -->
 
-                                    <div class="event-task-zone">
+                                    <div class="event-task-zone" *ngIf="eventDetails.eventTask && eventDetails.eventTask.id" >
                                         <h2 class="widget-heading">{{language.club_events.assigned_task}}</h2>
                                         <div class="event-task-list-zone">
                                             <div class="event-task-list">
@@ -1534,7 +1535,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-task-description">
-                                                    <div class="event-task-badge">Group</div>
+                                                    <div class="event-task-badge" *ngIf="eventDetails.eventTask.group_id == 0">{{language.create_news.chairman}}</div>
+                                                    <div class="event-task-badge"  *ngIf="eventDetails.eventTask.group_id != 0">{{language.header.group}}</div>
                                                     <p [innerHTML]="eventDetails.eventTask.description"></p>
                                                 </div>
                                             </div>
@@ -1785,8 +1787,7 @@
                                     <div class="profile_field info_field" style="margin-bottom: 20px;">
                                         <span class="info_label">{{language.profile.membership_date}}</span>
                                         <span class="info_detail"
-                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM
-                                            y'}}</span>
+                                            *ngIf="profile_data">{{profile_data.membershipStartDate| date: 'd. MMMM y'}}</span>
                                     </div>
                                 </div>
                             </div>

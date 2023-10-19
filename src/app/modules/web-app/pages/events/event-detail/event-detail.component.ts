@@ -164,6 +164,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             this.authService.setLoader(false);
                             this.updateEventData = null;
                             this.eventDetails = respData['result'][0];
+                            console.log( this.eventDetails);
+                            
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
                             this.eventDetails.recurring_dates.forEach((element: any) => {
@@ -174,16 +176,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 this.eventDetails.recurring_dates.unshift(this.eventDetails.recurring_dates.splice(this.eventDetails.recurring_dates.findIndex(elt => elt.date_from === this.eventDate), 1)[0]);
                             }
                             if (this.eventDetails) {
-                                // if (this.eventDetails?.picture_video != null) {
-                                //     this.showImage = true;
-                                //     if (this.eventDetails.picture_video) {
-                                //         this.eventDetails.picture_video = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.eventDetails.picture_video.substring(20)));
-                                //         this.imageurl = this.eventDetails.picture_video
-                                //     }
-                                // } else {
-                                //     this.showImage = false;
-                                //     this.imageurl = '';
-                                // }
 
                                 if (this.eventDetails?.event_images[0]?.event_image) {
                                     this.showImage = true;
@@ -282,9 +274,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                 }
                                             });
                                         }
-                                        console.log(this.updateEventData?.task);
                                         
-
                                         if (this.updateEventData.room != 'null') {
                                             this.commonFunctionService.roomsById(this.updateEventData.room)
                                                 .then((resp: any) => {
@@ -379,9 +369,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             });
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
                             this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
-
                             this.approvedParticipantsNew = this.approvedParticipants.filter((item:any) => item.approved_status === 1);
-
                             this.deniedParticipants = this.approvedParticipants.filter((item:any) => item.approved_status === 3);
                         }
                     }
