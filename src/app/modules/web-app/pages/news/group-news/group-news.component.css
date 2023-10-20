@@ -1746,9 +1746,24 @@ width: auto;
     margin-top: 5px;
 }
 .right-group-inner-right {
-    width: 80px;
+    width: 83px;
 }
 @media (max-width:1600px){
+    .club-w-image {
+        width: 80px;
+        height: 100%;
+    }
+    .club-right-area {
+        width: calc(100% - 92px);
+    }
+    .club-w-image img {
+        object-fit: cover;
+    }
+    span.club-schedule {
+        font-size: 10px;
+    }
+}
+@media (max-width:1400px){
     .club-w-image {
         width: 100%;
         height: 100%;
@@ -1761,5 +1776,8 @@ width: auto;
     }
     span.club-schedule {
         font-size: 10px;
+    }
+    .club-box-outer {
+        gap: 5px;
     }
 }
