@@ -20,8 +20,7 @@
                     </div>
                     <ng-container *ngFor='let data of dashboardNewsData; let i=index'>
                         <div class="news-item large-item"
-                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" data-bs-toggle="modal" data-bs-target="#exModal"
-                            (click)="getNewsDetails(data.id)">
+                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" >
 
                             <div class="news-item-image">
                                 <img onContextMenu="return false;"
@@ -43,7 +42,8 @@
                             </div>
 
                             <div class="news-item-content">
-                                <div class="news-top-content">
+                                <div class="news-top-content" data-bs-toggle="modal" data-bs-target="#exModal"
+                                (click)="getNewsDetails(data.id)">
                                     <span *ngIf="data.audience == '0'"
                                         class="news-badge">{{language.create_news.title}}</span>
                                     <span *ngIf="data.audience == '2'"
@@ -67,7 +67,8 @@
                                     </div>
                                 </div>
                                 <div class="news-footer">
-                                    <div class="news-author">
+                                    <div class="news-author" data-bs-toggle="modal" data-bs-target="#exModal"
+                                    (click)="getNewsDetails(data.id)">
                                         <img onContextMenu="return false;"
                                             [src]="data.user.image  != null ? data.user.image : 'assets/img/defaultProfile.jpeg'"
                                             alt="{{data?.user?.firstname}}" loading="lazy">
@@ -126,9 +127,7 @@
                             <ng-container *ngFor='let data of dashboardNewsData; let i=index'>
                                 <div class="multi-item-single"
                                     [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
-                                    *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal" data-bs-target="#exModal"
-                                    (click)="getNewsDetails(data.id)">
-
+                                    *ngIf="i >= 1 && i <= newsDisplay">
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
                                         <img onContextMenu="return false;"
                                             [src]="data?.news_image[0]?.news_image != null ?data?.news_image[0]?.news_image : '../../../../assets/img/no_image.png'"
@@ -149,7 +148,8 @@
                                         </div>
                                     </div>
                                     <div class="news-item-content">
-                                        <div class="news-top-content">
+                                        <div class="news-top-content" data-bs-toggle="modal" data-bs-target="#exModal"
+                                        (click)="getNewsDetails(data.id)">
                                             <span *ngIf="data.audience == '0'"
                                                 class="news-badge">{{language.create_news.title}}</span>
                                             <span *ngIf="data.audience == '2'"
@@ -168,7 +168,8 @@
                                         </div>
 
                                         <div class="news-footer">
-                                            <div class="news-author">
+                                            <div class="news-author" data-bs-toggle="modal" data-bs-target="#exModal"
+                                            (click)="getNewsDetails(data.id)">
                                                 <img onContextMenu="return false;"
                                                     [src]="data.user.image != null ? data.user.image : 'assets/img/defaultProfile.jpeg'"
                                                     alt="{{data?.user?.firstname}}" loading="lazy">
@@ -296,8 +297,7 @@
                     <ng-container
                         *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
                         <div class="news-item large-item"
-                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" data-bs-toggle="modal"
-                            data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
+                            [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}" *ngIf="i < 1" >
 
                             <div class="news-item-image">
                                 <img onContextMenu="return false;" alt="" loading="lazy" data-bs-toggle="modal"
@@ -317,7 +317,8 @@
                             </div>
 
                             <div class="news-item-content">
-                                <div class="news-top-content">
+                                <div class="news-top-content" data-bs-toggle="modal"
+                                data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                     <span *ngIf="data.audience == '0'"
                                         class="news-badge">{{language.create_news.title}}</span>
                                     <span *ngIf="data.audience == '2'"
@@ -341,7 +342,8 @@
                                     </div>
                                 </div>
                                 <div class="news-footer">
-                                    <div class="news-author">
+                                    <div class="news-author" data-bs-toggle="modal"
+                                    data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                         <img onContextMenu="return false;"
                                             [src]="data.user.image  != null ? data.user.image : 'assets/img/defaultProfile.jpeg'"
                                             alt="{{data?.user?.firstname}}" loading="lazy">
@@ -402,8 +404,7 @@
                                 *ngFor='let data of dashboardData | paginate:{itemsPerPage: itemPerPage,currentPage: currentPageNmuber, totalItems: newsTotalRecords}; let i=index'>
                                 <div class="multi-item-single"
                                     [ngClass]="{'highlighted-news': data.is_highlighted == 'true'}"
-                                    *ngIf="i >= 1 && i <= newsDisplay" data-bs-toggle="modal"
-                                    data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
+                                    *ngIf="i >= 1 && i <= newsDisplay" >
 
                                     <div class="news-item-image" [ngClass]="data.imageUrls == null ? 'no_image' : ''">
                                         <img onContextMenu="return false;"
@@ -424,7 +425,8 @@
                                         </div>
                                     </div>
                                     <div class="news-item-content">
-                                        <div class="news-top-content">
+                                        <div class="news-top-content" data-bs-toggle="modal"
+                                        data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                             <span *ngIf="data.audience == '0'"
                                                 class="news-badge">{{language.create_news.title}}</span>
                                             <span *ngIf="data.audience == '2'"
@@ -441,7 +443,7 @@
                                         <div class="news-description" data-bs-toggle="modal" data-bs-target="#exModal"
                                             (click)="getNewsDetails(data.id)">
                                             <h5>{{data.title}}</h5>
-                                            <div class="news-summery">
+                                            <div class="news-summery"> 
                                                 <p
                                                     [innerHTML]="(data.text.length > 0 )? (data.text | slice:0:50)+'...':(data.text)">
                                                 </p>
@@ -449,7 +451,8 @@
                                         </div>
 
                                         <div class="news-footer">
-                                            <div class="news-author">
+                                            <div class="news-author" data-bs-toggle="modal"
+                                            data-bs-target="#exModal" (click)="getNewsDetails(data.id)">
                                                 <img onContextMenu="return false;"
                                                     [src]="data.user.image != null ? data.user.image : 'assets/img/defaultProfile.jpeg'"
                                                     alt="{{data?.user?.firstname}}" loading="lazy">

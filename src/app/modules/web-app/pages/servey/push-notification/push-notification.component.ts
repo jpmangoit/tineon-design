@@ -55,9 +55,10 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.socket = io(serverUrl);
         this.getNotify();
-        this.getCRMNews();
-        this.getcrmSurvey();
-
+        if(this.userData.roles[0] != 'guest'){
+            this.getCRMNews();
+            this.getcrmSurvey();
+        }
         this.socket.on('newnoti', (notificationData: any) => {
             this.getNotify();
         });

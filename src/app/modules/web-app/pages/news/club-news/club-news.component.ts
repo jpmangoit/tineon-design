@@ -14,7 +14,8 @@ declare var $: any;
     styleUrls: ['./club-news.component.css']
 })
 
-export class ClubNewsComponent implements OnInit, OnDestroy {
+export class 
+ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
 
