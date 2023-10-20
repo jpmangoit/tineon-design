@@ -1381,7 +1381,7 @@ span.club-schedule {
     margin-left: 8px;
 } */
 .club-w-image {
-    width: 118px;
+    width: 128.11px;
     height: 100%;
     overflow: hidden;
     object-fit: cover;
@@ -1430,7 +1430,6 @@ span.club-schedule {
 
 .right-group-inner-right {
     display: flex;
-    align-items: center;
     color: #5293F4;
     font-size: 8px;
     font-weight: 500;
@@ -1439,7 +1438,7 @@ span.club-schedule {
 }
 
 .right-group-inner-left span div.small-text {
-    font-size: 8px;
+    font-size: 6px;
     font-weight: 500;
     line-height: 8px;
 }
@@ -1501,12 +1500,12 @@ width: auto;
 }
 
 .event-groups span.club-badge {
-    border-color: #e7345d;
+    border-color: #EF4968;
     border-radius: 10px;
 }
 
 .event-groups .club-category {
-    background: #e7345d;
+    background: #EF4968;
     cursor: pointer;
     border-radius: 15px; 
     text-align: center;
@@ -1746,17 +1745,38 @@ width: auto;
     margin-top: 5px;
 }
 .right-group-inner-right {
-    width: 80px;
+    width: 85px;
 }
 @media (max-width:1600px){
+    .club-w-image {
+        width: 80px;
+        height: 100%;
+    }
+    .club-right-area {
+        width: calc(100% - 92px);
+    }
+    .club-w-image img {
+        object-fit: cover;
+    }
+    span.club-schedule {
+        font-size: 10px;
+    }
+}
+@media (max-width:1400px){
     .club-w-image {
         width: 100%;
         height: 100%;
     }
     .club-right-area {
-        width: calc(100% - 76px);
+        width: calc(100% - 60px);
     }
     .club-w-image img {
         object-fit: cover;
+    }
+    span.club-schedule {
+        font-size: 10px;
+    }
+    .club-box-outer {
+        gap: 5px;
     }
 }

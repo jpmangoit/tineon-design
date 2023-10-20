@@ -3,7 +3,7 @@
         <div class="date-bar">
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl placeholder="View" [(value)]="selectedView" >
+                    <mat-select matNativeControl placeholder="View" [(value)]="selectedView" disableOptionCentering>
                         <mat-option value="tile-view">{{language.club_events.tile_view}}</mat-option>
                         <mat-option value="list-view">{{language.club_events.list_view}}</mat-option>
                     </mat-select>
@@ -11,15 +11,15 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl placeholder="Year" [(value)]="selectedYear" (selectionChange)="applyFilters()" > 
+                    <mat-select matNativeControl placeholder="{{language.club_events.year}}" [(value)]="selectedYear" (selectionChange)="applyFilters()" > 
                         <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="filter-box">
-                <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="Month">
-                        <mat-option *ngFor="let month of months" [value]="month.value">
+                <mat-form-field appearance="fill" >
+                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.month}}" disableOptionCentering>
+                        <mat-option *ngFor="let month of monthDropdownList" [value]="month.item_id">
                             {{ month.name }}
                         </mat-option>
                     </mat-select>
@@ -27,7 +27,7 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedEventType" (selectionChange)="applyFilters()"  placeholder="Event-type">
+                    <mat-select matNativeControl [(value)]="selectedEventType" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.event_type}}">
                         <mat-option *ngFor="let eventType of eventTypeDropdownList" [value]="eventType.item_id">
                             {{ eventType.item_text }}
                         </mat-option>
@@ -85,11 +85,18 @@
                             <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <div class="pagination">
+                    <!-- <div class="pagination">
                         <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
                             [class.active]="currentPageNumber === page">
                             {{ page }}
                         </span>
+                    </div> -->
+                    <div class="pagination">
+                        <span *ngIf="pagesArray[0] > 1">...</span>
+                        <span *ngFor="let page of pagesArray" (click)="goToPage(page)" [class.active]="currentPageNumber === page">
+                          {{ page }}
+                        </span>
+                        <span *ngIf="pagesArray[pagesArray.length - 1] < totalPages">...</span>
                     </div>
                     <button style="transform: rotate(180deg);" (click)="nextPage()"
                         [disabled]="currentPageNumber === totalPages">
@@ -119,13 +126,13 @@
                             </div>
                             <div class="stadion">
                                 <h2>{{today.place}}</h2>
-                                <span>Am Waldbach 1 | 1 2345 Musterstadt</span>
+                                <!-- <span>Am Waldbach 1 | 1 2345 Musterstadt</span> -->
                             </div>
                             <div class="desci-event">
                                 {{today?.approvedEventUsers?.length}} {{language.club_events.approved_paticipants}}
                             </div>
                             <div class="anchor_link">
-                                <a (click)="viewDetails(today.id,todays_date,today.type)">{{language.club_events.to_event}} <svg xmlns="http://www.w3.org/2000/svg"
+                                <a (click)="viewDetails(today.id,todays_date,today.type)">{{language.club_events.to_event_list}} <svg xmlns="http://www.w3.org/2000/svg"
                                         width="31" height="24" viewBox="0 0 31 24" fill="none">
                                         <path
                                             d="M14.3663 4.70697L22.2325 11H5.25V13H22.2325L14.3663 19.293L16.1337 20.707L27.0175 12L16.1337 3.29297L14.3663 4.70697Z"

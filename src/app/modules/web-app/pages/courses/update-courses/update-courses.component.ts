@@ -842,7 +842,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             })
                         }
                     })
-                    this.instructorDetailById(this.externalInstructor[0]['instructor_id'])
+                    this.instructorDetailById(this.externalInstructor[0]?.['instructor_id'])
                 }
                 this.courseForm.get('instructor_internal').clearValidators();
             }

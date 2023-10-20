@@ -505,6 +505,7 @@ export class CourseDetailComponent implements OnInit {
     }
 
     updateCourse(id: number) {
+        console.log(id);
         var redirectUrl: string = 'web/update-course/' + id;
         this.router.navigate([redirectUrl]);
     }
@@ -527,7 +528,7 @@ export class CourseDetailComponent implements OnInit {
                             this.notificationService.showSuccess(this.responseMessage, null);
                             setTimeout(() => {
                                 // $('#responseMessage').delay(1000).fadeOut();
-                                this.router.navigate(["/course"]);
+                                this.router.navigate(["/web/course"]);
                             }, 3000);
 
                         } else if (respData['code'] == 400) {
@@ -556,7 +557,7 @@ export class CourseDetailComponent implements OnInit {
                         if (respData['isError'] == false) {
                             this.responseMessage = respData['result']['message'];
                             this.notificationService.showSuccess(this.responseMessage, null);
-                            this.router.navigate(["/course-detail/" + id]);
+                            this.router.navigate(["/web/course-detail/" + id]);
                         } else if (respData['code'] == 400) {
                             this.responseMessage = respData['message'];
                             this.notificationService.showError(this.responseMessage, null);

@@ -322,7 +322,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 		} else {
 			this.showUpdatedData = false;
 		}
-		// this.selectedSubtask = '';
+		// this.selectedSubtask = ''; 
 		this.selectedSubtask = this.taskDetails?.subtasks.find((subtask) => subtask.id === subtaskId);
 	}
 

@@ -743,11 +743,16 @@ ul.bunch_drop.show li {
     margin-bottom: 0px;
 }
 
-.event-title > div .dropdown-item  {
+.event-title > div .dropdown-item.delet-icon  {
    padding: 0;
    border-radius: 5px;
-   /* border: 1px solid #FB5F5F; */
+   border: 1px solid #FB5F5F;
    background: #FFF;
+   width: 28px;
+   height: 28px;
+   display: flex;
+   align-items: center; 
+   justify-content: center;
 }
 
 .event-title > div {
@@ -1106,6 +1111,7 @@ font-weight: 700;
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
+    width: 94%;
 }
 .club-wall-top-heading h1 {
     color: #3D475C;
@@ -1161,7 +1167,7 @@ font-weight: 700;
     flex: 0 0 31%;
 }
 .content.detail-component {
-    max-width: 97%;
+    max-width: 100%;
 }
 .membar-list-main-zone {
     display: flex;
@@ -1170,11 +1176,12 @@ font-weight: 700;
     flex-wrap: nowrap;
 }
 .membar-list-zone-inner {
-    width: 100%;
+    width: 94%;
 }
 .membar-modal-action {
     position: absolute;
-    right: -52px;
+    right: 0px;
+    cursor: pointer;
 }
 .membar-badge {
     position: absolute;
@@ -1243,7 +1250,10 @@ font-weight: 700;
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
-    width: 50%;
+    width: 45%;
+}
+.event-task-header button.dropdown-toggle {
+    top: 5px;
 }
 .event-task-header {
     display: flex;
@@ -1272,6 +1282,26 @@ font-weight: 700;
     font-weight: 400 !important;
     line-height: 12px;
     margin-top: 5px;
+    margin-bottom: 0;
+}
+.timeline-label span {
+    color: #353535;
+    font-family: Gellix;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+::ng-deep .mat-progress-bar-background {
+    fill: #EDEDED;
+    border-radius: 20px;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background-color: #EDEDED;
+}
+::ng-deep .mat-progress-bar {
+    height: 7.05px;
 }
 .event-task-list-zone {
     display: flex;
@@ -1297,6 +1327,9 @@ font-weight: 700;
 .event-details-inner .organizer_card .app-left-content {
     width: 100% !important;
 }
+::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
+}
 ul.Task-toggle.show {
     display: block;
     position: absolute;
@@ -1319,6 +1352,9 @@ ul.Task-toggle.show {
     line-height: normal;
     margin-bottom: 0;
 }
+.membar-list-main-zone.pending-area .membar-list {
+    background: transparent;
+}
 ul.Task-toggle.show li {
     list-style:none;
 }
@@ -1335,6 +1371,70 @@ ul.Task-toggle.show li a {
     min-width: 109px;
     font-weight: 600;
 }
+
+/* modal css start */
+div#pendingParticipantsModal .modal-dialog, div#approvedParticipantsModal .modal-dialog, 
+div#deniedParticipantsModal .modal-dialog, 
+div#taskDetailsModal .modal-dialog{
+    max-width: 635px;
+}
+div#pendingParticipantsModal .modal-dialog .modal-content, 
+div#approvedParticipantsModal .modal-dialog .modal-content, 
+div#deniedParticipantsModal .modal-dialog .modal-content, 
+div#taskDetailsModal .modal-dialog .modal-content{
+    padding: 27px;
+}
+div#deniedParticipantsModal .membar-list-zone-inner, 
+div#pendingParticipantsModal .membar-list-zone-inner, 
+div#approvedParticipantsModal .membar-list-zone-inner {
+    width: 100%;
+}
+div#approvedParticipantsModal .membar-list, 
+div#deniedParticipantsModal .membar-list, 
+div#pendingParticipantsModal .membar-list {
+    width: 48.5%;
+    flex: 0 0 48.5%;
+}
+div#approvedParticipantsModal .membar-list-main-zone, 
+div#deniedParticipantsModal .membar-list-main-zone, 
+div#pendingParticipantsModal .membar-list-main-zone {
+    margin:0px;
+}
+div#taskDetailsModal .modal-dialog .event-task-list{
+    width: 100%;
+}
+div#taskDetailsModal .all-participant-card .card-header {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 30px;
+}
+div#taskDetailsModal.profile_popup .card-body {
+    padding: 0;
+    overflow: hidden !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+div#taskDetailsModal .app-left-content{
+    width: 100%;
+}
+div#taskDetailsModal .all-participant-card .card-body > div {
+    width: 48%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background:#fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+div#taskDetailsModal .all-participant-card h5.card-title {
+    color: #555;
+    font-family: Gellix;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 @media (max-width:1550px){
     .event-img-bottom > div .event-time span {
         font-size: 18px;
@@ -1342,6 +1442,10 @@ ul.Task-toggle.show li a {
     }
     span.img-icon svg {
         height: 24px;
+    }
+    .membar-list {
+        width: 29%;
+        flex: 0 0 29%;
     }
 }
 

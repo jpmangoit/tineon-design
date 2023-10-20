@@ -7987,7 +7987,7 @@ span.manage_g_cat {
     box-shadow: none;
     font-family: 'Gellix', sans-serif;
     border: none !important;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     padding: 0 35px;
 }
@@ -8005,7 +8005,7 @@ span.manage_g_cat {
     border-radius: 10px;
     border: none;
     padding: 0 17px 0 15px;
-    font-weight: 600;
+    font-weight: 700;
     font-family: 'Gellix', sans-serif;
     display: flex;
     align-items: center;
@@ -8068,7 +8068,11 @@ span.manage_g_cat {
 .heading-box span {
     color: #68759F;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
+}
+.club-wall-action {
+    display: flex;
+    flex-wrap: wrap;
 }
 @media only screen and (max-width:1260px){
     .page-action {

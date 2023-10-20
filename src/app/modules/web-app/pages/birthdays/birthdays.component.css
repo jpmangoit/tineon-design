@@ -5843,10 +5843,14 @@ ul.nav hr {
 }
 
 .card .card-header {
-    padding: 0px 0 0.70rem;
+    padding: 0px 0 12px;
     border: 0;
     border-bottom: 1px solid #EFF2FD;
     margin-bottom: 1.44rem;
+}
+
+.card.birth_main h5.card-title {
+    padding-bottom: 0;
 }
 
 .card .card-header:not([data-background-color]) {
@@ -5857,7 +5861,7 @@ ul.nav hr {
     margin-top: 0px;
     margin-bottom: 0px;
     color: #555;
-    font-size: 20px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -7716,9 +7720,10 @@ span.manage_g_cat {
 /* filter css */
 .filter-box  {
     border: 2px solid #DCE0EC;
-    padding: 0.89rem 1.0rem 0.89rem 1.69rem;
+    padding: 8px 15px;
     border-radius: 0.6875rem;
     width: 276px;
+    height: 41px;
 }
 
 ::ng-deep .filter-box  .mat-form-field-wrapper {
@@ -7747,14 +7752,16 @@ span.manage_g_cat {
 
 }
 
-::ng-deep .filter-box  .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+::ng-deep .club_calendar_widget .filter-box  .mat-form-field{
+    width: 197px;
+}
+
+::ng-deep .club_calendar_widget .filter-box  .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
    transform: translate(50px, 0px);
 }
 
-
 ::ng-deep .filter-box  .mat-form-field-wrapper .mat-select-value span  {
    color: #7E90BE;
-
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 700;
@@ -7762,6 +7769,11 @@ span.manage_g_cat {
 }
 ::ng-deep .filter-box  .mat-form-field-wrapper .mat-form-field-flex {
     background: none;
+}
+
+.chat-details-new svg {
+    position: relative;
+    top: 1px;
 }
 
 /* filter css */

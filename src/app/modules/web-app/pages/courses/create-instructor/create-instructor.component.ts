@@ -275,7 +275,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 		// 				if (respData['isError'] == false) {
 		// 					this.notificationService.showSuccess(respData['result']['message'], null);
 		// 					setTimeout(() => {
-		// 						this.router.navigate(['/instructor-detail/' + respData['result']['instructor']['id']]);
+		// 						this.router.navigate(['/web/instructor-detail/' + respData['result']['instructor']['id']]);
 		// 					}, 2000);
 		// 				} else if (respData['code'] == 400) {
 		// 					this.notificationService.showError(respData['message'], null);

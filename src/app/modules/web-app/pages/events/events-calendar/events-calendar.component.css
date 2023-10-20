@@ -549,9 +549,7 @@ a:hover {
 
 .box-section .events-box a {
     color: #BDBDBD;
-
     text-align: right;
-
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
@@ -559,6 +557,15 @@ a:hover {
     float: right;
     margin-right: 16px;
     margin-bottom: 14px;
+}
+
+.box-section .events-box a svg{
+    position: relative;
+    top: -1px;
+}
+
+.event-img-box img {
+    border-radius: 0;
 }
 
 .box-section.grid .col-md-3 {
@@ -578,7 +585,7 @@ a:hover {
     text-align: center;
     font-size: 11px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     padding: 0 20px;
     height: 19px;
     border-radius: 30px;
@@ -620,13 +627,19 @@ a:hover {
 }
 
 .desci-event {
-    width: 20%;
+    width: 18%;
     color: #555;
     font-family: 'Gellix', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 28px;
+}
+
+.anchor_link {
+    width: 17.5%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .title_tag {
@@ -653,15 +666,16 @@ a:hover {
     float: none;
     margin-bottom: 0;
     color: #EF4968;
-
     text-align: right;
     font-family: 'Gellix', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
-    /* 150% */
+    text-transform: uppercase;
     letter-spacing: 3.2px;
+    display: flex;
+    align-items: center;
 }
 
 .stadion span {
@@ -682,7 +696,7 @@ a:hover {
     font-weight: 700;
     line-height: 28px;
     padding: 0;
-    margin-bottom: 0;
+    margin-bottom: 2px;
 }
 
 .box-section.list .col-md-12 {
@@ -694,7 +708,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    gap: 10px;
 }
 
 .box-section.list .event-img-box {
@@ -771,7 +785,7 @@ line-height: normal;
 
 ::ng-deep .filter-box .mat-form-field-wrapper .mat-select-arrow {
     border: none;
-    background: url(../../../../../../assets/img/down-arrow.svg) no-repeat center;
+    background: url(../../../../../../assets/img/down-aerrow-nw.svg) no-repeat center;
     /* background: url(../../../../assets/img/down-arrow.svg) no-repeat center; */
     background-size: 100%;
     width: 10px;
@@ -785,8 +799,7 @@ line-height: normal;
 
 
 ::ng-deep .filter-box .mat-form-field-wrapper .mat-select-value span {
-    color: #7E90BE;
-
+    color: #68759F;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 700;
@@ -797,6 +810,23 @@ line-height: normal;
     background: none;
 }
 
+.box-section.list .title_tag .tag_list {
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.box-section.list .title_tag {
+    top: -3px;
+    position: relative;
+}
+@media (max-width:1400px){
+    .title_tag {
+        width: 27%;
+    }
+    .date_time {
+        width: 17%;
+    }
+}
 /* filter css */
 
 

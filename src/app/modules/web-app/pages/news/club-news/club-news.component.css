@@ -361,7 +361,7 @@ span.author-date {
 .news-badge-chairman {
     font-size: 9px;
     font-weight: 600;
-    background: #E93606;
+    background: #EF4968;
     display: inline-block;
     padding: 0 10px;
     border-radius: 25px;
@@ -395,6 +395,17 @@ span.author-date {
     display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.news-description > p > p {
+    margin: 0;
+}
+
+.multi-item-single.highlighted-news p {
+    display: inline-block;
+    padding-bottom: 21px;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .news-item.large-item {
@@ -480,7 +491,7 @@ span.author-date {
     display: flex;
     flex-wrap: nowrap;
     align-items: center; 
-    width: 58% !important;
+    width: 58%;
 }
 
 .news-item.multi-item  .dashboard-slider > div:nth-child(2n + 0) {
@@ -910,15 +921,20 @@ owl-carousel-o.ng-star-inserted {
   object-fit: cover;
 }
 
+.news-read-more a {
+    font-size: 9px;
+}
+.news-read-more a span {
+    margin-left: 0px;
+}
 .news-author {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  width: 50%;
+  width: 52%;
 }
 
 .author-des {
- 
   display: inline-block;
   width: calc(100% - 35px);
 }
@@ -939,7 +955,7 @@ owl-carousel-o.ng-star-inserted {
 
     .author-des {
     display: inline-block;
-    width: calc(100% - 32px);
+    width: calc(100% - 30px);
   }
 
   .news-read-more {
