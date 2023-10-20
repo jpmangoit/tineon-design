@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="row width-50">
+    <div class="row ">
         <div class="col-md-12 page-main">
             <div class="page-action">
                 <!-- <div class="page-heading">
@@ -80,10 +80,8 @@
                         </button>
                     </div>
                 </div>
-
-            </div>
-            <div class="button-box"  *ngIf="isClubNewsRoute() || isClubDatesRoute()">
-                <div class="page-action-right" *ngIf="createAccess.news == 'Yes' || createAccess.event == 'Yes'">
+                <div class="page-action-right"  *ngIf="isClubNewsRoute() || isClubDatesRoute()">
+                    <div class="club-wall-action" *ngIf="createAccess.news == 'Yes' || createAccess.event == 'Yes'">
                     <button *ngIf="createAccess.news == 'Yes'" type="button" class="disabled button-create"
                         routerLink="/create-news">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
@@ -102,7 +100,9 @@
                         &nbsp;<span>{{language.club_wall.create_event}}</span>
                     </button>
                 </div>
+                </div>
             </div>
+                
             
         </div>
     </div>

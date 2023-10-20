@@ -1357,3 +1357,7 @@ span.event-cat {
     line-height: 22px;
     padding: 60px 40px;
 }
+
+.event-img-box img {
+    border-radius: 0;
+}

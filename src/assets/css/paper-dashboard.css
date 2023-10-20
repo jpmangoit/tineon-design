@@ -12863,11 +12863,14 @@ background: #FBC52D;
     width: 100%;
     align-items: center;
 }
-.next-prev-button span.active {
+.next-prev-button .pagination-area span.active {
     background-color: #EF4968;
     color: white;
 }
 
+.card-header.clubwall-ne .next-prev-button {
+    margin-top: 0;
+}
 /* new scrollbar design for all */
 .scrollbox {
     overflow-y: scroll;

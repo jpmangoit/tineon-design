@@ -1501,12 +1501,12 @@ width: auto;
 }
 
 .event-groups span.club-badge {
-    border-color: #e7345d;
+    border-color: #EF4968;
     border-radius: 10px;
 }
 
 .event-groups .club-category {
-    background: #e7345d;
+    background: #EF4968;
     cursor: pointer;
     border-radius: 15px; 
     text-align: center;
