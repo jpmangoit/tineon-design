@@ -4,9 +4,7 @@
             <h1>{{ language.header.event_details }}</h1>
             <span>{{language.club_events.clubwall}} &nbsp; >&nbsp; {{language.club_events.events}}</span>
         </div>
-        <div class="button-box">
-
-        </div>
+        <div class="button-box"></div>
     </div>
     <div class="add_event_main event_main">
         <div class="event-detail-main">
@@ -547,6 +545,14 @@
                                                             <div class="event-task-badge"  *ngIf="eventDetails.eventTask.group_id != 0">{{language.header.group}}</div>
                                                             <p [innerHTML]="eventDetails.eventTask.description"></p>
                                                         </div>
+                                                        <div class="survey-timeline">
+                                                            <div class="timeline-label">
+                                                                <span >PROGRESS : 0% </span>
+                                                            </div>
+                                                            <div class="timeline">
+                                                                <mat-progress-bar mode="determinate" ></mat-progress-bar>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="membar-modal-action">
                                                         <span>
@@ -581,7 +587,6 @@
                                                         </span>
                                                     </div>
                                                 </div>
-        
                                             </div>
         
                                             <!-- Assigned task section End -->
@@ -971,8 +976,15 @@
                                                         <div class="event-task-description">
                                                             <div class="event-task-badge" *ngIf="eventDetails.group_id == 0">{{language.create_news.chairman}}</div>
                                                             <div class="event-task-badge"  *ngIf="eventDetails.group_id != 0">{{language.header.group}}</div>
-                                                        
                                                             <p [innerHTML]="updateEventData?.task[0].description"></p>
+                                                        </div>
+                                                        <div class="survey-timeline">
+                                                            <div class="timeline-label">
+                                                                <span >PROGRESS : 0% </span>
+                                                            </div>
+                                                            <div class="timeline">
+                                                                <mat-progress-bar mode="determinate" ></mat-progress-bar>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="membar-modal-action">
@@ -1560,6 +1572,14 @@
                                                     <div class="event-task-badge"  *ngIf="eventDetails.eventTask.group_id != 0">{{language.header.group}}</div>
                                                     <p [innerHTML]="eventDetails.eventTask.description"></p>
                                                 </div>
+                                                <div class="survey-timeline">
+                                                    <div class="timeline-label">
+                                                        <span >PROGRESS : 0% </span>
+                                                    </div>
+                                                    <div class="timeline">
+                                                        <mat-progress-bar mode="determinate" ></mat-progress-bar>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="membar-modal-action">
                                                 <span>
@@ -1840,10 +1860,33 @@
 <div class="modal fade change_pass_section profile_popup" id="approvedParticipantsModal" tabindex="-1"
     aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
-        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <!-- <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div> -->
         <div class="modal-content">
-           
-          
+            <div class="membar-list-main-zone approved-area" *ngIf="approvedParticipantsNew?.length > 0">
+                <div class="membar-list-zone-inner">
+                    <h2 class="widget-heading">{{language.club_events.approved}}</h2>
+                    <div class="membar-zone" *ngIf="approvedParticipantsNew">
+                        <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                            <div class="membar-badge success-badge" *ngIf="participant.approved_status == 1">
+                                <span>{{language.organizer.approved}}</span>
+                            </div>
+                            <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                    alt="" loading="lazy">
+                            </div>
+                            <div class="membar-img" *ngIf="participant.users.image != null">
+                                <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                    loading="lazy">
+                            </div>
+                            <div class="membar_id">
+                                <span>{{participant.users.firstname}}<br />
+                                    {{participant.users.lastname}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1853,9 +1896,32 @@
 <div class="modal fade change_pass_section profile_popup" id="pendingParticipantsModal" tabindex="-1"
     aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
-        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <!-- <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div> -->
         <div class="modal-content">
-           
+            <div class="membar-list-main-zone pending-area" *ngIf="memImg?.length > 0">
+                <div class="membar-list-zone-inner">
+                    <h2 class="widget-heading">{{language.club_events.pending}}</h2>
+                    <div class="membar-zone">
+                        <div class="membar-list" *ngFor="let participant of memImg" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
+                            <div class="membar-badge info-badge">
+                                <span>{{language.organizer.pending}}</span>
+                            </div>
+                            <div class="membar-img" *ngIf="participant.image == null || participant.image == ''">
+                                <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                    alt="" loading="lazy">
+                            </div>
+                            <div class="membar-img" *ngIf="participant.image != null">
+                                <img [src]="participant.image" style="width: 100px;">
+                            </div>
+                            <div class="membar_id">
+                                <span>{{participant.firstname}}<br />
+                                    {{participant.lastname}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           
         </div>
     </div>
@@ -1866,9 +1932,34 @@
 <div class="modal fade change_pass_section profile_popup" id="deniedParticipantsModal" tabindex="-1"
     aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
-        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <!-- <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div> -->
         <div class="modal-content">
-           
+            <div class="membar-list-main-zone denied-area" *ngIf="deniedParticipants?.length > 0">
+                <div class="membar-list-zone-inner">
+                    <h2 class="widget-heading">{{language.club_events.denied}}</h2>
+                    <div class="membar-zone" *ngFor="let participant of deniedParticipants">
+                        <div class="membar-list" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)="getMemId(participant.users.id)">
+                            <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                <span>{{language.create_event.denied}}</span>
+                            </div>
+                            <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                    alt="" loading="lazy">
+                            </div>
+                            <div class="membar-img" *ngIf="participant.users.image != null">
+                                <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                    loading="lazy">
+                            </div>
+                            <div class="membar_id">
+                                <span>{{participant.users.firstname}}<br />
+                                    {{participant.users.lastname}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
           
         </div>
     </div>
