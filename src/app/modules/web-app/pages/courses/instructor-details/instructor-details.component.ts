@@ -310,7 +310,7 @@ export class InstructorDetailsComponent implements OnInit {
                             this.responseMessage = respData['result']['message'];
                             this.notificationService.showSuccess(this.responseMessage,null);
                             setTimeout( () => {
-                                this.router.navigate(["/instructor"]);
+                                this.router.navigate(["/web/instructor"]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.responseMessage = respData['message'];

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
-import {appSetting} from '@core/constants';
+import { CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess } from '@core/models';
+import { AuthServiceService, LanguageService, ThemeService } from '@core/services';
+import { appSetting } from '@core/constants';
 
 declare var $: any;
 
@@ -27,12 +27,13 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     userRole: string;
 
     // isLoading: boolean = true;
-      // Set the number of child components that should load data
+    // Set the number of child components that should load data
     totalChildComponents = 2;
     loadedChildComponents = 0;
+    showButtonBox: boolean = false;
 
 
-    constructor(private lang: LanguageService,  public authService: AuthServiceService,private router: Router, private themes: ThemeService) {
+    constructor(private lang: LanguageService, public authService: AuthServiceService, private router: Router, private themes: ThemeService) {
         this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));
@@ -77,6 +78,18 @@ export class ClubWallComponent implements OnInit, OnDestroy {
         // Check if the current route is '/clubwall/club-events'
         return this.router.url === '/web/clubwall/club-events';
     }
+
+    isClubNewsRoute(): boolean {
+        // Check if the current route is '/clubwall/club-events'
+        return this.router.url === '/web/clubwall/club-news';
+    }
+
+    isClubDatesRoute(): boolean {
+        // Check if the current route is '/clubwall/club-events'
+        return this.router.url === '/web/clubwall/club-dates';
+    }
+
+   
 
     /**
     * Function is used to display news tab
