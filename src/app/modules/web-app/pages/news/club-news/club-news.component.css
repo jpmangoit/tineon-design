@@ -397,6 +397,17 @@ span.author-date {
   width: 100%;
 }
 
+.news-summery p p {
+    margin: 0;
+}
+
+.multi-item-single.highlighted-news p {
+    display: inline-block;
+    padding-bottom: 21px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
 .news-item.large-item {
     width: 40%;
     padding: 12px !important;

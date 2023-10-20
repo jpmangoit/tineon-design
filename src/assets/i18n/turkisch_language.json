@@ -245,7 +245,11 @@
         "pending": "Ausstehend:",
         "denied" : "Abgesagt:",
         "assigned_task": "Zugewiesene Aufgaben",
-        "orgainzer" : "Für die Veranstaltung verantwortlich:"
+        "orgainzer" : "Für die Veranstaltung verantwortlich:",
+        "to_event_list": "Zum Event",
+        "year": "Year",
+        "month": "Month",
+        "event_type": "Event-type"
     },
     "club_news": {
         "Edit": "Düzenlemek",

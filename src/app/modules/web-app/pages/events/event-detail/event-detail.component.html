@@ -2,7 +2,7 @@
     <div class="page_heading club-wall-top-heading">
         <div class="heading-box">
             <h1>{{ language.header.event_details }}</h1>
-            <span>{{language.club_events.clubwall}} &nbsp; >&nbsp; {{language.club_events.events}}</span>
+            <span  routerLink="/web/clubwall">{{language.club_events.clubwall}} &nbsp; >&nbsp; {{language.club_events.events}}</span>
         </div>
         <div class="button-box"></div>
     </div>
@@ -427,8 +427,8 @@
                                             <div class="membar-list-main-zone denied-area" *ngIf="deniedParticipants?.length > 0">
                                                 <div class="membar-list-zone-inner">
                                                     <h2 class="widget-heading">{{language.club_events.denied}}</h2>
-                                                    <div class="membar-zone" *ngFor="let participant of deniedParticipants">
-                                                        <div class="membar-list" data-bs-toggle="modal"
+                                                    <div class="membar-zone" >
+                                                        <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
                                                             (click)="getMemId(participant.users.id)">
                                                             <div class="membar-badge danger-badge"
@@ -1033,7 +1033,6 @@
                             </div>
                         </mat-tab>
                         <!-- UPDATE EVENT END -->
-
                     </mat-tab-group>
                     <div class="card-body" *ngIf="!updateEventData">
                         <div class="profile_details" *ngIf="eventDetails">
@@ -1285,7 +1284,6 @@
                                             </div>
                                         </div>
                                         <!-- Stop Veranstalter -->
-
                                     </div>
                                 </div>
                                 <div class="all_participants">
@@ -1319,23 +1317,17 @@
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.approved}}</h2>
                                             <div class="membar-zone" *ngIf="approvedParticipantsNew">
-                                                <div class="membar-list"
-                                                    *ngFor="let participant of approvedParticipantsNew"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.users.id)">
-                                                    <div class="membar-badge success-badge"
-                                                        *ngIf="participant.approved_status == 1">
+                                                <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge success-badge" *ngIf="participant.approved_status == 1">
                                                         <span>{{language.organizer.approved}}</span>
                                                     </div>
-                                                    <div class="membar-img"
-                                                        *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="'assets/img/defaultProfile.jpeg'"
-                                                            style="width: 100px;" alt="" loading="lazy">
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
                                                     </div>
                                                     <div class="membar-img" *ngIf="participant.users.image != null">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="participant.users.image" style="width: 100px;" alt=""
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
                                                             loading="lazy">
                                                     </div>
                                                     <div class="membar_id">
@@ -1343,35 +1335,79 @@
                                                             {{participant.users.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action"  data-bs-toggle="modal"
-                                                    data-bs-target="#approvedParticipantsModal">
+                                                <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge success-badge" *ngIf="participant.approved_status == 1">
+                                                        <span>{{language.organizer.approved}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge success-badge" *ngIf="participant.approved_status == 1">
+                                                        <span>{{language.organizer.approved}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of approvedParticipantsNew" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge success-badge" *ngIf="participant.approved_status == 1">
+                                                        <span>{{language.organizer.approved}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-modal-action" data-bs-toggle="modal" data-bs-target="#approvedParticipantsModal">
                                                     <span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
-                                                            viewBox="0 0 27 40" fill="none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40" viewBox="0 0 27 40" fill="none">
                                                             <g filter="url(#filter0_d_4125_915)">
-                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968"
-                                                                    stroke-width="5" stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    shape-rendering="crispEdges" />
+                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968" stroke-width="5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" shape-rendering="crispEdges" />
                                                             </g>
                                                             <defs>
-                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5"
-                                                                    width="26" height="39" filterUnits="userSpaceOnUse"
-                                                                    color-interpolation-filters="sRGB">
-                                                                    <feFlood flood-opacity="0"
-                                                                        result="BackgroundImageFix" />
+                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5" width="26" height="39"
+                                                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
                                                                     <feColorMatrix in="SourceAlpha" type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                        result="hardAlpha" />
+                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                                                                     <feOffset dy="4" />
                                                                     <feGaussianBlur stdDeviation="2" />
                                                                     <feComposite in2="hardAlpha" operator="out" />
-                                                                    <feColorMatrix type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                                                                    <feBlend mode="normal" in2="BackgroundImageFix"
-                                                                        result="effect1_dropShadow_4125_915" />
-                                                                    <feBlend mode="normal" in="SourceGraphic"
-                                                                        in2="effect1_dropShadow_4125_915"
+                                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4125_915" />
+                                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4125_915"
                                                                         result="shape" />
                                                                 </filter>
                                                             </defs>
@@ -1388,17 +1424,14 @@
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.pending}}</h2>
                                             <div class="membar-zone">
-                                                <div class="membar-list" *ngFor="let participant of memImg"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.id)">
+                                                <div class="membar-list" *ngFor="let participant of memImg" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
                                                     <div class="membar-badge info-badge">
                                                         <span>{{language.organizer.pending}}</span>
                                                     </div>
-                                                    <div class="membar-img"
-                                                        *ngIf="participant.image == null || participant.image == ''">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="'assets/img/defaultProfile.jpeg'"
-                                                            style="width: 100px;" alt="" loading="lazy">
+                                                    <div class="membar-img" *ngIf="participant.image == null || participant.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
                                                     </div>
                                                     <div class="membar-img" *ngIf="participant.image != null">
                                                         <img [src]="participant.image" style="width: 100px;">
@@ -1408,35 +1441,59 @@
                                                             {{participant.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action"  data-bs-toggle="modal"
-                                                data-bs-target="#pendingParticipantsModal">
+                                                <div class="membar-list" *ngFor="let participant of memImg" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
+                                                    <div class="membar-badge info-badge">
+                                                        <span>{{language.organizer.pending}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.image == null || participant.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.image != null">
+                                                        <img [src]="participant.image" style="width: 100px;">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.firstname}}<br />
+                                                            {{participant.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of memImg" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
+                                                    <div class="membar-badge info-badge">
+                                                        <span>{{language.organizer.pending}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.image == null || participant.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.image != null">
+                                                        <img [src]="participant.image" style="width: 100px;">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.firstname}}<br />
+                                                            {{participant.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-modal-action" data-bs-toggle="modal" data-bs-target="#pendingParticipantsModal">
                                                     <span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
-                                                            viewBox="0 0 27 40" fill="none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40" viewBox="0 0 27 40" fill="none">
                                                             <g filter="url(#filter0_d_4125_915)">
-                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968"
-                                                                    stroke-width="5" stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    shape-rendering="crispEdges" />
+                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968" stroke-width="5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" shape-rendering="crispEdges" />
                                                             </g>
                                                             <defs>
-                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5"
-                                                                    width="26" height="39" filterUnits="userSpaceOnUse"
-                                                                    color-interpolation-filters="sRGB">
-                                                                    <feFlood flood-opacity="0"
-                                                                        result="BackgroundImageFix" />
+                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5" width="26" height="39"
+                                                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
                                                                     <feColorMatrix in="SourceAlpha" type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                        result="hardAlpha" />
+                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                                                                     <feOffset dy="4" />
                                                                     <feGaussianBlur stdDeviation="2" />
                                                                     <feComposite in2="hardAlpha" operator="out" />
-                                                                    <feColorMatrix type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                                                                    <feBlend mode="normal" in2="BackgroundImageFix"
-                                                                        result="effect1_dropShadow_4125_915" />
-                                                                    <feBlend mode="normal" in="SourceGraphic"
-                                                                        in2="effect1_dropShadow_4125_915"
+                                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4125_915" />
+                                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4125_915"
                                                                         result="shape" />
                                                                 </filter>
                                                             </defs>
@@ -1452,23 +1509,18 @@
                                     <div class="membar-list-main-zone denied-area" *ngIf="deniedParticipants?.length > 0">
                                         <div class="membar-list-zone-inner">
                                             <h2 class="widget-heading">{{language.club_events.denied}}</h2>
-                                            <div class="membar-zone" *ngFor="let participant of deniedParticipants">
-                                                <div class="membar-list" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.users.id)">
-                                                    <div class="membar-badge danger-badge"
-                                                        *ngIf="participant.approved_status == 3">
+                                            <div class="membar-zone">
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants"             data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
                                                         <span>{{language.create_event.denied}}</span>
                                                     </div>
-                                                    <div class="membar-img"
-                                                        *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="'assets/img/defaultProfile.jpeg'"
-                                                            style="width: 100px;" alt="" loading="lazy">
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
                                                     </div>
                                                     <div class="membar-img" *ngIf="participant.users.image != null">
-                                                        <img onContextMenu="return false;"
-                                                            [src]="participant.users.image" style="width: 100px;" alt=""
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
                                                             loading="lazy">
                                                     </div>
                                                     <div class="membar_id">
@@ -1476,35 +1528,115 @@
                                                             {{participant.users.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action" data-bs-toggle="modal"
-                                                data-bs-target="#deniedParticipantsModal">
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                                        <span>{{language.create_event.denied}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                                        <span>{{language.create_event.denied}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                                        <span>{{language.create_event.denied}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                                        <span>{{language.create_event.denied}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-list" *ngFor="let participant of deniedParticipants" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.users.id)">
+                                                    <div class="membar-badge danger-badge" *ngIf="participant.approved_status == 3">
+                                                        <span>{{language.create_event.denied}}</span>
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image == null || participant.users.image == ''">
+                                                        <img onContextMenu="return false;" [src]="'assets/img/defaultProfile.jpeg'" style="width: 100px;"
+                                                            alt="" loading="lazy">
+                                                    </div>
+                                                    <div class="membar-img" *ngIf="participant.users.image != null">
+                                                        <img onContextMenu="return false;" [src]="participant.users.image" style="width: 100px;" alt=""
+                                                            loading="lazy">
+                                                    </div>
+                                                    <div class="membar_id">
+                                                        <span>{{participant.users.firstname}}<br />
+                                                            {{participant.users.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="membar-modal-action" data-bs-toggle="modal" data-bs-target="#deniedParticipantsModal">
                                                     <span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
-                                                            viewBox="0 0 27 40" fill="none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40" viewBox="0 0 27 40" fill="none">
                                                             <g filter="url(#filter0_d_4125_915)">
-                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968"
-                                                                    stroke-width="5" stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    shape-rendering="crispEdges" />
+                                                                <path d="M7 29L20 16L7 3" stroke="#EF4968" stroke-width="5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" shape-rendering="crispEdges" />
                                                             </g>
                                                             <defs>
-                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5"
-                                                                    width="26" height="39" filterUnits="userSpaceOnUse"
-                                                                    color-interpolation-filters="sRGB">
-                                                                    <feFlood flood-opacity="0"
-                                                                        result="BackgroundImageFix" />
+                                                                <filter id="filter0_d_4125_915" x="0.5" y="0.5" width="26" height="39"
+                                                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
                                                                     <feColorMatrix in="SourceAlpha" type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                        result="hardAlpha" />
+                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                                                                     <feOffset dy="4" />
                                                                     <feGaussianBlur stdDeviation="2" />
                                                                     <feComposite in2="hardAlpha" operator="out" />
-                                                                    <feColorMatrix type="matrix"
-                                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                                                                    <feBlend mode="normal" in2="BackgroundImageFix"
-                                                                        result="effect1_dropShadow_4125_915" />
-                                                                    <feBlend mode="normal" in="SourceGraphic"
-                                                                        in2="effect1_dropShadow_4125_915"
+                                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4125_915" />
+                                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4125_915"
                                                                         result="shape" />
                                                                 </filter>
                                                             </defs>
@@ -1512,13 +1644,12 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                    
                                         </div>
-
                                     </div>
                                     <!-- Denied membar list area End-->
 
                                     <!-- Assigned task section start -->
-
                                     <div class="event-task-zone" *ngIf="eventDetails.eventTask && eventDetails.eventTask.id" >
                                         <h2 class="widget-heading">{{language.club_events.assigned_task}}</h2>
                                         <div class="event-task-list-zone">
@@ -1581,7 +1712,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="membar-modal-action">
+                                            <div class="membar-modal-action" data-bs-toggle="modal"
+                                            data-bs-target="#taskDetailsModal" (click)="getTaskDetails(eventDetails.eventTask)">
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                         viewBox="0 0 27 40" fill="none">
@@ -1619,141 +1751,7 @@
 
                                     <!-- Assigned task section End -->
 
-                                    <!-- <div class="all-participant-card">
-                                        <div class="card-header "
-                                            *ngIf="(approvedParticipants && approvedParticipants.length) || (memImg && memImg.length)">
-                                            <h5 class="card-title">{{language.organizer.all_participants}}</h5>
-                                        </div>
-                                        <div class="card-body" *ngIf="approvedParticipants">
-                                            <div class="widget-appointment widget"
-                                                *ngFor="let participant of approvedParticipants">
-                                                <div class="widget-app-content" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.users.id)">
-                                                    <div class="app-left-content">
-                                                        <div class="author-img"
-                                                            *ngIf="participant.users.image == null || participant.users.image == ''">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="'assets/img/defaultProfile.jpeg'"
-                                                                style="width: 100px;" alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="author-img" *ngIf="participant.users.image != null">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="participant.users.image" style="width: 100px;"
-                                                                alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="user-content">
-                                                            <span class="user-name">{{participant.users.firstname}}
-                                                                {{participant.users.lastname}}</span>
-                                                            <span
-                                                                class="participant_email">{{participant.users.email}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="app-right-content"
-                                                        *ngIf="participant.approved_status == 1">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge approved"></span>{{language.organizer.approved}}
-                                                        </span>
-                                                    </div>
-                                                    <div class="app-right-content"
-                                                        *ngIf="participant.approved_status == 3">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge denied"></span>{{language.create_event.denied}}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="widget-appointment widget" *ngFor="let participant of memImg">
-                                                <div class="widget-app-content" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" (click)="getMemId(participant.id)">
-                                                    <div class="app-left-content">
-                                                        <div class="author-img"
-                                                            *ngIf="participant.image == null || participant.image == ''">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="'assets/img/defaultProfile.jpeg'"
-                                                                style="width: 100px;" alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="author-img" *ngIf="participant.image != null">
-                                                            <img [src]="participant.image" style="width: 100px;">
-                                                        </div>
-                                                        <div class="user-content">
-                                                            <span class="user-name">{{participant.firstname}}
-                                                                {{participant.lastname}}</span>
-                                                            <span class="participant_email">{{participant.email}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="app-right-content">
-                                                        <span class="participant_status">
-                                                            <span
-                                                                class="status_badge pending"></span>{{language.organizer.pending}}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="event-content">
-                                        <div class="event-title">
-                                            <div class="sub-title">
-                                                <input *ngIf="eventDetails.eventTask.status == 0" class="check-style"
-                                                    id="styled-checkbox-{{eventDetails.eventTask.id}}" type="checkbox"
-                                                    style="opacity: 1;margin-top: 0px;"
-                                                    (change)="mainTaskMarkComplete(eventDetails.eventTask.id)">
-                                                <input *ngIf="eventDetails.eventTask.status == 1" class="check-style"
-                                                    id="styled-checkbox-{{eventDetails.eventTask.id}}" type="checkbox"
-                                                    style="opacity: 1;margin-top: 0px;" checked="checked"
-                                                    disabled="disabled">
-
-                                                <h5 *ngIf="eventDetails.eventTask.status != 2" class=""
-                                                    style="margin-left: 35px;">{{eventDetails.eventTask.title}}
-                                                </h5>
-                                                <h5 *ngIf="eventDetails.eventTask.status == 2" class="">
-                                                    {{eventDetails.eventTask.title}}</h5>
-                                            </div>
-                                            <span><img onContextMenu="return false;"
-                                                    src="../../../../assets/img/new-design/dashboard/gray-clock.svg"
-                                                    alt="" loading="lazy">&nbsp;
-                                                {{language.organizer.due_date}} :- {{eventDetails.eventTask.date
-                                                | date: 'd. MMMM y'}}</span>
-                                        </div>
-                                        <p [innerHTML]="eventDetails.eventTask.description"></p>
-                                    </div> -->
-
-                                    <div class="all-participant-card">
-                                        <!-- <div class="card-header " *ngIf="(collaborators && collaborators.length)">
-                                            <h5 class="card-title">{{language.organizer.collaborators}}</h5>
-                                        </div> -->
-                                        <!-- <div class="card-body" *ngIf="collaborators">
-                                            <div class="widget-appointment widget"
-                                                *ngFor="let participant of collaborators">
-                                                <div class="widget-app-content" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
-                                                    (click)="getMemId(participant.user_id)">
-                                                    <div class="app-left-content">
-                                                        <div class="author-img"
-                                                            *ngIf="participant.image == null || participant.image == ''">
-                                                            <img onContextMenu="return false;"
-                                                                [src]="'assets/img/defaultProfile.jpeg'"
-                                                                style="width: 100px;" alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="author-img" *ngIf="participant.image != null">
-                                                            <img onContextMenu="return false;" [src]="participant.image"
-                                                                style="width: 100px;" alt="" loading="lazy">
-                                                        </div>
-                                                        <div class="user-content">
-                                                            <span class="user-name">
-                                                                {{participant.user[0]?.firstname}}
-                                                                {{participant.user[0]?.lastname}}</span>
-                                                            <span
-                                                                class="participant_email">{{participant?.user[0]?.email}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
+                                    <div class="all-participant-card"></div>
 
                                 </div>
                             </div>
@@ -1768,6 +1766,7 @@
     </div>
 </div>
 
+<!-- PARTICIPANTS DETAIL MODAL START -->
 <div class="modal fade change_pass_section profile_popup" id="exampleModal" tabindex="-1"
     aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered">
@@ -1855,6 +1854,8 @@
         </div>
     </div>
 </div>
+<!-- PARTICIPANTS DETAIL MODAL END -->
+
 
 <!-- APPROVED PARTICIPANTS MODAL START -->
 <div class="modal fade change_pass_section profile_popup" id="approvedParticipantsModal" tabindex="-1"
@@ -1966,7 +1967,38 @@
 </div>
 <!-- DENIED PARTICIPANTS MODAL END -->
 
-
+<!-- TASK DETAILS MODAL START -->
+<div class="modal fade change_pass_section profile_popup" id="taskDetailsModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <!-- <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div> -->
+        <div class="modal-content">
+       
+            <div class="event-task-list">
+                <div class="event-task-header">
+                    <div class="event-t-header-inner">
+                        <h3 class="">{{selectedTask?.title}}</h3>
+                    </div>
+                </div>
+                <div class="event-task-description">
+                    <div class="event-task-badge" *ngIf="selectedTask?.group_id == 0">{{language.create_news.chairman}}
+                    </div>
+                    <div class="event-task-badge" *ngIf="selectedTask?.group_id != 0">{{language.header.group}}</div>
+                    <p [innerHTML]="selectedTask?.description"></p>
+                </div>
+                <div class="survey-timeline">
+                    <div class="timeline-label">
+                        <span>PROGRESS : 0% </span>
+                    </div>
+                    <div class="timeline">
+                        <mat-progress-bar mode="determinate"></mat-progress-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TASK DETAILS MODAL END -->
 
 <div *ngIf="dowloading">
     <div class="overlay download-overlay">

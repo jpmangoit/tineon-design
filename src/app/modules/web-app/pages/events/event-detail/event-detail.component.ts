@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
-import {LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
+import { LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType } from '@core/models';
+import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService } from '@shared/components';
 
 
 declare var $: any;
@@ -67,6 +67,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     dowloading: boolean = false;
     approvedParticipantsNew: any[] = [];
     deniedParticipants: any[] = [];
+
+    selectedTask: any;
 
     constructor(
         private authService: AuthServiceService,
@@ -164,8 +166,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             this.authService.setLoader(false);
                             this.updateEventData = null;
                             this.eventDetails = respData['result'][0];
-                            console.log( this.eventDetails);
-                            
+                            console.log(this.eventDetails.eventTask);
+
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
                             this.eventDetails.recurring_dates.forEach((element: any) => {
@@ -199,7 +201,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['users'] = JSON.parse(this.updateEventData['users']);
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
-                                        
+                                        console.log(this.eventDetails);
+
+
 
                                         if (this.updateEventData?.baseImage[0]?.image != null) {
                                             this.showUpdateImage = true;
@@ -242,7 +246,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                             });
                                             this.updateEventData.users = Object.assign(this.authService.uniqueObjData(this.updateEventData.users, 'user_id'));
                                             this.updateEventData.users = this.updateEventData.users.filter(item => item.user !== undefined);
-                                        
+
                                         }
                                         if (this.updateEventData?.task?.length > 0) {
                                             this.isTaskDetailsUpdate = true
@@ -274,9 +278,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                 }
                                             });
                                             console.log(this.updateEventData);
-                                            
+
                                         }
-                                        
+
                                         if (this.updateEventData.room != 'null') {
                                             this.commonFunctionService.roomsById(this.updateEventData.room)
                                                 .then((resp: any) => {
@@ -371,8 +375,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             });
                             this.organizerDetails = Object.assign(this.authService.uniqueObjData(this.organizerDetails, 'id'));
                             this.approvedParticipants = Object.assign(this.authService.uniqueObjData(this.approvedParticipants, 'id'));
-                            this.approvedParticipantsNew = this.approvedParticipants.filter((item:any) => item.approved_status === 1);
-                            this.deniedParticipants = this.approvedParticipants.filter((item:any) => item.approved_status === 3);
+                            this.approvedParticipantsNew = this.approvedParticipants.filter((item: any) => item.approved_status === 1);
+                            this.deniedParticipants = this.approvedParticipants.filter((item: any) => item.approved_status === 3);
                         }
                     }
                 );
@@ -444,6 +448,17 @@ export class EventDetailComponent implements OnInit, OnDestroy {
             .catch((err: any) => {
                 console.log(err);
             })
+    }
+
+    /**
+   * Function to get a particular tasks' details
+   * @author MangoIt Solutions (M)
+   * @param {user id}
+   * @returns {Object} Details of the task
+   */
+    getTaskDetails(taskInfo: any) {
+        console.log(taskInfo);
+        this.selectedTask = taskInfo;
     }
 
     approvedEvents(eventId: number) {
