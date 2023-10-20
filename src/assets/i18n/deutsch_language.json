@@ -251,7 +251,19 @@
         "to_event_list": "Zum Event",
         "year": "Jahr",
         "month": "Monat",
-        "event_type": "Event-Typ"
+        "event_type": "Event-Typ",
+        "january": "Januar",
+        "february": "Februar",
+        "march":"März",
+        "april":"April",
+        "may":"Mai",
+        "june":"Juni",
+        "july":"Juli",
+        "august":"August",
+        "september": "September",
+        "october": "Oktober",
+        "november":"November",
+        "december":"Dezember"
     },
     "club_news": {
         "Edit": "Bearbeiten",

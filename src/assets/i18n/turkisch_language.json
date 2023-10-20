@@ -249,7 +249,19 @@
         "to_event_list": "Zum Event",
         "year": "Year",
         "month": "Month",
-        "event_type": "Event-type"
+        "event_type": "Event-type",
+        "january": "January",
+        "february": "February",
+        "march":"March",
+        "april":"April",
+        "may":"May",
+        "june":"June",
+        "july":"July",
+        "august":"August",
+        "september": "September",
+        "october": "October",
+        "november":"November",
+        "december":"December"
     },
     "club_news": {
         "Edit": "Düzenlemek",

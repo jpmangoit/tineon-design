@@ -8,9 +8,9 @@ declare var $: any;
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
-import {CreateAccess, EventsType, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {appSetting} from '@core/constants';
+import { CreateAccess, EventsType, LoginDetails, ParticipateAccess, ThemeType, UserAccess } from '@core/models';
+import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { appSetting } from '@core/constants';
 
 export const MY_DATE_FORMATS = {
     display: {
@@ -64,6 +64,7 @@ export class EventsCalendarComponent implements OnInit {
     selectedView: string = 'tile-view';
 
     eventTypeDropdownList: { item_id: number, item_text: string }[] = [];
+    monthDropdownList: { item_id: number, name: string }[] = [];
     allEventsList: any[] = [];
     currentPageNumber: number = 1;
     totalPages: any;
@@ -111,7 +112,7 @@ export class EventsCalendarComponent implements OnInit {
             this.setTheme = resp;
         });
         this.currentUrl = this.router.url;
-        if(this.currentUrl == '/web/clubwall/club-events'){
+        if (this.currentUrl == '/web/clubwall/club-events') {
             this.filterOpt = false;
         } else {
             this.filterOpt = true
@@ -272,6 +273,20 @@ export class EventsCalendarComponent implements OnInit {
             { item_id: 3, item_text: this.language.create_event.functionaries_event },
             { item_id: 4, item_text: this.language.create_event.courses },
             { item_id: 5, item_text: this.language.create_event.seminar }
+        ];
+        this.monthDropdownList = [
+            { item_id: 1, name: this.language.club_events.january },
+            { item_id: 2, name: this.language.club_events.february },
+            { item_id: 3, name: this.language.club_events.march },
+            { item_id: 4, name: this.language.club_events.april },
+            { item_id: 5, name: this.language.club_events.may },
+            { item_id: 6, name: this.language.club_events.june },
+            { item_id: 7, name: this.language.club_events.july },
+            { item_id: 8, name: this.language.club_events.august },
+            { item_id: 9, name: this.language.club_events.september },
+            { item_id: 10, name: this.language.club_events.october },
+            { item_id: 11, name: this.language.club_events.november },
+            { item_id: 12, name: this.language.club_events.december },
         ];
     }
     /**
@@ -470,6 +485,10 @@ export class EventsCalendarComponent implements OnInit {
     }
 
     applyFilters() {
+        console.log(this.selectedYear);
+        console.log(this.selectedMonth);
+        console.log(this.selectedEventType);
+
         this.currentPageNumber = 1; // Reset to the first page when changing items per page
         this.allEventsList = this.actualAllEventsList;
         this.filteredEventsList = this.allEventsList.filter(event => {
@@ -492,15 +511,11 @@ export class EventsCalendarComponent implements OnInit {
             return true;
         });
         this.allEventsList = this.filteredEventsList;
-        if(this.filteredEventsList.length == 0){
+        if (this.filteredEventsList.length == 0) {
             this.isData = false
-        }else{
+        } else {
             this.isData = true;
         }
-
-        // let newsTotalRecords = this.allEventsList.length
-        // this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-        // this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         this.updatePagesArray();
 
     }
@@ -531,31 +546,66 @@ export class EventsCalendarComponent implements OnInit {
     nextPage() {
         if (this.currentPageNumber < this.totalPages) {
             this.currentPageNumber++;
+            this.updatePagesArray();
         }
     }
 
     previousPage() {
         if (this.currentPageNumber > 1) {
             this.currentPageNumber--;
+            this.updatePagesArray();
         }
     }
 
     goToPage(pageNumber: number) {
         if (pageNumber >= 1 && pageNumber <= this.totalPages) {
             this.currentPageNumber = pageNumber;
+            // Call updatePagesArray after changing the current page
+            this.updatePagesArray();
         }
     }
 
     changeItemsPerPage() {
         this.currentPageNumber = 1; // Reset to the first page when changing items per page
-        this.updatePagesArray(); 
+        this.updatePagesArray();
     }
 
+    // updatePagesArray() {
+    //     let newsTotalRecords = this.allEventsList.length
+    //     this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
+    //     this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    //     console.log( this.pagesArray );
+
+    // }
+
     updatePagesArray() {
-        let newsTotalRecords = this.allEventsList.length
+        let newsTotalRecords = this.allEventsList.length;
         this.totalPages = Math.ceil(newsTotalRecords / this.itemPerPage);
-        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+
+        const maxPagesToShow = 5; // You can adjust this value based on your requirement
+        const middlePage = Math.floor(maxPagesToShow / 2);
+
+        let startPage = this.currentPageNumber - middlePage;
+        startPage = Math.max(startPage, 1);
+
+        let endPage = startPage + maxPagesToShow - 1;
+        endPage = Math.min(endPage, this.totalPages);
+
+        const showEllipsisStart = startPage > 1;
+        const showEllipsisEnd = endPage < this.totalPages;
+
+        if (showEllipsisStart) {
+            startPage = Math.max(startPage - 1, 1);
+        }
+
+        if (showEllipsisEnd) {
+            endPage = Math.min(endPage + 1, this.totalPages);
+        }
+
+        this.pagesArray = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+        console.log(this.pagesArray);
     }
+
 
 
     /**
