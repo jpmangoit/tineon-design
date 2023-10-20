@@ -3,7 +3,7 @@
         <div class="date-bar">
             <div class="filter-box">
                 <mat-form-field appearance="fill">
-                    <mat-select matNativeControl placeholder="View" [(value)]="selectedView" >
+                    <mat-select matNativeControl placeholder="View" [(value)]="selectedView" disableOptionCentering>
                         <mat-option value="tile-view">{{language.club_events.tile_view}}</mat-option>
                         <mat-option value="list-view">{{language.club_events.list_view}}</mat-option>
                     </mat-select>
@@ -17,8 +17,8 @@
                 </mat-form-field>
             </div>
             <div class="filter-box">
-                <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.month}}">
+                <mat-form-field appearance="fill" >
+                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.month}}" disableOptionCentering>
                         <mat-option *ngFor="let month of months" [value]="month.value">
                             {{ month.name }}
                         </mat-option>
