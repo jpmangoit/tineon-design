@@ -247,7 +247,11 @@
         "pending": "Ausstehend:",
         "denied" : "Abgesagt:",
         "assigned_task": "Zugewiesene Aufgaben",
-        "orgainzer" : "Für die Veranstaltung verantwortlich:"
+        "orgainzer" : "Für die Veranstaltung verantwortlich:",
+        "to_event_list": "Zum Event",
+        "year": "Jahr",
+        "month": "Monat",
+        "event_type": "Event-Typ"
     },
     "club_news": {
         "Edit": "Bearbeiten",
