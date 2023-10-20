@@ -158,12 +158,20 @@
                             <path d="M6.37853 11L1.29248 6L6.37853 1" stroke="#EF4968" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <div class="pagination">
+                    <!-- <div class="pagination">
                         <span *ngFor="let page of pagesArray" (click)="goToPage(page)"
                             [class.active]="currentPageNumber === page">
                             {{ page }}
                         </span>
+                    </div> -->
+                    <div class="pagination">
+                        <span *ngIf="pagesArray[0] > 1">...</span>
+                        <span *ngFor="let page of pagesArray" (click)="goToPage(page)" [class.active]="currentPageNumber === page">
+                          {{ page }}
+                        </span>
+                        <span *ngIf="pagesArray[pagesArray.length - 1] < totalPages">...</span>
                     </div>
+                    
                     <button style="transform: rotate(180deg);" (click)="nextPage()"
                         [disabled]="currentPageNumber === totalPages">
                         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
