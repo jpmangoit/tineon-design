@@ -273,6 +273,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                     this.taskOrganizerDetailsUpdated.push(element);
                                                 }
                                             });
+                                            console.log(this.updateEventData);
+                                            
                                         }
                                         
                                         if (this.updateEventData.room != 'null') {

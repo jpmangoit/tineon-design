@@ -320,7 +320,8 @@
                                                                     {{participant.users.lastname}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="membar-modal-action">
+                                                        <div class="membar-modal-action" data-bs-toggle="modal"
+                                                        data-bs-target="#approvedParticipantsModal">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                                     viewBox="0 0 27 40" fill="none">
@@ -384,7 +385,8 @@
                                                                     {{participant.lastname}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="membar-modal-action">
+                                                        <div class="membar-modal-action" data-bs-toggle="modal"
+                                                        data-bs-target="#pendingParticipantsModal">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                                     viewBox="0 0 27 40" fill="none">
@@ -451,7 +453,8 @@
                                                                     {{participant.users.lastname}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="membar-modal-action">
+                                                        <div class="membar-modal-action" data-bs-toggle="modal"
+                                                        data-bs-target="#deniedParticipantsModal">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                                     viewBox="0 0 27 40" fill="none">
@@ -938,6 +941,9 @@
                                                 <div class="event-task-list-zone">
                                                     <div class="event-task-list" >
                                                         <div class="event-task-header">
+                                                            <div class="event-t-header-inner">
+                                                                <h3 class="">{{updateEventData?.task[0].title }}</h3>
+                                                            </div>
                                                             <div class="dropdown action_group" *ngIf=" role != 'guest'">
                                                                 <button class="dropdown-toggle" type="button"
                                                                     (click)="onShowTask()">
@@ -966,7 +972,7 @@
                                                             <div class="event-task-badge" *ngIf="eventDetails.group_id == 0">{{language.create_news.chairman}}</div>
                                                             <div class="event-task-badge"  *ngIf="eventDetails.group_id != 0">{{language.header.group}}</div>
                                                         
-                                                            <p [innerHTML]="updateEventData.description"></p>
+                                                            <p [innerHTML]="updateEventData?.task[0].description"></p>
                                                         </div>
                                                     </div>
                                                     <div class="membar-modal-action">
@@ -1325,7 +1331,8 @@
                                                             {{participant.users.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action">
+                                                <div class="membar-modal-action"  data-bs-toggle="modal"
+                                                    data-bs-target="#approvedParticipantsModal">
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                             viewBox="0 0 27 40" fill="none">
@@ -1389,7 +1396,8 @@
                                                             {{participant.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action">
+                                                <div class="membar-modal-action"  data-bs-toggle="modal"
+                                                data-bs-target="#pendingParticipantsModal">
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                             viewBox="0 0 27 40" fill="none">
@@ -1456,7 +1464,8 @@
                                                             {{participant.users.lastname}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="membar-modal-action">
+                                                <div class="membar-modal-action" data-bs-toggle="modal"
+                                                data-bs-target="#deniedParticipantsModal">
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40"
                                                             viewBox="0 0 27 40" fill="none">
@@ -1826,6 +1835,47 @@
         </div>
     </div>
 </div>
+
+<!-- APPROVED PARTICIPANTS MODAL START -->
+<div class="modal fade change_pass_section profile_popup" id="approvedParticipantsModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <div class="modal-content">
+           
+          
+        </div>
+    </div>
+</div>
+<!-- APPROVED PARTICIPANTS MODAL END -->
+
+<!-- PENDING PARTICIPANTS MODAL START -->
+<div class="modal fade change_pass_section profile_popup" id="pendingParticipantsModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <div class="modal-content">
+           
+          
+        </div>
+    </div>
+</div>
+<!-- PENDING PARTICIPANTS MODAL END -->
+
+<!-- DENIED PARTICIPANTS MODAL START -->
+<div class="modal fade change_pass_section profile_popup" id="deniedParticipantsModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <div id="profileSpinner" class="overlay__content"><span class="spinner"></span></div>
+        <div class="modal-content">
+           
+          
+        </div>
+    </div>
+</div>
+<!-- DENIED PARTICIPANTS MODAL END -->
+
+
 
 <div *ngIf="dowloading">
     <div class="overlay download-overlay">
