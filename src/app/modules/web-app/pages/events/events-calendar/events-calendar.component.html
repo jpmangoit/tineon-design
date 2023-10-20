@@ -18,9 +18,7 @@
             </div>
             <div class="filter-box">
                 <mat-form-field appearance="fill" >
-                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="Month" disableOptionCentering>
-                <mat-form-field appearance="fill">
-                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.month}}">
+                    <mat-select matNativeControl [(value)]="selectedMonth" (selectionChange)="applyFilters()"  placeholder="{{language.club_events.month}}" disableOptionCentering>
                         <mat-option *ngFor="let month of months" [value]="month.value">
                             {{ month.name }}
                         </mat-option>

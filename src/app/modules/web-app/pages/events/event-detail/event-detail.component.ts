@@ -166,7 +166,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             this.authService.setLoader(false);
                             this.updateEventData = null;
                             this.eventDetails = respData['result'][0];
-                            console.log(this.eventDetails.eventTask);
 
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
@@ -277,8 +276,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                                     this.taskOrganizerDetailsUpdated.push(element);
                                                 }
                                             });
-                                            console.log(this.updateEventData);
-
                                         }
 
                                         if (this.updateEventData.room != 'null') {
@@ -419,8 +416,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 this.memImg.push(val);
                             });
                             this.memImg = Object.assign(this.authService.uniqueObjData(this.memImg, 'id'));
-                            // console.log(this.memImg);
-
                         }
                         this.authService.setLoader(false);
                     }
@@ -457,7 +452,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
    * @returns {Object} Details of the task
    */
     getTaskDetails(taskInfo: any) {
-        console.log(taskInfo);
         this.selectedTask = taskInfo;
     }
 
@@ -620,7 +614,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 });
                             }
                         });
-
                         let org_id = 0;
                         if (this.collaboratorDetails && this.collaboratorDetails.length > 0) {
                             this.collaboratorDetails.forEach((value: any) => {
@@ -632,7 +625,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                 }
                             })
                             this.collaborators = Object.assign(this.authService.uniqueObjData(this.collaborators, 'id'));
-
                         }
                     }
                 );

@@ -1181,6 +1181,7 @@ font-weight: 700;
 .membar-modal-action {
     position: absolute;
     right: 0px;
+    cursor: pointer;
 }
 .membar-badge {
     position: absolute;
@@ -1369,6 +1370,70 @@ ul.Task-toggle.show li a {
     color: #9ea5bd;
     min-width: 109px;
     font-weight: 600;
+}
+
+/* modal css start */
+div#pendingParticipantsModal .modal-dialog, div#approvedParticipantsModal .modal-dialog, 
+div#deniedParticipantsModal .modal-dialog, 
+div#taskDetailsModal .modal-dialog{
+    max-width: 635px;
+}
+div#pendingParticipantsModal .modal-dialog .modal-content, 
+div#approvedParticipantsModal .modal-dialog .modal-content, 
+div#deniedParticipantsModal .modal-dialog .modal-content, 
+div#taskDetailsModal .modal-dialog .modal-content{
+    padding: 27px;
+}
+div#deniedParticipantsModal .membar-list-zone-inner, 
+div#pendingParticipantsModal .membar-list-zone-inner, 
+div#approvedParticipantsModal .membar-list-zone-inner {
+    width: 100%;
+}
+div#approvedParticipantsModal .membar-list, 
+div#deniedParticipantsModal .membar-list, 
+div#pendingParticipantsModal .membar-list {
+    width: 48.5%;
+    flex: 0 0 48.5%;
+}
+div#approvedParticipantsModal .membar-list-main-zone, 
+div#deniedParticipantsModal .membar-list-main-zone, 
+div#pendingParticipantsModal .membar-list-main-zone {
+    margin:0px;
+}
+div#taskDetailsModal .modal-dialog .event-task-list{
+    width: 100%;
+}
+div#taskDetailsModal .all-participant-card .card-header {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 30px;
+}
+div#taskDetailsModal.profile_popup .card-body {
+    padding: 0;
+    overflow: hidden !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+div#taskDetailsModal .app-left-content{
+    width: 100%;
+}
+div#taskDetailsModal .all-participant-card .card-body > div {
+    width: 48%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background:#fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+div#taskDetailsModal .all-participant-card h5.card-title {
+    color: #555;
+    font-family: Gellix;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 @media (max-width:1550px){
     .event-img-bottom > div .event-time span {

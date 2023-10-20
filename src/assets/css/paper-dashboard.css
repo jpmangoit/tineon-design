@@ -12895,3 +12895,8 @@ background: #FBC52D;
       background-color: rgba(0, 0, 0, 0.2);
     }
   }
+  @media (max-width:1400px){
+    .card .card-header .card-title {
+        font-size: 18px;
+    }
+  }
