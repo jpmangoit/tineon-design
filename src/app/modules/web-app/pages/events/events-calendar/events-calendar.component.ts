@@ -603,7 +603,6 @@ export class EventsCalendarComponent implements OnInit {
         }
 
         this.pagesArray = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-        console.log(this.pagesArray);
     }
 
 
