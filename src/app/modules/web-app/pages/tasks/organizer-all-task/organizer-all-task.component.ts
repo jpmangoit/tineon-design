@@ -11,7 +11,7 @@ declare var $: any;
     styleUrls: ['./organizer-all-task.component.css']
 })
 
-export class OrganizerAllTaskComponent implements OnInit {
+export class OrganizerAllTaskComponent implements OnInit { 
     language: any;
     user_id: string;
     allTasks: TaskType[];
@@ -80,6 +80,8 @@ export class OrganizerAllTaskComponent implements OnInit {
                                         } else if (element.status == 1) {
                                             this.completed.push(element);
                                             this.completed;
+                                            console.log(this.completed);
+                                            
                                         }
                                     }
                                 });
