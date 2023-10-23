@@ -494,6 +494,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy(): void {
-        this.activatedSub.unsubscribe();
+        this.activatedSub.unsubscribe(); 
     }
 }

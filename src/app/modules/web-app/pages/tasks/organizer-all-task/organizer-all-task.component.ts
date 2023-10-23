@@ -60,6 +60,8 @@ export class OrganizerAllTaskComponent implements OnInit {
                                     if (element?.subtasks?.length > 0) {
                                         element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length;
                                         element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
+                                    } else if(element.status == 1){
+                                        element.progressVal = 100; //to show progress value = 100, if task consists of no subtasks
                                     }
 
                                     let cudate: Date = new Date();

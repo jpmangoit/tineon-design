@@ -17,7 +17,7 @@ export class McommunityGroupsComponent implements OnInit {
     language: any;
     groupData: CommunityGroup[];
     groupJoinData: CommunityGroup[];
-    groupsYouManageData: CommunityGroup[];
+    groupsYouManageData: CommunityGroup[]; 
     setTheme: ThemeType;
     responseMessage: string;
     displayGroup: boolean = true;
