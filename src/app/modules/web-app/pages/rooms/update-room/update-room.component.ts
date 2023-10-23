@@ -126,7 +126,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
 
         let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = userData.team_id;

@@ -41,7 +41,7 @@ export class CrmNewsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.role = this.userData.roles[0];
         this.userAccess = appSetting.role;

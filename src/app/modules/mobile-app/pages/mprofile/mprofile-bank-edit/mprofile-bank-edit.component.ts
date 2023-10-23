@@ -71,7 +71,7 @@ export class MprofileBankEditComponent implements OnInit {
             this.setTheme = resp;
         });
         this.userDataProfile = JSON.parse(localStorage.getItem('user-data'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.updateBankForm = this.formBuilder.group({
             userName: ['', Validators.required],
             iban: ['', [Validators.required, Validators.pattern('^[A-Z0-9]{22}$')]],
