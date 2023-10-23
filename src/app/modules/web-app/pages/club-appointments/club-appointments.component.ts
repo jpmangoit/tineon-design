@@ -88,7 +88,7 @@ export class ClubAppointmentsComponent implements OnInit {
 
     ngOnInit(): void {
         if (sessionStorage.getItem('token')) {
-            this.language = this.lang.getLanguaageFile();
+            this.language = this.lang.getLanguageFile();
             this.userDetails = JSON.parse(localStorage.getItem('user-data'));
             this.headline_word_option = JSON.parse(localStorage.getItem('headlineOption'));
             this.allowAdvertisment = localStorage.getItem('allowAdvertis');

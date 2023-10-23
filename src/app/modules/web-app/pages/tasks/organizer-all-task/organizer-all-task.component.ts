@@ -31,7 +31,7 @@ export class OrganizerAllTaskComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.user_id = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         if (sessionStorage.getItem('token')) {

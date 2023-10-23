@@ -14,7 +14,7 @@ declare var $: any;
     styleUrls: ['./club-news.component.css']
 })
 
-export class 
+export class
 ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
@@ -103,7 +103,7 @@ ClubNewsComponent implements OnInit, OnDestroy {
             this.newsDisplay = 4;
             this.showClubDash = false;
         }
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');

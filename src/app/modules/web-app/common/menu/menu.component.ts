@@ -69,7 +69,7 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp: any) => {
             this.headline_word_option = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         let userRole = this.userDetails.roles[0];

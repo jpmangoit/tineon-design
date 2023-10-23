@@ -115,7 +115,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
             }
         );
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.selectLanguage = localStorage.getItem('language');
         if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'

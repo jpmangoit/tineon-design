@@ -122,6 +122,7 @@ import {GroupListComponent} from '@modules/web-app/pages/groups/group-list/group
 import {FaqsListComponent} from '@modules/web-app/pages/faq/faqs-list/faqs-list.component';
 import {AppStoreComponent} from '@modules/web-app/pages/app-store/app-store.component';
 import {SharedModule} from '@shared/shared.module';
+import { GroupsComponent } from './pages/community/groups/groups.component';
 
 @NgModule({
     declarations: [
@@ -243,6 +244,7 @@ import {SharedModule} from '@shared/shared.module';
         GroupListComponent,
         FaqsListComponent,
         AppStoreComponent,
+        GroupsComponent,
     ],
     imports: [
         CommonModule,

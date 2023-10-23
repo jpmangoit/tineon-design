@@ -50,7 +50,7 @@ export class BannerDetailComponent implements OnInit {
             this.setTheme = resp;
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
 
         this.route.params.subscribe(params => {
             const bannerId: number = params['bannerId'];

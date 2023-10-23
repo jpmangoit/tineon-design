@@ -111,7 +111,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.role = this.userDetails.roles[0];
         this.userId = this.userDetails.userId;
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.route.params.subscribe(params => {
             const eventid: number = params['eventid'];
             this.eventId = eventid;

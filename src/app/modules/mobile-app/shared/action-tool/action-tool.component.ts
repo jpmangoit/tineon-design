@@ -24,7 +24,7 @@ export class ActionToolComponent {
   }
 
   ngOnInit(): void {
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
     this.userDetails = JSON.parse(localStorage.getItem('user-data'));
     let userRole:any = this.userDetails.roles
     this.userAccess = appSetting.role;

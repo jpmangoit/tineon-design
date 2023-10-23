@@ -1,0 +1,20 @@
+<div [formGroup]="form"
+     class="row row-cols-2 row-cols-sm-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 justify-content-end mb-4">
+  <div class="col">
+    <vc-dropdown (itemSelected)="onItemSelected($event)" [items]="dropDownItems"
+                 [selectedItemStyle]="{backgroundColor: 'var(--vc-yellow)'}"
+                 bindValue="id"
+                 displayName="filterName" formControlName="groupFilter"></vc-dropdown>
+  </div>
+</div>
+
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+  <ng-container *ngFor="let c of [1,2,3,4,5,6,7,8,9,0]">
+    <div class="col">
+      <vc-community-group-card></vc-community-group-card>
+    </div>
+  </ng-container>
+</div>
+
+
+

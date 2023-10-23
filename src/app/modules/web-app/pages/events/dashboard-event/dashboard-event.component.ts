@@ -81,7 +81,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
         if(this.selectLanguage  == 'sp'){
             this.selectLanguage = 'es'
         }
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;

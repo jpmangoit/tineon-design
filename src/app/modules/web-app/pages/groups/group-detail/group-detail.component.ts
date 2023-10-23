@@ -140,7 +140,7 @@ export class GroupDetailComponent implements OnInit {
 
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userId = localStorage.getItem('user-id');
         this.getAllUserInfo();
         this.route.params.subscribe(params => {
