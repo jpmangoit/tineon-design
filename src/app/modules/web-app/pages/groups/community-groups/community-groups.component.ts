@@ -110,7 +110,7 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
         }
         this.user_Id = localStorage.getItem('user-id');
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         // this.teamAllGroups();
         this.allGroups();
         this.joinAllGroups();
@@ -494,6 +494,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy(): void {
-        this.activatedSub.unsubscribe();
+        this.activatedSub.unsubscribe(); 
     }
 }

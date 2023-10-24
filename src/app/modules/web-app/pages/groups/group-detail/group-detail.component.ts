@@ -20,7 +20,7 @@ export class GroupDetailComponent implements OnInit {
     currentPageNmuber: number = 1;
     itemPerPage: number = 8;
     newsTotalRecords: number = 0;
-    tasksTotalRecords: number = 0;
+    tasksTotalRecords: number = 0; 
     eventsTotalRecords: number = 0;
     limitPerPage: { value: string }[] = [
         { value: '8' },
@@ -140,7 +140,7 @@ export class GroupDetailComponent implements OnInit {
 
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userId = localStorage.getItem('user-id');
         this.getAllUserInfo();
         this.route.params.subscribe(params => {

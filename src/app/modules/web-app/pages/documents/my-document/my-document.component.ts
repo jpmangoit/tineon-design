@@ -60,7 +60,7 @@ export class MyDocumentComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         if (localStorage.getItem('selectedView') != null) {
             this.selected_view  = JSON.parse(localStorage.getItem('selectedView'));
         }

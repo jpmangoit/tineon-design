@@ -11,7 +11,7 @@ declare var $: any;
     styleUrls: ['./organizer-all-task.component.css']
 })
 
-export class OrganizerAllTaskComponent implements OnInit {
+export class OrganizerAllTaskComponent implements OnInit { 
     language: any;
     user_id: string;
     allTasks: TaskType[];
@@ -31,7 +31,7 @@ export class OrganizerAllTaskComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.user_id = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         if (sessionStorage.getItem('token')) {
@@ -60,6 +60,8 @@ export class OrganizerAllTaskComponent implements OnInit {
                                     if (element?.subtasks?.length > 0) {
                                         element.approvedCount = element.subtasks.filter((obj: any) => obj.status === 1).length;
                                         element.progressVal = Math.round(100 * (element.approvedCount / (element.subtasks.length)));
+                                    } else if(element.status == 1){
+                                        element.progressVal = 100; //to show progress value = 100, if task consists of no subtasks
                                     }
 
                                     let cudate: Date = new Date();
@@ -80,6 +82,8 @@ export class OrganizerAllTaskComponent implements OnInit {
                                         } else if (element.status == 1) {
                                             this.completed.push(element);
                                             this.completed;
+                                            console.log(this.completed);
+                                            
                                         }
                                     }
                                 });

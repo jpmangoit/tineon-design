@@ -71,7 +71,7 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 		});
 
 		let self = this;
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.extensions = appSetting.extensions;
 		this.imageType = appSetting.imageType;
@@ -599,7 +599,7 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 	clickDraftMessages(id: number, esdb_id: string) {
 		this.isReplyMsgForm = false;
 		this.visiblityDropdownSettings = {};
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.selectedMessage = [];
 		this.authService.setLoader(true);

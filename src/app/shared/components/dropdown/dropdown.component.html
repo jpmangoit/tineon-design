@@ -1,0 +1,16 @@
+<div class="vc-dropdown">
+  <button (click)="toggleDropdown()" class="dropdown-btn">
+    {{displayValue}}
+    <span><vc-icon iconName="chevron-down"
+                   size="10px"></vc-icon></span>
+  </button>
+  <div *ngIf="isOpen" [ngClass]="itemsClass ? itemsClass : ''" class="dropdown-content">
+    <div (click)="selectItem(item)" *ngFor="let item of items"
+         [ngClass]="isItemSelected(item) ? (selectedItemClass ? selectedItemClass : 'selected-item') : ''"
+         [ngStyle]="isItemSelected(item) ? selectedItemStyle : {}"
+         class="dropdown-item">
+      {{ getDisplayName(item) }}
+    </div>
+  </div>
+
+</div>

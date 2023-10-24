@@ -1,0 +1,32 @@
+.vc-page-header {
+  margin: 25px 5px 20px 5px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 19px;
+    margin-bottom: 15px;
+  }
+
+  &__bread-crumbs {
+    color: var(--vc-dark-grey);
+
+    a {
+      font-size: 14px;
+      color: var(--vc-dark-grey);
+      font-weight: 400;
+      line-height: 20px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+}
