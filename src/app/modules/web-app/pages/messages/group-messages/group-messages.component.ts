@@ -75,7 +75,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
         this.extensions = appSetting.extensions;
@@ -603,7 +603,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
     clickDraftMessages(id: number, esdb_id: string) {
         this.isReplyMsgForm = false;
         this.visiblityDropdownSettings = {};
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.getGroup();
         this.visiblityDropdownSettings = {

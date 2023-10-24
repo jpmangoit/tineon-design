@@ -66,7 +66,7 @@ export class CurrentStatusDocumentComponent implements OnInit {
         }
 
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.extensions = appSetting.extensions;
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.uploadDocVisibility = appSetting.uploadDocument;

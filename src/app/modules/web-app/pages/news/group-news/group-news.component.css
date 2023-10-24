@@ -1441,7 +1441,7 @@ span.club-schedule {
     font-size: 6px;
     font-weight: 500;
     line-height: 8px;
-}
+} 
 
 .right-group-inner-left span.img {
     width: 18px;
@@ -1484,7 +1484,7 @@ width: auto;
     padding: 0 10px;
     border-radius: 15px !important;
     color: #fff;
-    min-width: 50px;
+    min-width: 90px;
     max-width: 90px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -1549,9 +1549,15 @@ width: auto;
 }
 
 .card.club-widget-appointment .card-header {
-  padding: 0 0 26px 5px !important;
-  margin-bottom: 17px !important;
+  padding: 0 0 20px 5px !important;
+  margin-bottom: 18px !important;
   border-bottom: 1px solid #EFF2FD;
+}
+
+ ::ng-deep .col-md-3.appointment_widget .card.club-widget-appointment .card-body .club-widget-inner.scrollbox {
+  height: calc(100vh - 320px);
+
+  
 }
 
 .club-right-area {

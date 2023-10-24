@@ -49,7 +49,7 @@ export class EventListComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.eventTypeList[1] = { name: this.language.create_event.club_event };
         this.eventTypeList[2] = { name: this.language.create_event.group_event };

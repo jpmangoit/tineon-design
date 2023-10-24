@@ -179,7 +179,7 @@ export class MDashboardComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userId = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 
@@ -361,7 +361,7 @@ export class MDashboardComponent implements OnInit {
 
     getEvent() {
         if (sessionStorage.getItem('token')) {
-            this.language = this.lang.getLanguaageFile();
+            this.language = this.lang.getLanguageFile();
             let cudate: Date = new Date()
             let cuday: string = cudate.getDate().toString().padStart(2, "0");
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");

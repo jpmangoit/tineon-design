@@ -23,7 +23,7 @@ export class RecoverPasswordComponent implements OnInit{
 	) { }
 
 	ngOnInit(): void {
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 	}
 
 	forgotForm = new UntypedFormGroup({

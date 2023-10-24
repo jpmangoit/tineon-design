@@ -55,7 +55,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 		this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
 			this.setTheme = resp;
 		});
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.surveyId = this.route.snapshot.paramMap.get('surveyId');
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.userRole = this.userDetails.roles[0];

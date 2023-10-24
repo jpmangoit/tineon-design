@@ -243,7 +243,7 @@ export class CommonFunctionService {
     */
     deleteNews(newsId: any) {
         let self = this;
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userId = localStorage.getItem('user-id');
         return new Promise((resolve, reject) => {
             this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article, function () {

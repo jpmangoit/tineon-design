@@ -1,0 +1,60 @@
+@import "variables";
+
+// --------------------------------------------------
+// Global styles for the app
+// (these styles are applied to all components)
+// prefix: vc-
+// --------------------------------------------------
+
+
+// Utility classes
+.vc-text-grey {
+  color: var(--vc-grey);
+}
+
+
+.vc-card-shadow {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Components or support classes
+
+.vc-text-icon-prefix {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  line-height: 12px;
+
+  app-icon {
+    margin-right: 5px;
+  }
+}
+
+.vc-button {
+  box-shadow: none;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  padding: 0 25px 0 15px;
+  font-weight: 600;
+  font-family: 'Gellix', sans-serif;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #fff !important;
+}
+
+.vc-button-with-icon {
+  @extend .vc-button;
+  line-height: 0;
+}
+
+.vc-button-create {
+  background: rgb(88, 191, 56) !important;
+  border-color: rgb(88, 191, 56) !important;
+}
+

@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
 
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getProfileData();
         this.getUserImage();
         this.changePasswordForm = this.formBuilder.group({

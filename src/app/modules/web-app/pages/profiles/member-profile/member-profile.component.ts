@@ -39,7 +39,7 @@ export class MemberProfileComponent implements OnInit {
   ) {}
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.database_id = this.route.snapshot.params.database_id;
         this.team_id = this.route.snapshot.params.team_id;
         this.member_id = this.route.snapshot.params.member_id;

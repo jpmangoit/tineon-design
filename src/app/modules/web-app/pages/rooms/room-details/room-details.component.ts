@@ -80,7 +80,7 @@ export class RoomDetailsComponent implements OnInit {
             this.setTheme = resp;
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.selectLanguage = localStorage.getItem('language');
         if (this.selectLanguage == 'sp') {
             this.selectLanguage = 'es'

@@ -155,7 +155,7 @@ export class MvereinsFaqComponent implements OnInit {
         $('#individualFAQ').show();
         $('#searchId').hide();
         $("#imageCrope").hide();
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = userData.team_id;
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));

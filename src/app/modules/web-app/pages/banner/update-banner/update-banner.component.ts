@@ -127,7 +127,7 @@ export class UpdateBannerComponent implements OnInit, OnDestroy {
         });
         this.authService.setLoader(false);
         this.userData = JSON.parse(localStorage.getItem('user-data'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.route.params.subscribe(params => {
             this.bannerId = params['bannerId'];
         })

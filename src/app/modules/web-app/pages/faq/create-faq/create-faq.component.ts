@@ -120,7 +120,7 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
             this.setTheme = resp;
         });
         let userId:string = localStorage.getItem('user-id');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         let userData:LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         if( userData.isAdmin || userData.isFunctionary ){
             this.approved_status = 1;

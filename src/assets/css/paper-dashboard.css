@@ -3950,12 +3950,12 @@ body.collapse-in .footer-logo img {
 .main-panel {
     position: relative;
     float: right;
-    width: calc(100% - 120px);
+    width: calc(100% - 126px);
     background-color: #f2f2f5;
     transition: all 0.2s cubic-bezier(0.685, 0.0473, 0.346, 1);
     margin-top: 66px;
     border-radius: 30px;
-    margin-right: 15px;
+    margin-right: 18px;
     padding: 24px;
 }
 
@@ -4004,7 +4004,7 @@ body.collapse-in .footer-logo img {
 
 /*login css end*/
 .main-panel .content {
-    min-height: calc(100vh - 0px);
+    /* min-height: calc(100vh - 0px); */
     background-color: #f2f2f5;
 }
 
@@ -7032,7 +7032,7 @@ span.group-mem-count {
     margin-top: 10px;
     width: 100%;
     font-family: 'Gellix';
-    text-transform: uppercase;
+    text-transform: uppercase; 
 }
 
 .com-g-widget hr {
@@ -7044,7 +7044,10 @@ span.group-mem-count {
     overflow: hidden;
     border-radius: 15px;
     aspect-ratio: 4/3;
+   
 }
+
+
 
 .chat-inner-content p {
     white-space: pre-line;
@@ -9001,7 +9004,7 @@ body .sidebar.sidebar-hr {
     position: fixed;
     display: block;
     top: 83px;
-    height: 100vh;
+    height: calc(100vh - 100px);
     width: 106px;
     right: auto;
     left: 0;

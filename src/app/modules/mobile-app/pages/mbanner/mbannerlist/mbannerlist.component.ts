@@ -44,7 +44,7 @@ export class MbannerlistComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getAllBanners()
     }
 

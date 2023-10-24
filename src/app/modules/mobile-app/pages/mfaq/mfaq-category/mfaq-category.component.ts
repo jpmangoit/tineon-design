@@ -118,7 +118,7 @@ export class MfaqCategoryComponent implements OnInit {
         this.setTheme = resp;
       });
 
-      this.language = this.lang.getLanguaageFile();
+      this.language = this.lang.getLanguageFile();
       this.userDetails = JSON.parse(localStorage.getItem('user-data'));
       this.teamId = this.userDetails.team_id;
       this.userRole = this.userDetails.roles[0];

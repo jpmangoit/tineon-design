@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import {AuthServiceService} from '@core/services';
+import { AuthServiceService } from '@core/services';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
             currentUrl = currentUrl.replace('web', 'mobile');
             this._router.navigateByUrl(currentUrl);
 
-        } else if (window.innerWidth > 768 && state.url.includes('mobile')){
+        } else if (window.innerWidth > 768 && state.url.includes('mobile')) {
             var currentUrl = state.url;
             currentUrl = currentUrl.replace('mobile', 'web');
             this._router.navigateByUrl(currentUrl);

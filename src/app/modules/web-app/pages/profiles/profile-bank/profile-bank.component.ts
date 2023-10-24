@@ -78,7 +78,7 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
     this.userDataProfile = JSON.parse(localStorage.getItem('user-data'));
     this.headline_word_option =parseInt(localStorage.getItem('headlineOption'));
 
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
     this.getBankDetails();
 
     this.activatedPro = this.themes.profile_imge.subscribe((resp) => {
@@ -86,7 +86,7 @@ export class ProfileBankComponent implements OnInit, OnDestroy {
         this.getUserImage();
        });
 
-      this.language = this.lang.getLanguaageFile();
+      this.language = this.lang.getLanguageFile();
       this.getProfileData();
       this.getUserImage();
   }
