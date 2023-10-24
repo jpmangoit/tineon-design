@@ -238,15 +238,17 @@
                             </div> -->
                     </div>
                 </div>
-            </div>
-            <br>
-            <div *ngIf="dashboardData?.length > 0 && dashboardData.length > newsDisplay">
+                 <div *ngIf="dashboardData?.length > 0 && dashboardData.length > newsDisplay">
                 <div class="show_more_btn">
                     <a routerLink="/web/clubwall">
                         <button class="red_more_btn"> {{language.dashboard.dashboardNewsShowAll}}</button>
                     </a>
                 </div>
             </div>
+            </div>
+            
+            <br>
+           
         </div>
     </div>
 </div>
