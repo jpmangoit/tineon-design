@@ -43,7 +43,7 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];
         this.getAllUserInfo();

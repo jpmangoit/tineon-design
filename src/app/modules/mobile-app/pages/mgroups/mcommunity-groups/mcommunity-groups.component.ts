@@ -17,7 +17,7 @@ export class McommunityGroupsComponent implements OnInit {
     language: any;
     groupData: CommunityGroup[];
     groupJoinData: CommunityGroup[];
-    groupsYouManageData: CommunityGroup[];
+    groupsYouManageData: CommunityGroup[]; 
     setTheme: ThemeType;
     responseMessage: string;
     displayGroup: boolean = true;
@@ -88,7 +88,7 @@ export class McommunityGroupsComponent implements OnInit {
         this.user_Id = localStorage.getItem('user-id');
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
 
         if (sessionStorage.getItem('token') && window.innerWidth < 768) {
             this.getTineonBanners();

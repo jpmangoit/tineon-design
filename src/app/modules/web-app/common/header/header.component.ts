@@ -135,7 +135,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             }
         }, 3000);
         this.displayFlag = localStorage.getItem('language');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userId = this.userDetails.userId;

@@ -29,7 +29,7 @@ export class NotificationsService {
 
     getNotifications() {
         this.showNotifications = [];
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.user_id = this.userDetails.userId;
         this.userAccess = appSetting.role;

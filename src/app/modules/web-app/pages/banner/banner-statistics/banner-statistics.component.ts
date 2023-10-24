@@ -57,7 +57,7 @@ export class BannerStatisticsComponent implements OnInit {
 
     constructor(private authService: AuthServiceService, private lang: LanguageService) { }
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         var endPoint = 'getBannerStatisticForDesktop'
         this.authService.memberSendRequest('get', endPoint, "")
             .subscribe((respData: any) => {

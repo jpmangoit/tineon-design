@@ -28,7 +28,7 @@ export class CrmSurveyViewComponent implements OnInit {
 
     ngOnInit(): void {
         this.authService.setLoader(false);
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.surveyId = this.route.snapshot.paramMap.get('surveyId');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];

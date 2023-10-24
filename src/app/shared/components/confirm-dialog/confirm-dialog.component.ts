@@ -22,7 +22,7 @@ export class ConfirmDialogComponent implements OnInit {
      *   This function waits for a message from alert service, it gets
      *   triggered when we call this from any other component
      */
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
     this.confirmDialogService.getMessage().subscribe(message => {
       this.message = message;
     });

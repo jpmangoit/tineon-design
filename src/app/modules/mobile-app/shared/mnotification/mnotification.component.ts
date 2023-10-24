@@ -53,7 +53,7 @@ export class MnotificationComponent implements OnInit {
             });
         }, 3000);
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[userRole].create;
         this.participateAccess = this.userAccess[userRole].participate;

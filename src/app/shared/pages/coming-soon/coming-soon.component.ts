@@ -14,7 +14,7 @@ export class ComingSoonComponent implements OnInit {
   constructor( private lang: LanguageService,) { }
 
   ngOnInit(): void {
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
   }
 
 }

@@ -80,6 +80,20 @@ span.news-category {
     text-transform: capitalize;
 }
 
+.com-g-widget .news-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  aspect-ratio: 4/3;
+  max-height: 280px;
+  width: 100%;
+}
+
+.card.club-widget-appointment.banner-area.ng-star-inserted + .card.club-widget-appointment.main-club.not-active-club-appointment {
+  height: calc(100vh - 654px);
+  min-height: auto;
+}
+
 .news-content p {
     font-size: 16px;
     color: #fff;
@@ -98,7 +112,7 @@ span.news-category {
     padding: 0 5px;
     font-size: 20px;
     font-weight: 700;
-    height: 40px;
+    height: 35px;
     line-height: 40px;
 
 }
@@ -964,7 +978,7 @@ span.club-badge {
 
 .club-w-image {
     width: 100%;
-  height: 114px;
+  height: 108px;
     overflow: hidden;
     object-fit: cover;
     border-radius: 0px;
@@ -1017,8 +1031,8 @@ span.club-badge {
     color: #292929;
     font-size: 14px;
     font-weight: 700;
-    line-height: 18px;
-    margin: -2px 0 20px;
+    line-height: 16.8px;
+    margin: -2px 0 14px;
     cursor: pointer;
     /* text-transform: capitalize; */
   
@@ -1211,12 +1225,12 @@ span.carousel-badge {
       font-size:14px;
     font-weight: 700;
 
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
     height: auto;
     padding: 0 5px;
     height: 31px;
     color: #555555;
-    line-height: 31px;
+    line-height: 27px;
 }
 
 .card.club-widget-appointment.banner-area {
@@ -1495,8 +1509,8 @@ span.carousel-badge {
 }
 
 .card-body.top-box .author-img {
-    width: 22px !important;
-    height: 22px !important;
+    width: 21px !important;
+    height: 21px !important;
     flex: 0 0 30px;
     border: 1px solid #fff;
 }
@@ -1511,6 +1525,10 @@ span.carousel-badge {
     .card-body.top-box .widget-app-content > div {
   display: none;
   width: 6px;
+}
+
+.card.club-widget-appointment.banner-area.ng-star-inserted + .card.club-widget-appointment.main-club.not-active-club-appointment {
+    height: auto;
 }
 
 .club-widget-appointment .club-right-area .card-body {

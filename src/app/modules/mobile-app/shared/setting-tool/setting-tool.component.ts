@@ -37,7 +37,7 @@ export class SettingToolComponent {
     }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
     }
 
     onLanguageSelect(lan: string) {

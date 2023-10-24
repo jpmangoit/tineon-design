@@ -14,7 +14,7 @@ export class PageNotFoundComponent implements OnInit {
     constructor(private _router: Router, private lang: LanguageService) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
     }
 
     goToDashboard() {

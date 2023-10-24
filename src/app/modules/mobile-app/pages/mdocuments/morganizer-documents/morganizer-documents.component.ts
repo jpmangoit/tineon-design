@@ -95,7 +95,7 @@ export class MorganizerDocumentsComponent implements OnInit {
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userAccess = appSetting.role;
         this.extensions = appSetting.extensions;
         if (localStorage.getItem('club_theme') != null) {
@@ -105,7 +105,7 @@ export class MorganizerDocumentsComponent implements OnInit {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.extensions = appSetting.extensions;
         this.uploadDocVisibility = appSetting.uploadDocument;
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));

@@ -25,7 +25,7 @@ export class McommunityMessagesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.messageFilter('1')
     }

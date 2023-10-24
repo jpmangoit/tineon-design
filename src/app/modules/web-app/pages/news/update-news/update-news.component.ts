@@ -129,7 +129,7 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
         this.getGroup();

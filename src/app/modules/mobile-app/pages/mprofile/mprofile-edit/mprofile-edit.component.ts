@@ -102,7 +102,7 @@ export class MprofileEditComponent implements OnInit {
         });
         this.userDataProfile = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getProfileData();
         this.getUserImage();
         this.registrationForm = this.formBuilder.group({

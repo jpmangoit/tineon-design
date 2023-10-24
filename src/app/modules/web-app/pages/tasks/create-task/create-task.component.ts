@@ -133,7 +133,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         $('#subtask').hide();
         $('#showSubtask').hide();
 

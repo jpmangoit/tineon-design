@@ -31,7 +31,7 @@ export class DenyReasonConfirmDialogComponent implements OnInit {
     this.denyGroupForm = this.formBuilder.group({
       reason: ['']
     });
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
     this.denyReasonService.getMessage().subscribe(message => {
       this.message = message;
       this.userDetails = JSON.parse(localStorage.getItem('user-data'));

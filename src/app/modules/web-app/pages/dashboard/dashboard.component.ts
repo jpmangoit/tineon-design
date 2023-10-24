@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.activatedPro = this.themes.profile_imge.subscribe(
             (resp: string) => { this.getUserImage(); }
         );
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         let userId: string = localStorage.getItem('user-id');
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole: string = this.userDetails.roles[0];

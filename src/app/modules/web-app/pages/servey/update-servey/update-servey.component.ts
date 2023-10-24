@@ -145,7 +145,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
         this.socket = io(serverUrl);
         this.teamId = userData.team_id;
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
 
         this.getGroups();
         this.route.params.subscribe(params => {

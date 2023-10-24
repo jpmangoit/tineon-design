@@ -82,7 +82,7 @@ export class MgeneralInformationComponent implements OnInit {
             let pro = resp;
             this.getUserImage();
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getProfileData();
         this.getUserImage();
         this.changePasswordForm = this.formBuilder.group({
