@@ -13,7 +13,7 @@ import {appSetting} from '@core/constants';
     selector: 'app-club-appointments',
     templateUrl: './club-appointments.component.html',
     styleUrls: ['./club-appointments.component.css'],
-    providers: [DatePipe]
+    providers: [DatePipe] 
 })
 
 export class ClubAppointmentsComponent implements OnInit {
