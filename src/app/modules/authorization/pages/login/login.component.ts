@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         if (window.innerWidth < 768) {
             this.isMobile = true;
         }
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.loginForm = new UntypedFormGroup({
             username: new UntypedFormControl('', [Validators.required]),
             password: new UntypedFormControl('', [Validators.required]),

@@ -43,7 +43,7 @@ export class GlobalSearchComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.route.params.subscribe((params) => {
             this.searchData = params.searchValue;
             this.getSearchData();

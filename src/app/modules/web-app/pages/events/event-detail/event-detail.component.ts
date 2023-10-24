@@ -111,7 +111,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.role = this.userDetails.roles[0];
         this.userId = this.userDetails.userId;
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.route.params.subscribe(params => {
             const eventid: number = params['eventid'];
             this.eventId = eventid;
@@ -166,6 +166,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                             this.authService.setLoader(false);
                             this.updateEventData = null;
                             this.eventDetails = respData['result'][0];
+                            console.log( this.eventDetails);
+                            
 
                             this.eventDetails.date_from = this.eventDate ? this.eventDate + 'T' + this.eventDetails.date_from.split('T')[1] : this.eventDetails.date_from
                             this.eventDetails.recurring_dates = JSON.parse(this.eventDetails.recurring_dates);
@@ -201,8 +203,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
                                         this.updateEventData['task'] = JSON.parse(this.updateEventData['task']);
                                         this.updateEventData['recurring_dates'] = JSON.parse(this.updateEventData['eventDate']);
                                         console.log(this.eventDetails);
-
-
 
                                         if (this.updateEventData?.baseImage[0]?.image != null) {
                                             this.showUpdateImage = true;

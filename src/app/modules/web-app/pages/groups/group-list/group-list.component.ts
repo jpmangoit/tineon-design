@@ -41,7 +41,7 @@ export class GroupListComponent implements OnInit {
         private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.getUserAllGroup("");
     }

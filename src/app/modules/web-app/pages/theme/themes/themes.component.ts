@@ -55,7 +55,7 @@ export class ThemesComponent implements OnInit {
 
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.userRole = this.userDetails.roles[0];
         this.getThemeData();

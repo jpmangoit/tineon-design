@@ -50,7 +50,7 @@ export class NavigationToolComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.showNotificationsss = this.notificationService.getNotifications();

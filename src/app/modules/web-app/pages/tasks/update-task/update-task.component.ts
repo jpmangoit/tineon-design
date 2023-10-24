@@ -151,7 +151,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         $('#subtask').hide();
         $('#showSubtask').hide();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
