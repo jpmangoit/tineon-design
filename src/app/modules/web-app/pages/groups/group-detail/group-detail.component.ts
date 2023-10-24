@@ -20,7 +20,7 @@ export class GroupDetailComponent implements OnInit {
     currentPageNmuber: number = 1;
     itemPerPage: number = 8;
     newsTotalRecords: number = 0;
-    tasksTotalRecords: number = 0;
+    tasksTotalRecords: number = 0; 
     eventsTotalRecords: number = 0;
     limitPerPage: { value: string }[] = [
         { value: '8' },
