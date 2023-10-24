@@ -56,7 +56,7 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 		this.activatedSub = this.themes.club_theme.subscribe((resp) => {
       		this.setTheme = resp;
 		});
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		let userRole:string = this.userDetails.roles[0];
 		this.userAccess = appSetting.role;

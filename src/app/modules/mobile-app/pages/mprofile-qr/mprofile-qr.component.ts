@@ -38,7 +38,7 @@ export class MprofileQrComponent implements OnInit {
             this.userDetails['qrcode_url'] = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(this.userDetails['qrcode_url'].substring(20)));
         }
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getUserImage();
         this.getProfileData()
     }

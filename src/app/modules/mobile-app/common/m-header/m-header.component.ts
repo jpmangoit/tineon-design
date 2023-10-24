@@ -56,7 +56,7 @@ export class MHeaderComponent implements OnInit {
         this.activatedHeadline = this.commonFunctionService.changeHeadline.subscribe((resp:any) => {
             this.headline_word_option = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.headline_word_option = parseInt(localStorage.getItem('headlineOption'));
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         let userRole = this.userDetails.roles[0];

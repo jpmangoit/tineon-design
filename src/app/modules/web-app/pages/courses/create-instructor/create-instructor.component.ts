@@ -71,7 +71,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 			this.setTheme = resp;
 		});
 
-		this.language = this.lang.getLanguaageFile()
+		this.language = this.lang.getLanguageFile()
 		let userData: LoginDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.teamId = userData.team_id;
 		this.instructorForm = this.formbuilder.group({

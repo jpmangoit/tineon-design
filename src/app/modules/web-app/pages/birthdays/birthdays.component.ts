@@ -37,7 +37,7 @@ export class BirthdaysComponent implements OnInit {
     ngOnInit(): void {
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         if (sessionStorage.getItem('token')) {
-            this.language = this.lang.getLanguaageFile();
+            this.language = this.lang.getLanguageFile();
             this.getAllUserInfo();
             this.getCurrentBirthday();
             // this.getCurrentJubilees();

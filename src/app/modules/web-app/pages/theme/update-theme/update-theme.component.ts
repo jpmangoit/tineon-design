@@ -152,7 +152,7 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
 
         this.club_theme_id = this.route.snapshot.paramMap.get('clubThemeId');
         this.getTheme(this.club_theme_id);
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 
         this.updateThemeForm = this.formBuilder.group({
