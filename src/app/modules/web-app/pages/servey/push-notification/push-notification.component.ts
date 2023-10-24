@@ -51,7 +51,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
                 this.setTheme = resp;
             }
         );
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
         this.socket = io(serverUrl);
         this.getNotify();

@@ -38,7 +38,7 @@ export class MobileThemeComponent implements OnInit, OnDestroy {
 			this.setTheme = resp;
 		});
 
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.defaultSelected = localStorage.getItem('mobileThemeOption');
 		this.mobileThemeForm = new UntypedFormGroup({

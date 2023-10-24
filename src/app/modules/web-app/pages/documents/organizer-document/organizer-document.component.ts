@@ -92,7 +92,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
             this.setTheme = resp;
         });
         this.displayDocumentByTabs(this.tabId)
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.extensions = appSetting.extensions;
         this.uploadDocVisibility = appSetting.uploadDocument;
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));

@@ -117,7 +117,7 @@ export class CreateBannerComponent implements OnInit, OnDestroy {
 
         this.authService.setLoader(false);
         this.userData = JSON.parse(localStorage.getItem('user-data'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
 
         this.bannerCategoryOption = [
             { name: this.language.banner.app_sponsor, value: '1' },

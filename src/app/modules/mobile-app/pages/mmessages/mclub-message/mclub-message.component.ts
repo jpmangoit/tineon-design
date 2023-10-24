@@ -83,7 +83,7 @@ export class MclubMessageComponent implements OnInit {
 			// Do something with the value
 		});
 
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.extensions = appSetting.extensions;
 		this.imageType = appSetting.imageType;
@@ -669,7 +669,7 @@ export class MclubMessageComponent implements OnInit {
 		this.isClublList = false;
 		this.isReplyMsgForm = false;
 		this.visiblityDropdownSettings = {};
-		this.language = this.lang.getLanguaageFile();
+		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.selectedMessage = [];
 		this.authService.setLoader(true);

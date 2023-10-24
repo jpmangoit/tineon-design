@@ -129,7 +129,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
         this.userId = localStorage.getItem('user-id');
         this.teamId = userData.team_id;
         this.userRole = userData.roles[0];
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.getGroups();
         this.choiceData = [
             { name: this.language.Survey.web_notification, value: '1' },

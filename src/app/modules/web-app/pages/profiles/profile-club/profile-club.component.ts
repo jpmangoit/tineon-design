@@ -69,7 +69,7 @@ export class ProfileClubComponent implements OnInit, OnDestroy {
         this.activatedSub = this.themes.club_theme.subscribe((resp: ThemeType) => {
             this.setTheme = resp;
         });
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.authService.setLoader(true);
         this.getClubData();
         this.userData = JSON.parse(localStorage.getItem('user-data'));
