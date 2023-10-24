@@ -88,7 +88,7 @@ export class MgroupMessageComponent implements OnInit {
             // Do something with the value
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.teamId = this.userDetails.team_id;
         this.extensions = appSetting.extensions;
@@ -654,7 +654,7 @@ export class MgroupMessageComponent implements OnInit {
         this.isGroupList = false;
         this.isReplyMsgForm = false;
         this.visiblityDropdownSettings = {};
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
         this.getGroup();
         this.visiblityDropdownSettings = {

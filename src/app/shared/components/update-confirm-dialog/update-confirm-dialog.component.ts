@@ -28,7 +28,7 @@ export class UpdateConfirmDialogComponent implements OnInit {
             reason: ['', Validators.required]
         });
 
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.updateConfirmDialogService.getMessage().subscribe(message => {
             this.message = message;
         });

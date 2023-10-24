@@ -652,8 +652,12 @@ mat-button-toggle-group {
 }
 
 .colored-image.text-center .card-icon h3 {
-    top: 0;
+
     line-height: normal;
+}
+
+.row.dash-widget.dashboard_w_m {
+    margin: 0 -12px;
 }
 
 ::ng-deep body .mat-calendar-controls {
@@ -780,11 +784,17 @@ max-width: none;
 @media only screen and (min-width: 1681px) and (max-width: 1780px) {
     .dash-widget.dashboard_w_m .col-md-9 {
         flex: 0 0 75%;
-        max-width: 75%;
+        max-width: 1166px;
+        
+    }
+
+    .dash-widget.dashboard_w_m .col-md-9  .card {
+        height: calc(100vh - 351px);
     }
     .dash-widget.dashboard_w_m .col-md-3 {
         flex: 0 0 25%;
-        max-width: 25%;
+        max-width: 412px;
+        padding-left: 7px !important;
     }
 }
 
@@ -962,6 +972,50 @@ color: #fff;
     left: 44%;
     position: absolute;
     top: 39%;
+}
+
+.row.dashboard-row > div {
+  width: 25%;
+}
+.row.dashboard-row > div > div {
+  width: 100%;
+
+  max-width: 100%;
+}
+
+@media(min-width:1680px) and (max-width:1800px) {
+    .dashboard-row {
+        margin: 0 -12px ;
+        
+        
+    }
+
+    .dashboard-top-box {
+  max-width: 389px;
+  padding: 0 12px;
+}
+
+ .dashboard-top-box:last-child {
+    max-width:412px;
+    padding: 0 12px 0 5px;
+    
+ }
+
+    .dashboard-row .col-lg-3 {
+        padding: 0px 0px !important;
+        width: 365px;
+        max-width: 100%;
+
+    }
+
+    .dashboard-top-box:last-child .col-lg-3 {
+        width: 394px;
+    }
+
+    /* .dashboard-row .col-lg-3.top-card:last-child {
+        width: 394px;
+        padding-left: 7px !important;
+    } */
 }
 
 @media(min-width:1450px) and (max-width:1610px) {

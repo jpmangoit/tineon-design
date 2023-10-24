@@ -26,7 +26,7 @@ export class MEmailComponent implements OnInit {
     if (window.innerWidth < 768) {
         this.isMobile = true;
     }
-    this.language = this.lang.getLanguaageFile();
+    this.language = this.lang.getLanguageFile();
     this.emailForm = new UntypedFormGroup({
         name: new UntypedFormControl('', [Validators.required, this.noWhitespace]),
         club_name: new UntypedFormControl('', [Validators.required, this.noWhitespace]),

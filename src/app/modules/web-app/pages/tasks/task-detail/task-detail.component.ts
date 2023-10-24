@@ -85,7 +85,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
         this.userDetails = JSON.parse(localStorage.getItem('user-data'));
-        this.language = this.lang.getLanguaageFile();
+        this.language = this.lang.getLanguageFile();
         this.route.params.subscribe(params => {
             const taskid: number = params['taskid'];
             this.taskId = params['taskid'];

@@ -130,7 +130,7 @@ export class MorganizerEventsComponent implements OnInit {
 
 
         if (sessionStorage.getItem('token')) {
-            this.language = this.lang.getLanguaageFile();
+            this.language = this.lang.getLanguageFile();
             this.eventTypeList[1] = { name: this.language.create_event.club_event, class: "club-event-color" };
             this.eventTypeList[2] = { name: this.language.create_event.group_event, class: "group-event-color" };
             this.eventTypeList[3] = { name: this.language.create_event.functionaries_event, class: "functionaries-event-color" };
