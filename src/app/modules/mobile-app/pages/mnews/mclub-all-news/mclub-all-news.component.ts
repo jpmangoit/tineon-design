@@ -392,7 +392,7 @@ export class MclubAllNewsComponent implements OnInit, OnDestroy {
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
                 this.notificationService.showSuccess(resp, null);
-                setTimeout(function () {
+                setTimeout( ()=> {
                     this.getAllNews()
                     const url: string[] = ["/mobile/clubwall"];
                     this.router.navigate(url);

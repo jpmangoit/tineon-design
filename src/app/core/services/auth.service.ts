@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map, catchError } from 'rxjs/operators';
-import { baseUrl, memberUrl } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { baseUrl } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
@@ -28,6 +28,10 @@ export class AuthService {
         return this._actualSendRequest(method, endPoint, data);
     }
 
+    memberInfoRequest(method: string, endPoint: string, data: any) {
+        return this._actualSendRequest(method, endPoint, data);
+    }
+
     _actualSendRequest(method: string, endPoint: string, data: any) {
         let isOffile = this.showOffile;
         if (!isOffile) {
@@ -37,130 +41,25 @@ export class AuthService {
                 this.uncaughtError = false;
             }, 5000);
             /* ------------------------------------ */
-
             let endPointUrl: string;
             endPointUrl = `${baseUrl}` + endPoint + ``;
             if (method == 'post') {
-                return this.http.post(endPointUrl,
-                    data).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.post(endPointUrl, data);
             } else if (method == 'put') {
-                return this.http.put(endPointUrl,
-                    data).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.put(endPointUrl, data);
             } else if (method == 'delete') {
-                return this.http.delete(endPointUrl).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
+                return this.http.delete(endPointUrl);
             } else {
-                return this.http.get(endPointUrl).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
+                if (endPoint.includes('profile-photo') || endPoint.includes('member-photo')) {
+                    const salt: number = (new Date()).getTime();
+                    return this.http.get<Blob>(endPointUrl + '&' + salt, { responseType: 'blob' as 'json' }).pipe(map(blob => {
+                        var urlCreator: any = window.URL || window.webkitURL;;
+                        return this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
+                    }))
+                }
+                return this.http.get(endPointUrl);
             }
         }
-    }
-
-    memberInfoRequest(method: string, endPoint: string, data: any) {
-        return this._memberSendRequest(method, endPoint, data);
-    }
-
-    _memberSendRequest(method: string, endPoint: string, data: any) {
-        let isOffile: boolean = this.showOffile;
-        if (!isOffile) {
-            /* Show golbal error cause by HTTP service */
-            this.uncaughtError = false;
-            setInterval(() => {
-                this.uncaughtError = false;
-            }, 5000);
-            /* ------------------------------------ */
-           
-            let endPointUrl: string;
-            endPointUrl = `${memberUrl}` + endPoint + ``;
-            if (method == 'post') {
-                return this.http.post(endPointUrl, data).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
-            } else if (method == 'put') {
-                return this.http.put(endPointUrl, data).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
-            } else if (method == 'delete') {
-                return this.http.delete(endPointUrl).pipe(
-                    map(this.handleData),
-                    catchError(this.handleError));
-            } else {
-                const salt: number = (new Date()).getTime();
-                return this.http.get<Blob>(endPointUrl + '&' + salt, { responseType: 'blob' as 'json' }).pipe(map(blob => {
-                    var urlCreator: any = window.URL || window.webkitURL;;
-                    return this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
-                }))
-            }
-        }
-    }
-
-    /* Error handler from HTTP service  */
-    private handleError: any = (error: any) => {
-        if (error.name == 'TimeoutError') {
-            this.timeoutErrorFlag = true;
-            setInterval(() => {
-                this.timeoutErrorFlag = false;
-            }, 10000);
-            return this.timeoutError();
-        }
-        else if (error.status == 401) {
-            this.clearStorageLogout();
-        }
-        else if (error.status == 403) {
-            this.clearStorageLogout();
-            sessionStorage.clear();
-            localStorage.clear();
-            window.location.reload();
-        }
-        else if (error.status == 400) {
-            return this.error400(error);
-        }
-        else {
-            const resData: any = error;
-            if (resData['success']) {
-                return resData;
-            }
-            else {
-                this.uncaughtError = true;
-                return this.serverError();
-            }
-        }
-    }
-
-    /* Data handler from HTTP service  */
-    private handleData: any = (response: Response) => {
-        const resData: Response = response;
-        return resData;
-    }
-
-    private timeoutError() {
-        return [{
-            "success": false,
-            "code": 500,
-            "message": "I’m experiencing some difficulty due to connectivity issues. Please type your query again!"
-        }]
-    }
-
-    private error400(error: any) {
-        return [{
-            "success": false,
-            "code": error.status,
-            "message": error.error.message
-        }]
-    }
-
-    private serverError() {
-        return [{
-            "success": false,
-            "code": 500,
-            "message": "Something went wrong. Please try again after some time"
-        }]
     }
 
     clearStorageLogout() {
@@ -170,6 +69,7 @@ export class AuthService {
     setLoader(value: Boolean) {
         this.loader = value;
     }
+
     get showLoader() {
         return this.loader;
     }
@@ -219,12 +119,9 @@ export class AuthService {
                 this.uncaughtError = false;
             }, 5000);
             /* ------------------------------------ */
-
             let endPointUrl: string;
             endPointUrl = `${baseUrl}` + endPoint + ``;
-            return this.http.post(endPointUrl, data,
-                { responseType: "blob" }).
-                pipe(map(this.handleData), catchError(this.handleError));
+            return this.http.post(endPointUrl, data, { responseType: "blob" });
         }
     }
 

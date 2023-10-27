@@ -6,14 +6,14 @@ import { Subscription } from 'rxjs';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
-import {LoginDetails, Room, ThemeType} from '@core/models';
+import { LoginDetails, Room, ThemeType } from '@core/models';
 import {
-  AuthService,
-  CommonFunctionService,
-  LanguageService,
-  NavigationService,
-  NotificationService,
-  ThemeService
+    AuthService,
+    CommonFunctionService,
+    LanguageService,
+    NavigationService,
+    NotificationService,
+    ThemeService
 } from '@core/services';
 
 
@@ -336,8 +336,6 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
             }
             if (this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
                 var formData: FormData = new FormData();
-
-                let self = this;
                 for (const key in this.roomForm.value) {
                     if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
                         const element: string = this.roomForm.value[key];
@@ -380,9 +378,9 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
                     this.roomsSubmitted = false;
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message'], null);
-                        var self = this;
-                        setTimeout(function () {
-                            self.router.navigate(['web/room-detail/' + self.roomId]);
+
+                        setTimeout(() => {
+                            this.router.navigate(['web/room-detail/' + this.roomId]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

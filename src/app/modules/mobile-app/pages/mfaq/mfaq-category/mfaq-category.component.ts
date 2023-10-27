@@ -255,7 +255,7 @@ export class MfaqCategoryComponent implements OnInit {
             if (respData['isError'] == false) {
               this.notificationService.showSuccess(respData['result']['message'],null);
               this.getAllFAQCategory();
-              setTimeout(function () {
+              setTimeout(() =>{
                 $('#exModal').modal('hide');
               }, 2000);
             } else if (respData['code'] == 400) {
@@ -290,7 +290,7 @@ export class MfaqCategoryComponent implements OnInit {
                 this.responseMessage = respData['result']['message'];
                 this.notificationService.showSuccess(this.responseMessage,null);
                 this.getAllFAQCategory();
-                // setTimeout(function () {
+                // setTimeout(() =>{
                 //   $('#responseMessage').delay(1000).fadeOut();
                 // }, 4000);
 

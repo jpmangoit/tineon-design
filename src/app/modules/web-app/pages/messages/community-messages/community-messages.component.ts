@@ -67,10 +67,10 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         lastMessage: any; count: number, id: number, image: string, name: string, type: string
     }[];
     selectedChatMedia = []
-    selectdChatCommonGroup = []
+    selectdChatCommonGroup:any = []
     frndId: number;
-    finalMessages: UserMessages[] = []
-    groupUsers: ChatUsers[] = [];
+    finalMessages: any = []
+    groupUsers: any = [];
     menuOpened: boolean = true;
     filteredArray: any[] = [];
     @ViewChild('scrollBottom') private scrollBottom: ElementRef;
@@ -199,7 +199,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
    * @return  {Array Of Object} all the Users
    */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
         .subscribe(
             (respData: any) => {
@@ -337,8 +336,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
         var url: any;
-        let self = this
-        reader.onload = function (_event) {
+        reader.onload = (_event) =>{
             url = reader.result;
             var imagee: HTMLImageElement = new Image();
             imagee.src = URL.createObjectURL(file);
@@ -510,7 +508,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                     roomId: this.roomId
                 }
             }
-            let self = this;
             var formData: FormData = new FormData();
             for (const key in reqData) {
                 if (Object.prototype.hasOwnProperty.call(reqData, key)) {
@@ -538,7 +535,6 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
                             this.imageSrc = null;
                             this.chatForm.reset();
                             this.chatFormSubmitted = false;
-                            var self = this;
                             this.clickChat(this.selectedChat)
                             this.chats();
                         } else if (respData['code'] == 400) {

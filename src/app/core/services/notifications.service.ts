@@ -38,7 +38,6 @@ export class NotificationsService {
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -48,52 +47,52 @@ export class NotificationsService {
                         })
                         if (userRole == 'admin') {
                             // ----------Group---------
-                            self.getAllGroupsNotifications();
+                            this.getAllGroupsNotifications();
                             // ----------News----------
-                            self.getAllNewsNotifications();
+                            this.getAllNewsNotifications();
                             //----------FAQ----------
-                            self.getAllFAQsNotifications();
+                            this.getAllFAQsNotifications();
                             //----------Task----------
-                            self.getAllTasksNotifications();
+                            this.getAllTasksNotifications();
                             //----------Instructor----------
-                            self.getAllInstructorsNotifications();
+                            this.getAllInstructorsNotifications();
                             //----------Room----------
-                            self.getAllRoomsNotifications();
+                            this.getAllRoomsNotifications();
                             //----------Event----------
-                            self.getAllEventsNotifications();
+                            this.getAllEventsNotifications();
                             //----------Course----------
-                            self.getAllCoursesNotifications();
+                            this.getAllCoursesNotifications();
                             //----------Survey----------
-                            self.getAllSurveysNotifications();
+                            this.getAllSurveysNotifications();
                             // ----------Message----------
-                            self.getMessageWaitingToApprove();
+                            this.getMessageWaitingToApprove();
                             // // ----------Banners----------
-                            if (self.allowAdvertisment == 0) {
-                                self.getBanners();
+                            if (this.allowAdvertisment == 0) {
+                                this.getBanners();
                             }
                         } else if (userRole == 'member_light_admin' || userRole == 'member_light') {
                         } else if(userRole != 'guest'){
                             // ----------Group---------
-                            self.getAllGroupsUsersNotifications();
+                            this.getAllGroupsUsersNotifications();
                             // ----------News----------
-                            self.getAllNewsUsersNotifications();
+                            this.getAllNewsUsersNotifications();
                             //----------FAQ----------
-                            self.getAllFAQsUsersNotifications();
+                            this.getAllFAQsUsersNotifications();
                             //----------Task----------
-                            self.getAllTasksUsersNotifications()
+                            this.getAllTasksUsersNotifications()
                             //----------Instructor----------
-                            self.getAllInstructorsUsersNotifications();
+                            this.getAllInstructorsUsersNotifications();
                             //----------Room----------
-                            self.getAllRoomsUsersNotifications();
+                            this.getAllRoomsUsersNotifications();
                             //----------Event----------
-                            self.getAllEventsUsersNotifications();
+                            this.getAllEventsUsersNotifications();
                             //----------Course----------
-                            self.getAllCoursesUsersNotifications();
+                            this.getAllCoursesUsersNotifications();
                             //----------Survey----------
-                            self.getAllSurveysUsersNotifications();
+                            this.getAllSurveysUsersNotifications();
                             // ----------Banners----------
-                            if (self.allowAdvertisment == 0) {
-                                self.getBanners();
+                            if (this.allowAdvertisment == 0) {
+                                this.getBanners();
                             }
                         }
                     }

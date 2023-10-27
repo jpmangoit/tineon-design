@@ -962,14 +962,14 @@ export class MgroupMessageComponent implements OnInit {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key)=> {
                                 formData.append('receiver_id[' + key + ']', value);
                             });
                         }
 
                     } else if (key == 'cc') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key)=> {
                                 formData.append('cc[' + key + ']', value);
                             });
                         }

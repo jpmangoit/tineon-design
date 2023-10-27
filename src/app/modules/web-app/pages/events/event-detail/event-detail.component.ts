@@ -130,7 +130,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
    * @return  {Array Of Object} all the Users
    */
     getAllUserInfo() {
-        let self = this;
+    
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -456,94 +456,94 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     }
 
     approvedEvents(eventId: number) {
-        let self = this;
+    
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, function () {
-            self.authService.memberSendRequest('get', 'set-approve-status/' + eventId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event,  () => {
+            this.authService.memberSendRequest('get', 'set-approve-status/' + eventId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 
     approvedUpdateEvents(eventId: number) {
-        let self = this;
+    
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedevent/' + eventId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_event,  () => {
+            this.authService.memberSendRequest('get', 'approve-updatedevent/' + eventId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         if (respData['isError'] == false) {
-                            self.ngOnInit();
-                            self.getEventDetails(eventId)
+                            this.ngOnInit();
+                            this.getEventDetails(eventId)
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         } else {
-                            self.notificationService.showError(this.language.courses.no_course_found, null);
+                            this.notificationService.showError(this.language.courses.no_course_found, null);
                         }
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 
     unapprovedEvent(eventId: number) {
-        let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, (reason) => {
+    
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, (reason) => {
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-event/event_id/' + eventId, postData)
+            this.authService.memberSendRequest('put', 'deny-event/event_id/' + eventId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () => {
         })
     }
 
     deleteEvents(eventId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'event/' + eventId, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'event/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         const url: string[] = ["/web/organizer"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () => {
             $('.dropdown-toggle').trigger('click');
         })
     }
 
     deleteUpdateEvents(eventId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedevent/' + eventId, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedevent/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            self.router.navigate(["/web/event-detail/" + eventId]);
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            this.router.navigate(["/web/event-detail/" + eventId]);
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
                         }
                     }
                 )
-        }, function () { }, 'deleteUpdate')
+        },  () => { }, 'deleteUpdate')
     }
 
     /**
@@ -638,27 +638,27 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     * @return  {success and error message}
     */
     mainTaskMarkComplete(taskId: number) {
-        let self = this;
+    
         var subtaskStatus: number = 0;
         if (this.eventDetails.eventTask['id'] == taskId) {
 
-            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
+            this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,  () => {
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result'], null);
+                            this.notificationService.showSuccess(respData['result'], null);
                             setTimeout(() => {
-                                self.ngOnInit();
+                                this.ngOnInit();
 
                             }, 3000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['result'], null);
+                            this.notificationService.showError(respData['result'], null);
                         }
                     }
                 )
-            }, function () {
+            },  () => {
                 $('#styled-checkbox-' + taskId).prop('checked', false);
             })
 

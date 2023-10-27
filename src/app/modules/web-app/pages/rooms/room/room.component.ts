@@ -455,25 +455,26 @@ export class RoomComponent implements OnInit, OnDestroy {
     */
     deleteRoom(id: number) {
         $('#view-rooms').modal('hide');
-        let self = this;
         let roomid: number = id;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room,
-            function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'deleteRooms/' + roomid, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_Room,
+             () =>{
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('delete', 'deleteRooms/' + roomid, null)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'], null);
-                            setTimeout(function () {
-                                self.ngOnInit();
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            setTimeout( () =>{
+                                this.ngOnInit();
                             }, 2000);
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         }
                     });
             },
-            function () { }
+             () =>{ 
+
+            }
         );
     }
 

@@ -299,7 +299,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             const eventid: number = params['courseId'];
             this.courseId = params['courseId'];
-            setTimeout(function () {
+            setTimeout( () =>{
                 $('.trigger_class').trigger('click');
             }, 4000);
         });
@@ -889,7 +889,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                                             if (respData[0].participants) {
                                                 var groupParticipants: any = respData[0].participants;
                                                 var groupUsers: any = [];
-                                                groupParticipants.forEach(function (value, key) {
+                                                groupParticipants.forEach( (value, key) =>{
                                                     var status: number = 0;
                                                     if (value.approved_status == 1) {
                                                         var userGroupObj: any = { 'user_id': value.user_id, 'approved_status': status };
@@ -1134,7 +1134,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         this.matchDateError = { isError: true, errorMessage: this.language.courses.not_room };
                     }
                 } else {
-                    this.courseDetails.courseReccurance.forEach(function (v) { delete v.course_id });
+                    this.courseDetails.courseReccurance.forEach((v)=> { delete v.course_id });
                     this.courseForm.controls['courseReccurance'].setValue(JSON.stringify(this.courseForm.controls['courseDate'].value));
                 }
             }
@@ -1186,7 +1186,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         this.matchInstrctDateError = { isError: true, errorMessage: this.language.courses.not_instruct };
                     }
                 } else {
-                    this.courseDetails.instructorReccurance.forEach(function (v) { delete v.course_id });
+                    this.courseDetails.instructorReccurance.forEach((v)=> { delete v.course_id });
                     this.courseForm.controls['instructorReccurance'].setValue(this.courseDetails.instructorReccurance);
                 }
             } else if (this.courseForm?.controls['instructor_internal']?.value?.length > 0 && this.instrucType == 1) {
@@ -1221,7 +1221,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                         }
                     }
                 } else {
-                    this.courseDetails.in_instructorReccurance.forEach(function (v) { delete v.course_id });
+                    this.courseDetails.in_instructorReccurance.forEach((v)=> { delete v.course_id });
                     this.courseForm.controls['in_instructorReccurance'].setValue(JSON.stringify(this.courseDetails.in_instructorReccurance));
                 }
 
@@ -1346,7 +1346,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     }
                     if (key == 'participant' && element[0] != null) {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) =>{
                                 formData.append("participant[" + key + "]", JSON.stringify(value.id));
                             });
                         }
@@ -2461,7 +2461,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                     var groupParticipants: any = respData[0].participants;
                     var groupUsers: { user_id: string, approved_status: number }[] = [];
                     if (groupParticipants && groupParticipants.length > 0) {
-                        groupParticipants.forEach(function (value, key) {
+                        groupParticipants.forEach( (value, key) =>{
                             var status: number = 0;
                             if (value.user_id == localStorage.getItem('user-id')) {
                                 status = 1;

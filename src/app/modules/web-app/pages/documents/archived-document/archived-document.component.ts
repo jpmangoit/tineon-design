@@ -242,10 +242,9 @@ export class ArchivedDocumentComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['category'] == category) {
-                        const self = this;
                         this.notificationService.showSuccess(this.language.move_document.move_doc_success,null);
-                        setTimeout(function () {
-                            self.ngOnInit();
+                        setTimeout( () =>{
+                            this.ngOnInit();
                         }, 2000);
                     } else {
                         this.notificationService.showError(this.language.move_document.move_doc_error,null);
@@ -270,10 +269,9 @@ export class ArchivedDocumentComponent implements OnInit {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
-                        const self = this;
                         this.notificationService.showSuccess(this.language.move_document.delete_doc_success,null);
                         setTimeout(() => {
-                            self.ngOnInit();
+                            this.ngOnInit();
                         }, 2000);
                     }else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

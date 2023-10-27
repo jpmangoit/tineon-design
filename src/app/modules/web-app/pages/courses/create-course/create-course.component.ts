@@ -209,10 +209,10 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
             }
         );
 
-        $('#date_end').on('keypress', function (e) {
+        $('#date_end').on('keypress',  (e) =>{
             // e.preventDefault();
         });
-        $('#date_start').on('keypress', function (e) {
+        $('#date_start').on('keypress',  (e) =>{
             // e.preventDefault();
         });
 

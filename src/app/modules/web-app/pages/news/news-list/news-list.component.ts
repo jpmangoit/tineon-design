@@ -265,19 +265,18 @@ export class NewsListComponent implements OnInit {
   * @return  success/ error message
   */
     deleteNews(newsId: number) {
-        let self = this;
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
-                self.notificationService.showSuccess(resp, null);
+                this.notificationService.showSuccess(resp, null);
                 this.searchValue = '';
                 this.dataSource.filter = '';
                 this.getUserAllNews("");
                 // const url: string[] = ["/web/all-list"];
-                // self._router.navigate(url);
+                // this._router.navigate(url);
 
             })
             .catch((err: any) => {
-                self.notificationService.showError(err, null);
+                this.notificationService.showError(err, null);
             });
     }
 

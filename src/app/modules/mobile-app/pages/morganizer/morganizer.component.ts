@@ -76,7 +76,7 @@ export class MorganizerComponent implements OnInit {
         this.participateAccess = this.userAccess[userRole].participate;
         this.authorizationAccess = this.userAccess[userRole].authorization;
         if (localStorage.getItem("trigger-doc") !== null) {
-            setTimeout(function () {
+            setTimeout( () =>{
                 let triggered = localStorage.getItem("trigger-doc");
                 $('#organizer_doc').trigger('click');
                 localStorage.removeItem("trigger-doc");

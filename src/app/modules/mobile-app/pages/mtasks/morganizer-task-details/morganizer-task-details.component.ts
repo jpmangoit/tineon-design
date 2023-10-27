@@ -384,14 +384,14 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
   * @return  {}
   */
 	adminApprovedTasks(taskId: number) {
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task,  () =>{
 			this.authService.memberSendRequest('get', 'approve-task-as-admin/' + taskId + '/approvedby/' + this.userDetails.userId, null)
 				.subscribe(
 					(respData: any) => {
 						this.ngOnInit();
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 
@@ -402,14 +402,14 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	* @return  {}
 	*/
 	adminApprovedUpdateTasks(taskId: number) {
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task,  () =>{
 			this.authService.memberSendRequest('get', 'approve-updatedtask/' + taskId + '/approvedby/' + this.userDetails.userId, null)
 				.subscribe(
 					(respData: any) => {
 						this.ngOnInit();
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 
@@ -420,7 +420,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	* @return  {}
 	*/
 	adminUnapprovedTasks(taskId: number) {
-		this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, function (reason) {
+		this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task,  (reason) =>{
 			let postData = {
 				"deny_reason": reason,
 				"deny_by_id": this.userDetails.userId
@@ -433,7 +433,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						// this.router.navigate(['mobile/task-detail/' + taskId])
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 
@@ -444,7 +444,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
    * @return  {}
    */
 	deleteTask(eventId: number) {
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
 			this.authService.setLoader(true);
 			this.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
 				.subscribe(
@@ -455,7 +455,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						this.router.navigate(url);
 					}
 				)
-		}, function () {
+		},  () =>{
 			$('.dropdown-toggle').trigger('click');
 		})
 	}
@@ -467,7 +467,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	* @return  {}
 	*/
 	deleteUpdateTask(task_id: number) {
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
 			this.authService.memberSendRequest('get', 'get-reset-updatedtask/' + task_id, null)
 				.subscribe(
 					(respData: any) => {
@@ -478,7 +478,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 						}, 1000);
 					}
 				)
-		}, function () {
+		},  () =>{
 		}, 'deleteUpdate')
 	}
 
@@ -511,14 +511,14 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 
 					if (this.count == 1) {
 						this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,
-							function () {
+							 () =>{
 								this.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
 									(respData: any) => {
 										this.collaboratorDetails = [];
 										this.ngOnInit();
 									}
 								)
-							}, function () {
+							},  () =>{
 								$('#styled-checkbox-' + subtaskId).prop('checked', false);
 							})
 						this.count = 0;
@@ -606,7 +606,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 							}
 						});
 					if (subtaskStatus == 0) {
-						this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
+						this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,  () =>{
 							this.authService.setLoader(true);
 							this.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
 								(respData: any) => {
@@ -619,7 +619,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 									}
 								}
 							)
-						}, function () {
+						},  () =>{
 							$('#styled-checkbox-' + taskId).prop('checked', false);
 						})
 					} else {

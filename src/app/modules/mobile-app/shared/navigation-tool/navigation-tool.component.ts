@@ -55,7 +55,7 @@ export class NavigationToolComponent implements OnInit {
         this.allowAdvertisment = localStorage.getItem('allowAdvertis');
         this.showNotificationsss = this.notificationService.getNotifications();
         setTimeout(() => {
-            this.showNotifications = this.showNotificationsss.sort(function (a: any, b: any) {
+            this.showNotifications = this.showNotificationsss.sort( (a: any, b: any)=> {
                 return <any>new Date(b.created_at) - <any>new Date(a.created_at);
             });
         }, 3000);

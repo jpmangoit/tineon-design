@@ -217,7 +217,6 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
             this.roomForm.value['team_id'] = this.teamId;
             if (this.roomForm.valid && this.roomForm.value['no_of_persons'] != '' && this.roomForm.value['no_of_persons'] > 0) {
                 var formData: FormData = new FormData();
-                let self = this;
                 for (const key in this.roomForm.value) {
                     if (Object.prototype.hasOwnProperty.call(this.roomForm.value, key)) {
                         const element: string = this.roomForm.value[key];
@@ -262,10 +261,9 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     this.roomsSubmitted = false;
                     if (respData['isError'] == false) {
-                        this.notificationService.showSuccess(respData['result']['message'], null);
-                        var self = this;
-                        setTimeout(function () {
-                            self.router.navigate(['web/room-detail/' + respData['result']['room']['id']]);
+                        this.notificationService.showSuccess(respData['result']['message'], null);                   
+                        setTimeout(() => {
+                            this.router.navigate(['web/room-detail/' + respData['result']['room']['id']]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

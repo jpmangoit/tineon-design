@@ -132,9 +132,9 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 					if (respData['isError'] == false) {
 						this.vote_answer = respData['result'];
 						if (this.vote_answer) {
-							let self = this;
-							if (self.vote_answer?.length > 0) {
-								self.vote_answer?.forEach(element => {
+							
+							if (this.vote_answer?.length > 0) {
+								this.vote_answer?.forEach(element => {
 									if (this.surveyData[0]?.surveyOption == 0) {
 										var inputs: NodeListOf<Element> = document.querySelectorAll('.input-radio');
 										if (this.surveyData[0] && this.surveyData[0].surveyAnswer && this.surveyData[0].surveyAnswer.length > 0) {
@@ -230,8 +230,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 								this.authService.setLoader(false);
 								if (respData['isError'] == false) {
 									this.notificationService.showSuccess(respData['result']['message'], null);
-									var self = this;
-									setTimeout(function () { self.router.navigate(['web/survey']); }, 2000);
+									setTimeout( ()=> { this.router.navigate(['web/survey']); }, 2000);
 								} else if (respData['code'] == 400) {
 									this.btnDisable = "false";
 									this.notificationService.showError(respData['message'], null);
@@ -249,8 +248,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 								this.authService.setLoader(false);
 								if (respData['isError'] == false) {
 									this.notificationService.showSuccess(respData['result']['message'], null);
-									var self = this;
-									setTimeout(function () { self.router.navigate(['web/survey']); }, 2000);
+									setTimeout( ()=> { this.router.navigate(['web/survey']); }, 2000);
 								} else if (respData['code'] == 400) {
 									this.btnDisable = "false";
 									this.notificationService.showError(respData['message'], null);

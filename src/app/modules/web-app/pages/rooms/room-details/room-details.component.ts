@@ -257,81 +257,81 @@ export class RoomDetailsComponent implements OnInit {
     }
 
     approveRoom(roomId: number) {
-        let self = this;
+        
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
-            self.authService.memberSendRequest('get', 'set-approve-room-status/' + roomId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_room,  () =>{
+            this.authService.memberSendRequest('get', 'set-approve-room-status/' + roomId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     approvedUpdateRoom(room_id: number) {
-        let self = this;
+        
         let userId: string = localStorage.getItem('user-id');
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.approved_room, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedrooms/' + room_id + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_room,  () =>{
+            this.authService.memberSendRequest('get', 'approve-updatedrooms/' + room_id + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.getRoomDetail(room_id)
+                        this.ngOnInit();
+                        this.getRoomDetail(room_id)
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     unapprovedRoom(roomId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, function (reason) {
+        
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room,  (reason) =>{
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-rooms/room_id/' + roomId, postData)
+            this.authService.memberSendRequest('put', 'deny-rooms/room_id/' + roomId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
 
     deleteRoom(room_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
-            self.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
+        
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_Room,  () =>{
+            this.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage, null);
-                        self.router.navigate(['/web/room'])
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage, null);
+                        this.router.navigate(['/web/room'])
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     deleteUpdateRoom(room_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
-            self.authService.memberSendRequest('get', 'get-reset-updatedroom/' + room_id, null)
+        
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_Room,  () =>{
+            this.authService.memberSendRequest('get', 'get-reset-updatedroom/' + room_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.router.navigate(['web/room-detail/' + room_id]);
+                        this.router.navigate(['web/room-detail/' + room_id]);
                         setTimeout(() => {
-                            self.ngOnInit();
-                            self.getRoomDetail(room_id)
+                            this.ngOnInit();
+                            this.getRoomDetail(room_id)
                         }, 1000);
                     }
                 )
-        }, function () {
+        },  () =>{
         }, 'deleteUpdate')
     }
 

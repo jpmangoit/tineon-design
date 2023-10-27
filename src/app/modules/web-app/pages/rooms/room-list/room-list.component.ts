@@ -110,18 +110,17 @@ export class RoomListComponent implements OnInit {
     }
 
     deleteRoom(room_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Room, function () {
-            self.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_Room, () =>{
+            this.authService.memberSendRequest('delete', 'deleteRooms/' + room_id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage, null);
-                        self.getUserAllRooms("");
-                        // self.router.navigate(['/web/room'])
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage, null);
+                        this.getUserAllRooms("");
+                        // this.router.navigate(['/web/room'])
                     }
                 )
-        }, function () {
+        }, () =>{
         })
     }
 

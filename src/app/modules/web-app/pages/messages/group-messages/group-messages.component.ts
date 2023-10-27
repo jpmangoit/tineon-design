@@ -651,62 +651,66 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
 
     deleteMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
-        let self = this;
+
         this.confirmDialogService.confirmThis(
             this.language.confirmation_message.send_msg_trash,
-            function () {
-                self.selectedMessage = [];
-                self.authService.setLoader(true);
+             ()=> {
+                this.selectedMessage = [];
+                this.authService.setLoader(true);
                 let msgMoveData: { id: number; esdb_id: string; to: string } = {
                     id: messageId,
                     esdb_id: esdb_id,
                     to: 'trash',
                 };
-                self.authService
+                this.authService
                     .memberSendRequest('post', 'message/move', msgMoveData)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         setTimeout(() => {
-                            if (self.groupInbox == true) {
-                                self.groupMessages();
-                            } else if (self.groupStarred == true) {
-                                self.groupStarredMessages();
-                            } else if (self.groupSent == true) {
-                                self.groupSentMessages();
-                            } else if (self.groupDrafts == true) {
-                                self.groupDraftsMessages();
-                            } else if (self.groupAllMail == true) {
-                                self.groupAllMailMessages();
-                            } else if (self.groupTrash == true) {
-                                self.groupTrashMessages();
+                            if (this.groupInbox == true) {
+                                this.groupMessages();
+                            } else if (this.groupStarred == true) {
+                                this.groupStarredMessages();
+                            } else if (this.groupSent == true) {
+                                this.groupSentMessages();
+                            } else if (this.groupDrafts == true) {
+                                this.groupDraftsMessages();
+                            } else if (this.groupAllMail == true) {
+                                this.groupAllMailMessages();
+                            } else if (this.groupTrash == true) {
+                                this.groupTrashMessages();
                             }
                         }, 500);
                     });
             },
-            function () { }
+             ()=> {
+
+             }
         );
     }
 
     deleteMessagesPermanently(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
-        let self = this;
+
         this.confirmDialogService.confirmThis(
             this.language.confirmation_message.permanently_delete_msg,
-            function () {
-                self.authService.setLoader(true);
-                self.authService
+             ()=> {
+                this.authService.setLoader(true);
+                this.authService
                     .memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = this.language.community_messages.permanently_delete;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
-                            self.groupTrashMessages();
+                            this.groupTrashMessages();
                         }, 500);
                     });
             },
-            function () { }
+             () =>{ 
+
+            }
         );
     }
 
@@ -912,13 +916,13 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) =>{
                                 formData.append('receiver_id[' + key + ']', value);
                             });
                         }
                     } else if (key == 'cc') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) =>{
                                 formData.append('cc[' + key + ']', value);
                             });
                         }
@@ -966,24 +970,26 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
 
     deleteDraftMessages(messageId: number, esdb_id: string) {
         this.isReplyMsgForm = false;
-        let self = this;
+
         this.confirmDialogService.confirmThis(
             this.language.confirmation_message.delete_msg,
-            function () {
-                self.selectedMessage = [];
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
+             ()=> {
+                this.selectedMessage = [];
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = self.language.community_messages.permanently_delete;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = this.language.community_messages.permanently_delete;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         let selectedTab: any = $('.feature_tab .active a').text().trim();
                         setTimeout(() => {
-                            self.groupDraftsMessages();
+                            this.groupDraftsMessages();
                         }, 500);
                     });
             },
-            function () { }
+             () =>{ 
+
+            }
         );
     }
 

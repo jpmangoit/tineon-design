@@ -111,38 +111,37 @@ export class EventListComponent implements OnInit {
 
 
     deleteEvents(eventId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'event/' + eventId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_event,  () => {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'event/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
-                        self.getUserAllEvents("");
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
+                        this.getUserAllEvents("");
                         // const url: string[] = ["/web/all-list"];
-                        // self.router.navigate(url);
+                        // this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () => {
             $('.dropdown-toggle').trigger('click');
         })
     }
 
     // deleteNews(newsId: number) {
-    //     let self = this;
+    //  
     //     this.commonFunctionService.deleteNews(newsId)
     //         .then((resp: any) => {
-    //             self.notificationService.showSuccess(resp, null);
+    //             this.notificationService.showSuccess(resp, null);
     //             this.searchValue = '';
     //             this.dataSource.filter = '';
     //             this.getUserAllNews("");
     //             // const url: string[] = ["/web/all-list"];
-    //             // self._router.navigate(url);
+    //             // this._router.navigate(url);
 
     //         })
     //         .catch((err: any) => {
-    //             self.notificationService.showError(err, null);
+    //             this.notificationService.showError(err, null);
     //         });
     // }
 

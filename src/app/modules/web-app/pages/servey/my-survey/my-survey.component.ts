@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import {LoginDetails, ThemeType} from '@core/models';
-import {Survey} from '@core/models/survey.model';
-import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import { LoginDetails, ThemeType } from '@core/models';
+import { Survey } from '@core/models/survey.model';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 
 declare var $: any;
 
@@ -70,7 +70,6 @@ export class MySurveyComponent implements OnInit, OnDestroy {
     * @return  {object} user object
     */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {

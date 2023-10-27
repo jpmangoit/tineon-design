@@ -6,18 +6,18 @@ import { serverUrl } from 'src/environments/environment';
 import { Subscription } from 'rxjs'
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {
-  AuthorizationAccess,
-  CommunityGroup,
-  CreateAccess,
-  LoginDetails,
-  ParticipateAccess,
-  ThemeType,
-  UserAccess,
-  UserDetails
+    AuthorizationAccess,
+    CommunityGroup,
+    CreateAccess,
+    LoginDetails,
+    ParticipateAccess,
+    ThemeType,
+    UserAccess,
+    UserDetails
 } from '@core/models';
-import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService} from '@shared/components';
-import {appSetting} from '@core/constants';
+import { AuthService, LanguageService, NavigationService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService } from '@shared/components';
+import { appSetting } from '@core/constants';
 
 declare var $: any;
 
@@ -150,7 +150,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
  * @return  {Array Of Object} all the Users
  */
     getAllUserInfo() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
@@ -173,7 +172,6 @@ export class CreateChatComponent implements OnInit, OnDestroy {
      * @returns {Object} users chats
      */
     chats() {
-        let self = this;
         this.authService.setLoader(true);
         this.authService.memberSendRequest('get', 'get-usersgroup-chat/' + this.userDetails.userId, '')
             .subscribe(
@@ -194,7 +192,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     if (userData && userData.length > 0) {
                         Object(userData).forEach((val, key) => {
                             this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
-                            self.userDropdownSettings = {
+                            this.userDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
                                 textField: 'name',
@@ -256,7 +254,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                     roomId: this.roomId
                 }
             }
-            let self = this;
+
             var formData: FormData = new FormData();
             for (const key in reqData) {
                 if (Object.prototype.hasOwnProperty.call(reqData, key)) {
@@ -286,9 +284,8 @@ export class CreateChatComponent implements OnInit, OnDestroy {
                             this.imageSrc = null;
                             this.chatForm.reset();
                             this.chatFormSubmitted = false;
-                            var self = this;
-                            setTimeout(function () {
-                                self.router.navigate(['web/community']);
+                            setTimeout(() => {
+                                this.router.navigate(['web/community']);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -430,8 +427,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
         var url: any;
-        let self = this
-        reader.onload = function (_event) {
+        reader.onload =  (_event)=> {
             url = reader.result;
             var imagee: HTMLImageElement = new Image();
             imagee.src = URL.createObjectURL(file);

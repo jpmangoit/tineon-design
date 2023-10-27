@@ -70,7 +70,7 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 			this.setTheme = resp;
 		});
 
-		let self = this;
+		
 		this.language = this.lang.getLanguageFile();
 		this.userDetails = JSON.parse(localStorage.getItem('user-data'));
 		this.extensions = appSetting.extensions;
@@ -105,7 +105,7 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 						})
 						this.alluserInfo = respData;
 					}
-					self.userDropdownSettings = {
+					this.userDropdownSettings = {
 						singleSelection: false,
 						idField: 'id',
 						textField: 'name',
@@ -634,66 +634,66 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 
 	deleteMessages(messageId: number, esdb_id: string) {
 		this.isReplyMsgForm = false;
-		let self = this;
-		self.confirmDialogService.confirmThis(this.language.confirmation_message.send_msg_trash, function () {
-			self.selectedMessage = [];
-			self.authService.setLoader(true);
+		
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.send_msg_trash,  () =>{
+			this.selectedMessage = [];
+			this.authService.setLoader(true);
 			let msgMoveData: { id: number, esdb_id: string, to: string } = {
 				"id": messageId,
 				"esdb_id": esdb_id,
 				"to": "trash"
 			};
-			self.authService.memberSendRequest('post', 'message/move', msgMoveData)
+			this.authService.memberSendRequest('post', 'message/move', msgMoveData)
 				.subscribe(
 					(respData: any) => {
-						self.authService.setLoader(false);
-						self.responseMessage = self.language.community_messages.move_trash;
-						self.notificationService.showSuccess(self.responseMessage, null);
+						this.authService.setLoader(false);
+						this.responseMessage = this.language.community_messages.move_trash;
+						this.notificationService.showSuccess(this.responseMessage, null);
 						// setTimeout(() => {
-						// 	self.responseMessage = '';
+						// 	this.responseMessage = '';
 						// }, 2000);
 						setTimeout(() => {
-							if (self.clubInbox == true) {
-								self.clubMessages();
-							} else if (self.clubStarred == true) {
-								self.clubStarredMessages();
-							} else if (self.clubSent == true) {
-								self.clubSentMessages();
-							} else if (self.clubDrafts == true) {
-								self.clubDraftsMessages();
-							} else if (self.clubAllMail == true) {
-								self.clubAllMailMessages();
-							} else if (self.clubTrash == true) {
-								self.clubTrashMessages();
+							if (this.clubInbox == true) {
+								this.clubMessages();
+							} else if (this.clubStarred == true) {
+								this.clubStarredMessages();
+							} else if (this.clubSent == true) {
+								this.clubSentMessages();
+							} else if (this.clubDrafts == true) {
+								this.clubDraftsMessages();
+							} else if (this.clubAllMail == true) {
+								this.clubAllMailMessages();
+							} else if (this.clubTrash == true) {
+								this.clubTrashMessages();
 							}
 						}, 500);
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 
 	deleteMessagesPermanently(messageId: number, esdb_id: string) {
 		this.isReplyMsgForm = false;
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg, function () {
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
+		
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.permanently_delete_msg,  () =>{
+			this.authService.setLoader(true);
+			this.authService.memberSendRequest('delete', 'message/deny-message/' + esdb_id, null)
 				.subscribe(
 					(respData: any) => {
-						self.authService.setLoader(false);
-						self.responseMessage = self.language.community_messages.permanently_delete;
-						self.notificationService.showSuccess(self.responseMessage, null);
+						this.authService.setLoader(false);
+						this.responseMessage = this.language.community_messages.permanently_delete;
+						this.notificationService.showSuccess(this.responseMessage, null);
 						// setTimeout(() => {
-						// 	self.responseMessage = '';
+						// 	this.responseMessage = '';
 						// }, 400);
 						let selectedTab: any = $('.feature_tab .active a').text().trim();
 						setTimeout(() => {
-							self.clubTrashMessages();
+							this.clubTrashMessages();
 						}, 500);
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 
@@ -876,13 +876,13 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 						formData.append('file', element);
 					} else if (key == 'receiver_id') {
 						if (element && element.length > 0) {
-							element.forEach(function (value, key) {
+							element.forEach( (value, key) =>{
 								formData.append("receiver_id[" + key + "]", value);
 							});
 						}
 					} else if (key == 'cc') {
 						if (element && element.length > 0) {
-							element.forEach(function (value, key) {
+							element.forEach( (value, key) =>{
 								formData.append("cc[" + key + "]", value);
 							});
 						}
@@ -924,26 +924,26 @@ export class ClubMessagesComponent implements OnInit, OnDestroy {
 
 	deleteDraftMessages(messageId: number, esdb_id: string) {
 		this.isReplyMsgForm = false;
-		let self = this;
-		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_draft_msg, function () {
-			self.selectedMessage = [];
-			self.authService.setLoader(true);
-			self.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
+		
+		this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_draft_msg,  () =>{
+			this.selectedMessage = [];
+			this.authService.setLoader(true);
+			this.authService.memberSendRequest('delete', 'message/delete-draft/' + messageId, null)
 				.subscribe(
 					(respData: any) => {
-						self.authService.setLoader(false);
-						self.responseMessage = self.language.community_messages.permanently_delete;
-						self.notificationService.showSuccess(self.responseMessage, null);
+						this.authService.setLoader(false);
+						this.responseMessage = this.language.community_messages.permanently_delete;
+						this.notificationService.showSuccess(this.responseMessage, null);
 						// setTimeout(() => {
-						// 	self.responseMessage = '';
+						// 	this.responseMessage = '';
 						// }, 400);
 						let selectedTab: any = $('.feature_tab .active a').text().trim();
 						setTimeout(() => {
-							self.clubDraftsMessages();
+							this.clubDraftsMessages();
 						}, 500);
 					}
 				)
-		}, function () {
+		},  () =>{
 		})
 	}
 

@@ -154,27 +154,28 @@ export class ThemesComponent implements OnInit {
         } else {
             confirmMessage = this.language.theme.apply_default_theme;
         }
-        let self = this;
-        self.confirmDialogService.confirmThis(confirmMessage, function () {
-            self.authService.setLoader(true);
-            self.authService
+        this.confirmDialogService.confirmThis(confirmMessage,  () =>{
+            this.authService.setLoader(true);
+            this.authService
                 .memberSendRequest('delete', 'delete-club-theme/' + themeId, null)
                 .subscribe((respData: string) => {
-                    self.authService.setLoader(false);
+                    this.authService.setLoader(false);
                     if (respData['isError'] == false) {
-                        self.notificationService.showSuccess(respData['result']['message'], null);
-                        setTimeout(function () {
+                        this.notificationService.showSuccess(respData['result']['message'], null);
+                        setTimeout( () =>{
                             if (status == 1) {
-                                self.themes.getClubDefaultTheme(self.userDetails.team_id);
+                                this.themes.getClubDefaultTheme(this.userDetails.team_id);
                             }
-                            self.ngOnInit();
+                            this.ngOnInit();
                         }, 3000);
                     } else if (respData['code'] == 400) {
-                        self.notificationService.showError(respData['message'], null);
+                        this.notificationService.showError(respData['message'], null);
                     }
                 });
         },
-            function () { }
+             ()=> { 
+
+            }
         );
     }
 

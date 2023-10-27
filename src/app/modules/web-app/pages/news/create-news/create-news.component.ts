@@ -303,9 +303,9 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
                     this.submitted = false;
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(this.language.response_message.news_success, null);
-                        var self = this;
-                        setTimeout(function () {
-                            self.router.navigate(['web/clubwall']);
+                        
+                        setTimeout(() =>{
+                            this.router.navigate(['web/clubwall']);
                         }, 1500);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);

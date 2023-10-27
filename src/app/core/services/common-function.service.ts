@@ -242,16 +242,15 @@ export class CommonFunctionService {
     * @return  success/ error message
     */
     deleteNews(newsId: any) {
-        let self = this;
         this.language = this.lang.getLanguageFile();
         this.userId = localStorage.getItem('user-id');
         return new Promise((resolve, reject) => {
-            this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article, function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'news/' + newsId + '/user/' + self.userId, null)
+            this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article,  ()=> {
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('delete', 'news/' + newsId + '/user/' + this.userId, null)
                     .subscribe(
                         (respData: any) => {
-                            self.authService.setLoader(false);;
+                            this.authService.setLoader(false);;
                             if (respData['isError'] == false) {
                                 resolve(respData['result']['message']);
                             } else if (respData['code'] == 400) {
@@ -259,7 +258,7 @@ export class CommonFunctionService {
                             }
                         }
                     )
-            }, function () {
+            },  ()=> {
             })
         })
     }

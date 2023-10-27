@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NgxImageCompressService } from "ngx-image-compress";
 import { DomSanitizer } from '@angular/platform-browser';
-import {LoginDetails, ThemeData, ThemeType} from '@core/models';
-import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import { LoginDetails, ThemeData, ThemeType } from '@core/models';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 
 
 declare var $: any;
@@ -177,7 +177,6 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
     }
 
     getTheme(club_theme_id: string) {
-        let self = this;
         this.authService.sendRequest('get', 'club-theme-bythemeid/' + club_theme_id, null)
             .subscribe(
                 (respData: any) => {
@@ -406,7 +405,7 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
             }
 
             var formData: any = new FormData();
-            let self = this;
+
             for (const key in this.updateThemeForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.updateThemeForm.value, key)) {
                     const element = this.updateThemeForm.value[key];

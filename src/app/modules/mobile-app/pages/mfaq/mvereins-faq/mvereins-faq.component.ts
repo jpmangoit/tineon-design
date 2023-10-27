@@ -458,7 +458,7 @@ export class MvereinsFaqComponent implements OnInit {
                         this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            setTimeout(function () {
+                            setTimeout(()=> {
                                 this.getFaqByCategory(this.faqId)
                             }, 3000);
                         } else if (respData['code'] == 400) {

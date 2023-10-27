@@ -13,14 +13,14 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import {LoginDetails, Room, ThemeType, UserDetails} from '@core/models';
+import { LoginDetails, Room, ThemeType, UserDetails } from '@core/models';
 import {
-  AuthService,
-  CommonFunctionService,
-  LanguageService,
-  NavigationService,
-  NotificationService,
-  ThemeService
+    AuthService,
+    CommonFunctionService,
+    LanguageService,
+    NavigationService,
+    NotificationService,
+    ThemeService
 } from '@core/services';
 
 
@@ -194,11 +194,11 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             this.setTheme = resp;
         });
 
-        $('#date_end').on('keypress', function (e: any) {
+        $('#date_end').on('keypress',  (e: any) =>{
             // e.preventDefault();
         });
 
-        $('#date_start').on('keypress', function (e: any) {
+        $('#date_start').on('keypress',  (e: any) =>{
             // e.preventDefault();
         });
 
@@ -517,7 +517,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     */
     getUserAndGroup() {
         if (sessionStorage.getItem('token')) {
-            let self = this;
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'teamGroupsAndUsers/' + this.teamId, null)
                 .subscribe((respData: any) => {
@@ -529,7 +528,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
                         if (respData && respData?.result?.users?.length > 0) {
                             this.alluserDetails = respData.result.users;
-
                             Object(respData.result.users).forEach((val, key) => {
                                 if (val.id != localStorage.getItem('user-id') && (val.role != 'guest')) {
                                     this.userDropdownList.push({ 'id': val.id, 'name': val.firstname + ' ' + val.lastname });
@@ -540,7 +538,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                                     });
                                 }
                             })
-                            self.userDropdownSettings = {
+                            this.userDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -566,7 +564,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                             Object(respData.result.rooms).forEach((val, key) => {
                                 this.roomDropdownList.push({ 'id': val.id, 'name': val.name });
                             });
-                            self.roomDropdownSettings = {
+                            this.roomDropdownSettings = {
                                 singleSelection: true,
                                 idField: 'id',
                                 textField: 'name',
@@ -684,7 +682,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             var date_repeat: Date = this.eventForm.controls["date_repeat"].value;
             var formData: FormData = new FormData();
             this.authService.setLoader(false);
-            let self = this;
             for (const key in this.eventForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.eventForm.value, key)) {
                     const element = this.eventForm.value[key];
@@ -694,7 +691,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         formData.append('file', element);
                     } else if (key == 'recurrence') {
                         if (element[0] && element[0].item_id == 5) {
-                            formData.append('recurrence', self.finalCustomRecurrence);
+                            formData.append('recurrence', this.finalCustomRecurrence);
                         } else {
                             formData.append('recurrence', this.recurrenceString);
                         }
@@ -704,7 +701,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         }
                     } else if (key == 'participant' && element[0] != null) {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach((value, key) => {
                                 formData.append("participant[" + key + "]", JSON.stringify(value.id));
                             });
                         }
@@ -712,7 +709,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         var groupArray: number[] = [];
                         var grp_id: number;
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach((value, key) => {
                                 grp_id = value.id;
                                 groupArray.push(value.id);
                             });
@@ -723,7 +720,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         if (this.visibility != 3) {
                             var userArr: { user_id: string, approved_status: number }[] = [{ 'user_id': JSON.parse(localStorage.getItem('user-id')), 'approved_status': 1 }];
                             if (element && element.length > 0) {
-                                element.forEach(function (value, key) {
+                                element.forEach((value, key) => {
                                     var status: number = 0;
                                     if (value == localStorage.getItem('user-id')) {
                                         status = 1;
@@ -774,9 +771,9 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         // this.userSelected = [];
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(this.language.response_message.event_success, null);
-                            var self = this;
-                            setTimeout(function () {
-                                self.router.navigate(['web/event-detail/' + respData['result']['news']['id']]);
+
+                            setTimeout(() => {
+                                this.router.navigate(['web/event-detail/' + respData['result']['news']['id']]);
                             }, 1500);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -950,11 +947,11 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     onRecurrenceSelect(item: { item_id: number, item_text: string }) {
         this.recurrenceSelected = item.item_id;
         var today: number = (new Date()).getDay();
-        var self = this;
+
         if (this.weekDaysArr && this.weekDaysArr.length > 0) {
-            this.weekDaysArr.forEach(function (vals, keys) {
+            this.weekDaysArr.forEach((vals, keys) => {
                 if (vals.item_id == today) {
-                    self.todayName = vals.description;
+                    this.todayName = vals.description;
                 }
             });
         }
@@ -1191,14 +1188,13 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                 this.event_allDates = RRule.fromString(recurrenceData).all()
             }
             if (this.customRecurrenceTypeSelected == 2) {
-                var self = this;
                 recurrenceData = '';
                 let numberWeek: number = $('.custom_recurrence_weekly').val();
                 //interval
                 let byDay: any[] = [];
-                if (self.weekDaysArr && self.weekDaysArr.length > 0) {
-                    self.weekDaysArr.forEach(function (weekName, weekIndex) {
-                        self.weekDayTypeSelected.forEach(function (weekSelected, key) {
+                if (this.weekDaysArr && this.weekDaysArr.length > 0) {
+                    this.weekDaysArr.forEach((weekName, weekIndex) => {
+                        this.weekDayTypeSelected.forEach((weekSelected, key) => {
                             if (weekName.item_id == weekSelected) {
                                 byDay.push(weekName.description);
                             }
@@ -1594,7 +1590,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                         var groupParticipants = respData[0].participants;
                         var groupUsers: { user_id: string, approved_status: number }[] = [];
                         if (groupParticipants && groupParticipants.length > 0) {
-                            groupParticipants.forEach(function (value, key) {
+                            groupParticipants.forEach((value, key) => {
                                 if (value.approved_status == 1) {
                                     var status: number = 0;
                                     if (value.user_id == localStorage.getItem('user-id')) {
@@ -1729,7 +1725,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             const reader: FileReader = new FileReader();
             reader.readAsDataURL(file);
             var url: any;
-            let self = this
             reader.onload = (_event) => {
                 url = reader.result;
             }
@@ -1819,8 +1814,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
 
     onTaskGroupSelect(item: { id: number; user_name: string }) {
-        let self = this;
-        self.task_user_selected = [];
+        this.task_user_selected = [];
         let control = this.eventForm.controls.task['controls'][0] as UntypedFormGroup;
         control.controls['group_id'].setValue(item.id);
         this.authService.setLoader(true);
@@ -1831,8 +1825,8 @@ export class CreateEventComponent implements OnInit, OnDestroy {
                     if (respData[0]?.participants) {
                         var groupParticipants = respData[0]?.participants;
                         if (groupParticipants && groupParticipants.length > 0) {
-                            groupParticipants.forEach(function (value, key) {
-                                self.task_user_selected.push({
+                            groupParticipants.forEach((value, key) => {
+                                this.task_user_selected.push({
                                     'user_id': value.user_id,
                                     'approved_status': 1
                                 })

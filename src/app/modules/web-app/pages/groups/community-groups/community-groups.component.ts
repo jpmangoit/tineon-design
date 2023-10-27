@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import {CommunityGroup, LoginDetails, ThemeType} from '@core/models';
-import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService} from '@shared/components';
+import { CommunityGroup, LoginDetails, ThemeType } from '@core/models';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService } from '@shared/components';
 
 declare var $: any;
 
@@ -333,30 +333,30 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     joinGroup(groupId: number) {
-        let self = this;
+
         this.confirmDialogService.confirmThis(
             this.language.community_groups.join_group_popup,
-            function () {
+            () =>{
                 let postData: object = {
                     participants: {
                         group_id: groupId,
-                        user_id: self.user_Id,
+                        user_id: this.user_Id,
                         approved_status: 2,
                     },
                 };
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('post', 'joinGroup/user_id/' + self.user_Id + '/group_id/' + groupId, postData)
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('post', 'joinGroup/user_id/' + this.user_Id + '/group_id/' + groupId, postData)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            // self.teamAllGroups();
-                            self.allGroups();
-                            self.joinAllGroups();
+                            // this.teamAllGroups();
+                            this.allGroups();
+                            this.joinAllGroups();
                         }, 3000);
                     });
             },
-            function () { }
+             ()=> { }
         );
     }
 
@@ -367,21 +367,23 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     leaveGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.user_Id + '/group_id/' + groupId, null)
+
+        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'leaveGroup/user/' + this.user_Id + '/group_id/' + groupId, null)
                 .subscribe((respData: any) => {
-                    self.authService.setLoader(false);
-                    self.notificationService.showSuccess(respData['result']['message'], null);
+                    this.authService.setLoader(false);
+                    this.notificationService.showSuccess(respData['result']['message'], null);
                     setTimeout(() => {
-                        // self.teamAllGroups();
-                        self.allGroups();
-                        self.joinAllGroups();
+                        // this.teamAllGroups();
+                        this.allGroups();
+                        this.joinAllGroups();
                     }, 3000);
                 });
         },
-            function () { }
+             ()=> {
+
+             }
         );
     }
 
@@ -392,21 +394,20 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
      * @return  {}
      */
     deleteGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            self.joinAllGroups();
-                            self.groupsYouManage()
+                            this.joinAllGroups();
+                            this.groupsYouManage()
                         }, 2000);
                     }
                 )
-        }, function () {
+        },  ()=> {
         })
     }
 
@@ -494,6 +495,6 @@ export class CommunityGroupsComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy(): void {
-        this.activatedSub.unsubscribe(); 
+        this.activatedSub.unsubscribe();
     }
 }

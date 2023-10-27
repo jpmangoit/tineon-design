@@ -186,12 +186,12 @@ export class FaqCategoryComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     this.authService.setLoader(false);
                     this.editId = respData[0].id;
-                    let self = this;
+                    
                     if(respData?.length > 0){
-                        respData.forEach(function (val: FAQCategory, key: number) {
-                            self.FaqCat = val;
-                            self.position = [];
-                            self.setEditFAQCategory();
+                        respData.forEach( (val: FAQCategory, key: number) =>{
+                            this.FaqCat = val;
+                            this.position = [];
+                            this.setEditFAQCategory();
                         });
                     }
                 },
@@ -238,7 +238,7 @@ export class FaqCategoryComponent implements OnInit, OnDestroy {
                 if (respData['isError'] == false) {
                     this.notificationService.showSuccess(respData['result']['message'],null);
                     this.getAllFAQCategory();
-                    setTimeout(function () {
+                    setTimeout( () =>{
                         $('#exModal').modal('hide');
                     }, 2000);
                 } else if (respData['code'] == 400) {
@@ -263,23 +263,23 @@ export class FaqCategoryComponent implements OnInit, OnDestroy {
     }
 
     deleteCategory(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(
-            self.language.confirmation_message.delete_category,
-            function () {
-                self.authService.setLoader(true);
-                self.authService.memberSendRequest('delete', 'category/' + id, null)
+        
+        this.confirmDialogService.confirmThis(
+            this.language.confirmation_message.delete_category,
+             () => {
+                this.authService.setLoader(true);
+                this.authService.memberSendRequest('delete', 'category/' + id, null)
                     .subscribe((respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'],null);
-                            self.getAllFAQCategory();
+                            this.notificationService.showSuccess(respData['result']['message'],null);
+                            this.getAllFAQCategory();
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'],null);
+                            this.notificationService.showError(respData['message'],null);
                         }
                     });
             },
-            function () { }
+             () => { }
         );
     }
 

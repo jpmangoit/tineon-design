@@ -626,15 +626,14 @@ export class GroupDetailComponent implements OnInit {
    * @return  {}
    */
     approvedGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_group, function () {
-            self.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId + '/' + self.userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_group,  () =>{
+            this.authService.memberSendRequest('get', 'approve-group-by-id/' + groupId + '/' + this.userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -645,19 +644,18 @@ export class GroupDetailComponent implements OnInit {
 * @return  {}
 */
     unapproveGroup(groupId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function (reason) {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, (reason) =>{
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userId
+                "deny_by_id": this.userId
             };
-            self.authService.memberSendRequest('put', 'adminDenyGroup/group_id/' + groupId, postData)
+            this.authService.memberSendRequest('put', 'adminDenyGroup/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -668,16 +666,15 @@ export class GroupDetailComponent implements OnInit {
 * @return  {}
 */
     acceptUpdatedGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId + '/' + self.userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article,  () =>{
+            this.authService.memberSendRequest('get', 'approve-updatedGroupByAdmin/group_id/' + groupId + '/' + this.userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                         this.getGroupDetails(groupId)
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -688,18 +685,17 @@ export class GroupDetailComponent implements OnInit {
    * @return  {}
    */
     deleteGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData.result.message, null);
-                        self.router.navigate(['web/community/groups-joined']);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData.result.message, null);
+                        this.router.navigate(['web/community/groups-joined']);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -710,18 +706,17 @@ export class GroupDetailComponent implements OnInit {
    * @return  {}
    */
     deleteUpdateGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedGroupDetails/group_id/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedGroupDetails/group_id/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.router.navigate(['web/group-detail/' + groupId]);
-                        self.getGroupDetails(groupId)
+                        this.authService.setLoader(false);
+                        this.router.navigate(['web/group-detail/' + groupId]);
+                        this.getGroupDetails(groupId)
                     }
                 )
-        }, function () {
+        },  () =>{
         }, 'deleteUpdate')
     }
 
@@ -732,22 +727,21 @@ export class GroupDetailComponent implements OnInit {
 * @return  {}
 */
     acceptGroup(groupId: number) {   //notification
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group, function () {
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.accept_group,  () =>{
             let postData: object = {
                 "participants": {
                     "group_id": groupId,
-                    "user_id": self.userId,
+                    "user_id": this.userId,
                     "approved_status": 1
                 }
             };
-            self.authService.memberSendRequest('put', 'acceptGroup/user/' + self.userId + '/group_id/' + groupId, postData)
+            this.authService.memberSendRequest('put', 'acceptGroup/user/' + this.userId + '/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -758,15 +752,14 @@ export class GroupDetailComponent implements OnInit {
    * @return  {}
    */
     rejectGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
-            self.authService.memberSendRequest('delete', 'denyGroup/user/' + self.userId + '/group_id/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  () =>{
+            this.authService.memberSendRequest('delete', 'denyGroup/user/' + this.userId + '/group_id/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -777,28 +770,27 @@ export class GroupDetailComponent implements OnInit {
 * @return  {}
 */
     joinGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.join_group_popup, function () {
+        this.confirmDialogService.confirmThis(this.language.community_groups.join_group_popup,  () =>{
             let postData: object = {
                 "participants": {
                     "group_id": groupId,
-                    "user_id": self.userId,
+                    "user_id": this.userId,
                     "approved_status": 2
                 }
             };
-            self.authService.setLoader(false);
-            self.authService.memberSendRequest('post', 'joinGroup/user_id/' + self.userId + '/group_id/' + groupId, postData)
+            this.authService.setLoader(false);
+            this.authService.memberSendRequest('post', 'joinGroup/user_id/' + this.userId + '/group_id/' + groupId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            self.ngOnInit();
+                            this.ngOnInit();
                         }, 3000);
 
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -809,20 +801,19 @@ export class GroupDetailComponent implements OnInit {
 * @return  {}
 */
     leaveGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'leaveGroup/user/' + self.userId + '/group_id/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.leave_group_popup,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'leaveGroup/user/' + this.userId + '/group_id/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData['result']['message'], null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData['result']['message'], null);
                         setTimeout(() => {
-                            self.ngOnInit();
+                            this.ngOnInit();
                         }, 3000);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 

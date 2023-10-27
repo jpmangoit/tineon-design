@@ -103,22 +103,23 @@ export class ServeyListComponent implements OnInit {
     * @return  {staring}
     */
      surveyDelete(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_survey, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'], null);
-                            self.getUserAllSurvey("");
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            this.getUserAllSurvey("");
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         }
                     }
                 )
-        }, function () { }
+        },  ()=> { 
+
+        }
         )
     }
 

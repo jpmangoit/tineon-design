@@ -156,10 +156,10 @@ export class MdisplayMessagesComponent implements OnInit {
     }
 
     searchSentence() {
-        $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
+        $(document).ready( ()=> {
+            $("#myInput").on("keyup",  () =>{
                 var value = $(this).val().toLowerCase();
-                $("#myList *").filter(function () {
+                $("#myList *").filter( () =>{
                     var msg_data = $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -498,13 +498,13 @@ export class MdisplayMessagesComponent implements OnInit {
                         formData.append('file', element);
                     } else if (key == 'receiver_id') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key)=> {
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key)=> {
                                 formData.append("cc[" + key + "]", value);
                             });
                         }

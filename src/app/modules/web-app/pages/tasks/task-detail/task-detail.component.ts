@@ -330,15 +330,15 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     adminApprovedTasks(taskId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
-            self.authService.memberSendRequest('get', 'approve-task-as-admin/' + taskId + '/approvedby/' + self.userDetails.userId, null)
+
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task,  () =>{
+            this.authService.memberSendRequest('get', 'approve-task-as-admin/' + taskId + '/approvedby/' + this.userDetails.userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -349,15 +349,15 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     adminApprovedUpdateTasks(taskId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedtask/' + taskId + '/approvedby/' + self.userDetails.userId, null)
+
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_task,  () =>{
+            this.authService.memberSendRequest('get', 'approve-updatedtask/' + taskId + '/approvedby/' + this.userDetails.userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -368,20 +368,20 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     adminUnapprovedTasks(taskId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, function (reason) {
+
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task,  (reason) =>{
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-task/task_id/' + taskId, postData)
+            this.authService.memberSendRequest('put', 'deny-task/task_id/' + taskId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
-                        self.router.navigate(['web/task-detail/' + taskId])
+                        this.ngOnInit();
+                        this.router.navigate(['web/task-detail/' + taskId])
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -392,19 +392,19 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     deleteTask(eventId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
+
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData.result.message, null);
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData.result.message, null);
                         const url: string[] = ["/web/organizer/organizer-task"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
             $('.dropdown-toggle').trigger('click');
         })
     }
@@ -416,18 +416,18 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     deleteUpdateTask(task_id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_task, function () {
-            self.authService.memberSendRequest('get', 'get-reset-updatedtask/' + task_id, null)
+
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
+            this.authService.memberSendRequest('get', 'get-reset-updatedtask/' + task_id, null)
                 .subscribe(
                     (respData: any) => {
                         setTimeout(() => {
-                            self.ngOnInit()
-                            self.router.navigate(['web/task-detail/' + task_id])
+                            this.ngOnInit()
+                            this.router.navigate(['web/task-detail/' + task_id])
                         }, 1000);
                     }
                 )
-        }, function () {
+        },  () =>{
         }, 'deleteUpdate')
     }
 
@@ -438,17 +438,17 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     eventMarkComplete(subtaskId: number) {
-        let self = this;
-        if (self.taskDetails['subtasks'] && self.taskDetails['subtasks'].length > 0) {
-            self.taskDetails['subtasks'].forEach(element => {
+
+        if (this.taskDetails['subtasks'] && this.taskDetails['subtasks'].length > 0) {
+            this.taskDetails['subtasks'].forEach(element => {
                 if (element.id == subtaskId) {
                     if (element.assigned_to && element.assigned_to.length > 0) {
                         element.assigned_to.forEach(elem => {
                             if (elem.user_id == this.userDetails.userId || this.taskDetails['organizer_id'] == this.userDetails.userId || this.userDetails.roles[0] == 'admin') {
                                 this.count = 1;
                             } else {
-                                if (self.collaborators && self.collaborators.length > 0) {
-                                    self.collaborators.forEach((el: any) => {
+                                if (this.collaborators && this.collaborators.length > 0) {
+                                    this.collaborators.forEach((el: any) => {
                                         if (el.user_id == this.userDetails.userId) {
                                             this.count = 1
                                         }
@@ -458,14 +458,14 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                         });
                     }
                     if (this.count == 1) {
-                        this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-                            self.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
+                        this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,  () =>{
+                            this.authService.memberSendRequest('get', 'complete-subtask-by-id/' + subtaskId, null).subscribe(
                                 (respData: any) => {
-                                    self.collaboratorDetails = [];
-                                    self.ngOnInit();
+                                    this.collaboratorDetails = [];
+                                    this.ngOnInit();
                                 }
                             )
-                        }, function () {
+                        },  () =>{
                             $('#styled-checkbox-' + subtaskId).prop('checked', false);
                         })
                         this.count = 0;
@@ -485,7 +485,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     * @return  {}
     */
     mainTaskMarkComplete(taskId: number) {
-        let self = this;
+
         this.task_id = taskId;
         var subtaskStatus: number = 0;
         if (this.taskDetails['id'] == taskId) {
@@ -507,20 +507,20 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
                             }
                         });
                     if (subtaskStatus == 0) {
-                        this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task, function () {
-                            self.authService.setLoader(true);
-                            self.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
+                        this.confirmDialogService.confirmThis(this.language.confirmation_message.complete_task,  () =>{
+                            this.authService.setLoader(true);
+                            this.authService.memberSendRequest('get', 'approveTaskById/task/' + taskId, null).subscribe(
                                 (respData: any) => {
-                                    self.authService.setLoader(false);
+                                    this.authService.setLoader(false);
                                     if (respData['isError'] == false) {
-                                        self.notificationService.showSuccess(respData['result'], null);
-                                        self.ngOnInit();
+                                        this.notificationService.showSuccess(respData['result'], null);
+                                        this.ngOnInit();
                                     } else if (respData['code'] == 400) {
-                                        self.notificationService.showError(respData['message'], null);
+                                        this.notificationService.showError(respData['message'], null);
                                     }
                                 }
                             )
-                        }, function () {
+                        },  () =>{
                             $('#styled-checkbox-' + taskId).prop('checked', false);
                         })
                     } else {
@@ -585,7 +585,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     }
 
     closeModal() {
-        let self = this;
+
         $('#subtask').modal('hide')
         $('#styled-checkbox-' + this.task_id).prop('checked', false);
     }

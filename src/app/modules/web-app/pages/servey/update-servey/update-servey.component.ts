@@ -151,7 +151,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             this.surveyId = params['surveyId'];
             this.getSurveyInfo(this.surveyId);
-            setTimeout(function () {
+            setTimeout( () =>{
                 $('.trigger_class').trigger('click');
             }, 3000);
         });
@@ -291,17 +291,16 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         if (this.surveyDetails['surveyNotificationOption']) {
             this.surveynotify = JSON.parse(this.surveyDetails['surveyNotificationOption']);
             // this.surveynotify = JSON.parse(this.surveynotify)
-            let self = this;
-            if (self.choiceData?.length > 0) {
-                self.choiceData.forEach((element: any, index: any) => {
-                    if (self.surveynotify?.length > 0) {
-                        let noti_id: number = self.surveynotify.find((o: any) => o === element.value);
+            if (this.choiceData?.length > 0) {
+                this.choiceData.forEach((element: any, index: any) => {
+                    if (this.surveynotify?.length > 0) {
+                        let noti_id: number = this.surveynotify.find((o: any) => o === element.value);
                         if (noti_id) {
                             const formArray: UntypedFormArray = this.updateServeyForm.get('surveyNotificationOption') as UntypedFormArray;
                             formArray.push(new UntypedFormControl(noti_id));
-                            self.choiceData[index]['noti_id'] = noti_id;
+                            this.choiceData[index]['noti_id'] = noti_id;
                         } else {
-                            self.choiceData[index]['noti_id'] = '';
+                            this.choiceData[index]['noti_id'] = '';
                         }
                     }
                 });
@@ -414,7 +413,6 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
         this.updateServeyForm.value.approved_status = this.surveyDetails.approved_status;
 
         var formData: any = new FormData();
-        let self = this;
         for (const key in this.updateServeyForm.value) {
             if (Object.prototype.hasOwnProperty.call(this.updateServeyForm.value, key)) {
                 const element: any = this.updateServeyForm.value[key];
@@ -445,10 +443,9 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
                     this.authService.setLoader(false);
                     if (respData['isError'] == false) {
                         this.notificationService.showSuccess(respData['result']['message'], null);
-                        this.socket.emit('pushNotify', 'surveyCreated')
-                        var self = this
-                        setTimeout(function () {
-                            self.router.navigate(["/web/survey-detail/" + self.surveyId]);
+                        this.socket.emit('pushNotify', 'surveyCreated')                        
+                        setTimeout( () =>{
+                            this.router.navigate(["/web/survey-detail/" + this.surveyId]);
                         }, 2000);
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
@@ -592,7 +589,6 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
                     const reader: FileReader = new FileReader();
                     reader.readAsDataURL(file);
                     var url: any;
-                    let self = this
                     reader.onload = (_event) => {
                         url = reader.result;
                         $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');

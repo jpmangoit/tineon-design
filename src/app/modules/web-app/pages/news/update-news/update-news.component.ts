@@ -340,10 +340,10 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
                         this.submitted = false;
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData.result.message, null);
-                            var self = this;
-                            setTimeout(function () {
-                                const url: string[] = ['/web/clubnews-detail/' + self.newsData.id];
-                                self.router.navigate(url);
+                            
+                            setTimeout(() =>{
+                                const url: string[] = ['/web/clubnews-detail/' + this.newsData.id];
+                                this.router.navigate(url);
                             }, 1500);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);

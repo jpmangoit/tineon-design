@@ -293,13 +293,13 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
             (respData: any) => {
                 this.authService.setLoader(false)
                 this.categoryData = respData
-                let self = this;
+                
                 if (respData && respData.length > 0) {
                     Object(respData).forEach((key: FAQCategory, value: number) => {
                         if (value == 0) {
-                            self.getFaqByCategory(key.id);
+                            this.getFaqByCategory(key.id);
                         }
-                        self.catListArray.push({ 'id': key.id, 'name': key.category_title });
+                        this.catListArray.push({ 'id': key.id, 'name': key.category_title });
                     })
                 }
 
@@ -338,13 +338,13 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
             (respData: any) => {
                 this.authService.setLoader(false);
                 this.editId = respData.result[0].id;
-                let self = this;
+                
                 if (respData?.result?.length > 0) {
-                    respData.result.forEach(function (val, key) {
-                        self.faqDataById = val;
+                    respData.result.forEach( (val, key) =>{
+                        this.faqDataById = val;
                     })
                 }
-                self.setEditFaqData();
+                this.setEditFaqData();
             }
         )
     }
@@ -353,12 +353,12 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
         this.authService.setLoader(true);
         this.positionn = [];
         if (this.faqDataById.position) {
-            let self = this
+            
             if (this.positionList && this.positionList.length > 0) {
                 this.positionList.forEach((val, key) => {
-                    if (val.id == self.faqDataById.position) {
-                        self.positionn.push({ id: val.id, name: val.name })
-                        self.FAQForm.controls["position"].setValue(self.positionn);
+                    if (val.id == this.faqDataById.position) {
+                        this.positionn.push({ id: val.id, name: val.name })
+                        this.FAQForm.controls["position"].setValue(this.positionn);
                     }
                 });
             }
@@ -584,36 +584,36 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
     }
 
     deleteFaqs(faqsId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteFaq/' + faqsId, null)
+        
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteFaq/' + faqsId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage, null);
                         const url: string[] = ["/web/vereins-faq"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     deleteUpdateFaqs(faqsId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedfaq/' + faqsId, null)
+        
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedfaq/' + faqsId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         const url: string[] = ["/web/vereins-faq"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         }, 'deleteUpdate')
     }
 
@@ -623,49 +623,49 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
     }
 
     approveFaqs(faqsId: number) {
-        let self = this;
+        
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqsId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs,  () =>{
+            this.authService.memberSendRequest('get', 'admin-approve-faq-by-id/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/web/vereins-faq"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     approveUpdteFaqs(faqsId: number) {
-        let self = this;
+        
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqsId + '/approvedby/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.create_faq.approved_faqs,  () =>{
+            this.authService.memberSendRequest('get', 'approve-updatedfaq/' + faqsId + '/approvedby/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/web/vereins-faq"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
     denyFaqs(faqsId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function (reason) {
+        
+        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, (reason) => {
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
+            this.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -731,7 +731,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
                     const reader: FileReader = new FileReader();
                     reader.readAsDataURL(file);
                     var url: any;
-                    let self = this
+                    
                     reader.onload = (_event) => {
                         url = reader.result;
                         $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');

@@ -440,19 +440,19 @@ export class
     */
     deleteNews(newsId: number) {
         $('#exModal').modal('hide');
-        let self = this;
+        
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
-                self.notificationService.showSuccess(resp, null);
-                setTimeout(function () {
-                    self.getAllNews()
-                    self.getAllNewspagination()
+                this.notificationService.showSuccess(resp, null);
+                setTimeout(() =>{
+                    this.getAllNews()
+                    this.getAllNewspagination()
                     const url: string[] = ["/web/clubwall"];
-                    self.router.navigate(url);
+                    this.router.navigate(url);
                 }, 3000);
             })
             .catch((err: any) => {
-                self.notificationService.showError(err, null);
+                this.notificationService.showError(err, null);
             })
     }
 

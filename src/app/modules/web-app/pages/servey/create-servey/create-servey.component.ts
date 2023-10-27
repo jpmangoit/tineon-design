@@ -236,11 +236,10 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
                         this.authService.setLoader(false);
                         this.formSubmit = false;
                         if (respData['isError'] == false) {
-                            this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
+                            this.notificationService.showSuccess(respData['result']['message'], null);                  
                             this.socket.emit('pushNotify', 'surveyCreated')
-                            setTimeout(function () {
-                                self.router.navigate(['/web/survey-detail/' + respData['result']['survey']['id']]);
+                            setTimeout( ()=> {
+                                this.router.navigate(['/web/survey-detail/' + respData['result']['survey']['id']]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -382,7 +381,6 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
                         const reader: FileReader = new FileReader();
                         reader.readAsDataURL(file);
                         var url: any;
-                        let self = this
                         reader.onload = (_event) => {
                             url = reader.result;
                             $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');

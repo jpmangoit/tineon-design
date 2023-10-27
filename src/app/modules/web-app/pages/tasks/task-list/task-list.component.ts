@@ -107,18 +107,17 @@ export class TaskListComponent implements OnInit {
     * @return  {}
     */
      deleteTask(eventId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'DeleteTask/' + eventId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData.result.message, null);
-                        self.getUserAllTask("");
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData.result.message, null);
+                        this.getUserAllTask("");
                     }
                 )
-        }, function () {
+        },  ()=>{
             $('.dropdown-toggle').trigger('click');
         })
     }

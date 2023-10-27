@@ -270,9 +270,8 @@ export class ClubDocumentComponent implements OnInit {
                     this.authService.setLoader(false);
                     if (respData['category'] == category) {
                         this.notificationService.showSuccess(this.language.move_document.move_doc_success,null);
-                        const self = this;
-                        setTimeout(function () {
-                            self.ngOnInit();
+                        setTimeout( () => {
+                            this.ngOnInit();
                         }, 2000);
                     }
                     else {

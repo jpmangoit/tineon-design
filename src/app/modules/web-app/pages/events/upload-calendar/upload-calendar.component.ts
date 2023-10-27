@@ -83,7 +83,6 @@ export class UploadCalendarComponent implements OnInit, OnDestroy {
             const reader: FileReader = new FileReader();
             reader.readAsDataURL(file);
             var url: any;
-            let self = this
             reader.onload = (_event) => {
                 url = reader.result;
                 $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');

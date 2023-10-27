@@ -134,7 +134,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
 
         this.route.params.subscribe(params => {
             this.groupid = params['groupId'];
-            setTimeout(function () {
+            setTimeout( () =>{
                 $('.trigger_class').trigger('click');
                 $('#triggerr_class').trigger('click');
             }, 3000);
@@ -322,17 +322,16 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                         formData.append('file', element);
                     }
                     if (key == 'participants') {
-                        let self = this;
                         let ifAuthor = 0;
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
-                                if (value.user_id == self.groupData['created_by']) {
+                            element.forEach( (value, key) =>{
+                                if (value.user_id == this.groupData['created_by']) {
                                     ifAuthor++;
                                 }
                             });
                         }
                         if (ifAuthor == 0) {
-                            element.push({ 'user_id': self.groupData['created_by'], 'approved_status': 1 });
+                            element.push({ 'user_id': this.groupData['created_by'], 'approved_status': 1 });
                         }
                         var uniqueUsers = this.authService.uniqueData(element);
                         formData.append("participants", JSON.stringify(uniqueUsers));
@@ -350,9 +349,8 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
                         this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
                             var redirectUrl = '/web/group-detail/' + this.groupid;
-                            self.router.navigate([redirectUrl]);
+                            this.router.navigate([redirectUrl]);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }

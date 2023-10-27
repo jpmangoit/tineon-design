@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {LoginDetails, ThemeType} from '@core/models';
-import {Subscription} from 'rxjs';
-import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService} from '@shared/components';
+import { LoginDetails, ThemeType } from '@core/models';
+import { Subscription } from 'rxjs';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService } from '@shared/components';
 
 declare var $: any;
 
@@ -65,7 +65,6 @@ export class ActiveSurveyComponent implements OnInit, OnDestroy {
     * @return  {object} user object
     */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {

@@ -103,7 +103,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                 let cuyear: number = cudate.getFullYear() + 1;
                 let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
                 let userId: string = localStorage.getItem('user-id');
-                let self = this;
+                
                 this.userDetails = JSON.parse(localStorage.getItem('user-data'));
                 this.userRole = this.userDetails.roles[0];
                 // this.authService.setLoader(true);
@@ -149,7 +149,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                 let rule: any = RRule.fromString(recurrence)
                                 let rules: Date[] = rule.all();
                                 if (rules && rules.length > 0) {
-                                    rules.forEach(function (val, index) {
+                                    rules.forEach( (val, index) =>{
                                         let yourDate: Date = new Date(val)
                                         let dt: string = yourDate.toISOString().split('T')[0];
                                         let recurring_dates = JSON.parse(element.recurring_dates);
@@ -197,14 +197,14 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                             "team_id": element.team_id,
                                             "date_repeat": element.date_repeat
                                         }
-                                        self.eventList.push(rrEvents);
-                                        if (dt == self.todays_date) {
-                                            self.currentEvent.push(rrEvents);
-                                            self.currentEventList.push(rrEvents);
+                                        this.eventList.push(rrEvents);
+                                        if (dt == this.todays_date) {
+                                            this.currentEvent.push(rrEvents);
+                                            this.currentEventList.push(rrEvents);
 
-                                        } else if (dt > self.todays_date) {
-                                            self.upcomingEvent.push(rrEvents);
-                                            self.upcomingEventList.push(rrEvents);
+                                        } else if (dt > this.todays_date) {
+                                            this.upcomingEvent.push(rrEvents);
+                                            this.upcomingEventList.push(rrEvents);
                                         }
                                     })
                                 }
@@ -259,14 +259,14 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                             "team_id": element.team_id,
                                             "date_repeat": element.date_repeat
                                         }
-                                        self.eventList.push(rrEvents1);
-                                        if (dt1 == self.todays_date) {
-                                            self.currentEvent.push(rrEvents1);
-                                            self.currentEventList.push(rrEvents1);
+                                        this.eventList.push(rrEvents1);
+                                        if (dt1 == this.todays_date) {
+                                            this.currentEvent.push(rrEvents1);
+                                            this.currentEventList.push(rrEvents1);
 
-                                        } else if (dt1 > self.todays_date) {
-                                            self.upcomingEvent.push(rrEvents1);
-                                            self.upcomingEventList.push(rrEvents1);
+                                        } else if (dt1 > this.todays_date) {
+                                            this.upcomingEvent.push(rrEvents1);
+                                            this.upcomingEventList.push(rrEvents1);
                                         }
                                     });
 
@@ -321,14 +321,14 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                                 "team_id": element.team_id,
                                                 "date_repeat": element.date_repeat
                                             }
-                                            self.eventList.push(rrEvents1);
-                                            if (dt1 == self.todays_date) {
-                                                self.currentEvent.push(rrEvents1);
-                                                self.currentEventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
+                                            if (dt1 == this.todays_date) {
+                                                this.currentEvent.push(rrEvents1);
+                                                this.currentEventList.push(rrEvents1);
 
-                                            } else if (dt1 > self.todays_date) {
-                                                self.upcomingEvent.push(rrEvents1);
-                                                self.upcomingEventList.push(rrEvents1);
+                                            } else if (dt1 > this.todays_date) {
+                                                this.upcomingEvent.push(rrEvents1);
+                                                this.upcomingEventList.push(rrEvents1);
                                             }
                                         });
                                     }
@@ -497,7 +497,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
             let cumonth: string = (cudate.getMonth() + 1).toString().padStart(2, "0");
             let cuyear: number = cudate.getFullYear() + 1;
             let nextYear: string = cuyear + "" + cumonth + "" + cuday + "T000000Z;";
-            let self = this;
+            
             if(this.courseData && this.courseData.length > 0){
                 this.date = new Date(); // Today's date
                 this.todays_date = this.datePipe.transform(this.date, 'yyyy-MM-dd');
@@ -524,7 +524,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                 }
                             }
                             if (url && url.length > 0) {
-                                let self = this;
+                                
                                 url.forEach(el => {
                                     if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.avif', '.apng', '.jfif', '.pjpeg', '.pjp'].some(char => el.endsWith(char))) {
                                         element.picture_video = el;
@@ -547,7 +547,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                 let rules: Date[] = rule.all();
 
                                 if (rules && rules.length > 0) {
-                                    rules.forEach(function (val, index) {
+                                    rules.forEach( (val, index) =>{
                                         let yourDate: Date = new Date(val)
                                         let dt: string = yourDate.toISOString().split('T')[0];
                                         let recurring_dates = element.recurring_dates;
@@ -601,7 +601,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                             "date_repeat": element.date_repeat,
                                             "isCourse": true
                                         }
-                                        self.eventList.push(rrEvents);
+                                        this.eventList.push(rrEvents);
                                     })
                                 }
                             } else {
@@ -661,7 +661,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                             "date_repeat": element.date_repeat,
                                             "isCourse": true
                                         }
-                                        self.eventList.push(rrEvents1);
+                                        this.eventList.push(rrEvents1);
                                     });
                                 } else {
                                     const dates: Date[] = this.commonFunctionService.getDates(new Date(element.date_from), new Date(element.date_to))
@@ -720,7 +720,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
                                                 "date_repeat": element.date_repeat,
                                                 "isCourse": true
                                             }
-                                            self.eventList.push(rrEvents1);
+                                            this.eventList.push(rrEvents1);
                                         });
                                     }
                                 }

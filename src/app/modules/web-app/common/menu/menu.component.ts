@@ -89,12 +89,12 @@ export class MenuComponent implements OnInit, OnDestroy {
 
     public ngInit() {
         $("div").attr("id", "SomeID");
-        $(document).ready(function () {
+        $(document).ready( ()=> {
             $(".sidebar-wrapper").hover(
-                function () {
+                 ()=> {
                     $(this).addClass("sidebar-hover");
                 },
-                function () {
+                 ()=> {
                     $(this).removeClass("sidebar-hover");
                 }
             );

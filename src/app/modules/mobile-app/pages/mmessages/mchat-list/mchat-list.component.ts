@@ -68,7 +68,7 @@ export class MchatListComponent implements OnInit {
     selectedChatMedia = []
     selectdChatCommonGroup = []
     frndId: number;
-    finalMessages: UserMessages[] = []
+    finalMessages: any = []
     groupUsers: ChatUsers[] = [];
     menuOpened: boolean = true;
     chatData: any;

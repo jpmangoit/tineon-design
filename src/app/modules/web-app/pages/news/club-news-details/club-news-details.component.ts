@@ -290,15 +290,15 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @return  success/ error message
     */
     deleteNews(newsId: number) {
-        let self = this;
+       
         this.commonFunctionService.deleteNews(newsId)
             .then((resp: any) => {
-                self.notificationService.showSuccess(resp, null);
+                this.notificationService.showSuccess(resp, null);
                 const url: string[] = ["/web/clubwall"];
-                self.router.navigate(url);
+                this.router.navigate(url);
             })
             .catch((err: any) => {
-                self.notificationService.showError(err, null);
+                this.notificationService.showError(err, null);
             });
     }
 
@@ -309,18 +309,18 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @return  success/ error message
     */
     deleteUpdateNews(newsId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatednews/' + newsId, null)
+       
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_article,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatednews/' + newsId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         const url: string[] = ["/web/clubwall"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         }, 'deleteUpdate')
     }
 
@@ -340,17 +340,17 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @return  success/ error message
     */
     approveNews(newsId: number) {
-        let self = this;
+       
         let userId: string = localStorage.getItem('user-id');
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-news-by-id/' + newsId + '/' + userId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article,  () =>{
+            this.authService.memberSendRequest('get', 'approve-news-by-id/' + newsId + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/web/clubwall"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -361,16 +361,16 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @return  success/ error message
     */
     approveUpdteNews(newsId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article, function () {
-            self.authService.memberSendRequest('get', 'approve-updatednews/' + newsId, null)
+       
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.publish_article,  () =>{
+            this.authService.memberSendRequest('get', 'approve-updatednews/' + newsId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/web/clubwall"];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -381,19 +381,19 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     * @return  success/ error message
     */
     denyNews(newsId: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, function (reason) {
+       
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article,  (reason)=> {
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-news/news_id/' + newsId, postData)
+            this.authService.memberSendRequest('put', 'deny-news/news_id/' + newsId, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 
@@ -404,7 +404,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
      * @returns {Object} Details of the User
      */
     getMemId(id: number) {
-        let self = this;
+       
         $("#profileSpinner").show();
         this.commonFunctionService.getMemberId(id)
             .then((resp: any) => {

@@ -177,7 +177,7 @@ export class BannerStatisticsComponent implements OnInit {
                         }
                     },
                     position: {
-                        options: posList.reduce(function (map, pos) {
+                        options: posList.reduce( (map, pos) =>{
                             map[pos] = pos;
                             return map;
                         }, {} as Record<string, string>)
@@ -193,7 +193,7 @@ export class BannerStatisticsComponent implements OnInit {
                     verticalAlign: 'middle',
                     position: 'insideBottom',
                     distance: 15,
-                    onChange: function () {
+                    onChange:  () =>{
                         const labelOption: BarLabelOption = {
                             rotate: app.config.rotate as BarLabelOption['rotate'],
                             align: app.config.align as BarLabelOption['align'],
@@ -380,7 +380,7 @@ export class BannerStatisticsComponent implements OnInit {
                         }
                     },
                     position: {
-                        options: posList.reduce(function (map, pos) {
+                        options: posList.reduce( (map, pos) =>{
                             map[pos] = pos;
                             return map;
                         }, {} as Record<string, string>)
@@ -396,7 +396,7 @@ export class BannerStatisticsComponent implements OnInit {
                     verticalAlign: 'middle',
                     position: 'insideBottom',
                     distance: 15,
-                    onChange: function () {
+                    onChange:  () =>{
                         const labelOption: BarLabelOption = {
                             rotate: app.config.rotate as BarLabelOption['rotate'],
                             align: app.config.align as BarLabelOption['align'],

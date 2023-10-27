@@ -50,11 +50,10 @@ export class LoginComponent implements OnInit {
         }
         this.displayFlag = localStorage.getItem('language');
         if (this.cookieService.get('remember')) {
-            let self = this;
-            setTimeout(function () {
+            setTimeout( () =>{
                 $(".rememberMe").trigger('click');
-                $(".username").val(self.cookieService.get('username'));
-                $(".password").val(self.cookieService.get('password'));
+                $(".username").val(this.cookieService.get('username'));
+                $(".password").val(this.cookieService.get('password'));
             }, 300);
         }
 

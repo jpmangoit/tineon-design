@@ -124,9 +124,8 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
                 if (respData['isError'] == false) {
                     this.vote_answer = respData['result']['survey'];
                     if (this.vote_answer && this.surveyData[0].additional_cast_vote == 'true') {
-                        let self = this;
-                        if (self.vote_answer && self.vote_answer.length > 0) {
-                            self.vote_answer.forEach(element => {
+                        if (this.vote_answer && this.vote_answer.length > 0) {
+                            this.vote_answer.forEach(element => {
                                 if (this.surveyData[0].votingOption == 0) {
                                     var inputs = document.querySelectorAll('.input-radio');
                                     if (this.surveyData[0] && this.surveyData[0].surveyAnswerOption.length > 0) {
@@ -204,9 +203,8 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
                                 this.formSubmit = false;
                                 if (respData['isError'] == false) {
                                     this.notificationService.showSuccess(respData['result']['message']['messageList']['survey'], null);
-                                    var self = this;
-                                    setTimeout(function () {
-                                        self.router.navigate(['web/crm-survey']);
+                                    setTimeout( () =>{
+                                        this.router.navigate(['web/crm-survey']);
                                     }, 2000);
                                 } else if (respData['code'] == 400) {
                                     this.notificationService.showError(respData['message'], null);
@@ -226,9 +224,8 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
                                 this.formSubmit = false;
                                 if (respData['isError'] == false) {
                                     this.notificationService.showSuccess(respData['result']['message']['messageList']['survey'], null);
-                                    var self = this;
-                                    setTimeout(function () {
-                                        self.router.navigate(['web/crm-survey']);
+                                    setTimeout( () =>{
+                                        this.router.navigate(['web/crm-survey']);
                                     }, 4000);
                                 } else if (respData['code'] == 400) {
                                     this.notificationService.showError(respData['message'], null);

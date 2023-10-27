@@ -299,8 +299,7 @@ export class MyDocumentComponent implements OnInit {
                         this.authService.setLoader(false);
                         if (respData['category'] == category) {
                             this.notificationService.showSuccess(this.language.move_document.move_doc_success, null);
-                            const self = this;
-                            setTimeout(function () { self.ngOnInit();}, 2000);
+                            setTimeout( () =>{ this.ngOnInit();}, 2000);
                         }
                         else {
                             this.notificationService.showError(this.language.move_document.move_doc_error, null);

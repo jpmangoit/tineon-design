@@ -293,9 +293,9 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             localStorage.setItem('allowAdvertis', this.registrationForm.value['allowAdvertis']);
             this.notificationService.showSuccess(this.language.profile_bank.success_msg,null);
             this.registrationForm.reset();
-            let self = this;
-            setTimeout(function () {
-                self._router.navigate(['/web/profile']);
+            
+            setTimeout( () =>{
+                this._router.navigate(['/web/profile']);
             }, 2000);
             return true;
         }
@@ -314,17 +314,16 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
             let data = {
                 "image_file": this.croppedImage.split('base64,')[1]
             }
-            let self = this;
-            self.authService.setLoader(true);
+            this.authService.setLoader(true);
             this.authService.memberSendRequest('post', 'change-profile-picture/', data).subscribe(
             (respData: any) => {
                 this.memberPhotosuccess = respData;
-                self.authService.setLoader(false);
+                this.authService.setLoader(false);
                 if (this.memberPhotosuccess == 'OK') {
                     this.themes.getProfilePicture(this.memberPhotosuccess);
                     this.notificationService.showSuccess(this.language.profile.upload_profile,null);
                     setTimeout(() => {
-                        self._router.navigate(['/web/profile']);
+                        this._router.navigate(['/web/profile']);
                     }, 3000);
                 }else if (respData['code'] == 400) {
                     this.notificationService.showError(this.language.community_messages.code_error,null);

@@ -96,19 +96,18 @@ export class FaqsListComponent implements OnInit {
     }
 
     deleteFaqs(faqsId:number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteFaq/' +faqsId, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_faq, () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteFaq/' +faqsId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage,null);
-                        self.getUserAllFaqs("");
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage,null);
+                        this.getUserAllFaqs("");
                     }
                 )
-        }, function () {
+        }, () =>{
         })
     }
 

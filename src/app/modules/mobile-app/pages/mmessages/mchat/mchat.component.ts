@@ -64,10 +64,10 @@ export class MchatComponent implements OnInit {
         lastMessage: any; count: number, id: number, image: string, name: string, type: string
     }[];
     selectedChatMedia = []
-    selectdChatCommonGroup = []
+    selectdChatCommonGroup:any = []
     frndId: number;
-    finalMessages: UserMessages[] = []
-    groupUsers: ChatUsers[] = [];
+    finalMessages: any = []
+    groupUsers: any = [];
     menuOpened: boolean = true;
     show: boolean = false;
     @ViewChild('scrollBottom') private scrollBottom: ElementRef;
@@ -317,7 +317,7 @@ export class MchatComponent implements OnInit {
         const reader: FileReader = new FileReader();
         reader.readAsDataURL(file);
         var url: any;
-        reader.onload = function (_event) {
+        reader.onload =  (_event)=> {
             url = reader.result;
             var imagee: HTMLImageElement = new Image();
             imagee.src = URL.createObjectURL(file);

@@ -74,34 +74,32 @@ export class ShowEmailComponent implements OnInit, OnDestroy {
     }
 
     deleteEmail(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_Email, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteEmailTemplate/' + id, null)
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_Email, () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteEmailTemplate/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             // $('#responseMessage').show();
-                            self.responseMessage = respData['result']['message'];
-                            self.notificationService.showSuccess(self.responseMessage, null);
-                            setTimeout(function () {
+                            this.responseMessage = respData['result']['message'];
+                            this.notificationService.showSuccess(this.responseMessage, null);
+                            setTimeout( () =>{
                                 // $('#responseMessage').delay(1000).fadeOut();
-                                // self.responseMessage = '';
-                                self.getEmail()
+                                // this.responseMessage = '';
+                                this.getEmail()
                             }, 1000);
                         } else if (respData['code'] == 400) {
-                            self.responseMessage = respData['message'];
-                            self.notificationService.showError(self.responseMessage, null);
-                            // setTimeout(function () {
+                            this.responseMessage = respData['message'];
+                            this.notificationService.showError(this.responseMessage, null);
+                            // setTimeout( () =>{
                             // 	$('#responseMessage').delay(1000).fadeOut();
-                            // 	self.responseMessage = '';
+                            // 	this.responseMessage = '';
                             // },1000);
                         }
                     }
                 )
-        }, function () { }
+        }, () => { }
         )
     }
 

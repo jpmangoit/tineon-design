@@ -101,18 +101,17 @@ export class GroupListComponent implements OnInit {
   * @return  {}
   */
     deleteGroup(groupId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
+        this.confirmDialogService.confirmThis(this.language.community_groups.delete_group_popup,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteGroup/' + groupId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.notificationService.showSuccess(respData.result.message, null);
-                        self.getUserAllGroup("");
+                        this.authService.setLoader(false);
+                        this.notificationService.showSuccess(respData.result.message, null);
+                        this.getUserAllGroup("");
                     }
                 )
-        }, function () {
+        },  ()=> {
         })
     }
 

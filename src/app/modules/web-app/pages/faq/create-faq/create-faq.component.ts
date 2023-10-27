@@ -168,10 +168,9 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
 		this.authService.memberSendRequest('get', 'category', null).subscribe(
 			(respData:any) => {
 				this.authService.setLoader(false);
-                let self = this;
                 if(respData && respData.length > 0){
                     Object(respData).forEach((key,value) => {
-                        self.catListArray.push({ 'id': key.id, 'name': key.category_title });
+                        this.catListArray.push({ 'id': key.id, 'name': key.category_title });
                     })
                 }
 
@@ -184,7 +183,6 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
         this.FAQForm.controls["category"].setValue(this.categorySelectedItem);
         this.FAQForm.value['team_id'] = this.teamId;
             var formData: any = new FormData();
-            let self = this;
             for (const key in this.FAQForm.value) {
                 if (Object.prototype.hasOwnProperty.call(this.FAQForm.value, key)) {
                     const element:any = this.FAQForm.value[key];
@@ -296,7 +294,6 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
                         const reader: FileReader = new FileReader();
                         reader.readAsDataURL(file);
                         var url:any;
-                        let self = this
                         reader.onload = (_event) => {
                             url = reader.result;
                             $('.preview_img').attr('src', 'assets/img/doc-icons/chat_doc_ic.png');

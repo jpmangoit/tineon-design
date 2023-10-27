@@ -294,7 +294,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             const eventid: number = params['eventId'];
             this.eventId = params['eventId'];
-            setTimeout(function () {
+            setTimeout( () =>{
                 $('.trigger_class').trigger('click');
                 $('#clickTrigger').trigger('click')
             }, 5000);
@@ -544,7 +544,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     */
     getUserAndGroup() {
         if (sessionStorage.getItem('token')) {
-            let self = this;
+           
             this.authService.setLoader(true);
             this.authService.memberSendRequest('get', 'teamGroupsAndUsers/' + this.teamId, null)
                 .subscribe((respData: any) => {
@@ -568,7 +568,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                 }
                             })
 
-                            self.userDropdownSettings = {
+                            this.userDropdownSettings = {
                                 singleSelection: false,
                                 idField: 'id',
                                 textField: 'name',
@@ -594,7 +594,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                 Object(respData.result.rooms).forEach((val, key) => {
                                     this.roomDropdownList.push({ 'id': val.id, 'name': val.name });
                                 });
-                                self.roomDropdownSettings = {
+                                this.roomDropdownSettings = {
                                     singleSelection: true,
                                     idField: 'id',
                                     textField: 'name',
@@ -675,7 +675,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @return  {object} get all event details by event Id
     */
     getEventInfo(eventid: number) {
-        let self = this;
+       
         this.authService.memberSendRequest('get', 'get-event-by-id/' + eventid, null)
             .subscribe(
                 (respData: any) => {
@@ -860,7 +860,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                             var groupParticipants: any = respData[0].participants;
                                             var groupUsers: any = [];
                                             if (groupParticipants && groupParticipants.length > 0) {
-                                                groupParticipants.forEach(function (value, key) {
+                                                groupParticipants.forEach( (value, key) =>{
                                                     var userGroupObj: any = { 'user_id': value.user_id, 'approved_status': value.approved_status };
                                                     groupUsers.push(userGroupObj);
                                                 });
@@ -958,11 +958,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 type_dropdown = [{ id: 0, name: this.language.create_task.individual },];
                 this.setUsers(this.eventDetails?.eventTask?.id, type_dropdown)
             } else {
-                let self = this;
+               
                 this.type_visibility = 1;
                 type_dropdown = [{ id: 1, name: this.language.create_task.group }];
-                if (self.group_dropdown && self.group_dropdown.length > 0) {
-                    self.group_dropdown.forEach((value, index) => {
+                if (this.group_dropdown && this.group_dropdown.length > 0) {
+                    this.group_dropdown.forEach((value, index) => {
                         if (value.id == this.eventDetails?.eventTask?.group_id) {
                             this.groups = [{ id: value.group_id, name: value.name }];
                         }
@@ -1100,7 +1100,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         this.matchDateError = { isError: true, errorMessage: this.language.create_event.not_room };
                     }
                 } else {
-                    this.eventDetails.roomBookingDates.forEach(function (v) { delete v.event_id });
+                    this.eventDetails.roomBookingDates.forEach( (v) => { delete v.event_id });
                     this.eventForm.controls['roomBookingDates'].setValue(this.eventForm.controls['eventDate'].value);
                 }
             }
@@ -1122,13 +1122,13 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 if (this.task.length > 0) {
                     this.task_user_selected = [];
                     this.task.removeAt(0);
-                    let self = this;
-                    if (self.taskId > 0) {
-                        self.authService.setLoader(true);
-                        self.authService.memberSendRequest('delete', 'DeleteTask/' + self.taskId, null)
+                   
+                    if (this.taskId > 0) {
+                        this.authService.setLoader(true);
+                        this.authService.memberSendRequest('delete', 'DeleteTask/' + this.taskId, null)
                             .subscribe(
                                 (respData: any) => {
-                                    self.authService.setLoader(false);
+                                    this.authService.setLoader(false);
                                     if (respData['isError'] == false) {
                                     } else if (respData['code'] == 400) {
                                         this.notificationService.showError(respData['message'], null);
@@ -1156,10 +1156,10 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
             this.eventForm.controls["chargeable"].setValue(this.eventForm.value.chargeable);
             this.eventForm.controls["price_per_participant"].setValue(this.eventForm.value.price_per_participant);
             var formData: FormData = new FormData();
-            let self = this;
+           
             for (const key in this.eventForm.value) {
-                if (Object.prototype.hasOwnProperty.call(self.eventForm.value, key)) {
-                    const element: any = self.eventForm.value[key];
+                if (Object.prototype.hasOwnProperty.call(this.eventForm.value, key)) {
+                    const element: any = this.eventForm.value[key];
 
                     if (key == 'file' && (this.fileToReturn || this.imageUrl)) {
                         if (this.fileToReturn) {
@@ -1172,8 +1172,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     }
 
                     if (key == 'file' && (this.picVid1 || this.fileUrl)) {
-                        if (self.picVid1) {
-                            formData.append('file', self.picVid1)
+                        if (this.picVid1) {
+                            formData.append('file', this.picVid1)
                         } else {
                             formData.append('event_document', this.fileUrl);
                             // this.fileAndimage.push(this.fileUrl);
@@ -1200,7 +1200,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     if (key == 'recurrence') {
                         if (this.finalCustomRecurrence != null || this.recurrenceString != null || this.eventDetails.recurrence == "" || this.eventDetails.recurrence == null || this.eventDetails.recurrence) {
                             if (element[0] && element[0]['item_id'] == 5 && this.recurrenceSelected == 5) {
-                                formData.append('recurrence', self.finalCustomRecurrence);
+                                formData.append('recurrence', this.finalCustomRecurrence);
 
                             } else if (element[0] && element[0]['item_id'] == 0 && this.recurrenceSelected == 0) {
                                 formData.append('recurrence', this.recurrenceString)
@@ -1209,7 +1209,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                                 formData.append('recurrence', this.recurrenceString);
 
                             } else if (this.finalCustomRecurrence) {
-                                formData.append('recurrence', self.finalCustomRecurrence);
+                                formData.append('recurrence', this.finalCustomRecurrence);
                             } else if (this.eventDetails.recurrence && this.recurrenceSelected == undefined) {
                                 formData.append('recurrence', this.eventDetails.recurrence);
                             }
@@ -1225,7 +1225,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
 
                     if (key == 'participant' && element[0] != null) {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) =>{
                                 formData.append("participant[" + key + "]", JSON.stringify(value.id));
                             });
                         }
@@ -1234,7 +1234,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         var groupArray: number[] = [];
                         var grp_id: number;
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach( (value, key) =>{
                                 grp_id = value.id;
                                 groupArray.push(value.id);
                             });
@@ -1250,11 +1250,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         }
                         if (this.visibility == 1 || this.visibility == 4) {
                             var userArr: { user_id: string, approved_status: number }[] = [];
-                            let self = this;
+                           
                             if (element && element.length > 0) {
-                                element.forEach(function (value, key) {
+                                element.forEach( (value, key) =>{
                                     var status: number = 0;
-                                    if (value == self.eventDetails.author) {
+                                    if (value == this.eventDetails.author) {
                                         status = 1;
                                     }
                                     var userObj = { 'user_id': value, 'approved_status': status };
@@ -1325,9 +1325,8 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         this.eventSubmitted = false;
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
-                            setTimeout(function () {
-                                self._router.navigate(['/web/event-detail/' + respData['result']['event']['id']]);
+                            setTimeout( () =>{
+                                this._router.navigate(['/web/event-detail/' + respData['result']['event']['id']]);
                             }, 2000);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
@@ -1453,11 +1452,11 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     onRecurrenceSelect(item: { item_id: number, item_text: string }) {
         this.recurrenceSelected = item.item_id;
         var today: number = (new Date()).getDay();
-        var self = this;
+    
         if (this.weekDaysArr && this.weekDaysArr.length > 0) {
-            this.weekDaysArr.forEach(function (vals, keys) {
+            this.weekDaysArr.forEach( (vals, keys) =>{
                 if (vals.item_id == today) {
-                    self.todayName = vals.description;
+                    this.todayName = vals.description;
                 }
             });
         }
@@ -1728,13 +1727,13 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                         recurrenceData = reccu + ';' + re;
                         this.event_allDates = RRule.fromString(recurrenceData).all();
                     } else if (this.customRecurrenceTypeSelected == 2) {
-                        var self = this;
+                    
                         recurrenceData = '';
                         let numberWeek: number = $('.custom_recurrence_weekly').val();
                         let byDay: any[] = [];
-                        if (self.weekDaysArr && self.weekDaysArr.length > 0) {
-                            self.weekDaysArr.forEach(function (weekName, weekIndex) {
-                                self.weekDayTypeSelected.forEach(function (weekSelected, key) {
+                        if (this.weekDaysArr && this.weekDaysArr.length > 0) {
+                            this.weekDaysArr.forEach( (weekName, weekIndex) =>{
+                                this.weekDayTypeSelected.forEach( (weekSelected, key) =>{
                                     if (weekName.item_id == weekSelected) {
                                         byDay.push(weekName.description);
                                     }
@@ -1824,7 +1823,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     recurrenceData = reccu + ';' + re;
                     this.event_allDates = RRule.fromString(recurrenceData).all();
                 } else if (this.typerecc == 'WEEKLY') {
-                    var self = this;
+                
                     recurrenceData = '';
                     let numberWeek: string = this.interval;
                     let r_rule = {
@@ -2236,7 +2235,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     var groupParticipants: any = respData[0].participants;
                     var groupUsers: any = [];
                     this.groupUserList = [];
-                    groupParticipants.forEach(function (value, key) {
+                    groupParticipants.forEach( (value, key) =>{
                         if (value.approved_status == 1) {
                             var userGroupObj: { user_id: string, approved_status: number } = { 'user_id': value.user_id, 'approved_status': value.approved_status };
                             groupUsers.push(userGroupObj);
@@ -2598,7 +2597,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @author  MangoIt Solutions
     */
     onTaskGroupSelect(item: { id: number; user_name: string }) {
-        let self = this;
+       
         this.eventForm.controls['task'].value[0].group_id = item.id;
         this.task_user_selected = []
         this.authService.setLoader(true);
@@ -2609,9 +2608,9 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                     if (respData[0]?.participants) {
                         var groupParticipants = respData[0]?.participants;
                         if (groupParticipants && groupParticipants.length > 0) {
-                            groupParticipants.forEach(function (value, key) {
+                            groupParticipants.forEach( (value, key) =>{
                                 if (value.approved_status == 1) {
-                                    self.task_user_selected.push({
+                                    this.task_user_selected.push({
                                         'user_id': value.user_id,
                                         'approved_status': 1
                                     })
@@ -2673,27 +2672,27 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
     * @return  success message
     */
     deleteTask(taskId: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'DeleteTask/' + taskId, null)
+       
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_task,  () =>{
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'DeleteTask/' + taskId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
-                        self.responseMessage = respData.result.message;
-                        self.notificationService.showSuccess(self.responseMessage, null);
+                        this.authService.setLoader(false);
+                        this.responseMessage = respData.result.message;
+                        this.notificationService.showSuccess(this.responseMessage, null);
 
                         setTimeout(() => {
-                            self.taskStatus = 0
-                            self.isTaskField = false;
+                            this.taskStatus = 0
+                            this.isTaskField = false;
                             $("#isTask_check").prop("checked", false);
-                            self.task_user_selected = [];
-                            self.task.removeAt(0);
-                            self.getEventInfo(self.eventId);
+                            this.task_user_selected = [];
+                            this.task.removeAt(0);
+                            this.getEventInfo(this.eventId);
                         }, 2000);
                     }
                 )
-        }, function () {
+        },  () =>{
         })
     }
 

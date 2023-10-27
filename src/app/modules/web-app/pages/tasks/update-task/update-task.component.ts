@@ -158,7 +158,6 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
         this.teamId = this.userDetails.team_id;
         this.user_id = this.userDetails.userId;
         this.getUserAndGroup();
-        let self = this;
         this.route.params.subscribe((params) => {
             this.taskid = params['taskId'];
         });
@@ -407,7 +406,6 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     * @return  {Array Of Object} all the Groups
     */
     getUserAndGroup() {
-        let self = this;
         if (sessionStorage.getItem('token')) {
             this.authService.setLoader(true);
             this.authService
@@ -432,9 +430,9 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                             }
                             this.user_dropdown = Object.assign(this.authService.uniqueObjData(this.user_dropdown, 'id'));
                         }
-                        self.setUsers(this.taskid);
-                        setTimeout(function () {
-                            self.setTask(self.taskid);
+                        this.setUsers(this.taskid);
+                        setTimeout( () =>{
+                            this.setTask(this.taskid);
                         }, 2000);
                     }
                 });
@@ -517,12 +515,12 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                 this.subTaskVisibility = 0;
                                 this.updateTaskForm.controls['groups'].setValue('');
                             } else {
-                                let self = this;
+                    
                                 this.type_visibility = 1;
                                 this.types = [{ id: 1, name: this.language.create_task.group }];
                                 this.subTaskVisibility = 1;
-                                if (self.group_dropdown && self.group_dropdown.length > 0) {
-                                    self.group_dropdown.forEach((value, index) => {
+                                if (this.group_dropdown && this.group_dropdown.length > 0) {
+                                    this.group_dropdown.forEach((value, index) => {
                                         if (value.id == this.taskDetails.group_id) {
                                             this.groups = [{ id: value.id, name: value.name }];
                                         }
@@ -563,7 +561,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
                                     let subtask_user: { id: number; user_email: string; user_name: string; }[] = [];
                                     this.addSubtask();
                                     if (this.user_dropdown && this.user_dropdown.length > 0) {
-                                        this.user_dropdown.forEach(function (val, key) {
+                                        this.user_dropdown.forEach( (val, key) =>{
                                             if (JSON.parse(value.assigned_to).length > 0) {
                                                 JSON.parse(value.assigned_to).forEach(element => {
                                                     if (val.id == element.user_id) {

@@ -125,7 +125,6 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
    * @return  {Array Of Object} all the Users
    */
     getAllUserInfo() {
-        let self = this;
         this.authService.memberSendRequest('get', 'teamUsers/team/' + this.userDetails.team_id, null)
             .subscribe(
                 (respData: any) => {
@@ -138,7 +137,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                     }
                     this.alluserDetails = respData;
                     this.alluserInfo = respData;
-                    self.userDropdownSettings = {
+                    this.userDropdownSettings = {
                         singleSelection: false,
                         idField: 'id',
                         textField: 'name',
@@ -148,7 +147,7 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                         allowSearchFilter: true,
                         searchPlaceholderText: this.language.header.search
                     };
-                    self.userDropdownCCSettings = {
+                    this.userDropdownCCSettings = {
                         singleSelection: false,
                         idField: 'id',
                         textField: 'name',
@@ -211,13 +210,13 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
 
                     } else if (key == 'receiver_id') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach((value, key) =>{
                                 formData.append("receiver_id[" + key + "]", value);
                             });
                         }
                     } else if (key == 'cc') {
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach((value, key) =>{
                                 formData.append("cc[" + key + "]", value);
                             });
                         }
@@ -323,35 +322,34 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
     }
 
     close() {
-        let self = this;
         if (this.receiverUser.length > 0 || this.kindIds.length > 0 || this.kindIds.length > 0) {
-            this.confirmDialogService.confirmThis(this.language.confirmation_message.save_msg_draft, function () {
+            this.confirmDialogService.confirmThis(this.language.confirmation_message.save_msg_draft,  ()=> {
                 var formData: FormData = new FormData();
-                self.messageForm.controls["kind"].setValue(self.selectedVisiblity);
-                self.messageForm.controls["receiver_id"].setValue(self.receiverUser);
-                self.messageForm.controls["cc"].setValue(self.ccUser);
+                this.messageForm.controls["kind"].setValue(this.selectedVisiblity);
+                this.messageForm.controls["receiver_id"].setValue(this.receiverUser);
+                this.messageForm.controls["cc"].setValue(this.ccUser);
 
-                if (self.selectedKindId) {
-                    self.messageForm.controls["kind_id"].setValue(self.selectedKindId);
+                if (this.selectedKindId) {
+                    this.messageForm.controls["kind_id"].setValue(this.selectedKindId);
                 } else {
-                    self.messageForm.controls["kind_id"].setValue(1);
+                    this.messageForm.controls["kind_id"].setValue(1);
                 }
 
-                self.messageForm.controls["message_type"].setValue('draft');
-                for (const key in self.messageForm.value) {
-                    if (Object.prototype.hasOwnProperty.call(self.messageForm.value, key)) {
-                        const element: any = self.messageForm.value[key];
+                this.messageForm.controls["message_type"].setValue('draft');
+                for (const key in this.messageForm.value) {
+                    if (Object.prototype.hasOwnProperty.call(this.messageForm.value, key)) {
+                        const element: any = this.messageForm.value[key];
                         if (key == 'file') {
                             formData.append('file', element);
                         } else if (key == 'receiver_id') {
                             if (element && element.length > 0) {
-                                element.forEach(function (value, key) {
+                                element.forEach((value, key) =>{
                                     formData.append("receiver_id[" + key + "]", value);
                                 });
                             }
                         } else if (key == 'cc') {
                             if (element && element.length > 0) {
-                                element.forEach(function (value, key) {
+                                element.forEach((value, key) =>{
                                     formData.append("cc[" + key + "]", value);
                                 });
                             }
@@ -361,33 +359,33 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                     }
                 };
 
-                let kindValue: string = self.messageForm.controls["kind"].value;
+                let kindValue: string = this.messageForm.controls["kind"].value;
                 if (kindValue == 'personal') {
-                    self.authService.setLoader(true);
-                    self.authService.memberSendRequest('post', 'message/send', formData)
+                    this.authService.setLoader(true);
+                    this.authService.memberSendRequest('post', 'message/send', formData)
                         .subscribe(
                             (respData: any) => {
-                                self.authService.setLoader(false);
-                                self.messageSubmitted = false;
+                                this.authService.setLoader(false);
+                                this.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage, null);
+                                    this.responseMessage = this.language.community_messages.email_draft;
+                                    this.notificationService.showSuccess(this.responseMessage, null);
                                     setTimeout(() => {
-                                        //   self.responseMessage = ''
-                                        self.messageForm.reset();
+                                        //   this.responseMessage = ''
+                                        this.messageForm.reset();
                                     }, 3000);
-                                    self.messageForm.controls["kind"].setValue([]);
-                                    self.messageForm.controls["receiver_id"].setValue([]);
-                                    self.messageForm.controls["cc"].setValue([]);
+                                    this.messageForm.controls["kind"].setValue([]);
+                                    this.messageForm.controls["receiver_id"].setValue([]);
+                                    this.messageForm.controls["cc"].setValue([]);
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'personalMsg');
                                         const url: string[] = ["/web/community"];
-                                        self.router.navigate(url);
+                                        this.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
-                                    self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage, null);
+                                    this.responseMessage = respData['message'];
+                                    this.notificationService.showError(this.responseMessage, null);
                                 }
                             },
                             (err) => {
@@ -395,27 +393,27 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                             }
                         );
                 } else if (kindValue == 'group') {
-                    self.authService.setLoader(true);
-                    self.authService.memberSendRequest('post', 'message/send-group-message', formData)
+                    this.authService.setLoader(true);
+                    this.authService.memberSendRequest('post', 'message/send-group-message', formData)
                         .subscribe(
                             (respData: any) => {
-                                self.authService.setLoader(false);
-                                self.messageSubmitted = false;
+                                this.authService.setLoader(false);
+                                this.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage, null);
-                                    self.messageForm.controls["kind"].setValue([]);
-                                    self.messageForm.controls["kind_id"].setValue([]);
-                                    self.messageForm.reset();
+                                    this.responseMessage = this.language.community_messages.email_draft;
+                                    this.notificationService.showSuccess(this.responseMessage, null);
+                                    this.messageForm.controls["kind"].setValue([]);
+                                    this.messageForm.controls["kind_id"].setValue([]);
+                                    this.messageForm.reset();
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'groupMsg');
                                         const url: string[] = ["/web/community"];
-                                        self.router.navigate(url);
+                                        this.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
-                                    self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage, null);
+                                    this.responseMessage = respData['message'];
+                                    this.notificationService.showError(this.responseMessage, null);
                                 }
                             },
                             (err) => {
@@ -423,28 +421,28 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                             }
                         );
                 } else if (kindValue == 'club') {
-                    self.authService.setLoader(true);
-                    self.authService.memberSendRequest('post', 'message/send-club-message', formData)
+                    this.authService.setLoader(true);
+                    this.authService.memberSendRequest('post', 'message/send-club-message', formData)
                         .subscribe(
                             (respData: any) => {
-                                self.authService.setLoader(false);
-                                self.messageSubmitted = false;
+                                this.authService.setLoader(false);
+                                this.messageSubmitted = false;
                                 if (respData['isError'] == false) {
-                                    self.responseMessage = self.language.community_messages.email_draft;
-                                    self.notificationService.showSuccess(self.responseMessage, null);
-                                    self.messageForm.controls["kind"].setValue([]);
-                                    self.messageForm.controls["receiver_id"].setValue([]);
-                                    self.messageForm.controls["cc"].setValue([]);
-                                    self.messageForm.reset();
+                                    this.responseMessage = this.language.community_messages.email_draft;
+                                    this.notificationService.showSuccess(this.responseMessage, null);
+                                    this.messageForm.controls["kind"].setValue([]);
+                                    this.messageForm.controls["receiver_id"].setValue([]);
+                                    this.messageForm.controls["cc"].setValue([]);
+                                    this.messageForm.reset();
                                     $(".message_title").click();
                                     setTimeout(() => {
                                         localStorage.setItem('backItem', 'clubMsg');
                                         const url: string[] = ["/web/community"];
-                                        self.router.navigate(url);
+                                        this.router.navigate(url);
                                     }, 1000);
                                 } else if (respData['code'] == 400) {
-                                    self.responseMessage = respData['message'];
-                                    self.notificationService.showError(self.responseMessage, null)
+                                    this.responseMessage = respData['message'];
+                                    this.notificationService.showError(this.responseMessage, null)
                                 }
                             },
                             (err) => {
@@ -452,11 +450,11 @@ export class CreateMessageComponent implements OnInit, OnDestroy {
                             }
                         );
                 }
-            }, function () {
-                self.router.navigate(['web/community']);
+            },  () =>{
+                this.router.navigate(['web/community']);
             });
         } else {
-            self.router.navigate(['web/community']);
+            this.router.navigate(['web/community']);
         }
     }
 

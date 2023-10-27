@@ -222,7 +222,7 @@ export class CreateGroupComponent implements OnInit, OnDestroy {
     */
     createGroup() {
         this.submitted = true;
-        var self = this;
+        
         if ((sessionStorage.getItem('token')) && (this.createGroupForm.valid) && (!this.errorImage.isError)) {
             let status: number = 0;
             if (this.userDetails.roles[0] == 'admin') {
@@ -246,18 +246,17 @@ export class CreateGroupComponent implements OnInit, OnDestroy {
                     if (key == 'add_image') {
                         formData.append('file', element);
                     }
-
                     if (key == 'participants') {
                         var userArr: { user_id: string, approved_status: number, keycloak_id: string }[] = [];
                         if (element && element.length > 0) {
-                            element.forEach(function (value, key) {
+                            element.forEach((value, key) => {
                                 var status: number = 0;
                                 if (value.user_id == localStorage.getItem('user-id')) {
                                     status = 1;
                                 } else {
                                     status = 0;
                                 }
-                                let res: UserDetails = self.receiveData.find(x => x.id == value.user_id)
+                                let res: UserDetails = this.receiveData.find(x => x.id == value.user_id)
                                 if (res) {
                                     var userObj: { user_id: string, approved_status: number, keycloak_id: string } = {
                                         'user_id': value.user_id,
@@ -286,9 +285,9 @@ export class CreateGroupComponent implements OnInit, OnDestroy {
                         this.authService.setLoader(false);
                         if (respData['isError'] == false) {
                             this.notificationService.showSuccess(respData['result']['message'], null);
-                            var self = this;
+                            
                             var redirectUrl: string = 'web/group-detail/' + respData['result']['group']['id'];
-                            self.router.navigate([redirectUrl]);
+                            this.router.navigate([redirectUrl]);
                         } else if (respData['code'] == 400) {
                             this.notificationService.showError(respData['message'], null);
                         }

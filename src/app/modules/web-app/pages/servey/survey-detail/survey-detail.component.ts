@@ -199,17 +199,17 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     */
     approveSurvey(survey_id: number) {
         let userId: string = localStorage.getItem('user-id');
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
-            self.authService.memberSendRequest('get', 'admin-approve-survey-by-id/' + survey_id + '/' + userId, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey,  ()=> {
+            this.authService.memberSendRequest('get', 'admin-approve-survey-by-id/' + survey_id + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
                         const url: string[] = ["/web/survey-vote/" + survey_id];
-                        self.router.navigate(url);
-                        self.ngOnInit();
+                        this.router.navigate(url);
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  ()=> {
         })
     }
 
@@ -221,15 +221,15 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
    */
     approveUpdateSurvey(survey_id: number) {
         let userId: string = localStorage.getItem('user-id');
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey, function () {
-            self.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + userId, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.approved_survey,  ()=> {
+            this.authService.memberSendRequest('get', 'approve-updatedsurvey/survey_id/' + survey_id + '/' + userId, null)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                     }
                 )
-        }, function () {
+        },  ()=> {
         })
     }
 
@@ -240,21 +240,21 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     * @return  {staring}
     */
     denySurvey(survey_id: number) {
-        let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey, function (reason) {
+    
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey,  (reason) =>{
             let postData = {
                 "deny_reason": reason,
-                "deny_by_id": self.userDetails.userId
+                "deny_by_id": this.userDetails.userId
             };
-            self.authService.memberSendRequest('put', 'deny-survey/survey_id/' + survey_id, postData)
+            this.authService.memberSendRequest('put', 'deny-survey/survey_id/' + survey_id, postData)
                 .subscribe(
                     (respData: any) => {
-                        self.ngOnInit();
+                        this.ngOnInit();
                         const url: string[] = ["/web/survey-detail/" + survey_id];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  ()=> {
         })
     }
 
@@ -265,22 +265,22 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     * @return  {staring}
     */
     surveyDelete(id: number) {
-        let self = this;
-        self.confirmDialogService.confirmThis(self.language.confirmation_message.delete_survey, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('delete', 'deleteSurvey/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         if (respData['isError'] == false) {
-                            self.notificationService.showSuccess(respData['result']['message'], null);
-                            self.router.navigate(['web/survey'])
+                            this.notificationService.showSuccess(respData['result']['message'], null);
+                            this.router.navigate(['web/survey'])
                         } else if (respData['code'] == 400) {
-                            self.notificationService.showError(respData['message'], null);
+                            this.notificationService.showError(respData['message'], null);
                         }
                     }
                 )
-        }, function () { }
+        },  ()=> { }
         )
     }
 
@@ -291,18 +291,18 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     * @return  {staring}
     */
     deleteUpdatedSurvey(id: number) {
-        let self = this;
-        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey, function () {
-            self.authService.setLoader(true);
-            self.authService.memberSendRequest('get', 'get-reset-updatedsurvey/' + id, null)
+    
+        this.confirmDialogService.confirmThis(this.language.confirmation_message.delete_survey,  ()=> {
+            this.authService.setLoader(true);
+            this.authService.memberSendRequest('get', 'get-reset-updatedsurvey/' + id, null)
                 .subscribe(
                     (respData: any) => {
-                        self.authService.setLoader(false);
+                        this.authService.setLoader(false);
                         const url: string[] = ['/web/survey-detail/' + id];
-                        self.router.navigate(url);
+                        this.router.navigate(url);
                     }
                 )
-        }, function () {
+        },  ()=> {
         }, 'deleteUpdate')
     }
 
