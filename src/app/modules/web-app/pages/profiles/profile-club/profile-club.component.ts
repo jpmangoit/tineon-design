@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DomSanitizer } from '@angular/platform-browser';
 import {ClubDetail, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class ProfileClubComponent implements OnInit, OnDestroy {
     headline_word_option: number = 0;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private themes: ThemeService,
         private sanitizer: DomSanitizer,

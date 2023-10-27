@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 declare var $: any;
@@ -38,7 +38,7 @@ export class CrmMyVotesComponent implements OnInit, OnDestroy {
 
     constructor(
         private notificationService: NotificationService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private themes: ThemeService,
         private commonFunctionService: CommonFunctionService,

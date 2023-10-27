@@ -15,7 +15,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import {LoginDetails, Room, ThemeType, UserDetails} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -172,7 +172,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     customReccDateError: { isError: boolean; errorMessage: string; } = { isError: false, errorMessage: '' };
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

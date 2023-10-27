@@ -16,7 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {LoginDetails, Room, ThemeType, UserDetails} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -259,7 +259,7 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
         defaultParagraphSeparator: 'p'
     };
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private datePipe: DatePipe,
         private _router: Router,

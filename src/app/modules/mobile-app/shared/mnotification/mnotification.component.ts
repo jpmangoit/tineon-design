@@ -3,7 +3,7 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, UserAccess} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationsService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationsService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -30,7 +30,7 @@ export class MnotificationComponent implements OnInit {
     classToggled = false;
     loader: boolean;
 
-    constructor(private _bottomSheetRef: MatBottomSheetRef<MnotificationComponent>, private _router: Router, private route: ActivatedRoute, private themes: ThemeService, public authService: AuthServiceService, private confirmDialogService: ConfirmDialogService,
+    constructor(private _bottomSheetRef: MatBottomSheetRef<MnotificationComponent>, private _router: Router, private route: ActivatedRoute, private themes: ThemeService, public authService: AuthService, private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService, private sanitizer: DomSanitizer, private notificationService: NotificationsService, private updateConfirmDialogService: UpdateConfirmDialogService,
         private denyReasonService: DenyReasonConfirmDialogService) { }
 

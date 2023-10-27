@@ -15,7 +15,7 @@ import {
   ThemeType,
   UserAccess, UserMessages
 } from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -75,7 +75,7 @@ export class MchatListComponent implements OnInit {
     chatId: any
     constructor(
         private lang: LanguageService, private notificationService: NotificationService,
-        private authService: AuthServiceService, private themes: ThemeService,
+        private authService: AuthService, private themes: ThemeService,
         private _router: Router,
         private route: ActivatedRoute,
         private sanitizer: DomSanitizer,

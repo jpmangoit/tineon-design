@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { RRule } from 'rrule';
 import {EventsType, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 declare var $: any;
@@ -163,7 +163,7 @@ export class MDashboardComponent implements OnInit {
 
     constructor(private lang: LanguageService,
         private themes: ThemeService,
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private sanitizer: DomSanitizer,
         private router: Router,
         private notificationService: NotificationService,

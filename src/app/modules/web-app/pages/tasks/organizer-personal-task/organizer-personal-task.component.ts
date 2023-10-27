@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService} from '@core/services';
 import {DomSanitizer} from '@angular/platform-browser';
 declare var $: any;
 
@@ -19,7 +19,7 @@ export class OrganizerPersonalTaskComponent implements OnInit {
     completed: TaskType[];
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer

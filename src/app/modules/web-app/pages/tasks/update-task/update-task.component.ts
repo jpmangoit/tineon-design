@@ -9,7 +9,7 @@ import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
 import { TaskType } from '@core/models/task-type.model';
 import {Subscription} from 'rxjs';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -127,7 +127,7 @@ export class UpdateTaskComponent implements OnInit, OnDestroy {
     taskImage: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private route: ActivatedRoute,

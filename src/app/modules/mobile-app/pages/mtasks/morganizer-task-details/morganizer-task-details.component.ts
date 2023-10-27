@@ -3,7 +3,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ClubDetail, LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -47,7 +47,7 @@ export class MorganizerTaskDetailsComponent implements OnInit, OnDestroy {
 	selectedSubtask: any;
 
 	constructor(
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		private router: Router,
 		private route: ActivatedRoute,
 		private themes: ThemeService,

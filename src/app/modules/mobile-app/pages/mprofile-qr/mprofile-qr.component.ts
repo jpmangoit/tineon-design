@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -22,7 +22,7 @@ export class MprofileQrComponent implements OnInit {
     language: any;
     userInfo:any;
     constructor(private lang: LanguageService,
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private sanitizer: DomSanitizer,
         private router: Router,
         private datePipe: DatePipe,

@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {ClubMessagesType, LoginDetails, ThemeType, UserDetails} from '@core/models';
-import {AuthServiceService, DropdownService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, DropdownService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -62,7 +62,7 @@ export class MclubMessageComponent implements OnInit {
 	todayDate: any;
 	constructor(
 		private lang: LanguageService,
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		public formBuilder: UntypedFormBuilder, private notificationService: NotificationService,
 		private confirmDialogService: ConfirmDialogService, private themes: ThemeService, private dropdownService: DropdownService
 	) { }

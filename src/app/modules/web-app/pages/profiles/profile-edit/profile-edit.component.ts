@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import {ProfileDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 declare var $: any;
 
@@ -74,7 +74,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     headline_word_option: number = 0;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private datePipe: DatePipe,
         private _router: Router,

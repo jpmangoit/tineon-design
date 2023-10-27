@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -35,7 +35,7 @@ export class McompletedSurveyComponent implements OnInit {
     alluserInformation: { member_id: number }[] = [];
     thumb: any;
 
-    constructor(private authService: AuthServiceService, private themes: ThemeService, private notificationService: NotificationService,
+    constructor(private authService: AuthService, private themes: ThemeService, private notificationService: NotificationService,
         private lang: LanguageService, private confirmDialogService: ConfirmDialogService) { }
 
     ngOnInit(): void {

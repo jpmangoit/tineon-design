@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService} from '@core/services';
+import {AuthService} from '@core/services';
 
 
 @Component({
@@ -10,7 +10,7 @@ import {AuthServiceService} from '@core/services';
 })
 export class MLayoutComponent implements OnInit {
   userDetails: LoginDetails;
-  constructor(public authService:AuthServiceService) { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('user-data'));

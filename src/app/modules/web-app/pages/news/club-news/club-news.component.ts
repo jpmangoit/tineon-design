@@ -3,7 +3,7 @@ import { LoginDetails, NewsType, ThemeType } from '@core/models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 import { Router } from '@angular/router';
 
 declare var $: any;
@@ -77,7 +77,7 @@ export class
     newData: any;
 
     constructor(
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private lang: LanguageService,
         private router: Router,
         private themes: ThemeService,

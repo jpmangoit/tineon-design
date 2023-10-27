@@ -11,7 +11,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CourseByExternalInstructor, CreateAccess, Instructors, LoginDetails, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 declare var $: any;
@@ -95,7 +95,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         private router: Router,
         private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,
         private commonFunctionService: CommonFunctionService,

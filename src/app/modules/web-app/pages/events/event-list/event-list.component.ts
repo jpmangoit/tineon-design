@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 declare var $: any;
 
@@ -37,7 +37,7 @@ export class EventListComponent implements OnInit {
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private themes: ThemeService,
         private sanitizer: DomSanitizer,

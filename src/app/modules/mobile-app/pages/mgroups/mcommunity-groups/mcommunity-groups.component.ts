@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CommunityGroup, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {Router} from '@angular/router';
 
@@ -65,7 +65,7 @@ export class McommunityGroupsComponent implements OnInit {
     selected = '0';
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService,
         private themes: ThemeService,

@@ -9,14 +9,14 @@ export const environment = {
 };
 
 
-export const memberUrl = window["env"]["memberUrl"];
-export const baseUrl = window["env"]["baseUrl"];
-export const serverUrl = window["env"]["serverUrl"];
+// export const memberUrl = window["env"]["memberUrl"];
+// export const baseUrl = window["env"]["baseUrl"];
+// export const serverUrl = window["env"]["serverUrl"];
 export const backendBaseUrl = window["env"]["backendBaseUrl"];
 
-// export const memberUrl = 'https://vcloud.dev.comciencia.cl/api/';
-// export const serverUrl = 'http://103.127.29.85:9001/'
-// export const baseUrl = 'http://103.127.29.85:9001/api/';
+export const memberUrl = 'https://vcloud.dev.comciencia.cl/api/';
+export const serverUrl = 'http://103.127.29.85:9001/'
+export const baseUrl = 'http://103.127.29.85:9001/api/';
 
 
 // export const clubOne = 'allClub';

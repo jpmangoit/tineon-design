@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -26,7 +26,7 @@ export class CrmSurveyComponent implements OnInit ,OnDestroy{
 	participateAccess: ParticipateAccess;
     userAccess: UserAccess;
 
-	constructor(private authService: AuthServiceService, private themes: ThemeService,
+	constructor(private authService: AuthService, private themes: ThemeService,
 		private lang: LanguageService, private confirmDialogService: ConfirmDialogService) { }
 
 	ngOnInit(): void {

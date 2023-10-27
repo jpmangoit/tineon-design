@@ -4,7 +4,7 @@ import {AuthorizationAccess, CreateAccess, CrmNews, CrmSurvey, LoginDetails, Par
 import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {interval, Subscription} from 'rxjs';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {DomSanitizer} from '@angular/platform-browser';
 import {take} from 'rxjs/operators';
 import {appSetting} from '@core/constants';
@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private lang: LanguageService,
         private themes: ThemeService,
         private notificationService: NotificationService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private sanitizer: DomSanitizer,
         public formBuilder: UntypedFormBuilder,
         private commonFunctionService: CommonFunctionService,

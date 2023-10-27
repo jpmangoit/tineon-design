@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import {CrmNews, CrmSurvey, LoginDetails, ThemeType} from '@core/models';
 import {UntypedFormArray, UntypedFormGroup} from '@angular/forms';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {serverUrl} from '@env/environment';
@@ -30,7 +30,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
     surveyForm: UntypedFormGroup;
 
     constructor(
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private router: Router,
         private themes: ThemeService,
         private lang: LanguageService,

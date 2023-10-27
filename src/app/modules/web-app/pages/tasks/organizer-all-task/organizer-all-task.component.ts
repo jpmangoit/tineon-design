@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DomSanitizer } from '@angular/platform-browser';
-import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService} from '@core/services';
 
 declare var $: any;
 
@@ -23,7 +23,7 @@ export class OrganizerAllTaskComponent implements OnInit {
     count: number = 0;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer

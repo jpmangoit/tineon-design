@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {CookieService} from 'ngx-cookie-service';
 
 declare var $: any;
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     isMobile: boolean = false;
 
     constructor(
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private router: Router,
         private lang: LanguageService,
         private cookieService: CookieService,

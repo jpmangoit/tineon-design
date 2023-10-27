@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -53,7 +53,7 @@ export class MprofileMyClubComponent implements OnInit {
     thumbnail: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private themes: ThemeService,
         private sanitizer: DomSanitizer,

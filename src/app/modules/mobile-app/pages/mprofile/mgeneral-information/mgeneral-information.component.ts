@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 
 declare var $: any;
 
@@ -60,7 +60,7 @@ export class MgeneralInformationComponent implements OnInit {
     checkStatus: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: FormBuilder,
         private _router: Router,
         private lang: LanguageService,

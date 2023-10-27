@@ -3,7 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -38,7 +38,7 @@ export class ServeyListComponent implements OnInit {
     pageSizeOptions: number[] = [10, 25, 50];
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,

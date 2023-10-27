@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess } from '@core/models';
-import { AuthServiceService, LanguageService, ThemeService } from '@core/services';
+import { AuthService, LanguageService, ThemeService } from '@core/services';
 import { appSetting } from '@core/constants';
 
 declare var $: any;
@@ -33,7 +33,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     showButtonBox: boolean = false;
 
 
-    constructor(private lang: LanguageService, public authService: AuthServiceService, private router: Router, private themes: ThemeService) {
+    constructor(private lang: LanguageService, public authService: AuthService, private router: Router, private themes: ThemeService) {
         this.authService.setLoader(true);
         if (localStorage.getItem('club_theme') != null) {
             let theme: ThemeType = JSON.parse(localStorage.getItem('club_theme'));

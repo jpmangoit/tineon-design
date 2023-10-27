@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {AuthorizationAccess, ClubDetail, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -39,7 +39,7 @@ export class MHeaderComponent implements OnInit {
         private _router: Router,
         private lang: LanguageService,
         private themes: ThemeService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private sanitizer: DomSanitizer,private commonFunctionService: CommonFunctionService
         ) { }

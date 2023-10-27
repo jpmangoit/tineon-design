@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CrmNews, LoginDetails, ParticipateAccess, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 
@@ -33,7 +33,7 @@ export class CrmNewsComponent implements OnInit {
     userAccess: UserAccess;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private notificationService: NotificationService,
         private sanitizer: DomSanitizer,

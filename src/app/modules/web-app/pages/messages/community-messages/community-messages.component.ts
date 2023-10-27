@@ -14,7 +14,7 @@ import {
   ThemeType,
   UserAccess, UserMessages
 } from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ViewportScroller} from '@angular/common';
 import {DomSanitizer} from '@angular/platform-browser';
 import {appSetting} from '@core/constants';
@@ -83,7 +83,7 @@ export class CommunityMessagesComponent implements OnInit, OnDestroy {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService,
         private route: ActivatedRoute,

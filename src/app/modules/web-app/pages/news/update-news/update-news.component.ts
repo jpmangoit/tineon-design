@@ -10,7 +10,7 @@ import { NgxImageCompressService } from "ngx-image-compress";
 import { DomSanitizer } from '@angular/platform-browser';
 import {CommunityGroup, GroupsDetail, LoginDetails, NewsType, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -105,7 +105,7 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
     originalImg: string;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         public formBuilder: UntypedFormBuilder,
         private route: ActivatedRoute,

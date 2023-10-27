@@ -9,7 +9,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {AuthorizationAccess, CreateAccess, FAQ, FAQCategory, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -140,7 +140,7 @@ export class VereinsFaqComponent implements OnInit, OnDestroy {
     faq_document: string = '';
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {LoginDetails, NewsType, ThemeType} from '@core/models';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -39,7 +39,7 @@ export class MclubNewsComponent implements OnInit {
     private activatedSub: Subscription;
 
     constructor(
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private lang: LanguageService,
         private router: Router,
         private confirmDialogService: ConfirmDialogService,

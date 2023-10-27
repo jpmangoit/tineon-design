@@ -12,7 +12,7 @@ import {
   UploadDocVisibility,
   UserAccess
 } from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -65,7 +65,7 @@ export class OrganizerDocumentComponent implements OnInit ,OnDestroy{
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private _router: Router,private themes: ThemeService,
         private commonFunctionService: CommonFunctionService
     ) { }

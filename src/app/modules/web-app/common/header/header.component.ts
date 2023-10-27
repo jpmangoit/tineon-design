@@ -9,7 +9,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import {AuthorizationAccess, ClubDetail, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NotificationService,
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private _router: Router,
         private route: ActivatedRoute,
         private themes: ThemeService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService,
         private sanitizer: DomSanitizer,

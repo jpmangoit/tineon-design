@@ -17,7 +17,7 @@ import {
 } from '@core/models';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -93,7 +93,7 @@ export class McourseComponent implements OnInit, OnDestroy {
     responseMessage: any;
 
     constructor(
-        private formbuilder: UntypedFormBuilder, private authService: AuthServiceService,
+        private formbuilder: UntypedFormBuilder, private authService: AuthService,
         public formBuilder: UntypedFormBuilder, private confirmDialogService: ConfirmDialogService,
         private datePipe: DatePipe, private router: Router,
         private themes: ThemeService, private notificationService: NotificationService,

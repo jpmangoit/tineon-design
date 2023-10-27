@@ -9,7 +9,7 @@ import { NgxImageCompressService, DOC_ORIENTATION } from 'ngx-image-compress';
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -104,7 +104,7 @@ export class UpdateBannerComponent implements OnInit, OnDestroy {
     imgWidth: any;
     minDate: any;
 
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private notificationService: NotificationService,
         private router: Router,

@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {LoginDetails, NewsType, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -49,7 +49,7 @@ export class MallNewsComponent implements OnInit {
     // onScroll(event) {
     // }
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         private lang: LanguageService, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,

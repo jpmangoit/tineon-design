@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 declare var $: any;
 
 @Component({
@@ -33,7 +33,7 @@ export class CrmCompletedSurveyComponent implements OnInit {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private themes: ThemeService,
         private lang: LanguageService,

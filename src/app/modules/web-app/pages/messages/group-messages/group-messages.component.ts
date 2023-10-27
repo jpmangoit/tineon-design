@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, }
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {CommunityGroup, LoginDetails, ThemeType, UserDetails} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -59,7 +59,7 @@ export class GroupMessagesComponent implements OnInit, OnDestroy {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,

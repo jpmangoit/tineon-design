@@ -3,7 +3,7 @@ import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@
 import { Router } from '@angular/router';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -37,7 +37,7 @@ export class MorganizerComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService
     ) {

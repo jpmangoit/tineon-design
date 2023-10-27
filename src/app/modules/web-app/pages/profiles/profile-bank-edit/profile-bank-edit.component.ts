@@ -5,7 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -58,7 +58,7 @@ export class ProfileBankEditComponent implements OnInit {
     headline_word_option: number = 0;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

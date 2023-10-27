@@ -17,7 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {LoginDetails, Room, ThemeType, UserDetails} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -264,7 +264,7 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
     dowloading: boolean = false;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private _router: Router,
         private route: ActivatedRoute,

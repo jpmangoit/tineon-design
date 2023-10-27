@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import {ClubDetail, LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -45,7 +45,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     allUsers: any;
     taskId: number;
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         private route: ActivatedRoute,
         private themes: ThemeService,

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 import {BreadcrumbItem} from '@shared/components/page-header/breadcrumb.type';
 
@@ -26,7 +26,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
   breadCrumbItems: Array<BreadcrumbItem>;
   private activatedSub: Subscription;
 
-  constructor(private lang: LanguageService, private authService: AuthServiceService,
+  constructor(private lang: LanguageService, private authService: AuthService,
               private router: Router, private themes: ThemeService) {
     const getParamFromUrl: string = this.router.url.split('/')[3];
     if (getParamFromUrl === 'community-groups' || getParamFromUrl === 'groups' || getParamFromUrl === 'groups-joined') {

@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 declare var $: any;
 
 @Component({
@@ -33,7 +33,7 @@ export class CrmActiveSurveyComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         private lang: LanguageService,
         private notificationService: NotificationService,

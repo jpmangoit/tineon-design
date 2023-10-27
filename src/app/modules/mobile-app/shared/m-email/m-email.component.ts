@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {AuthServiceService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, LanguageService, NotificationService} from '@core/services';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class MEmailComponent implements OnInit {
     validError: boolean = false;
 
   constructor(
-    public authService: AuthServiceService,private lang: LanguageService, public router: Router,
+    public authService: AuthService,private lang: LanguageService, public router: Router,
      private notificationService: NotificationService
   ) { }
 

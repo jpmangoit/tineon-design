@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 declare var $: any;
 
@@ -27,7 +27,7 @@ export class UploadCalendarComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

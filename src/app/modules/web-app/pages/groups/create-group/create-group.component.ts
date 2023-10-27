@@ -8,7 +8,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import {LoginDetails, ThemeType, UserDetails} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -46,7 +46,7 @@ export class CreateGroupComponent implements OnInit, OnDestroy {
     imgWidth: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

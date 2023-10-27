@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs'
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 
 @Component({
     selector: 'app-create-category',
@@ -26,7 +26,7 @@ export class CreateCategoryComponent implements OnInit, OnDestroy {
     private activatedSub: Subscription;
 
     constructor(public formBuilder: UntypedFormBuilder, private themes: ThemeService, private notificationService: NotificationService
-        , private router: Router, private authService: AuthServiceService, private lang: LanguageService,
+        , private router: Router, private authService: AuthService, private lang: LanguageService,
         public navigation: NavigationService) {
     }
 

@@ -4,7 +4,7 @@ import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, LanguageService} from '@core/services';
+import {AuthService, LanguageService} from '@core/services';
 
 
 declare var $: any;
@@ -30,7 +30,7 @@ export class MemberProfileComponent implements OnInit {
   user: string;
 
   constructor(
-    private authService: AuthServiceService,
+    private authService: AuthService,
     public formBuilder: UntypedFormBuilder,
     private _router: Router,
     private route: ActivatedRoute,

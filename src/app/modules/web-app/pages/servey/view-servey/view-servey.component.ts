@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey, VoteAnswer, VoteSetting} from '@core/models/survey.model';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 declare var $: any;
 
 @Component({
@@ -36,7 +36,7 @@ export class ViewServeyComponent implements OnInit, OnDestroy {
     documentData: any;
     dowloading: boolean = false;
 
-    constructor(private authService: AuthServiceService, private themes: ThemeService, private notificationService: NotificationService,
+    constructor(private authService: AuthService, private themes: ThemeService, private notificationService: NotificationService,
         private lang: LanguageService, private route: ActivatedRoute,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer) { }

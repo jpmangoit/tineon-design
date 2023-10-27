@@ -5,7 +5,7 @@ import {LoginDetails, ThemeType} from '@core/models';
 import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {Survey, VoteAnswer, VoteSetting} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -42,7 +42,7 @@ export class ServeyVoteComponent implements OnInit, OnDestroy {
 	documentData: any;
 	dowloading: boolean = false;
 
-	constructor(private authService: AuthServiceService, private themes: ThemeService,
+	constructor(private authService: AuthService, private themes: ThemeService,
 		private router: Router, public formBuilder: UntypedFormBuilder, private notificationService: NotificationService,
 		private lang: LanguageService, private route: ActivatedRoute, private commonFunctionService: CommonFunctionService,
 		private sanitizer: DomSanitizer,) { }

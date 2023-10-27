@@ -11,7 +11,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { DomSanitizer } from '@angular/platform-browser';
 import {EventsType, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 declare var $: any;
 
 @Component({
@@ -52,7 +52,7 @@ export class OrganizerEventComponent implements OnInit {
     count: number = 0;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService,

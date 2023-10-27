@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -36,7 +36,7 @@ export class MactiveSurveyComponent implements OnInit {
     thumb: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         private notificationService: NotificationService,
         private lang: LanguageService,

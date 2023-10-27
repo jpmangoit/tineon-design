@@ -3,7 +3,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { saveAs } from 'file-saver';
 import { Subscription } from 'rxjs';
 import {DocumentsType, LoginDetails, UploadDocVisibility} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -53,7 +53,7 @@ export class MyDocumentComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService
 

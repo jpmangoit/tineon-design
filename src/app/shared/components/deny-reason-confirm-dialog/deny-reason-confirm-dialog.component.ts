@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { AuthServiceService, LanguageService } from '@core/services';
+import { AuthService, LanguageService } from '@core/services';
 import { Router } from '@angular/router';
 import { DenyReasonConfirmDialogService } from '@shared/components';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -26,7 +26,7 @@ export class DenyReasonConfirmDialogComponent implements OnInit {
 	deviceCheck: any = 'web';
 
 	constructor(private lang: LanguageService, public formBuilder: UntypedFormBuilder,
-		private authService: AuthServiceService, private _router: Router,
+		private authService: AuthService, private _router: Router,
 		private denyReasonService: DenyReasonConfirmDialogService,
 		public dialogRef: MatDialogRef<DenyReasonConfirmDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any) { }

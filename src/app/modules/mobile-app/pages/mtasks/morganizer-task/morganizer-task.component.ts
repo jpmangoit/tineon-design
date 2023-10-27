@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TaskType } from '@core/models/task-type.model';
 import {CreateAccess, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -95,7 +95,7 @@ export class MorganizerTaskComponent implements OnInit {
     }
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private confirmDialogService: ConfirmDialogService, private themes: ThemeService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,

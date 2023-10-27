@@ -8,7 +8,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DomSanitizer } from '@angular/platform-browser';
 import {ClubDetail, Instructors, LoginDetails, ProfileDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NotificationService,
@@ -53,7 +53,7 @@ export class InstructorDetailsComponent implements OnInit {
     allWeekDayArray: any[];
     allWeekDayArrayName: { id: number; name: string[]; }[];
 
-    constructor(private authService: AuthServiceService,private commonFunctionService: CommonFunctionService,
+    constructor(private authService: AuthService,private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,private notifi:NotificationsService,
         private sanitizer: DomSanitizer,
         private denyReasonService: DenyReasonConfirmDialogService,private lang: LanguageService, private confirmDialogService: ConfirmDialogService,

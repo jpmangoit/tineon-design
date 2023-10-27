@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, ThemeService} from '@core/services';
+import {AuthService, ThemeService} from '@core/services';
 
 @Component({
     selector: 'app-layout',
@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit,OnDestroy {
     setTheme:ThemeType;
     private activatedSub: Subscription;
 
-    constructor(public authService: AuthServiceService, private cdref: ChangeDetectorRef, private router: Router,private themes: ThemeService) { }
+    constructor(public authService: AuthService, private cdref: ChangeDetectorRef, private router: Router,private themes: ThemeService) { }
 
     ngOnInit(): void {
         if(localStorage.getItem('club_theme') != null){

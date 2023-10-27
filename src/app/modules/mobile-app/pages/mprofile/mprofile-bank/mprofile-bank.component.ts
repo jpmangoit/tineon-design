@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -56,7 +56,7 @@ export class MprofileBankComponent implements OnInit {
     userDataProfile: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         private lang: LanguageService,
         private themes: ThemeService,

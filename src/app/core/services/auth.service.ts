@@ -10,27 +10,21 @@ import { Subject } from 'rxjs';
     providedIn: 'root'
 })
 
-export class AuthServiceService {
+export class AuthService {
     uncaughtError: boolean = false;
     chatMessage: any = new Subject();
     chat: any;
+    timeoutErrorFlag: Boolean = false;
+    loader: Boolean = false;
 
     constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer) {
     }
 
     sendRequest(method: string, endPoint: string, data: any) {
-        let response: any;
-        let ls: any = localStorage.getItem('loggedIn');
-        let experiesOn: any;
-        let now: any = new Date().getTime();
         return this._actualSendRequest(method, endPoint, data);
     }
 
     memberSendRequest(method: string, endPoint: string, data: any) {
-        let response: any;
-        let ls: any = localStorage.getItem('loggedIn');
-        let experiesOn: any;
-        let now: any = new Date().getTime();
         return this._actualSendRequest(method, endPoint, data);
     }
 
@@ -43,38 +37,27 @@ export class AuthServiceService {
                 this.uncaughtError = false;
             }, 5000);
             /* ------------------------------------ */
-            let language: string = localStorage.getItem('language');
-            language = (language) ? language : 'de';
-            const myHeaders: HttpHeaders = new HttpHeaders({
-                'authorization': this.getToken(),
-                'accept': 'application/json',
-                'lang': language
-            });
 
             let endPointUrl: string;
             endPointUrl = `${baseUrl}` + endPoint + ``;
             if (method == 'post') {
                 return this.http.post(endPointUrl,
-                    data,
-                    { headers: myHeaders }).pipe(
+                    data).pipe(
                         map(this.handleData),
                         catchError(this.handleError));
             } else if (method == 'put') {
                 return this.http.put(endPointUrl,
-                    data,
-                    { headers: myHeaders }).pipe(
+                    data).pipe(
                         map(this.handleData),
                         catchError(this.handleError));
             } else if (method == 'delete') {
-                return this.http.delete(endPointUrl,
-                    { headers: myHeaders }).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.delete(endPointUrl).pipe(
+                    map(this.handleData),
+                    catchError(this.handleError));
             } else {
-                return this.http.get(endPointUrl,
-                    { headers: myHeaders }).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.get(endPointUrl).pipe(
+                    map(this.handleData),
+                    catchError(this.handleError));
             }
         }
     }
@@ -92,39 +75,24 @@ export class AuthServiceService {
                 this.uncaughtError = false;
             }, 5000);
             /* ------------------------------------ */
-            let language: string = localStorage.getItem('language');
-            language = (language) ? language : 'de';
-            const myHeaders: HttpHeaders = new HttpHeaders({
-                'authorization': this.getToken(),
-                'accept': 'application/json',
-                'lang': language
-            });
+           
             let endPointUrl: string;
             endPointUrl = `${memberUrl}` + endPoint + ``;
             if (method == 'post') {
-                return this.http.post(endPointUrl,
-                    data,
-                    { headers: myHeaders }).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.post(endPointUrl, data).pipe(
+                    map(this.handleData),
+                    catchError(this.handleError));
             } else if (method == 'put') {
-                return this.http.put(endPointUrl,
-                    data,
-                    { headers: myHeaders }).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.put(endPointUrl, data).pipe(
+                    map(this.handleData),
+                    catchError(this.handleError));
             } else if (method == 'delete') {
-                return this.http.delete(endPointUrl,
-                    { headers: myHeaders }).pipe(
-                        map(this.handleData),
-                        catchError(this.handleError));
+                return this.http.delete(endPointUrl).pipe(
+                    map(this.handleData),
+                    catchError(this.handleError));
             } else {
-                const myHeaders1: HttpHeaders = new HttpHeaders({
-                    'authorization': this.getToken(),
-                    'accept': 'image/webp,*/*'
-                });
                 const salt: number = (new Date()).getTime();
-                return this.http.get<Blob>(endPointUrl + '&' + salt, { headers: myHeaders1, responseType: 'blob' as 'json' }).pipe(map(blob => {
+                return this.http.get<Blob>(endPointUrl + '&' + salt, { responseType: 'blob' as 'json' }).pipe(map(blob => {
                     var urlCreator: any = window.URL || window.webkitURL;;
                     return this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
                 }))
@@ -164,6 +132,7 @@ export class AuthServiceService {
             }
         }
     }
+
     /* Data handler from HTTP service  */
     private handleData: any = (response: Response) => {
         const resData: Response = response;
@@ -198,7 +167,6 @@ export class AuthServiceService {
         localStorage.clear();
     }
 
-    loader: Boolean = false;
     setLoader(value: Boolean) {
         this.loader = value;
     }
@@ -206,7 +174,6 @@ export class AuthServiceService {
         return this.loader;
     }
 
-    timeoutErrorFlag: Boolean = false;
     setTimeoutErrorFlag(value: Boolean) {
         this.timeoutErrorFlag = value;
     }
@@ -252,19 +219,12 @@ export class AuthServiceService {
                 this.uncaughtError = false;
             }, 5000);
             /* ------------------------------------ */
-            let language: string = localStorage.getItem('language');
-            language = (language) ? language : 'de';
-            const myHeaders: HttpHeaders = new HttpHeaders({
-                'authorization': this.getToken(),
-                'accept': 'application/json',
-                'lang': language
-            });
 
             let endPointUrl: string;
             endPointUrl = `${baseUrl}` + endPoint + ``;
             return this.http.post(endPointUrl, data,
-                { headers: myHeaders, responseType: "blob" }).
-                pipe( map(this.handleData),catchError(this.handleError));
+                { responseType: "blob" }).
+                pipe(map(this.handleData), catchError(this.handleError));
         }
     }
 
@@ -275,22 +235,22 @@ export class AuthServiceService {
      * @returns {array} uniqe array
      */
 
-    uniqueData(uniqueData:any){
-        if(uniqueData && uniqueData.length > 0 ){
+    uniqueData(uniqueData: any) {
+        if (uniqueData && uniqueData.length > 0) {
             return uniqueData.filter((value, index, array) => array.indexOf(value) === index);
-        }else{
+        } else {
             return [];
         }
-       
+
     }
 
-     /**
-     * Function is usesd for return uniqe object array
-     * @author MangoIt Solutions
-     * @param {object array}
-     * @returns {object array} uniqe object array
-     */
-    uniqueObjData(uniqueData:any, key:any){
+    /**
+    * Function is usesd for return uniqe object array
+    * @author MangoIt Solutions
+    * @param {object array}
+    * @returns {object array} uniqe object array
+    */
+    uniqueObjData(uniqueData: any, key: any) {
         return [...new Map(uniqueData.map(item => [item[key], item])).values()];
     }
 }

@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -75,7 +75,7 @@ export class MprofileEditComponent implements OnInit {
     imgWidth: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: FormBuilder,
         private datePipe: DatePipe,
         private _router: Router,

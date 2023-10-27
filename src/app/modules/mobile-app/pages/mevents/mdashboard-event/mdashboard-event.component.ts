@@ -5,7 +5,7 @@ import { CalendarOptions, EventApi } from '@fullcalendar/core';
 import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
 import {EventsType, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 
 declare var $: any;
 
@@ -48,7 +48,7 @@ export class MdashboardEventComponent implements OnInit {
     allCourses: any[];
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService,

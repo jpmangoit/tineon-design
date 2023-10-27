@@ -9,7 +9,7 @@ import { NgxImageCompressService } from "ngx-image-compress";
 import { DomSanitizer } from '@angular/platform-browser';
 import {CommunityGroup, LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -59,7 +59,7 @@ export class UpdateGroupComponent implements OnInit, OnDestroy {
 
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private route: ActivatedRoute,

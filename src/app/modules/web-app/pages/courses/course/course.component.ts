@@ -15,7 +15,7 @@ import {
   ThemeType,
   UserAccess
 } from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 import {Courses} from '@core/models/courses.model';
@@ -89,7 +89,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     allUsers: any;
 
     constructor(private formbuilder: UntypedFormBuilder,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private confirmDialogService: ConfirmDialogService,
         private datePipe: DatePipe,

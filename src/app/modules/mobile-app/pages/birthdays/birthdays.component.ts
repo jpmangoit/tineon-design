@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService} from '@core/services';
 import {Router} from '@angular/router';
 
 
@@ -28,7 +28,7 @@ export class BirthdaysComponent implements OnInit {
     }[];
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private router: Router,
         private commonFunctionService: CommonFunctionService

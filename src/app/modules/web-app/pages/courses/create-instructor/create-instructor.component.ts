@@ -7,7 +7,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NgxImageCompressService } from "ngx-image-compress";
 import {LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -55,7 +55,7 @@ export class CreateInstructorComponent implements OnInit, OnDestroy {
 		private themes: ThemeService,
 		private lang: LanguageService,
 		private router: Router,
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		public navigation: NavigationService,
 		private notificationService: NotificationService,
 		private imageCompress: NgxImageCompressService,

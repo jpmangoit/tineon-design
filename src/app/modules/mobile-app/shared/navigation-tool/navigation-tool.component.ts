@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, NotificationsService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, NotificationsService} from '@core/services';
 import {Router} from '@angular/router';
 import {ActionToolComponent, MnotificationComponent, SettingToolComponent} from '@modules/mobile-app/shared';
 
@@ -35,7 +35,7 @@ export class NavigationToolComponent implements OnInit {
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,
         private tostrNotificationService: NotificationService, private router: Router,
-        private notificationService: NotificationsService, private lang: LanguageService, private authService: AuthServiceService) { }
+        private notificationService: NotificationsService, private lang: LanguageService, private authService: AuthService) { }
 
     openBottomSheet(): void {
         this._bottomSheet.open(ActionToolComponent);

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import { LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType } from '@core/models';
-import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 import { ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService } from '@shared/components';
 
 
@@ -71,7 +71,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     selectedTask: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         private route: ActivatedRoute, private themes: ThemeService,
         private _location: Location,

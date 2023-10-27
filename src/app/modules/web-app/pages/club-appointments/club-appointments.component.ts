@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {EventsType, LoginDetails, ParticipateAccess, UserAccess} from '@core/models';
 import {Courses} from '@core/models/courses.model';
-import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 @Component({
@@ -76,7 +76,7 @@ export class ClubAppointmentsComponent implements OnInit {
     isBanner: boolean = false;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private lang: LanguageService,
         private datePipe: DatePipe,
         private router: Router,

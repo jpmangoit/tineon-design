@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { element } from 'protractor';
 import {LoginDetails, PersonalMessagesType, ThemeType, UserDetails} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -60,7 +60,7 @@ export class PersonalMessagesComponent implements OnInit, OnDestroy {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService, private notificationService: NotificationService
     ) { }

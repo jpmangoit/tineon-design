@@ -3,7 +3,7 @@ import {LoginDetails, ThemeType} from '@core/models';
 import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {CRM_Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ActivatedRoute, Router} from '@angular/router';
 
 declare var $: any;
@@ -31,7 +31,7 @@ export class CrmSurveyVoteComponent implements OnInit, OnDestroy {
     vote_answer: any;
     private activatedSub: Subscription;
 
-    constructor(private authService: AuthServiceService, private router: Router, public formBuilder: UntypedFormBuilder, private themes: ThemeService,
+    constructor(private authService: AuthService, private router: Router, public formBuilder: UntypedFormBuilder, private themes: ThemeService,
         private lang: LanguageService, private route: ActivatedRoute, private notificationService: NotificationService
     ) { }
 

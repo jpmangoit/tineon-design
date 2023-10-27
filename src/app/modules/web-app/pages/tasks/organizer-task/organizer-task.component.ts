@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 declare var $: any;
@@ -25,7 +25,7 @@ export class OrganizerTaskComponent implements OnInit, OnDestroy {
     organizerTask: any;
 
     constructor(
-        private themes: ThemeService, private authService: AuthServiceService, private notificationService: NotificationService,
+        private themes: ThemeService, private authService: AuthService, private notificationService: NotificationService,
         private lang: LanguageService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer

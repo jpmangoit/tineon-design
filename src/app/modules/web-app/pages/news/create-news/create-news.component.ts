@@ -9,7 +9,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NgxImageCompressService } from "ngx-image-compress";
 import {CommunityGroup, LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -52,7 +52,7 @@ export class CreateNewsComponent implements OnInit ,OnDestroy{
     imgWidth: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         public formBuilder: UntypedFormBuilder,
         private lang: LanguageService,

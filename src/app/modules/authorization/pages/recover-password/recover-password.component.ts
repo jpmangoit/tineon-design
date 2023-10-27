@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import {AuthServiceService, LanguageService} from '@core/services';
+import {AuthService, LanguageService} from '@core/services';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class RecoverPasswordComponent implements OnInit{
 	formError:string;
 
 	constructor(
-		public authService: AuthServiceService,
+		public authService: AuthService,
 		private lang: LanguageService,
 	) { }
 

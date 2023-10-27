@@ -9,7 +9,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import {FAQCategory, LoginDetails, ThemeType} from '@core/models';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -98,7 +98,7 @@ export class MfaqCategoryComponent implements OnInit {
 
 
     constructor(
-      private authService: AuthServiceService,
+      private authService: AuthService,
       private router: Router,
       public formBuilder: UntypedFormBuilder,
       private route: ActivatedRoute,

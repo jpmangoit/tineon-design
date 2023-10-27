@@ -10,7 +10,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {ClubDetail, FAQ, FAQCategory, LoginDetails, ProfileDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 declare var $: any;
 
@@ -134,7 +134,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
     documentData: any;
     dowloading: boolean = false;
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private route: ActivatedRoute, private themes: ThemeService,

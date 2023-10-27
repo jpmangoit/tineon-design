@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver';
 import { ClubDetail, LoginDetails, ProfileDetails, ThemeType } from '@core/models';
 import { Survey } from '@core/models/survey.model';
 import { Subscription } from 'rxjs';
-import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 import { ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService } from '@shared/components';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormBuilder } from '@angular/forms';
@@ -46,7 +46,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     documentData: any;
     dowloading: boolean = false;
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private commonFunctionService: CommonFunctionService,
         private denyReasonService: DenyReasonConfirmDialogService,
         private themes: ThemeService,

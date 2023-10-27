@@ -9,7 +9,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { NgxImageCompressService } from "ngx-image-compress";
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails, ThemeData, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 declare var $: any;
@@ -80,7 +80,7 @@ export class UpdateThemeComponent implements OnInit, OnDestroy {
 
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private route: ActivatedRoute,

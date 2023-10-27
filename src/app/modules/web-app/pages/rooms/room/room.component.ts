@@ -11,7 +11,7 @@ import { formatDate } from '@fullcalendar/core';
 import { Dayjs } from 'dayjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CreateAccess, LoginDetails, Room, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -65,7 +65,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     allWeekDayArrayName: any[];
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { logging } from 'protractor';
 import {LoginDetails, NewsGroup, NewsType, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -33,7 +33,7 @@ export class GroupNewsComponent implements OnInit {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router, private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService, private themes: ThemeService,
         private notificationService: NotificationService,

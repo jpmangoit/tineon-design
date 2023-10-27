@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 
@@ -27,7 +27,7 @@ export class McommunityComponent implements OnInit, OnDestroy {
     setTheme: ThemeType;
     private activatedSub: Subscription;
 
-    constructor(private lang: LanguageService, private authService: AuthServiceService,
+    constructor(private lang: LanguageService, private authService: AuthService,
         private router: Router, private themes: ThemeService) {
         if (this.router.url == '/community') {
             this.displayChats = true;

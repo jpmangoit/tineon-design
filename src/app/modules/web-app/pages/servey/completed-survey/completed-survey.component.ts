@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -35,7 +35,7 @@ export class CompletedSurveyComponent implements OnInit {
     thumb: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         private notificationService: NotificationService,
         private lang: LanguageService,

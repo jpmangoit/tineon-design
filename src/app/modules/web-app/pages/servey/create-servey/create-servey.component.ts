@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import {LoginDetails, ThemeType} from '@core/models';
 import {io, Socket} from 'socket.io-client';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -105,7 +105,7 @@ export class CreateServeyComponent implements OnInit, OnDestroy {
     imgWidth: any;
     minDate: any;
 
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

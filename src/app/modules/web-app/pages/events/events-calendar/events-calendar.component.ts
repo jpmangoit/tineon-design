@@ -9,7 +9,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
 import { CreateAccess, EventsType, LoginDetails, ParticipateAccess, ThemeType, UserAccess } from '@core/models';
-import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
 import { appSetting } from '@core/constants';
 
 export const MY_DATE_FORMATS = {
@@ -86,7 +86,7 @@ export class EventsCalendarComponent implements OnInit {
 
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService, private themes: ThemeService, private route: ActivatedRoute,

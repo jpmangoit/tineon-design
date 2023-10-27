@@ -5,7 +5,7 @@ import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {EventsType, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -80,7 +80,7 @@ export class MclubEventsComponent implements OnInit {
         this.displayEvents = false;
         this.displayTickets = true;
     }
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService,

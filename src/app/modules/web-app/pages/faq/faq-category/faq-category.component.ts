@@ -10,7 +10,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {FAQCategory, LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -92,7 +92,7 @@ export class FaqCategoryComponent implements OnInit, OnDestroy {
     };
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         public formBuilder: UntypedFormBuilder,
         private lang: LanguageService,

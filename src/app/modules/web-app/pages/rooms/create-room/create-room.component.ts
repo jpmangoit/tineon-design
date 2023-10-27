@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { NgxImageCompressService } from "ngx-image-compress";
 import {LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -100,7 +100,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
 
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private themes: ThemeService,

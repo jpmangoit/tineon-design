@@ -10,7 +10,7 @@ import { saveAs } from 'file-saver';
 import {LoginDetails, Survey, ThemeType} from '@core/models';
 import {io, Socket} from 'socket.io-client';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -120,7 +120,7 @@ export class UpdateServeyComponent implements OnInit, OnDestroy {
 
 
 
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private lang: LanguageService,

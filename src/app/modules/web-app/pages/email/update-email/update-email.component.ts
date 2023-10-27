@@ -8,7 +8,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CreateAccess, Email, LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -102,7 +102,7 @@ declare var $: any;
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private route: ActivatedRoute,

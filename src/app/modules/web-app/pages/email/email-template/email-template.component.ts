@@ -8,7 +8,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {NgxImageCompressService} from "ngx-image-compress";
 import {CreateAccess, LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -94,7 +94,7 @@ export class EmailTemplateComponent implements OnInit ,OnDestroy{
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private router: Router,
         private themes: ThemeService,

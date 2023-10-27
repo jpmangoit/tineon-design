@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import {LoginDetails, ProfileDetails, TaskCollaboratorDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 
 declare var $: any;
@@ -61,7 +61,7 @@ export class CourseDetailComponent implements OnInit {
     documentData: any;
     dowloading: boolean = false;
 
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         private router: Router,
         private route: ActivatedRoute,
         private themes: ThemeService,

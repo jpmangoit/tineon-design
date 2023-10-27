@@ -5,7 +5,7 @@ import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import {CreateAccess, EventsType, LoginDetails, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 
@@ -84,7 +84,7 @@ export class MorganizerEventsComponent implements OnInit {
         this.displayEvents = false;
         this.displayTickets = true;
     }
-    constructor(private authService: AuthServiceService,
+    constructor(private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService,

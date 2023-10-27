@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
 import {CreateAccess, LoginDetails, Room, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -34,7 +34,7 @@ export class GlobalSearchComponent implements OnInit {
     searchResult: any;
 
     constructor(
-        public authService: AuthServiceService,
+        public authService: AuthService,
         private route: ActivatedRoute,
         private lang: LanguageService,
         private notificationService: NotificationService,

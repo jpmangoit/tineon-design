@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class MprofileBankEditComponent implements OnInit {
     isNotGerman: boolean = true;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: FormBuilder,
         private router: Router,
         private lang: LanguageService,

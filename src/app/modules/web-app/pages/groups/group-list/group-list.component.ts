@@ -4,7 +4,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 @Component({
@@ -34,7 +34,7 @@ export class GroupListComponent implements OnInit {
     currentPage: any = 0;
     pageSizeOptions: number[] = [10, 25, 50];
 
-    constructor(private authService: AuthServiceService, private lang: LanguageService, private commonFunctionService: CommonFunctionService,
+    constructor(private authService: AuthService, private lang: LanguageService, private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService,
         private confirmDialogService: ConfirmDialogService,
 

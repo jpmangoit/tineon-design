@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {LoginDetails, ThemeType} from '@core/models';
 import {Survey} from '@core/models/survey.model';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {DomSanitizer} from '@angular/platform-browser';
 
 
@@ -39,7 +39,7 @@ export class McrmMySurveyComponent implements OnInit {
     private activatedSub: Subscription;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private lang: LanguageService,
         private themes: ThemeService,

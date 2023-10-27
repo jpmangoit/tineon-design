@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Subscription } from 'rxjs';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class MobileThemeComponent implements OnInit, OnDestroy {
 	position: { item_id: number, item_text: string }[] = [];
 
 	constructor(private lang: LanguageService, private themes: ThemeService, private router: Router,
-		private authService: AuthServiceService, private notificationService: NotificationService,
+		private authService: AuthService, private notificationService: NotificationService,
 		private commonFunctionService: CommonFunctionService) { }
 
 

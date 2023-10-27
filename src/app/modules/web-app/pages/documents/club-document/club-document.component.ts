@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { saveAs } from 'file-saver';
 import {DocumentsType, LoginDetails, UploadDocVisibility} from '@core/models';
 import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -51,7 +51,7 @@ export class ClubDocumentComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService
 

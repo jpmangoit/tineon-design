@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import {LoginDetails, NewsType, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -76,7 +76,7 @@ export class ClubAllNewsComponent implements OnInit, OnDestroy {
     isShow: boolean = false;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private router: Router,
         private lang: LanguageService, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,

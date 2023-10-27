@@ -8,7 +8,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import {ClubDetail, LoginDetails, ProfileDetails, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
 
 
@@ -46,7 +46,7 @@ export class RoomDetailsComponent implements OnInit {
     allRoomCalndr: any[];
     allWeekDayArray: any[];
 
-    constructor(private authService: AuthServiceService, private commonFunctionService: CommonFunctionService,
+    constructor(private authService: AuthService, private commonFunctionService: CommonFunctionService,
         private notificationService: NotificationService, private lang: LanguageService, private confirmDialogService: ConfirmDialogService,
         private themes: ThemeService, private denyReasonService: DenyReasonConfirmDialogService, private router: Router,
         private datePipe: DatePipe,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Survey, VoteSetting} from '@core/models/survey.model';
 import {LoginDetails, ThemeType} from '@core/models';
-import {AuthServiceService, LanguageService} from '@core/services';
+import {AuthService, LanguageService} from '@core/services';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -23,7 +23,7 @@ export class CrmSurveyViewComponent implements OnInit {
     setTheme: ThemeType;
     surveyAnswerName: string;
 
-    constructor(private authService: AuthServiceService, private router: Router,
+    constructor(private authService: AuthService, private router: Router,
         private lang: LanguageService, private route: ActivatedRoute,) { }
 
     ngOnInit(): void {

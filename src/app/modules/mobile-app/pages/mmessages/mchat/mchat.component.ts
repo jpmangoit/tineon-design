@@ -15,7 +15,7 @@ import {
   UserMessages
 } from '@core/models';
 import {MatSidenav} from '@angular/material/sidenav';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -78,7 +78,7 @@ export class MchatComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService, private notificationService: NotificationService,
+        private authService: AuthService, private notificationService: NotificationService,
         public formBuilder: UntypedFormBuilder,
         private router: Router, private themes: ThemeService
     ) {

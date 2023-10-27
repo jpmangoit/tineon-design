@@ -4,7 +4,7 @@ import { DatePipe } from '@angular/common';
 import { RRule } from 'rrule';
 import { Subscription } from 'rxjs';
 import {CreateAccess, EventsType, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 @Component({
@@ -37,7 +37,7 @@ export class ClubEventsComponent implements OnInit, OnDestroy {
     participateAccess: ParticipateAccess;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService, private themes: ThemeService, private route: ActivatedRoute,

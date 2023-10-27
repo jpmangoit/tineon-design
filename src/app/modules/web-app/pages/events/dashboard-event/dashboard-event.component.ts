@@ -10,7 +10,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import {AuthorizationAccess, CreateAccess, EventsType, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 declare var $: any;
@@ -61,7 +61,7 @@ export class DashboardEventComponent implements OnInit, OnDestroy {
     authorizationAccess: AuthorizationAccess;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private datePipe: DatePipe,
         private router: Router,
         private lang: LanguageService,

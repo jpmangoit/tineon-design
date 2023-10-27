@@ -3,7 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {LoginDetails} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -35,7 +35,7 @@ export class FaqsListComponent implements OnInit {
     pageSizeOptions: number[] = [10, 25, 50];
     responseMessage:any
 
-  constructor(private authService: AuthServiceService, private lang: LanguageService,
+  constructor(private authService: AuthService, private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService,
         private notificationService: NotificationService,
         private commonFunctionService: CommonFunctionService,

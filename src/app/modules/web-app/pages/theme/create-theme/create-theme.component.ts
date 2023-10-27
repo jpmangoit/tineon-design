@@ -7,7 +7,7 @@ import { ThemePalette } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {LoginDetails, ThemeData, ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {NgxImageCompressService} from 'ngx-image-compress';
 
 
@@ -73,7 +73,7 @@ export class CreateThemeComponent implements OnInit, OnDestroy {
     imgWidth: any;
 
 	constructor(
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		public formBuilder: UntypedFormBuilder,
 		private router: Router,
 		private route: ActivatedRoute,

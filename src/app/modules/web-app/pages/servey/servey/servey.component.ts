@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -28,7 +28,7 @@ export class ServeyComponent implements OnInit ,OnDestroy{
 
 	private activatedSub: Subscription;
 
-	constructor(private authService: AuthServiceService, private themes: ThemeService,
+	constructor(private authService: AuthService, private themes: ThemeService,
 		private lang: LanguageService, private confirmDialogService: ConfirmDialogService) { }
 
 	ngOnInit(): void {

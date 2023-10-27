@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import {ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -32,7 +32,7 @@ export class BannerListComponent implements OnInit {
     bannerLists: any;
 
     constructor(
-        private authService: AuthServiceService, private notificationService: NotificationService,
+        private authService: AuthService, private notificationService: NotificationService,
         private themes: ThemeService,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer,

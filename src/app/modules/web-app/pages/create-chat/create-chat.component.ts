@@ -15,7 +15,7 @@ import {
   UserAccess,
   UserDetails
 } from '@core/models';
-import {AuthServiceService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NavigationService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -69,7 +69,7 @@ export class CreateChatComponent implements OnInit, OnDestroy {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder,
         private confirmDialogService: ConfirmDialogService,
         private router: Router,

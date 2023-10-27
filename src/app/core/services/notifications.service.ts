@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthServiceService } from './auth-service.service';
+import { AuthService } from './auth.service';
 import { LanguageService } from './language.service';
 import { CommonFunctionService } from './common-function.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -23,7 +23,7 @@ export class NotificationsService {
     alluserDetails: { firstname: string, lastname: string }[] = [];
     showNotifications: any[] = [];
     allowAdvertisment: any;
-    constructor(private authService: AuthServiceService, private lang: LanguageService,
+    constructor(private authService: AuthService, private lang: LanguageService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,) { }
 

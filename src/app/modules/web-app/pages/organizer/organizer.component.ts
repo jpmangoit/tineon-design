@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {appSetting} from '@core/constants';
 
 
@@ -34,7 +34,7 @@ export class OrganizerComponent implements OnInit,OnDestroy {
 
 	constructor(
 		private lang: LanguageService,
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		public formBuilder: UntypedFormBuilder,
 		private router: Router, private themes: ThemeService,private notificationService: NotificationService
 	) {

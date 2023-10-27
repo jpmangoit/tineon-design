@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
-import {AuthServiceService, LanguageService} from '@core/services';
+import {AuthService, LanguageService} from '@core/services';
 
 
 @Component({
@@ -55,7 +55,7 @@ export class BannerStatisticsComponent implements OnInit {
     barChartName1: any[] = [];
     barChartCount1: any[] = [];
 
-    constructor(private authService: AuthServiceService, private lang: LanguageService) { }
+    constructor(private authService: AuthService, private lang: LanguageService) { }
     ngOnInit(): void {
         this.language = this.lang.getLanguageFile();
         var endPoint = 'getBannerStatisticForDesktop'

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthServiceService } from './auth-service.service';
+import { AuthService } from './auth.service';
 import { LanguageService } from './language.service';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { Subject } from 'rxjs';
@@ -21,7 +21,7 @@ export class CommonFunctionService {
     docViewOption: any = new Subject();
     docViewOrder: any = new Subject();
 
-    constructor(private authService: AuthServiceService, private lang: LanguageService,
+    constructor(private authService: AuthService, private lang: LanguageService,
         private confirmDialogService: ConfirmDialogService, private sanitizer: DomSanitizer) { }
 
 

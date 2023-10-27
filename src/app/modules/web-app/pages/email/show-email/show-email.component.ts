@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Email, LoginDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ConfirmDialogService} from '@shared/components';
 
@@ -36,7 +36,7 @@ export class ShowEmailComponent implements OnInit, OnDestroy {
 
     constructor(
         private notificationService: NotificationService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private themes: ThemeService,
         private sanitizer: DomSanitizer,
         private commonFunctionService: CommonFunctionService,

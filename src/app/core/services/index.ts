@@ -1,5 +1,5 @@
 export * from './applicationstate.service';
-export * from './auth-service.service';
+export * from './auth.service';
 export * from './common-function.service';
 export * from './dropdown.service';
 export * from './language.service';

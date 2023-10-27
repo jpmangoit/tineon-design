@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {AuthorizationAccess, CreateAccess, LoginDetails, ParticipateAccess, ThemeType, UserAccess} from '@core/models';
 import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {Router} from '@angular/router';
 import {appSetting} from '@core/constants';
 
@@ -30,7 +30,7 @@ export class ContactAdminComponent implements OnInit,OnDestroy {
 
 	constructor(
 		private lang: LanguageService,
-		private authService: AuthServiceService,
+		private authService: AuthService,
 		public formBuilder: UntypedFormBuilder,
 		private router: Router, private themes: ThemeService,private notificationService: NotificationService
 	) { }

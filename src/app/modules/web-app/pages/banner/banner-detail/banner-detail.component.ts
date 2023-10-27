@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import {ThemeType} from '@core/models';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 
 
@@ -34,7 +34,7 @@ export class BannerDetailComponent implements OnInit {
         private notificationService: NotificationService,
         private router: Router,
         private _location: Location,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         private route: ActivatedRoute,
         private commonFunctionService: CommonFunctionService,
         private sanitizer: DomSanitizer

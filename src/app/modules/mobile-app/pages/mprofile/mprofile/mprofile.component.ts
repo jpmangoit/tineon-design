@@ -7,7 +7,7 @@ import { SettingToolComponent } from 'src/app/modules/mobile-app/shared/setting-
 import {LoginDetails, ProfileDetails, ThemeType} from '@core/models';
 import {Subscription} from 'rxjs';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, LanguageService, NotificationService, ThemeService} from '@core/services';
 
 
 declare var $: any;
@@ -62,7 +62,7 @@ export class MprofileComponent implements OnInit {
     userData: any;
 
     constructor(
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: FormBuilder,
         private _router: Router,
         private lang: LanguageService,

@@ -8,7 +8,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {NgxImageCompressService} from "ngx-image-compress";
 import {FAQCategory, LoginDetails, ThemeType} from '@core/models';
 import {
-  AuthServiceService,
+  AuthService,
   CommonFunctionService,
   LanguageService,
   NavigationService,
@@ -104,7 +104,7 @@ export class CreateFaqComponent implements OnInit ,OnDestroy{
         private router: Router,
         private themes: ThemeService,
         private lang: LanguageService,
-        public authService: AuthServiceService,
+        public authService: AuthService,
         public navigation: NavigationService,
         private notificationService: NotificationService,
         private imageCompress: NgxImageCompressService,

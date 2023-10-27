@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { Subscription } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import {LoginDetails, PersonalMessagesType, ThemeType, UserDetails} from '@core/models';
-import {AuthServiceService, DropdownService, LanguageService, NotificationService, ThemeService} from '@core/services';
+import {AuthService, DropdownService, LanguageService, NotificationService, ThemeService} from '@core/services';
 import {ConfirmDialogService} from '@shared/components';
 import {appSetting} from '@core/constants';
 
@@ -65,7 +65,7 @@ export class MpersonalMessageComponent implements OnInit {
 
     constructor(
         private lang: LanguageService,
-        private authService: AuthServiceService,
+        private authService: AuthService,
         public formBuilder: UntypedFormBuilder, private themes: ThemeService,
         private confirmDialogService: ConfirmDialogService,
         private notificationService: NotificationService,
