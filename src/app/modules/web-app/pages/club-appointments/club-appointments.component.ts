@@ -10,7 +10,7 @@ import {AuthServiceService, CommonFunctionService, LanguageService} from '@core/
 import {appSetting} from '@core/constants';
 
 @Component({
-    selector: 'app-club-appointments',
+    selector: 'app-club-appointments', 
     templateUrl: './club-appointments.component.html',
     styleUrls: ['./club-appointments.component.css'],
     providers: [DatePipe] 
@@ -45,10 +45,10 @@ export class ClubAppointmentsComponent implements OnInit {
         mouseDrag: true,
         touchDrag: true,
         pullDrag: true,
-        dots: true,
+        dots: false,
         navSpeed: 700,
         navText: ['', ''],
-        margin: 24,
+        margin: 0,
         responsive: {
             0: {
                 items: 1
@@ -73,7 +73,7 @@ export class ClubAppointmentsComponent implements OnInit {
     allUsers: any;
     thumb: string;
     alluserInformation: { member_id: number }[] = [];
-
+    isBanner: boolean = false;
 
     constructor(
         private authService: AuthServiceService,
@@ -109,8 +109,12 @@ export class ClubAppointmentsComponent implements OnInit {
     * @author  MangoIt Solutions
     */
     getDesktopDeshboardBanner() {
+        console.log(this.bannerData);
+        
         if (this.allowAdvertisment == 1 || this.bannerData?.length == 0 || this.bannerData == undefined || this.bannerData == null) {
             this.checkBanner = true;
+        } else if (this.bannerData?.length > 0){
+            this.isBanner = true;
         }
     }
 

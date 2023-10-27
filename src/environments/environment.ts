@@ -8,36 +8,15 @@ export const environment = {
   debug: window["env"]["debug"] || false
 };
 
-// export const baseUrl = 'http://localhost:3000/api/';
-// export const baseUrl = 'http://dev.app.verein.cloud:5000/api/';
-// export const memberUrl = 'https://vcloud2.dev.comciencia.cl/api/';
-// export const baseUrl = 'https://backend.staging.verein.cloud/api/';
-//export const serverUrl = 'https://backend.staging.verein.cloud';
 
-// export const memberUrl = window["env"]["memberUrl"];
-// export const baseUrl = window["env"]["baseUrl"];
-// export const serverUrl = window["env"]["serverUrl"];
-// export const backendBaseUrl = window["env"]["backendBaseUrl"];
+export const memberUrl = window["env"]["memberUrl"];
+export const baseUrl = window["env"]["baseUrl"];
+export const serverUrl = window["env"]["serverUrl"];
+export const backendBaseUrl = window["env"]["backendBaseUrl"];
 
-export const memberUrl = 'https://vcloud.dev.comciencia.cl/api/';
-export const serverUrl = 'http://103.127.29.85:9001/'
-export const baseUrl = 'http://103.127.29.85:9001/api/';
-// export const baseUrl = 'http://localhost:9001/api/';
-// export const serverUrl = 'http://localhost:9001/';
-
-
-// export const serverUrl = 'http://localhost:5001'
-// export const baseUrl = 'http://localhost:5001/api/';
-// export const baseUrl = 'http://94.237.3.78:5001/api/';
-// export const baseUrl = 'http://103.127.29.85:5001/api/';
-
-// export const baseUrl = 'http://backend.minikube.verein.cloud/api/';
-// export const baseUrl = 'https://frontend.staging.verein.cloud/api/';
-// export const baseUrl = 'https://backend.staging.verein.cloud/api/';
-// export const baseUrl = 'https://keycloak.staging.verein.cloud/auth/api/';
-
-// export const baseUrl = 'http://backend.minikube.verein.cloud/api/';
-// export const baseUrl = 'http://94.237.3.78:5001/api/';
+// export const memberUrl = 'https://vcloud.dev.comciencia.cl/api/';
+// export const serverUrl = 'http://103.127.29.85:9001/'
+// export const baseUrl = 'http://103.127.29.85:9001/api/';
 
 
 // export const clubOne = 'allClub';

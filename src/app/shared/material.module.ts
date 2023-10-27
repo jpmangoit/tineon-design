@@ -21,6 +21,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -47,6 +48,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatDialogModule
   ]
 })
 

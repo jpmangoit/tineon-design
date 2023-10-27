@@ -82,7 +82,7 @@ body.login-page {
 /* New Css for new design */
 
 ::ng-deep html body .club_widget .card {
-  padding: 30px 28px !important;
+  padding: 30px 28px 0px 28px !important;
 }
 
 @media(max-width:1500px) {
@@ -7950,19 +7950,22 @@ span.manage_g_cat {
   display: flex;
   width: 100%;
 }
-
+.club-wall-action button span {
+    position: relative;
+    top: -1px;
+}
 
 /* new design css start */
 
 @media only screen and (min-width:1025px) and (max-width:1780px){
     .col-md-9.club_widget.club-wall-news {
         flex: 0 0 75%;
-        max-width: calc(100% - 414px);
+        max-width: calc(100% - 394px);
         padding: 0 10px;
     }
     .col-md-3.appointment_widget {
         flex: 0 0 25%;
-        max-width: 414px;
+        max-width: 394px;
         padding: 0 10px;
     }
 }
@@ -7989,7 +7992,7 @@ span.manage_g_cat {
     border: none !important;
     font-weight: 700;
     font-size: 14px;
-    padding: 0 35px;
+    padding: 0 49px;
 }
 .tab-button {
     background: #fff;
@@ -8013,7 +8016,6 @@ span.manage_g_cat {
     color:#fff !important;
 }
 .page-action-right button:first-child {
-    margin-right: 10px;
     background: #FFBE00;
 }
 .page-action-right button:last-child {
@@ -8028,6 +8030,7 @@ span.manage_g_cat {
     width: 30%;
     justify-content: flex-end;
     margin-bottom: 30px;
+    gap: 26px;
 }
 .page-action-left {
     justify-content: flex-start;
@@ -8055,7 +8058,7 @@ span.manage_g_cat {
     flex-wrap: nowrap; 
 }
 .page-action {
-    margin-top: 20px;
+    margin-top: 13px;
     
 }
 .width-50 {
@@ -8073,6 +8076,7 @@ span.manage_g_cat {
 .club-wall-action {
     display: flex;
     flex-wrap: wrap;
+    gap: 26px;
 }
 @media only screen and (max-width:1260px){
     .page-action {
@@ -8090,7 +8094,5 @@ span.manage_g_cat {
     .tab-button button {
         padding: 0 15px;
     }
-    .page-action-right button:first-child {
-        margin-right: 10px;
-    }
+    
 }

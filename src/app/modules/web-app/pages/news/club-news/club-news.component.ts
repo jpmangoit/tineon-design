@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {LoginDetails, NewsType, ThemeType} from '@core/models';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
-import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {Router} from '@angular/router';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { LoginDetails, NewsType, ThemeType } from '@core/models';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -15,9 +15,10 @@ declare var $: any;
 })
 
 export class
-ClubNewsComponent implements OnInit, OnDestroy {
+    ClubNewsComponent implements OnInit, OnDestroy {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input() bannerData: any;
+    isBanner: boolean = false;
 
     language: any;
     role: string = '';
@@ -46,7 +47,7 @@ ClubNewsComponent implements OnInit, OnDestroy {
         mouseDrag: true,
         touchDrag: true,
         pullDrag: true,
-        dots: true,
+        dots: false,
         navSpeed: 700,
         navText: ['', ''],
         margin: 24,
@@ -96,11 +97,11 @@ ClubNewsComponent implements OnInit, OnDestroy {
         this.url = this.router.url;
         if (this.url == '/web/dashboard' || this.url == '/') {
             this.displayPopup = true;
-            this.newsDisplay = 4;
+            this.newsDisplay = 5;
             this.showClubDash = true;
         } else if (this.url == '/web/clubwall/club-news' || this.url == '/web/clubwall') {
             this.displayPopup = false;
-            this.newsDisplay = 4;
+            this.newsDisplay = 5;
             this.showClubDash = false;
         }
         this.language = this.lang.getLanguageFile();
@@ -110,7 +111,7 @@ ClubNewsComponent implements OnInit, OnDestroy {
         this.role = this.userData.roles[0];
 
         if (this.allowAdvertisment == 0) {
-            this.getDesktopDeshboardBanner();
+            // this.getDesktopDeshboardBanner();
             setTimeout(() => {
                 this.sliderOptionsOne = {
                     loop: true,
@@ -150,45 +151,52 @@ ClubNewsComponent implements OnInit, OnDestroy {
     * @param   {}
     * @return  {all the records of Banners} array of object
     */
-    getDesktopDeshboardBanner() {
-        console.log(this.bannerData);
+    // getDesktopDeshboardBanner() {
 
-        if (this.bannerData?.length > 0) {
-            this.newsDisplay = 3;
-        } else {
-            // this.authService.setLoader(true);
-            this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
-                .subscribe(
-                    (respData: any) => {
-                        // this.authService.setLoader(false);
-                        if (respData['isError'] == false) {
-                            this.bannerData = [];
-                            this.bannerData = respData['result']['banner']
-                            this.bannerData.forEach((element: any) => {
-                                element['category'] = JSON.parse(element.category);
-                                element['placement'] = JSON.parse(element.placement);
-                                element['display'] = JSON.parse(element.display);
-                                if (element.banner_image[0]?.banner_image) {
-                                    element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
-                                }
-                                if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
-                                    element['redirectLink'] = element.redirectLink;
-                                } else {
-                                    element['redirectLink'] = '//' + element.redirectLink;
-                                }
-                            })
-                            if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
-                                this.newsDisplay = 3;
-                                this.itemPerPage = 5;
-                            }
-                        } else if (respData['code'] == 400) {
-                            this.notificationService.showError(respData['message'], null);
-                        }
-                    }
-                )
+    //     if (this.bannerData != undefined) {
+    //         this.isBanner = true;
+    //     }
 
-        }
-    }
+    //     if (this.bannerData?.length > 0) {
+    //         this.newsDisplay = 3;
+    //     } else {
+    //         // this.authService.setLoader(true);
+    //         this.authService.memberSendRequest('get', 'getBannerForDashboard_Desktop/', null)
+    //             .subscribe(
+    //                 (respData: any) => {
+    //                     // this.authService.setLoader(false);
+    //                     if (respData['isError'] == false) {
+    //                         this.bannerData = [];
+    //                         this.bannerData = respData['result']['banner'];
+
+    //                         if (this.bannerData.length > 0) {
+    //                             this.isBanner = true;
+    //                         }
+
+    //                         this.bannerData.forEach((element: any) => {
+    //                             element['category'] = JSON.parse(element.category);
+    //                             element['placement'] = JSON.parse(element.placement);
+    //                             element['display'] = JSON.parse(element.display);
+    //                             if (element.banner_image[0]?.banner_image) {
+    //                                 element.banner_image[0].banner_image = this.sanitizer.bypassSecurityTrustUrl(this.commonFunctionService.convertBase64ToBlobUrl(element.banner_image[0]?.banner_image.substring(20))) as string;
+    //                             }
+    //                             if ((element['redirectLink'].includes('https://')) || (element['redirectLink'].includes('http://'))) {
+    //                                 element['redirectLink'] = element.redirectLink;
+    //                             } else {
+    //                                 element['redirectLink'] = '//' + element.redirectLink;
+    //                             }
+    //                         })
+    //                         if (this.allowAdvertisment == 0 && this.bannerData?.length > 0) {
+    //                             this.newsDisplay = 3;
+    //                             this.itemPerPage = 5;
+    //                         }
+    //                     } else if (respData['code'] == 400) {
+    //                         this.notificationService.showError(respData['message'], null);
+    //                     }
+    //                 }
+    //             )
+    //     }
+    // }
 
     /**
     * Function is used to add click count for a the particular mobile or desktop Banner
@@ -230,7 +238,6 @@ ClubNewsComponent implements OnInit, OnDestroy {
                     (respData: any) => {
                         this.authService.setLoader(false);
                         this.dashboardNewsData = respData;
-                        console.log(this.dashboardNewsData);
 
                         if (this.dashboardNewsData && this.dashboardNewsData.length > 0) {
                             this.dashboardNewsData.forEach((element: any, index) => {
@@ -468,6 +475,10 @@ ClubNewsComponent implements OnInit, OnDestroy {
             this.currentPageNmuber++;
         }
         this.getAllNewspagination();
+    }
+
+    closeModal() {
+        $('#exModal').modal('hide');
     }
 
     ngOnDestroy(): void {

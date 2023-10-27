@@ -208,7 +208,7 @@ export class UpdateNewsComponent implements OnInit, OnDestroy {
                             } else {
                                 var redirectUrl: string = 'web/clubwall/';
                                 this.router.navigate([redirectUrl]);
-                            }
+                            }  
                         } else {
                             this.notificationService.showError(this.language.community_groups.no_news, null);
                         }

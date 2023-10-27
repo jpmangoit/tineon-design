@@ -14,7 +14,7 @@ declare var $: any;
     selector: 'app-group-news',
     templateUrl: './group-news.component.html',
     styleUrls: ['./group-news.component.css']
-})
+}) 
 
 export class GroupNewsComponent implements OnInit {
     @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
@@ -216,6 +216,10 @@ export class GroupNewsComponent implements OnInit {
             this.showToggle = false;
             el[0].className = "bunch_drop";
         }
+    }
+
+    closeModal() {
+        $('#exModal1').modal('hide');
     }
 
     ngOnDestroy(): void {

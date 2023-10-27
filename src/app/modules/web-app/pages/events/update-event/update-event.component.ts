@@ -681,7 +681,13 @@ export class UpdateEventComponent implements OnInit, OnDestroy {
                 (respData: any) => {
                     if (respData['isError'] == false) {
                         this.eventDetails = respData['result'][0];
-                        this.setEventData();
+                        let userId: string = localStorage.getItem('user-id');
+                        if ((this.eventDetails.user.id == userId) || (this.userDetails.roles[0] == 'admin')) {
+                            this.setEventData();
+                        } else {
+                            var redirectUrl: string = '/web/clubwall/club-events';
+                            this._router.navigate([redirectUrl]);
+                        }  
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     }

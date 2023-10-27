@@ -17,6 +17,7 @@
         <!-- <div class="empty-data-image" *ngIf="birthdayData.length == 0  && jubileesData.length == 0">
             <span>{{language.club.no_anniversaries_birthday}}</span>
         </div> -->
+        <div class="birth-widget-inner scrollbox">
         <div class="widget-appointment widget widget-appointment-new" *ngFor='let data of birthdayData'>
             <div class="widget-app-content">
                 <div class="app-left-content">
@@ -84,6 +85,7 @@
                     <span class="user-age">{{data.vjet}} {{language.club.years_old}}</span>
                 </div> -->
             </div>
+        </div>
         </div>
     </div>
 </div>

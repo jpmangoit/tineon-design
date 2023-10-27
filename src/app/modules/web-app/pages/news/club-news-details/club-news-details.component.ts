@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ClubDetail, LoginDetails, NewsType, ProfileDetails, ThemeType} from '@core/models';
-import {Subscription} from 'rxjs';
-import {OwlOptions} from 'ngx-owl-carousel-o';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
+import { ClubDetail, LoginDetails, NewsType, ProfileDetails, ThemeType } from '@core/models';
+import { Subscription } from 'rxjs';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService } from '@shared/components';
 declare var $: any;
 
 @Component({
@@ -69,7 +69,6 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
         private authService: AuthServiceService,
         private router: Router,
         private route: ActivatedRoute, private themes: ThemeService,
-        private _location: Location,
         private confirmDialogService: ConfirmDialogService,
         private lang: LanguageService,
         private updateConfirmDialogService: UpdateConfirmDialogService,
@@ -383,8 +382,7 @@ export class ClubNewsDetailsComponent implements OnInit, OnDestroy {
     */
     denyNews(newsId: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

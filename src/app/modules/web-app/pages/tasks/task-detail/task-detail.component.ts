@@ -369,8 +369,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     */
     adminUnapprovedTasks(taskId: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

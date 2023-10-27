@@ -787,7 +787,9 @@ max-width: none;
         max-width: 1166px;
         
     }
-
+    .row.dash-widget.dashboard_w_m .row {
+        flex-wrap: nowrap;
+    }
     .dash-widget.dashboard_w_m .col-md-9  .card {
         height: calc(100vh - 351px);
     }
@@ -795,6 +797,9 @@ max-width: none;
         flex: 0 0 25%;
         max-width: 412px;
         padding-left: 7px !important;
+    }
+    .card.card-stats.profile-card {
+        width: 394px;
     }
 }
 
@@ -986,10 +991,7 @@ color: #fff;
 @media(min-width:1680px) and (max-width:1800px) {
     .dashboard-row {
         margin: 0 -12px ;
-        
-        
     }
-
     .dashboard-top-box {
   max-width: 389px;
   padding: 0 12px;
@@ -997,7 +999,7 @@ color: #fff;
 
  .dashboard-top-box:last-child {
     max-width:412px;
-    padding: 0 12px 0 5px;
+    padding: 0 0px 0 5px;
     
  }
 

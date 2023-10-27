@@ -1,30 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfirmDialogService} from '@shared/components';
-import {LanguageService} from '@core/services';
+import { Component, Inject, OnInit } from '@angular/core';
+import { LanguageService } from '@core/services';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: 'confirm-dialog.component.html',
-  styleUrls: ['confirm-dialog.component.scss']
+	selector: 'app-confirm-dialog',
+	templateUrl: 'confirm-dialog.component.html',
+	styleUrls: ['confirm-dialog.component.scss']
 })
 
 export class ConfirmDialogComponent implements OnInit {
-  language: any;
-  message: any;
+	language: any;
+	constructor(
+		private lang: LanguageService,
+		public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any
+	) { }
 
-  constructor(
-    private confirmDialogService: ConfirmDialogService, private lang: LanguageService) {
-  }
+	ngOnInit(): any {
+		this.language = this.lang.getLanguageFile();
+	}
 
-  ngOnInit(): any {
-    /**
-     *   This function waits for a message from alert service, it gets
-     *   triggered when we call this from any other component
-     */
-    this.language = this.lang.getLanguageFile();
-    this.confirmDialogService.getMessage().subscribe(message => {
-      this.message = message;
-    });
-  }
+	close(val: any) {
+		this.dialogRef.close(val);
+	}
 }

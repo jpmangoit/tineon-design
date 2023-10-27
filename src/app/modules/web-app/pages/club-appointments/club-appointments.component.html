@@ -1,4 +1,4 @@
-<div class="card club-widget-appointment banner-area" *ngIf="allowAdvertisment == 0 && bannerData?.length > 0">
+<div class="card club-widget-appointment banner-area" *ngIf="allowAdvertisment == 0 && bannerData?.length > 0" >
     <div class="all-news-column">
         <!-- <div class="news-widget"> -->
         <owl-carousel-o [options]="sliderOptions">
@@ -31,14 +31,14 @@
 
 <div class="card club-widget-appointment main-club"
     [ngClass]="checkBanner == true? 'active-club-appointment': 'not-active-club-appointment'">
-    <div class="card-header">
+    <div class="card-header" [ngClass]="{'isBanner': isBanner}">
         <h5 class="card-title" *ngIf="headline_word_option == 0">{{ language.club.club_Appointments_stand }}</h5>
         <h5 class="card-title" *ngIf="headline_word_option == 1">{{ language.club.club_Appointments_untern }}</h5>
     </div>
     <div *ngIf="participateAccess.appointments == 'Yes'">
         <div class="card-body">
             <!-- <div class="club-widget-main" *ngIf="(events && events.length> 0) ||(allCourses && allCourses.length > 0)"> -->
-            <div class="club-widget-main">
+            <div class="club-widget-main scrollbox">
                 <div class="club-widget-inner" *ngFor="let item of allClubEvents;let i= index">
                     <!-- item start -->
                     <div class="club-widget-item" *ngIf=" item.type == '1' && i < 10">

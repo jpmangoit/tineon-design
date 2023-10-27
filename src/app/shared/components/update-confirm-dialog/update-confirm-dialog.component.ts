@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
-import {UpdateConfirmDialogService} from '@shared/components';
-import {LanguageService} from '@core/services';
+import { Component, Inject, OnInit } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ConfirmDialogComponent, UpdateConfirmDialogService } from '@shared/components';
+import { LanguageService } from '@core/services';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-update-confirm-dialog',
@@ -10,20 +11,17 @@ import {LanguageService} from '@core/services';
 })
 
 export class UpdateConfirmDialogComponent implements OnInit {
-    language :any;
+    language: any;
     message: any;
     updateForm: UntypedFormGroup;
 
     constructor(
-        private updateConfirmDialogService: UpdateConfirmDialogService,  private lang : LanguageService,  public formBuilder: UntypedFormBuilder,) { }
+        private updateConfirmDialogService: UpdateConfirmDialogService,
+        private lang: LanguageService, public formBuilder: UntypedFormBuilder,
+        public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any) { this.message = data }
 
     ngOnInit(): any {
-       /**
-        *
-        *   This function waits for a message from alert service, it gets
-        *   triggered when we call this from any other component
-        */
-
         this.updateForm = this.formBuilder.group({
             reason: ['', Validators.required]
         });
@@ -31,6 +29,10 @@ export class UpdateConfirmDialogComponent implements OnInit {
         this.language = this.lang.getLanguageFile();
         this.updateConfirmDialogService.getMessage().subscribe(message => {
             this.message = message;
-        });
+        });        
+    }
+
+    close(val: any) {
+        this.dialogRef.close(val);
     }
 }

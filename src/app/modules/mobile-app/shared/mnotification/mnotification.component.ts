@@ -179,8 +179,7 @@ export class MnotificationComponent implements OnInit {
 
 
     unapprovedCourse(courseId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -214,8 +213,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     unapproveGroup(groupId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -402,8 +400,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     denyNews(newsId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -453,8 +450,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     unapprovedEvent(eventId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -520,8 +516,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     adminUnapprovedTasks(taskId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -667,8 +662,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     unapprovedRooms(roomId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -725,8 +719,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     unapprovedInstuctors(instructor_id: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -760,8 +753,7 @@ export class MnotificationComponent implements OnInit {
     }
 
     denyFaqs(faqsId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import {NotificationService} from '@core/services';
-import {LoginDetails} from '@core/models';
-import {appSetting} from '@core/constants';
+import { NotificationService } from '@core/services';
+import { LoginDetails } from '@core/models';
+import { appSetting } from '@core/constants';
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +20,8 @@ export class MemberLightGuard implements CanActivate {
         let returnValue: boolean = false;
         Object.entries((userInfo[route['data']['allow_permission'][0]])).forEach((res: any) => {
             if (res) {
-                if(res[0].includes('_')) {
-                    res[0] = res[0].replace('_','-')
+                if (res[0].includes('_')) {
+                    res[0] = res[0].replace('_', '-')
                 }
                 if (state.url.includes(res[0])) {
                     if ((res[1] == 'No')) {

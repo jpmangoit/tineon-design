@@ -81,17 +81,17 @@ span.news-category {
 }
 
 .com-g-widget .news-image {
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-  aspect-ratio: 4/3;
-  max-height: 280px;
-  width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    aspect-ratio: 4/3;
+    max-height: 280px;
+    width: 100%;
 }
 
-.card.club-widget-appointment.banner-area.ng-star-inserted + .card.club-widget-appointment.main-club.not-active-club-appointment {
-  height: calc(100vh - 654px);
-  min-height: auto;
+.card.club-widget-appointment.banner-area.ng-star-inserted+.card.club-widget-appointment.main-club.not-active-club-appointment {
+    height: calc(100vh - 654px);
+    min-height: auto;
 }
 
 .news-content p {
@@ -99,22 +99,21 @@ span.news-category {
     color: #fff;
     font-weight: 600;
     margin-bottom: 20px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: flex;
     position: absolute;
     bottom: 10px;
     left: 0px;
     background: rgba(251, 95, 95, 0.9);
     height: auto;
-    padding: 0 5px;
+    padding: 6px 5px;
     font-size: 20px;
     font-weight: 700;
-    height: 35px;
-    line-height: 40px;
-
+    height: 40px;
+    line-height: 24px;
+    text-transform: uppercase;
 }
 
 .news-content p a {
@@ -901,13 +900,15 @@ span.user-status img {
 /* new design css start */
 
 .club-widget-appointment {
-    padding: 25px 14px;
+    padding: 35px 14px;
     border-radius: 20px;
     box-shadow: none;
     /* max-height: 707px; */
     overflow: hidden;
 }
-
+.card.club-widget-appointment.banner-area.ng-star-inserted + .card.club-widget-appointment.main-club.not-active-club-appointment {
+    padding: 24px 14px;
+}
 .card-header h5 {
     margin-top: 0;
     margin-bottom: 35px;
@@ -940,7 +941,7 @@ span.club-badge {
 
 .club-widget-item-inner {
     display: flex;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
 }
 
 /* .club-widget-item {
@@ -954,17 +955,18 @@ span.club-badge {
 }
 
 .club-widget-appointment .card-body {
-    padding: 0px;;
+    padding: 0px;
+    ;
 }
 
 .club-widget-appointment .club-right-area .card-body {
-    padding: 0 0 0 15px; 
+    padding: 0 0 0 15px;
 }
 
 .club-widget-description {
     width: 98%;
     /* border-bottom: 1px solid #eaedf5; */
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 .club-time-line:before {
@@ -978,7 +980,7 @@ span.club-badge {
 
 .club-w-image {
     width: 100%;
-  height: 108px;
+    height: 108px;
     overflow: hidden;
     object-fit: cover;
     border-radius: 0px;
@@ -1002,16 +1004,22 @@ span.club-badge {
 }
 
 .not-active-club-appointment .club-widget-main {
-    height: 450px !important;
+    height: 125vh !important;
 }
 
-.active-club-appointment .club-widget-main {
-    max-height: 745px !important;
+::ng-deep .owl-theme .owl-nav.disabled+.owl-dots {
+    display: none !important;
 }
 
+
+@media (min-width:1400px){
+.card.club-widget-appointment .club-widget-main {
+    height: calc(100vh - 700px) !important;
+}
+}
 .club-left-area {
-  margin-right: 0;
-  width: 45%;
+    margin-right: 0;
+    width: 45%;
 }
 
 .ticket-time span strong {
@@ -1024,7 +1032,7 @@ span.club-badge {
     color: #9B9C9F;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 6px; 
+    margin-bottom: 6px;
 }
 
 .club-right-area h5 {
@@ -1032,13 +1040,13 @@ span.club-badge {
     font-size: 14px;
     font-weight: 700;
     line-height: 16.8px;
-    margin: -2px 0 14px;
+    margin: -2px 0 21px;
     cursor: pointer;
     /* text-transform: capitalize; */
-  
+
     overflow: hidden;
-   display: block;
-    white-space:nowrap;
+    display: block;
+    white-space: nowrap;
     text-overflow: ellipsis;
     font-family: 'Gellix', sans-serif;
     padding: 0 13px;
@@ -1074,12 +1082,12 @@ span.club-badge {
     display: flex;
     flex-wrap: nowrap;
     gap: 0px;
-    align-items: flex-start; 
+    align-items: flex-start;
     background: #F2F2F5;
     border-radius: 10px;
-  overflow: hidden; 
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  margin-bottom: 37px;
+    overflow: hidden;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 37px;
 }
 
 .event-groups span.club-badge {
@@ -1118,7 +1126,7 @@ span.club-badge {
   padding-bottom: 0;
   color: #585858;
   flex-wrap: nowrap;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .ticket-time span:first-child {
@@ -1126,18 +1134,18 @@ span.club-badge {
     height: 26px;
     font-size: 12px;
     font-weight: 700;
-    
+
 }
 
 .ticket-time span {
     background: #FB5F5F;
-     height: 26px;
+    height: 26px;
     font-size: 12px;
-    font-weight: 700; 
+    font-weight: 700;
     display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
 }
 
 .ticket-time span strong {
@@ -1149,24 +1157,24 @@ span.club-badge {
 }
 
 .ticket-time span p {
-  font-size: 12px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-bottom: 0;
-  color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0;
+    color: #fff;
 }
 
 .club-right-area {
- width: 65%;
-  display: inline-block;
-  padding: 15px 0 0;
+    width: 65%;
+    display: inline-block;
+    padding: 15px 0 0;
 }
 
 .club-widget-des-inner {
     padding-bottom: 0px;
     margin-left: 5px;
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 /* .card .card-header {
@@ -1222,7 +1230,7 @@ span.carousel-badge {
     position: absolute;
     bottom: 70px;
     left: 0px;
-      font-size:14px;
+    font-size: 14px;
     font-weight: 700;
 
     background: rgba(255, 255, 255, 0.9);
@@ -1236,7 +1244,7 @@ span.carousel-badge {
 .card.club-widget-appointment.banner-area {
     padding: 0;
     background: none;
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
 }
 
 /* .news-widget {
@@ -1267,20 +1275,20 @@ span.carousel-badge {
 
 .card.club-widget-appointment.main-club {
     overflow: hidden;
-    min-height: 281px;
+    /* min-height: 281px; */
     margin-bottom: 0px !important;
 }
 
 .card.club-widget-appointment.banner-area {
-    padding-bottom: 0; 
+    padding-bottom: 0;
     border: 3px solid #FB5F5F;
-  margin-bottom: 18px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 18px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.card.club-widget-appointment.main-club.active-club-appointment {
+/* .card.club-widget-appointment.main-club.active-club-appointment {
     max-height: 890px;
-}
+} */
 
 @keyframes zoom-in-zoom-out {
     0% {
@@ -1311,36 +1319,31 @@ span.carousel-badge {
 @media only screen and (min-width: 1440px) and (max-width: 1600px) {
     .card.club-widget-appointment.main-club {
         overflow: hidden;
-        min-height: 445px;
         /* max-height: 220px; */
     }
-
-    .card.club-widget-appointment.main-club.active-club-appointment {
-        max-height: 920px;
+    .card.club-widget-appointment.main-club.active-club-appointment{
+        height: calc(100vh - 400px);
     }
+    
 }
 
 @media only screen and (min-width: 1366px) and (max-width: 1400px) {
     .card.club-widget-appointment.main-club {
         overflow: hidden;
-        min-height: 435px;
+        /* min-height: 435px; */
         /* max-height: 220px; */
     }
 
-    .card.club-widget-appointment.main-club.active-club-appointment {
-        max-height: 920px;
-    }
+    
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1366px) {
     .card.club-widget-appointment.main-club {
         overflow: hidden;
-        min-height: 475px;
         /* max-height: 220px; */
     }
-
-    .card.club-widget-appointment.main-club.active-club-appointment {
-        max-height: 930px;
+    .card.club-widget-appointment .club-widget-main {
+        height: calc(100vh - 367px) !important;
     }
 }
 
@@ -1426,14 +1429,14 @@ span.carousel-badge {
 
 .widget-app-content {
     display: flex;
-    width: 100%; 
+    width: 100%;
 }
 
 .card-body.top-box .widget-appointment.widget {
-  
-  display: flex;
-  
-  align-items: center;
+
+    display: flex;
+
+    align-items: center;
 }
 
 .widget-app-content {
@@ -1522,27 +1525,29 @@ span.carousel-badge {
 }
 
 @media(max-width:1400px) {
-    .card-body.top-box .widget-app-content > div {
-  display: none;
-  width: 6px;
+    .card-body.top-box .widget-app-content>div {
+        display: none;
+        width: 6px;
+    }
+
+    .card.club-widget-appointment.banner-area.ng-star-inserted+.card.club-widget-appointment.main-club.not-active-club-appointment {
+        height: calc(100vh - 654px);
+    }
+
+    .club-widget-appointment .club-right-area .card-body {
+        padding: 0 0 0 10px;
+    }
+
+    .card-body.top-box.ng-star-inserted .widget-app-content span {
+        white-space: nowrap;
+        margin-left: 22px;
+        font-size: 11px;
+        color: #BDBDBD;
+        font-weight: 700;
+    }
+
+    .card .card-header .card-title {
+        font-size: 17px;
+    }
 }
 
-.card.club-widget-appointment.banner-area.ng-star-inserted + .card.club-widget-appointment.main-club.not-active-club-appointment {
-    height: auto;
-}
-
-.club-widget-appointment .club-right-area .card-body {
-  padding: 0 0 0 10px;
-}
-
-.card-body.top-box.ng-star-inserted .widget-app-content span {
-  white-space: nowrap;
-  margin-left: 22px;
-  font-size: 11px;
-  color: #BDBDBD;
-  font-weight: 700;
-}
-.card .card-header .card-title {
-    font-size: 17px;
-}
-}

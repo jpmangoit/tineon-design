@@ -67,7 +67,7 @@ export class ClubWallComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.authService.setLoader(true);
         this.language = this.lang.getLanguageFile();
-        this.userDetails = JSON.parse(localStorage.getItem('user-data'));
+        this.userDetails = JSON.parse(localStorage.getItem('user-data') || '');
         this.userRole = this.userDetails.roles[0];
         this.userAccess = appSetting.role;
         this.createAccess = this.userAccess[this.userRole].create;
@@ -89,6 +89,10 @@ export class ClubWallComponent implements OnInit, OnDestroy {
         return this.router.url === '/web/clubwall/club-dates';
     }
 
+    isClubwall(): boolean {
+        // Check if the current route is '/clubwall/club-events'
+        return this.router.url === '/web/clubwall';
+    }
 
 
     /**

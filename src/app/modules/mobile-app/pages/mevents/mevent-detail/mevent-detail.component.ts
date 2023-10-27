@@ -471,8 +471,7 @@ export class MeventDetailComponent implements OnInit {
     }
 
     unapprovedEvent(eventId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId

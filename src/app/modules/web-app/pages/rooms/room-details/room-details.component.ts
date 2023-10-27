@@ -287,8 +287,7 @@ export class RoomDetailsComponent implements OnInit {
 
     unapprovedRoom(roomId: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

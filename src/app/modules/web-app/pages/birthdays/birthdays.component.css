@@ -5843,7 +5843,7 @@ ul.nav hr {
 }
 
 .card .card-header {
-    padding: 0px 0 19px;
+    padding: 0px 0 10px;
     border: 0;
     border-bottom: 1px solid #EFF2FD;
     margin-bottom: 1.44rem;
@@ -7904,13 +7904,17 @@ span.user-status img {
   .widget-appointment-new.widget:nth-of-type(odd) {
     margin-right: 64px;
 }
-@media (max-width:1497px){
+.birth-widget-inner.scrollbox {
+    height: calc(100vh - 362px);
+}
+
+@media (max-width:1550px){
 .card-body-new {
     display: flex;
     justify-content: space-between;
 }
 .widget-appointment-new.widget:nth-of-type(odd) {
-    margin-right: 0px;
+    margin-right: 30px;
 }
 .widget-appointment-new.widget{
     max-width: 46%;

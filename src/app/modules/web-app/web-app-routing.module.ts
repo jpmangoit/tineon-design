@@ -117,7 +117,7 @@ const routes: Routes = [
                     { path: 'group-msg', component: GroupMessagesComponent },
                     { path: 'personal-msg', component: PersonalMessagesComponent },
                     { path: 'community-groups', component: CommunityGroupsComponent },
-                    { path: 'groups', component: CommunityGroupsComponent },
+                    { path: 'groups', component: CommunityGroupsComponent,canActivate: [MemberLightGuard], data: { allow_permission: ['create'] }},
                     { path: 'groups-joined', component: CommunityGroupsComponent },
                 ]
             },
@@ -132,7 +132,7 @@ const routes: Routes = [
             { path: 'create-event', component: CreateEventComponent, canActivate: [MemberLightGuard], data: { title: 'Create Event', allow_permission: ['create'] } },
             { path: 'create-task', component: CreateTaskComponent, canActivate: [MemberLightGuard], data: { title: 'Create Task', allow_permission: ['create'] } },
             { path: 'create-chat', component: CreateChatComponent, canActivate: [MemberLightGuard], data: { title: 'Create Chat', allow_permission: ['create'] } },
-            { path: 'create-news', component: CreateNewsComponent, data: { title: 'Create News', allow_permission: ['create'] } },
+            { path: 'create-news', component: CreateNewsComponent,canActivate: [MemberLightGuard], data: { title: 'Create News', allow_permission: ['create'] } },
             { path: 'create-course', component: CreateCourseComponent, canActivate: [MemberLightGuard], data: { title: 'Create Course', allow_permission: ['create'] } },
             { path: 'create-message', component: CreateMessageComponent, canActivate: [RouteGuard, MemberLightGuard, MembersGuard], data: { title: 'Create Message', allow_permission: ['create'] } },
             { path: 'create-group', component: CreateGroupComponent, canActivate: [MemberLightGuard], data: { title: 'Create Group', allow_permission: ['create'] } },
@@ -170,7 +170,7 @@ const routes: Routes = [
             { path: 'dashboard-event', component: DashboardEventComponent, canActivate: [MemberLightGuard], data: { title: 'Dashboard Event', allow_permission: ['participate'] } },
             { path: 'clubwall-news/:pageId', component: ClubAllNewsComponent, canActivate: [MemberLightGuard], data: { title: 'News', allow_permission: ['participate'] } },
             { path: 'vereins-faq', component: VereinsFaqComponent, data: { title: 'Vereins Faq' } },
-            { path: 'faq-category', component: FaqCategoryComponent, canActivate: [MemberLightGuard], data: { title: 'Faq Category', allow_permission: ['participate'] } },
+            { path: 'faq-category', component: FaqCategoryComponent, canActivate: [MemberLightGuard], data: { title: 'Faq Category', allow_permission: ['create'] } },
             { path: 'course', component: CourseComponent, data: { title: 'Course' } },
             { path: 'instructor', component: InstructorComponent, canActivate: [MemberLightGuard], data: { title: 'Instructor', allow_permission: ['participate'] } },
             { path: 'room', component: RoomComponent, canActivate: [MemberLightGuard], data: { title: 'Room', allow_permission: ['participate'] } },
@@ -203,7 +203,7 @@ const routes: Routes = [
             { path: 'coming_soon', component: ComingSoonComponent },
             { path: 'event-calendar', component: EventsCalendarComponent },
 
-            { path: 'all-list', component: NewsListComponent, data: { title: 'Club News List' } },
+            { path: 'all-list', component: NewsListComponent,canActivate: [MemberLightGuard], data: { title: 'Club News List', allow_permission: ['create']  } },
             { path: 'list/event-list', component: EventListComponent, data: { title: 'Event List' } },
             { path: 'course-list', component: CourseListComponent, data: { title: 'Course List' } },
             { path: 'room-list', component: RoomListComponent, data: { title: 'Room List' } },
@@ -213,8 +213,8 @@ const routes: Routes = [
             { path: 'group-list', component: GroupListComponent, data: { title: 'Group List' } },
             { path: 'faqs-list', component: FaqsListComponent, data: { title: 'Faq List' } },
 
-            { path: 'headline-wording', component: HeadlineWordingComponent, data: { title: 'Headline Wording' } },
-            { path: 'mobile-themes', component: MobileThemeComponent, data: { title: 'Mobile Themes' } },
+            { path: 'headline-wording', component: HeadlineWordingComponent,canActivate: [MemberLightGuard,AuthGuard], data: { title: 'Headline Wording', allow_permission: ['create'] } },
+            { path: 'mobile-themes', component: MobileThemeComponent,canActivate: [MemberLightGuard,AuthGuard], data: { title: 'Mobile Themes',allow_permission: ['create'] } },
             { path: 'app-store', component: AppStoreComponent, data: { title: 'App Store' } },
 
         ]

@@ -646,8 +646,7 @@ export class GroupDetailComponent implements OnInit {
 */
     unapproveGroup(groupId: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userId

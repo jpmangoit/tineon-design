@@ -1,35 +1,35 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subject } from 'rxjs';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 @Injectable()
 export class ConfirmDialogService {
-  dialogResponse = new Subject<any>();
-  private subject = new Subject<any>();
+    private subject = new Subject<any>();
+    dialogResponse = new Subject<any>();
 
-  confirmThis(message: string, yesFn: () => void, noFn: () => void, isAction?: any): any {
-    this.setConfirmation(message, yesFn, noFn, isAction);
-  }
+    constructor(private dialog: MatDialog) { }
 
-  setConfirmation(message: string, yesFn: () => void, noFn: () => void, isAction?: any): any {
-    const that: this = this;
-    this.subject.next({
-      type: 'confirm', text: message,
-      yesFn(): any {
-        that.subject.next(); // This will close the modal
-        yesFn();
-        if (isAction) {
-          that.dialogResponse.next(message);
-        }
-      },
-      noFn(): any {
-        that.subject.next();
-        noFn();
-      }
-    });
-  }
+    confirmThis(message: string, yesFn: () => void, noFn: () => void, isAction?: any): any {
+        const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                type: 'confirm',
+                text: message,
+            },
+            disableClose: true,
+        });
+        confirmDialog.afterClosed().subscribe(result => {           
+            if (result) {
+                yesFn();
+                return result;
+            } else {
+                noFn();
+                return false;
+            }
+        });
+    }
 
-  getMessage(): Observable<any> {
-    return this.subject.asObservable();
-  }
+    // getMessage(): Observable<any> {
+    //     return this.subject.asObservable();
+    // }
 }

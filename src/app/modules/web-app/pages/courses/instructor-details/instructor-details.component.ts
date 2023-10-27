@@ -390,8 +390,7 @@ export class InstructorDetailsComponent implements OnInit {
     * @returns {Object} message
     */
     unapprovedInstuctors(instructor_id: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId

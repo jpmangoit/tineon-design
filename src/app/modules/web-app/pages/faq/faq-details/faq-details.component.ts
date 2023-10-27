@@ -654,8 +654,7 @@ export class FaqDetailsComponent implements OnInit, OnDestroy {
 
     denyFaqs(faqsId: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

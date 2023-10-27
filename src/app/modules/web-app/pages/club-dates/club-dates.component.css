@@ -1008,7 +1008,18 @@ span.manage_g_cat {
     font-weight: 600;
     color: #677180;
 }
-
+@media only screen and (min-width:1025px) and (max-width:1780px){
+    .col-md-9.club_calendar_widget {
+        flex: 0 0 75%;
+        max-width: calc(100% - 394px);
+        padding: 0 10px;
+    }
+    .col-md-3.club_calendar_widget {
+        flex: 0 0 25%;
+        max-width: 394px;
+        padding: 0 10px;
+    }
+}
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
     .col-md-8.community-group-widget .col-lg-4.col-md-6.col-sm-6 {
         flex: 0 0 50%;

@@ -294,8 +294,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
     unapprovedCourse(courseId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -324,8 +323,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     unapproveGroup(groupId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_group, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -483,9 +481,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     denyNews(newsId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article,  () => {
-            let reason = $("#message-text").val();
-            let postData = {
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.deny_article,  (reason) => {
+        let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
             };
@@ -534,8 +531,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     unapprovedEvent(eventId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -590,8 +586,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     adminUnapprovedTasks(taskId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_task,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -710,8 +705,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     unapprovedRooms(roomId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_room,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -756,8 +750,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     unapprovedInstuctors(instructor_id: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor,  () => {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_instructor,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
@@ -799,12 +792,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     denyFaqs(faqsId: number) {
-        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs,  () => {
-            let reason = $("#message-text").val();
+        console.log(faqsId);
+        
+        this.updateConfirmDialogService.confirmThis(this.language.create_faq.unapproved_faqs,  (reason) => {
+            console.log(reason);
+            
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId
             };
+            console.log(postData);
             this.authService.memberSendRequest('put', 'deny-faq/faq_id/' + faqsId, postData)
                 .subscribe(
                     (respData: any) => {
@@ -878,8 +875,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     unapprovedSurvey(surveyId: number) {
         var reason = '';
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey,  () => {
-            reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey,  (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": this.userDetails.userId

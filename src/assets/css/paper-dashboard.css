@@ -4496,7 +4496,7 @@ button.navbar-toggler.open {
     margin-top: 0px;
     font-size: 20px;
     color: #555555;
-    font-family: 'Gellix';
+    font-family: 'Gellix' !important;
     font-weight: 700;
 }
 
@@ -5575,7 +5575,7 @@ span.news-category {
     width: 50px;
     height: 50px;
     border-radius: 50% !important;
-    margin-right: 15px;
+    margin-right: 12px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -5626,7 +5626,7 @@ button.red_more_btn {
   border: none;
   box-shadow: none;
   color: #fff;
-  background: #ffbe00;
+  background: #FBC52D;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: 600;
@@ -6081,6 +6081,7 @@ span.user-designation {
         padding-right: 10px !important;
         padding-left: 10px !important;
     }
+    
 }
 
 @media only screen and (min-width: 1261px) and (max-width: 1366px) {
@@ -8513,6 +8514,7 @@ font-size: 14px;
   color: #BDBDBD;
   font-size: 11px;
   font-weight: 700;
+  padding-right: 5px;
 }
 
 .event_field ul li {
@@ -8535,11 +8537,15 @@ font-size: 14px;
 }
 
 .col-md-3.appointment_widget .card-header h5  {
-    padding:0px;
+    padding:0px 0px 10px;
 }
 
-
-
+.col-md-9.club_widget.club-wall-news .club_widget .card-body {
+    overflow: inherit;
+}
+.col-md-9.club_widget.club-wall-news .card {
+    height: 100%;
+}
 
 span.event_uplod_overlay {
     position: absolute;
@@ -8769,7 +8775,7 @@ width: 100%;
     line-height: 20px;
 }
 
-.modal-body  .news_content_text span {
+.modal-body  .news_content_text, .modal-body  .news_content_text span, .modal-body  .news_content_text p {
   color: #565656;
   font-size: 16px;
   font-style: normal;
@@ -9003,8 +9009,8 @@ body .sidebar.sidebar-hr {
 
     position: fixed;
     display: block;
-    top: 83px;
-    height: calc(100vh - 100px);
+    top: 66px;
+    height: calc(100vh - 66px);
     width: 106px;
     right: auto;
     left: 0;
@@ -11321,7 +11327,7 @@ a.sidebar-expand:hover .club-logo-title {
 
 body .sidebar.sidebar-hr .sidebar-wrapper::-webkit-scrollbar,
 .event-list-area .event-content-area::-webkit-scrollbar,
-.club-widget-main::-webkit-scrollbar,
+
 .widget-chat.widget::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar,
 .card-body.manage_g_widget::-webkit-scrollbar,
@@ -11341,7 +11347,7 @@ body .sidebar.sidebar-hr .sidebar-wrapper::-webkit-scrollbar,
 
 body .sidebar.sidebar-hr .sidebar-wrapper::-webkit-scrollbar-track,
 .event-list-area .event-content-area::-webkit-scrollbar-track,
-.club-widget-main::-webkit-scrollbar-track,
+
 .widget-chat.widget::-webkit-scrollbar-track,
 .chat-messages::-webkit-scrollbar-track,
 .card-body.manage_g_widget::-webkit-scrollbar-track,
@@ -11358,7 +11364,7 @@ body .sidebar.sidebar-hr .sidebar-wrapper::-webkit-scrollbar-track,
 
 body .sidebar.sidebar-hr .sidebar-wrapper::-webkit-scrollbar-thumb,
 .event-list-area .event-content-area::-webkit-scrollbar-thumb,
-.club-widget-main::-webkit-scrollbar-thumb,
+
 .widget-chat.widget::-webkit-scrollbar-thumb,
 .chat-messages::-webkit-scrollbar-thumb,
 .card-body.manage_g_widget::-webkit-scrollbar-thumb,
@@ -12874,6 +12880,22 @@ background: #FBC52D;
 .card-header.clubwall-ne .next-prev-button {
     margin-top: 0;
 }
+.mat-option-text {
+    color: #68759F;
+    font-weight: 700;
+    font-family: 'Gellix' !important;
+}
+.dash-widget.dashboard_w_m .large-item .news-item-content {
+    font-family: "Gellix", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+@media only screen and (min-width: 1681px) and (max-width: 1780px) {
+    .row.dash-widget.dashboard_w_m {
+        flex-wrap: nowrap;
+    }
+}
 /* new scrollbar design for all */
 .scrollbox {
     overflow-y: scroll;
@@ -12884,7 +12906,7 @@ background: #FBC52D;
   }
   
   .scrollbox:hover::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
   }
   .scrollbox:hover::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
@@ -12892,7 +12914,7 @@ background: #FBC52D;
   
   @media (hover: none) {
     .scrollbox::-webkit-scrollbar {
-      width: 8px;
+      width: 2px;
     }
     .scrollbox::-webkit-scrollbar-thumb {
       background-color: rgba(0, 0, 0, 0.2);
@@ -12901,5 +12923,10 @@ background: #FBC52D;
   @media (max-width:1400px){
     .card .card-header .card-title {
         font-size: 18px;
+    }
+  }
+  @media (min-width:1025px) and (max-width:1780px){
+    .dash-widget.dashboard_w_m .large-item .news-item-content {
+        height: calc(100% - 311px) !important;
     }
   }

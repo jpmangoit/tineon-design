@@ -671,7 +671,15 @@ export class UpdateCoursesComponent implements OnInit, OnDestroy {
                             this.setEventParticipants = Object.assign(this.authService.uniqueObjData(this.setEventParticipants, 'id'));
                             this.userSelected = this.authService.uniqueData(this.userSelected);
                         }
-                        this.setCourseData();
+                        
+                        let userId: string = localStorage.getItem('user-id');
+                        if ((this.courseDetails.user.id == userId) || (this.userDetails.roles[0] == 'admin')) {
+                            this.setCourseData();
+                        } else {
+                            var redirectUrl: string = '/web/course';
+                            this._router.navigate([redirectUrl]);
+                        }  
+                        // this.setCourseData();
                     } else if (respData['code'] == 400) {
                         this.notificationService.showError(respData['message'], null);
                     } else {

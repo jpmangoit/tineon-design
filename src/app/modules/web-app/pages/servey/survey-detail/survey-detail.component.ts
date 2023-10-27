@@ -2,13 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
-import {ClubDetail, LoginDetails, ProfileDetails, ThemeType} from '@core/models';
-import {Survey} from '@core/models/survey.model';
-import {Subscription} from 'rxjs';
-import {AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService} from '@core/services';
-import {ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService} from '@shared/components';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UntypedFormBuilder} from '@angular/forms';
+import { ClubDetail, LoginDetails, ProfileDetails, ThemeType } from '@core/models';
+import { Survey } from '@core/models/survey.model';
+import { Subscription } from 'rxjs';
+import { AuthServiceService, CommonFunctionService, LanguageService, NotificationService, ThemeService } from '@core/services';
+import { ConfirmDialogService, DenyReasonConfirmDialogService, UpdateConfirmDialogService } from '@shared/components';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UntypedFormBuilder } from '@angular/forms';
 declare var $: any;
 
 @Component({
@@ -58,7 +58,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private sanitizer: DomSanitizer,
         private updateConfirmDialogService: UpdateConfirmDialogService,
-        private _location: Location) {
+    ) {
         this.refreshPage = this.confirmDialogService.dialogResponse.subscribe(message => {
             setTimeout(() => {
                 this.ngOnInit();
@@ -241,8 +241,7 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     */
     denySurvey(survey_id: number) {
         let self = this;
-        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey, function () {
-            let reason = $("#message-text").val();
+        this.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_survey, function (reason) {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

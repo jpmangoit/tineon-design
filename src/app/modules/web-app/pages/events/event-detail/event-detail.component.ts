@@ -492,8 +492,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
     unapprovedEvent(eventId: number) {
         let self = this;
-        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, function () {
-            let reason = $("#message-text").val();
+        self.updateConfirmDialogService.confirmThis(this.language.confirmation_message.unapproved_event, (reason) => {
             let postData = {
                 "deny_reason": reason,
                 "deny_by_id": self.userDetails.userId

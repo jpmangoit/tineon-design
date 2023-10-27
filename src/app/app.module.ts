@@ -84,6 +84,7 @@ export function getCulture() {
   exports: [
     ConfirmDialogComponent,
     UpdateConfirmDialogComponent,
+    DenyReasonConfirmDialogComponent
   ],
 
   providers: [
